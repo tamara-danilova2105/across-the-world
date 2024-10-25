@@ -2,7 +2,7 @@ import { forwardRef, InputHTMLAttributes } from 'react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { getStyles } from '@/entities/lib/getStyles';
 import { Stack } from '../Stack';
-import styles from './Input.module.scss';
+import styles from './Input.module.scss'; //TODO
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,

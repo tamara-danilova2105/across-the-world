@@ -1,0 +1,1 @@
+export { LazyMainPage as MainPage } from './MainPage.lazy';
