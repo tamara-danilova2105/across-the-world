@@ -1,4 +1,4 @@
-import { Stack } from "@/entities/ui/Stack";
+import { Stack } from "@/shared/ui/Stack";
 
 const MainPage = () => {
     return (

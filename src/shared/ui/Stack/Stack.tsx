@@ -1,4 +1,4 @@
-import { Additional, getStyles, Mods } from '@/entities/lib/getStyles';
+import { Additional, getStyles, Mods } from '@/shared/lib/getStyles';
 import styles from './Stack.module.scss';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 

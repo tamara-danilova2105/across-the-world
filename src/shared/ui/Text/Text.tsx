@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { getStyles } from '@/entities/lib/getStyles';
+import { getStyles } from '@/shared/lib/getStyles';
 import styles from './Text.module.scss';
 
 export type TextTag = 'h1' | 'h2' | 'h3' | 'p' | 'li';
