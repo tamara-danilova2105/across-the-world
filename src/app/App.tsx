@@ -1,5 +1,7 @@
+import { AppRouter } from "./router/ui/AppRouter";
+
 function App() {
-  return <>КРУГОСВЕТКА</>;
+  return <AppRouter />;
 }
 
 export default App;

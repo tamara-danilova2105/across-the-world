@@ -46,6 +46,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     },
     [AppRouters.admin]: {
         path: getRouteAdmin(),
+        onlyAdmin: true,
     },
     [AppRouters.not_found]: {
         path: '*'

@@ -1,5 +1,13 @@
+import { Stack } from "@/shared/ui/Stack";
+
 export const Navbar = () => {
     return (
-        <p>Navbar</p>
+        <Stack 
+            max 
+            justify='between' 
+            gap="16"
+        >
+            Navbar
+        </Stack>
     );
 };

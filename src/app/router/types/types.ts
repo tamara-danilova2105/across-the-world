@@ -17,4 +17,5 @@ export type AppRoutesProps = {
     path: string;
     page?: ReactNode; 
     title?: string;
+    onlyAdmin?: boolean;
 }
