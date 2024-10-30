@@ -1,5 +1,8 @@
+import { MainPage } from "@/pages/MainPage";
+
 function App() {
-  return <>КРУГОСВЕТКА</>;
+  return (
+  <MainPage/>);
 }
 
 export default App;

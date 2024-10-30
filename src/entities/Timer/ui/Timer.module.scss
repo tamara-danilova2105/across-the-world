@@ -1,0 +1,53 @@
+@import '../../../app/styles/vars';
+
+.timeContainer {
+    width: 100%;
+
+    &.timer_earlyBook {
+        gap: 24px;
+        width: 522px;
+
+        > div {
+            gap: 8px;
+
+            > p:nth-child(1) {
+                color: var(--blue-color);
+                font-family: var(--font-family-geometria500);
+            }
+    
+            > p:nth-child(2) {
+                color: var(--blue-color);
+                font-family: var(--font-family-geometria400);
+            }
+        }
+
+        > span {
+            color: var(--blue-color);
+            font-family: var(--font-family-geometria500);
+        }
+    }
+
+    &.timerCard {
+        gap: 7px;
+        width: 265px;
+        background: var(--blur-color);
+
+        > div {
+            > p:nth-child(1) {
+                color: var(--peach-color);
+                font-family: var(--font-family-geometria500);
+            }
+    
+            > p:nth-child(2) {
+                color: var(--peach-color);
+                font-family: var(--font-family-geometria400);
+                font-size: var(--font-size-18);
+            }
+        }
+
+        > span {
+            color: var(--peach-color);
+            font-family: var(--font-family-geometria500);
+        }
+    }
+}
