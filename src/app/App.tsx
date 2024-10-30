@@ -1,8 +1,15 @@
-import { MainPage } from "@/pages/MainPage";
+import { Navbar } from "@/entities/Navbar";
+import { AppRouter } from "./router/ui/AppRouter";
+import { Header } from "@/entities/Header";
 
 function App() {
   return (
-  <MainPage/>);
-}
+    <>
+      <Header />
+      <Navbar />
+      <AppRouter />
+    </>
+  );
+};
 
 export default App;

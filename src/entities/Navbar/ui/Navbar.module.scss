@@ -1,0 +1,50 @@
+@import '@/app/styles/mixin.scss';
+
+@mixin afterElement($width: 0) {
+    &:after {
+        display: block;
+        left: 0;
+        width: $width;
+        height: 2px;
+        background-color: var(--blue-color);
+        content: "";
+        transition: width 0.3s ease-out;
+    }
+}
+
+.navbar {
+    @include section-style;
+    height: 100px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 16px; //TODO
+    font-weight: 600;
+    color: var(--blue-color);
+    text-transform: uppercase;
+}
+
+.default {
+    font-weight: 400;
+    @include afterElement(0);
+
+    &:hover {
+        transition: color 0.3s ease-out;
+    }
+
+
+    &:hover:after,
+    &:focus:after {
+        width: 100%;
+    }
+}
+
+.opened_page {
+    font-weight: 600;
+    @include afterElement(100%);
+} 
