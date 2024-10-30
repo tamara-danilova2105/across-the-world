@@ -1,13 +1,38 @@
+import { routeConfig } from "@/app/router/lib/data";
 import { Stack } from "@/shared/ui/Stack";
+import { NavLink } from "react-router-dom";
+import logo from '@/shared/assets/png/logo.png';
+import styles from './Navbar.module.scss';
+import { getStyles } from "@/shared/lib/getStyles";
 
 export const Navbar = () => {
     return (
         <Stack 
             max 
-            justify='between' 
-            gap="16"
+            justify='between'
+            align="center"
+            className={styles.navbar}
         >
-            Navbar
+            <img className={styles.logo} src={logo} alt="кругосветка авторские туры" />
+
+            <Stack gap="48">
+                {Object.values(routeConfig).map(route => (
+                    route.title && 
+                    <NavLink 
+                        key={route.path}
+                        to={route.path}
+                        className={({ isActive }) =>
+                            getStyles(
+                                styles.link, 
+                                {[styles.opened_page]: isActive, [styles.default]: !isActive}, 
+                                [],
+                            )
+                        }
+                    >
+                        {route.title}
+                    </NavLink>
+                ))}
+            </Stack>
         </Stack>
     );
 };
