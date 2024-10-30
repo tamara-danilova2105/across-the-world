@@ -1,0 +1,10 @@
+@import '@/app/styles/mixin.scss';
+
+.header {
+    background-color: var(--blue-color);
+}
+
+.header_content {
+    @include section-style;
+    height: 70px
+}
