@@ -1,7 +1,8 @@
 import { Stack } from "@/shared/ui/Stack";
-import styles from './Header.module.scss';
+import { Text } from "@/shared/ui/Text";
 import { EmailIcon, PhoneIcon } from "@/shared/assets/svg/contactIcons";
 import { InstagramIcon, TelegrmaIcon } from "@/shared/assets/svg/sotialMediaIcons";
+import styles from './Header.module.scss';
 
 export const Header = () => {
     return (
@@ -18,6 +19,8 @@ export const Header = () => {
                     <EmailIcon />
                     <PhoneIcon />
                 </Stack>
+
+                <Text>Ваши приключения начинается здесь</Text> 
 
                 <Stack gap="32">
                     <TelegrmaIcon />

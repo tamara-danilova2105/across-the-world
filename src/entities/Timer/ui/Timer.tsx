@@ -1,4 +1,4 @@
-import { getStyles } from "@/shared/lib/getStyles";
+import { Additional, getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack";
 import styles from './Timer.module.scss';
 import React, { FC } from "react";
@@ -11,9 +11,10 @@ interface TimerProps {
 }
 
 export const Timer: FC<TimerProps> = ({ styleMode, endTime }) => {
+    
     const { timeItems } = useCountdownTimer(endTime);
 
-    const additional: string[] = [styles[styleMode]];
+    const additional: Additional = [styles[styleMode]];
     const styleClass = getStyles(styles.timeContainer, {}, additional);
 
     const renderTimer = () => (
