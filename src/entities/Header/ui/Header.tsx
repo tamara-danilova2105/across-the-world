@@ -20,7 +20,9 @@ export const Header = () => {
                     <PhoneIcon />
                 </Stack>
 
-                <Text>Ваши приключения начинается здесь</Text> 
+                <Text size='16' color='white'>
+                    Ваши приключения начинается здесь
+                </Text> 
 
                 <Stack gap="32">
                     <TelegrmaIcon />

@@ -3,20 +3,23 @@ import { getStyles } from '@/shared/lib/getStyles';
 import styles from './Text.module.scss';
 
 export type TextTag = 'h1' | 'h2' | 'h3' | 'p' | 'li';
-export type TextSize = 'xs' | 's' | 'md' | 'xl' | 'xxl';
+export type TextSize = '12' | '14' | '16';
+export type TextColor = 'blue' | 'white' | 'pink' | 'peach';
 
 interface TextProps {
     type?: TextTag;
-    children: ReactNode;
     size?: TextSize;
+    color?: TextColor;
+    children: ReactNode;
     className?: string;
 }
 
 export const Text = (props: TextProps) => {
     const {
         type = 'p', 
+        color,
         children, 
-        size = 'xs',
+        size = '14',
         className 
     } = props;
 
@@ -30,7 +33,8 @@ export const Text = (props: TextProps) => {
     const TextTag = mapTextTag[type];
 
     const additional = [
-        styles[size],
+        styles[`size-${size}`],
+        color && styles[color],
         className
     ]
 
