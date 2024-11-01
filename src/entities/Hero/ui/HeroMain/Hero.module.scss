@@ -1,0 +1,12 @@
+@import '@/app/styles/mixin.scss';
+
+.hero {
+    background-color: var(--peact-opacity20);
+}
+
+.hero_content {
+    @include section-style;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    gap: 100px;
+}

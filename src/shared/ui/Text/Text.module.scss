@@ -1,15 +1,23 @@
 $font-size-12: var(--font-size-12);
 $font-size-14: var(--font-size-14);
 $font-size-16: var(--font-size-16);
+$font-size-18: var(--font-size-18);
+$font-size-24: var(--font-size-24);
 $blue: var(--blue-color);
 $white: var(--white-color);
 $pink: var(--pink-color);
 $peach: var(--peach-color);
+$unbounded: var(--font-family-unbounded);
+$geometria600: var(--font-family-geometria600);
+$geometria500: var(--font-family-geometria500);
+$geometria400: var(--font-family-geometria400);
 
 $sizes: (
     12: $font-size-12,
     14: $font-size-14,
     16: $font-size-16,
+    18: $font-size-18,
+    24: $font-size-24
 );
 
 $colors: (
@@ -17,6 +25,13 @@ $colors: (
     white: $white,
     pink: $pink,
     peach: $peach,
+);
+
+$families: (
+    unbounded: $unbounded,
+    geometria600: $geometria600,
+    geometria500: $geometria500,
+    geometria400: $geometria400,
 );
 
 @each $name, $size in $sizes {
@@ -28,5 +43,11 @@ $colors: (
 @each $name, $color in $colors {
     .#{$name} {
         color: $color;
+    }
+}
+
+@each $name, $family in $families {
+    .#{$name} {
+        font-family: $family;
     }
 }

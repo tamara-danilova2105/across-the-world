@@ -1,0 +1,28 @@
+@import '@/app/styles/media-queries';
+
+.button {
+    padding: 16px 30px;
+    width: 100%;
+    font-family: var(--font-family-geometria500);
+    border-radius: 170px;
+    font-size: var(--font-size-18);
+}
+
+.primary {
+    background-color: var(--blue-color);
+    color: var(--white-color);
+}
+
+.secondary {
+    background-color: var(--pink-color);
+}
+
+.circle {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}

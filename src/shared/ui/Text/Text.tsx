@@ -3,8 +3,9 @@ import { getStyles } from '@/shared/lib/getStyles';
 import styles from './Text.module.scss';
 
 export type TextTag = 'h1' | 'h2' | 'h3' | 'p' | 'li';
-export type TextSize = '12' | '14' | '16';
+export type TextSize = '12' | '14' | '16' | '18' | '24';
 export type TextColor = 'blue' | 'white' | 'pink' | 'peach';
+export type TextFontFamily = 'unbounded' | 'geometria600' | 'geometria500' | 'geometria400'
 
 interface TextProps {
     type?: TextTag;
@@ -12,6 +13,7 @@ interface TextProps {
     color?: TextColor;
     children: ReactNode;
     className?: string;
+    font?: TextFontFamily;
 }
 
 export const Text = (props: TextProps) => {
@@ -20,7 +22,8 @@ export const Text = (props: TextProps) => {
         color,
         children, 
         size = '14',
-        className 
+        className,
+        font = 'geometria400',
     } = props;
 
     const mapTextTag: Record<TextTag, TextTag>  = {
@@ -35,6 +38,7 @@ export const Text = (props: TextProps) => {
     const additional = [
         styles[`size-${size}`],
         color && styles[color],
+        styles[font],
         className
     ]
 

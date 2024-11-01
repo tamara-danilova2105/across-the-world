@@ -1,0 +1,21 @@
+@import '@/app/styles/media-queries';
+
+.applink {
+    width: 100%;
+    text-decoration: none;
+    font-family: var(--font-family-geometria500);
+    font-size: var(--font-size-18);
+}
+
+.link {
+    color: var(--blue-color);
+
+    &:after {
+        display: block;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--blue-color);
+        content: "";
+    }
+}

@@ -6,7 +6,7 @@ import { Parallax } from "@/entities/Parallax";
 function App() {
   return (
     <>
-      <Parallax/>
+      {/* <Parallax/> */}
       <Header />
       <Navbar />
       <AppRouter />

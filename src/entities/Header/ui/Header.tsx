@@ -20,7 +20,7 @@ export const Header = () => {
                     <PhoneIcon />
                 </Stack>
 
-                <Text size='16' color='white'>
+                <Text size='16' color='white' font='unbounded'>
                     Ваши приключения начинается здесь
                 </Text> 
 
