@@ -2,11 +2,12 @@
 
 .hero {
     background-color: var(--peach-opacity20);
+    @include decorate-style;
 }
 
 .hero_content {
     @include section-style;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 70px;
+    padding-bottom: 70px;
     gap: 100px;
 }

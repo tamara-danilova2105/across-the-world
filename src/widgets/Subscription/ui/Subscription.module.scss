@@ -1,9 +1,14 @@
 @import '@/app/styles/mixin';
 
+.main {
+    width: 100%;
+}
+
 .subscriptionContainer {
     background-color: var(--peach-opacity20);
     width: 100%;
-    height: 578px;
+    height: 450px;
+    @include decorate-style;
 
     .subscription {
         @include section-style;

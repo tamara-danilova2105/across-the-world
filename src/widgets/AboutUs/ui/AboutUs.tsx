@@ -34,10 +34,10 @@ export const AboutUs = () => {
                                 direction="column"
                                 justify="end"
                             >
-                                <Text font='geometria400'
-                                    color="blue" size="24">Туры по всей России и за границей</Text>
                                 <Text font='geometria500'
-                                    color="blue" size="24">Персональные туры</Text>
+                                    color="blue" size="24">Туры по всей России и за границей</Text>
+                                <Text font='geometria400'
+                                    color="blue" size="18">Групповые и индивидуальные туры</Text>
                                 <Text type="h2" font='unbounded'
                                     color="blue" size="32">Кругостветка - тур мечты</Text>
                             </Stack>

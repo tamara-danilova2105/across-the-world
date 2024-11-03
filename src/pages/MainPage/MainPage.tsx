@@ -8,8 +8,8 @@ const MainPage = () => {
     return (
         <Stack tag='main' direction='column' gap='48'>
             <Hero />
-            <EarlyBook/>
             <AboutUs/>
+            <EarlyBook/>
             <Subscription/>
         </Stack>
     );

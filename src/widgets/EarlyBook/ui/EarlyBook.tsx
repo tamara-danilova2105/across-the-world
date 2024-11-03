@@ -20,6 +20,8 @@ export const EarlyBook = () => {
             gap="32"
             className={styles.earlyBook}
         >
+            <RunningLine/>
+
             <Stack
                 justify='between'
                 className={styles.earlyBookContainer}
@@ -64,7 +66,6 @@ export const EarlyBook = () => {
                     <Images src={crater} alt={""} width={245} height={580}/>
                 </Stack>
             </Stack>
-            <RunningLine/>
         </Stack>
     )
 }

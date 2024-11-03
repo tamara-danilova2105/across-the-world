@@ -15,3 +15,25 @@
         padding: 0 20px;
     }
 }
+
+@mixin decorate-style {
+    position: relative;
+    overflow: hidden;
+
+    > svg {
+        position: absolute;
+        width: 300px;
+        opacity: 0.7;
+
+        &:nth-child(1) {
+            bottom: 0;
+            right: 0;
+        }
+
+        &:nth-child(2) {
+            top: 0;
+            left: 0;
+            rotate: 180deg;
+        }
+    }
+}
