@@ -47,6 +47,8 @@ export interface FlexProps extends DivProps {
     gap?: StackGap;
     max?: boolean;
     tag?: StackTag;
+    width?: string | number; 
+    height?: string | number;
 }
 
 export const Stack = (props: FlexProps) => {
@@ -59,6 +61,8 @@ export const Stack = (props: FlexProps) => {
         gap,
         max,
         tag = 'div',
+        width,
+        height,
         ...otherProps
     } = props;
 
@@ -89,6 +93,7 @@ export const Stack = (props: FlexProps) => {
     return (
         <StackTag
             className={getStyles(styles.flex, mods, additional)}
+            style={{ width: width, height: height }}
             {...otherProps}
         >
             {children}

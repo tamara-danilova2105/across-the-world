@@ -1,0 +1,18 @@
+.imagesContainer {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+
+    img {
+        position: relative;
+        border-radius: 24px;
+    }
+
+    > div {
+        position: absolute;
+        border: 2px solid var(--white-color);
+        border-radius: 16px;
+        width: calc(100% - 15px);
+        height: calc(100% - 15px);
+    }
+}

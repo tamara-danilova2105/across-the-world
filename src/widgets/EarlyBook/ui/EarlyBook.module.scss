@@ -1,0 +1,36 @@
+@import '@/app/styles/mixin';
+
+.earlyBook {
+    width: 100%;
+
+    .earlyBookContainer {
+        @include section-style;
+        
+        @include tablet-l {
+            flex-direction: column;
+            padding: 0;
+            width: 100%;
+            gap: 16px;
+        }
+
+        @include mobile-l {
+            padding: 0;
+        }
+
+        .timerContainer {
+            border-radius: 24px;
+            background-color: var(--peact-opacity20);
+            height: 580px;
+            padding: 40px;
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .posterContainer {
+            height: 580px;
+            width: 100%;
+        }
+    }
+}

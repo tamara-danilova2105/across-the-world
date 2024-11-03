@@ -3,7 +3,7 @@ import { getStyles } from '@/shared/lib/getStyles';
 import styles from './Text.module.scss';
 
 export type TextTag = 'h1' | 'h2' | 'h3' | 'p' | 'li';
-export type TextSize = '12' | '14' | '16' | '18' | '24';
+export type TextSize = '12' | '14' | '16' | '18' | '24' | '32' | '48';
 export type TextColor = 'blue' | 'white' | 'pink' | 'peach';
 export type TextFontFamily = 'unbounded' | 'geometria600' | 'geometria500' | 'geometria400'
 

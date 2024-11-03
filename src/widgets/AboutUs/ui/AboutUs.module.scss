@@ -1,0 +1,25 @@
+@import '@/app/styles/mixin';
+
+.aboutUsContainer {
+    width: 100%;
+
+    > div {
+        @include section-style;
+
+        .heading {
+            height: 200px;
+            width: 100%;
+
+            > div {
+                height: 100%;
+            }
+        }
+
+        .statists {
+            width: 100%;
+            height: 130px;
+            background-color: var(--blue-color);
+            border-radius: 24px;
+        }
+    }
+}

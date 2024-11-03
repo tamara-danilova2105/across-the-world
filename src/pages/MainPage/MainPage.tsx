@@ -1,12 +1,16 @@
 import { Hero } from "@/entities/Hero";
-import { Timer } from "@/entities/Timer";
 import { Stack } from "@/shared/ui/Stack";
+import { AboutUs } from "@/widgets/AboutUs/ui/AboutUs";
+import { EarlyBook } from "@/widgets/EarlyBook/EarlyBook";
+import { Subscription } from "@/widgets/Subscription/Subscription";
 
 const MainPage = () => {
     return (
         <Stack tag='main' direction='column' gap='48'>
             <Hero />
-            <Timer styleMode='timer_earlyBook' endTime='2024-12-31T20:59:59.000Z'/>
+            <EarlyBook/>
+            <AboutUs/>
+            <Subscription/>
         </Stack>
     );
 };

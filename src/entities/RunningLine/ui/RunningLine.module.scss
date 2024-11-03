@@ -1,0 +1,29 @@
+.runningLine {
+    overflow: hidden;          
+    background-color: var(--blue-color); 
+    padding: 10px 0;        
+    width: 100%;            
+}
+
+.runningText {
+    width: calc(49% * 2);
+    animation: scroll 10s linear infinite;
+    white-space: nowrap;  
+
+    p {
+        letter-spacing: 2px;
+        opacity: 60%;
+    }
+    img {
+        width: 120px;
+    }
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%); 
+    }
+}
