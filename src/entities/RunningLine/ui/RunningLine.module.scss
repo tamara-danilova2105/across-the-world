@@ -1,13 +1,13 @@
 .runningLine {
     overflow: hidden;          
     background-color: var(--blue-color); 
-    padding: 10px 0;        
+    padding: 0;        
     width: 100%;            
 }
 
 .runningText {
     width: calc(49% * 2);
-    animation: scroll 10s linear infinite;
+    animation: scroll 40s linear infinite;
     white-space: nowrap;  
 
     p {
@@ -21,9 +21,9 @@
 
 @keyframes scroll {
     from {
-        transform: translateX(0);
+        transform: translateX(100%);
     }
     to {
-        transform: translateX(-50%); 
+        transform: translateX(-100%); 
     }
 }
