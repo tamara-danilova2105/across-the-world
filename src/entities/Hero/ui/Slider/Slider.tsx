@@ -33,7 +33,7 @@ export const Slider = () => {
     };
 
     return (
-        <Stack direction="column" gap='16'>
+        <Stack direction="column" gap='16' role="region" aria-label="Слайдер туров">
             <div className={styles.sliders_container}>
                 <Stack>
                     {sliderData.map(slide => (
@@ -45,10 +45,11 @@ export const Slider = () => {
                     ))}
                 </Stack>
             </div>
-            <Stack gap="16">
+            <Stack gap="16" tag='nav' aria-label="Навигация по слайдеру">
                 <Button 
                     circle
                     onClick={prevSlide}
+                    aria-label="Предыдущий слайд"
                 >
                     <PrewIcon />
                 </Button>
@@ -56,6 +57,7 @@ export const Slider = () => {
                     circle 
                     color='secondary'
                     onClick={nextSlide}
+                    aria-label="Следующий слайд"
                 >
                     <NextIcon />
                 </Button>

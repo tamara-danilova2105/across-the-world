@@ -32,7 +32,7 @@ export const Description = () => {
                     {linkText}
                 </AppLink>
             </Stack>
-            <Stack gap='64' align='center'>
+            <Stack gap='64' align='center' tag='aside'>
                 <Stack className={styles.rating_container}>
                     <RatingIcon />
                     <Button 

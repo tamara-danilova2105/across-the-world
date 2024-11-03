@@ -22,6 +22,7 @@ export const SliderItem = ({ slide, style }: SliderItemProps) => {
             gap='32' 
             className={styles.slider}
             style={style}
+            tag='article'
         >
             <Images src={image} alt={title} width={450} height={300} />
 

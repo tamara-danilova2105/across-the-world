@@ -18,5 +18,5 @@ export const Hero = () => {
                 <Slider />
             </Stack>
         </Stack>
-    )
-}
+    );
+};
