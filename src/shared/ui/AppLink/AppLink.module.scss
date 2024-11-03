@@ -9,6 +9,7 @@
 .link {
     width: 100%;
     color: var(--blue-color);
+    text-align: center;
 
     &:after {
         display: block;
@@ -25,4 +26,14 @@
     color: var(--white-color);
     border-radius: 170px;
     padding: 16px 30px;
+}
+
+.circle {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }

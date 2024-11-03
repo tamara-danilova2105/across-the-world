@@ -1,11 +1,10 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { heroData } from "../../lib/data";
-import { FireWorks, RatingIcon } from "@/shared/assets/svg/heroIcons";
+import { AddIcon, FireWorks, RatingIcon } from "@/shared/assets/svg/heroIcons";
 import { AppLink } from "@/shared/ui/AppLink";
 import { Button } from "@/shared/ui/Button";
 import { getRouteTours } from "@/app/router/lib/helper";
-import { PlusIcon } from "@/shared/assets/svg/plusIcon";
 import styles from './Description.module.scss';
 
 export const Description = () => {
@@ -17,13 +16,15 @@ export const Description = () => {
                 <Text type="h3" size='18'>{preview}</Text>
                 <FireWorks />
             </div>
-            <Text type='h1' className={styles.header} font='unbounded'>
-                <span>Авторские туры</span> <br /> по России и миру
-            </Text>
-            <Text size="16">
-                {description}
-            </Text>
-            <Stack justify='between' gap="48" max align='end'>
+            <Stack direction='column' gap="16">
+                <Text type='h1' className={styles.header} font='unbounded'>
+                    <span>Авторские туры</span> <br /> по России и миру
+                </Text>
+                <Text size="18">
+                    {description}
+                </Text>
+            </Stack>
+            <Stack justify='between' gap="16" max align='end'>
                 <Button>
                     {buttonText}
                 </Button>
@@ -37,8 +38,9 @@ export const Description = () => {
                     <Button 
                         className={styles.rating_btn} 
                         circle
+                        color='secondary'
                     >
-                        <PlusIcon />
+                        <AddIcon />
                     </Button>
                 </Stack>
                 <Stack 

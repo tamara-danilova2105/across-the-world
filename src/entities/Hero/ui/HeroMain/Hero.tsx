@@ -4,6 +4,7 @@ import { Slider } from "../Slider/Slider";
 import styles from './Hero.module.scss';
 
 export const Hero = () => {
+
     return (
         <Stack 
             tag="section" max
