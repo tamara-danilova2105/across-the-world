@@ -5,7 +5,7 @@
 }
 
 .runningText {
-    width: calc(49% * 2);
+    width: 100%;
     animation: scroll 40s linear infinite;
     white-space: nowrap;  
 
@@ -24,6 +24,6 @@
         transform: translateX(0%);
     }
     to {
-        transform: translateX(-50%); 
+        transform: translateX(-30%); 
     }
 }

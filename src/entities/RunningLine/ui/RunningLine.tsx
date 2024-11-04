@@ -34,7 +34,7 @@ export const RunningLine = () => {
                 gap="16"
                 max
             >
-                {Array(8).fill(data).flat().map((item, index) => (
+                {Array(9).fill(data).flat().map((item, index) => (
                     <React.Fragment key={index}>
                         {item.icon}
                         <Text font='geometria500' color="peach" size="24">
