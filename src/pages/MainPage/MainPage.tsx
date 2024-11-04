@@ -1,15 +1,15 @@
 import { Hero } from "@/widgets/Hero";
 import { Stack } from "@/shared/ui/Stack";
-import { AboutUs } from "@/widgets/AboutUs/ui/AboutUs";
-import { EarlyBook } from "@/widgets/EarlyBook/EarlyBook";
-import { Subscription } from "@/widgets/Subscription/Subscription";
+import { EarlyBook } from "@/widgets/EarlyBook";
+import { Subscription } from "@/widgets/Subscription";
 import { Testimonials } from "@/widgets/Testimonials";
+import { AboutUs } from "@/widgets/AboutUs";
 
 const MainPage = () => {
     return (
         <Stack tag='main' direction='column' gap='48'>
             <Hero />
-            <AboutUs/>
+            <AboutUs />
             <EarlyBook/>
             <Testimonials />
             <Subscription/>

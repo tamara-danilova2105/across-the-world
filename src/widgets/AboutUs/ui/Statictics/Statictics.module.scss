@@ -1,0 +1,25 @@
+.statists {
+    background-color: var(--blue-color);
+    border-radius: 24px;
+    padding: 20px 40px;
+}
+
+.statists_item {
+    flex: 1;
+    position: relative;
+
+    &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        width: 1.1px;
+        height: 70%; 
+        background-color: var(--white-color)
+    }
+}
+
+.label {
+    text-align: center;
+}
