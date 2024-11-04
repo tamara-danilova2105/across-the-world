@@ -1,18 +1,23 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import styles from './RunningLine.module.scss';
-import logo from '@/shared/assets/png/logo_line.png'
 import React from "react";
+import { LogoIcon } from "@/shared/assets/svg/logoIcon";
+
+interface RunningLineItem {
+    icon: JSX.Element;
+    text: string;
+}
 
 export const RunningLine = () => {
     
-    const data = [
+    const data: RunningLineItem[] = [
         {
-            image: logo,
+            icon: <LogoIcon/>,
             text: 'РАНЕЕ БРОНИРОВАНИЕ - 8%'
         },
         {
-            image: logo,
+            icon: <LogoIcon/>,
             text: 'ПОДПИСКА НА НОВОСТИ - 3%'
         },
     ];
@@ -26,11 +31,12 @@ export const RunningLine = () => {
                 className={styles.runningText}
                 justify="center"
                 align="center"
+                gap="16"
                 max
             >
-                {Array(4).fill(data).flat().map((item, index) => (
+                {Array(9).fill(data).flat().map((item, index) => (
                     <React.Fragment key={index}>
-                        <img src={item.image} alt=""/>
+                        {item.icon}
                         <Text font='geometria500' color="peach" size="24">
                             {item.text}
                         </Text>

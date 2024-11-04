@@ -24,7 +24,11 @@ export const Subscription = () => {
     }
 
     return (
-        <div className={styles.main}>
+        <Stack 
+        direction="column"
+        justify='center'
+        align='center'
+        className={styles.main}>
             <RunningLine />
             <Stack 
                 className={styles.subscriptionContainer} 
@@ -55,7 +59,7 @@ export const Subscription = () => {
                     </Stack>
                     <FormProvider {...methods}>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            {EnvelopeIcon()}
+                            <EnvelopeIcon/>
                             <Input 
                                 name="email"
                                 register={register("email", {
@@ -75,7 +79,7 @@ export const Subscription = () => {
                     </FormProvider>
                 </Stack>
             </Stack>
-        </div>
+        </Stack>
 
     )
 }
