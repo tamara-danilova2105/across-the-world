@@ -5,8 +5,6 @@ import { DataFAQ, faqData } from "../lib/data";
 import { Accordion } from "@/entities/Accordion";
 
 export const FAQ = () => {
-
-    console.log(faqData)
     return (
         <Stack 
             tag='section' 
