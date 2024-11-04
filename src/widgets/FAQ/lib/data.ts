@@ -1,9 +1,9 @@
-export interface dataFAQ {
+export interface DataFAQ {
     question: string;
     answer: string;
 }
 
-export const faqData: dataFAQ[] = [
+export const faqData: DataFAQ[] = [
     {
         question: "Что включено в стоимость авторского тура?",
         answer: "В стоимость тура обычно включены проживание, трансферы, экскурсии, входные билеты на мероприятия, а также услуги гида. Дополнительные расходы, такие как питание и личные покупки, могут оплачиваться отдельно. Пожалуйста, уточняйте детали для каждого тура."
