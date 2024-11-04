@@ -1,0 +1,68 @@
+.accordionContainer {
+    width: 100%;
+    border-radius: 16px;
+    padding: 15px;
+    color: var(--blue-color);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+
+    &.openAnswer {
+        background-color: var(--blue-color);
+        color: var(--white-color);
+        transition: all .3s ease;
+    }
+    
+    &.closedAnswer {
+        transition: all 0.3s ease;
+    }
+
+    .accordion {
+        padding: 20px;
+        border: 2px solid var(--blue-opacity60);
+        border-radius: 16px;
+
+        .questionContainer {
+            width: 100%;
+            p {
+                cursor: pointer;
+                font-weight: 600;
+                line-height: 25px;
+                text-align: left;
+            }
+    
+            > img {
+                cursor: pointer;
+            }
+        }
+    
+    
+        > div:nth-child(2) {
+            transition: max-height 0.3s ease, opacity 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+            max-height: 0px; 
+            opacity: 0;
+            overflow: hidden;
+    
+            > p {
+                opacity: 0.8;
+                font-weight: 400;
+                line-height: 28px;
+                text-align: left;
+            }
+    
+            &.visible {
+                max-height: 1000px;
+                opacity: 1;
+                margin-top: 16px;
+            }
+    
+            &.hidden {
+                max-height: 0px;
+                opacity: 0;
+                margin-top: 0px;
+            }
+        }
+    }
+}
+
+
+

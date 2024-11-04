@@ -1,8 +1,7 @@
 .runningLine {
     overflow: hidden;          
     background-color: var(--blue-color); 
-    padding: 0;        
-    width: 100%;            
+    padding: 0;                   
 }
 
 .runningText {
@@ -14,16 +13,17 @@
         letter-spacing: 2px;
         opacity: 60%;
     }
-    img {
-        width: 120px;
+    svg {
+        width: 70px;
+        height: 70px;
     }
 }
 
 @keyframes scroll {
     from {
-        transform: translateX(100%);
+        transform: translateX(0%);
     }
     to {
-        transform: translateX(-100%); 
+        transform: translateX(-50%); 
     }
 }

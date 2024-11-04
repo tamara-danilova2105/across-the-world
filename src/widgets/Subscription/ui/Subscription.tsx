@@ -55,7 +55,7 @@ export const Subscription = () => {
                     </Stack>
                     <FormProvider {...methods}>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            {EnvelopeIcon()}
+                            <EnvelopeIcon/>
                             <Input 
                                 name="email"
                                 register={register("email", {
