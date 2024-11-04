@@ -24,7 +24,11 @@ export const Subscription = () => {
     }
 
     return (
-        <div className={styles.main}>
+        <Stack 
+        direction="column"
+        justify='center'
+        align='center'
+        className={styles.main}>
             <RunningLine />
             <Stack 
                 className={styles.subscriptionContainer} 
@@ -75,7 +79,7 @@ export const Subscription = () => {
                     </FormProvider>
                 </Stack>
             </Stack>
-        </div>
+        </Stack>
 
     )
 }

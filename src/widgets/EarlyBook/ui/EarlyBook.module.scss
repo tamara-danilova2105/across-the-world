@@ -2,6 +2,7 @@
 
 .earlyBook {
     width: 100%;
+    overflow: hidden;
 
     .earlyBookContainer {
         @include section-style;
