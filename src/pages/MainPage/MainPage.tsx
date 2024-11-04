@@ -1,8 +1,9 @@
-import { Hero } from "@/entities/Hero";
+import { Hero } from "@/widgets/Hero";
 import { Stack } from "@/shared/ui/Stack";
 import { AboutUs } from "@/widgets/AboutUs/ui/AboutUs";
 import { EarlyBook } from "@/widgets/EarlyBook/EarlyBook";
 import { Subscription } from "@/widgets/Subscription/Subscription";
+import { Testimonials } from "@/widgets/Testimonials";
 
 const MainPage = () => {
     return (
@@ -10,6 +11,7 @@ const MainPage = () => {
             <Hero />
             <AboutUs/>
             <EarlyBook/>
+            <Testimonials />
             <Subscription/>
         </Stack>
     );

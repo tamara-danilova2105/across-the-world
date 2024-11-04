@@ -1,0 +1,49 @@
+@import '@/app/styles/mixin.scss';
+
+.testimonials {
+    background-color: var(--peach-opacity20);
+    @include decorate-style;
+}
+
+
+.testimonials_content {
+    @include section-style;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.testimonials_container {
+    button {
+        background-color: transparent;
+        z-index: 1;
+    }
+
+    button:first-of-type {
+        transform: rotate(180deg);
+    }
+}
+
+.testimonials_slider {
+    overflow: hidden;
+    width: 1100px;
+}
+
+.slider_container {
+    transition: transform 0.5s ease-in-out;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+
+    div {
+        border-radius: 20px;
+        height: 6px;
+        width: 38px;
+        background-color: var(--peach-color);
+    }
+
+    .active {
+        background-color: var(--pink-color);
+    }
+}

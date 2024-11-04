@@ -1,0 +1,28 @@
+.testimonial {
+    background-color: var(--white-color);
+    border-radius: 16px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial_container {
+    padding: 20px;
+    border: 2px solid var(--blue-opacity60);
+    border-radius: 16px;
+}
+
+.feedback_text {
+    text-indent: 20px;
+    z-index: 1;
+}
+
+.tourist_text {
+    z-index: 1;
+}
+
+.backtics_container {
+    position: absolute;
+    right: 35px;
+    top: 35px;
+}
