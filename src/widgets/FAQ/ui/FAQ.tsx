@@ -1,7 +1,7 @@
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
 import styles from './FAQ.module.scss';
-import { dataFAQ, faqData } from "../lib/data";
+import { DataFAQ, faqData } from "../lib/data";
 import { Accordion } from "@/entities/Accordion";
 
 export const FAQ = () => {
@@ -23,7 +23,7 @@ export const FAQ = () => {
                 gap='16' 
                 max
             >
-                {faqData.map((accordion: dataFAQ, index: number) => (
+                {faqData.map((accordion: DataFAQ, index: number) => (
                     <Accordion accordion={accordion}
                     isSecond={index === 1}
                     key={index}
