@@ -4,6 +4,7 @@ import { EarlyBook } from "@/widgets/EarlyBook";
 import { Subscription } from "@/widgets/Subscription";
 import { Testimonials } from "@/widgets/Testimonials";
 import { AboutUs } from "@/widgets/AboutUs";
+import { FAQ } from "@/widgets/FAQ";
 
 const MainPage = () => {
     return (
@@ -12,6 +13,7 @@ const MainPage = () => {
             <AboutUs />
             <EarlyBook/>
             <Testimonials />
+            <FAQ />
             <Subscription/>
         </Stack>
     );

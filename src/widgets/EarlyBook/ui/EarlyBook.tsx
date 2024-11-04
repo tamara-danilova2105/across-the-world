@@ -25,7 +25,7 @@ export const EarlyBook = () => {
             <Stack
                 justify='between'
                 className={styles.earlyBookContainer}
-                gap="48"
+                gap="64"
             >
                 <Stack 
                     justify='center'
@@ -48,7 +48,7 @@ export const EarlyBook = () => {
                             <Text font='geometria500'
                             color="blue" size="18">Открываем набор групп на КАМЧАТКУ 2025</Text>
                             <Text font='geometria400'
-                            color="blue" size="16">При бронировании до 1 декабря действует скидка 8% по акции раннего бронирования.</Text>
+                            color="blue" size="18">При бронировании до 31 декабря действует скидка 8% по акции раннего бронирования.</Text>
                         </Stack>
                         <Timer styleMode='timer_earlyBook' endTime='2024-12-31T20:59:59.000Z'/>
                         <AppLink variant="button" to={getRouteTours()}>
@@ -60,7 +60,6 @@ export const EarlyBook = () => {
                     align='center'
                     justify="between"
                     className={styles.posterContainer}
-                    gap="16"
                 >
                     <Images src={mountains} alt={""} width={245} height={580}/>
                     <Images src={crater} alt={""} width={245} height={580}/>

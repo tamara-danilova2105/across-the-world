@@ -1,0 +1,5 @@
+@import '@/app/styles/mixin';
+
+.main {
+    @include section-style;
+}
