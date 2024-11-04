@@ -1,8 +1,8 @@
+import React from "react";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import styles from './RunningLine.module.scss';
-import React from "react";
 import { LogoIcon } from "@/shared/assets/svg/logoIcon";
+import styles from './RunningLine.module.scss';
 
 interface RunningLineItem {
     icon: JSX.Element;
@@ -13,11 +13,11 @@ export const RunningLine = () => {
     
     const data: RunningLineItem[] = [
         {
-            icon: <LogoIcon/>,
+            icon: <LogoIcon />,
             text: 'РАНЕЕ БРОНИРОВАНИЕ - 8%'
         },
         {
-            icon: <LogoIcon/>,
+            icon: <LogoIcon />,
             text: 'ПОДПИСКА НА НОВОСТИ - 3%'
         },
     ];

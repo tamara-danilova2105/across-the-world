@@ -5,8 +5,8 @@
 }
 
 .runningText {
-    width: 100%;
-    animation: scroll 40s linear infinite;
+    width: calc(200% + 16px);
+    animation: scroll 50s linear infinite;
     white-space: nowrap;  
 
     p {
@@ -24,6 +24,6 @@
         transform: translateX(0%);
     }
     to {
-        transform: translateX(-30%); 
+        transform: translateX(-50%); 
     }
 }

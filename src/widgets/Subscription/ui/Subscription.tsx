@@ -54,7 +54,7 @@ export const Subscription = () => {
                         color="blue" size="32">НОВОСТИ</Text>
                         <Text font='geometria400'
                         color="blue" size="24"
-                        >Получите скидку <strong>3%</strong> на свой первый заказ, 
+                        >Получите скидку <strong>3%</strong> на первый заказ, 
                         <br /> просто подписавшись на наши новости</Text>
                     </Stack>
                     <FormProvider {...methods}>

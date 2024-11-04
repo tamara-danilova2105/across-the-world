@@ -52,7 +52,7 @@ export const EarlyBook = () => {
                         </Stack>
                         <Timer styleMode='timer_earlyBook' endTime='2024-12-31T20:59:59.000Z'/>
                         <AppLink variant="button" to={getRouteTours()}>
-                            Забронировать
+                            Забронировать тур
                         </AppLink>
                     </Stack>
                 </Stack>
