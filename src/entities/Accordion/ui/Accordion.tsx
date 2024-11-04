@@ -4,11 +4,11 @@ import { Stack } from "@/shared/ui/Stack"
 import { Text } from "@/shared/ui/Text"
 import { useState } from "react"
 import styles from './Accordion.module.scss'
-import { dataFAQ } from "@/widgets/FAQ/lib/data"
+import { DataFAQ } from "@/widgets/FAQ/lib/data"
 import { getStyles } from "@/shared/lib/getStyles"
 
 interface AccordionProps {
-    accordion: dataFAQ;
+    accordion: DataFAQ;
     isSecond: boolean;
 }
 
