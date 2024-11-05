@@ -13,8 +13,7 @@ export const NewsBlog = () => {
         >
             <TitleSection title="Актуальные туры и другие тонкости" subtitle="БЛОГ"/>
             <Stack
-                justify="between"
-                align="center"
+                gap="32"
                 max
             >
                 {dataBlog.map(news => (

@@ -1,42 +1,62 @@
 .cardBlogsContainer {
-    height: 720px;
-    width: 400px;
+    width: 100%;
     padding: 20px;
-    background-color: var(--peach-opacity20);
     border-radius: 24px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
-    .imagesContainer {
-        position: relative; 
-        
 
-        img {
-            border-radius: 24px;
-            width: 360px;
+    > div { 
+        position: relative;
+        border: 1px solid var(--blue-color);
+        border-radius: 24px;
+        padding: 20px;
+
+        .imagesContainer {
+            position: relative; 
+    
+            img {
+                border-radius: 24px;
+                width: 360px;
+            }
+    
+            p {
+                position: absolute;
+                border-radius: 16px 16px 0px 0px;;
+                background-color: var(--blue-color);
+                color: var(--white-color);
+                border: 3.5px solid var(--white-color);
+                border-bottom: none;
+                padding: 10px 20px;
+                bottom: 0; 
+            }
         }
+    
+        > div:nth-child(2) {
+            position: relative;
+            width: 400px;
 
-        p {
-            position: absolute;
-            border-radius: 16px 16px 0px 0px;;
-            background-color: var(--blue-color);
-            color: var(--white-color);
-            border: 3.5px solid var(--white-color);
-            border-bottom: none;
-            padding: 10px 20px;
-            bottom: 0; 
+            .anotherImage {
+                width: 100%;
+                height: 150px;
+                border-radius: 16px;
+                overflow: hidden;
+
+                img {
+                    width: 133px;
+                }
+            }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
         }
-    }
-
-    > div:nth-child(2) {
-        width: 100%;
-        height: 250px;
 
         > a {
-            width: auto;
-            margin-top: auto;
-            color: var(--blue-color);
-            font-size: 18px;
-            font-weight: 500;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
     }
 }
