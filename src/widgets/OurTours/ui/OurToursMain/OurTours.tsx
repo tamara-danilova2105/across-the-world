@@ -11,12 +11,13 @@ export const OurTours = () => {
     return (
         <Stack 
             tag='section' 
-            max
-            className={styles.our_tours}
             direction='column'
-            gap="32"
+            gap="32" max
         >
-            <Stack max justify='between' align='end'>
+            <Stack 
+                max justify='between' align='end'
+                className={styles.our_tours_title}
+            >
                 <TitleSection 
                     subtitle="НАШИ ТУРЫ" 
                     title="Путешествия c Кругосветкой"

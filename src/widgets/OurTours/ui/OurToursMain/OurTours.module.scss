@@ -1,12 +1,13 @@
 @import '@/app/styles/mixin';
 
-.our_tours {
+.our_tours_title {
     @include section-style;
+}
 
-    .our_tours_container {
-        height: 650px;
-        width: 100%;
-        overflow: hidden;
-        cursor: grab;
-    }
+.our_tours_container {
+    height: 650px;
+    width: calc(100vw - ((100vw - 1240px) / 2));
+    margin-left: calc((100vw - 1280px) / 2);
+    overflow: hidden;
+    cursor: grab;
 }

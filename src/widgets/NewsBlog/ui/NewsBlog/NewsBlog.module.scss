@@ -1,12 +1,13 @@
 @import '@/app/styles/mixin';
 
-.newsBlogContainer {
+.news_title {
     @include section-style;
+}
 
-    > div:nth-child(2) {
-        height: 520px;
-        width: 100%;
-        overflow: hidden;
-        cursor: grab;
-    }
+.news {
+    height: 520px;
+    width: calc(100vw - ((100vw - 1240px) / 2));
+    margin-left: calc((100vw - 1280px) / 2);
+    overflow: hidden;
+    cursor: grab;
 }

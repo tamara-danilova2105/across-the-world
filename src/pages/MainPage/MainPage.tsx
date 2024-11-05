@@ -10,7 +10,7 @@ import { OurTours } from "@/widgets/OurTours";
 
 const MainPage = () => {
     return (
-        <Stack tag='main' direction='column' gap='48'>
+        <Stack tag='main' direction='column' gap='64'>
             <Hero />
             <AboutUs />
             <OurTours />
