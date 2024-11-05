@@ -8,7 +8,7 @@ interface UseScrollSliderReturn {
     handleClickSlide: (selectedSlider: number) => void
 }
 
-export const useScrollSlider = (quantityCards: number, initialIndex: number = 0): UseScrollSliderReturn => {
+export const useScrollSlider = (quantityCards?: number, initialIndex: number = 0): UseScrollSliderReturn => {
     const containerRef = useRef<HTMLDivElement>(null)
     const [currentSlide, setCurrentSlide] = useState<number>(initialIndex)
 
@@ -21,11 +21,15 @@ export const useScrollSlider = (quantityCards: number, initialIndex: number = 0)
     }, [])
 
     const nextCard = useCallback(() => {
-        setCurrentSlide((prev) => (prev === quantityCards - 1 ? 0 : prev + 1))
+        if(quantityCards) {
+            setCurrentSlide((prev) => (prev === quantityCards - 1 ? 0 : prev + 1))
+        }
     }, [quantityCards])
 
     const prevCard = useCallback(() => {
-        setCurrentSlide((prev) => (prev === 0 ? quantityCards - 1 : prev - 1))
+        if(quantityCards) {
+            setCurrentSlide((prev) => (prev === 0 ? quantityCards - 1 : prev - 1))
+        }
     }, [quantityCards])
 
 

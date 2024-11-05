@@ -1,6 +1,6 @@
 import { Additional, getStyles, Mods } from '@/shared/lib/getStyles';
 import styles from './Stack.module.scss';
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import { DetailedHTMLProps, forwardRef, HTMLAttributes, ReactNode } from "react";
 
 export type StackDirection = 'row' | 'column';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
@@ -52,7 +52,7 @@ export interface FlexProps extends DivProps {
     height?: string | number;
 }
 
-export const Stack = (props: FlexProps) => {
+export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     const {
         className,
         children,
@@ -93,6 +93,7 @@ export const Stack = (props: FlexProps) => {
 
     return (
         <StackTag
+            ref={ref}
             className={getStyles(styles.flex, mods, additional)}
             style={{ width: width, height: height }}
             {...otherProps}
@@ -100,4 +101,4 @@ export const Stack = (props: FlexProps) => {
             {children}
         </StackTag>
     )
-}
+})

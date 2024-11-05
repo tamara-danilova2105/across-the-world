@@ -4,8 +4,10 @@ import styles from './OurTours.module.scss';
 import { Filterbar } from "../Filterbar/Filterbar";
 import { dataTours } from "../../lib/data";
 import { TourCard } from "@/entities/TourCard";
+import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 
 export const OurTours = () => {
+    const { containerRef } = useScrollSlider()
     return (
         <Stack 
             tag='section' 
@@ -21,7 +23,11 @@ export const OurTours = () => {
                 />
                 <Filterbar />
             </Stack>
-            <Stack gap="32">
+            <Stack 
+                ref={ containerRef }
+                gap="32"
+                className={styles.our_tours_container}
+            >
                 {dataTours.map(tour => (
                     <TourCard tourData={tour} />
                 ))}
