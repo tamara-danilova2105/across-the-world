@@ -8,6 +8,7 @@ import { data, emailRegex } from '@/shared/lib/validateInput';
 import { EnvelopeIcon } from "@/shared/assets/svg/envelopeIcon";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { RunningLine } from "@/entities/RunningLine";
+import { TitleSection } from "@/entities/TitleSection";
 
 interface FormInputs {
     email: string;
@@ -42,16 +43,15 @@ export const Subscription = () => {
                     direction="column" 
                     align="center" 
                     justify="center"
-                    gap='32'
+                    gap='48'
                 >
                     <Stack 
                         direction="column" 
                         align="center" 
                         justify="center" 
-                        gap='16'
+                        gap='24'
                     >
-                        <Text type="h2" font='unbounded'
-                        color="blue" size="32">НОВОСТИ</Text>
+                        <TitleSection title="Будь всегда в теме" subtitle="НОВОСТИ"/>
                         <Text font='geometria400'
                         color="blue" size="24"
                         >Получите скидку <strong>3%</strong> на первый заказ, 

@@ -9,6 +9,7 @@
 
 .primary {
     background-color: var(--blue-color);
+    transition: background-color 0.5s ease-in-out;
     color: var(--white-color);
 }
 

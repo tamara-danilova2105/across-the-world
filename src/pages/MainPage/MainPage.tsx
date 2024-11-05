@@ -5,6 +5,7 @@ import { Subscription } from "@/widgets/Subscription";
 import { Testimonials } from "@/widgets/Testimonials";
 import { AboutUs } from "@/widgets/AboutUs";
 import { FAQ } from "@/widgets/FAQ";
+import { NewsBlog } from "@/widgets/NewsBlog";
 import { OurTours } from "@/widgets/OurTours";
 
 const MainPage = () => {
@@ -15,6 +16,7 @@ const MainPage = () => {
             <OurTours />
             <EarlyBook/>
             <Testimonials />
+            <NewsBlog/>
             <FAQ />
             <Subscription/>
         </Stack>
