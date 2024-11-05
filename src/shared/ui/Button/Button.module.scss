@@ -10,11 +10,22 @@
 
 .primary {
     background-color: var(--blue-color);
+    transition: background-color 0.5s ease-in-out;
     color: var(--white-color);
 }
 
 .secondary {
     background-color: var(--pink-color);
+}
+
+.noneActive {
+    border: 2px solid var(--blue-opacity60);
+    background-color: var(--white-color);
+    transition: background-color 0.5s ease-in-out;
+
+    &:hover {
+        background-color: var(--blue-opacity60);
+    }
 }
 
 .circle {

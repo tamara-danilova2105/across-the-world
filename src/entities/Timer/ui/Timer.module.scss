@@ -13,11 +13,13 @@
 
             > p:nth-child(1) {
                 color: var(--blue-color);
+                font-size: 32px;
                 font-family: var(--font-family-geometria500);
             }
     
             > p:nth-child(2) {
                 color: var(--blue-color);
+                font-size: 24px;
                 font-family: var(--font-family-geometria400);
             }
         }
@@ -31,24 +33,29 @@
 
     &.timerCard {
         gap: 7px;
-        width: 265px;
-        background: var(--blur-color);
+        width: 276px;
+        background: var(--blue-color);
+        height: 70px;
+        border-radius: 24px;
 
         > div {
+            width: 50px;
             > p:nth-child(1) {
                 color: var(--peach-color);
+                font-size: var(--font-size-24);
                 font-family: var(--font-family-geometria500);
             }
     
             > p:nth-child(2) {
                 color: var(--peach-color);
                 font-family: var(--font-family-geometria400);
-                font-size: var(--font-size-18);
+                font-size: var(--font-size-16);
             }
         }
 
         > span {
             color: var(--peach-color);
+            font-size: var(--font-size-24);
             font-family: var(--font-family-geometria500);
         }
     }

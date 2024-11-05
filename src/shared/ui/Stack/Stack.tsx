@@ -5,7 +5,7 @@ import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 export type StackDirection = 'row' | 'column';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
 export type StackAlign = 'start' | 'center' | 'end';
-export type StackGap = '4' | '8' | '16' | '32' | '48' | '64';
+export type StackGap = '4' | '8' | '16' | '24' | '32' | '48' | '64';
 export type StackTag = 'div' | 'section' | 'article' | 'aside' | 'main' | 'nav' | 'header';
 
 const directionClasses: Record<StackDirection, string> = {
@@ -31,6 +31,7 @@ const gapClasses: Record<StackGap, string> = {
     4: styles.gap4,
     8: styles.gap8,
     16: styles.gap16,
+    24: styles.gap24,
     32: styles.gap32,
     48: styles.gap48,
     64: styles.gap64

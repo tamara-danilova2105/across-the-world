@@ -21,8 +21,8 @@ export const Timer: FC<TimerProps> = ({ styleMode, endTime }) => {
         timeItems.map((item, index) => (
             <React.Fragment key={index}>
                 <Stack direction="column" align='center' justify='center'>
-                    <Text color="blue" size="32" font="geometria600">{item.value}</Text>
-                    <Text color="blue" size="24">{item.label}</Text>
+                    <Text color="blue"font="geometria600">{item.value}</Text>
+                    <Text color="blue">{item.label}</Text>
                 </Stack>
                 {index < timeItems.length - 1 && <span>:</span>}
             </React.Fragment>

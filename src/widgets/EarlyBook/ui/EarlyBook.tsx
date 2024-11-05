@@ -58,8 +58,9 @@ export const EarlyBook = () => {
                 </Stack>
                 <Stack 
                     align='center'
-                    justify="between"
+                    justify="center"
                     className={styles.posterContainer}
+                    gap="16"
                 >
                     <Images src={mountains} alt={""} width={245} height={580}/>
                     <Images src={crater} alt={""} width={245} height={580}/>
