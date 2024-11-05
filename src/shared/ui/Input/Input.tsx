@@ -41,7 +41,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, _) => {
     return (
         <Stack gap='16' max direction='column'>
             {label && <label className={styles.label}>{label}</label>}
-            <Stack max direction='column'>
+            <Stack max direction='column'
+            gap='8'>
                 <input
                     className={inputClasses}
                     {...register}

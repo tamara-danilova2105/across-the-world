@@ -10,6 +10,10 @@ body {
     font-family: var(--font-family);
 }
 
+main {
+    overflow: hidden;
+}
+
 li {
     list-style-type: none;
 }

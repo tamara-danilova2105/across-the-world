@@ -3,7 +3,6 @@
     border-radius: 16px;
     padding: 15px;
     color: var(--blue-color);
-    background-color: var(--peach-opacity20);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
 
@@ -18,9 +17,9 @@
     }
 
     .accordion {
-        padding: 20px;
-        border: 2px solid var(--blue-opacity60);
-        border-radius: 16px;
+        padding: 10px;
+        border: 1px solid var(--blue-color);
+        border-radius: 8px;
 
         .questionContainer {
             width: 100%;
