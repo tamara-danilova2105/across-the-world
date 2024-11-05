@@ -5,7 +5,7 @@ import styles from './Button.module.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     children: ReactNode;
-    color?: 'primary' | 'secondary';
+    color?: 'primary' | 'secondary' | 'outline';
     circle?: boolean;
 }
 

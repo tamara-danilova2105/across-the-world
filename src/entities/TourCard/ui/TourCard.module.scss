@@ -1,0 +1,29 @@
+.tour_card {
+    padding: 15px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    position: relative;
+
+    .badge {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        background-color: var(--blue-color);
+        color: var(--white-color);
+        font-family: var(--font-family-unbounded);
+        padding: 5px 10px;
+        border-radius: 16px;
+    }
+
+    .link {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+    }
+}
+
+.card_content {
+    padding: 20px;
+    border: 1px solid var(--blue-color);
+    border-radius: 16px;
+}

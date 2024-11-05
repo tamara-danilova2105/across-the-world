@@ -1,16 +1,21 @@
 @import '@/app/styles/media-queries';
 
 .button {
-    padding: 16px 30px;
+    padding: 12px 30px;
     width: 100%;
     font-family: var(--font-family-geometria500);
-    border-radius: 170px;
     font-size: var(--font-size-18);
 }
 
 .primary {
     background-color: var(--blue-color);
     color: var(--white-color);
+}
+
+.outline {
+    background-color: transparent;
+    color: var(--blue-color);
+    border: 2px solid var(--blue-color);
 }
 
 .secondary {
