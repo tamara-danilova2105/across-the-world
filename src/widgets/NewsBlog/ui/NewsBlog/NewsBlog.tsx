@@ -14,7 +14,6 @@ export const NewsBlog = () => {
             <TitleSection title="Актуальные туры и другие тонкости" subtitle="БЛОГ"/>
             <Stack
                 gap="32"
-                max
             >
                 {dataBlog.map(news => (
                     <CardBlog key={news.id} news={news}/>
