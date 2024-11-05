@@ -1,0 +1,5 @@
+@import '@/app/styles/mixin';
+
+.our_tours {
+    @include section-style;
+}
