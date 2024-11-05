@@ -38,7 +38,7 @@ export const useScrollSlider = (quantityCards?: number, initialIndex: number = 0
 
         const handleWheel = (e: WheelEvent) => {
             if (!container) return;
-            container.scrollLeft += e.deltaY || e.deltaX
+            container.scrollLeft += e.deltaX
         }
 
         const handleMouseDown = (e: MouseEvent) => {
