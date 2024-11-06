@@ -1,13 +1,19 @@
 @use '@/app/styles/mixin.scss' as mixin;
 
 .hero {
-    background-color: var(--peach-opacity20);
     @include mixin.decorate-style;
+
+    & {
+        background-color: var(--peach-opacity20);
+    }
 }
 
 .hero_content {
     @include mixin.section-style;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    gap: 100px;
+
+    & {
+        padding-top: 70px;
+        padding-bottom: 70px;
+        gap: 100px;
+    }
 }

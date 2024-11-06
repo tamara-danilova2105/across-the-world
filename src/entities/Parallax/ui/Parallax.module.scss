@@ -26,11 +26,15 @@
 
     > div {
         @include mixin.section-style;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        scroll-behavior: smooth;
+
+        & {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+        
         > img {
             position: absolute;
             width: 100%;

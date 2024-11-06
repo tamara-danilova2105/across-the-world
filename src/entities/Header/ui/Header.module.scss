@@ -5,8 +5,8 @@
 }
 
 .header_content {
-    @include mixin.section-style;
     height: 70px;
+    @include mixin.section-style;
 
     p {
         text-transform: uppercase;
