@@ -25,17 +25,17 @@ $sizes: (
 );
 
 $colors: (
-    blue: $blue,
-    white: $white,
-    pink: $pink,
-    peach: $peach,
+    "blue": $blue,
+    "white": $white,
+    "pink": $pink,
+    "peach": $peach,
 );
 
 $families: (
-    unbounded: $unbounded,
-    geometria600: $geometria600,
-    geometria500: $geometria500,
-    geometria400: $geometria400,
+    "unbounded": $unbounded,
+    "geometria600": $geometria600,
+    "geometria500": $geometria500,
+    "geometria400": $geometria400,
 );
 
 @each $name, $size in $sizes {

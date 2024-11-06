@@ -1,5 +1,5 @@
-@import '@/app/styles/mixin';
-@import '@/app/styles/media-queries';
+@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as mq;
 
 .parallaxContainer {
     background-color: var(--blue-color);
@@ -7,30 +7,34 @@
     height: 100vh;
     position: relative;
 
-    @include desktop-m {
+    @include mq.desktop-m {
         height: 80vh;
     }
 
-    @include tablet-l {
+    @include mq.tablet-l {
         height: 60vh;
     }
 
-    @include mobile-l {
+    @include mq.mobile-l {
         height: 40vh;
     }
 
-    @include mobile-m {
+    @include mq.mobile-m {
         height: 30vh;
     }
     
 
     > div {
-        @include section-style;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        scroll-behavior: smooth;
+        @include mixin.section-style;
+
+        & {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+        
         > img {
             position: absolute;
             width: 100%;

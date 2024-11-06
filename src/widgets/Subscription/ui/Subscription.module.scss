@@ -1,4 +1,5 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixins;
+@use '@/app//styles/media-queries' as mq;
 
 .main {
     width: 100%;
@@ -9,10 +10,10 @@
     background-color: var(--peach-opacity20);
     width: 100%;
     height: 450px;
-    @include decorate-style;
+    @include mixins.decorate-style;
 
     .subscription {
-        @include section-style;
+        @include mixins.section-style;
 
         > div:nth-child(1) {
             width: 100%;
@@ -30,11 +31,11 @@
             height: 100px;
             gap: 16px;
 
-            @include mobile-xl {
+            @include mq.mobile-xl {
                 width: 100%;
             }
     
-            @include mobile-l {
+            @include mq.mobile-l {
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;

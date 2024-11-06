@@ -1,4 +1,4 @@
-@import '@/app/styles/mixin.scss';
+@use '@/app/styles/mixin.scss' as mixin;
 
 .header {
     position: fixed;
@@ -8,8 +8,8 @@
 }
 
 .header_content {
-    @include section-style;
     height: 70px;
+    @include mixin.section-style;
 
     p {
         text-transform: uppercase;

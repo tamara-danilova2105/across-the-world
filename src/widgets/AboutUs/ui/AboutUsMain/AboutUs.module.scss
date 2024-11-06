@@ -1,10 +1,10 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixin;
 
 .aboutUsContainer {
     width: 100%;
 
     > div {
-        @include section-style;
+        @include mixin.section-style;
 
         .heading {
             height: 200px;

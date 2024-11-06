@@ -1,4 +1,4 @@
-@import '@/app/styles/mixin.scss';
+@use '@/app/styles/mixin.scss' as mixin;
 
 @mixin afterElement($width: 0) {
     &:after {
@@ -27,6 +27,11 @@
 
 .navbarContainer {
     @include section-style;
+    @include mixin.section-style;
+
+    & {
+        height: 100px;
+    }
 }
 
 .logo {

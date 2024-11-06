@@ -1,5 +1,5 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixin;
 
 .main {
-    @include section-style;
+    @include mixin.section-style;
 }
