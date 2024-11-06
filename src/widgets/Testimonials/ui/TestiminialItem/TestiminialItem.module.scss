@@ -3,7 +3,7 @@
     border-radius: 16px;
     padding: 15px;
     position: relative;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
 }
 
 .testimonial_container {

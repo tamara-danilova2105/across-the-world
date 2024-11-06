@@ -11,7 +11,14 @@ const SLIDE_WIDTH = 550;
 const SLIDERS_TO_SHOW = 2;
 
 export const Testimonials = () => {
-    const { currentSlide, nextSlide, prevSlide, sliderStyles, totalSliderPages } = useSlider({
+    const { 
+        currentSlide, 
+        nextSlide, 
+        prevSlide, 
+        goToSlide, 
+        sliderStyles, 
+        totalSliderPages 
+    } = useSlider({
         totalSlides: dataTestimonials.length,
         slidesToShow: SLIDERS_TO_SHOW,
         slideWidth: SLIDE_WIDTH,
@@ -69,6 +76,8 @@ export const Testimonials = () => {
                         <div
                             key={index}
                             className={currentSlide === index ? styles.active : ''}
+                            onClick={() => goToSlide(index)}
+                            aria-label={`Перейти к слайду ${index + 1}`}
                         />
                     ))}
                 </div>

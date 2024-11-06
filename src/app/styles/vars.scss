@@ -2,13 +2,18 @@
 
 :root {
     --blue-color: #222f52;
+    --blue-opacity60: rgba(34, 47, 82, 0.8);
     --blue-opacity60: rgba(34, 47, 82, 0.6);
+    --blue-opacity40: rgba(34, 47, 82, 0.4);
+    --blue-opacity20: rgba(34, 47, 82, 0.2);
     --pink-color: #e08478;
     --pink-opacity60: hsla(7, 63%, 67%, 0.6);
     --peach-color: #f6d9bb;
     --peach-opacity20: rgba(246, 217, 187, 0.2);
     --white-color: #FFFFFF;
     --error-color: red;
+
+    --box-shadow: 2px 2px 4px var(--blue-opacity40);
 
     --font-family-unbounded: 'Unbounded';
     --font-family-geometria600: 'Geometria-600';

@@ -1,6 +1,6 @@
 .tour_card {
     padding: 15px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     border-radius: 16px;
     position: relative;
 
@@ -26,4 +26,8 @@
     padding: 20px;
     border: 1px solid var(--blue-color);
     border-radius: 16px;
+
+    img {
+        object-fit: cover;
+    }
 }

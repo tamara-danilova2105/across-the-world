@@ -30,6 +30,7 @@
 
 .slider_container {
     transition: transform 0.5s ease-in-out;
+    padding: 5px 0;
 }
 
 .pagination {
@@ -40,10 +41,14 @@
         border-radius: 20px;
         height: 6px;
         width: 38px;
-        background-color: var(--peach-color);
+        background-color: var(--white-color);
+        box-shadow: var(--box-shadow);
+        cursor: pointer;
     }
 
     .active {
-        background-color: var(--pink-color);
+        background-color: var(--blue-color);
+        cursor: default;
+        height: 6.5px;
     }
 }

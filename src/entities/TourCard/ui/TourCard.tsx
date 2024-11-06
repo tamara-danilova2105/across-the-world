@@ -18,7 +18,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
         <div className={styles.tour_card}>
             <Stack className={styles.card_content}>
                 <Stack direction="column" gap="16" >
-                    <Images src={image} alt={tour} width={290} height={450} />
+                    <Images src={image} alt={tour} width={290} height={380} />
                     <Text size='18' color='blue' font='geometria500'>
                         {tour}
                     </Text>

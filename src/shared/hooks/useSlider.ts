@@ -24,6 +24,10 @@ export const useSlider = ({ totalSlides, slidesToShow, slideWidth }: UseSliderPr
         }
     };
 
+    const goToSlide = (index: number) => {
+        setCurrentSlide(index);
+    };
+
     const sliderStyles = {
         transform: `translateX(-${currentSlide * slideWidth * slidesToShow}px)`,
         width: `${containerWidth}px`,
@@ -33,6 +37,7 @@ export const useSlider = ({ totalSlides, slidesToShow, slideWidth }: UseSliderPr
         currentSlide,
         nextSlide,
         prevSlide,
+        goToSlide,
         sliderStyles,
         totalSliderPages,
     };
