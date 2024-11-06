@@ -5,7 +5,7 @@ import baikal_person from '@/shared/assets/webp/Baikal_person.webp';
 import autumn_forest from '@/shared/assets/webp/autumn_forest.webp';
 import autumn_mountain from '@/shared/assets/webp/autumn_mountain.webp';
 import autumn_way from '@/shared/assets/webp/autumn_way.webp';
-import autumn_castle from '@/shared/assets/webp/autumn_castle.webp';
+import autumn_castle from '@/shared/assets/webp/Autumn_castle.webp';
 import HNY_glacier from '@/shared/assets/webp/HNY_glacier.webp';
 import HNY_meal from '@/shared/assets/webp/HNY_meal.webp';
 import HNY_mosque from '@/shared/assets/webp/HNY_mosque.webp';
