@@ -1,7 +1,7 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixin;
 
 .our_tours_title {
-    @include section-style;
+    @include mixin.section-style;
 }
 
 .our_tours_container {

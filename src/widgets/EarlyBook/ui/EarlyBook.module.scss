@@ -1,20 +1,21 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixin;
+@use '@/app//styles/media-queries' as mq;
 
 .earlyBook {
     width: 100%;
     overflow: hidden;
 
     .earlyBookContainer {
-        @include section-style;
+        @include mixin.section-style;
         
-        @include tablet-l {
+        @include mq.tablet-l {
             flex-direction: column;
             padding: 0;
             width: 100%;
             gap: 16px;
         }
 
-        @include mobile-l {
+        @include mq.mobile-l {
             padding: 0;
         }
 

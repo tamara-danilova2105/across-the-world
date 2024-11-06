@@ -1,15 +1,15 @@
-@import '@/app/styles/mixin.scss';
+@use '@/app/styles/mixin.scss' as mixin;
 
 .testimonials {
     background-color: var(--peach-opacity20);
-    @include decorate-style;
+    @include mixin.decorate-style;
 }
 
 
 .testimonials_content {
-    @include section-style;
     padding-top: 70px;
     padding-bottom: 70px;
+    @include mixin.section-style;
 }
 
 .testimonials_container {

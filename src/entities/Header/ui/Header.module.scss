@@ -1,11 +1,11 @@
-@import '@/app/styles/mixin.scss';
+@use '@/app/styles/mixin.scss' as mixin;
 
 .header {
     background-color: var(--blue-color);
 }
 
 .header_content {
-    @include section-style;
+    @include mixin.section-style;
     height: 70px;
 
     p {

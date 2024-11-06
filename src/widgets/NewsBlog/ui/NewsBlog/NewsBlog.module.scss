@@ -1,7 +1,7 @@
-@import '@/app/styles/mixin';
+@use '@/app/styles/mixin' as mixin;
 
 .news_title {
-    @include section-style;
+    @include mixin.section-style;
 }
 
 .news {
