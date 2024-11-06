@@ -12,9 +12,21 @@
     }
 }
 
+
 .navbar {
-    @include section-style;
+    background-color: var(--white-color);
     height: 100px;
+
+    &.fixed {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        z-index: 2; 
+    }
+}
+
+.navbarContainer {
+    @include section-style;
 }
 
 .logo {

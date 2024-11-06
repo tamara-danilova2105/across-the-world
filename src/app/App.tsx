@@ -6,8 +6,8 @@ import { Parallax } from "@/entities/Parallax";
 function App() {
   return (
     <>
-      <Parallax/>
       <Header />
+      <Parallax/>
       <Navbar />
       <AppRouter />
     </>

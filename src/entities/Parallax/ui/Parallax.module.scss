@@ -37,12 +37,13 @@
             height: 100%;
             top: 0;
             left: 0;
-            transition: transform 0.4s ease;
+            transition: transform 0.1s ease;
             scroll-behavior: smooth;
         };
 
         &:nth-child(6) {
-            bottom: 0;
+            position: fixed;
+            bottom:0;
         }
     } 
 }

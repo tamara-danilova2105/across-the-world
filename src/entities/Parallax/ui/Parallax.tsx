@@ -19,7 +19,7 @@ export const Parallax = () => {
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
         const scaleDecrease = 1 - scrollY * 0.0003;
-        const scaleIncrease = 1 + scrollY * 0.0006;
+        const scaleIncrease = 1 + scrollY * 0.001;
 
         const elements = [
             { ref: cloudRef, translateY: scrollY * 1 },
@@ -27,7 +27,7 @@ export const Parallax = () => {
             { ref: aroundWorldRef, translateY: scrollY * 1.3, scale: scaleIncrease },
             { ref: mountainRef, translateY: scrollY * 0.2 },
             { ref: personRef, translateY: scrollY * 0.4, scale: scaleDecrease },
-            { ref: grassRef, translateY: scrollY * (-0.1), scale: scaleIncrease },
+            { ref: grassRef, scale: scaleIncrease },
         ];
 
         elements.forEach(({ ref, translateY, scale }) => {
@@ -50,7 +50,7 @@ export const Parallax = () => {
     }, [handleScroll]);
 
     return (
-        <Stack className={styles.parallaxContainer}>
+        <Stack tag='figure' className={styles.parallaxContainer}>
             <Stack direction="column">
                 <img src={cloud} alt='Розовые облака в стиле flat' ref={cloudRef} loading="lazy"/>
                 <img src={sky} alt='Иллюстрация голубого неба с белыми облаками' ref={skyRef} loading="lazy"/>

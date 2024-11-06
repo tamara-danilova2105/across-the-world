@@ -6,7 +6,7 @@ export type StackDirection = 'row' | 'column';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
 export type StackAlign = 'start' | 'center' | 'end';
 export type StackGap = '4' | '8' | '16' | '24' | '32' | '48' | '64';
-export type StackTag = 'div' | 'section' | 'article' | 'aside' | 'main' | 'nav' | 'header';
+export type StackTag = 'div' | 'section' | 'article' | 'aside' | 'main' | 'nav' | 'header' | 'figure';
 
 const directionClasses: Record<StackDirection, string> = {
     row: styles.directionRow,
@@ -74,7 +74,8 @@ export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
         aside: 'aside',
         main: 'main',
         nav: 'nav',
-        header: 'header'
+        header: 'header',
+        figure: 'figure'
     };
 
     const StackTag = mapStackTag[tag];
