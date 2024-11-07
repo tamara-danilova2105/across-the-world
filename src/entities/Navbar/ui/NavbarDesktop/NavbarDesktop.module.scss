@@ -13,6 +13,14 @@
 }
 
 .navbar {
+    position: sticky;
+    top: 70px; 
+    z-index: 10; 
+    background-color: var(--white-color);
+    height: 100px;
+}
+
+.navbarContainer {
     @include mixin.section-style;
 
     & {
