@@ -1,10 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { routeConfig } from "@/app/router/lib/data";
 import { getStyles } from "@/shared/lib/getStyles";
+<<<<<<< Updated upstream
 import { Stack } from "@/shared/ui/Stack";
+=======
+import { Stack } from "@/shared/ui/Stack/Stack";
+import logo from '@/shared/assets/png/logo.png';
+>>>>>>> Stashed changes
 import styles from './NavbarDesktop.module.scss';
 import { Logo_main } from "@/shared/assets/svg/logo_main";
 import { LogoFont } from "@/shared/assets/svg/logoFont";
+
 
 export const NavbarDesktop = () => {
 
