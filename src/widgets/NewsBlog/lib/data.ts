@@ -1,11 +1,11 @@
 import baikal_ice from '@/shared/assets/webp/baikal_ice.webp';
 import baikal_group from '@/shared/assets/webp/baikal_group.webp';
 import baikal_girls from '@/shared/assets/webp/baikal_girls.webp';
-import baikal_person from '@/shared/assets/webp/Baikal_person.webp';
+import baikal from '@/shared/assets/webp/baikal.webp';
 import autumn_forest from '@/shared/assets/webp/autumn_forest.webp';
 import autumn_mountain from '@/shared/assets/webp/autumn_mountain.webp';
 import autumn_way from '@/shared/assets/webp/autumn_way.webp';
-import autumn_castle from '@/shared/assets/webp/autumn_castle.webp';
+import autumn from '@/shared/assets/webp/autumn.webp';
 import HNY_glacier from '@/shared/assets/webp/HNY_glacier.webp';
 import HNY_meal from '@/shared/assets/webp/HNY_meal.webp';
 import HNY_mosque from '@/shared/assets/webp/HNY_mosque.webp';
@@ -35,7 +35,7 @@ export const dataBlog: NewsBlogData[] = [
             {url: baikal_group, alt: "Группа людей фотографируются лежа у аэрохода"},
             {url: baikal_girls, alt: "Две девушки вальтом лежат на льду"},
             {url: baikal_ice, alt: "Прозрачный лед Байкала"},
-            {url: baikal_person, alt: "Человек в гидрокостюме под водой"}
+            {url: baikal, alt: "Девушка в ледяных глыбах"}
         ],
         date: "2024-11-01"
     },
@@ -47,7 +47,7 @@ export const dataBlog: NewsBlogData[] = [
             {url: autumn_forest, alt: "Кипарис болотный с пышной красной кроной"},
             {url: autumn_mountain, alt: "Осенний желто-зеленый и красный пейзаж у подножья гор"},
             {url: autumn_way, alt: "Дорога в ущелья гор"},
-            {url: autumn_castle, alt: "На изображении показаны башни Эгикал в Ингушетии на фоне гор"}
+            {url: autumn, alt: "Древняя крепость в Осетии"}
         ],
         date: "2024-10-15"
     },
