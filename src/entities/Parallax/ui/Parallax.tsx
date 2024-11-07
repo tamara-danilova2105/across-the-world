@@ -31,6 +31,7 @@ export const Parallax = () => {
         ];
 
         elements.forEach(({ ref, translateY, scale }) => {
+            
             if (ref.current) {
                 const transform = `translateY(${translateY}px)` + (scale ? ` scale(${scale})` : '');
                 ref.current.style.transform = transform;
