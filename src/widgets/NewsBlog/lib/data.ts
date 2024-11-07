@@ -1,7 +1,7 @@
 import baikal_ice from '@/shared/assets/webp/baikal_ice.webp';
 import baikal_group from '@/shared/assets/webp/baikal_group.webp';
 import baikal_girls from '@/shared/assets/webp/baikal_girls.webp';
-import baikal_person from '@/shared/assets/webp/baikal_person.webp';
+import baikal_girl from '@/shared/assets/webp/baikal_girls.webp';
 import autumn_forest from '@/shared/assets/webp/autumn_forest.webp';
 import autumn_mountain from '@/shared/assets/webp/autumn_mountain.webp';
 import autumn_way from '@/shared/assets/webp/autumn_way.webp';
@@ -35,7 +35,7 @@ export const dataBlog: NewsBlogData[] = [
             {url: baikal_group, alt: "Группа людей фотографируются лежа у аэрохода"},
             {url: baikal_girls, alt: "Две девушки вальтом лежат на льду"},
             {url: baikal_ice, alt: "Прозрачный лед Байкала"},
-            {url: baikal_person, alt: "Человек в гидрокостюме под водой"}
+            {url: baikal_girl, alt: "Человек в гидрокостюме под водой"}
         ],
         date: "2024-11-01"
     },
