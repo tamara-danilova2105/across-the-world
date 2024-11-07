@@ -2,8 +2,9 @@ import { NavLink } from "react-router-dom";
 import { routeConfig } from "@/app/router/lib/data";
 import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack";
-import logo from '@/shared/assets/png/logo.png';
 import styles from './NavbarDesktop.module.scss';
+import { Logo_main } from "@/shared/assets/svg/logo_main";
+import { LogoFont } from "@/shared/assets/svg/logoFont";
 
 export const NavbarDesktop = () => {
     return (
@@ -13,7 +14,12 @@ export const NavbarDesktop = () => {
             align="center"
             className={styles.navbar}
         >
-            <img className={styles.logo} src={logo} alt="кругосветка авторские туры" />
+            <Stack
+                gap='8'
+            >
+                <Logo_main/>
+                <LogoFont/>
+            </Stack>
 
             <Stack gap="48" tag="nav">
                 {Object.values(routeConfig).map(route => (
