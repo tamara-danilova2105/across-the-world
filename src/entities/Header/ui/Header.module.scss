@@ -1,6 +1,9 @@
 @use '@/app/styles/mixin.scss' as mixin;
 
 .header {
+    position: fixed;
+    z-index: 2;
+    top:0;
     background-color: var(--blue-color);
 }
 

@@ -19,7 +19,7 @@ export const Parallax = () => {
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
         const scaleDecrease = 1 - scrollY * 0.0003;
-        const scaleIncrease = 1 + scrollY * 0.0006;
+        const scaleIncrease = 1 + scrollY * 0.001;
 
         const elements = [
             { ref: cloudRef, translateY: scrollY * 1 },
@@ -31,6 +31,7 @@ export const Parallax = () => {
         ];
 
         elements.forEach(({ ref, translateY, scale }) => {
+            
             if (ref.current) {
                 const transform = `translateY(${translateY}px)` + (scale ? ` scale(${scale})` : '');
                 ref.current.style.transform = transform;
