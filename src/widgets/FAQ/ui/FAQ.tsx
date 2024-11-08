@@ -18,8 +18,7 @@ export const FAQ = () => {
             />
             <Stack 
                 direction="column" 
-                gap='16' 
-                max
+                gap='24' max
             >
                 {faqData.map((accordion: DataFAQ, index: number) => (
                     <Accordion accordion={accordion}

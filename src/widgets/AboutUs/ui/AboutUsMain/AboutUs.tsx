@@ -1,4 +1,3 @@
-import { Images } from "@/entities/Images";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";

@@ -1,16 +1,16 @@
-import { LessIcon } from "@/shared/assets/svg/lessIcon"
-import { MoreIcon } from "@/shared/assets/svg/moreIcon"
-import { Stack } from "@/shared/ui/Stack"
-import { Text } from "@/shared/ui/Text"
-import { useState } from "react"
-import styles from './Accordion.module.scss'
-import { DataFAQ } from "@/widgets/FAQ/lib/data"
-import { getStyles } from "@/shared/lib/getStyles"
+import { LessIcon } from "@/shared/assets/svg/lessIcon";
+import { MoreIcon } from "@/shared/assets/svg/moreIcon";
+import { Stack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
+import { useState } from "react";
+import styles from './Accordion.module.scss';
+import { DataFAQ } from "@/widgets/FAQ/lib/data";
+import { getStyles } from "@/shared/lib/getStyles";
 
 interface AccordionProps {
     accordion: DataFAQ;
     isSecond: boolean;
-}
+};
 
 export const Accordion = ({accordion, isSecond = false}: AccordionProps) => {
 
@@ -19,14 +19,14 @@ export const Accordion = ({accordion, isSecond = false}: AccordionProps) => {
     const [isOpen, setIsOpen] = useState(isSecond || false); 
 
     const handleClick = () => {
-        setIsOpen(prev => !prev)
-    }
+        setIsOpen(prev => !prev);
+    };
 
     const accordionStyles = getStyles(
         isOpen ? styles.openAnswer : styles.closedAnswer,
         {},
         [styles.accordionContainer]
-    )
+    );
 
     return(
         <Stack 
@@ -35,21 +35,16 @@ export const Accordion = ({accordion, isSecond = false}: AccordionProps) => {
             className={accordionStyles}
         >
             <Stack 
-                direction="column"
-                className={styles.accordion}
+                justify='between'
+                align='center'
+                className={styles.questionContainer}
             >
-                <Stack 
-                    justify='between'
-                    align='center'
-                    className={styles.questionContainer}
-                >
-                    <Text size="24" font="geometria500">{question}</Text>
-                    {isOpen ? <LessIcon/> : <MoreIcon/>}
-                </Stack>
-                <Stack className={isOpen ? styles.visible : styles.hidden}>
-                    <Text size="18">{answer}</Text>
-                </Stack>
+                <Text size="24" font="geometria500">{question}</Text>
+                {isOpen ? <LessIcon/> : <MoreIcon/>}
+            </Stack>
+            <Stack className={isOpen ? styles.visible : styles.hidden}>
+                <Text size="18">{answer}</Text>
             </Stack>
         </Stack>
-    )
-}
+    );
+};
