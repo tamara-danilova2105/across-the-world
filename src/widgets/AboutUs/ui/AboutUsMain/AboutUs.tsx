@@ -7,8 +7,6 @@ import aboutUs_small from '@/shared/assets/png/aboutUs_small.jpeg';
 import styles from './AboutUs.module.scss';
 import { Statictics } from "../Statictics/Statictics";
 
-//TODO
-
 export const AboutUs = () => {
     return(
         <Stack
@@ -19,9 +17,11 @@ export const AboutUs = () => {
                     justify="between"
                     gap="32"
                 > 
-                    <Stack>
-                        <Images src={aboutUs_large} alt='' width={430} height={585}/>
-                    </Stack>
+                    <img 
+                        src={aboutUs_large} 
+                        alt='Кругостветка - авторский туры по России и миру' 
+                        width={430} height={585}
+                    />
                     <Stack
                         direction="column"
                         gap="32"
@@ -55,7 +55,11 @@ export const AboutUs = () => {
                                     </Text>
                                 </Stack>
                             </Stack>
-                            <Images src={aboutUs_small} alt='' width={153} height={191}/>
+                            <img 
+                                src={aboutUs_small} 
+                                alt='Кругосветка - авторские туры по России и миру' 
+                                width={153} height={191} 
+                            />
                         </Stack>
                         <Text color="blue" size="18">
                             Кругостветка — туристическая фирма, организующая увлекательные туры по России и за границу. Мы предлагаем разнообразные маршруты для любителей приключений, культурных открытий и комфортного отдыха. С нами вы сможете исследовать величественные горы, древние города, золотые пляжи и другие уникальные уголки мира, создавая незабываемые впечатления!
