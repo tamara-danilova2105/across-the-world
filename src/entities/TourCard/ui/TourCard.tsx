@@ -1,11 +1,7 @@
-import { Images } from "@/entities/Images";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Tour } from "@/widgets/OurTours/lib/data";
 import styles from './TourCard.module.scss';
-import { AppLink } from "@/shared/ui/AppLink";
-import { getRouteTours } from "@/app/router/lib/helper";
-import { NavigateIcon } from "@/shared/assets/svg/heroIcons";
 
 interface TourCardProps {
     tourData: Tour;
