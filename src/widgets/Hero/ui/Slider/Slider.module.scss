@@ -1,4 +1,12 @@
 .sliders_container {
     overflow: hidden;
-    width: 490px;
+    width: 466px;
+}
+
+.slider_item {
+    transition: transform .8s ease-in-out;
+}
+
+.btn_container {
+    z-index: 1;
 }

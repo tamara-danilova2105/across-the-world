@@ -1,19 +1,16 @@
 import { Stack } from "@/shared/ui/Stack";
-import { Images } from "@/entities/Images";
 import { Text } from "@/shared/ui/Text";
 import { SliderData } from "../../lib/data";
 import { NavigateIcon } from "@/shared/assets/svg/heroIcons";
-import { CSSProperties } from "react";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteTours } from "@/app/router/lib/helper";
 import styles from './SliderItem.module.scss';
 
 interface SliderItemProps {
     slide: SliderData;
-    style: CSSProperties;
 }
 
-export const SliderItem = ({ slide, style }: SliderItemProps) => {
+export const SliderItem = ({ slide }: SliderItemProps) => {
     const { image, title, description } = slide;
 
     return (
@@ -21,12 +18,17 @@ export const SliderItem = ({ slide, style }: SliderItemProps) => {
             direction="column" 
             gap='32' 
             className={styles.slider}
-            style={style}
             tag='article'
         >
-            <Images src={image} alt={title} width={450} height={300} />
+            <img 
+                src={image} alt={title} 
+                width={450} height={300} 
+            />
 
-            <Stack justify='between' max>
+            <Stack 
+                justify='between' max
+                className={styles.text_container}
+            >
                 <Stack direction="column">
                     <Text type="h3" font='geometria500' size='24'>
                         {title}

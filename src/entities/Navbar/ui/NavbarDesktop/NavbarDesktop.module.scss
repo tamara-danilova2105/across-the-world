@@ -17,15 +17,11 @@
     top: 70px; 
     z-index: 10; 
     background-color: var(--white-color);
-    height: 100px;
+    height: 70px;
 }
 
 .navbarContainer {
     @include mixin.section-style;
-
-    & {
-        height: 70px;
-    }
 }
 
 .logo {
