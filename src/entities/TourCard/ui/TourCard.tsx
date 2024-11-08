@@ -16,9 +16,12 @@ export const TourCard = ({ tourData }: TourCardProps) => {
 
     return (
         <div className={styles.tour_card}>
-            <Stack className={styles.card_content}>
-                <Stack direction="column" gap="16" >
-                    <Images src={image} alt={tour} width={290} height={380} />
+            <Stack direction="column" gap="16">
+                <img src={image} alt={tour}/>
+                <Stack 
+                    gap="8" direction='column'
+                    className={styles.text_container}
+                >
                     <Text size='18' color='blue' font='geometria500'>
                         {tour}
                     </Text>
@@ -26,15 +29,6 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                     <Text size="18">{price}</Text>
                 </Stack>
             </Stack>
-
-            <AppLink 
-                variant='button' 
-                circle 
-                className={styles.link}
-                to={getRouteTours()} //TODO - страница тура
-            >
-                <NavigateIcon />
-            </AppLink>
 
             {discount && (
                 <div className={styles.badge}>

@@ -26,11 +26,12 @@
 .testimonials_slider {
     overflow: hidden;
     width: 1100px;
+    padding: 5px 0;
 }
 
 .slider_container {
     transition: transform 0.5s ease-in-out;
-    padding: 5px 0;
+    padding: 5px;
 }
 
 .pagination {

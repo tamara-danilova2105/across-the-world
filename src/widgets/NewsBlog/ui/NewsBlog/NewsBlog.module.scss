@@ -5,9 +5,10 @@
 }
 
 .news {
-    height: 520px;
+    height: 540px;
     width: calc(100vw - ((100vw - 1240px) / 2));
     margin-left: calc((100vw - 1280px) / 2);
     overflow: hidden;
     cursor: grab;
+    padding: 10px;
 }
