@@ -1,11 +1,9 @@
-import { Stack } from "@/shared/ui/Stack"
-import styles from './CardBlog.module.scss'
-import { Text } from "@/shared/ui/Text"
-import { AppLink } from "@/shared/ui/AppLink"
-import { getRouteBlog } from "@/app/router/lib/helper"
-import { NewsBlogData } from "@/widgets/NewsBlog/lib/data"
-import { Images } from "@/entities/Images"
-import { NavigateIcon } from "@/shared/assets/svg/heroIcons"
+import { Stack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
+import { AppLink } from "@/shared/ui/AppLink";
+import { getRouteBlog } from "@/app/router/lib/helper";
+import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
+import styles from './CardBlog.module.scss';
 
 interface NewsBlogProps {
     news: NewsBlogData;
@@ -30,8 +28,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                     className={styles.imagesContainer}
                 >
                     {mainImage && (
-                        <Images src={mainImage.url} 
-                        alt={mainImage.alt} width='' height="430px"/>
+                        <img src={mainImage.url} alt={mainImage.alt} width='' height="430px" />
                     )}
                     <Text size='18' font="geometria500">
                         {date}
@@ -61,17 +58,20 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             ))}
                         </ul>
                     ) : (
-                        <Text size='18' color="blue">{description}</Text>
+                        <Text 
+                            size='18' 
+                            color="blue"
+                            className={styles.description}
+                        >
+                            {description.length > 180 ? `${description.slice(0, 180)} ...` : description}
+                        </Text>
                     )}
+                    <div className={styles.read_more}>
+                        <AppLink to={getRouteBlog()}> 
+                            Подробнее
+                        </AppLink>
+                    </div>
                 </Stack>
-
-                <AppLink 
-                    to={getRouteBlog()}
-                    variant='button' 
-                    circle 
-                > 
-                    <NavigateIcon />
-                </AppLink>
             </Stack>
         </Stack>
     )

@@ -21,9 +21,10 @@ export const FAQ = () => {
                 gap='24' max
             >
                 {faqData.map((accordion: DataFAQ, index: number) => (
-                    <Accordion accordion={accordion}
-                    isSecond={index === 1}
-                    key={index}
+                    <Accordion 
+                        accordion={accordion}
+                        isSecond={index === 1}
+                        key={index}
                     />
                 ))}
             </Stack>

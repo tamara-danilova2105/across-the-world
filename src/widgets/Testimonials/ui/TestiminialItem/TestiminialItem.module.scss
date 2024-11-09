@@ -1,15 +1,10 @@
 .testimonial {
     background-color: var(--white-color);
     border-radius: 16px;
-    padding: 15px;
+    padding: 20px;
     position: relative;
     box-shadow: var(--box-shadow);
-}
-
-.testimonial_container {
-    padding: 20px;
-    border: 2px solid var(--blue-opacity60);
-    border-radius: 16px;
+    height: 270px;
 }
 
 .feedback_text {

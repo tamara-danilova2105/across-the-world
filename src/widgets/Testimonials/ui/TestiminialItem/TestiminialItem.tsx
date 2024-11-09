@@ -15,26 +15,22 @@ export const TestimonialItem = ({ testimonial }: TestimonialItemProps) => {
         <Stack 
             className={styles.testimonial} 
             max role='li'
+            direction="column"
+            gap="32"
         >
-            <Stack
-                direction='column' 
-                gap="32" max
-                className={styles.testimonial_container}
+            <Text 
+                font='geometria500' 
+                size="24"
+                className={styles.tourist_text}
             >
-                <Text 
-                    font='geometria500' 
-                    size="24"
-                    className={styles.tourist_text}
-                >
-                    {tourist}
-                </Text>
-                <Text 
-                    size="18" 
-                    className={styles.feedback_text}
-                >
-                    {feedback}
-                </Text>
-            </Stack>
+                {tourist}
+            </Text>
+            <Text 
+                size="18" 
+                className={styles.feedback_text}
+            >
+                {feedback}
+            </Text>
             <Stack className={styles.backtics_container}>
                 <BackticsIcon />
             </Stack>

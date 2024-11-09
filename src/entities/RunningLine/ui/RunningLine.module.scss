@@ -1,29 +1,16 @@
-.runningLine {
-    overflow: hidden;          
+.runningLine {    
     background-color: var(--blue-color); 
     padding: 0;                   
 }
 
 .runningText {
-    width: calc(200% + 16px);
-    animation: scroll 50s linear infinite;
-    white-space: nowrap;  
-
     p {
         letter-spacing: 2px;
         opacity: 60%;
     }
     svg {
+        margin-left: 16px;
         width: 70px;
         height: 70px;
-    }
-}
-
-@keyframes scroll {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-50%); 
     }
 }
