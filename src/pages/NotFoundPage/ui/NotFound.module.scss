@@ -1,0 +1,12 @@
+@use '@/app/styles/mixin' as mixins;
+
+.not_found {
+    height: calc(100vh - 240px); //TODO
+    margin-top: 120px; //TODO - страница под меню иначе 
+    position: relative;
+    @include mixins.decorate-style;
+
+    h1 {
+        font-size: 150px;
+    }
+}

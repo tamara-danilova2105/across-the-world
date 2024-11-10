@@ -2,10 +2,10 @@
     text-decoration: none;
     font-family: var(--font-family-geometria500);
     font-size: var(--font-size-18);
+    width: 100%;
 }
 
 .link {
-    width: 100%;
     color: var(--blue-color);
     text-align: center;
 
@@ -23,6 +23,10 @@
     background-color: var(--blue-color);
     color: var(--white-color);
     padding: 12px 30px;
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .circle {

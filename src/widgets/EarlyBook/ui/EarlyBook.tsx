@@ -51,9 +51,11 @@ export const EarlyBook = () => {
                             color="blue" size="18">При бронировании до 31 декабря действует скидка 8% по акции раннего бронирования.</Text>
                         </Stack>
                         <Timer styleMode='timer_earlyBook' endTime='2024-12-01T20:59:59.000Z'/>
-                        <AppLink variant="button" to={getRouteTours()}>
-                            Забронировать тур
-                        </AppLink>
+                        <div>
+                            <AppLink variant="button" to={getRouteTours()}>
+                                Забронировать тур
+                            </AppLink>
+                        </div>
                     </Stack>
                 </Stack>
                 <Stack 

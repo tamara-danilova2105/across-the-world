@@ -4,6 +4,7 @@ import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteBlog } from "@/app/router/lib/helper";
 import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import styles from './CardBlog.module.scss';
+import { formatToRussianDate } from "@/shared/lib/formatDate";
 
 interface NewsBlogProps {
     news: NewsBlogData;
@@ -11,7 +12,7 @@ interface NewsBlogProps {
 
 export const CardBlog = ({news}: NewsBlogProps) => {
 
-    const {title, description, date, image} = news;
+    const {title, description, createdAt, image} = news;
     const mainImage = image[0]; 
     const otherImages = image.slice(1); 
 
@@ -31,7 +32,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                         <img src={mainImage.url} alt={mainImage.alt} width='' height="430px" />
                     )}
                     <Text size='18' font="geometria500">
-                        {date}
+                        {formatToRussianDate(createdAt)}
                     </Text>
                 </Stack>
                 <Stack 

@@ -26,10 +26,11 @@ export const Subscription = () => {
 
     return (
         <Stack 
-        direction="column"
-        justify='center'
-        align='center'
-        className={styles.main}>
+            direction="column"
+            justify='center'
+            align='center'
+            className={styles.main}
+        >
             <RunningLine />
             <Stack 
                 className={styles.subscriptionContainer} 

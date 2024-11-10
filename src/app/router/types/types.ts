@@ -4,7 +4,6 @@ export enum AppRouters {
     main = 'main',
     tours = 'tours',
     tour_detais = 'tour_detais',
-    faq = 'faq',
     about = 'about',
     blog = 'blog',
     blog_details = 'blog_details',

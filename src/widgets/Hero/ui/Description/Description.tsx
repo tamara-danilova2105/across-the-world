@@ -1,7 +1,11 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { heroData } from "../../lib/data";
-import { AddIcon, FireWorks, RatingIcon } from "@/shared/assets/svg/heroIcons";
+import { 
+    AddIcon, 
+    FireWorks, 
+    RatingIcon 
+} from "@/shared/assets/svg/heroIcons";
 import { AppLink } from "@/shared/ui/AppLink";
 import { Button } from "@/shared/ui/Button";
 import { getRouteTours } from "@/app/router/lib/helper";
@@ -25,9 +29,9 @@ export const Description = () => {
                 </Text>
             </Stack>
             <Stack justify='between' gap="16" max align='end'>
-                <Button>
+                <AppLink variant="button" to={getRouteTours()}>
                     {buttonText}
-                </Button>
+                </AppLink>
                 <AppLink to={getRouteTours()}>
                     {linkText}
                 </AppLink>

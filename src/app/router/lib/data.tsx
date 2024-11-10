@@ -4,13 +4,13 @@ import {
     getRouteAbout, 
     getRouteAdmin, 
     getRouteBlog, 
-    getRouteBlogDetails, 
-    getRouteFAQ, 
+    getRouteBlogDetails,
     getRouteMain, 
     getRouteTestimonials, 
     getRouteTours, 
     getRouteToursDetails,
 } from "./helper";
+import { NotFoundPage } from "@/pages/NotFoundPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -36,10 +36,6 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.blog_details]: {
         path: getRouteBlogDetails(':id'),
     },
-    [AppRouters.faq]: {
-        path: getRouteFAQ(),
-        title: 'FAQ',
-    },
     [AppRouters.testimonials]: {
         path: getRouteTestimonials(),
         title: 'Отзывы',
@@ -49,6 +45,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         onlyAdmin: true,
     },
     [AppRouters.not_found]: {
-        path: '*'
+        path: '*',
+        page: <NotFoundPage />
     },
 };
