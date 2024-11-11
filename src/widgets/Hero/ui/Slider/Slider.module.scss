@@ -1,6 +1,8 @@
 .sliders_container {
     overflow: hidden;
     width: 466px;
+    box-shadow: var(--box-shadow);
+    border-radius: 24px;
 }
 
 .slider_item {
