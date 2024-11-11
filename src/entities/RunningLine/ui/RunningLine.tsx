@@ -22,6 +22,10 @@ export const RunningLine = () => {
         },
         {
             icon: <LogoIcon />,
+            text: 'ПУТЕШЕСТВИЕ В ДЕНЬ РОЖДЕНИЯ - 5%'
+        },
+        {
+            icon: <LogoIcon />,
             text: 'ПОСТОЯННЫМ КЛИЕНТАМ - до 15%'
         },
     ];
