@@ -4,7 +4,14 @@
     padding: 20px;
     position: relative;
     box-shadow: var(--box-shadow);
-    height: 270px;
+    min-height: max-content;
+
+    button {
+        color: var(--blue-color);
+        font-size: var(--font-size-18);
+        font-family: var(--font-family-geometria500);
+        align-self: flex-end;
+    }
 }
 
 .feedback_text {

@@ -6,9 +6,12 @@ import { useSlider } from "@/shared/hooks/useSlider";
 import { dataTestimonials, DataTestimonials } from "../../lib/data";
 import { TestimonialItem } from "../TestiminialItem/TestiminialItem";
 import styles from './Testimonials.module.scss';
+import { useLayoutEffect, useRef, useState } from "react";
 
 const SLIDE_WIDTH = 550;
 const SLIDERS_TO_SHOW = 2;
+const INIT_HEIGHT = 300;
+
 
 export const Testimonials = () => {
     const { 
@@ -23,6 +26,34 @@ export const Testimonials = () => {
         slidesToShow: SLIDERS_TO_SHOW,
         slideWidth: SLIDE_WIDTH,
     });
+
+    const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const [maxHeight, setMaxHeight] = useState(INIT_HEIGHT);
+    console.log(maxHeight);
+    
+
+    const [showMoreStates, setShowMoreStates] = useState(
+        dataTestimonials.map(() => false)
+    );
+    
+    useLayoutEffect(() => {
+        const timer = setTimeout(() => {
+            const heights = itemRefs.current.map(item => item?.scrollHeight || INIT_HEIGHT);
+            setMaxHeight(Math.max(...heights));
+        }, 50);
+
+        if(showMoreStates) setMaxHeight(INIT_HEIGHT)
+
+        return () => clearTimeout(timer);
+    }, [showMoreStates]);
+
+    const toggleShowMore = (index: number) => {
+        setShowMoreStates(prevStates => {
+            const newStates = [...prevStates];
+            newStates[index] = !newStates[index];
+            return newStates;
+        });
+    };
 
     return (
         <Stack 
@@ -48,6 +79,7 @@ export const Testimonials = () => {
                     <button 
                         onClick={prevSlide}
                         aria-label="Предыдущий отзыв"
+                        className={styles.rotate}
                     >
                         <ArrowIcon />
                     </button>
@@ -58,8 +90,15 @@ export const Testimonials = () => {
                             style={sliderStyles}
                             className={styles.slider_container}
                         >
-                            {dataTestimonials.map((testimonial: DataTestimonials) => (
-                                <TestimonialItem testimonial={testimonial} />
+                            {dataTestimonials.map((testimonial: DataTestimonials, index) => (
+                                <TestimonialItem 
+                                    key={testimonial._id}
+                                    testimonial={testimonial}
+                                    ref={el => (itemRefs.current[index] = el)} 
+                                    maxHeight={{ height: maxHeight ? `${maxHeight}px` : 'auto' }}
+                                    showMore={showMoreStates[index]}
+                                    onToggleShowMore={() => toggleShowMore(index)}
+                                />
                             ))}
                         </Stack>
                     </div>

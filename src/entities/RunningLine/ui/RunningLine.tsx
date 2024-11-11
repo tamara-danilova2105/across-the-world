@@ -32,7 +32,7 @@ export const RunningLine = () => {
                 {Array(1).fill(data).flat().map((item, index) => (
                     <Stack 
                         key={index} 
-                        gap="16"
+                        gap="32"
                         align='center'
                         className={styles.runningText}
                     >

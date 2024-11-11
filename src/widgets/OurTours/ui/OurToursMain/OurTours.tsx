@@ -1,10 +1,10 @@
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
-import styles from './OurTours.module.scss';
 import { Filterbar } from "../Filterbar/Filterbar";
 import { dataTours } from "../../lib/data";
 import { TourCard } from "@/entities/TourCard";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
+import styles from './OurTours.module.scss';
 
 export const OurTours = () => {
     const { containerRef } = useScrollSlider()
@@ -30,7 +30,10 @@ export const OurTours = () => {
                 className={styles.our_tours_container}
             >
                 {dataTours.map(tour => (
-                    <TourCard tourData={tour} />
+                    <TourCard 
+                        key={tour._id} 
+                        tourData={tour} 
+                    />
                 ))}
             </Stack>
         </Stack>

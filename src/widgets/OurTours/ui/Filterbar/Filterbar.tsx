@@ -14,7 +14,10 @@ export const Filterbar = () => {
             className={styles.filterbar}
         >
             {filters.map(filter => (
-                <Button color={filter === isActive ? 'primary' : 'outline'}>
+                <Button 
+                    key={filter} 
+                    color={filter === isActive ? 'primary' : 'outline'}
+                >
                     {filter}
                 </Button>
             ))}

@@ -1,7 +1,7 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
-import { getRouteBlog } from "@/app/router/lib/helper";
+import { getRouteBlogDetails } from "@/app/router/lib/helper";
 import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import styles from './CardBlog.module.scss';
 import { formatToRussianDate } from "@/shared/lib/formatDate";
@@ -12,7 +12,7 @@ interface NewsBlogProps {
 
 export const CardBlog = ({news}: NewsBlogProps) => {
 
-    const {title, description, createdAt, image} = news;
+    const { title, description, createdAt, image, _id } = news;
     const mainImage = image[0]; 
     const otherImages = image.slice(1); 
 
@@ -68,7 +68,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                         </Text>
                     )}
                     <div className={styles.read_more}>
-                        <AppLink to={getRouteBlog()}> 
+                        <AppLink to={getRouteBlogDetails(_id)}> 
                             Подробнее
                         </AppLink>
                     </div>

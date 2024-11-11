@@ -11,7 +11,9 @@ export const Statictics = () => {
         >
             {tourStatisticsData.map((stat: TourStatistics) => (
                 <Stack 
-                    direction='column' gap="16" align='center'
+                    key={stat.label}
+                    direction='column' 
+                    gap="16" align='center'
                     className={styles.statists_item}
                 >
                     <Text color='pink' size='32' font='unbounded'>

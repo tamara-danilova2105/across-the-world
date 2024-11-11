@@ -4,7 +4,7 @@ import { DetailedHTMLProps, forwardRef, HTMLAttributes, ReactNode } from "react"
 
 export type StackDirection = 'row' | 'column';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
-export type StackAlign = 'start' | 'center' | 'end';
+export type StackAlign = 'start' | 'center' | 'end' | 'stretch';
 export type StackGap = '4' | '8' | '16' | '24' | '32' | '48' | '64';
 export type StackTag = 'div' | 'section' | 'article' | 'aside' | 'main' | 'nav' | 'header';
 
@@ -25,6 +25,7 @@ const alignClasses: Record<StackAlign, string> = {
     start: styles.alignStart,
     center: styles.alignCenter,
     end: styles.alignEnd,
+    stretch: styles.alignStretch,
 };
 
 const gapClasses: Record<StackGap, string> = {
