@@ -6,22 +6,28 @@
         left: 0;
         width: $width;
         height: 2px;
-        background-color: var(--blue-color);
+        background-color: var(--white-color);
         content: "";
         transition: width 0.3s ease-out;
     }
 }
 
 .navbar {
-    position: sticky;
-    top: 70px; 
-    z-index: 10; 
-    background-color: var(--white-color);
-    height: 70px;
+    background-color: var(--blue-color);
+    position: fixed;
+    z-index: 2;
+    top:0;
 }
 
 .navbarContainer {
     @include mixin.section-style;
+}
+
+.logo_container {
+    svg:first-child {
+        width: 90px;
+        height: 70px;
+    }
 }
 
 .logo {
@@ -31,7 +37,7 @@
 .link {
     text-decoration: none;
     font-size: var(--font-size-16);
-    color: var(--blue-color);
+    color: var(--white-color);
     text-transform: uppercase;
     font-family: var(--font-family-geometria500);
 }

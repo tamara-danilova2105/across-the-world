@@ -10,6 +10,8 @@ import styles from './EarlyBook.module.scss'
 
 //TODO - alt
 
+const END_TIME = '2024-12-01T20:59:59.000Z' //TODO
+
 export const EarlyBook = () => {
     return(
         <Stack
@@ -42,14 +44,29 @@ export const EarlyBook = () => {
                             justify='center'
                             align='center'
                         >
-                            <Text type="h2" font='unbounded'
-                            color="blue" size="32">РАНЕЕ БРОНИРОВАНИЕ</Text>
-                            <Text font='geometria500'
-                            color="blue" size="18">Открываем набор групп на КАМЧАТКУ 2025</Text>
-                            <Text font='geometria400'
-                            color="blue" size="18">При бронировании до 31 декабря действует скидка 8% по акции раннего бронирования.</Text>
+                            <Text 
+                                type="h2" font='unbounded'
+                                color="blue" size="32"
+                            >
+                                РАНЕЕ БРОНИРОВАНИЕ
+                            </Text>
+                            <Text 
+                                font='geometria500'
+                                color="blue" size="18"
+                            >
+                                Открываем набор групп на КАМЧАТКУ 2025
+                            </Text>
+                            <Text 
+                                font='geometria400'
+                                color="blue" size="18"
+                            >
+                                При бронировании до 31 декабря действует скидка 8% по акции раннего бронирования.
+                            </Text>
                         </Stack>
-                        <Timer styleMode='timer_earlyBook' endTime='2024-12-01T20:59:59.000Z'/>
+                        <Timer 
+                            styleMode='timer_earlyBook' 
+                            endTime={END_TIME}
+                        />
                         <div>
                             <AppLink variant="button" to={getRouteTours()}>
                                 Забронировать тур
@@ -62,10 +79,13 @@ export const EarlyBook = () => {
                     justify="center"
                     className={styles.posterContainer}
                     gap="16"
-                >{bookData.map(item => (
-                    <Images key={item.id} 
-                    item={item} width={245} height={580}/>
-                ))}
+                >
+                    {bookData.map(item => (
+                        <Images 
+                            key={item.id} 
+                            item={item} width={245} height={580}
+                        />
+                    ))}
                 </Stack>
             </Stack>
         </Stack>
