@@ -3,11 +3,11 @@ import crater from '@/shared/assets/png/crater.jpeg'
 
 
 export interface BookData {
-    id: Number,
-    urlImage: String,
-    title: String,
-    denomination: String,
-    description: String,
+    id: number,
+    urlImage: string,
+    title: string,
+    denomination: string,
+    description: string,
 }
 
 export const bookData: BookData[] = [
