@@ -28,7 +28,7 @@ export const RunningLine = () => {
 
     return (
         <Stack className={styles.runningLine}>
-            <Marquee gradient={false} >
+            <Marquee gradient={false} pauseOnHover={true}>
                 {Array(1).fill(data).flat().map((item, index) => (
                     <Stack 
                         key={index} 

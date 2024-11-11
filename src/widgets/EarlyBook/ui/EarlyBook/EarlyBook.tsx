@@ -1,19 +1,18 @@
 import { getRouteTours } from "@/app/router/lib/helper"
-import { Timer } from "@/entities/Timer"
-import { AppLink } from "@/shared/ui/AppLink"
-import { Stack } from "@/shared/ui/Stack"
+import { RunningLine } from "@/entities/RunningLine/index"
+import { Timer } from "@/entities/Timer/index"
+import { AppLink } from "@/shared/ui/AppLink/AppLink"
+import { Stack } from "@/shared/ui/Stack/Stack"
+import { Text } from "@/shared/ui/Text/Text"
+import { bookData } from "../../lib/data"
+import { Images } from "../Images/Images"
 import styles from './EarlyBook.module.scss'
-import mountains from '@/shared/assets/png/kamchatka_mountains.jpeg'
-import crater from '@/shared/assets/png/crater.jpeg'
-import { Images } from "@/entities/Images"
-import { Text } from "@/shared/ui/Text"
-import { RunningLine } from "@/entities/RunningLine"
 
 //TODO - alt
 
 export const EarlyBook = () => {
     return(
-        <Stack 
+        <Stack
             direction="column"
             justify='center'
             align='center'
@@ -63,9 +62,10 @@ export const EarlyBook = () => {
                     justify="center"
                     className={styles.posterContainer}
                     gap="16"
-                >
-                    <Images src={mountains} alt={""} width={245} height={580}/>
-                    <Images src={crater} alt={""} width={245} height={580}/>
+                >{bookData.map(item => (
+                    <Images key={item.id} 
+                    item={item} width={245} height={580}/>
+                ))}
                 </Stack>
             </Stack>
         </Stack>
