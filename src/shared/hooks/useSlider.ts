@@ -16,6 +16,8 @@ export const useSlider = ({
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    console.log(currentSlide)
+
     const totalSliderPages = Math.ceil(totalSlides / slidesToShow);
     const containerWidth = slideWidth * totalSlides;
 

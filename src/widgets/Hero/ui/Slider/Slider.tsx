@@ -1,63 +1,60 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Button } from "@/shared/ui/Button";
 import { NextIcon, PrewIcon } from "@/shared/assets/svg/heroIcons";
-import { useSlider } from "@/shared/hooks/useSlider";
-import { sliderData } from "../../lib/data";
+import useCarousel from "@/shared/hooks/useCarousel";
+import { SliderData, sliderData } from "../../lib/data";
 import { SliderItem } from "../SliderItem/SliderItem";
 import styles from './Slider.module.scss';
 
-const SLIDE_WIDTH = 466;
-const SLIDERS_TO_SHOW = 1;
+const AUTO_PLAY_INTERVAL = 3000;
+
 
 export const Slider = () => {
-    const { nextSlide, prevSlide, sliderStyles } = useSlider({
-        totalSlides: sliderData.length,
-        slidesToShow: SLIDERS_TO_SHOW,
-        slideWidth: SLIDE_WIDTH,
-        autoPlayInterval: 3000,
-    });
+
+    const slides = sliderData.map((slide: SliderData, index) => (
+        <SliderItem
+            key={index}
+            slide={slide} 
+        />
+    ))
+
+    const { containerRef, 
+        slides: carouselSlides, 
+        translateX, 
+        nextSlide, 
+        prevSlide } = useCarousel({ children: slides, autoPlayInterval: AUTO_PLAY_INTERVAL});
 
     return (
         <Stack 
-            direction="column" gap='16' 
-            role="region" aria-label="Слайдер туров"
-        >
+        direction="column" 
+        gap="16" 
+        role="region" 
+        aria-label="Слайдер туров">
             <div className={styles.sliders_container}>
-                <Stack 
-                    gap="16"
-                    className={styles.slider_item}
-                    style={sliderStyles}
+                <Stack
+                ref={containerRef}
+                className={styles.slider_item}
+                style={{
+                    transform: `translate3d(${-translateX}px, 0, 0)`,
+                }}
                 >
-                    {sliderData.map(slide => (
-                        <SliderItem
-                            key={slide.title}
-                            slide={slide} 
-                        />
-                    ))}
+                {carouselSlides}
                 </Stack>
             </div>
-            <Stack 
-                justify='center'
-                gap="16" tag='nav' max
+            <Stack
+                justify="center"
+                gap="16"
+                role="nav"
                 aria-label="Навигация по слайдеру"
                 className={styles.btn_container}
             >
-                <Button 
-                    circle
-                    onClick={prevSlide}
-                    aria-label="Предыдущий слайд"
-                >
+                <Button circle onClick={prevSlide} aria-label="Предыдущий слайд">
                     <PrewIcon />
                 </Button>
-                <Button 
-                    circle 
-                    color='secondary'
-                    onClick={nextSlide}
-                    aria-label="Следующий слайд"
-                >
+                <Button circle color="secondary" onClick={nextSlide} aria-label="Следующий слайд">
                     <NextIcon />
                 </Button>
             </Stack>
         </Stack>
-    );
-};
+    )
+}
