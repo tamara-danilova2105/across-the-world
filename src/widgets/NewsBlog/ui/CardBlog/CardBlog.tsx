@@ -29,7 +29,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                     className={styles.imagesContainer}
                 >
                     {mainImage && (
-                        <img src={mainImage.url} alt={mainImage.alt} width='' height="430px" />
+                        <img src={mainImage.url} alt={mainImage.alt} width='' height="430px" draggable={false} />
                     )}
                     <Text size='18' font="geometria500">
                         {formatToRussianDate(createdAt)}
@@ -46,7 +46,8 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             key={index}
                             src={item.url}
                             alt={item.alt}
-                            />
+                            draggable={false}
+                        />
                         ))}
                     </Stack>
                     <Text size="24" font="geometria500" color="blue">{title}</Text>

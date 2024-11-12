@@ -15,7 +15,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
     return (
         <div className={styles.tour_card}>
             <Stack direction="column" gap="16">
-                <img src={image} alt={tour}/>
+                <img src={image} alt={tour} draggable={false} />
                 <Stack 
                     gap="16" direction='column'
                     className={styles.text_container}
