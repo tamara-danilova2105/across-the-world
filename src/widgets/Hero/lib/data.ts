@@ -4,7 +4,6 @@ import asia from '@/shared/assets/png/lin-mei-NYyCqdBOKwc-unsplash.jpg';
 import southAmerica from '@/shared/assets/png/photo_2024-10-26_16-08-35.jpg';
 
 interface HeroData {
-    preview: string;
     title: string;
     description: string;
     buttonText: string;
@@ -14,7 +13,6 @@ interface HeroData {
 };
 
 export const heroData: HeroData = {
-    preview: 'Кругосветка — ваша история путешествий',
     title: 'Авторские туры по России и миру для истинных путешественников',
     description: 'Исследуйте уникальные маршруты и получайте незабываемые впечатления. Наши туры созданы для тех, кто стремится к открытиям и желает погружаться в культуру и природу каждой страны. Забудьте о стандартных маршрутах и насладитесь путешествиями, которые вдохновляют.',
     buttonText: 'Забронировать тур',

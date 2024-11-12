@@ -1,0 +1,29 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    svg {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        pointer-events: none;
+    }
+
+    .input {
+        background-color: var(--white-color);
+        padding: 16px 24px 16px 50px;
+        border-radius: 50px;
+        box-shadow: var(--box-shadow);
+        border: none;
+        font-family: var(--font-family-geometria400);
+        width: 450px;
+        font-size: var(--font-size-18);
+
+        &:focus {
+            box-shadow: 0 0 0 2px var(--pink-opacity60);
+            outline: none; 
+        }
+    }
+}
+

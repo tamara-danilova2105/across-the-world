@@ -10,14 +10,15 @@ import { AppLink } from "@/shared/ui/AppLink";
 import { Button } from "@/shared/ui/Button";
 import { getRouteTours } from "@/app/router/lib/helper";
 import styles from './Description.module.scss';
+import { SearchTours } from "@/feature/SearchTours";
 
 export const Description = () => {
-    const { preview, description, buttonText, linkText, ratingText, trustText } = heroData;
+    const { description, buttonText, linkText, ratingText, trustText } = heroData;
 
     return (
         <Stack direction='column' gap="32">
             <div className={styles.preview_container}>
-                <Text type="h3" size='18'>{preview}</Text>
+                <SearchTours />
                 <FireWorks />
             </div>
             <Stack direction='column' gap="16">

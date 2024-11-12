@@ -8,7 +8,6 @@ import styles from './Slider.module.scss';
 
 const AUTO_PLAY_INTERVAL = 3000;
 
-
 export const Slider = () => {
 
     const slides = sliderData.map((slide: SliderData, index) => (
@@ -18,32 +17,35 @@ export const Slider = () => {
         />
     ))
 
-    const { containerRef, 
+    const { 
+        containerRef, 
         slides: carouselSlides, 
         translateX, 
         nextSlide, 
-        prevSlide } = useCarousel({ children: slides, autoPlayInterval: AUTO_PLAY_INTERVAL});
+        prevSlide 
+    } = useCarousel({ children: slides, autoPlayInterval: AUTO_PLAY_INTERVAL});
 
     return (
         <Stack 
-        direction="column" 
-        gap="16" 
-        role="region" 
-        aria-label="Слайдер туров">
+            direction="column" 
+            gap="16" 
+            role="region" 
+            aria-label="Слайдер туров"
+        >
             <div className={styles.sliders_container}>
                 <Stack
-                ref={containerRef}
-                className={styles.slider_item}
-                style={{
-                    transform: `translate3d(${-translateX}px, 0, 0)`,
-                }}
+                    ref={containerRef}
+                    className={styles.slider_item}
+                    style={{
+                        transform: `translate3d(${-translateX}px, 0, 0)`,
+                    }}
                 >
-                {carouselSlides}
+                    {carouselSlides}
                 </Stack>
             </div>
             <Stack
                 justify="center"
-                gap="16"
+                gap="16" max
                 role="nav"
                 aria-label="Навигация по слайдеру"
                 className={styles.btn_container}
