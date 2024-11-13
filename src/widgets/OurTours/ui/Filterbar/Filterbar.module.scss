@@ -1,3 +1,22 @@
+@use '@/app/styles/media-queries' as media;
+
 .filterbar {
     width: 40%;
+
+    @include media.tablet-l {
+        width: 100%;
+    }
+
+    @include media.mobile-xl {
+        flex-wrap: wrap;
+    }
+
+    > button:nth-child(1) {
+        width: 100%;
+    }
+
+    > button:nth-child(2),
+    > button:nth-child(3) { 
+        max-width: calc(50% - 8px);
+    }
 }

@@ -1,14 +1,45 @@
 @use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as media;
 
 .news_title {
     @include mixin.section-style;
+
+    @include media.mobile-xl {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    > div:nth-child(1) {
+        @include media.tablet-m {
+            width: 60%;
+        }
+
+        @include media.mobile-xl {
+            width: 100%;
+        }
+    }
+
+    > div:nth-child(2) {
+        @include media.mobile-xl {
+            width: 100%;
+        }
+    }
 }
 
 .news {
-    height: 540px;
     width: calc(100vw - ((100vw - 1240px) / 2));
     margin-left: calc((100vw - 1280px) / 2);
     overflow: hidden;
     cursor: grab;
     padding: 10px;
+
+    @include media.tablet-l {
+        width: 100%;
+        padding: 10px 30px;
+        margin: auto;
+    }
+
+    @include media.mobile-l {
+        padding: 10px 20px;
+    }
 }

@@ -12,9 +12,11 @@ export const NewsBlog = () => {
     const { containerRef } = useScrollSlider();
 
     return(
-        <Stack direction="column" gap="48">
+        <Stack 
+            direction="column" 
+            gap="48" max>
             <Stack 
-                justify='between' align='end' max
+                justify='between' align='end'
                 className={styles.news_title}
             >
                 <TitleSection 

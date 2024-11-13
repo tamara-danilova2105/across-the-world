@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .timeContainer {
     width: 100%;
 
@@ -13,12 +15,20 @@
                 color: var(--blue-color);
                 font-size: 32px;
                 font-family: var(--font-family-geometria500);
+
+                @include mq.tablet-m {
+                    font-family: var(--font-family-geometria600);
+                }
             }
     
             > p:nth-child(2) {
                 color: var(--blue-color);
                 font-size: 24px;
                 font-family: var(--font-family-geometria400);
+
+                @include mq.tablet-m {
+                    font-family: var(--font-family-geometria500);
+                }
             }
         }
 

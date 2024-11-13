@@ -10,6 +10,7 @@ export const Filterbar = () => {
     return (
         <Stack 
             gap="16" 
+            align="center"
             justify='end' 
             className={styles.filterbar}
         >
