@@ -1,6 +1,7 @@
+import { getRouteTours } from "@/app/router/lib/helper";
+import { SearchTours } from "@/feature/SearchTours";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { heroData } from "../../lib/data";
 import { 
     AddIcon, 
     FireWorks, 
@@ -8,9 +9,8 @@ import {
 } from "@/shared/assets/svg/heroIcons";
 import { AppLink } from "@/shared/ui/AppLink";
 import { Button } from "@/shared/ui/Button";
-import { getRouteTours } from "@/app/router/lib/helper";
+import { heroData } from "../../lib/data";
 import styles from './Description.module.scss';
-import { SearchTours } from "@/feature/SearchTours";
 
 export const Description = () => {
     const { description, buttonText, linkText, ratingText, trustText } = heroData;
@@ -19,17 +19,24 @@ export const Description = () => {
         <Stack direction='column' gap="32">
             <div className={styles.preview_container}>
                 <SearchTours />
-                <FireWorks />
+                <span>
+                    <FireWorks />
+                </span>
             </div>
             <Stack direction='column' gap="16">
                 <Text type='h1' className={styles.header} font='unbounded'>
                     <span>Авторские туры</span> <br /> по России и миру
                 </Text>
-                <Text size="18">
+                <Text size="18" className={styles.description_text}>
                     {description}
                 </Text>
             </Stack>
-            <Stack justify='between' gap="16" max align='end'>
+            <Stack 
+                justify='between' 
+                gap="16" max 
+                align='end'
+                className={styles.button_container}
+            >
                 <AppLink variant="button" to={getRouteTours()}>
                     {buttonText}
                 </AppLink>
@@ -37,7 +44,12 @@ export const Description = () => {
                     {linkText}
                 </AppLink>
             </Stack>
-            <Stack gap='64' align='center' tag='aside'>
+            <Stack 
+                gap='64' 
+                align='center' 
+                tag='aside'
+                className={styles.rating_main}
+            >
                 <Stack className={styles.rating_container}>
                     <RatingIcon />
                     <Button 

@@ -1,11 +1,17 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .preview_container {
-    // background-color: var(--white-color);
-    // padding: 16px 24px;
-    // border-radius: 50px;
-    // box-shadow: var(--box-shadow);
     position: relative;
 
-    svg {
+    @include mq.tablet-m {
+        align-self: flex-end;
+    }
+    
+    @include mq.mobile-l {
+        width: 100%;
+    }
+
+    span {
         position: absolute;
         top: -18px;
         right: -18px;
@@ -17,20 +23,74 @@
     color: var(--pink-color);
     text-shadow: var(--text-shadow);
 
+    @include mq.tablet-m {
+        font-size: var(--font-size-32);
+        text-align: center;
+        width: 100%;
+
+        br {
+            display: none;
+        }
+    }
+
+    @include mq.mobile-xl {
+        font-size: 42px; //TODO
+
+        br {
+            display: block;
+        }
+    }
+
+    @include mq.mobile-l {
+        font-size: var(--font-size-24);
+        
+        br {
+            display: block;
+        }
+    }
+
     span {
         color: var(--blue-color);
     }
 }
 
-.rating_container {
-    position: relative;
+.rating_main {
+    @include mq.mobile-l {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .rating_container {
+        position: relative;
+    }
+    
+    .rating_btn {
+        position: absolute;
+        top: 2px;
+        right: -30px;
+        border: 3px solid var(--white-color);
+        width: 59px;
+        height: 59px;
+    }
+
+    .rating_text {
+        @include mq.mobile-l {
+            align-items: center;
+        }
+    }
 }
 
-.rating_btn {
-    position: absolute;
-    top: 2px;
-    right: -30px;
-    border: 3px solid var(--white-color);
-    width: 59px;
-    height: 59px;
+.button_container {
+    @include mq.mobile-l {
+        flex-direction: column;
+        gap: 24px
+    }
+}
+
+.description_text {
+    @include mq.mobile-xl {
+        text-align: justify;
+        text-indent: 20px;
+    }
 }

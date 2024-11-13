@@ -5,8 +5,8 @@ $tablet-l: 1024px;
 $tablet-m: 820px;
 $mobile-xl: 767px;
 $mobile-l: 590px;
-$mobile-m: 400px;
-$mobile-s: 340px;
+$mobile-m: 450px;
+$mobile-s: 380px;
 
 @mixin desktop-xl() {
     @media (max-width: $desktop-xl) {

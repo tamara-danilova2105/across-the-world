@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .wrapper {
     position: relative;
     display: flex;
@@ -8,6 +10,10 @@
         left: 15px;
         top: 15px;
         pointer-events: none;
+
+        @include mq.mobile-l {
+            top: 12px;
+        }
     }
 
     .input {
@@ -19,6 +25,12 @@
         font-family: var(--font-family-geometria400);
         width: 450px;
         font-size: var(--font-size-18);
+
+        @include mq.mobile-l {
+            padding: 10px 24px 10px 50px;
+            width: 100%;
+            font-size: var(--font-size-16);
+        }
 
         &:focus {
             box-shadow: 0 0 0 2px var(--pink-opacity60);

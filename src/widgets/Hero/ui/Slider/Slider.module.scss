@@ -1,8 +1,30 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .sliders_container {
     overflow: hidden;
     width: 466px;
     box-shadow: var(--box-shadow);
     border-radius: 24px;
+
+    @include mq.tablet-m {
+        width: 750px;
+    }
+
+    @include mq.mobile-xl {
+        width: 680px;
+    }
+
+    @include mq.mobile-l {
+        width: 500px;
+    }
+
+    @include mq.mobile-m {
+        width: 370px;
+    }
+
+    @include mq.mobile-s {
+        width: 320px;
+    }
 }
 
 .slider_item {

@@ -1,3 +1,4 @@
+@use '@/app/styles/media-queries.scss' as mq;
 @use '@/app/styles/mixin.scss' as mixin;
 
 .hero {
@@ -15,5 +16,14 @@
         padding-top: 70px;
         padding-bottom: 70px;
         gap: 100px;
+
+        @include mq.tablet-l {
+            gap: 48px;
+        }
+    }
+
+    @include mq.tablet-m {
+        flex-direction: column;
+        align-items: center;
     }
 }

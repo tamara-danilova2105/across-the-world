@@ -1,12 +1,42 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .slider {
     background-color: var(--white-color);
 
     img {
         width: 466px;
         height: 300px;
+
+        @include mq.tablet-m {
+            width: 750px;
+            height: 450px;
+        }
+
+        @include mq.mobile-xl {
+            width: 680px;
+        }
+
+        @include mq.mobile-l {
+            width: 500px;
+        }
+
+        @include mq.mobile-m {
+            width: 370px;
+            height: 300px;
+        }
+
+        @include mq.mobile-s {
+            width: 320px;
+        }
     }
 }
 
 .text_container {
     padding: 0 20px 20px 20px;
+
+    .desc_text {
+        @include mq.mobile-l {
+            height: 40px;
+        }
+    }
 }
