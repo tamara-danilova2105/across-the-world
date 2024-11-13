@@ -6,10 +6,15 @@ import { getRouteBlog } from "@/app/router/lib/helper";
 import { dataBlog } from "../../lib/data";
 import { CardBlog } from "../CardBlog/CardBlog";
 import styles from './NewsBlog.module.scss';
+import { CardBlogMobile } from "../CardBlogMobile/CardBlogMobile";
+import { useResize } from "@/shared/hooks/useResize";
 
 export const NewsBlog = () => {
 
     const { containerRef } = useScrollSlider();
+    const width = useResize();
+
+
 
     return(
         <Stack 
@@ -36,7 +41,8 @@ export const NewsBlog = () => {
                 className={styles.news}
             >
                 {dataBlog.map(news => (
-                    <CardBlog key={news._id} news={news}/>
+                    width > 767 ? <CardBlog key={news._id} news={news}/> : 
+                    <CardBlogMobile key={news._id} news={news}/>
                 ))} 
             </Stack>
         </Stack>
