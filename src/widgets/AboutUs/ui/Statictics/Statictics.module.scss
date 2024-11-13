@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .statists {
     background-color: var(--blue-color);
     border-radius: 24px;
@@ -20,6 +22,16 @@
     }
 }
 
+.value {
+    @include mq.tablet-l {
+        font-size: var(--font-size-24);
+    }
+}
+
 .label {
     text-align: center;
+
+    @include mq.tablet-l {
+        font-size: var(--font-size-18);
+    }
 }

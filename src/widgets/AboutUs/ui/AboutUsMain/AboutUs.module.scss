@@ -1,11 +1,12 @@
 @use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries.scss' as mq;
 
 .aboutUsContainer {
     width: 100%;
 
     > div {
         @include mixin.section-style;
-
+    
         .heading {
             height: 200px;
             width: 100%;
@@ -19,5 +20,11 @@
     img {
         border-radius: 16px;
         box-shadow: var(--box-shadow)
+    }
+
+    .img_small {
+        @include mq.tablet-l {
+            display: none;
+        }
     }
 }

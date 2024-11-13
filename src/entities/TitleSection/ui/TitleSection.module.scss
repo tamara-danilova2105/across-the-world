@@ -12,8 +12,8 @@
     }
 
     h2 {
-        @include mq.mobile-l {
-            font-size: 24px;
+        @include mq.tablet-l {
+            font-size: var(--font-size-24);
         }
     }
 }

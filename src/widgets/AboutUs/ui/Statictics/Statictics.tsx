@@ -16,7 +16,12 @@ export const Statictics = () => {
                     gap="16" align='center'
                     className={styles.statists_item}
                 >
-                    <Text color='pink' size='32' font='unbounded'>
+                    <Text 
+                        color='pink' 
+                        size='32' 
+                        font='unbounded'
+                        className={styles.value}
+                    >
                         {stat.value}
                     </Text>
                     <Text color="white" size='24' className={styles.label}>

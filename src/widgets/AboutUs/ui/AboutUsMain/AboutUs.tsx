@@ -11,62 +11,64 @@ export const AboutUs = () => {
         <Stack
             align="center"
             justify="center"
-            className={styles.aboutUsContainer}>
+            className={styles.aboutUsContainer}
+        >
+            <Stack
+                justify="between"
+                gap="32"
+            > 
+                <img 
+                    src={aboutUs_large} 
+                    alt='Кругостветка - авторский туры по России и миру' 
+                    width={430} height={585}
+                />
                 <Stack
-                    justify="between"
+                    direction="column"
                     gap="32"
-                > 
-                    <img 
-                        src={aboutUs_large} 
-                        alt='Кругостветка - авторский туры по России и миру' 
-                        width={430} height={585}
-                    />
-                    <Stack
-                        direction="column"
+                >
+                    <Stack 
                         gap="32"
+                        justify="between"
+                        className={styles.heading}
                     >
-                        <Stack 
+                        <Stack
                             gap="32"
-                            justify="between"
-                            className={styles.heading}
+                            direction="column"
+                            justify="end"
                         >
-                            <Stack
-                                gap="32"
-                                direction="column"
-                                justify="end"
-                            >
-                                <TitleSection 
-                                    subtitle="О НАС" 
-                                    title="Кругостветка - тур мечты" 
-                                />
-                                <Stack direction='column' gap="8">
-                                    <Text 
-                                        font='geometria400'
-                                        color="blue" size="24"
-                                    >
-                                        Групповые и индивидуальные туры
-                                    </Text>
-                                    <Text 
-                                        font='unbounded'
-                                        color="blue" size="24" 
-                                    >
-                                        Туры по России и миру 
-                                    </Text>
-                                </Stack>
-                            </Stack>
-                            <img 
-                                src={aboutUs_small} 
-                                alt='Кругосветка - авторские туры по России и миру' 
-                                width={153} height={191} 
+                            <TitleSection 
+                                subtitle="О НАС" 
+                                title="Кругостветка - тур мечты" 
                             />
+                            <Stack direction='column' gap="8">
+                                <Text 
+                                    font='geometria400'
+                                    color="blue" size="24"
+                                >
+                                    Групповые и индивидуальные туры
+                                </Text>
+                                <Text 
+                                    font='unbounded'
+                                    color="blue" size="24" 
+                                >
+                                    Туры по России и миру 
+                                </Text>
+                            </Stack>
                         </Stack>
-                        <Text color="blue" size="18">
-                            Кругостветка — туристическая фирма, организующая увлекательные туры по России и за границу. Мы предлагаем разнообразные маршруты для любителей приключений, культурных открытий и комфортного отдыха. С нами вы сможете исследовать величественные горы, древние города, золотые пляжи и другие уникальные уголки мира, создавая незабываемые впечатления!
-                        </Text>
-                        
-                        <Statictics />
+                        <img 
+                            src={aboutUs_small} 
+                            alt='Кругосветка - авторские туры по России и миру' 
+                            width={153} height={191} 
+                            className={styles.img_small}
+                        />
                     </Stack>
+                    <Text color="blue" size="18">
+                        Кругостветка — туристическая фирма, организующая увлекательные туры по России и за границу. Мы предлагаем разнообразные маршруты для любителей приключений, культурных открытий и комфортного отдыха. С нами вы сможете исследовать величественные горы, древние города, золотые пляжи и другие уникальные уголки мира, создавая незабываемые впечатления!
+                    </Text>
+                    
+                    <Statictics />
                 </Stack>
+            </Stack>
         </Stack>
     );
 };
