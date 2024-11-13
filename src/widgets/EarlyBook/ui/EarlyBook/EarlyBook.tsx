@@ -43,6 +43,7 @@ export const EarlyBook = () => {
                             direction="column"
                             justify='center'
                             align='center'
+                            className={styles.textContainer}
                         >
                             <Text 
                                 type="h2" font='unbounded'
@@ -67,7 +68,7 @@ export const EarlyBook = () => {
                             styleMode='timer_earlyBook' 
                             endTime={END_TIME}
                         />
-                        <div>
+                        <div className={styles.appLink}>
                             <AppLink variant="button" to={getRouteTours()}>
                                 Забронировать тур
                             </AppLink>

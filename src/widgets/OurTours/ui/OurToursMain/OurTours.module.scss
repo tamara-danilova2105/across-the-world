@@ -1,14 +1,35 @@
 @use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as media;
 
 .our_tours_title {
     @include mixin.section-style;
+
+    @include media.tablet-m {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
 }
 
 .our_tours_container {
-    height: 550px;
     width: calc(100vw - ((100vw - 1240px) / 2));
     margin-left: calc((100vw - 1280px) / 2);
     overflow: hidden;
     cursor: grab;
     padding: 10px;
+
+    @include media.desktop-m {
+        width: calc(100vw - ((100vw - 1024px) / 2));
+        margin-left: calc((100vw - 1110px) / 2);
+    }
+
+    @include media.tablet-l {
+        width: 100%;
+        padding: 10px 30px;
+        margin: auto;
+    }
+
+    @include media.mobile-l {
+        padding: 10px 20px;
+    }
 }

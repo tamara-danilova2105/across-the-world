@@ -1,11 +1,17 @@
 @use './media-queries' as mq;
 
 @mixin section-style {
+    z-index: 1;
     width: 1280px;
     margin: auto;
 
     @include mq.desktop-m {
         width: 1100px;
+    }
+
+    @include mq.tablet-l {
+        width: 100%;
+        padding: 0 30px;
     }
 
     @include mq.mobile-l {
@@ -22,6 +28,15 @@
         position: absolute;
         width: 300px;
         opacity: 0.7;
+        z-index: 0;
+
+        @include mq.tablet-l {
+            width: 200px;
+        }
+
+        @include mq.mobile-xl {
+            width: 150px;
+        }
 
         &:nth-child(1) {
             bottom: 0;

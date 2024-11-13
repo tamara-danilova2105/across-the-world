@@ -1,5 +1,6 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
+import styles from './TitleSection.module.scss';
 
 interface TitleSectionProps {
     title: string;
@@ -10,7 +11,9 @@ export const TitleSection = (props: TitleSectionProps) => {
     const { title, subtitle } = props;
 
     return (
-        <Stack direction='column' gap="16">
+        <Stack direction='column' gap="16"
+            className={styles.title_section}
+        >
             <Text 
                 color='pink' 
                 font='geometria500' 

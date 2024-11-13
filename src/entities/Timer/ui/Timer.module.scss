@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .timeContainer {
     width: 100%;
 
@@ -5,20 +7,46 @@
         gap: 24px;
         width: 522px;
 
+        @include mq.mobile-xl {
+            width: 100%;
+            gap:10px;
+            padding: 0 10px;
+        }
+
         > div {
             gap: 8px;
             width: 70px;
+
+            @include mq.mobile-xl {
+                width: 50px;
+            }
 
             > p:nth-child(1) {
                 color: var(--blue-color);
                 font-size: 32px;
                 font-family: var(--font-family-geometria500);
+
+                @include mq.tablet-m {
+                    font-family: var(--font-family-geometria600);
+                }
+
+                @include mq.mobile-xl {
+                    font-size: 24px;
+                }
             }
     
             > p:nth-child(2) {
                 color: var(--blue-color);
                 font-size: 24px;
                 font-family: var(--font-family-geometria400);
+
+                @include mq.tablet-m {
+                    font-family: var(--font-family-geometria500);
+                }
+
+                @include mq.mobile-xl {
+                    font-size: 18px;
+                }
             }
         }
 
