@@ -12,6 +12,11 @@
     height: 450px;
     @include mixins.decorate-style;
 
+    @include mq.mobile-xl {
+        height: auto;
+        padding: 50px 0
+    }
+
     .subscription {
         @include mixins.section-style;
 

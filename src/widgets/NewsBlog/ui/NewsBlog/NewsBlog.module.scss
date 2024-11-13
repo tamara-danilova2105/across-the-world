@@ -33,6 +33,11 @@
     cursor: grab;
     padding: 10px;
 
+    @include media.desktop-m {
+        width: calc(100vw - ((100vw - 1024px) / 2));
+        margin-left: calc((100vw - 1110px) / 2);
+    }
+
     @include media.tablet-l {
         width: 100%;
         padding: 10px 30px;
