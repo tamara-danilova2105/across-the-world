@@ -78,10 +78,11 @@
                 width: 50px;
                 padding: 9px;
                 left: 8px;
-                transform: translateY(15%);
+                transform: translateY(20%);
                 z-index: 2;
 
                 @include mq.mobile-xl {
+                    transform: translateY(12%);
                     height: 40px;
                     width: 40px;
                 }

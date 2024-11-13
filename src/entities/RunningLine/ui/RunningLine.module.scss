@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
 .runningLine {    
     background-color: var(--blue-color); 
     padding: 0;   
@@ -8,10 +10,19 @@
     p {
         letter-spacing: 2px;
         opacity: 60%;
+
+        @include mq.mobile-l {
+            font-size: 20px;
+        }
     }
     svg {
         margin-left: 32px;
         width: 70px;
         height: 70px;
+
+        @include mq.mobile-l {
+            width: 50px;
+            height: 50px;
+        }
     }
 }

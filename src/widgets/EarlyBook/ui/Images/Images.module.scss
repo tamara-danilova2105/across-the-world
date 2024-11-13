@@ -10,8 +10,12 @@
         height: 560px;
         border-radius: 0;
         box-shadow: none;
-        opacity: 0.4;
+        opacity: 0.3;
         width: 100% !important;
+    }
+
+    @include mq.mobile-xl {
+        height: 540px;
     }
 
     img {
