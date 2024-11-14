@@ -17,11 +17,19 @@ export const AboutUs = () => {
                 justify="between"
                 gap="32"
             > 
-                <img 
-                    src={aboutUs_large} 
-                    alt='Кругостветка - авторский туры по России и миру' 
-                    className={styles.img_large}
-                />
+                <Stack justify='around' max>
+                    <img 
+                        src={aboutUs_large} 
+                        alt='Кругостветка - авторский туры по России и миру' 
+                        className={styles.img_large}
+                    />
+                    <img 
+                        src={aboutUs_small} 
+                        alt='Кругосветка - авторские туры по России и миру' 
+                        className={styles.img_tablet}
+                    />
+                </Stack>
+
                 <Stack
                     direction="column"
                     gap="32"

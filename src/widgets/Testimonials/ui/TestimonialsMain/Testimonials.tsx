@@ -9,7 +9,6 @@ import styles from './Testimonials.module.scss';
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useResize } from "@/shared/hooks/useResize";
 
-const SLIDE_WIDTH = 550;
 const INIT_HEIGHT = 300;
 
 export const Testimonials = () => {
@@ -17,6 +16,7 @@ export const Testimonials = () => {
     const [maxHeight, setMaxHeight] = useState(INIT_HEIGHT);
     const [showMoreStates, setShowMoreStates] = useState(dataTestimonials.map(() => false));
     const [countSliderOfSize, setCountSliderOfSize] = useState(1);
+    const [slideWidthOfSize, setSlideWidthOfSize] = useState(550)
     const width = useResize();
 
     const { 
@@ -29,11 +29,12 @@ export const Testimonials = () => {
     } = useSlider({
         totalSlides: dataTestimonials.length,
         slidesToShow: countSliderOfSize,
-        slideWidth: SLIDE_WIDTH,
+        slideWidth: slideWidthOfSize,
     });
 
     useEffect(() => {
-        setCountSliderOfSize(width <= 1024 ? 1 : 2);
+        setCountSliderOfSize(width <= 820 ? 1 : 2);
+        setSlideWidthOfSize(width <= 1024 ? 450 : 550);
     }, [width])
     
     useLayoutEffect(() => {
@@ -79,14 +80,14 @@ export const Testimonials = () => {
                     <button 
                         onClick={prevSlide}
                         aria-label="Предыдущий отзыв"
-                        className={styles.rotate}
+                        className={styles.btn_prev}
                     >
                         <ArrowIcon />
                     </button>
                     
                     <div className={styles.testimonials_slider}>
                         <Stack 
-                            gap="64" 
+                            justify='around'
                             style={sliderStyles}
                             className={styles.slider_container}
                         >
@@ -106,6 +107,7 @@ export const Testimonials = () => {
                     <button 
                         onClick={nextSlide}
                         aria-label="Следующий отзыв"
+                        className={styles.btn_next}
                     >
                         <ArrowIcon />
                     </button>

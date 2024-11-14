@@ -1,10 +1,17 @@
+@use '@/app/styles/media-queries' as mq;
+
 .testimonial {
     background-color: var(--white-color);
     border-radius: 16px;
     padding: 20px;
+    width: 510px;
     position: relative;
     box-shadow: var(--box-shadow);
     min-height: max-content;
+
+    @include mq.tablet-l {
+        width: 420px;
+    }
 
     button {
         color: var(--blue-color);

@@ -30,8 +30,31 @@
         }
     }
 
+    .img_tablet {
+        display: none;
+
+        @include mq.tablet-m {
+            display: flex;
+            width: 300px;
+        }
+
+        @include mq.mobile-xl {
+            display: none;
+        }
+    }
+
     .img_large {
         width: 430px;
+
+        @include mq.tablet-m {
+            width: 300px;
+            height: 375px;
+        }
+
+        @include mq.mobile-xl {
+            width: 100%;
+            height: auto;
+        }
     }
 
     .img_small {

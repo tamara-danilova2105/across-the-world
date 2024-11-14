@@ -13,6 +13,11 @@
 
     @include mixin.section-style;
 
+    @include mq.desktop-m {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
     @include mq.tablet-l {
         padding-top: 50px;
         padding-bottom: 50px;
@@ -20,17 +25,27 @@
 }
 
 .testimonials_container {
+    @include mq.desktop-m {
+        gap: 0;
+    }
+
     button {
         background-color: transparent;
         z-index: 1;
+    }
+
+    .btn_prev {
+        transform: rotate(180deg);
 
         @include mq.tablet-l {
             display: none;
         }
     }
 
-    .rotate {
-        transform: rotate(180deg);
+    .btn_next {
+        @include mq.tablet-l {
+            display: none;
+        }
     }
 }
 
@@ -40,7 +55,7 @@
     padding: 5px 0;
 
     @include mq.tablet-l {
-        width: 550px;
+        width: 900px;
     }
 }
 
