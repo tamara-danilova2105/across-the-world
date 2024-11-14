@@ -47,15 +47,12 @@
             gap: 16px;
 
             @include mq.mobile-xl {
-                height: 130px;
-                width: 100%;
-                gap: 8px;
-            }
-    
-            @include mq.mobile-l {
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
+                height: 130px;
+                width: 100%;
+                gap: 8px;
             }
     
 

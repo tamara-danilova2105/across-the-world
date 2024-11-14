@@ -5,8 +5,11 @@
     width: 100%;
 
     .earlyBookContainer {
-        position: relative;
         @include mixin.section-style;
+
+        @include mq.desktop-m {
+            gap: 32px;
+        }
         
         @include mq.tablet-m {
             flex-direction: column;
@@ -20,13 +23,21 @@
         }
 
         .timerContainer {
-            position: relative;
             border-radius: 24px;
             width: 100%;
             height: 580px;
             box-shadow: var(--box-shadow);
 
             @include mixin.section-style;
+
+            @include mq.desktop-m {
+                width: 45vw;
+            }
+
+            @include mq.tablet-l {
+                width: 100%;
+                background-color: var(--pink-opacity40);
+            }
 
             .textContainer {
                 p, h2 {
@@ -77,17 +88,8 @@
         .posterContainer {
             height: 580px;
 
-            @include mq.tablet-m {
-                position: absolute;
-                gap: 0;
-                top: 0;
-                height: 560px;
-                width: 100%;
-                z-index: 0;
-            }
-
-            @include mq.mobile-xl {
-                height: 540px;
+            @include mq.tablet-l {
+                display: none;
             }
         }
     }

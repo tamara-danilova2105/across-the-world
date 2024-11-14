@@ -44,7 +44,7 @@
             width: 400px;
 
             @include media.tablet-l {
-                width: 300px;
+                width: 50%;
             }
 
             .anotherImage {
@@ -56,6 +56,10 @@
                 img {
                     flex: 1 1 calc(33%); 
                     max-width: calc(34%);
+                }
+
+                @include media.tablet-l {
+                    height: 120px;
                 }
             }
 
