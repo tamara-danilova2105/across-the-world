@@ -16,8 +16,7 @@
             gap: 24px;
         }
 
-        @include mq.mobile-xl {
-            width: 100%;
+        @include mq.mobile-l {
             gap: 10px;
             padding: 0 10px;
         }
@@ -34,7 +33,7 @@
                 width: 70px;
             }
 
-            @include mq.mobile-xl {
+            @include mq.mobile-l {
                 width: 50px;
             }
 

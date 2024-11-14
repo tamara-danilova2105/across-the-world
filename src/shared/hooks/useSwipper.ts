@@ -9,11 +9,11 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [startX, setStartX] = useState(0);
 
-    const handleTouchStart = (e: TouchEvent) => {
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartX(e.touches[0].clientX);
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
         if (!startX) return;
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
