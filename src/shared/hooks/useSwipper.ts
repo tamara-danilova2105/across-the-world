@@ -7,13 +7,13 @@ interface UseSwiperProps {
 export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [startX, setStartX] = useState(null);
+    const [startX, setStartX] = useState(0);
 
-    const handleTouchStart = (e) => {
+    const handleTouchStart = (e: TouchEvent) => {
         setStartX(e.touches[0].clientX);
     };
 
-    const handleTouchMove = (e) => {
+    const handleTouchMove = (e: TouchEvent) => {
         if (!startX) return;
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
@@ -24,12 +24,12 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
             } else if (diff < 0 && currentIndex > 0) {
                 setCurrentIndex(currentIndex - 1);
             }
-            setStartX(null);  
+            setStartX(0);  
         }
     };
 
     const handleTouchEnd = () => {
-        setStartX(null); 
+        setStartX(0); 
     };
 
     return { currentIndex, handleTouchStart, handleTouchMove, handleTouchEnd };
