@@ -6,6 +6,10 @@
 
     > div {
         @include mixin.section-style;
+
+        @include mq.tablet-m {
+            flex-direction: column-reverse;
+        }
     
         .heading {
             height: 200px;
@@ -19,10 +23,20 @@
 
     img {
         border-radius: 16px;
-        box-shadow: var(--box-shadow)
+        box-shadow: var(--box-shadow);
+
+        @include mq.tablet-m {
+            align-self: center;
+        }
+    }
+
+    .img_large {
+        width: 430px;
     }
 
     .img_small {
+        width: 160px;
+
         @include mq.tablet-l {
             display: none;
         }

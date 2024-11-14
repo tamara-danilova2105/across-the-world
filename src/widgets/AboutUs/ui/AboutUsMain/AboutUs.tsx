@@ -20,7 +20,7 @@ export const AboutUs = () => {
                 <img 
                     src={aboutUs_large} 
                     alt='Кругостветка - авторский туры по России и миру' 
-                    width={430} height={585}
+                    className={styles.img_large}
                 />
                 <Stack
                     direction="column"
@@ -58,7 +58,6 @@ export const AboutUs = () => {
                         <img 
                             src={aboutUs_small} 
                             alt='Кругосветка - авторские туры по России и миру' 
-                            width={153} height={191} 
                             className={styles.img_small}
                         />
                     </Stack>
