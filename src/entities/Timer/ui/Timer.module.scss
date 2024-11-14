@@ -7,9 +7,17 @@
         gap: 24px;
         width: 522px;
 
-        @include mq.mobile-xl {
+        @include mq.desktop-m {
             width: 100%;
-            gap:10px;
+            gap: 16px;
+        }
+
+        @include mq.tablet-l {
+            gap: 24px;
+        }
+
+        @include mq.mobile-l {
+            gap: 10px;
             padding: 0 10px;
         }
 
@@ -17,7 +25,15 @@
             gap: 8px;
             width: 70px;
 
-            @include mq.mobile-xl {
+            @include mq.desktop-m {
+                width: 50px;
+            }
+    
+            @include mq.tablet-l {
+                width: 70px;
+            }
+
+            @include mq.mobile-l {
                 width: 50px;
             }
 

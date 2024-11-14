@@ -3,6 +3,10 @@
 .filterbar {
     width: 40%;
 
+    @include media.desktop-m {
+        width: 70%;
+    }
+
     @include media.tablet-l {
         width: 100%;
     }

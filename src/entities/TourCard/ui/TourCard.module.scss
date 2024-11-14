@@ -1,12 +1,22 @@
+@use '@/app/styles/media-queries' as mq;
+
 .tour_card {
     box-shadow: var(--box-shadow);
     border-radius: 16px;
     position: relative;
+    
+    @include mq.mobile-m {
+        width: 100vw;
+    }
 
     img {
         width: 320px;
         height: 400px;
         border-radius: 16px 16px 0 0;
+
+        @include mq.mobile-m {
+            width: 100vw;
+        }
     }
 
     .badge {

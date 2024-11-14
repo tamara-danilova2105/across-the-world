@@ -13,7 +13,7 @@ export const useSlider = ({
     slideWidth,
     autoPlayInterval, 
 }: UseSliderProps) => {
-
+    
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const totalSliderPages = Math.ceil(totalSlides / slidesToShow);

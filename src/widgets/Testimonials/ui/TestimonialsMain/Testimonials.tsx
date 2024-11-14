@@ -6,14 +6,19 @@ import { useSlider } from "@/shared/hooks/useSlider";
 import { dataTestimonials, DataTestimonials } from "../../lib/data";
 import { TestimonialItem } from "../TestiminialItem/TestiminialItem";
 import styles from './Testimonials.module.scss';
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useResize } from "@/shared/hooks/useResize";
 
 const SLIDE_WIDTH = 550;
-const SLIDERS_TO_SHOW = 2;
 const INIT_HEIGHT = 300;
 
-
 export const Testimonials = () => {
+    const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const [maxHeight, setMaxHeight] = useState(INIT_HEIGHT);
+    const [showMoreStates, setShowMoreStates] = useState(dataTestimonials.map(() => false));
+    const [countSliderOfSize, setCountSliderOfSize] = useState(1);
+    const width = useResize();
+
     const { 
         currentSlide, 
         nextSlide, 
@@ -23,18 +28,13 @@ export const Testimonials = () => {
         totalSliderPages 
     } = useSlider({
         totalSlides: dataTestimonials.length,
-        slidesToShow: SLIDERS_TO_SHOW,
+        slidesToShow: countSliderOfSize,
         slideWidth: SLIDE_WIDTH,
     });
 
-    const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
-    const [maxHeight, setMaxHeight] = useState(INIT_HEIGHT);
-    console.log(maxHeight);
-    
-
-    const [showMoreStates, setShowMoreStates] = useState(
-        dataTestimonials.map(() => false)
-    );
+    useEffect(() => {
+        setCountSliderOfSize(width <= 1024 ? 1 : 2);
+    }, [width])
     
     useLayoutEffect(() => {
         const timer = setTimeout(() => {
