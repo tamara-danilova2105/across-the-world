@@ -5,6 +5,7 @@
     border-radius: 24px;
     overflow: hidden;
     box-shadow: var(--box-shadow);
+    width: 45vw;
 
     @include mq.tablet-m {
         height: 560px;
