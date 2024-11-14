@@ -1,4 +1,5 @@
 @use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries' as mq;
 
 .testimonials {
     background-color: var(--peach-opacity20);
@@ -9,13 +10,23 @@
 .testimonials_content {
     padding-top: 70px;
     padding-bottom: 70px;
+
     @include mixin.section-style;
+
+    @include mq.tablet-l {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 }
 
 .testimonials_container {
     button {
         background-color: transparent;
         z-index: 1;
+
+        @include mq.tablet-l {
+            display: none;
+        }
     }
 
     .rotate {
@@ -27,6 +38,10 @@
     overflow: hidden;
     width: 1100px;
     padding: 5px 0;
+
+    @include mq.tablet-l {
+        width: 550px;
+    }
 }
 
 .slider_container {

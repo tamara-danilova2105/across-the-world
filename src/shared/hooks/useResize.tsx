@@ -5,11 +5,13 @@ export const useResize = () => {
 
     useEffect(() => {
         const handleResize = (e: UIEvent) => {
-        setWidth((e.target as Window).innerWidth);
+            setWidth((e.target as Window).innerWidth);
         };
+        
         window.addEventListener('resize', handleResize);
+        
         return () => {
-        window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
