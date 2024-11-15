@@ -1,0 +1,48 @@
+@use '@/app/styles/mixin' as mixin;
+
+.container {
+    width: 100%;
+    .paginationContainer{
+        @include mixin.section-style;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+    
+        .previous {
+            a {
+                display: none;
+            }
+        }
+        
+        .page {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--peach-opacity20);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: 2px solid transparent;
+            text-align: center;
+
+            a {
+                color: transparent;
+            }
+        }
+    
+        .active {
+            background-color: var(--blue-color);
+        }
+    
+        .previous, .next {
+            display: none;
+        }
+
+        .break {
+            font-weight: 600;
+            font-size: var(--font-size-32);
+        }
+    }
+}
