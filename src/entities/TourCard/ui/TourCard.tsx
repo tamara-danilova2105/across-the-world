@@ -14,7 +14,8 @@ export const TourCard = ({ tourData }: TourCardProps) => {
 
     return (
         <div className={styles.tour_card}>
-            <Stack direction="column" 
+            <Stack 
+                direction="column" 
                 justify='between'
                 gap="16"
             >

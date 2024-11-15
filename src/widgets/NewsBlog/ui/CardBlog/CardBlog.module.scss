@@ -16,6 +16,10 @@
 
         .imagesContainer {
             position: relative; 
+
+            @include media.mobile-xl {
+                display: none;
+            }
     
             img {
                 border-radius: 24px;
@@ -45,6 +49,10 @@
 
             @include media.tablet-l {
                 width: 50%;
+            }
+
+            @include media.mobile-xl {
+                width: 100%;
             }
 
             .anotherImage {

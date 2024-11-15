@@ -20,16 +20,19 @@ export const CardBlog = ({news}: NewsBlogProps) => {
         <Stack
             className={styles.cardBlogsContainer}
         >
-            <Stack
-                gap="32"
-            >
+            <Stack gap="32">
                 <Stack 
                     align="center"
                     justify="center"
                     className={styles.imagesContainer}
                 >
                     {mainImage && (
-                        <img src={mainImage.url} alt={mainImage.alt} width='' height="430px" draggable={false} />
+                        <img 
+                        src={mainImage.url} 
+                        alt={mainImage.alt} 
+                        width='' height="430px" 
+                        draggable={false} 
+                        />
                     )}
                     <Text size='18' font="geometria500">
                         {formatToRussianDate(createdAt)}
