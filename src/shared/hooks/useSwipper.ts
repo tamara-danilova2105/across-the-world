@@ -64,26 +64,19 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
     const [startX, setStartX] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false); 
 
-    const disableScroll = () => {
-        document.body.style.overflow = 'hidden';
-    };
-
-    const enableScroll = () => {
-        document.body.style.overflow = ''; 
-    };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         if (isAnimating) return;
 
         setStartX(e.touches[0].clientX);
-        disableScroll();
+        document.body.style.overflow = 'hidden';
 
-        e.currentTarget.style.touchAction = 'pan-x';
-        e.currentTarget.style.overscrollBehaviorY = 'none';
     };
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
         if (!startX) return;
+
+        document.body.style.overflow = 'hidden';
 
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
@@ -102,7 +95,7 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
     const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartX(0);
         setTimeout(() => {
-            enableScroll(); // Прокрутка возвращается через 2 секунды
+            document.body.style.overflow = ''; // Прокрутка возвращается через 2 секунды
         }, 1000);
 
         e.currentTarget.style.touchAction = 'auto';
