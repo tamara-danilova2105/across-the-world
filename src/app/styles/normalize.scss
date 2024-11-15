@@ -4,6 +4,8 @@
     margin: 0;
     user-select: none; 
     -webkit-user-drag: none; 
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
 }
 
 body {
