@@ -17,7 +17,7 @@ export const OurTours = () => {
         handleTouchMove, 
         handleTouchEnd } = useSwiper({ slidesCount: dataTours.length });
     const width = useResize();
-    const isSwiperActive = width <= 750;
+    const isSwiperActive = width <= 590;
 
     const handlePageChange = (page: number) => {
         setCurrentIndex(page) 
