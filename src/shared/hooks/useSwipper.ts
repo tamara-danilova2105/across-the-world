@@ -61,26 +61,23 @@ interface UseSwiperProps {
 export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [startX, setStartX] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false); // Флаг для отслеживания анимации
+    const [isAnimating, setIsAnimating] = useState(false); 
 
-    // Функции для блокировки/включения вертикального скроллинга
     const disableScroll = () => {
-        document.body.style.overflow = 'hidden'; // Отключаем вертикальный скролл
+        document.body.style.overflow = 'hidden';
     };
 
     const enableScroll = () => {
-        document.body.style.overflow = ''; // Включаем вертикальный скролл
+        document.body.style.overflow = ''; 
     };
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-        // Если началась анимация, не отключаем скроллинг
         if (isAnimating) return;
 
         setStartX(e.touches[0].clientX);
-        disableScroll(); // Отключаем вертикальный скролл при начале свайпа
+        disableScroll();
 
-        // Добавляем стиль для блокировки вертикального скроллинга
-        e.currentTarget.style.touchAction = 'none';
+        e.currentTarget.style.touchAction = 'pan-x';
     };
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -89,11 +86,10 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
 
-        // Останавливаем вертикальный скролл
-        e.preventDefault(); // Предотвращаем стандартное поведение прокрутки
+        e.preventDefault();
 
         if (Math.abs(diff) > 50) {
-            setIsAnimating(true); // Начинаем анимацию
+            setIsAnimating(true); 
             if (diff > 0 && currentIndex < slidesCount - 1) {
                 setCurrentIndex(currentIndex + 1);
             } else if (diff < 0 && currentIndex > 0) {
@@ -105,9 +101,9 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
 
     const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartX(0);
-        enableScroll(); // Включаем вертикальный скролл после завершения свайпа
-        e.currentTarget.style.touchAction = ''; // Восстанавливаем нормальное поведение
-        setIsAnimating(false); // Завершаем анимацию
+        enableScroll(); 
+        e.currentTarget.style.touchAction = ''; 
+        setIsAnimating(false); 
     };
 
     return { currentIndex, setCurrentIndex, handleTouchStart, handleTouchMove, handleTouchEnd };
