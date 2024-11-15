@@ -78,6 +78,9 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
 
         setStartX(e.touches[0].clientX);
         disableScroll(); // Отключаем вертикальный скролл при начале свайпа
+
+        // Добавляем стиль для блокировки вертикального скроллинга
+        e.currentTarget.style.touchAction = 'none';
     };
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -86,10 +89,8 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
 
-        // Если свайп в горизонтальном направлении, блокируем вертикальный скролл
-        if (Math.abs(diff) > 5) {
-            e.preventDefault(); // Останавливаем вертикальный скролл
-        }
+        // Останавливаем вертикальный скролл
+        e.preventDefault(); // Предотвращаем стандартное поведение прокрутки
 
         if (Math.abs(diff) > 50) {
             setIsAnimating(true); // Начинаем анимацию
@@ -102,9 +103,10 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
         }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartX(0);
         enableScroll(); // Включаем вертикальный скролл после завершения свайпа
+        e.currentTarget.style.touchAction = ''; // Восстанавливаем нормальное поведение
         setIsAnimating(false); // Завершаем анимацию
     };
 
