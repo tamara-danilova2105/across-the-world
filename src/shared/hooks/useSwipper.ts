@@ -32,6 +32,5 @@ export const useSwiper = ({ slidesCount }: UseSwiperProps) => {
         setStartX(0); 
     };
 
-    return { currentIndex, handleTouchStart, handleTouchMove, handleTouchEnd };
+    return { currentIndex, setCurrentIndex, handleTouchStart, handleTouchMove, handleTouchEnd };
 };
-

@@ -9,22 +9,29 @@ import styles from './NewsBlog.module.scss';
 import { CardBlogMobile } from "../CardBlogMobile/CardBlogMobile";
 import { useResize } from "@/shared/hooks/useResize";
 import { useSwiper } from "@/shared/hooks/useSwipper";
+import { Pagination } from "@/entities/Pagination/Pagination";
 
 
 export const NewsBlog = () => {
 
     const { containerRef } = useScrollSlider()
     const { currentIndex,
+        setCurrentIndex,
         handleTouchStart,
         handleTouchMove, 
         handleTouchEnd } = useSwiper({ slidesCount: dataBlog.length });
     const width = useResize();
     const isSwiperActive = width <= 1024;
 
+    const handlePageChange = (page: number) => {
+        setCurrentIndex(page) 
+    }
+
 
 
     return(
         <Stack 
+            tag='section'
             direction="column" 
             gap="48" max>
             <Stack 
@@ -43,8 +50,9 @@ export const NewsBlog = () => {
             </Stack>
             
             <Stack
-                gap="32"
                 ref={isSwiperActive ? undefined : containerRef}
+                gap="32"
+                direction={isSwiperActive ? 'column' : 'row'}
                 onTouchStart={isSwiperActive ? handleTouchStart : undefined}
                 onTouchMove={isSwiperActive ? handleTouchMove : undefined}
                 onTouchEnd={isSwiperActive ? handleTouchEnd : undefined}
@@ -57,6 +65,12 @@ export const NewsBlog = () => {
                             : <CardBlogMobile key={news._id} news={news}/>
                     )
                 ))}
+
+                {isSwiperActive && <Pagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentIndex} 
+                    pageCount={dataBlog.length}
+                />}
             </Stack>
         </Stack>
     );

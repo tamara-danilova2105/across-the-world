@@ -1,23 +1,38 @@
 @use '@/app/styles/media-queries' as mq;
 
 .tour_card {
+    width: auto;
     box-shadow: var(--box-shadow);
     border-radius: 16px;
     position: relative;
+    height: 600px;
     
-    @include mq.mobile-m {
-        width: 100vw;
+    @include mq.mobile-l {
+        width: 100%;
     }
 
-    img {
-        width: 320px;
-        height: 400px;
-        border-radius: 16px 16px 0 0;
+    > div:nth-child(1) {
+        height: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+    }
 
-        @include mq.mobile-m {
-            width: 100vw;
+    .imageContainer {
+        width: 100%;
+        
+        img {
+            width: 320px;
+            height: 400px;
+            border-radius: 16px 16px 0 0;
+    
+            @include mq.mobile-m {
+                width: 100vw;
+            }
+
         }
     }
+
+
 
     .badge {
         position: absolute;
@@ -31,12 +46,13 @@
     }
 
     .link {
-        position: absolute;
-        right: 15px;
-        bottom: 20px;
+        align-self: flex-end;
+        margin-top: auto;
+        width: auto;
     }
 
     .text_container {
+        width: 100%;
         padding: 0px 20px 20px 20px;
     }
 }

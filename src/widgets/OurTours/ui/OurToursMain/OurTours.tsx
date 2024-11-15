@@ -5,9 +5,24 @@ import { dataTours } from "../../lib/data";
 import { TourCard } from "@/entities/TourCard";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import styles from './OurTours.module.scss';
+import { Pagination } from "@/entities/Pagination/Pagination";
+import { useSwiper } from "@/shared/hooks/useSwipper";
+import { useResize } from "@/shared/hooks/useResize";
 
 export const OurTours = () => {
     const { containerRef } = useScrollSlider()
+    const { currentIndex,
+        setCurrentIndex,
+        handleTouchStart,
+        handleTouchMove, 
+        handleTouchEnd } = useSwiper({ slidesCount: dataTours.length });
+    const width = useResize();
+    const isSwiperActive = width <= 750;
+
+    const handlePageChange = (page: number) => {
+        setCurrentIndex(page) 
+    }
+
     return (
         <Stack 
             tag='section' 
@@ -24,18 +39,29 @@ export const OurTours = () => {
                 />
                 <Filterbar />
             </Stack>
-            <Stack 
-                ref={ containerRef }
-                gap="32"
-                className={styles.our_tours_container}
-            >
-                {dataTours.map(tour => (
-                    <TourCard 
-                        key={tour._id} 
-                        tourData={tour} 
-                    />
-                ))}
-            </Stack>
+                <Stack 
+                    gap="32"
+                    align='center'
+                    ref={isSwiperActive ? undefined : containerRef}
+                    onTouchStart={isSwiperActive ? handleTouchStart : undefined}
+                    onTouchMove={isSwiperActive ? handleTouchMove : undefined}
+                    onTouchEnd={isSwiperActive ? handleTouchEnd : undefined}
+                    className={isSwiperActive ? styles.swiper : styles.our_tours_container}
+                >
+                    {dataTours.map((tour, index) => (
+                        (isSwiperActive ? index === currentIndex : true) &&
+                        <TourCard 
+                            key={tour._id} 
+                            tourData={tour} 
+                        />
+                    ))}
+                </Stack>
+
+                {isSwiperActive && <Pagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentIndex} 
+                    pageCount={dataTours.length}
+                />}
         </Stack>
     );
 };
