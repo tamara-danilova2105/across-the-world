@@ -48,13 +48,24 @@ export const OurTours = () => {
                     onTouchEnd={isSwiperActive ? handleTouchEnd : undefined}
                     className={isSwiperActive ? styles.swiper : styles.our_tours_container}
                 >
-                    {dataTours.map((tour, index) => (
-                        (isSwiperActive ? index === currentIndex : true) &&
-                        <TourCard 
-                            key={tour._id} 
-                            tourData={tour} 
-                        />
-                    ))}
+                    {isSwiperActive ? (
+                        <div
+                            className={styles.swiper_track}
+                            style={{
+                                transform: `translateX(-${currentIndex * 100}%)`,
+                            }}
+                        >
+                            {dataTours.map((tour) => (
+                                <div className={styles.swiper_slide} key={tour._id}>
+                                    <TourCard tourData={tour} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        dataTours.map((tour) => (
+                            <TourCard key={tour._id} tourData={tour} />
+                        ))
+                    )}
                 </Stack>
 
                 {isSwiperActive && <Pagination
