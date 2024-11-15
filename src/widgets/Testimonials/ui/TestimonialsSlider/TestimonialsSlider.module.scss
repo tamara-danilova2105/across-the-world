@@ -1,0 +1,49 @@
+@use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries' as mq;
+
+.testimonials_container {
+    @include mq.desktop-m {
+        gap: 0;
+    }
+
+    button {
+        background-color: transparent;
+        z-index: 1;
+    }
+
+    .rotate {
+        transform: rotate(180deg);
+    }
+
+}
+
+.testimonials_slider {
+    overflow: hidden;
+    width: 1100px;
+    padding: 5px 0;
+}
+
+.slider_container {
+    transition: transform 0.5s ease-in-out;
+    padding: 5px;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+
+    div {
+        border-radius: 20px;
+        height: 6px;
+        width: 38px;
+        background-color: var(--white-color);
+        box-shadow: var(--text-shadow);
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: var(--blue-color);
+        cursor: default;
+        height: 6.5px;
+    }
+}

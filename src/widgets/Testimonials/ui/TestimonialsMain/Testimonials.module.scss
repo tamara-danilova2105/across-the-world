@@ -6,7 +6,6 @@
     @include mixin.decorate-style;
 }
 
-
 .testimonials_content {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -21,65 +20,5 @@
     @include mq.tablet-l {
         padding-top: 50px;
         padding-bottom: 50px;
-    }
-}
-
-.testimonials_container {
-    @include mq.desktop-m {
-        gap: 0;
-    }
-
-    button {
-        background-color: transparent;
-        z-index: 1;
-    }
-
-    .btn_prev {
-        transform: rotate(180deg);
-
-        @include mq.tablet-l {
-            display: none;
-        }
-    }
-
-    .btn_next {
-        @include mq.tablet-l {
-            display: none;
-        }
-    }
-}
-
-.testimonials_slider {
-    overflow: hidden;
-    width: 1100px;
-    padding: 5px 0;
-
-    @include mq.tablet-l {
-        width: 900px;
-    }
-}
-
-.slider_container {
-    transition: transform 0.5s ease-in-out;
-    padding: 5px;
-}
-
-.pagination {
-    display: flex;
-    gap: 8px;
-
-    div {
-        border-radius: 20px;
-        height: 6px;
-        width: 38px;
-        background-color: var(--white-color);
-        box-shadow: var(--text-shadow);
-        cursor: pointer;
-    }
-
-    .active {
-        background-color: var(--blue-color);
-        cursor: default;
-        height: 6.5px;
     }
 }
