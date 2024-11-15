@@ -4,6 +4,12 @@
     background-color: var(--blue-color);
     border-radius: 24px;
     padding: 20px 40px;
+
+    @include mq.mobile-xl {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 40px;
+    }
 }
 
 .statists_item {
@@ -20,6 +26,16 @@
         height: 70%; 
         background-color: var(--white-color)
     }
+
+    @include mq.mobile-xl {
+        padding: 24px;
+
+        &:not(:last-child)::after {
+            top: 100%;
+            width: 100%;
+            height: 1.1px; 
+        }
+    }
 }
 
 .value {
@@ -33,5 +49,10 @@
 
     @include mq.tablet-l {
         font-size: var(--font-size-18);
+        width: 80%;
+    }
+
+    @include mq.mobile-xl {
+        width: 100%;
     }
 }

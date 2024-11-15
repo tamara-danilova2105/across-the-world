@@ -24,7 +24,11 @@ export const Statictics = () => {
                     >
                         {stat.value}
                     </Text>
-                    <Text color="white" size='24' className={styles.label}>
+                    <Text 
+                        color="white" 
+                        size='24' 
+                        className={styles.label}
+                    >
                         {stat.label}
                     </Text>
                 </Stack>
