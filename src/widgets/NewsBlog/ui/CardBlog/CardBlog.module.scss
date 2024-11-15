@@ -11,6 +11,10 @@
         width: 100%;
     }
 
+    @include media.mobile-l {
+        width: 600px;
+    }
+
     > div { 
         position: relative;
 
