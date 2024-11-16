@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperInstance } from 'swiper';
-import { dataTours } from '../../../lib/data';
-import { TourCard } from '@/entities/TourCard';
+import { dataBlog } from '../../lib/data';
 import { Pagination } from '@/entities/Pagination';
+import { CardBlog } from '../CardBlog/CardBlog';
 import 'swiper/css';
 
 export const SwiperSlider = () => {
@@ -25,9 +25,9 @@ export const SwiperSlider = () => {
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
-                {dataTours.map(tour => (
-                    <SwiperSlide key={tour._id} style={{ padding: '16px'}}>
-                        <TourCard tourData={tour} />
+                {dataBlog.map(news => (
+                    <SwiperSlide key={news._id} style={{ padding: '16px'}}>
+                        <CardBlog news={news} />
                     </SwiperSlide>
                 ))}
             </Swiper>
@@ -35,7 +35,7 @@ export const SwiperSlider = () => {
             <Pagination
                 onPageChange={handlePageChange}
                 forcePage={currentIndex} 
-                pageCount={dataTours.length}
+                pageCount={dataBlog.length}
             />
         </>
     );

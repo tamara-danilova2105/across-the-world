@@ -5,8 +5,8 @@ import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";
 import { dataTours } from "../../lib/data";
+import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
 import styles from './OurTours.module.scss';
-import { SwiperSlider } from "../SwiperSlider";
 
 export const OurTours = () => {
     const { containerRef } = useScrollSlider()

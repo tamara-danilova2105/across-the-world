@@ -44,16 +44,21 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                     gap='32'
                 >
                     <Stack className={styles.anotherImage}>
-                    {otherImages.map((item, index) => (
-                        <img
-                            key={index}
-                            src={item.url}
-                            alt={item.alt}
-                            draggable={false}
-                        />
+                        {otherImages.map((item, index) => (
+                            <img
+                                key={index}
+                                src={item.url}
+                                alt={item.alt}
+                                draggable={false}
+                            />
                         ))}
+                        <Text size='18' font="geometria500">
+                            {formatToRussianDate(createdAt)}
+                        </Text>
                     </Stack>
                     <Text size="24" font="geometria500" color="blue">{title}</Text>
+
+                    {/* TODO - ЗДЕСЬ НЕ БУДЕТ СПИСКОВ */}
                     {Array.isArray(description) ? (
                         <ul className={styles.list}>
                             {description.map((item, index) => (
@@ -71,6 +76,8 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             {description.length > 180 ? `${description.slice(0, 180)} ...` : description}
                         </Text>
                     )}
+
+                    {/* TODO - КНОПКУ С ПОЗИЦИОНИРОВАТЬ В НИЖНЕМ ПРАВОМ УГЛУ*/}
                     <div className={styles.read_more}>
                         <AppLink to={getRouteBlogDetails(_id)}> 
                             Подробнее

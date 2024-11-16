@@ -6,30 +6,23 @@ import { getRouteBlog } from "@/app/router/lib/helper";
 import { dataBlog } from "../../lib/data";
 import { CardBlog } from "../CardBlog/CardBlog";
 import { useResize } from "@/shared/hooks/useResize";
-import { useSwiper } from "@/shared/hooks/useSwipper";
+import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
 import styles from './NewsBlog.module.scss';
-import { Pagination } from "@/entities/Pagination";
 
 export const NewsBlog = () => {
 
     const { containerRef } = useScrollSlider()
-    const { 
-        currentIndex,
-        setCurrentIndex,
-        handleTouchStart,
-        handleTouchMove, 
-        handleTouchEnd 
-    } = useSwiper({ slidesCount: dataBlog.length });
-    const width = useResize();
-    const isSwiperActive = width <= 1024;
 
-    const handlePageChange = (page: number) => setCurrentIndex(page);
+    const width = useResize();
+    const isSwiperActive = width <= 590;
+
 
     return(
         <Stack 
             tag='section'
             direction="column" 
-            gap="48" max>
+            gap="48" max
+        >
             <Stack 
                 justify='between' align='end'
                 className={styles.news_title}
@@ -46,26 +39,21 @@ export const NewsBlog = () => {
             </Stack>
             
             <Stack
-                ref={isSwiperActive ? undefined : containerRef}
+                ref={containerRef}
                 gap="32"
-                direction={isSwiperActive ? 'column' : 'row'}
-                onTouchStart={isSwiperActive ? handleTouchStart : undefined}
-                onTouchMove={isSwiperActive ? handleTouchMove : undefined}
-                onTouchEnd={isSwiperActive ? handleTouchEnd : undefined}
-                className={isSwiperActive ? styles.swiper : styles.news}
+                className={styles.news}
             >
-                {dataBlog.map((news, index) => (
-                    (isSwiperActive ? index === currentIndex : true) && (
-                        <CardBlog key={news._id} news={news}/> 
-                    )
-                ))}
-
-                {isSwiperActive && (
-                    <Pagination
-                        onPageChange={handlePageChange}
-                        forcePage={currentIndex} 
-                        pageCount={dataBlog.length}
-                    />
+                {isSwiperActive ? (
+                    <div style={{width: '100%'}}>
+                        <SwiperSlider />
+                    </div>
+                ) : (
+                    dataBlog.map((news) => (
+                        <CardBlog 
+                            key={news._id} 
+                            news={news}
+                        /> 
+                    ))
                 )}
             </Stack>
         </Stack>
