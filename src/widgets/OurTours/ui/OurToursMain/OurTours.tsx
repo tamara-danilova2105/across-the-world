@@ -5,9 +5,9 @@ import { dataTours } from "../../lib/data";
 import { TourCard } from "@/entities/TourCard";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import styles from './OurTours.module.scss';
-import { Pagination } from "@/entities/Pagination/Pagination";
 import { useSwiper } from "@/shared/hooks/useSwipper";
 import { useResize } from "@/shared/hooks/useResize";
+import { Pagination } from "@/entities/Pagination";
 
 export const OurTours = () => {
     const { containerRef } = useScrollSlider()

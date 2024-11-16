@@ -7,8 +7,8 @@ import { dataBlog } from "../../lib/data";
 import { CardBlog } from "../CardBlog/CardBlog";
 import { useResize } from "@/shared/hooks/useResize";
 import { useSwiper } from "@/shared/hooks/useSwipper";
-import { Pagination } from "@/entities/Pagination/Pagination";
 import styles from './NewsBlog.module.scss';
+import { Pagination } from "@/entities/Pagination";
 
 export const NewsBlog = () => {
 

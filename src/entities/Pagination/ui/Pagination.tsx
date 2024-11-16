@@ -1,5 +1,5 @@
 import ReactPaginate from "react-paginate";
-import { Stack } from "../../shared/ui/Stack/Stack"
+import { Stack } from "../../../shared/ui/Stack/Stack"
 import styles from './Pagination.module.scss'
 
 interface PaginationProps {
