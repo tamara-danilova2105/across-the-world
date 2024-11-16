@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { routeConfig } from '@/app/router/lib/data';
 import { Stack } from '@/shared/ui/Stack';
 import { LogoIcon } from '@/shared/assets/svg/logoIcon';
 import { LogoFont } from '@/shared/assets/svg/logoFont';
 import { useOverflowHidden } from '@/shared/hooks/useOverflowHidden';
 import { getStyles } from '@/shared/lib/getStyles';
-import styles from './NavbarMobile.module.scss';
-import { routeConfig } from '@/app/router/lib/data';
-import { NavLink } from 'react-router-dom';
 import { InstagramIcon, TelegrmaIcon } from '@/shared/assets/svg/sotialMediaIcons';
 import { PhoneIcon } from '@/shared/assets/svg/contactIcons';
+import styles from './NavbarMobile.module.scss';
 
 export const NavbarMobile = () => {
     const [isOpen, setIsOpen] = useState(false);

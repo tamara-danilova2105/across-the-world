@@ -11,6 +11,7 @@ import {
     getRouteToursDetails,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+import { ToursPage } from "@/pages/ToursPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -21,6 +22,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.tours]: {
         path: getRouteTours(),
         title: 'Туры',
+        page: <ToursPage />
     },
     [AppRouters.tour_detais]: {
         path: getRouteToursDetails(':id'),

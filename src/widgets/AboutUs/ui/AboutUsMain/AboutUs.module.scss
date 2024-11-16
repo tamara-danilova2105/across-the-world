@@ -24,6 +24,7 @@
     img {
         border-radius: 16px;
         box-shadow: var(--box-shadow);
+        object-fit: cover;
 
         @include mq.tablet-m {
             align-self: center;
