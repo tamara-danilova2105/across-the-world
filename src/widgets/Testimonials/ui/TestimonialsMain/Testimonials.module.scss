@@ -21,11 +21,16 @@
         padding-top: 70px;
         padding-bottom: 70px;
         gap: 24px;
+    }
 
+    @include mq.mobile-xl {
+        padding-left: 10px;
+        padding-right: 10px;
+        
         h3, h2 {
             align-self: center;
             text-align: center;
-            width: 70%;
+            width: 80%;
         }
     }
 }

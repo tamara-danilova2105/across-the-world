@@ -49,6 +49,7 @@ export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>(
                 <Text 
                     font='geometria500' 
                     size="18"
+                    className={styles.tourist_text}
                 >
                     {tour}
                 </Text>
@@ -62,7 +63,6 @@ export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>(
                     }
                 </Text>
             </Stack>
-
 
             {feedback.length > maxLength && (
                 <button onClick={onToggleShowMore}>

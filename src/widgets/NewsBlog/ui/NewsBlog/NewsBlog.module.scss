@@ -1,6 +1,12 @@
 @use '@/app/styles/mixin' as mixin;
 @use '@/app/styles/media-queries' as media;
 
+.main {
+    @include media.mobile-xl {
+        gap: 24px;
+    }
+}
+
 .news_title {
     @include mixin.section-style;
 
@@ -44,8 +50,8 @@
         margin: auto;
     }
 
-    @include media.mobile-l {
-        padding: 10px 20px;
+    @include media.mobile-xl {
+        padding: 10px;
     }
 }
 

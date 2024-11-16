@@ -22,6 +22,7 @@ export const NewsBlog = () => {
             tag='section'
             direction="column" 
             gap="48" max
+            className={styles.main}
         >
             <Stack 
                 justify='between' align='end'

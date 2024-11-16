@@ -30,7 +30,7 @@ export const OurTours = () => {
                 <Filterbar />
             </Stack>
                 {isSwiperActive ? (
-                    <div style={{width: '100%'}}>
+                    <div style={{width: '100%', padding: '0 10px'}}>
                         <SwiperSlider />
                     </div>
                     

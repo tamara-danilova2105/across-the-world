@@ -38,7 +38,7 @@
     
             p {
                 position: absolute;
-                border-radius: 16px 16px 0px 0px;
+                border-radius: 16px 16px 0 0;
                 background-color: var(--blue-color);
                 color: var(--white-color);
                 border: 3.5px solid var(--white-color);
@@ -88,13 +88,13 @@
                     p {
                         display: block;
                         position: absolute;
-                        left: 110px;
-                        bottom: 0;
-                        border-radius: 16px 16px 0px 0px;
+                        right: -2px;
+                        top: 0;
+                        border-radius: 0 0 0 16px;
                         background-color: var(--blue-color);
                         color: var(--white-color);
                         border: 2px solid var(--white-color);
-                        border-bottom: none;
+                        border-top: none;
                         padding: 5px 10px;
                     }
 
