@@ -88,6 +88,17 @@ export const EarlyBook = () => {
                         />
                     ))}
                 </Stack>
+                <Stack
+                    justify='between'
+                    className={styles.posterContainerMobile}
+                >
+                    {bookData.map(item => (
+                        <img 
+                            key={item.id} 
+                            src={item.urlImage} alt={item.description}
+                        />
+                    ))}
+                </Stack>
             </Stack>
         </Stack>
     )

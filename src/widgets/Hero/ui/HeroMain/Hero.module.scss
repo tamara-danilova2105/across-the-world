@@ -3,6 +3,7 @@
 
 .hero {
     @include mixin.decorate-style;
+    margin-top: 60px; //TODO
 
     & {
         background-color: var(--peach-opacity20);
