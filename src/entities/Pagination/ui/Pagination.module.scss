@@ -2,6 +2,7 @@
 
 .container {
     width: 100%;
+    
     .paginationContainer{
         @include mixin.section-style;
         display: flex;
@@ -33,6 +34,8 @@
         }
     
         .active {
+            width: 24px;
+            height: 24px;
             background-color: var(--blue-color);
         }
     

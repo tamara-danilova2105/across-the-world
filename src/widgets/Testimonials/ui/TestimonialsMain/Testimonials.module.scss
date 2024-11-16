@@ -18,7 +18,14 @@
     }
 
     @include mq.tablet-l {
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 70px;
+        padding-bottom: 70px;
+        gap: 24px;
+
+        h3, h2 {
+            align-self: center;
+            text-align: center;
+            width: 70%;
+        }
     }
 }

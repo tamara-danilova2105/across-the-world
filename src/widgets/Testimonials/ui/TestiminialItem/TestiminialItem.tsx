@@ -1,9 +1,10 @@
-import { CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef, useEffect, useState } from "react";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { BackticsIcon } from "@/shared/assets/svg/bacticksIcon";
 import { DataTestimonials } from "../../lib/data";
 import styles from './TestiminialItem.module.scss';
+import { useResize } from "@/shared/hooks/useResize";
 
 interface TestimonialItemProps {
     testimonial: DataTestimonials;
@@ -12,11 +13,21 @@ interface TestimonialItemProps {
     onToggleShowMore: () => void;
 }
 
-const FEEDBACK_MAX_LENGTH = 300;
+const MAX_LENGTH_DESKTOP = 300;
+const MAX_LENGTH_MOBILE = 500;
 
 export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>((props, ref) => {
     const { testimonial, maxHeight, showMore, onToggleShowMore } = props;
     const { tourist, tour, feedback } = testimonial;
+
+    const [maxLength, setMaxLength] = useState<number>(MAX_LENGTH_DESKTOP);
+
+    const width = useResize();
+    const isMobile = width <= 820;
+
+    useEffect(() => 
+        setMaxLength(isMobile ? MAX_LENGTH_MOBILE : MAX_LENGTH_DESKTOP)
+    , [isMobile]);
 
     return (
         <Stack 
@@ -45,7 +56,7 @@ export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>(
                     size="18" 
                     className={styles.feedback_text}
                 >
-                    {(feedback.length > FEEDBACK_MAX_LENGTH && !showMore) 
+                    {(feedback.length > maxLength && !showMore) 
                         ? `${feedback.slice(0, 180)} ...` 
                         : feedback
                     }
@@ -53,7 +64,7 @@ export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>(
             </Stack>
 
 
-            {feedback.length > FEEDBACK_MAX_LENGTH && (
+            {feedback.length > maxLength && (
                 <button onClick={onToggleShowMore}>
                     {!showMore ? 'читать далее...' : 'скрыть'}
                 </button>

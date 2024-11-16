@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { dataTours } from '@/widgets/OurTours/lib/data';
+import { Swiper as SwiperInstance } from 'swiper';
+import { dataTours } from '../../../lib/data';
 import { TourCard } from '@/entities/TourCard';
 import { Pagination } from '@/entities/Pagination';
 import 'swiper/css';
 
 export const SwiperSlider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const swiperRef = useRef<SwiperInstance | null>(null);
 
     const handlePageChange = (pageIndex: number) => {
         setCurrentIndex(pageIndex);
+        if (swiperRef.current) {
+            swiperRef.current.slideTo(pageIndex);
+        }
     };
 
     return (
@@ -18,7 +23,7 @@ export const SwiperSlider = () => {
                 spaceBetween={8} 
                 slidesPerView={1}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-                onSwiper={(swiper) => swiper.slideTo(currentIndex)}
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
                 {dataTours.map(tour => (
                     <SwiperSlide key={tour._id} style={{ padding: '16px'}}>
@@ -34,4 +39,4 @@ export const SwiperSlider = () => {
             />
         </>
     );
-}
+};
