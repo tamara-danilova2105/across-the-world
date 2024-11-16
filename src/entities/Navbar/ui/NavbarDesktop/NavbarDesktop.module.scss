@@ -1,4 +1,5 @@
 @use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries.scss' as mq;
 
 @mixin afterElement($width: 0) {
     &:after {
@@ -17,6 +18,10 @@
     position: fixed;
     z-index: 2;
     top:0;
+
+    @include mq.tablet-l {
+        display: none;
+    }
 }
 
 .navbarContainer {

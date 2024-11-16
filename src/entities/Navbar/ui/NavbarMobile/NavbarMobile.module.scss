@@ -1,0 +1,134 @@
+@use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries.scss' as mq;
+
+.navbar_mobile {
+    display: none;
+    background: var(--blue-color);
+    width: 100%;
+
+    .logo_container {
+        svg:first-child  {
+            width: 110px;
+            height: 80px;
+    
+            @include mq.mobile-l {
+                width: 80px;
+                height: 60px;
+            }
+        }
+    }
+
+    @include mq.tablet-l {
+        display: block;
+        position: fixed;
+        z-index: 3;
+        padding: 0 30px;
+    }
+
+    @include mq.mobile-l {
+        padding: 0 20px;
+    }
+}
+
+.hamburger {
+    width: 35px;
+    height: 25px;
+    transition: all .25s;
+    position: fixed;
+    top: 28px;
+    right: 30px;
+    z-index: 3;
+    background-color: transparent;
+    padding: 0;
+
+    @include mq.mobile-l {
+        top: 18px;
+        right: 20px;
+    }
+
+    &.open {
+        right: calc(30px + 17px);
+
+        @include mq.mobile-l {
+            right: 20px;
+        }
+
+        .line_top {
+            transform: rotate(45deg) translateY(0) translateX(0);
+            top: 50%;
+            left: 0;
+        }
+
+        .line_middle {
+            opacity: 0;
+        }
+
+        .line_bottom {
+            transform: rotate(-45deg) translateY(0) translateX(0);
+            top: 50%;
+            left: 0;
+        }
+    }
+}
+
+.line_top,
+.line_middle,
+.line_bottom {
+    position: absolute;
+    width: 35px;
+    height: 3px;
+    background-color: var(--white-color);
+    transition: all .5s;
+    border-radius: 2px;
+}
+
+.line_top {
+    top: 0;
+}
+
+.line_middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.line_bottom {
+    bottom: 0;
+}
+
+.menu {
+    list-style: none;
+    background-color: var(--blue-color);
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    transition: top 0.5s ease-in-out;
+    padding-bottom: 100px;
+
+    &.menu_open {
+        top: 0;
+    }
+}
+
+.links_container {
+    padding-top: 120px;
+}
+
+.link {
+    text-decoration: none;
+    font-size: var(--font-size-16);
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-family: var(--font-family-geometria500);
+}
+
+.opened_page {
+    font-weight: 600;
+} 

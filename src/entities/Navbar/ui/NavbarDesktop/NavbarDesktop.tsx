@@ -29,7 +29,10 @@ export const NavbarDesktop = () => {
                     <LogoFont />
                 </Stack>
 
-                <Stack gap="48" tag="nav">
+                <Stack 
+                    gap="48" tag="nav" 
+                    aria-label="Main Navigation"
+                >
                     {Object.values(routeConfig).map(route => (
                         route.title && (
                             <NavLink 

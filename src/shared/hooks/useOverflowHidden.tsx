@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useOverflowHidden = (isOpen: boolean) => {
+export const useOverflowHidden = (isOpen: boolean) => {
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : '';
 
@@ -9,5 +9,3 @@ const useOverflowHidden = (isOpen: boolean) => {
         };
     }, [isOpen]);
 };
-
-export default useOverflowHidden;
