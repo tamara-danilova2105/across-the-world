@@ -21,7 +21,7 @@ export const SwiperSlider = () => {
                 onSwiper={(swiper) => swiper.slideTo(currentIndex)}
             >
                 {dataTours.map(tour => (
-                    <SwiperSlide key={tour._id} style={{ padding: '16px' }}>
+                    <SwiperSlide key={tour._id} style={{ padding: '16px'}}>
                         <TourCard tourData={tour} />
                     </SwiperSlide>
                 ))}

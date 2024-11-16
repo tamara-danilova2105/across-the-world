@@ -1,27 +1,17 @@
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
-import { Filterbar } from "../Filterbar/Filterbar";
-import { dataTours } from "../../lib/data";
 import { TourCard } from "@/entities/TourCard";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
-import styles from './OurTours.module.scss';
-import { useSwiper } from "@/shared/hooks/useSwipper";
 import { useResize } from "@/shared/hooks/useResize";
-import { Pagination } from "@/entities/Pagination";
+import { Filterbar } from "../Filterbar/Filterbar";
+import { dataTours } from "../../lib/data";
+import styles from './OurTours.module.scss';
+import { SwiperSlider } from "../SwiperSlider";
 
 export const OurTours = () => {
     const { containerRef } = useScrollSlider()
-    const { currentIndex,
-        setCurrentIndex,
-        handleTouchStart,
-        handleTouchMove, 
-        handleTouchEnd } = useSwiper({ slidesCount: dataTours.length });
     const width = useResize();
     const isSwiperActive = width <= 590;
-
-    const handlePageChange = (page: number) => {
-        setCurrentIndex(page) 
-    }
 
     return (
         <Stack 
@@ -39,40 +29,26 @@ export const OurTours = () => {
                 />
                 <Filterbar />
             </Stack>
-                <Stack 
-                    gap="32"
-                    align='center'
-                    ref={isSwiperActive ? undefined : containerRef}
-                    onTouchStart={isSwiperActive ? handleTouchStart : undefined}
-                    onTouchMove={isSwiperActive ? handleTouchMove : undefined}
-                    onTouchEnd={isSwiperActive ? handleTouchEnd : undefined}
-                    className={isSwiperActive ? styles.swiper : styles.our_tours_container}
-                >
-                    {isSwiperActive ? (
-                        <div
-                            className={styles.swiper_track}
-                            style={{
-                                transform: `translateX(-${currentIndex * 100}%)`,
-                            }}
-                        >
-                            {dataTours.map((tour) => (
-                                <div className={styles.swiper_slide} key={tour._id}>
-                                    <TourCard tourData={tour} />
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        dataTours.map((tour) => (
-                            <TourCard key={tour._id} tourData={tour} />
-                        ))
-                    )}
-                </Stack>
-
-                {isSwiperActive && <Pagination
-                    onPageChange={handlePageChange}
-                    forcePage={currentIndex} 
-                    pageCount={dataTours.length}
-                />}
+                {isSwiperActive ? (
+                    <div style={{width: '100%'}}>
+                        <SwiperSlider />
+                    </div>
+                    
+                ) : (
+                    <Stack 
+                        gap="32"
+                        align='center'
+                        ref={containerRef}
+                        className={styles.our_tours_container}
+                    >
+                        {dataTours.map((tour) => (
+                            <TourCard 
+                                key={tour._id} 
+                                tourData={tour} 
+                            />
+                        ))}
+                    </Stack>
+                )}
         </Stack>
     );
 };
