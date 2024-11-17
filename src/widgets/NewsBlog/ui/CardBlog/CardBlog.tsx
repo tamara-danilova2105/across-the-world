@@ -5,6 +5,7 @@ import { getRouteBlogDetails } from "@/app/router/lib/helper";
 import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import styles from './CardBlog.module.scss';
 import { formatToRussianDate } from "@/shared/lib/formatDate";
+import { useResize } from "@/shared/hooks/useResize";
 
 interface NewsBlogProps {
     news: NewsBlogData;
@@ -79,7 +80,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             color="blue"
                             className={styles.description}
                         >
-                            {description.length > 170 ? `${description.slice(0, 180)} ...` : description}
+                            {description.length > 130 ? `${description.slice(0, 130)} ...` : description}
                         </Text>
                     </Stack>
                 </Stack>
