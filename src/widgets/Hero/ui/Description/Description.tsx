@@ -33,7 +33,7 @@ export const Description = () => {
             </Stack>
             <Stack 
                 justify='between' 
-                gap="16" max 
+                gap="48" max 
                 align='end'
                 className={styles.button_container}
             >

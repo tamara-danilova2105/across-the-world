@@ -89,8 +89,9 @@
 }
 
 .description_text {
+    text-indent: 20px;
+
     @include mq.mobile-xl {
         text-align: justify;
-        text-indent: 20px;
     }
 }

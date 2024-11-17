@@ -9,6 +9,7 @@ import { getStyles } from '@/shared/lib/getStyles';
 import { InstagramIcon, TelegrmaIcon } from '@/shared/assets/svg/sotialMediaIcons';
 import { PhoneIcon } from '@/shared/assets/svg/contactIcons';
 import styles from './NavbarMobile.module.scss';
+import { DecorationIcon } from '@/shared/assets/svg/heroIcons';
 
 export const NavbarMobile = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -48,10 +49,11 @@ export const NavbarMobile = () => {
             </button>
 
             <ul className={getStyles(styles.menu, {[styles.menu_open]: isOpen}, [])}>
+                <DecorationIcon />
                 <Stack 
                     direction='column'
                     align='center'
-                    gap='24' max
+                    gap='32' max
                     className={styles.links_container}
                 >
                     {Object.values(routeConfig).map(route => (
@@ -82,7 +84,8 @@ export const NavbarMobile = () => {
                     </Stack>
                     {renderLogo()}
                 </Stack>
+                <DecorationIcon />
             </ul>
         </nav>
-    )
+    );
 }

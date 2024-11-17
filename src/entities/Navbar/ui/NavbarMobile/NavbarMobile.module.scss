@@ -110,15 +110,35 @@
     align-items: center;
     height: 100vh;
     transition: top 0.5s ease-in-out;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
 
     &.menu_open {
         top: 0;
     }
+
+    > svg {
+        position: absolute;
+        width: 200px;
+
+        path {
+            fill: var(--white-color);
+            opacity: 0.7;
+        }
+    }
+
+    > svg:first-of-type {
+        left: 0;
+        transform: rotate(180deg);
+    }
+
+    > svg:last-of-type {
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .links_container {
-    padding-top: 120px;
+    padding-top: 150px;
 }
 
 .link {
