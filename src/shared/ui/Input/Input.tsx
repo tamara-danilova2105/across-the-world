@@ -44,7 +44,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, _) => {
             <Stack
                 max direction='column'
                 gap='8'
-                className={styles.inputContainer}
             >
                 <input
                     className={inputClasses}
