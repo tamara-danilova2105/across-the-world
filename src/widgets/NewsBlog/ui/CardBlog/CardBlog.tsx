@@ -5,7 +5,6 @@ import { getRouteBlogDetails } from "@/app/router/lib/helper";
 import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import styles from './CardBlog.module.scss';
 import { formatToRussianDate } from "@/shared/lib/formatDate";
-import { useResize } from "@/shared/hooks/useResize";
 
 interface NewsBlogProps {
     news: NewsBlogData;
