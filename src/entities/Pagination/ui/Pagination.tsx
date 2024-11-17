@@ -7,7 +7,7 @@ interface PaginationProps {
     onPageChange: (selected: number) => void;
     forcePage: number;
     pageCount: number;
-    hasBackground: boolean;
+    hasBackground?: boolean;
 };
 
 export const Pagination = (props: PaginationProps) => {
