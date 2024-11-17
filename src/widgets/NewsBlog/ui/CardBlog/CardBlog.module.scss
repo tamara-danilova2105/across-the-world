@@ -125,6 +125,9 @@
                     @include media.mobile-l {
                         font-size: var(--font-size-18);
                     }
+                    @include media.mobile-l {
+                        font-weight: var(--font-family-geometria600);
+                    }
                 }
                 .description {
                     text-indent: 20px;
@@ -138,6 +141,10 @@
 
                     @include media.mobile-l {
                         font-size: var(--font-size-16);
+                    }
+
+                    @include media.mobile-m {
+                        line-height: 20px;
                     }
                 }
             }
