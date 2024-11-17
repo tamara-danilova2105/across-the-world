@@ -1,6 +1,7 @@
 @use '@/app/styles/media-queries' as media;
 
 .cardBlogsContainer {
+    position: relative;
     width: auto;
     padding: 30px;
     border-radius: 24px;
@@ -8,12 +9,30 @@
     height: 500px;
 
     @include media.tablet-l {
-        width: 100%;
+        width: auto;
     }
 
     @include media.mobile-l {
-        height: 600px;
+        height: auto;
         padding: 20px;
+        height: 450px;
+    }
+
+    @include media.mobile-m {
+        height: auto;
+        padding: 20px;
+        height: 430px;
+    }
+
+    .read_more {
+        position: absolute;
+        padding: 30px;
+        bottom: 0;
+        right: 0;
+
+        @include media.mobile-l {
+            padding: 20px;
+        }
     }
 
     > div { 
@@ -30,10 +49,6 @@
                 border-radius: 24px;
                 width: 360px;
                 box-shadow: var(--box-shadow);
-
-                @include media.tablet-l {
-                    width: 45vw;
-                }
             }
     
             p {
@@ -52,11 +67,7 @@
             position: relative;
             width: 400px;
 
-            @include media.tablet-l {
-                width: 50%;
-            }
-
-            @include media.mobile-xl {
+            @include media.mobile-l {
                 width: 100%;
             }
 
@@ -106,26 +117,39 @@
                         }
                     }
                 }
-            }
 
-            .list {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .description {
-                height: 110px;
-
-                @include media.mobile-xl {
-                    height: 150px;
+                @include media.mobile-m {
+                    height: 140px;
                 }
             }
-            
-            .read_more {
-                align-self: flex-end;
+
+            .textContainer {
+                @include media.mobile-l {
+                    gap: 16px;
+                }
+                :nth-child(1) {
+                    @include media.mobile-l {
+                        font-size: var(--font-size-18);
+                    }
+                }
+                .description {
+                    text-indent: 20px;
+                    text-align: justify;
+                    height: 110px;
+                    line-height: 30px;
+    
+                    @include media.mobile-xl {
+                        height: 150px;
+                    }
+
+                    @include media.mobile-l {
+                        font-size: var(--font-size-16);
+                    }
+                }
             }
         }
     }
+
+
 }
 
