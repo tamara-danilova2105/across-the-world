@@ -25,6 +25,8 @@
         width: 450px;
         font-size: var(--font-size-18);
 
+        -webkit-appearance: none;
+        appearance: none;
         box-shadow: var(--box-shadow);
         -webkit-box-shadow: var(--box-shadow);
         -moz-box-shadow: var(--box-shadow);
