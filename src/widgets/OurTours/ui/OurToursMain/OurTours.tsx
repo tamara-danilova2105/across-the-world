@@ -9,8 +9,8 @@ import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
 import styles from './OurTours.module.scss';
 
 export const OurTours = () => {
-    const { containerRef } = useScrollSlider()
     const width = useResize();
+    const { containerRef } = useScrollSlider(width)
     const isSwiperActive = width <= 590;
 
     return (

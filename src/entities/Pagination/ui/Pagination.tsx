@@ -1,3 +1,4 @@
+import { getStyles } from "@/shared/lib/getStyles";
 import ReactPaginate from "react-paginate";
 import { Stack } from "../../../shared/ui/Stack/Stack";
 import styles from './Pagination.module.scss';
@@ -6,14 +7,17 @@ interface PaginationProps {
     onPageChange: (selected: number) => void;
     forcePage: number;
     pageCount: number;
+    hasBackground?: boolean;
 };
 
 export const Pagination = (props: PaginationProps) => {
-    const { onPageChange, forcePage, pageCount } = props;
+    const { onPageChange, forcePage, pageCount, hasBackground } = props;
 
     const handlePageChange = (e: { selected: number }) => {
         onPageChange(e.selected);
-    };
+    }
+
+    const bullitStyle = getStyles(styles.page, {[styles.whiteBullit]: hasBackground}, [])
 
     return (
         <Stack
@@ -26,7 +30,7 @@ export const Pagination = (props: PaginationProps) => {
                 nextClassName={styles.next}
                 previousClassName={styles.previous}
                 activeClassName={styles.active}
-                pageClassName={styles.page}
+                pageClassName={bullitStyle}
                 onPageChange={handlePageChange}
                 forcePage={forcePage}
                 pageCount={pageCount}

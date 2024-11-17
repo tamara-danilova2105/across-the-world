@@ -8,7 +8,7 @@ interface UseScrollSliderReturn {
     handleClickSlide: (selectedSlider: number) => void
 }
 
-export const useScrollSlider = (quantityCards?: number, initialIndex: number = 0): UseScrollSliderReturn => {
+export const useScrollSlider = (width: number, quantityCards?: number, initialIndex: number = 0): UseScrollSliderReturn => {
     const containerRef = useRef<HTMLDivElement>(null)
     const [currentSlide, setCurrentSlide] = useState<number>(initialIndex)
 
@@ -35,6 +35,10 @@ export const useScrollSlider = (quantityCards?: number, initialIndex: number = 0
 
     useEffect(() => {
         const container = containerRef.current;
+
+        if (container && width > 590) {
+            container.scrollLeft = 0
+        }
 
         const handleWheel = (e: WheelEvent) => {
             if (!container) return;
@@ -77,7 +81,7 @@ export const useScrollSlider = (quantityCards?: number, initialIndex: number = 0
                 container.removeEventListener('mouseleave', handleMouseUp)
             }
         }
-    }, [])
+    }, [width])
 
     return {
         containerRef,

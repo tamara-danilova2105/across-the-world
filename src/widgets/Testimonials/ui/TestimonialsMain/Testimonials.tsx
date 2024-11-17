@@ -7,6 +7,7 @@ import { TestimonialsSlider } from "../TestimonialsSlider/TestimonialsSlider";
 import styles from './Testimonials.module.scss';
 
 export const Testimonials = () => {
+    
     const width = useResize();
     const isSwiperActive = width <= 820;
 
