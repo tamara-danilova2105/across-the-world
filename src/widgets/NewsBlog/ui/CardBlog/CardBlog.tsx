@@ -20,7 +20,13 @@ export const CardBlog = ({news}: NewsBlogProps) => {
         <Stack
             className={styles.cardBlogsContainer}
         >
+            <div className={styles.read_more}>
+                <AppLink to={getRouteBlogDetails(_id)}> 
+                    Подробнее
+                </AppLink>
+            </div>
             <Stack gap="32">
+
                 <Stack 
                     align="center"
                     justify="center"
@@ -56,33 +62,26 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             {formatToRussianDate(createdAt)}
                         </Text>
                     </Stack>
-                    <Text size="24" font="geometria500" color="blue">{title}</Text>
-
-                    {/* TODO - ЗДЕСЬ НЕ БУДЕТ СПИСКОВ */}
-                    {Array.isArray(description) ? (
-                        <ul className={styles.list}>
-                            {description.map((item, index) => (
-                                <li key={index}>
-                                    <Text size='18' color="blue">{item}</Text>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
+                    <Stack 
+                        direction='column'
+                        gap='24'
+                        className={styles.textContainer}
+                    >
+                        <Text 
+                            size="24" 
+                            font="geometria500" 
+                            color="blue"
+                        >
+                            {title}
+                        </Text>
                         <Text 
                             size='18' 
                             color="blue"
                             className={styles.description}
                         >
-                            {description.length > 180 ? `${description.slice(0, 180)} ...` : description}
+                            {description.length > 170 ? `${description.slice(0, 180)} ...` : description}
                         </Text>
-                    )}
-
-                    {/* TODO - КНОПКУ С ПОЗИЦИОНИРОВАТЬ В НИЖНЕМ ПРАВОМ УГЛУ*/}
-                    <div className={styles.read_more}>
-                        <AppLink to={getRouteBlogDetails(_id)}> 
-                            Подробнее
-                        </AppLink>
-                    </div>
+                    </Stack>
                 </Stack>
             </Stack>
         </Stack>
