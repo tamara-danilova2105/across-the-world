@@ -18,12 +18,6 @@
         height: 450px;
     }
 
-    @include media.mobile-m {
-        height: auto;
-        padding: 20px;
-        height: 430px;
-    }
-
     .read_more {
         position: absolute;
         padding: 30px;
