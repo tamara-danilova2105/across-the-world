@@ -20,11 +20,16 @@
         background-color: var(--white-color);
         padding: 16px 24px 16px 50px;
         border-radius: 50px;
-        box-shadow: var(--box-shadow);
         border: none;
         font-family: var(--font-family-geometria400);
         width: 450px;
         font-size: var(--font-size-18);
+
+        box-shadow: var(--box-shadow);
+        -webkit-box-shadow: var(--box-shadow);
+        -moz-box-shadow: var(--box-shadow);
+        -ms-box-shadow: var(--box-shadow);
+        -o-box-shadow: var(--box-shadow);
 
         @include mq.mobile-l {
             padding: 10px 24px 10px 50px;
