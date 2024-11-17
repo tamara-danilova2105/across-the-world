@@ -64,6 +64,10 @@
                     height: 70px;
                     padding-left: 70px;
                     box-shadow: var(--box-shadow);
+                    -webkit-box-shadow: var(--box-shadow);
+                    -moz-box-shadow: var(--box-shadow);
+                    -ms-box-shadow: var(--box-shadow);
+                    -o-box-shadow: var(--box-shadow);
 
                     @include mq.mobile-xl {
                         width: 100%;
