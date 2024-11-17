@@ -81,6 +81,7 @@ export const TestimonialsSlider = () => {
                 onPageChange={handlePageChange}
                 forcePage={currentSlide}
                 pageCount={totalSliderPages}
+                hasBackground={true}
             />
         </>
     );

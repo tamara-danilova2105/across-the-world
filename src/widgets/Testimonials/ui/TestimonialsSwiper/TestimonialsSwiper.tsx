@@ -53,6 +53,7 @@ export const TestimonialsSwiper = () => {
                 onPageChange={handlePageChange}
                 forcePage={currentIndex} 
                 pageCount={dataTestimonials.length}
+                hasBackground={true}
             />
         </>
     );

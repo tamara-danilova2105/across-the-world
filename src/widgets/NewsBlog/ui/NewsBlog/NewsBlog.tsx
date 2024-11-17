@@ -11,9 +11,8 @@ import styles from './NewsBlog.module.scss';
 
 export const NewsBlog = () => {
 
-    const { containerRef } = useScrollSlider()
-
-    const width = useResize();
+    const width = useResize()
+    const { containerRef } = useScrollSlider(width)
     const isSwiperActive = width <= 590;
 
 
