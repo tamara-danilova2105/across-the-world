@@ -97,10 +97,18 @@ const useCarousel = ({ children, autoPlayInterval}: UseCarouselProps) => {
     }
   }, []);
 
+  const goToSlide = useCallback((index: number) => {
+    if (!containerRef.current) return;
+    
+    containerRef.current.style.transitionDuration = "400ms";
+    setTranslateX(containerRef.current.clientWidth * (index + 1))
+    setCurrent(index + 1)
+}, []);
+
   const nextSlide = () => actionHandler("next");
   const prevSlide = () => actionHandler("prev");
 
-  return { containerRef, slides, translateX, nextSlide, prevSlide };
+  return { containerRef, current, slides, translateX, goToSlide, nextSlide, prevSlide };
 };
 
 export default useCarousel;
