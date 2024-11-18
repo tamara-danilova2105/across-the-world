@@ -20,11 +20,14 @@ export const Slider = () => {
 
     const { 
         containerRef, 
+        current,
+        goToSlide,
         slides: carouselSlides, 
         translateX, 
         // nextSlide, 
         // prevSlide 
     } = useCarousel({ children: slides, autoPlayInterval: AUTO_PLAY_INTERVAL});
+
 
     return (
         <Stack 
@@ -60,6 +63,8 @@ export const Slider = () => {
             </Stack> */}
 
             <Pagination
+                onPageChange={goToSlide}
+                forcePage={current - 1}
                 pageCount={sliderData.length}
                 hasBackground={true}
             />
