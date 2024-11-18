@@ -3,15 +3,10 @@
 
 .parallaxContainer {
     background-color: var(--blue-color);
-    margin-top: 70px;
     width: 100%;
     height: 100vh;
     position: relative;
     overflow: hidden;
-
-    @include mq.tablet-l {
-        margin-top: 60px;
-    }
 
     > div {
         position: absolute;

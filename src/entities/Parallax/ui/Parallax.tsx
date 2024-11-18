@@ -19,7 +19,7 @@ export const Parallax = () => {
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
         const scaleDecrease = Math.max(0.3, 1 - scrollY * 0.0009);
-        const scaleIncrease = Math.min(2, 1 + scrollY * 0.0009);
+        const scaleIncrease = Math.min(2.2, 1 + scrollY * 0.0006);
         const scaleGrassIncrease = Math.min(1.1, 1 + scrollY * 0.0005);
 
         const elements = [
@@ -60,8 +60,8 @@ export const Parallax = () => {
                 <img src={cloud} alt='Розовые облака в стиле flat' ref={cloudRef} loading="lazy"/>
                 <img src={sky} alt='Иллюстрация голубого неба с белыми облаками' ref={skyRef} loading="lazy"/>
                 <img src={mountains} alt='Горы без снега и тропа' ref={mountainRef} loading="lazy"/>
-                <img src={aroundWorld} alt='надпись кругостветка' ref={aroundWorldRef} loading="lazy"/>
                 <img src={person} alt='мужчина, отправившийся в поход с рюкзаком' ref={personRef} loading="lazy"/>
+                <img src={aroundWorld} alt='надпись кругостветка' ref={aroundWorldRef} loading="lazy"/>
                 <img src={grass} alt='трава и холмы' ref={grassRef} loading="lazy"/>
             </Stack>
         </Stack>
