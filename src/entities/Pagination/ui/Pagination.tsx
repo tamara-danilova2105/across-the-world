@@ -4,8 +4,8 @@ import { Stack } from "../../../shared/ui/Stack/Stack";
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
-    onPageChange: (selected: number) => void;
-    forcePage: number;
+    onPageChange?: (selected: number) => void;
+    forcePage?: number;
     pageCount: number;
     hasBackground?: boolean;
 };
@@ -14,7 +14,7 @@ export const Pagination = (props: PaginationProps) => {
     const { onPageChange, forcePage, pageCount, hasBackground } = props;
 
     const handlePageChange = (e: { selected: number }) => {
-        onPageChange(e.selected);
+        onPageChange?.(e.selected);
     }
 
     const bullitStyle = getStyles(styles.page, {[styles.whiteBullit]: hasBackground}, [])

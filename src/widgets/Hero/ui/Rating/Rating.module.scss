@@ -1,0 +1,28 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
+.rating_main {
+    @include mq.mobile-l {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .rating_container {
+        position: relative;
+    }
+    
+    .rating_btn {
+        position: absolute;
+        top: 2px;
+        right: -30px;
+        border: 3px solid var(--white-color);
+        width: 59px;
+        height: 59px;
+    }
+
+    .rating_text {
+        @include mq.mobile-l {
+            align-items: center;
+        }
+    }
+}

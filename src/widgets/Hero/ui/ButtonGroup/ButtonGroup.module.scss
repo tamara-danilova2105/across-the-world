@@ -1,0 +1,8 @@
+@use '@/app/styles/media-queries.scss' as mq;
+
+.button_container {
+    @include mq.mobile-l {
+        flex-direction: column;
+        gap: 24px
+    }
+}

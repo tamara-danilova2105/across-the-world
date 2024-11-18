@@ -3,14 +3,13 @@
 
 .hero {
     @include mixin.decorate-style;
-    margin-top: 60px; //TODO
 
     & {
         background-color: var(--peach-opacity20);
     }
 }
 
-.hero_content {
+.content_desktop {
     @include mixin.section-style;
 
     & {
@@ -24,7 +23,20 @@
     }
 
     @include mq.tablet-m {
-        flex-direction: column;
-        align-items: center;
+        display: none;
+    }
+}
+
+.content_mobile {
+    @include mixin.section-style;
+
+    & {
+        display: none;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    
+    @include mq.tablet-m {
+        display: flex;
     }
 }

@@ -6,11 +6,14 @@
     
     .paginationContainer{
         @include mixin.section-style;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        gap: 24px;
+
+        & {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 24px;
+        }
     
         .previous {
             a {
