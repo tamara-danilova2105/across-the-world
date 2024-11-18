@@ -21,6 +21,7 @@
     @include mq.tablet-l {
         display: block;
         position: fixed;
+        top: 0;
         z-index: 3;
         padding: 0 30px;
     }
