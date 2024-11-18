@@ -1,37 +1,15 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface UseScrollSliderReturn {
     containerRef: React.RefObject<HTMLDivElement>
-    currentSlide: number
-    nextCard: () => void
-    prevCard: () => void
-    handleClickSlide: (selectedSlider: number) => void
 }
 
-export const useScrollSlider = (width: number, quantityCards?: number, initialIndex: number = 0): UseScrollSliderReturn => {
+export const useScrollSlider = (width: number): UseScrollSliderReturn => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const [currentSlide, setCurrentSlide] = useState<number>(initialIndex)
 
     const isDragging = useRef(false)
     const startX = useRef(0)
     const scrollLeft = useRef(0)
-
-    const handleClickSlide = useCallback((selectedSlider: number) => {
-        setCurrentSlide(selectedSlider)
-    }, [])
-
-    const nextCard = useCallback(() => {
-        if(quantityCards) {
-            setCurrentSlide((prev) => (prev === quantityCards - 1 ? 0 : prev + 1))
-        }
-    }, [quantityCards])
-
-    const prevCard = useCallback(() => {
-        if(quantityCards) {
-            setCurrentSlide((prev) => (prev === 0 ? quantityCards - 1 : prev - 1))
-        }
-    }, [quantityCards])
-
 
     useEffect(() => {
         const container = containerRef.current;
@@ -64,12 +42,35 @@ export const useScrollSlider = (width: number, quantityCards?: number, initialIn
             isDragging.current = false;
         }
 
+        const handleTouchStart = (e: TouchEvent) => {
+            if (!container || e.touches.length === 0) return;
+            isDragging.current = true;
+            startX.current = e.touches[0].pageX - container.offsetLeft;
+            scrollLeft.current = container.scrollLeft;
+        }
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (!isDragging.current || !container || e.touches.length === 0) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - container.offsetLeft;
+            const walk = x - startX.current;
+            container.scrollLeft = scrollLeft.current - walk;
+        }
+
+        const handleTouchEnd = () => {
+            isDragging.current = false;
+        }
+
         if (container) {
             container.addEventListener('wheel', handleWheel, { passive: false })
             container.addEventListener('mousedown', handleMouseDown)
             container.addEventListener('mousemove', handleMouseMove)
             container.addEventListener('mouseup', handleMouseUp)
             container.addEventListener('mouseleave', handleMouseUp)
+
+            container.addEventListener('touchstart', handleTouchStart, { passive: false });
+            container.addEventListener('touchmove', handleTouchMove, { passive: false });
+            container.addEventListener('touchend', handleTouchEnd);
         }
 
         return () => {
@@ -79,15 +80,15 @@ export const useScrollSlider = (width: number, quantityCards?: number, initialIn
                 container.removeEventListener('mousemove', handleMouseMove)
                 container.removeEventListener('mouseup', handleMouseUp)
                 container.removeEventListener('mouseleave', handleMouseUp)
+
+                container.removeEventListener('touchstart', handleTouchStart);
+                container.removeEventListener('touchmove', handleTouchMove);
+                container.removeEventListener('touchend', handleTouchEnd);
             }
         }
     }, [width])
 
     return {
-        containerRef,
-        currentSlide,
-        nextCard,
-        prevCard,
-        handleClickSlide,
+        containerRef
     }
 }
