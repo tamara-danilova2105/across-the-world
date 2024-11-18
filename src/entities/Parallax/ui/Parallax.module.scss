@@ -7,47 +7,48 @@
     width: 100%;
     height: 100vh;
     position: relative;
-
-    @include mq.desktop-m {
-        height: 80vh;
-    }
+    overflow: hidden;
 
     @include mq.tablet-l {
-        height: 60vh;
+        margin-top: 60px;
     }
-
-    @include mq.mobile-l {
-        height: 40vh;
-    }
-
-    @include mq.mobile-m {
-        height: 30vh;
-    }
-    
 
     > div {
-        @include mixin.section-style;
+        position: absolute;
+        overflow: hidden;
+        width: 100vw;
+        height: 100%;
 
-        & {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        @include mq.tablet-m {
+            width: 150vw;
         }
+
+        @include mq.mobile-l {
+            width: 300vw;
+            left: -104%;
+            scale: 0.8;
+        }
+
         
         > img {
             position: absolute;
+            object-fit: cover;
+            will-change: transform;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             transition: transform 0.1s ease;
             scroll-behavior: smooth;
-        };
+        }
 
-        &:nth-child(6) {
-            position: fixed;
-            bottom:0;
+        :nth-child(6) {
+            bottom: 0;
+
+            @include mq.mobile-l {
+                transform: none !important;
+                bottom: -5px;
+            }
         }
     } 
 }
