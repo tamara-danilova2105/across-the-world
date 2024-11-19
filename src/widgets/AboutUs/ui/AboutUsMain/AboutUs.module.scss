@@ -47,7 +47,7 @@
     .img_large {
         width: 430px;
 
-        @include mq.tablet-m {
+        @include mq.tablet-l {
             width: 300px;
             height: 375px;
         }
@@ -68,7 +68,7 @@
 }
 
 .desc_text {
-    text-indent: 20px;
+    text-indent: var(--text-indent);
 
     @include mq.mobile-xl {
         text-align: justify;

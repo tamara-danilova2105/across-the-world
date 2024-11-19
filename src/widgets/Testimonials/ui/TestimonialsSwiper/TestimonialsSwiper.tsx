@@ -32,6 +32,7 @@ export const TestimonialsSwiper = () => {
                 slidesPerView={1}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
+                loop={true}
             >
                 {dataTestimonials.map((testimonial, index) => (
                     <SwiperSlide 

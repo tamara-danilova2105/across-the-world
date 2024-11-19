@@ -24,6 +24,7 @@ export const SwiperSlider = () => {
                 slidesPerView={1}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
+                loop={true}
             >
                 {dataBlog.map(news => (
                     <SwiperSlide key={news._id} style={{ padding: '16px'}}>

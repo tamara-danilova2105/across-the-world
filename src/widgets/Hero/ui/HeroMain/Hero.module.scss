@@ -22,7 +22,7 @@
         }
     }
 
-    @include mq.tablet-m {
+    @include mq.tablet-l {
         display: none;
     }
 }
@@ -36,7 +36,7 @@
         padding-bottom: 70px;
     }
     
-    @include mq.tablet-m {
+    @include mq.tablet-l {
         display: flex;
     }
 }

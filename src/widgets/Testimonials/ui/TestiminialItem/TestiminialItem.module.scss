@@ -28,7 +28,7 @@
 }
 
 .feedback_text {
-    text-indent: 20px;
+    text-indent: var(--text-indent);
     z-index: 1;
     text-align: justify;
 }

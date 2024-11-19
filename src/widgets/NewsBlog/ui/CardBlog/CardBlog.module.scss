@@ -112,9 +112,9 @@
                     }
                 }
 
-                @include media.mobile-m {
-                    height: 140px;
-                }
+                // @include media.mobile-m {
+                //     height: 140px;
+                // }
             }
 
             .textContainer {
@@ -130,7 +130,7 @@
                     }
                 }
                 .description {
-                    text-indent: 20px;
+                    text-indent: var(--text-indent);
                     text-align: justify;
                     height: 110px;
                     line-height: 30px;

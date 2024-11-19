@@ -55,7 +55,7 @@
 }
 
 .description_text {
-    text-indent: 20px;
+    text-indent: var(--text-indent);
 
     @include mq.mobile-xl {
         text-align: justify;

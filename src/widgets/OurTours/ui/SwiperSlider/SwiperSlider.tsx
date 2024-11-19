@@ -24,6 +24,7 @@ export const SwiperSlider = () => {
                 slidesPerView={1}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
+                loop={true}
             >
                 {dataTours.map(tour => (
                     <SwiperSlide key={tour._id} style={{ padding: '16px'}}>

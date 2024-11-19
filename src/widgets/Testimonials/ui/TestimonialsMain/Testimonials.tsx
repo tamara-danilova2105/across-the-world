@@ -9,7 +9,7 @@ import styles from './Testimonials.module.scss';
 export const Testimonials = () => {
     
     const width = useResize();
-    const isSwiperActive = width <= 820;
+    const isSwiperActive = width <= 912;
 
     return (
         <Stack
