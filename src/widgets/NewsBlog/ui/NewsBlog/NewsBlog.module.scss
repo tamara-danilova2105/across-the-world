@@ -38,6 +38,7 @@
     overflow: hidden;
     cursor: grab;
     padding: 10px;
+    touch-action: auto;
 
     @include media.desktop-m {
         width: calc(100vw - ((100vw - 1110px) / 2));
