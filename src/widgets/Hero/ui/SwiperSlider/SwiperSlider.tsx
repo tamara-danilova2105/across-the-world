@@ -5,8 +5,8 @@ import { Pagination } from '@/entities/Pagination';
 import { sliderData, SliderData } from '../../lib/data';
 import { SliderItem } from '../SliderItem/SliderItem';
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
+import { Autoplay } from 'swiper/modules';
 
 export const SwiperSlider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,6 +31,7 @@ export const SwiperSlider = () => {
                     delay: 3000,
                     disableOnInteraction: false,
                 }}
+                modules={[Autoplay]}
             >
                 {sliderData.map((slide: SliderData) => (
                     <SwiperSlide key={slide.title} style={{ padding: '16px'}}>
