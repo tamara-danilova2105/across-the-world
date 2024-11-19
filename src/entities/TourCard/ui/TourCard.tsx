@@ -12,6 +12,10 @@ interface TourCardProps {
 export const TourCard = ({ tourData }: TourCardProps) => {
     const { tour, date, price, image, discount, _id } = tourData;
 
+    const discountedPrice = discount 
+        ? price.amount - (price.amount * discount.percentage) / 100 
+        : price.amount;
+
     return (
         <div className={styles.tour_card}>
             <Stack 
@@ -32,7 +36,23 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                         {tour}
                     </Text>
                     <Text size="18">{date}</Text>
-                    <Text size="18">{price.amount.toLocaleString("ru-RU")} {price.currency}</Text>
+
+                    {discount ? (
+                        <Stack gap="16" align='center'>
+                            <Text size="18" className={styles.old_price}>
+                                {price.amount.toLocaleString("ru-RU")} {price.currency}
+                            </Text>
+
+                            <Text size="18" font='geometria500' className={styles.new_price}>
+                                {discountedPrice.toLocaleString("ru-RU")} {price.currency}
+                            </Text>
+                        </Stack>
+                    ) : (
+                        <Text size="18" color="blue">
+                            {price.amount.toLocaleString("ru-RU")} {price.currency}
+                        </Text>
+                    )}
+
                     <AppLink className={styles.link} to={getRouteToursDetails(_id)}>
                         Подробнее
                     </AppLink>
