@@ -32,7 +32,6 @@ export const useScrollSlider = (width: number): UseScrollSliderReturn => {
 
         const handleMouseMove = (e: MouseEvent) => {
             if (!isDragging.current || !container) return
-            e.preventDefault()
             const x = e.pageX - container.offsetLeft
             const walk = (x - startX.current)
             container.scrollLeft = scrollLeft.current - walk
@@ -51,7 +50,6 @@ export const useScrollSlider = (width: number): UseScrollSliderReturn => {
 
         const handleTouchMove = (e: TouchEvent) => {
             if (!isDragging.current || !container || e.touches.length === 0) return;
-            e.preventDefault();
             const x = e.touches[0].pageX - container.offsetLeft;
             const walk = x - startX.current;
             container.scrollLeft = scrollLeft.current - walk;
@@ -62,14 +60,15 @@ export const useScrollSlider = (width: number): UseScrollSliderReturn => {
         }
 
         if (container) {
-            container.addEventListener('wheel', handleWheel, { passive: false })
+            container.addEventListener('wheel', handleWheel)
             container.addEventListener('mousedown', handleMouseDown)
             container.addEventListener('mousemove', handleMouseMove)
             container.addEventListener('mouseup', handleMouseUp)
             container.addEventListener('mouseleave', handleMouseUp)
 
-            container.addEventListener('touchstart', handleTouchStart, { passive: false });
-            container.addEventListener('touchmove', handleTouchMove, { passive: false });
+            container.addEventListener('touchstart', handleTouchStart
+            );
+            container.addEventListener('touchmove', handleTouchMove);
             container.addEventListener('touchend', handleTouchEnd);
         }
 
