@@ -11,6 +11,7 @@
     > div {
         position: absolute;
         overflow: hidden;
+        background-color: var(--blue-color);
         width: 100vw;
         height: 100%;
 
@@ -22,6 +23,14 @@
             width: 300vw;
             left: -104%;
             scale: 0.8;
+        }
+
+        @include mq.mobile-s {
+            scale: 0.7;
+        }
+
+        @include mq.mobile-s {
+            scale: 0.9;
         }
 
         
@@ -37,12 +46,22 @@
             scroll-behavior: smooth;
         }
 
+        :nth-child(5) {
+            @include mq.mobile-s {
+                top: -50px;
+                scale: 0.8;
+            }
+        }
+
         :nth-child(6) {
             bottom: 0;
 
             @include mq.mobile-l {
-                transform: none !important;
                 bottom: -5px;
+            }
+
+            @include mq.mobile-s {
+                scale: 1.02;
             }
         }
     } 

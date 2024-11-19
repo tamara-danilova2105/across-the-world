@@ -5,9 +5,6 @@
     @include media.mobile-xl {
         gap: 24px;
     }
-
-    overflow-y: auto;
-    touch-action: auto;
 }
 
 .news_title {
@@ -58,15 +55,3 @@
     }
 }
 
-.swiper {
-    position: relative;
-    width: 100%;
-    padding: 10px 30px;
-    overflow: hidden;
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-
-    @include media.mobile-l {
-        padding: 10px 20px;
-    }
-}

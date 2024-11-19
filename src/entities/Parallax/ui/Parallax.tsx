@@ -20,7 +20,7 @@ export const Parallax = () => {
         const scrollY = window.scrollY;
         const scaleDecrease = Math.max(0.3, 1 - scrollY * 0.0009);
         const scaleIncrease = Math.min(2.2, 1 + scrollY * 0.0006);
-        const scaleGrassIncrease = Math.min(1.1, 1 + scrollY * 0.0005);
+        const scaleGrassIncrease = Math.min(1.1, 1 + scrollY * 0.0006);
 
         const elements = [
             { ref: cloudRef, translateY: scrollY * 1 },
