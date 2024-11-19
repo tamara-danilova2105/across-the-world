@@ -1,10 +1,10 @@
-import { CSSProperties, forwardRef, useEffect, useState } from "react";
+import { CSSProperties, forwardRef, useMemo } from "react";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { BackticsIcon } from "@/shared/assets/svg/bacticksIcon";
+import { useResize } from "@/shared/hooks/useResize";
 import { DataTestimonials } from "../../lib/data";
 import styles from './TestiminialItem.module.scss';
-import { useResize } from "@/shared/hooks/useResize";
 
 interface TestimonialItemProps {
     testimonial: DataTestimonials;
@@ -20,14 +20,12 @@ export const TestimonialItem = forwardRef<HTMLDivElement, TestimonialItemProps>(
     const { testimonial, maxHeight, showMore, onToggleShowMore } = props;
     const { tourist, tour, feedback } = testimonial;
 
-    const [maxLength, setMaxLength] = useState<number>(MAX_LENGTH_DESKTOP);
-
     const width = useResize();
     const isMobile = width <= 820;
 
-    useEffect(() => 
-        setMaxLength(isMobile ? MAX_LENGTH_MOBILE : MAX_LENGTH_DESKTOP)
-    , [isMobile]);
+    const maxLength = useMemo(() => 
+        (isMobile ? MAX_LENGTH_MOBILE : MAX_LENGTH_DESKTOP), [width]
+    );
 
     return (
         <Stack 

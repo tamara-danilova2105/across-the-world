@@ -1,22 +1,33 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperInstance } from 'swiper';
 import { Pagination } from '@/entities/Pagination';
 import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
+import { useResize } from '@/shared/hooks/useResize';
 import { dataTestimonials } from '../../lib/data';
 import { TestimonialItem } from '../TestiminialItem/TestiminialItem';
 import 'swiper/css';
 
+const MAX_HEIGHT_DEFAULT = 420;
+const MAX_HEIGHT_MOBILE_SMALL = 500;
+
 export const TestimonialsSwiper = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperInstance | null>(null);
+
+    const width = useResize();
+    const isMobileSmall = width <= 345;
+
+    const initialHeight = useMemo(() => 
+        (isMobileSmall ? MAX_HEIGHT_MOBILE_SMALL : MAX_HEIGHT_DEFAULT), [width]
+    );
 
     const { 
         itemRefs, 
         maxHeight, 
         showMoreStates, 
         toggleShowMore 
-    } = useMaxHeight(420, dataTestimonials.length);
+    } = useMaxHeight(initialHeight, dataTestimonials.length);
 
     const handlePageChange = (pageIndex: number) => {
         setCurrentIndex(pageIndex);

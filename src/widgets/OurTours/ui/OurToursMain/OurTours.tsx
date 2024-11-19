@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
 import { TourCard } from "@/entities/TourCard";
@@ -9,9 +10,22 @@ import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
 import styles from './OurTours.module.scss';
 
 export const OurTours = () => {
+    const [tours, setTours] = useState(dataTours);
     const width = useResize();
-    const { containerRef } = useScrollSlider(width)
     const isSwiperActive = width <= 590;
+    const { containerRef } = useScrollSlider(width);
+
+    const filterTours = (filter: string) => {
+        if (filter === 'все туры') {
+            return dataTours;
+        }
+        return dataTours.filter((tour) => tour.direction === filter);
+    };
+
+    const filtredTours = useCallback((filter: string) => {
+        const filtered = filterTours(filter);
+        setTours(filtered);
+    }, [tours]);
 
     return (
         <Stack 
@@ -27,11 +41,11 @@ export const OurTours = () => {
                     subtitle="НАШИ ТУРЫ" 
                     title="Путешествия c Кругосветкой"
                 />
-                <Filterbar />
+                <Filterbar filtredTours={filtredTours} />
             </Stack>
                 {isSwiperActive ? (
                     <div style={{width: '100%', padding: '0 10px'}}>
-                        <SwiperSlider />
+                        <SwiperSlider tours={tours} />
                     </div>
                     
                 ) : (
@@ -41,7 +55,7 @@ export const OurTours = () => {
                         ref={containerRef}
                         className={styles.our_tours_container}
                     >
-                        {dataTours.map((tour) => (
+                        {tours.map((tour) => (
                             <TourCard 
                                 key={tour._id} 
                                 tourData={tour} 

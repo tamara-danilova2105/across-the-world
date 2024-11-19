@@ -48,7 +48,12 @@ export const AboutUs = () => {
                                 subtitle="О НАС" 
                                 title="Кругостветка - тур мечты" 
                             />
-                            <Stack direction='column' gap="8">
+                            <Stack 
+                                direction='column' 
+                                gap="8"
+                                className={styles.subtitle}
+                            >
+                                {/* DESKTOP TEXT */}
                                 <Text 
                                     font='geometria400'
                                     color="blue" size="24"
@@ -60,6 +65,14 @@ export const AboutUs = () => {
                                     color="blue" size="24" 
                                 >
                                     Туры по России и миру 
+                                </Text>
+
+                                {/* MOBILE TEXT */}
+                                <Text 
+                                    font='unbounded'
+                                    color="blue" size="18" 
+                                >
+                                    Групповые и индивидуальные туры по России и миру
                                 </Text>
                             </Stack>
                         </Stack>
@@ -87,7 +100,6 @@ export const AboutUs = () => {
                         уникальные уголки мира, создавая незабываемые впечатления!
                     </Text>
                     </div>
-
                     
                     <Statictics />
                 </Stack>

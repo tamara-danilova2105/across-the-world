@@ -1,12 +1,18 @@
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperInstance } from 'swiper';
-import { dataTours } from '../../lib/data';
+import { Tour } from '../../lib/data';
 import { TourCard } from '@/entities/TourCard';
 import { Pagination } from '@/entities/Pagination';
 import 'swiper/css';
 
-export const SwiperSlider = () => {
+interface SwiperSliderProps {
+    tours: Tour[];
+}
+
+export const SwiperSlider = (props: SwiperSliderProps) => {
+    const { tours } = props;
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperInstance | null>(null);
 
@@ -26,7 +32,7 @@ export const SwiperSlider = () => {
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
                 loop={true}
             >
-                {dataTours.map(tour => (
+                {tours.map(tour => (
                     <SwiperSlide key={tour._id} style={{ padding: '16px'}}>
                         <TourCard tourData={tour} />
                     </SwiperSlide>
@@ -36,7 +42,7 @@ export const SwiperSlider = () => {
             <Pagination
                 onPageChange={handlePageChange}
                 forcePage={currentIndex} 
-                pageCount={dataTours.length}
+                pageCount={tours.length}
             />
         </>
     );
