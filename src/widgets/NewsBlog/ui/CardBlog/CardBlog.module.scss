@@ -111,6 +111,10 @@
                         }
                     }
                 }
+
+                @include media.mobile-s {
+                    height: 150px;
+                }
             }
 
             .textContainer {

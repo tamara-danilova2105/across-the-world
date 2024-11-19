@@ -5,7 +5,7 @@ interface UseCarouselProps {
   autoPlayInterval: number;
 }
 
-const useCarousel = ({ children, autoPlayInterval}: UseCarouselProps) => {
+export const useCarousel = ({ children, autoPlayInterval}: UseCarouselProps) => {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const intervalRef = useRef<number | null>(null);
@@ -110,5 +110,3 @@ const useCarousel = ({ children, autoPlayInterval}: UseCarouselProps) => {
 
   return { containerRef, current, slides, translateX, goToSlide, nextSlide, prevSlide };
 };
-
-export default useCarousel;

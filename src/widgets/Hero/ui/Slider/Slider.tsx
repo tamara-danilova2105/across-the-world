@@ -1,11 +1,9 @@
 import { Stack } from "@/shared/ui/Stack";
-// import { Button } from "@/shared/ui/Button";
-// import { NextIcon, PrewIcon } from "@/shared/assets/svg/heroIcons";
-import useCarousel from "@/shared/hooks/useCarousel";
+import { useCarousel } from "@/shared/hooks/useCarousel";
 import { SliderData, sliderData } from "../../lib/data";
 import { SliderItem } from "../SliderItem/SliderItem";
-import styles from './Slider.module.scss';
 import { Pagination } from "@/entities/Pagination";
+import styles from './Slider.module.scss';
 
 const AUTO_PLAY_INTERVAL = 3000;
 
@@ -24,8 +22,6 @@ export const Slider = () => {
         goToSlide,
         slides: carouselSlides, 
         translateX, 
-        // nextSlide, 
-        // prevSlide 
     } = useCarousel({ children: slides, autoPlayInterval: AUTO_PLAY_INTERVAL});
 
 
@@ -47,20 +43,6 @@ export const Slider = () => {
                     {carouselSlides}
                 </Stack>
             </div>
-            {/* <Stack
-                justify="center"
-                gap="16" max
-                role="nav"
-                aria-label="Навигация по слайдеру"
-                className={styles.btn_container}
-            >
-                <Button circle onClick={prevSlide} aria-label="Предыдущий слайд">
-                    <PrewIcon />
-                </Button>
-                <Button circle color="secondary" onClick={nextSlide} aria-label="Следующий слайд">
-                    <NextIcon />
-                </Button>
-            </Stack> */}
 
             <Pagination
                 onPageChange={goToSlide}

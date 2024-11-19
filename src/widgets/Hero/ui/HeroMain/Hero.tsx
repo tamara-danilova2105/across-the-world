@@ -1,10 +1,11 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Description } from "../Description/Description";
 import { Slider } from "../Slider/Slider";
-import styles from './Hero.module.scss';
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { ButtonGroup } from "../ButtonGroup/ButtonGroup";
 import { Rating } from "../Rating/Rating";
+import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
+import styles from './Hero.module.scss';
 
 export const Hero = () => {
     return (
@@ -34,7 +35,9 @@ export const Hero = () => {
                 gap="32"
             >
                 <Description />
-                <Slider />
+                <div style={{width: '100%'}}>
+                    <SwiperSlider />
+                </div>
                 <ButtonGroup />
                 <Rating />
             </Stack>

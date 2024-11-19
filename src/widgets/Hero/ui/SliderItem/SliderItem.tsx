@@ -1,14 +1,11 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { SliderData } from "../../lib/data";
-// import { NavigateIcon } from "@/shared/assets/svg/heroIcons";
-// import { AppLink } from "@/shared/ui/AppLink";
-// import { getRouteTours } from "@/app/router/lib/helper";
 import styles from './SliderItem.module.scss';
 
 interface SliderItemProps {
     slide: SliderData;
-}
+};
 
 export const SliderItem = ({ slide }: SliderItemProps) => {
     const { image, title, description } = slide;
@@ -34,15 +31,6 @@ export const SliderItem = ({ slide }: SliderItemProps) => {
                         {description}
                     </Text>
                 </Stack>
-
-                {/* TODO -надо ли? */}
-                {/* <AppLink 
-                    variant='button' 
-                    circle 
-                    to={getRouteTours()}
-                >
-                    <NavigateIcon />
-                </AppLink> */}
             </Stack>
         </Stack>
     );

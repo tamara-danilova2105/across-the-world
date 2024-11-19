@@ -2,10 +2,10 @@ import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperInstance } from 'swiper';
 import { Pagination } from '@/entities/Pagination';
+import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
 import { dataTestimonials } from '../../lib/data';
 import { TestimonialItem } from '../TestiminialItem/TestiminialItem';
 import 'swiper/css';
-import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
 
 export const TestimonialsSwiper = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
