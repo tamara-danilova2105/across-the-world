@@ -48,7 +48,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                             </Text>
                         </Stack>
                     ) : (
-                        <Text size="18" color="blue">
+                        <Text size="18" color="blue" font='geometria500'>
                             {price.amount.toLocaleString("ru-RU")} {price.currency}
                         </Text>
                     )}
