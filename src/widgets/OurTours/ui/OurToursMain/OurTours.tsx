@@ -2,11 +2,11 @@ import { useCallback, useState } from "react";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
 import { TourCard } from "@/entities/TourCard";
+import { CustomeSwiper } from "@/entities/CustomeSwiper";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";
-import { dataTours } from "../../lib/data";
-import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
+import { dataTours, Tour } from "../../lib/data";
 import styles from './OurTours.module.scss';
 
 export const OurTours = () => {
@@ -45,7 +45,10 @@ export const OurTours = () => {
             </Stack>
                 {isSwiperActive ? (
                     <div style={{width: '100%', padding: '0 10px'}}>
-                        <SwiperSlider tours={tours} />
+                        <CustomeSwiper<Tour> 
+                            items={tours}
+                            renderItem={(tour) => <TourCard tourData={tour} />}
+                        />
                     </div>
                     
                 ) : (

@@ -1,11 +1,11 @@
-export interface DataTestimonials {
+export interface DataTestimonial {
     _id: string;
     tourist: string;
     tour: string;
     feedback: string;
 }
 
-export const dataTestimonials: DataTestimonials[] = [
+export const dataTestimonials: DataTestimonial[] = [
     {
         _id: "1",
         tourist: "Алина, Москва",

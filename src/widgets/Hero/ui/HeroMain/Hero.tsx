@@ -1,10 +1,12 @@
+import { CustomeSwiper } from "@/entities/CustomeSwiper";
 import { Stack } from "@/shared/ui/Stack";
+import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { Description } from "../Description/Description";
 import { Slider } from "../Slider/Slider";
-import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { ButtonGroup } from "../ButtonGroup/ButtonGroup";
 import { Rating } from "../Rating/Rating";
-import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
+import { sliderData } from "../../lib/data";
+import { SliderItem } from "../SliderItem/SliderItem";
 import styles from './Hero.module.scss';
 
 export const Hero = () => {
@@ -35,8 +37,15 @@ export const Hero = () => {
                 gap="32"
             >
                 <Description />
-                <div style={{width: '100%'}}>
-                    <SwiperSlider />
+                <div style={{ width: '100%' }}>
+                    <CustomeSwiper
+                        items={sliderData}
+                        renderItem={(item) => <SliderItem slide={item} />}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        }}
+                    />
                 </div>
                 <ButtonGroup />
                 <Rating />

@@ -1,13 +1,13 @@
+import { getRouteToursDetails } from "@/app/router/lib/helper";
+import { Tour } from "@/widgets/OurTours/lib/data";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { Tour } from "@/widgets/OurTours/lib/data";
-import styles from './TourCard.module.scss';
 import { AppLink } from "@/shared/ui/AppLink";
-import { getRouteToursDetails } from "@/app/router/lib/helper";
+import styles from './TourCard.module.scss';
 
 interface TourCardProps {
     tourData: Tour;
-}
+};
 
 export const TourCard = ({ tourData }: TourCardProps) => {
     const { tour, date, price, image, discount, _id } = tourData;

@@ -22,27 +22,32 @@ export const heroData: HeroData = {
 };
 
 export interface SliderData {
+    _id: string;
     image: string;
     title: string;
     description: string;
 }
 export const sliderData: SliderData[] = [
     {
+        _id: '1',
         image: russia,
         title: "Дальний Восток",
         description: "Камчатка, Сахалин, Курильские острова"
     },
     {
+        _id: '2',
         image: сaucasus,
         title: "Кавказ",
         description: "Дагестан, Северная Осетия, Чечня"
     },
     {
+        _id: '3',
         image: asia,
         title: "Азия",
         description: "Япония сочетание прошлого с будущим"
     },
     {
+        _id: '4',
         image: southAmerica,
         title: "Южная Америка",
         description: "Удивит даже искушенного путешественника"
