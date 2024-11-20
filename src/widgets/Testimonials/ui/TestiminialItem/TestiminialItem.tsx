@@ -3,11 +3,11 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { BackticsIcon } from "@/shared/assets/svg/bacticksIcon";
 import { useResize } from "@/shared/hooks/useResize";
-import { DataTestimonials } from "../../lib/data";
+import { DataTestimonial } from "../../lib/data";
 import styles from './TestiminialItem.module.scss';
 
 interface TestimonialItemProps {
-    testimonial: DataTestimonials;
+    testimonial: DataTestimonial;
     maxHeight: CSSProperties;
     showMore: boolean;
     onToggleShowMore: () => void;
