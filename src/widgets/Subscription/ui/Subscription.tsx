@@ -1,14 +1,14 @@
-import { Stack } from "@/shared/ui/Stack";
 import { FormProvider, useForm } from "react-hook-form";
-import styles from './Subscription.module.scss'
+import { RunningLine } from "@/entities/RunningLine";
+import { TitleSection } from "@/entities/TitleSection";
 import { Text } from "@/shared/ui/Text";
 import { Input } from "@/shared/ui/Input";
 import { Button } from "@/shared/ui/Button";
+import { Stack } from "@/shared/ui/Stack";
 import { data, emailRegex } from '@/shared/lib/validateInput';
 import { EnvelopeIcon } from "@/shared/assets/svg/envelopeIcon";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
-import { RunningLine } from "@/entities/RunningLine";
-import { TitleSection } from "@/entities/TitleSection";
+import styles from './Subscription.module.scss'
 
 interface FormInputs {
     email: string;

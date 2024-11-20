@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
+      {/* TODO - Parallax только на странице main */}
       <Parallax />
       <AppRouter />
     </>

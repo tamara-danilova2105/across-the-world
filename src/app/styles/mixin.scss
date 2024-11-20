@@ -51,3 +51,18 @@
         }
     }
 }
+
+@mixin cta-style {
+    background: linear-gradient(90deg, var(--blue-color) 25%, var(--blue-color-light) 50%, var(--blue-color) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

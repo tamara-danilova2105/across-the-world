@@ -9,6 +9,7 @@ interface AppLinkProps extends LinkProps  {
     children: ReactNode;
     variant?: 'link' | 'button'
     circle?: boolean;
+    cta?: boolean; 
 }
 
 export const AppLink = (props: AppLinkProps) => {
@@ -17,11 +18,13 @@ export const AppLink = (props: AppLinkProps) => {
         children, 
         variant = 'link',
         circle,
+        cta,
         ...otherProps
     } = props;
 
     const mode = {
         [styles.circle]: circle,
+        [styles.cta]: cta
     };
 
     const additional = [

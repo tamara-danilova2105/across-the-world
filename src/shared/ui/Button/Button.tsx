@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
     color?: 'primary' | 'secondary' | 'outline';
     circle?: boolean;
+    cta?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -15,11 +16,13 @@ export const Button = (props: ButtonProps) => {
         children,
         color = 'primary',
         circle,
+        cta,
         ...otherProps
     } = props;
 
     const mode = {
         [styles.circle]: circle,
+        [styles.cta]: cta,
     };
 
     const additional = [

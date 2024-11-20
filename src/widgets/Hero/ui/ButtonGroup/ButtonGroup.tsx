@@ -14,7 +14,11 @@ export const ButtonGroup = () => {
             align='end'
             className={styles.button_container}
         >
-            <AppLink variant="button" to={getRouteTours()}>
+            <AppLink 
+                to={getRouteTours()}
+                variant="button" 
+                cta
+            >
                 {buttonText}
             </AppLink>
             <AppLink to={getRouteTours()}>
