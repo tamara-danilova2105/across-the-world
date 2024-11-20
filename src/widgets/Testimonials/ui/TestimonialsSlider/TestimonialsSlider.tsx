@@ -3,7 +3,7 @@ import { Stack } from "@/shared/ui/Stack";
 import { ArrowIcon } from "@/shared/assets/svg/arrowIcons";
 import { useSlider } from "@/shared/hooks/useSlider";
 import { useMaxHeight } from "@/shared/hooks/useMaxHeight";
-import { dataTestimonials, DataTestimonials } from "../../lib/data";
+import { dataTestimonials, DataTestimonial } from "../../lib/data";
 import { TestimonialItem } from "../TestiminialItem/TestiminialItem";
 import styles from './TestimonialsSlider.module.scss';
 
@@ -56,7 +56,7 @@ export const TestimonialsSlider = () => {
                         style={sliderStyles}
                         className={styles.slider_container}
                     >
-                        {dataTestimonials.map((testimonial: DataTestimonials, index) => (
+                        {dataTestimonials.map((testimonial: DataTestimonial, index) => (
                             <TestimonialItem 
                                 key={testimonial._id}
                                 testimonial={testimonial}
