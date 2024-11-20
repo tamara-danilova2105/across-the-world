@@ -19,7 +19,7 @@
 }
 
 .header {
-    font-size: 42px; //TODO
+    font-size: var(--font-size-42); 
     color: var(--pink-color);
     text-shadow: var(--text-shadow);
 
@@ -34,7 +34,7 @@
     }
 
     @include mq.mobile-xl {
-        font-size: 42px; //TODO
+        font-size: var(--font-size-42);
 
         br {
             display: block;

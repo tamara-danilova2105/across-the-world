@@ -1,14 +1,12 @@
-import { getRouteTours } from "@/app/router/lib/helper"
-import { RunningLine } from "@/entities/RunningLine/index"
-import { Timer } from "@/entities/Timer/index"
-import { AppLink } from "@/shared/ui/AppLink/AppLink"
-import { Stack } from "@/shared/ui/Stack/Stack"
-import { Text } from "@/shared/ui/Text/Text"
-import { bookData } from "../../lib/data"
-import { Images } from "../Images/Images"
-import styles from './EarlyBook.module.scss'
-
-//TODO - alt
+import { getRouteTours } from "@/app/router/lib/helper";
+import { RunningLine } from "@/entities/RunningLine/index";
+import { Timer } from "@/entities/Timer/index";
+import { AppLink } from "@/shared/ui/AppLink/AppLink";
+import { Stack } from "@/shared/ui/Stack/Stack";
+import { Text } from "@/shared/ui/Text/Text";
+import { bookData } from "../../lib/data";
+import { Images } from "../Images/Images";
+import styles from './EarlyBook.module.scss';
 
 const END_TIME = '2024-12-01T20:59:59.000Z' //TODO
 
