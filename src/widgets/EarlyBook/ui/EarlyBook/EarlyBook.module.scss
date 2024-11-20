@@ -78,6 +78,8 @@
             }
 
             .appLink {
+                width: 65%;
+
                 @include mq.mobile-xl {
                     width: 100%;
                 }

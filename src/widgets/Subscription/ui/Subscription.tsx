@@ -73,7 +73,7 @@ export const Subscription = () => {
                                 placeholder="Введите свою почту"
                                 error={errors.email}
                             />
-                            <Button type="submit">
+                            <Button cta type="submit">
                                 Подписаться
                             </Button>
                         </form>

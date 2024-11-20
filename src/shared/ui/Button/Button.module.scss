@@ -1,23 +1,24 @@
 @use '@/app/styles/mixin.scss' as mixin;
 
 .button {
-    padding: 12px 30px;
+    padding: 14px 30px;
     width: 100%;
     font-family: var(--font-family-geometria500);
     font-size: var(--font-size-18);
+    border: none;
 }
 
 .primary {
     background-color: var(--blue-color);
     transition: background-color 0.5s ease-in-out;
     color: var(--white-color);
-    border: 2px solid var(--blue-color);
 }
 
 .outline {
     background-color: transparent;
     color: var(--blue-color);
     border: 2px solid var(--blue-color);
+    padding: 12px 30px;
 }
 
 .secondary {

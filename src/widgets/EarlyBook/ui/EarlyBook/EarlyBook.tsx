@@ -1,9 +1,8 @@
-import { getRouteTours } from "@/app/router/lib/helper";
 import { RunningLine } from "@/entities/RunningLine/index";
 import { Timer } from "@/entities/Timer/index";
-import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
+import { Button } from "@/shared/ui/Button";
 import { bookData } from "../../lib/data";
 import { Images } from "../Images/Images";
 import styles from './EarlyBook.module.scss';
@@ -67,9 +66,9 @@ export const EarlyBook = () => {
                             endTime={END_TIME}
                         />
                         <div className={styles.appLink}>
-                            <AppLink variant="button" to={getRouteTours()}>
+                            <Button cta>
                                 Забронировать тур
-                            </AppLink>
+                            </Button>
                         </div>
                     </Stack>
                 </Stack>

@@ -3,6 +3,7 @@ import { Stack } from "@/shared/ui/Stack";
 import { AppLink } from "@/shared/ui/AppLink";
 import { heroData } from "../../lib/data";
 import styles from './ButtonGroup.module.scss';
+import { Button } from "@/shared/ui/Button";
 
 export const ButtonGroup = () => {
     const { buttonText, linkText } = heroData;
@@ -14,13 +15,9 @@ export const ButtonGroup = () => {
             align='end'
             className={styles.button_container}
         >
-            <AppLink 
-                to={getRouteTours()}
-                variant="button" 
-                cta
-            >
+            <Button cta>
                 {buttonText}
-            </AppLink>
+            </Button>
             <AppLink to={getRouteTours()}>
                 {linkText}
             </AppLink>
