@@ -46,6 +46,7 @@ export const CustomeSwiper = <T extends { _id: string }>(props: CustomeSwiperPro
                 loop={loop}
                 autoplay={autoplay}
                 modules={autoplay ? [Autoplay] : []}
+                speed={autoplay ? 1000 : 200}
             >
                 {items.map((item: T, index: number) => (
                     <SwiperSlide key={item._id} style={{ padding: '16px' }}>
