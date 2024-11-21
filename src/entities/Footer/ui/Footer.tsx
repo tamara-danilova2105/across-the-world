@@ -4,6 +4,8 @@ import { ContactUs } from '@/entities/ContactUs';
 import { ObfuscatedEmail } from './ObfuscatedEmail/ObfuscatedEmail';
 import { ObfuscatedPhone } from './ObfuscatedPhone/ObfuscatedPhone';
 import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
+import { getRoutePrivacyPolicy } from '@/app/router/lib/helper';
 
 export const Footer = () => {
     return (
@@ -37,10 +39,16 @@ export const Footer = () => {
                     <ObfuscatedEmail />
                     <ObfuscatedPhone />
                     <ContactUs />
-                    {/* TODO - ссылку добавить */}
-                    <Text color='white' size='18'>
-                        Сайт разработан в AL TECH LABS LTD.
-                    </Text>
+                    <Link 
+                        to={getRoutePrivacyPolicy()}
+                        style={{ 
+                            textDecoration: "underline",
+                            textDecorationThickness: "1px",
+                            textUnderlineOffset: "5px",
+                        }}
+                    >
+                        Политика конфидициальности
+                    </Link>
                 </Stack>
             </Stack>
             <Stack 

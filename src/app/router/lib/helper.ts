@@ -6,3 +6,4 @@ export const getRouteTours = () => '/tours';
 export const getRouteToursDetails = (id: string) => `/tours/${id}`;
 export const getRouteTestimonials = () => '/testimonials';
 export const getRouteAdmin = () => '/admin';
+export const getRoutePrivacyPolicy = () => '/privacy-policy'

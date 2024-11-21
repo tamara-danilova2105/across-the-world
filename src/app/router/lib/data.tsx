@@ -6,12 +6,14 @@ import {
     getRouteBlog, 
     getRouteBlogDetails,
     getRouteMain, 
+    getRoutePrivacyPolicy, 
     getRouteTestimonials, 
     getRouteTours, 
     getRouteToursDetails,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
+import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -50,4 +52,8 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         path: '*',
         page: <NotFoundPage />
     },
+    [AppRouters.privacy_policy]: {
+        path: getRoutePrivacyPolicy(),
+        page: <PrivacyPolicyPage />
+    }
 };

@@ -1,0 +1,1 @@
+export { LazyPrivacyPolicyPage as PrivacyPolicyPage } from './PrivacyPolicyPage.lazy';
