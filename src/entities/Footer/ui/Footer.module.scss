@@ -3,15 +3,30 @@
 
 .footer {
     background-color: var(--blue-color);
-    padding: 30px 0
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
 .footer_container {
     @include mixin.section-style;
 
+    a {
+        text-decoration: none;
+        color: var(--white-color);
+        font-family: var(--font-family-geometria400);
+        font-size: var(--font-size-18);
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
     @include mq.tablet-m {
         flex-direction: column;
-        gap: 32px;
+        gap: 48px;
 
         > div:nth-of-type(2) {
             align-items: flex-start;
@@ -19,25 +34,27 @@
     }
 }
 
-.text {
-    text-align: end;
-
-    @include mq.tablet-l {
-        display: none;
-    }
-}
-
-.text_dop {
-    @include mq.tablet-m {
-        display: none;
-    }
-}
-
 .additional {
-    display: none;
-    font-size: 12px; //TODO
+    @include mixin.section-style;
 
     @include mq.tablet-m {
-        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        br {
+            display: none;
+        }
+    }
+
+    :last-child {
+        text-align: right;
+
+        @include mq.tablet-m {
+            text-align: left;
+        }
+    }
+
+    p {
+        font-size: 12px;
     }
 }

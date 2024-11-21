@@ -22,6 +22,6 @@ export const dataContacts: DataContacts[] = [
     },
     {
         icon: <VkIcon />,
-        href: '',
+        href: 'https://vk.com/acrosstheworld_ru',
     }
 ];

@@ -1,6 +1,8 @@
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { ContactUs } from '@/entities/ContactUs';
+import { ObfuscatedEmail } from './ObfuscatedEmail/ObfuscatedEmail';
+import { ObfuscatedPhone } from './ObfuscatedPhone/ObfuscatedPhone';
 import styles from './Footer.module.scss';
 
 export const Footer = () => {
@@ -11,44 +13,47 @@ export const Footer = () => {
                 justify='between'
             >
                 <Stack direction='column' gap='16' align='start'>
-                    <Text color='white' size='32' font='unbounded'>
-                        КОНТАКТЫ
+                    <Text color='white' size='24' font='unbounded'>
+                        О КОМПАНИИ
                     </Text>
                     <Text color='white' size='18'>
-                        acrosstheworld@gmail.com
+                        ИП Скидан Олеся Михайловна
                     </Text>
                     <Text color='white' size='18'>
-                        8-918-777-79-79
+                        ИНН: 262607484014
                     </Text>
-                    <Text color='white' className={styles.text_dop}>
-                        Сайт не является публичной офертой, <br /> определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
+                    <Text color='white' size='18'>
+                        ОГРНИП: 323265100085894
+                    </Text>
+                    <Text color='white' size='18'>
+                        ©2024 Кругосветка. Все права защищены
                     </Text>
                 </Stack>
 
                 <Stack direction='column' gap='16' align='end'>
-                    <ContactUs />
-                    <Text color='white' size='18'>
-                        ©2024 Кругосветка. Все права защищены
+                    <Text color='white' size='24' font='unbounded'>
+                        КОНТАКТЫ
                     </Text>
+                    <ObfuscatedEmail />
+                    <ObfuscatedPhone />
+                    <ContactUs />
+                    {/* TODO - ссылку добавить */}
                     <Text color='white' size='18'>
                         Сайт разработан в AL TECH LABS LTD.
                     </Text>
-
-                    <Text color='white' className={styles.text}>
-                        Meta Platforms Inc. (Instagram) - признана экстремистской, <br /> ее деятельность запрещена на территории России.
-                    </Text>
                 </Stack>
+            </Stack>
+            <Stack 
+                justify='between'
+                className={styles.additional}
+            >
+                <Text color='white'>
+                    Сайт не является публичной офертой, <br /> определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
+                </Text>
 
-                {/* TODO - не дублировать */}
-                <Stack direction='column' gap='8' className={styles.additional}>
-                    <Text color='white'>
-                        Сайт не является публичной офертой, определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
-                    </Text>
-
-                    <Text color='white'>
-                        Meta Platforms Inc. (Instagram) - признана экстремистской, ее деятельность запрещена на территории России.
-                    </Text>
-                </Stack>
+                <Text color='white'>
+                    Meta Platforms Inc. признана экстремистской, <br /> ее деятельность запрещена на территории РФ.
+                </Text>
             </Stack>
         </footer>
     );
