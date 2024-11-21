@@ -7,7 +7,7 @@ import { ArrowLink } from "@/shared/assets/svg/arrowLink";
 interface AppLinkProps extends LinkProps  {
     className?: string;
     children: ReactNode;
-    variant?: 'link' | 'button'
+    variant?: 'link' | 'button';
     circle?: boolean;
     cta?: boolean; 
 }

@@ -40,3 +40,8 @@ button {
 img {
     -webkit-user-drag: none; 
 }
+
+.visually-hidden {
+    position: fixed;
+    transform: scale(0);
+}

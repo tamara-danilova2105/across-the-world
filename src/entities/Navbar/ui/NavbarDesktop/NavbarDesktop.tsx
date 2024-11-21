@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { routeConfig } from "@/app/router/lib/data";
+import { ContactUs } from "@/entities/ContactUs";
 import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { LogoFont } from "@/shared/assets/svg/logoFont";
 import { LogoIcon } from "@/shared/assets/svg/logoIcon";
 import styles from './NavbarDesktop.module.scss';
-import { InstagramIcon, TelegrmaIcon } from "@/shared/assets/svg/sotialMediaIcons";
-import { PhoneIcon } from "@/shared/assets/svg/contactIcons";
 
 export const NavbarDesktop = () => {
 
@@ -48,11 +47,7 @@ export const NavbarDesktop = () => {
                     ))}
                 </Stack>
 
-                <Stack gap="32">
-                    <TelegrmaIcon />
-                    <InstagramIcon />
-                    <PhoneIcon />
-                </Stack>
+                <ContactUs />
             </Stack>
         </Stack>
     );

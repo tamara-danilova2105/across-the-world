@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { routeConfig } from '@/app/router/lib/data';
+import { ContactUs } from '@/entities/ContactUs';
 import { Stack } from '@/shared/ui/Stack';
 import { LogoIcon } from '@/shared/assets/svg/logoIcon';
 import { LogoFont } from '@/shared/assets/svg/logoFont';
 import { useOverflowHidden } from '@/shared/hooks/useOverflowHidden';
 import { getStyles } from '@/shared/lib/getStyles';
-import { InstagramIcon, TelegrmaIcon } from '@/shared/assets/svg/sotialMediaIcons';
-import { PhoneIcon } from '@/shared/assets/svg/contactIcons';
-import styles from './NavbarMobile.module.scss';
 import { DecorationIcon } from '@/shared/assets/svg/heroIcons';
+import styles from './NavbarMobile.module.scss';
+
 
 export const NavbarMobile = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -77,11 +77,7 @@ export const NavbarMobile = () => {
                     gap='32' max
                     align='center'
                 >
-                    <Stack gap="32">
-                        <TelegrmaIcon />
-                        <InstagramIcon />
-                        <PhoneIcon />
-                    </Stack>
+                    <ContactUs />
                     {renderLogo()}
                 </Stack>
                 <DecorationIcon />

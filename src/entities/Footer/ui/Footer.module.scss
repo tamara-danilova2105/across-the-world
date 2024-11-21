@@ -1,0 +1,43 @@
+@use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries.scss' as mq;
+
+.footer {
+    background-color: var(--blue-color);
+    padding: 30px 0
+}
+
+.footer_container {
+    @include mixin.section-style;
+
+    @include mq.tablet-m {
+        flex-direction: column;
+        gap: 32px;
+
+        > div:nth-of-type(2) {
+            align-items: flex-start;
+        }
+    }
+}
+
+.text {
+    text-align: end;
+
+    @include mq.tablet-l {
+        display: none;
+    }
+}
+
+.text_dop {
+    @include mq.tablet-m {
+        display: none;
+    }
+}
+
+.additional {
+    display: none;
+    font-size: 12px; //TODO
+
+    @include mq.tablet-m {
+        display: flex;
+    }
+}
