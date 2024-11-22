@@ -14,8 +14,11 @@ export const Footer = () => {
                 className={styles.footer_container} 
                 justify='between'
             >
-                <Stack direction='column' gap='16' align='start'>
-                    <Text color='white' size='24' font='unbounded'>
+                <Stack 
+                    direction='column' 
+                    gap='16' align='start'
+                >
+                    <Text type='h3' color='white' size='24' font='unbounded'>
                         О КОМПАНИИ
                     </Text>
                     <Text color='white' size='18'>
@@ -32,8 +35,11 @@ export const Footer = () => {
                     </Text>
                 </Stack>
 
-                <Stack direction='column' gap='16' align='end'>
-                    <Text color='white' size='24' font='unbounded'>
+                <Stack 
+                    direction='column' 
+                    gap='16' align='end'
+                >
+                    <Text type='h3' color='white' size='24' font='unbounded'>
                         КОНТАКТЫ
                     </Text>
                     <ObfuscatedEmail />

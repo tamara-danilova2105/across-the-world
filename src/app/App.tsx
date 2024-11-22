@@ -4,18 +4,14 @@ import { Parallax } from "@/entities/Parallax";
 import { Footer } from "@/entities/Footer";
 import { useLocation } from "react-router";
 
-
 function App() {
-
-  const location = useLocation()
+  const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   return (
     <>
       <Navbar />
-      {isHomePage && 
-        <Parallax />
-      }
+      {isHomePage && <Parallax />}
       <AppRouter />
       <Footer />
     </>

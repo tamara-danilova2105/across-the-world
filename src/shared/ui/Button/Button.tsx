@@ -36,6 +36,7 @@ export const Button = (props: ButtonProps) => {
             {...otherProps}
         >
             {children}
+            {!cta && <div className={styles.underLine} />}
         </button>
     );
 };

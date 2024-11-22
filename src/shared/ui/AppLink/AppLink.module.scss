@@ -38,6 +38,15 @@
     gap: 32px;
     justify-content: space-between;
     align-items: center;
+
+    svg {
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(0);
+    }
+
+    &:hover svg {
+        transform: translateX(2px);
+    }
 }
 
 .circle {

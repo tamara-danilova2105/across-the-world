@@ -1,5 +1,28 @@
 @use '@/app/styles/mixin.scss' as mixin;
 
+@mixin buttonUnderline($line-color) {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.5s ease-in-out;
+
+    .underLine {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        align-self: flex-end;
+        transform: translateX(-100%);
+        background-color: $line-color;
+        transition: all 0.3s ease-out;
+    }
+
+    &:hover .underLine {
+        transform: translateX(0);
+    }
+}
+
+
 .button {
     padding: 14px 30px;
     width: 100%;
@@ -9,16 +32,24 @@
 }
 
 .primary {
-    background-color: var(--blue-color);
-    transition: background-color 0.5s ease-in-out;
-    color: var(--white-color);
+    @include buttonUnderline(var(--pink-color));
+
+    & {
+        background-color: var(--blue-color);
+        transition: background-color 0.5s ease-in-out;
+        color: var(--white-color);
+    }
 }
 
 .outline {
-    background-color: transparent;
-    color: var(--blue-color);
-    border: 2px solid var(--blue-color);
-    padding: 12px 30px;
+    @include buttonUnderline(var(--blue-color));
+
+    & {
+        background-color: transparent;
+        color: var(--blue-color);
+        border: 2px solid var(--blue-color);
+        padding: 12px 30px;
+    }
 }
 
 .secondary {
@@ -36,34 +67,5 @@
 }
 
 .cta {
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
-
     @include mixin.cta-style;
-
-    &:before {
-        content: url('../../assets/png/arrow.png');
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        background-color: var(--blue-opacity20);
-        top: 0;
-        left: 0;
-        padding: 5px 30px;
-        width: 100%;
-        height: 100%;
-        transform: translateX(-100%);
-        transition: transform 0.5s ease-in-out;
-        z-index: 1;
-    }
-
-    &:hover {
-        text-align: start;
-
-        &:before {
-            transform: translateX(-50px);
-        }
-    }
 }

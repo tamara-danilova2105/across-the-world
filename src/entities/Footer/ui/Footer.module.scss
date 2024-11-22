@@ -12,6 +12,12 @@
 .footer_container {
     @include mixin.section-style;
 
+    h3 {
+        @include mq.tablet-m {
+            font-size: var(--font-size-18);
+        }
+    }
+
     a {
         text-decoration: none;
         color: var(--white-color);

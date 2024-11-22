@@ -52,7 +52,7 @@
                 justify-content: flex-start;
                 height: 130px;
                 width: 100%;
-                gap: 8px;
+                gap: 0;
             }
     
 
@@ -98,11 +98,15 @@
 
             button {
                 font-weight: 600;
-                width: 300px;
-                padding: 22px 20px;
+                width: 350px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 @include mq.mobile-xl {
-                    padding: 12px 44px;
+                    height: 50px;
+                    width: 100%;
                 }
             }
         }
