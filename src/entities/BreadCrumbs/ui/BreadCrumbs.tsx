@@ -4,7 +4,9 @@ import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss'
 
-interface Breadcrumb extends AppRoutesProps {
+interface Breadcrumb  {
+    title: string;
+    link: string;
     isLast?: boolean;
 }
 
