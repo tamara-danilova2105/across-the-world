@@ -1,11 +1,11 @@
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Link, useLocation } from 'react-router-dom';
+import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss'
-import { AppRoutesProps } from "@/app/router/types/types";
 
 interface BreadcrumbsProps {
-    routes: AppRoutesProps;
+    routes: AppRoutesProps[];
     separator?: string; 
     isTour?: boolean; 
     name?: string; 
