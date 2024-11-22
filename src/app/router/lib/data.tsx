@@ -14,12 +14,17 @@ import {
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
+import { PageWithParallax } from "../ui/PageWithParallax";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
         path: getRouteMain(),
         title: 'Главная',
-        page: <MainPage />
+        page: 
+        <PageWithParallax>
+            <MainPage />
+        </PageWithParallax>
+        
     },
     [AppRouters.tours]: {
         path: getRouteTours(),
