@@ -4,7 +4,7 @@ import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss'
 
 interface Route {
-    title: string;
+    title: string | undefined;
     path: string;
 }
 
@@ -34,11 +34,13 @@ export const BreadCrumbs = ({
         const route = routes.find((r) => r.path === link);
         const isLast = index === arr.length - 1;
 
-        acc.push({
-            title: route ? route.title : segment,
-            link: link,
-            isLast: isLast,
-        });
+        if (route) {
+            acc.push({
+                title: route.title ? route.title : '',
+                link: link,
+                isLast: isLast,
+            });
+        }
 
         return acc;
     }, [{ title: 'Главная', link: '/' }]);
