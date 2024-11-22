@@ -32,6 +32,7 @@ export const Filterbar = (props: FilterbarProps) => {
                     onClick={() => handleClick(filter)}
                 >
                     {filter}
+                    <div className={styles.underLine}></div>
                 </Button>
             ))}
         </Stack>

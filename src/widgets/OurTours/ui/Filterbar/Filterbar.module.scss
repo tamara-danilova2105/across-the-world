@@ -15,6 +15,27 @@
         flex-wrap: wrap;
     }
 
+    button {
+        position: relative;
+        overflow: hidden;
+
+        &:hover .underLine {
+            transform: translateX(0);
+        }
+
+        .underLine {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100%;
+            align-self: flex-end;
+            transform: translateX(-100%);
+            background-color: var(--blue-color);
+            transition: all .3s ease-Out;
+        }
+    }
+
     > button:nth-child(1) {
         width: 100%;
     }

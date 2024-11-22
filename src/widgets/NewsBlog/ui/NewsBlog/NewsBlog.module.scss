@@ -30,6 +30,16 @@
             width: 100%;
         }
     }
+
+    .appLink {
+        svg {
+            transition: transform 0.3s ease-in;
+        }
+    
+        &:hover svg {
+            animation: bounce 0.6s infinite alternate ease-in-out;
+        }
+    }
 }
 
 .news {
@@ -55,3 +65,11 @@
     }
 }
 
+@keyframes bounce {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
