@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router';
 import { Stack } from "@/shared/ui/Stack";
 import cloud from '@/shared/assets/png/cloud.png';
 import sky from '@/shared/assets/png/sky.png';
@@ -9,6 +10,9 @@ import grass from '@/shared/assets/png/grass.png';
 import styles from './Parallax.module.scss';
 
 export const Parallax = () => {
+    const { pathname } = useLocation();
+    if (pathname !== "/") return null;
+
     const cloudRef = useRef<HTMLImageElement | null>(null);
     const skyRef = useRef<HTMLImageElement | null>(null);
     const aroundWorldRef = useRef<HTMLImageElement | null>(null);
