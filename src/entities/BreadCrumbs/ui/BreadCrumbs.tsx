@@ -4,6 +4,10 @@ import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss'
 
+interface Breadcrumb extends AppRoutesProps {
+    isLast?: boolean;
+}
+
 interface BreadcrumbsProps {
     routes: AppRoutesProps[];
     separator?: string; 
@@ -17,17 +21,14 @@ export const BreadCrumbs = ({
     isTour = false,
     name } : BreadcrumbsProps) => {
 
-        console.log(routes)
-
     const location = useLocation();
 
-    const breadcrumbs = location.pathname
+    const breadcrumbs : Breadcrumb[] = location.pathname
     .split('/')
-    .reduce((acc, segment, index, arr) => {
+    .reduce<Breadcrumb[]>((acc, segment, index, arr) => {
         if (!segment) return acc;
 
-
-        const prevLink = acc.length > 1 ? acc[acc.length - 1].path : '';
+        const prevLink = acc.length > 1 ? acc[acc.length - 1].link : '';
         const link = `${prevLink}/${segment}`;
         const route = routes.find((r) => r.path === link);
         const isLast = index === arr.length - 1;

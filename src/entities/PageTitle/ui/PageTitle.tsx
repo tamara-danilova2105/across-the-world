@@ -1,5 +1,4 @@
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { Text } from "@/shared/ui/Text/Text"
 import styles from './PageTitle.module.scss'
 
 interface PageTitleProps {
