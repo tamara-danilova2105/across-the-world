@@ -32,7 +32,10 @@ export const NewsBlog = () => {
                     subtitle="НОВОСТИ И БЛОГ"
                 />
                 <div>
-                    <AppLink variant='button' to={getRouteBlog()}>
+                    <AppLink 
+                        className={styles.appLink} 
+                        variant='button' to={getRouteBlog()}
+                    >
                         Посмотреть все
                     </AppLink>
                 </div>

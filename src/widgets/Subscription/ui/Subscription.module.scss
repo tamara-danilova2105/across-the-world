@@ -60,7 +60,6 @@
                 width: 100%;
                 > div > input {
                     position: relative;
-                    width: 416px;
                     height: 70px;
                     padding-left: 70px;
                     border-radius: 0px;
@@ -99,7 +98,8 @@
 
             button {
                 font-weight: 600;
-                padding: 22px 44px;
+                width: 300px;
+                padding: 22px 20px;
 
                 @include mq.mobile-xl {
                     padding: 12px 44px;

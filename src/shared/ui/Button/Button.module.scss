@@ -36,5 +36,34 @@
 }
 
 .cta {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
     @include mixin.cta-style;
+
+    &:before {
+        content: url('../../assets/png/arrow.png');
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: var(--blue-opacity20);
+        top: 0;
+        left: 0;
+        padding: 5px 30px;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 1;
+    }
+
+    &:hover {
+        text-align: start;
+
+        &:before {
+            transform: translateX(-50px);
+        }
+    }
 }
