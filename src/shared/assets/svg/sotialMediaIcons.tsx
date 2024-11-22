@@ -39,7 +39,7 @@ export const VkIcon = () => {
             xmlns="http://www.w3.org/2000/svg"
             xmlSpace="preserve"
             height={38} 
-            width='100%'
+            width={50}
             viewBox="0 50 511.998 461.998" 
             fill="var(--white-color)"
         >
