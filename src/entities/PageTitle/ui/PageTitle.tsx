@@ -4,7 +4,6 @@ import styles from './PageTitle.module.scss'
 
 interface PageTitleProps {
     children: JSX.Element;
-    title: string;
 }
 
 export const PageTitle = ({ children } : PageTitleProps) => {

@@ -2,14 +2,10 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { Link, useLocation } from 'react-router-dom';
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss'
-
-interface Route {
-    title: string | undefined;
-    path: string;
-}
+import { AppRoutesProps } from "@/app/router/types/types";
 
 interface BreadcrumbsProps {
-    routes: Route[];
+    routes: AppRoutesProps;
     separator?: string; 
     isTour?: boolean; 
     name?: string; 
@@ -20,6 +16,8 @@ export const BreadCrumbs = ({
     separator = ' - - - ',
     isTour = false,
     name } : BreadcrumbsProps) => {
+
+        console.log(routes)
 
     const location = useLocation();
 
