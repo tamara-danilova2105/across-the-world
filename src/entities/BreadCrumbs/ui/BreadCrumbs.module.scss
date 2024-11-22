@@ -1,0 +1,18 @@
+.breadCrumbsContainer {
+    height: 150px;
+    
+    nav {
+        ul {
+            display: flex;
+            gap: 12px;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: var(--peach-color);
+                font-size: 18px;
+            }
+        }
+    }
+}

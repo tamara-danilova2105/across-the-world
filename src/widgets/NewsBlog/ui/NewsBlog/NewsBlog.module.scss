@@ -31,15 +31,15 @@
         }
     }
 
-    .appLink {
-        svg {
-            transition: transform 0.3s ease-in;
-        }
+    // .appLink {
+    //     svg {
+    //         transition: transform 0.3s ease-in;
+    //     }
     
-        &:hover svg {
-            animation: bounce 0.6s infinite alternate ease-in-out;
-        }
-    }
+    //     &:hover svg {
+    //         animation: bounce 0.6s infinite alternate ease-in-out;
+    //     }
+    // }
 }
 
 .news {
