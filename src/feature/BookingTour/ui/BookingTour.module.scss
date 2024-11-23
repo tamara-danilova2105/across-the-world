@@ -1,5 +1,11 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .booking_modal {
     background-color: var(--white-color);
     padding: 200px 400px; //TODO
     border-radius: 16px; //TODO
+
+    @include mobile-l {
+        padding: 300px 150px; //TODO
+    }
 }
