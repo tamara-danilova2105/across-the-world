@@ -1,5 +1,12 @@
+@use '@/app/styles/mixin' as *;
+
 .main {
-    padding: 100px 0 40px 0;
+    @include section-style;
+
+    & {
+        margin-top: 30px; //TODO
+        margin-bottom: 50px; //TODO
+    }
 }
 
 .swiper_img {

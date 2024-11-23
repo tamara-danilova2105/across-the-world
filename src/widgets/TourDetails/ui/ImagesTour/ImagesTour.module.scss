@@ -10,12 +10,8 @@
     height: 450px;
     gap: 10px;
     width: 100%;
-    max-width: 1200px; //TODO
-    margin: auto; //TODO
 
     @include tablet-l {
-        width: 100%; //TODO
-        padding: 0 30px; //TODO
         grid-template-areas:
             "large small-1"
             "large small-4";
