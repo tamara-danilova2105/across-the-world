@@ -7,6 +7,7 @@ import ingushetia from '@/shared/assets/png/Ингушетия.jpg';
 import baikalOne from '@/shared/assets/png/Байкал1.jpg';
 import baikalTwo from '@/shared/assets/png/Байкал2.jpg';
 import azerbadgan from '@/shared/assets/png/Азейрбаджан.jpg';
+import { Images } from '@/shared/types/types';
 
 export interface Tour {
     _id: string;
@@ -16,7 +17,8 @@ export interface Tour {
         amount: number;
         currency: "₽" | "$";
     };
-    image: string;
+    image: string; //TODO
+    images: Images[]; //TODO
     direction: "Россия" | "Заграница";
     discount?: {
         endDate: Date;
@@ -33,7 +35,8 @@ export const dataTours: Tour[] = [
             amount: 169000,
             currency: "₽"
         },
-        image: kamchatkaOne,
+        image: kamchatkaOne, //TODO
+        images: [], //TODO
         direction: "Россия",
         discount: {
             endDate: new Date("2023-12-01"),
@@ -48,7 +51,8 @@ export const dataTours: Tour[] = [
             amount: 176000,
             currency: "₽"
         },
-        image: kamchatkaTwo,
+        image: kamchatkaTwo, //TODO
+        images: [], //TODO
         direction: "Россия",
         discount: {
             endDate: new Date("2023-12-01"),
@@ -63,7 +67,8 @@ export const dataTours: Tour[] = [
             amount: 3700,
             currency: "$"
         },
-        image: southAmericaOne,
+        image: southAmericaOne, //TODO
+        images: [], //TODO
         direction: "Заграница"
     },
     {
@@ -75,6 +80,7 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: dagestan,
+        images: [], //TODO
         direction: "Россия",
     },
     {
@@ -85,7 +91,59 @@ export const dataTours: Tour[] = [
             amount: 3650,
             currency: "$"
         },
-        image: southAmericaTwo,
+        image: southAmericaTwo, //TODO
+        images: [
+            {
+                _id: '51',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/f9b/xqibcdntphopbuw7vvcvyt0hrcs5z69b.jpeg',
+                alt: 'Ледник Перито Морено, Аргентина'
+            },
+            {
+                _id: '52',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/a4c/m6m6njbigoeen9n9ulbhmyussqhaanz1.jpeg',
+                alt: 'Буэнос Айрос, Аргентина'
+            },
+            {
+                _id: '53',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/d79/g6f3h1tplt74ej2bf0ss5hx45v89o42l.jpg',
+                alt: 'стейки, Аргентина'
+            },
+            {
+                _id: '53',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
+                alt: 'Патагония, Аргентина'
+            },
+            {
+                _id: '54',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/707/t88ve6bqedu28w5ynfct2he1qkv92msv.JPEG',
+                alt: 'Ледник Перито Морено, Аргентина'
+            },
+            {
+                _id: '55',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
+                alt: 'Ледник Перито Морено, Аргентина'
+            },
+            {
+                _id: '56',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
+                alt: 'Торрес Дель Пайне, Патагония, Чили'
+            },
+            {
+                _id: '57',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/74f/w6tw3s5qujd36smt458960nl433gxi4o.jpg',
+                alt: 'Торрес Дель Пайне, Патагония, Чили'
+            },
+            {
+                _id: '58',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/b1e/affr0zgih25tgjtias57huvkohh9p11s.jpeg',
+                alt: 'Торрес Дель Пайне, Патагония, Чили'
+            },
+            {
+                _id: '59',
+                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/ebb/d7noojbcyb1e47yee2m3ybr6m17zjz8y.JPG',
+                alt: 'Торрес Дель Пайне, Патагония, Чили'
+            },
+        ],
         direction: "Заграница",
     },
     {
@@ -97,6 +155,7 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: ingushetia,
+        images: [], //TODO
         direction: "Россия"
     },
     {
@@ -107,7 +166,8 @@ export const dataTours: Tour[] = [
             amount: 96000,
             currency: "₽"
         },
-        image: baikalOne,
+        image: baikalOne, //TODO
+        images: [], //TODO
         direction: "Россия",
     },
     {
@@ -118,7 +178,8 @@ export const dataTours: Tour[] = [
             amount: 62000,
             currency: "₽"
         },
-        image: baikalTwo,
+        image: baikalTwo, //TODO
+        images: [], //TODO
         direction: "Россия"
     },
     {
@@ -129,7 +190,8 @@ export const dataTours: Tour[] = [
             amount: 1150,
             currency: "$"
         },
-        image: azerbadgan,
+        image: azerbadgan, //TODO
+        images: [], //TODO
         direction: "Заграница"
     }
 ];

@@ -3,6 +3,7 @@ import { Swiper as SwiperInstance } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { Pagination } from "@/entities/Pagination";
+import 'swiper/css';
 
 interface CustomeSwiperProps<T extends { _id: string }> {
     items: T[];

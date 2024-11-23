@@ -1,7 +1,6 @@
 @use '@/app/styles/mixin' as mixin;
 @use '@/app/styles/media-queries' as media;
 
-
 .our_tours_title {
     @include mixin.section-style;
 

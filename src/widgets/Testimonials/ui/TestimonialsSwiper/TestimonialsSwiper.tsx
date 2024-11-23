@@ -4,7 +4,6 @@ import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
 import { useResize } from '@/shared/hooks/useResize';
 import { DataTestimonial, dataTestimonials } from '../../lib/data';
 import { TestimonialItem } from '../TestiminialItem/TestiminialItem';
-import 'swiper/css';
 
 const MAX_HEIGHT_DEFAULT = 420;
 const MAX_HEIGHT_MOBILE_SMALL = 500;

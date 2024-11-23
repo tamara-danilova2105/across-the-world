@@ -1,7 +1,9 @@
+import { TourDetails } from "@/widgets/TourDetails";
+
 const TourDetailsPage = () => {
     return (
         <main>
-            TourDetailsPage
+            <TourDetails />
         </main>
     );
 };
