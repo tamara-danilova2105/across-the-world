@@ -4,11 +4,11 @@ import { PageTitle } from "@/entities/PageTitle/index";
 
 const ToursPage = () => {
     return (
-        <>
+        <main>
             <PageTitle>
                 <BreadCrumbs routes={Object.values(routeConfig)} />
             </PageTitle>
-        </>
+        </main>
     );
 };
 

@@ -14,6 +14,7 @@ import {
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
+import { TourDetailsPage } from "@/pages/TourDetailsPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -28,6 +29,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     },
     [AppRouters.tour_detais]: {
         path: getRouteToursDetails(':id'),
+        page: <TourDetailsPage />
     },
     [AppRouters.about]: {
         path: getRouteAbout(),
