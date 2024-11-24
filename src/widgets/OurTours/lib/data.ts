@@ -109,7 +109,7 @@ export const dataTours: Tour[] = [
                 alt: 'стейки, Аргентина'
             },
             {
-                _id: '53',
+                _id: '60',
                 src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
                 alt: 'Патагония, Аргентина'
             },

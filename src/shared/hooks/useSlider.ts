@@ -1,59 +1,55 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface UseSliderProps {
     totalSlides: number;
-    slidesToShow: number;
-    slideWidth: number;
-    autoPlayInterval?: number; 
+    slidesToShow?: number;
+    slideWidth?: number;
+    startIndex?: number;
 }
 
 export const useSlider = ({ 
     totalSlides, 
-    slidesToShow, 
-    slideWidth,
-    autoPlayInterval, 
+    slidesToShow = 1, 
+    slideWidth = 0,
+    startIndex = 0,
 }: UseSliderProps) => {
     
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(startIndex);
 
-    const totalSliderPages = Math.ceil(totalSlides / slidesToShow);
-    const containerWidth = slideWidth * totalSlides;
+    const totalSliderPages = useMemo(() => {
+        return Math.ceil(totalSlides / slidesToShow);
+    }, [totalSlides, slidesToShow]);
 
-    const nextSlide = () => {
+
+    const containerWidth = useMemo(() => {
+        return slideWidth * totalSlides;
+    }, [slideWidth, totalSlides]);
+
+
+    const sliderStyles = useMemo(() => {
+        return {
+            transform: `translateX(-${currentSlide * slideWidth * slidesToShow}px)`,
+            width: `${containerWidth}px`,
+        };
+    }, [currentSlide, slideWidth, slidesToShow, containerWidth]);
+
+
+    const nextSlide = useCallback(() => {
         setCurrentSlide(prev => {
-            if (prev < totalSliderPages - 1) {
-                return prev + 1;
-            } else {
-                return autoPlayInterval ? 0 : prev;
-            }
+            if (totalSliderPages === 0) return prev; 
+            return (prev + 1) % totalSliderPages;
         });
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide(prev => 
-            prev > 0 ? prev - 1 : totalSliderPages - 1
-        );
-    };
+    }, [totalSliderPages]);
 
 
-    const goToSlide = (index: number) => {
+    const prevSlide = useCallback(() => {
+        setCurrentSlide(prev => (prev > 0 ? prev - 1 : totalSliderPages - 1));
+    }, [totalSliderPages]);
+
+
+    const goToSlide = useCallback((index: number) => {
         setCurrentSlide(index);
-    };
-
-    useEffect(() => {
-        if (autoPlayInterval) {
-            const interval = setInterval(() => {
-                nextSlide();
-            }, autoPlayInterval);
-    
-            return () => clearInterval(interval);
-        }
-    }, [autoPlayInterval, totalSliderPages, nextSlide]);
-
-    const sliderStyles = {
-        transform: `translateX(-${currentSlide * slideWidth * slidesToShow}px)`,
-        width: `${containerWidth}px`,
-    };
+    }, []);
 
     return {
         currentSlide,

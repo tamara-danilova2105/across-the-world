@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 
 type UseModalReturn = [
     () => void,
-    (children: ReactNode) => JSX.Element | null,
+    (children: ReactNode, withAnimation?: boolean) => JSX.Element | null,
     boolean
 ];
 
@@ -23,10 +23,13 @@ export const useModal = (): UseModalReturn => {
         }
     }, [isOpen])
 
-    const drawModal = (children: ReactNode): JSX.Element | null => {
+    const drawModal = (children: ReactNode, withAnimation = true): JSX.Element | null => {
         return (
             isOpen ? (
-                <Modal setIsOpen={setIsOpen}>
+                <Modal 
+                    setIsOpen={setIsOpen} 
+                    withAnimation={withAnimation}
+                >
                     {children}
                 </Modal>
             ) : null

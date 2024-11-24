@@ -1,23 +1,23 @@
-import { ImagesTour } from "../ImagesTour/ImagesTour";
 import { dataTours } from "@/widgets/OurTours/lib/data";
 import { useResize } from "@/shared/hooks/useResize";
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
-import styles from './TourDetails.module.scss';
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
+import { ImagesTourGrid } from "../ImagesTourGrid/ImagesTourGrid";
+import { ImageTourSwiper } from "../ImageTourSwiper/ImageTourSwiper";
+import styles from './TourDetails.module.scss';
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
     const id = '5'
      //TODO - получать данные о туре с бэкенда 
-    const getTourById = dataTours.find(tour => tour._id === id);
-    console.log(getTourById);
+    const data = dataTours.find(tour => tour._id === id);
+    console.log(data);
     
     const width = useResize();
     const isMobile = width <= 767;
 
      //TODO - если будет error, то делать редирект на Not Found Page
-    if (!getTourById) return null
+    if (!data) return null
 
     return (
         <Stack 
@@ -25,22 +25,18 @@ export const TourDetails = () => {
             direction="column"
             className={styles.main}
         >
-            <Text type='h2' color='blue' size='32' font='geometria500'>
-                {getTourById.tour}
+            <Text 
+                type='h2' color='blue' 
+                size='32' font='geometria500'
+            >
+                {data.tour}
             </Text>
 
-            {isMobile ? (
-                <div style={{ width: '100%' }}>
-                    <CustomeSwiper 
-                        items={getTourById.images} 
-                        renderItem={(image) => 
-                            <img src={image.src} alt={image.alt} className={styles.swiper_img} />
-                        }
-                    />
-                </div>
-            ) : (
-                <ImagesTour images={getTourById.images} />
-            )}
+            {
+                isMobile 
+                    ? <ImageTourSwiper images={data.images} />
+                    : <ImagesTourGrid images={data.images} />
+            }
         </Stack>
     );
 };
