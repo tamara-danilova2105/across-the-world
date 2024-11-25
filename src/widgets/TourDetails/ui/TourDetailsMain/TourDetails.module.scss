@@ -8,3 +8,10 @@
         margin-bottom: 50px; //TODO
     }
 }
+
+.sticky_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 48;
+    width: 100%;
+}

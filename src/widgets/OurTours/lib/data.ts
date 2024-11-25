@@ -9,10 +9,23 @@ import baikalTwo from '@/shared/assets/png/Байкал2.jpg';
 import azerbadgan from '@/shared/assets/png/Азейрбаджан.jpg';
 import { Images } from '@/shared/types/types';
 
+interface Price {
+    amount: number;
+    currency: "₽" | "$";
+};
+
+export interface DateTours {
+    date_start: string;
+    date_finish: string;
+    price: Price,
+    spots: number;
+};
+
 export interface Tour {
     _id: string;
     tour: string;
     date: string;
+    dates: DateTours[]; //TODO
     price: {
         amount: number;
         currency: "₽" | "$";
@@ -30,7 +43,18 @@ export const dataTours: Tour[] = [
     {
         _id: "1",
         tour: "Камчатка: 7 дней",
-        date: "14 - 20 июля 2025",
+        date: "14 - 20 июля 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-07-14T00:00:00.000Z',
+                date_finish: '2025-07-20T23:59:59.000Z',
+                price: {
+                    amount: 169000,
+                    currency: "₽"
+                },
+                spots: 16,
+            },
+        ], //TODO
         price: {
             amount: 169000,
             currency: "₽"
@@ -46,7 +70,18 @@ export const dataTours: Tour[] = [
     {
         _id: "2",
         tour: "Камчатка: Толбачик",
-        date: "22 - 28 августа 2025",
+        date: "22 - 28 августа 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-08-22T00:00:00.000Z',
+                date_finish: '2025-08-28T23:59:59.000Z',
+                price: {
+                    amount: 176000,
+                    currency: "₽"
+                },
+                spots: 10,
+            }
+        ], //TODO
         price: {
             amount: 176000,
             currency: "₽"
@@ -62,7 +97,18 @@ export const dataTours: Tour[] = [
     {
         _id: "3",
         tour: "Южная Америка: 4 страны",
-        date: "6 - 13 января 2025",
+        date: "6 - 13 января 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-01-06T00:00:00.000Z',
+                date_finish: '2025-01-13T23:59:59.000Z',
+                price: {
+                    amount: 3700,
+                    currency: "$"
+                },
+                spots: 10,
+            }
+        ], //TODO
         price: {
             amount: 3700,
             currency: "$"
@@ -74,7 +120,18 @@ export const dataTours: Tour[] = [
     {
         _id: "4",
         tour: "Дагестан «5 дней в горах»",
-        date: "4 - 8 января 2025",
+        date: "4 - 8 января 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-01-04T00:00:00.000Z',
+                date_finish: '2025-01-08T23:59:59.000Z',
+                price: {
+                    amount: 55000,
+                    currency: "₽"
+                },
+                spots: 10,
+            }
+        ], //TODO
         price: {
             amount: 55000,
             currency: "₽"
@@ -86,11 +143,31 @@ export const dataTours: Tour[] = [
     {
         _id: "5",
         tour: "Южная Америка: Патагония",
-        date: "21 - 29 января 2025",
+        date: "21 - 29 января 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-01-21T00:00:00.000Z',
+                date_finish: '2025-01-29T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 3,
+            },
+            {
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+        ], //TODO
         price: {
             amount: 3650,
             currency: "$"
-        },
+        }, //TODO
         image: southAmericaTwo, //TODO
         images: [
             {
@@ -150,6 +227,17 @@ export const dataTours: Tour[] = [
         _id: "6",
         tour: "Чечня и Ингушетия",
         date: "15 - 19 января 2025",
+        dates: [
+            {
+                date_start: '2025-01-15T00:00:00.000Z',
+                date_finish: '2025-01-19T23:59:59.000Z',
+                price: {
+                    amount: 48000,
+                    currency: "₽"
+                },
+                spots: 10,
+            }
+        ], //TODO
         price: {
             amount: 48000,
             currency: "₽"
@@ -161,7 +249,18 @@ export const dataTours: Tour[] = [
     {
         _id: "7",
         tour: "Байкал макси",
-        date: "10 - 14 февраля 2025",
+        date: "10 - 14 февраля 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-02-10T00:00:00.000Z',
+                date_finish: '2025-02-14T23:59:59.000Z',
+                price: {
+                    amount: 96000,
+                    currency: "₽"
+                },
+                spots: 6,
+            }
+        ], //TODO
         price: {
             amount: 96000,
             currency: "₽"
@@ -173,7 +272,18 @@ export const dataTours: Tour[] = [
     {
         _id: "8",
         tour: "Байкал мини",
-        date: "14 - 17 февраля 2025",
+        date: "14 - 17 февраля 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-02-14T00:00:00.000Z',
+                date_finish: '2025-02-17T23:59:59.000Z',
+                price: {
+                    amount: 62000,
+                    currency: "₽"
+                },
+                spots: 6,
+            }
+        ], //TODO
         price: {
             amount: 62000,
             currency: "₽"
@@ -185,7 +295,18 @@ export const dataTours: Tour[] = [
     {
         _id: "9",
         tour: "Азербайджан",
-        date: "24 февраля - 2 марта 2025",
+        date: "24 февраля - 2 марта 2025", //TODO
+        dates: [
+            {
+                date_start: '2025-02-24T00:00:00.000Z',
+                date_finish: '2025-03-02T23:59:59.000Z',
+                price: {
+                    amount: 1150,
+                    currency: "$"
+                },
+                spots: 14,
+            }
+        ], //TODO
         price: {
             amount: 1150,
             currency: "$"

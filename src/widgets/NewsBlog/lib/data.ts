@@ -18,7 +18,7 @@ export interface NewsBlogData {
     image: {
         url: string,
         alt: string
-    }[];
+    }[]; //TODO - заменить на interface Image
     createdAt: string;
 };
 

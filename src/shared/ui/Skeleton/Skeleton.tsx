@@ -7,8 +7,8 @@ interface SkeletonProps {
 }
 
 export const Skeleton = (props: SkeletonProps) => {
-
     const { width, height } = props;
+    
     return (
         <div
         className={styles.skeleton}

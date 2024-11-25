@@ -5,6 +5,7 @@ import { Text } from "@/shared/ui/Text";
 import { ImagesTourGrid } from "../ImagesTourGrid/ImagesTourGrid";
 import { ImageTourSwiper } from "../ImageTourSwiper/ImageTourSwiper";
 import styles from './TourDetails.module.scss';
+import { BookingForm } from "../BookingForm/BookingForm";
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
@@ -37,6 +38,16 @@ export const TourDetails = () => {
                     ? <ImageTourSwiper images={data.images} />
                     : <ImagesTourGrid images={data.images} />
             }
+
+            <section className={styles.sticky_container}>
+                <div style={{ width: '60%', height: '1000px'}}>
+                    ЗДЕСЬ БУДЕТ ИНФОРМАЦИЯ О ТУРЕ
+                </div>
+                <BookingForm 
+                    options={data.dates} 
+                    tour={data.tour}
+                />
+            </section>
         </Stack>
     );
 };
