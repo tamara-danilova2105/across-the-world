@@ -47,26 +47,13 @@
     border-radius: 0 0 16px 16px;
     z-index: 10;
 
-    scrollbar-width: thin; // Firefox — тонкая полоса
-    -ms-overflow-style: auto; // IE/Edge
-
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 4px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: var(--blue-color);
+        background-color: var(--blue-opacity40);
         border-radius: 8px;
-    }
-
-    &::-webkit-scrollbar-button {
-        display: none !important;
-        width: 0;
-        height: 0;
-    }
-
-    &::-ms-scrollbar {
-        display: none
     }
     
     ul {
