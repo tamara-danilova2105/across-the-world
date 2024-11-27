@@ -15,7 +15,6 @@ interface DropdownProps {
 }
 
 export const Dropdown = (props: DropdownProps) => {
-    //TODO - добавить скролл в выпадающем списке
     const { options, isOpen, handleIsOpen, changeBookingData } = props;
 
     const [selectedDate, setSelectedDate] = useState<string>();

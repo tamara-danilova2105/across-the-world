@@ -43,16 +43,17 @@
     overflow-y: auto;
     border: 1px solid var(--blue-color);
     background-color: var(--white-color);
-    border-top: 0;
+    border-top: none;
     border-radius: 0 0 16px 16px;
     z-index: 10;
+    clip-path: inset(0 round 0 0 16px 16px);
 
     &::-webkit-scrollbar {
         width: 4px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: var(--blue-opacity40);
+        background-color: var(--blue-opacity20);
         border-radius: 8px;
     }
     
