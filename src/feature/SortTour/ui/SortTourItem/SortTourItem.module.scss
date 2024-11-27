@@ -1,0 +1,50 @@
+@use '@/app/styles/mixin' as mixin;
+
+.sortTourContainer {
+    position: relative;
+
+    .icon {
+        @include mixin.icon-drop-down;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        width: auto;
+        gap: 32px;
+    }
+
+    .list {
+        position: absolute;
+        background-color: var(--white-color);
+        width: 300px;
+        top: 70px;
+        right: 0;
+        border-radius: 16px;
+        z-index: 2;
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: var(--blue-opacity20);
+                transition: all 0.3s ease;
+            }
+        }
+        span {
+            svg path {
+                stroke: var(--blue-color);
+            }
+        }
+    }
+}

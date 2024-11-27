@@ -1,0 +1,12 @@
+.filterBarContainer {
+    position: relative;
+
+    .btnContainer {
+        position: sticky;
+        background-color: var(--white-color);
+        top: 210px;
+        z-index: 2;
+    }
+}
+
+

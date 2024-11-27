@@ -70,3 +70,14 @@
     }
 }
 
+
+@mixin icon-drop-down {
+    transition: transform 0.3s ease;
+    
+    &.rotateClosed {
+        transform: rotate(90deg);
+    }
+    &.rotateOpen {
+        transform: rotate(-90deg);
+    }
+}

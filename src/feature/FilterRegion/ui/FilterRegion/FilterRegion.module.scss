@@ -1,0 +1,18 @@
+@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as *;
+
+.filterRegionContainer {
+    position: sticky;
+    top: 70px;
+    background-color: var(--white-color);
+    padding: 20px 0;
+    z-index: 1;
+
+    @include mobile-xl {
+        top: 60px;
+    }
+
+    > div {
+        @include mixin.section-style;
+    }
+}

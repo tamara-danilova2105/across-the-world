@@ -1,3 +1,5 @@
+@use '@/app/styles/mixin' as mixin;
+
 .dropdown {
     position: relative;
     width: 100%;
@@ -23,15 +25,7 @@
 }
 
 .icon {
-    transition: transform 0.3s ease;
-
-    &.rotateClosed {
-        transform: rotate(90deg);
-    }
-
-    &.rotateOpen {
-        transform: rotate(-90deg);
-    }
+    @include mixin.icon-drop-down;
 }
 
 .list {
