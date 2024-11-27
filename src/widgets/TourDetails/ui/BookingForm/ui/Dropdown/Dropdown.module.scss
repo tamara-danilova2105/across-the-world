@@ -60,13 +60,13 @@
     }
 
     &::-webkit-scrollbar-button {
-        display: none;
+        display: none !important;
         width: 0;
         height: 0;
     }
 
     &::-ms-scrollbar {
-        display: none !important;
+        display: none
     }
     
     ul {
