@@ -180,6 +180,57 @@ export const dataTours: Tour[] = [
                 },
                 spots: 15,
             },
+            {
+                _id: '52',
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+            {
+                _id: '52',
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+            {
+                _id: '52',
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+            {
+                _id: '52',
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+            {
+                _id: '52',
+                date_start: '2025-03-08T00:00:00.000Z',
+                date_finish: '2025-03-16T23:59:59.000Z',
+                price: {
+                    amount: 3650,
+                    currency: "$"
+                },
+                spots: 15,
+            },
+            
         ], //TODO
         price: {
             amount: 3650,

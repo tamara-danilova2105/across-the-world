@@ -39,7 +39,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    max-height: 238px;
+    max-height: 195px;
     overflow-y: auto;
     border: 1px solid var(--blue-color);
     background-color: var(--white-color);
@@ -47,6 +47,28 @@
     border-radius: 0 0 16px 16px;
     z-index: 10;
 
+    scrollbar-width: thin; // Firefox — тонкая полоса
+    -ms-overflow-style: auto; // IE/Edge
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--blue-color);
+        border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    &::-ms-scrollbar {
+        display: none !important;
+    }
+    
     ul {
         list-style: none;
         margin: 0;
