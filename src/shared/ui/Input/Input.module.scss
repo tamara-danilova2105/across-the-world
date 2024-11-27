@@ -1,11 +1,11 @@
 .input {
     border: var(--border-input);
-    font-size: var(--font-size-18);
+    font-size: var(--font-size-16);
     transition: border-color 0.3s ease;
     color: var(--blue-color);
     background-color: var(--white-color);
     width: 100%;
-    padding: 17px;
+    padding: 12px 24px;
     font-family: var(--font-family-geometria500);
 
     &::placeholder,
@@ -24,7 +24,7 @@
 }
 
 .errorMessage {
-    font-size: var(--font-size-16);
+    font-size: var(--font-size-12);
     font-family: var(--font-family-geometria500);
     color: var(--error-color);
     height: 18px;

@@ -42,6 +42,7 @@
     max-height: 238px;
     overflow-y: auto;
     border: 1px solid var(--blue-color);
+    background-color: var(--white-color);
     border-top: 0;
     border-radius: 0 0 16px 16px;
     z-index: 10;
@@ -83,9 +84,15 @@
     background-color: var(--pink-opacity40);
     padding: 3px 10px;
     border-radius: 16px;
+    width: 80px;
 }
 
 .spots {
     color: var(--blue-color);
     font-family: var(--font-family-geometria500);
+    width: 65px;
+}
+
+.soldout {
+    color: var(--error-color);
 }

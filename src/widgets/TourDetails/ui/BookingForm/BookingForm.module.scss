@@ -2,8 +2,16 @@
     padding: 20px 24px;
     box-shadow: var(--box-shadow);
     border-radius: 16px;
-    height: 500px;
-    width: 420px;
+    height: max-content;
+    width: 430px;
     position: sticky;
     top: 100px;
+}
+
+.form {
+    width: 100%;
+}
+
+.count_info {
+    height: 20px;
 }

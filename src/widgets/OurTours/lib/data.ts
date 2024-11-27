@@ -15,6 +15,7 @@ interface Price {
 };
 
 export interface DateTours {
+    _id: string;
     date_start: string;
     date_finish: string;
     price: Price,
@@ -46,6 +47,7 @@ export const dataTours: Tour[] = [
         date: "14 - 20 июля 2025", //TODO
         dates: [
             {
+                _id: '11',
                 date_start: '2025-07-14T00:00:00.000Z',
                 date_finish: '2025-07-20T23:59:59.000Z',
                 price: {
@@ -73,6 +75,7 @@ export const dataTours: Tour[] = [
         date: "22 - 28 августа 2025", //TODO
         dates: [
             {
+                _id: '21',
                 date_start: '2025-08-22T00:00:00.000Z',
                 date_finish: '2025-08-28T23:59:59.000Z',
                 price: {
@@ -100,6 +103,7 @@ export const dataTours: Tour[] = [
         date: "6 - 13 января 2025", //TODO
         dates: [
             {
+                _id: '31',
                 date_start: '2025-01-06T00:00:00.000Z',
                 date_finish: '2025-01-13T23:59:59.000Z',
                 price: {
@@ -123,6 +127,7 @@ export const dataTours: Tour[] = [
         date: "4 - 8 января 2025", //TODO
         dates: [
             {
+                _id: '41',
                 date_start: '2025-01-04T00:00:00.000Z',
                 date_finish: '2025-01-08T23:59:59.000Z',
                 price: {
@@ -146,6 +151,17 @@ export const dataTours: Tour[] = [
         date: "21 - 29 января 2025", //TODO
         dates: [
             {
+                _id: '50',
+                date_start: '2024-12-29T00:00:00.000Z',
+                date_finish: '2025-01-06T23:59:59.000Z',
+                price: {
+                    amount: 4250,
+                    currency: "$"
+                },
+                spots: 0,
+            },
+            {
+                _id: '51',
                 date_start: '2025-01-21T00:00:00.000Z',
                 date_finish: '2025-01-29T23:59:59.000Z',
                 price: {
@@ -155,6 +171,7 @@ export const dataTours: Tour[] = [
                 spots: 3,
             },
             {
+                _id: '52',
                 date_start: '2025-03-08T00:00:00.000Z',
                 date_finish: '2025-03-16T23:59:59.000Z',
                 price: {
@@ -229,6 +246,7 @@ export const dataTours: Tour[] = [
         date: "15 - 19 января 2025",
         dates: [
             {
+                _id: '61',
                 date_start: '2025-01-15T00:00:00.000Z',
                 date_finish: '2025-01-19T23:59:59.000Z',
                 price: {
@@ -252,6 +270,7 @@ export const dataTours: Tour[] = [
         date: "10 - 14 февраля 2025", //TODO
         dates: [
             {
+                _id: '71',
                 date_start: '2025-02-10T00:00:00.000Z',
                 date_finish: '2025-02-14T23:59:59.000Z',
                 price: {
@@ -275,6 +294,7 @@ export const dataTours: Tour[] = [
         date: "14 - 17 февраля 2025", //TODO
         dates: [
             {
+                _id: '81',
                 date_start: '2025-02-14T00:00:00.000Z',
                 date_finish: '2025-02-17T23:59:59.000Z',
                 price: {
@@ -298,6 +318,7 @@ export const dataTours: Tour[] = [
         date: "24 февраля - 2 марта 2025", //TODO
         dates: [
             {
+                _id: '82',
                 date_start: '2025-02-24T00:00:00.000Z',
                 date_finish: '2025-03-02T23:59:59.000Z',
                 price: {
