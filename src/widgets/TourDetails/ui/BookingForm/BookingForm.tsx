@@ -79,7 +79,9 @@ export const BookingForm = (props: BookingFormProps) => {
             )}
 
             <Stack 
-                direction="column" gap="32"
+                direction="column" 
+                gap="32"
+                justify='between'
                 className={styles.booking_form}
             >
                 <Stack direction='column' gap="16">
