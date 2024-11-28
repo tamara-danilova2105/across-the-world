@@ -9,6 +9,10 @@ import baikalTwo from '@/shared/assets/png/Байкал2.jpg';
 import azerbadgan from '@/shared/assets/png/Азейрбаджан.jpg';
 import { Images } from '@/shared/types/types';
 
+export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
+
+export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
+
 interface Price {
     amount: number;
     currency: "₽" | "$";
@@ -38,6 +42,9 @@ export interface Tour {
         endDate: Date;
         percentage: number;
     };
+    activity: ActivityLevel;
+    comfort: ComfortType;
+    description?: string;
 }
 
 export const dataTours: Tour[] = [
@@ -67,7 +74,9 @@ export const dataTours: Tour[] = [
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
-        }
+        },
+        activity: 'Высокий',
+        comfort: 'Высокий',
     },
     {
         _id: "2",
@@ -95,7 +104,9 @@ export const dataTours: Tour[] = [
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
-        }
+        },
+        activity: 'Высокий',
+        comfort: 'Высокий'
     },
     {
         _id: "3",
@@ -119,7 +130,9 @@ export const dataTours: Tour[] = [
         },
         image: southAmericaOne, //TODO
         images: [], //TODO
-        direction: "Заграница"
+        direction: "Заграница",
+        activity: 'Высокий',
+        comfort: 'Уникальное жилье',
     },
     {
         _id: "4",
@@ -144,6 +157,8 @@ export const dataTours: Tour[] = [
         image: dagestan,
         images: [], //TODO
         direction: "Россия",
+        activity: 'Средний',
+        comfort: 'Высокий',
     },
     {
         _id: "5",
@@ -239,6 +254,27 @@ export const dataTours: Tour[] = [
             },
         ],
         direction: "Заграница",
+        activity: 'Высокий',
+        comfort: 'Уникальное жилье',
+        description: `
+        <p>Хотите увидеть край гигантских ледников, лазурных озер, живописных фьордов, величественных гор и пингвинов? 
+        Встретить Новый год на другом конце света в дружной веселой компании? 
+        Тогда приглашаем вас в наш новый тур в удивительную Патагонию: 2 страны, 3 национальных парка – один из самых впечатляющих в мире, 
+        самый южный город на планете, один из самых известных ледников на Земле и знаменитые аргентинские стейки ждут вас!</p>
+
+        <ul>
+            <li>Прогулки по Буэнос-Айресу, гастрономический ужин-театр.</li>
+            <li>Новый год в отеле с видом на озеро Аргентино и розовых фламинго.</li>
+            <li>Экскурсия в парк Торрес-дель-Пайне: живописные озера, водопады, трекинг.</li>
+            <li>Путешествие в Ушуайю — самый южный город планеты и национальный парк Огненная Земля.</li>
+            <li>Круиз по каналу Бигль и встреча с пингвинами.</li>
+            <li>Посетим невероятно красивый ледник Перито Морено, сделаем круиз и сможем прогуляться по льду.</li>
+            <li>Откроем для себя красоты парка Торрес-дель-Пайне в Чили с трекингом и дикой природой.</li>
+            <li>Побиваем в Ушуайе и в Национальном парке Огненная Земля, наблюдая за морскими львами и пингвинами.</li>
+            <li>Отправимся в круиз по каналу Бигль и высадимся на острове пингвинов.</li>
+            <li>Сможем продолжить приключения поездками на водопады Игуасу, в Боливию и пустыню Атакама.</li>
+        </ul>
+        `,
     },
     {
         _id: "6",
@@ -262,7 +298,9 @@ export const dataTours: Tour[] = [
         },
         image: ingushetia,
         images: [], //TODO
-        direction: "Россия"
+        direction: "Россия",
+        activity: 'Средний',
+        comfort: 'Высокий',
     },
     {
         _id: "7",
@@ -287,6 +325,8 @@ export const dataTours: Tour[] = [
         image: baikalOne, //TODO
         images: [], //TODO
         direction: "Россия",
+        activity: 'Средний',
+        comfort: 'Средний',
     },
     {
         _id: "8",
@@ -310,7 +350,9 @@ export const dataTours: Tour[] = [
         },
         image: baikalTwo, //TODO
         images: [], //TODO
-        direction: "Россия"
+        direction: "Россия",
+        activity: 'Средний',
+        comfort: 'Средний'
     },
     {
         _id: "9",
@@ -334,6 +376,8 @@ export const dataTours: Tour[] = [
         },
         image: azerbadgan, //TODO
         images: [], //TODO
-        direction: "Заграница"
+        direction: "Заграница",
+        activity: 'Средний',
+        comfort: 'Уникальное жилье',
     }
 ];

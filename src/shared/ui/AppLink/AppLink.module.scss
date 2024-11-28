@@ -1,9 +1,24 @@
 @use '@/app/styles/mixin.scss' as mixin;
 
+$font-size-14: var(--font-size-14);
+$font-size-16: var(--font-size-16);
+$font-size-18: var(--font-size-18);
+
+$sizes: (
+    14: $font-size-14,
+    16: $font-size-16,
+    18: $font-size-18,
+);
+
+@each $name, $size in $sizes {
+    .size-#{$name} {
+        font-size: $size;
+    }
+}
+
 .applink {
     text-decoration: none;
     font-family: var(--font-family-geometria500);
-    font-size: var(--font-size-18);
     width: 100%;
 }
 
