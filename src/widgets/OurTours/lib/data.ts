@@ -44,7 +44,7 @@ export interface Tour {
     };
     activity: ActivityLevel;
     comfort: ComfortType;
-    description?: string;
+    description: string;
 }
 
 export const dataTours: Tour[] = [
@@ -77,6 +77,7 @@ export const dataTours: Tour[] = [
         },
         activity: 'Высокий',
         comfort: 'Высокий',
+        description: '',
     },
     {
         _id: "2",
@@ -106,7 +107,8 @@ export const dataTours: Tour[] = [
             percentage: 8
         },
         activity: 'Высокий',
-        comfort: 'Высокий'
+        comfort: 'Высокий',
+        description: '',
     },
     {
         _id: "3",
@@ -133,6 +135,7 @@ export const dataTours: Tour[] = [
         direction: "Заграница",
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
+        description: '',
     },
     {
         _id: "4",
@@ -159,6 +162,7 @@ export const dataTours: Tour[] = [
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Высокий',
+        description: '',
     },
     {
         _id: "5",
@@ -301,6 +305,7 @@ export const dataTours: Tour[] = [
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Высокий',
+        description: '',
     },
     {
         _id: "7",
@@ -327,6 +332,7 @@ export const dataTours: Tour[] = [
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Средний',
+        description: '',
     },
     {
         _id: "8",
@@ -352,7 +358,8 @@ export const dataTours: Tour[] = [
         images: [], //TODO
         direction: "Россия",
         activity: 'Средний',
-        comfort: 'Средний'
+        comfort: 'Средний',
+        description: '',
     },
     {
         _id: "9",
@@ -379,5 +386,6 @@ export const dataTours: Tour[] = [
         direction: "Заграница",
         activity: 'Средний',
         comfort: 'Уникальное жилье',
+        description: '',
     }
 ];

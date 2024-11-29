@@ -1,7 +1,7 @@
 import { Stack } from "@/shared/ui/Stack";
 import styles from './Description.module.scss';
 import { Text } from "@/shared/ui/Text";
-import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data";
+import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data"; //TODO - public api
 import { AppLink } from "@/shared/ui/AppLink";
 import { useState } from "react";
 
@@ -88,7 +88,6 @@ export const Description = (props: DescriptionProps) => {
                     className={styles.description}
                 />
 
-                {/* Кнопка для переключения */}
                 <button onClick={toggleExpanded}>
                     {isExpanded ? 'Свернуть' : 'Показать все'}
                 </button>
