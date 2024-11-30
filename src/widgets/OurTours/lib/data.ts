@@ -55,6 +55,7 @@ export interface Tour {
     comfort: ComfortType;
     description: string;
     program: DayProgram[],
+    hotels: Images[],
 }
 
 export const dataTours: Tour[] = [
@@ -92,6 +93,7 @@ export const dataTours: Tour[] = [
         comfort: 'Высокий',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "2",
@@ -127,6 +129,7 @@ export const dataTours: Tour[] = [
         comfort: 'Высокий',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "3",
@@ -158,6 +161,7 @@ export const dataTours: Tour[] = [
         comfort: 'Уникальное жилье',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "4",
@@ -189,6 +193,7 @@ export const dataTours: Tour[] = [
         comfort: 'Высокий',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "5",
@@ -421,7 +426,7 @@ export const dataTours: Tour[] = [
                 `,
                 images: [
                     {
-                        _id: '60',
+                        _id: '6044',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
                         alt: 'Патагония, Аргентина'
                     },
@@ -468,6 +473,33 @@ export const dataTours: Tour[] = [
                 `,
             }
         ],
+        hotels: [
+            {
+                _id: '511',
+                src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/204/fbwtxbmb3gs8oyam04zo313tm0yv3aol.jpg',
+                alt: 'отель'
+            },
+            {
+                _id: '512',
+                src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/790/h18kthqzos1wyf45wre1inly5lp4udak.jpg',
+                alt: 'отель'
+            },
+            {
+                _id: '513',
+                src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/ea2/brb12duf7ztzndlfu3rj4sdn6960xin9.jpg',
+                alt: 'отель'
+            },
+            {
+                _id: '514',
+                src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/893/oy7rwxfp3aisepx4fj2e6byvg2z73q5x.jpg',
+                alt: 'отель'
+            },
+            {
+                _id: '515',
+                src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/483/8uvlvfnn0xi8lzl19j752nlxvc35x90r.jpg',
+                alt: 'отель'
+            },
+        ],
     },
     {
         _id: "6",
@@ -499,6 +531,7 @@ export const dataTours: Tour[] = [
         comfort: 'Высокий',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "7",
@@ -530,6 +563,7 @@ export const dataTours: Tour[] = [
         comfort: 'Средний',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "8",
@@ -561,6 +595,7 @@ export const dataTours: Tour[] = [
         comfort: 'Средний',
         description: '',
         program: [],
+        hotels: [],
     },
     {
         _id: "9",
@@ -592,5 +627,6 @@ export const dataTours: Tour[] = [
         comfort: 'Уникальное жилье',
         description: '',
         program: [],
+        hotels: [],
     }
 ];

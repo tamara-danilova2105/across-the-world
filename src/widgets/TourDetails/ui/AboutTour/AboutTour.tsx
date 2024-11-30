@@ -3,6 +3,8 @@ import { Description } from "./ui/Description/Description";
 import { TourProgram } from "./ui/TourProgram/TourProgram";
 import { Stack } from "@/shared/ui/Stack";
 import { IncludedInPrice } from "./ui/IncludedInPrice/IncludedInPrice";
+import { StayDetails } from "./ui/StayDetails/StayDetails";
+import { FAQSection } from "./ui/FAQSection/FAQSection";
 
 interface AboutTourProps {
     tour: Tour;
@@ -20,6 +22,8 @@ export const AboutTour = (props: AboutTourProps) => {
             />
             <TourProgram program={tour.program} />
             <IncludedInPrice details={tour.details} />
+            <StayDetails images={tour.hotels} comfort={tour.comfort} />
+            <FAQSection />
         </Stack>
     );
 };

@@ -1,6 +1,7 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import styles from './IncludedInPrice.module.scss';
+import React from "react";
 
 interface IncludedInPriceProps {
     details: {
@@ -25,7 +26,7 @@ export const IncludedInPrice = (props: IncludedInPriceProps) => {
             <Text size='24' font='geometria500'>Включено в стоимость</Text>
 
             {Object.entries(details).map(([key, value]) => 
-                <>
+                <React.Fragment key={key}>
                     <Text size="14" color='blue' font='unbounded'>
                         {getText[key as 'included' | 'notIncluded']}
                     </Text>
@@ -35,7 +36,7 @@ export const IncludedInPrice = (props: IncludedInPriceProps) => {
                         }}
                         className={key === 'included' ? styles.includedList : styles.notIncludedList}
                     />
-                </>
+                </React.Fragment>
             )}
         </Stack>
     );
