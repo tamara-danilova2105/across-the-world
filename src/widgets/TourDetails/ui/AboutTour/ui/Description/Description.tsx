@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data"; //TODO - public api
 import { activityData, comfortData } from "@/widgets/TourDetails/lib/activity";
 import { Stack } from "@/shared/ui/Stack";
 import { ActivityIcon, ComfortIcon } from "@/shared/assets/svg/tourDetailsIcons";
+import { useExpandableText } from "@/shared/hooks/useExpandableText";
 import { InfoCard } from "../InfoCard/InfoCard";
 import styles from './Description.module.scss';
 
@@ -17,13 +17,10 @@ const MAX_LENGTH = 400;
 export const Description = (props: DescriptionProps) => {
     const { activity, comfort, description } = props;
 
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const toggleExpanded = () => setIsExpanded((prev) => !prev);
-
-    const shortText = description.length > MAX_LENGTH
-        ? `${description.slice(0, MAX_LENGTH)}...`
-        : description;
+    const { isExpanded, displayText, toggleExpanded } = useExpandableText({
+        text: description,
+        maxLength: MAX_LENGTH,
+    });
 
     const activityText = activityData.find(act => act.activity === activity);
     const comfortText = comfortData.find(com => com.comfort === comfort);
@@ -67,7 +64,7 @@ export const Description = (props: DescriptionProps) => {
                 <hr />
                 <div
                     dangerouslySetInnerHTML={{
-                    __html: isExpanded ? description : shortText,
+                    __html: displayText,
                     }}
                     className={styles.description}
                 />

@@ -41,6 +41,10 @@ export interface Tour {
         amount: number;
         currency: "₽" | "$";
     };
+    details: {
+        included: string;
+        notIncluded: string
+    },
     image: string; //TODO
     direction: "Россия" | "Заграница";
     discount?: {
@@ -74,6 +78,10 @@ export const dataTours: Tour[] = [
             amount: 169000,
             currency: "₽"
         },
+        details: {
+            included: '',
+            notIncluded: '',
+        },
         image: kamchatkaOne, //TODO
         direction: "Россия",
         discount: {
@@ -104,6 +112,10 @@ export const dataTours: Tour[] = [
         price: {
             amount: 176000,
             currency: "₽"
+        },
+        details: {
+            included: '',
+            notIncluded: '',
         },
         image: kamchatkaTwo, //TODO
         direction: "Россия",
@@ -136,6 +148,10 @@ export const dataTours: Tour[] = [
             amount: 3700,
             currency: "$"
         },
+        details: {
+            included: '',
+            notIncluded: '',
+        },
         image: southAmericaOne, //TODO
         direction: "Заграница",
         activity: 'Высокий',
@@ -162,6 +178,10 @@ export const dataTours: Tour[] = [
         price: {
             amount: 55000,
             currency: "₽"
+        },
+        details: {
+            included: '',
+            notIncluded: '',
         },
         image: dagestan,
         direction: "Россия",
@@ -210,6 +230,32 @@ export const dataTours: Tour[] = [
             amount: 3650,
             currency: "$"
         }, //TODO
+        details: {
+            included: `
+                <ul>
+                    <li>Проживание в отелях в 2-местных номерах</li>
+                    <li>2 ночи в 3* отеле Ibis Buenos Aires Obelisco в центре Буэнос-Айреса</li>
+                    <li>3 ночи в 3* отеле Terraza Coirones Hotel в Эль-Калафате</li>
+                    <li>1 ночь в гостинице на острове озера Пехоэ в парке Торрес-дель-Пайне</li>
+                    <li>2 ночи в 3* отеле Campanilla в Ушуайе</li>
+                    <li>Завтраки</li>
+                    <li>Новогодний ужин</li>
+                    <li>Экскурсия с местным гидом по Буэнос-Айресу</li>
+                    <li>Входные билеты в национальные парки по программе</li>
+                    <li>Внутренние авиаперелеты: Буэнос-Айрес – Эль-Калафате, Эль-Калафате – Ушуайя, Ушуайя – Буэнос-Айрес</li>
+                    <li>Экскурсия на остров с пингвинами</li>
+                    <li>Трансфер из и в аэропорт, а также по всему маршруту</li>
+                    <li>Сопровождение тим-лидером</li>
+                </ul>
+            `,
+            notIncluded: `
+                <ul>
+                    <li>Перелет из вашего города в Буэнос-Айрес и обратно</li>
+                    <li>Обеды и ужины кроме новогоднего</li>
+                    <li>Прочие расходы не включенные в стоимость</li>
+                </ul>
+            `,
+        },
         image: southAmericaTwo, //TODO
         direction: "Заграница",
         activity: 'Высокий',
@@ -443,6 +489,10 @@ export const dataTours: Tour[] = [
             amount: 48000,
             currency: "₽"
         },
+        details: {
+            included: '',
+            notIncluded: '',
+        },
         image: ingushetia,
         direction: "Россия",
         activity: 'Средний',
@@ -469,6 +519,10 @@ export const dataTours: Tour[] = [
         price: {
             amount: 96000,
             currency: "₽"
+        },
+        details: {
+            included: '',
+            notIncluded: '',
         },
         image: baikalOne, //TODO
         direction: "Россия",
@@ -497,6 +551,10 @@ export const dataTours: Tour[] = [
             amount: 62000,
             currency: "₽"
         },
+        details: {
+            included: '',
+            notIncluded: '',
+        },
         image: baikalTwo, //TODO
         direction: "Россия",
         activity: 'Средний',
@@ -523,6 +581,10 @@ export const dataTours: Tour[] = [
         price: {
             amount: 1150,
             currency: "$"
+        },
+        details: {
+            included: '',
+            notIncluded: '',
         },
         image: azerbadgan, //TODO
         direction: "Заграница",
