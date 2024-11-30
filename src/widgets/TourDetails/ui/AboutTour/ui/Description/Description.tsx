@@ -1,9 +1,10 @@
-import { Stack } from "@/shared/ui/Stack";
-import styles from './Description.module.scss';
-import { Text } from "@/shared/ui/Text";
-import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data"; //TODO - public api
-import { AppLink } from "@/shared/ui/AppLink";
 import { useState } from "react";
+import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data"; //TODO - public api
+import { activityData, comfortData } from "@/widgets/TourDetails/lib/activity";
+import { Stack } from "@/shared/ui/Stack";
+import { ActivityIcon, ComfortIcon } from "@/shared/assets/svg/tourDetailsIcons";
+import { InfoCard } from "../InfoCard/InfoCard";
+import styles from './Description.module.scss';
 
 interface DescriptionProps {
     activity: ActivityLevel;
@@ -18,13 +19,14 @@ export const Description = (props: DescriptionProps) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const toggleExpanded = () => {
-        setIsExpanded((prev) => !prev);
-      };    
+    const toggleExpanded = () => setIsExpanded((prev) => !prev);
 
     const shortText = description.length > MAX_LENGTH
-      ? `${description.slice(0, MAX_LENGTH)}...`
-      : description;
+        ? `${description.slice(0, MAX_LENGTH)}...`
+        : description;
+
+    const activityText = activityData.find(act => act.activity === activity);
+    const comfortText = comfortData.find(com => com.comfort === comfort);
 
     return (
         <Stack 
@@ -36,43 +38,25 @@ export const Description = (props: DescriptionProps) => {
                 gap="32" max 
                 className={styles.short_description}
             >
-                <Stack direction='column' gap="16">
-                    <Stack direction='column' gap="4">
-                        <Text>Активность</Text>
-                        <Stack gap="8">
-                            <Text font='geometria500'>{activity}</Text>
-                            !!!!
-                        </Stack>
-                    </Stack>
-                    <div>
-                        <AppLink 
-                            to='/' //TODO
-                            variant='link'
-                            size="14"
-                        >
-                            Смотреть маршрут
-                        </AppLink>
-                    </div>
-                </Stack>
+                <InfoCard 
+                    category='Активность'
+                    categoryType={activity}
+                    description={activityText?.description ?? ''}
+                    textLink="Смотреть маршрут"
+                    hrefLink="/"  //TODO
+                >
+                    <ActivityIcon />
+                </InfoCard>
 
-                <Stack direction='column' gap="16">
-                    <Stack direction='column' gap="4">
-                        <Text>Комфорт</Text>
-                        <Stack gap="8">
-                            <Text font='geometria500'>{comfort}</Text>
-                            !!!!
-                        </Stack>
-                    </Stack>
-                    <div>
-                        <AppLink 
-                            to='/' //TODO
-                            variant='link'
-                            size="14"
-                        >
-                            Где будем жить
-                        </AppLink>
-                    </div>
-                </Stack>
+                <InfoCard 
+                    category='Комфорт'
+                    categoryType={comfort}
+                    description={comfortText?.descriptoin ?? ''}
+                    textLink="Где будем жить"
+                    hrefLink="/"  //TODO
+                >
+                    <ComfortIcon />
+                </InfoCard>
             </Stack>
 
             <Stack 
