@@ -20,6 +20,8 @@ export const TourDetails = () => {
      //TODO - если будет error, то делать редирект на Not Found Page
     if (!tour) return null
 
+    const allImages = tour.program.flatMap(item => item.images || []);
+
     return (
         <Stack 
             tag="section" gap="48"
@@ -35,12 +37,13 @@ export const TourDetails = () => {
 
             {
                 isMobile 
-                    ? <ImageTourSwiper images={tour.images} />
-                    : <ImagesTourGrid images={tour.images} />
+                    ? <ImageTourSwiper images={allImages} />
+                    : <ImagesTourGrid images={allImages} />
             }
 
             <section className={styles.sticky_container}>
-                <div style={{ width: '60%', height: '1000px'}}>
+                {/* TODO */}
+                <div style={{ width: '60%'}}>
                     <AboutTour tour={tour}/>
                 </div>
                 <BookingForm 

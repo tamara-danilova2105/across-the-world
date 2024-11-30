@@ -26,6 +26,12 @@ export interface DateTours {
     spots: number;
 };
 
+export interface DayProgram {
+    title: string;
+    images?: Images[]; //TODO
+    details: string;
+};
+
 export interface Tour {
     _id: string;
     tour: string;
@@ -36,7 +42,6 @@ export interface Tour {
         currency: "₽" | "$";
     };
     image: string; //TODO
-    images: Images[]; //TODO
     direction: "Россия" | "Заграница";
     discount?: {
         endDate: Date;
@@ -45,6 +50,7 @@ export interface Tour {
     activity: ActivityLevel;
     comfort: ComfortType;
     description: string;
+    program: DayProgram[],
 }
 
 export const dataTours: Tour[] = [
@@ -69,7 +75,6 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: kamchatkaOne, //TODO
-        images: [], //TODO
         direction: "Россия",
         discount: {
             endDate: new Date("2023-12-01"),
@@ -78,6 +83,7 @@ export const dataTours: Tour[] = [
         activity: 'Высокий',
         comfort: 'Высокий',
         description: '',
+        program: [],
     },
     {
         _id: "2",
@@ -100,7 +106,6 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: kamchatkaTwo, //TODO
-        images: [], //TODO
         direction: "Россия",
         discount: {
             endDate: new Date("2023-12-01"),
@@ -109,6 +114,7 @@ export const dataTours: Tour[] = [
         activity: 'Высокий',
         comfort: 'Высокий',
         description: '',
+        program: [],
     },
     {
         _id: "3",
@@ -131,11 +137,11 @@ export const dataTours: Tour[] = [
             currency: "$"
         },
         image: southAmericaOne, //TODO
-        images: [], //TODO
         direction: "Заграница",
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: '',
+        program: [],
     },
     {
         _id: "4",
@@ -158,11 +164,11 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: dagestan,
-        images: [], //TODO
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
+        program: [],
     },
     {
         _id: "5",
@@ -205,58 +211,6 @@ export const dataTours: Tour[] = [
             currency: "$"
         }, //TODO
         image: southAmericaTwo, //TODO
-        images: [
-            {
-                _id: '51',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/f9b/xqibcdntphopbuw7vvcvyt0hrcs5z69b.jpeg',
-                alt: 'Ледник Перито Морено, Аргентина'
-            },
-            {
-                _id: '52',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/a4c/m6m6njbigoeen9n9ulbhmyussqhaanz1.jpeg',
-                alt: 'Буэнос Айрос, Аргентина'
-            },
-            {
-                _id: '53',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/d79/g6f3h1tplt74ej2bf0ss5hx45v89o42l.jpg',
-                alt: 'стейки, Аргентина'
-            },
-            {
-                _id: '60',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
-                alt: 'Патагония, Аргентина'
-            },
-            {
-                _id: '54',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/707/t88ve6bqedu28w5ynfct2he1qkv92msv.JPEG',
-                alt: 'Ледник Перито Морено, Аргентина'
-            },
-            {
-                _id: '55',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
-                alt: 'Ледник Перито Морено, Аргентина'
-            },
-            {
-                _id: '56',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
-                alt: 'Торрес Дель Пайне, Патагония, Чили'
-            },
-            {
-                _id: '57',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/74f/w6tw3s5qujd36smt458960nl433gxi4o.jpg',
-                alt: 'Торрес Дель Пайне, Патагония, Чили'
-            },
-            {
-                _id: '58',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/b1e/affr0zgih25tgjtias57huvkohh9p11s.jpeg',
-                alt: 'Торрес Дель Пайне, Патагония, Чили'
-            },
-            {
-                _id: '59',
-                src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/ebb/d7noojbcyb1e47yee2m3ybr6m17zjz8y.JPG',
-                alt: 'Торрес Дель Пайне, Патагония, Чили'
-            },
-        ],
         direction: "Заграница",
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
@@ -279,6 +233,195 @@ export const dataTours: Tour[] = [
             <li>Сможем продолжить приключения поездками на водопады Игуасу, в Боливию и пустыню Атакама.</li>
         </ul>
         `,
+        program: [
+            {
+                title: "День 1. Прибытие в Буэнос-Айрес, знакомство с группой.",
+                details: `
+                    <p>
+                        Встреча в аэропорту Буэнос-Айреса, трансфер в отель. В этот день мы
+                        дадим вам время на отдых после долгого перелета. Для этого мы выбрали
+                        один из лучших отелей города, расположенный в самом центре
+                        Буэнос-Айреса.
+                        </p>
+                        <p>
+                        По желанию и при наличии сил вы сможете прогуляться по
+                        близлежащим достопримечательностям. Вечером соберемся за вкусным
+                        ужином для знакомства с группой.
+                        </p>
+                `,
+                images: [
+                    {
+                        _id: '52',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/a4c/m6m6njbigoeen9n9ulbhmyussqhaanz1.jpeg',
+                        alt: 'Буэнос Айрос, Аргентина'
+                    },
+                ],
+            },
+            {
+                title: "День 2. Экскурсия по Буэнос-Айресу, гастрономический ужин.",
+                details: `
+                    <p>
+                        День посвятим столице Аргентины. Прогуляемся по его центру с местным
+                        русскоговорящим гидом, прикоснемся к прошлому и обсудим
+                        противоречивое настоящее.
+                    </p>
+                    <p>
+                        Посетим главные достопримечательности, увидим, где когда-то работал и
+                        куда ходил стричься нынешний Папа Римский Франциск. Вечером по
+                        желанию отправимся в один из самых крутых заведений Южной Америки —
+                        иммерсивный ресторан, где прием пищи — это настоящий гастротеатр со
+                        спецэффектами.
+                    </p>
+                `,
+                images: [
+                    {
+                        _id: '53',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/d79/g6f3h1tplt74ej2bf0ss5hx45v89o42l.jpg',
+                        alt: 'стейки, Аргентина'
+                    },
+                ],
+            },
+            {
+                title: "День 3. Перелет в Эль-Калафате, прогулка к озеру Архентино.",
+                details: `
+                    <p>
+                        Утром нас ждет внутренний перелет из Буэнос-Айреса в Эль-Калафате.
+                        Трансфер в отель 5* с видом на озеро Архентино, где живут розовые
+                        фламинго и тысячи других птиц.
+                    </p>
+                    <p>
+                        После обеда прогуляемся к озеру и познакомимся с его жителями. Далее
+                        у вас будет свободное время на отдых в спа-зоне отеля.
+                    </p>
+                `,
+                images: [
+                    {
+                        _id: '60',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
+                        alt: 'Патагония, Аргентина'
+                    },
+                ],
+            },
+            {
+                title: "День 4. Экскурсия на ледник Перито Морено.",
+                details: `
+                    <p>
+                        Вас ждет, пожалуй, самый известный ледник — Перито Морено. Он поражает
+                        своими размерами и насыщенным голубым цветом льда.
+                    </p>
+                    <p>
+                        Мы будем смотреть на ледник не только с суши, но и с воды, подплывая к
+                        нему близко на корабле.
+                    </p>
+                `,
+                images: [
+                    {
+                        _id: '51',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/f9b/xqibcdntphopbuw7vvcvyt0hrcs5z69b.jpeg',
+                        alt: 'Ледник Перито Морено, Аргентина'
+                    },
+                    {
+                        _id: '54',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/707/t88ve6bqedu28w5ynfct2he1qkv92msv.JPEG',
+                        alt: 'Ледник Перито Морено, Аргентина'
+                    },
+                    {
+                        _id: '55',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
+                        alt: 'Ледник Перито Морено, Аргентина'
+                    },
+                ],
+            },
+            {
+                title: "День 5. Переезд в парк Торрес-дель-Пайне, бирюзовое озеро.",
+                details: `
+                    <p>
+                        После завтрака мы выдвигаемся в Чили, а точнее в один из самых
+                        впечатляющих национальных парков в мире — парк Торрес-дель-Пайне.
+                        По дороге вас ждут живописные пампасы, свободно гуляющие гуанако (ламы)
+                        и другие обитатели патагонских степей.
+                    </p>
+                `,
+                images: [
+                    {
+                        _id: '56',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
+                        alt: 'Торрес Дель Пайне, Патагония, Чили'
+                    },
+                    {
+                        _id: '57',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/74f/w6tw3s5qujd36smt458960nl433gxi4o.jpg',
+                        alt: 'Торрес Дель Пайне, Патагония, Чили'
+                    },
+                    {
+                        _id: '58',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/b1e/affr0zgih25tgjtias57huvkohh9p11s.jpeg',
+                        alt: 'Торрес Дель Пайне, Патагония, Чили'
+                    },
+                ],
+            },
+            {
+                title: "День 6. День трекинга, возвращение в Эль-Калафате.",
+                details: `
+                    <p>
+                        Утром нас ждет легкий трекинг к водопаду Salto Grande (1,4 км в одну сторону) и смотровой площадке Куэрнос (от водопада идти еще 2,4 км). Затем отправимся к озеру Грей с невероятно красивыми айсбергами, разбросанными по пляжу и сверкающими на солнце, словно гигантские бриллианты (легкий трекинг около 1,2 км).
+                    </p>
+                    <p>
+                        В качестве альтернативы возможен сложный трекинг к башням Торрес. Путь занимает 21 км и требует физической подготовки. Выход на тропу в данном случае будет в 6 утра.
+                    </p>
+                    <p>
+                        Вечером возвращение в Эль-Калафате. Ночь в 5* отеле со спа-комплексом.
+                    </p>
+                `,
+                images: [
+                    {
+                        _id: '60',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
+                        alt: 'Патагония, Аргентина'
+                    },
+                ],
+            },
+            {
+                title: "День 7. Перелет в Ушуайю, экскурсия в парк Огненная Земля.",
+                details: `
+                    <p>
+                        Утром вылет в Ушуайю – самый южный город планеты, дальше только лёд Антарктиды. 
+                        После заселения в отель отправимся в Национальный парк Тьерра дель Фуэго – Огненная Земля, 
+                        где нас ждёт 5-ти километровый трекинг вдоль живописного канала Бигль.
+                    </p>
+                    <p>
+                        Если повезет, увидим морских львов и пингвинов. Заглянем в самую южную почту мира и поужинаем в одном из лучших заведений города.
+                    </p>
+                    <p>
+                        Ночь в 5* отеле со спа-комплексом.
+                    </p>
+                `,
+            },
+            {
+                title: "День 8. Круиз по каналу Бигль, встреча с пингвинами.",
+                details: `
+                    <p>
+                        День встречи с пингвинами! Сразу после завтрака мы отправимся с вами в круиз по каналу Бигль.
+                        Мы посетим остров Морского льва, остров Птиц и маяк Ле-Эклерьё. А также высадимся на острове 
+                        Мартиllo (Остров пингвинов), где вы сможете понаблюдать за колонией магелланских и субантарктических 
+                        пингвинов в естественной среде обитания.
+                    </p>
+                    <p>
+                        Возвращение в Ушуайю.
+                    </p>
+                `,
+            },
+            {
+                title: "День 9. Возвращение в Буэнос-Айрес, завершение тура.",
+                details: `
+                    <p>
+                        Вылет в Буэнос-Айрес. Прощальный обед. Для тех, кто не хочет прощаться, мы подготовили 
+                        дополнительную программу на водопады Игуасу (2 дня), в Боливию (3 дня) и самую сухую пустыню 
+                        в мире Атакаму, расположенную в Чили (3 дня).
+                    </p>
+                `,
+            }
+        ],
     },
     {
         _id: "6",
@@ -301,11 +444,11 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: ingushetia,
-        images: [], //TODO
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
+        program: [],
     },
     {
         _id: "7",
@@ -328,11 +471,11 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: baikalOne, //TODO
-        images: [], //TODO
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
+        program: [],
     },
     {
         _id: "8",
@@ -355,11 +498,11 @@ export const dataTours: Tour[] = [
             currency: "₽"
         },
         image: baikalTwo, //TODO
-        images: [], //TODO
         direction: "Россия",
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
+        program: [],
     },
     {
         _id: "9",
@@ -382,10 +525,10 @@ export const dataTours: Tour[] = [
             currency: "$"
         },
         image: azerbadgan, //TODO
-        images: [], //TODO
         direction: "Заграница",
         activity: 'Средний',
         comfort: 'Уникальное жилье',
         description: '',
+        program: [],
     }
 ];

@@ -1,0 +1,16 @@
+main {
+    img {
+        width: 32%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+}
+
+.text_container {
+    p {
+        margin-bottom: 8px;
+        text-indent: var(--text-indent);
+        text-align: justify;
+    }
+}
