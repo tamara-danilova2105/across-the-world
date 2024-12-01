@@ -16,6 +16,8 @@ export const TestimonialsSwiper = () => {
         (isMobileSmall ? MAX_HEIGHT_MOBILE_SMALL : MAX_HEIGHT_DEFAULT), [width]
     );
 
+    //TODO renderItem
+
     const { 
         itemRefs, 
         maxHeight, 

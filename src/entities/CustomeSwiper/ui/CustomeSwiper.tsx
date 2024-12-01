@@ -1,4 +1,4 @@
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useCallback, useRef, useState } from "react";
 import { Swiper as SwiperInstance } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -30,12 +30,12 @@ export const CustomeSwiper = <T extends { _id: string }>(props: CustomeSwiperPro
     const [currentIndex, setCurrentIndex] = useState(0);
     const swiperRef = useRef<SwiperInstance | null>(null);
 
-    const handlePageChange = (pageIndex: number) => {
+    const handlePageChange = useCallback((pageIndex: number) => {
         setCurrentIndex(pageIndex);
         if (swiperRef.current) {
             swiperRef.current.slideTo(pageIndex);
         }
-    };
+    }, []);
 
     return (
         <>
@@ -48,6 +48,7 @@ export const CustomeSwiper = <T extends { _id: string }>(props: CustomeSwiperPro
                 autoplay={autoplay}
                 modules={autoplay ? [Autoplay] : []}
                 speed={autoplay ? 1000 : 200}
+                aria-live="polite"
             >
                 {items.map((item: T, index: number) => (
                     <SwiperSlide key={item._id} style={{ padding: '16px' }}>

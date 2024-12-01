@@ -9,6 +9,8 @@ interface ImageTourSwiperProps {
 export const ImageTourSwiper = (props: ImageTourSwiperProps) => {
     const { images } = props;
 
+    //TODO renderItem
+
     return (
         <div style={{ width: '100%' }}>
             <CustomeSwiper 
