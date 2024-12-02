@@ -1,8 +1,10 @@
-import { MouseEvent, ReactNode } from 'react';
+import { MouseEvent, ReactNode, useEffect, useRef } from 'react';
 import { motion as m } from "framer-motion";
 import { Portal } from '@/shared/ui/Portal';
 import { CloseIcon } from '@/shared/assets/svg/closeIcon';
 import styles from './Modal.module.scss';
+
+const portalElement = document.getElementById('app') ?? document.body;
 
 interface ModalProps {
     children: ReactNode;
@@ -14,19 +16,33 @@ export const Modal = (props: ModalProps) => {
 
     const { children, setIsOpen, withAnimation } = props;
 
+    const overlayRef = useRef<HTMLDivElement>(null);
+
+    const closeModal = () => setIsOpen(false);
+
     const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-        const target = e.target as HTMLElement;
-        if (target.dataset.class === 'overlay') {
-            setIsOpen(false);
-        }
+        if (e.target === overlayRef.current) closeModal();
     };
 
+    useEffect(() => {
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeModal();
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, []);
+
     return (
-        <Portal element={document.getElementById('app') ?? document.body}>
-            <div className={styles.modal}>
+        <Portal element={portalElement}>
+            <div 
+                className={styles.modal}
+                role="dialog"
+                aria-modal="true"
+            >
                 <div
                     className={styles.overlay}
-                    data-class="overlay"
+                    ref={overlayRef}
                     onClick={handleClick}
                 >
                     <button 

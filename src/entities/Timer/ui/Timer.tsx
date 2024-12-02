@@ -30,7 +30,12 @@ export const Timer: FC<TimerProps> = ({ styleMode, endTime }) => {
     );
     
     return (
-        <Stack className={styleClass} align='center' justify='center'>
+        <Stack 
+            className={styleClass} 
+            align='center' 
+            justify='center'
+            role="timer" aria-live="polite"
+        >
             {renderTimer()}
         </Stack>
     );
