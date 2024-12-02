@@ -7,38 +7,42 @@ import styles from './RunningLine.module.scss';
 interface RunningLineItem {
     icon: JSX.Element;
     text: string;
-}
+};
+
+const data: RunningLineItem[] = [
+    {
+        icon: <LogoIcon />,
+        text: 'РАНЕЕ БРОНИРОВАНИЕ - 8%'
+    },
+    {
+        icon: <LogoIcon />,
+        text: 'ПОДПИСКА НА НОВОСТИ - 3%'
+    },
+    {
+        icon: <LogoIcon />,
+        text: 'ПУТЕШЕСТВИЕ В ДЕНЬ РОЖДЕНИЯ - 5%'
+    },
+    {
+        icon: <LogoIcon />,
+        text: 'ПОСТОЯННЫМ КЛИЕНТАМ - до 15%'
+    },
+];
 
 export const RunningLine = () => {
-    
-    const data: RunningLineItem[] = [
-        {
-            icon: <LogoIcon />,
-            text: 'РАНЕЕ БРОНИРОВАНИЕ - 8%'
-        },
-        {
-            icon: <LogoIcon />,
-            text: 'ПОДПИСКА НА НОВОСТИ - 3%'
-        },
-        {
-            icon: <LogoIcon />,
-            text: 'ПУТЕШЕСТВИЕ В ДЕНЬ РОЖДЕНИЯ - 5%'
-        },
-        {
-            icon: <LogoIcon />,
-            text: 'ПОСТОЯННЫМ КЛИЕНТАМ - до 15%'
-        },
-    ];
-
     return (
-        <Stack className={styles.runningLine}>
+        <Stack 
+            className={styles.runningLine} 
+            tag='section'
+            aria-label="Промоакции"
+        >
             <Marquee gradient={false} pauseOnHover={true}>
                 {Array(1).fill(data).flat().map((item, index) => (
                     <Stack 
-                        key={index} 
+                        key={`${item.text}-${index}`} 
                         gap="32"
                         align='center'
                         className={styles.runningText}
+                        tag='article'
                     >
                         {item.icon}
                         <Text font='geometria500' color="peach" size="24">

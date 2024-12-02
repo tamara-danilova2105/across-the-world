@@ -11,7 +11,8 @@ export const TitleSection = (props: TitleSectionProps) => {
     const { title, subtitle } = props;
 
     return (
-        <Stack direction='column' gap="16"
+        <Stack 
+            direction='column' gap="16"
             className={styles.title_section}
         >
             <Text 

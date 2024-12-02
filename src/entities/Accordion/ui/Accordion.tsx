@@ -8,7 +8,7 @@ import styles from './Accordion.module.scss';
 interface AccordionProps {
     title: ReactNode;
     content: ReactNode;
-    isSecond: boolean;
+    isSecond?: boolean;
 };
 
 export const Accordion = (props: AccordionProps) => {
@@ -34,12 +34,17 @@ export const Accordion = (props: AccordionProps) => {
                 justify='between'
                 align='center'
                 className={styles.questionContainer}
+                role="button"
+                aria-expanded={isOpen}
             >
                 {title}
                 {isOpen ? <LessIcon/> : <MoreIcon/>}
             </Stack>
 
-            <Stack className={isOpen ? styles.visible : styles.hidden}>
+            <Stack 
+                className={isOpen ? styles.visible : styles.hidden}
+                aria-hidden={!isOpen}
+            >
                 {content}
             </Stack>
         </Stack>

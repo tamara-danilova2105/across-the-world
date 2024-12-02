@@ -27,6 +27,8 @@ export const OurTours = () => {
         setTours(filtered);
     }, [tours]);
 
+    const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
+
     return (
         <Stack 
             tag='section' 
@@ -47,7 +49,7 @@ export const OurTours = () => {
                     <div style={{width: '100%', padding: '0 10px'}}>
                         <CustomeSwiper<Tour> 
                             items={tours}
-                            renderItem={(tour) => <TourCard tourData={tour} />}
+                            renderItem={renderItem}
                         />
                     </div>
                     
