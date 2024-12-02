@@ -1,4 +1,4 @@
-import { ObfuscatedEmail } from '@/entities/Footer/ui/ObfuscatedEmail/ObfuscatedEmail';
+import { ObfuscatedEmail } from '@/widgets/Footer/ui/ObfuscatedEmail/ObfuscatedEmail';
 import styles from './PrivacyPolicy.module.scss';
 
 export const PrivacyPolicy = () => {

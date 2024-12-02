@@ -1,7 +1,7 @@
-import { Navbar } from "@/entities/Navbar";
+import { Navbar } from "@/widgets/Navbar";
 import { AppRouter } from "./router/ui/AppRouter";
 import { Parallax } from "@/entities/Parallax";
-import { Footer } from "@/entities/Footer";
+import { Footer } from "@/widgets/Footer";
 import { ScrollToTop } from "@/entities/ScrollToTop";
 
 function App() {
