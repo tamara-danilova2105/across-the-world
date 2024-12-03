@@ -18,7 +18,7 @@ export const TourProgram = (props: TourProgramProps) => {
             tag='section'
             id="tour-program"
         >
-            <Text size='24' font='geometria500'>Программа</Text>
+            <Text type="h3" size='24' font='geometria500'>Программа</Text>
 
             {program.map((accordion: DayProgram, index: number) => (
                 <Accordion

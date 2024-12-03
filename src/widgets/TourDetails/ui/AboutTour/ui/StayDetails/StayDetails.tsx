@@ -20,7 +20,7 @@ export const StayDetails = ({ images, comfort }: StayDetailsProps) => {
             tag='section'
             id="stay-details"
         >
-            <Text size='24' font='geometria500'>
+            <Text type='h3' size='24' font='geometria500'>
                 Проживание
             </Text>
             

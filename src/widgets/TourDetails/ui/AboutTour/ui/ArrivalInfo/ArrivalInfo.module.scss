@@ -1,0 +1,23 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.travel_card {
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    padding: 20px 24px;
+    width: 100%;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+}
+
+.locations_container {
+    @include tablet-m {
+        flex-direction: column;
+    }
+}
+
+.plane_icon {
+    color: var(--pink-color);
+    transform: rotate(-90deg);
+}
