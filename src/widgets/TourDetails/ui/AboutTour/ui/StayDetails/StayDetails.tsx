@@ -17,8 +17,10 @@ export const StayDetails = ({ images, comfort }: StayDetailsProps) => {
         <Stack
             direction="column" 
             gap='24' max
+            tag='section'
+            id="stay-details"
         >
-            <Text size='24' font='geometria500'>
+            <Text type='h3' size='24' font='geometria500'>
                 Проживание
             </Text>
             

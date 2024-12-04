@@ -35,7 +35,7 @@ export const FAQSection = () => {
             direction="column" 
             gap='24' max
         >
-            <Text size='24' font='geometria500'>
+            <Text type="h3" size='24' font='geometria500'>
                 Важно знать
             </Text>
             

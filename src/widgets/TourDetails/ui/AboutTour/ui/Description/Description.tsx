@@ -40,7 +40,7 @@ export const Description = (props: DescriptionProps) => {
                     categoryType={activity}
                     description={activityText?.description ?? ''}
                     textLink="Смотреть маршрут"
-                    hrefLink="/"  //TODO
+                    hrefLink="#tour-program"
                 >
                     <ActivityIcon />
                 </InfoCard>
@@ -50,7 +50,7 @@ export const Description = (props: DescriptionProps) => {
                     categoryType={comfort}
                     description={comfortText?.descriptoin ?? ''}
                     textLink="Где будем жить"
-                    hrefLink="/"  //TODO
+                    hrefLink="#stay-details"
                 >
                     <ComfortIcon />
                 </InfoCard>

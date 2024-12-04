@@ -1,0 +1,22 @@
+.location_type {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.date_container {
+    svg {
+        color: #666;
+    }
+
+    span {
+        font-size: 1.125rem;
+        font-weight: 500;
+    }
+}
+
+.location {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--blue-color);
+}

@@ -1,8 +1,8 @@
+import { MouseEvent, ReactNode, useCallback } from "react";
 import { ExclamatiomMarkIcon } from "@/shared/assets/svg/exclamatiomMarkIcon";
 import { AppLink } from "@/shared/ui/AppLink";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { ReactNode } from "react";
 import styles from './InfoCard.module.scss';
 
 interface InfoCardProps {
@@ -14,8 +14,26 @@ interface InfoCardProps {
     hrefLink: string;
 };
 
+const FIXED_HEIGHT_MENU = -80;
+
 export const InfoCard = (props: InfoCardProps) => {
     const { children, category, categoryType, description, textLink, hrefLink } = props;
+
+    const handleLinkClick = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const targetId = hrefLink.replace("#", "");
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            const yOffset = FIXED_HEIGHT_MENU;
+            const yPosition = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+    
+            window.scrollTo({
+                top: yPosition,
+                behavior: "smooth",
+            });
+        }
+    }, [hrefLink]);
 
     return (
         <Stack justify='between' align='center'>
@@ -39,6 +57,7 @@ export const InfoCard = (props: InfoCardProps) => {
                         to={hrefLink}
                         variant='link'
                         size="14"
+                        onClick={handleLinkClick}
                     >
                         {textLink}
                     </AppLink>
@@ -46,5 +65,5 @@ export const InfoCard = (props: InfoCardProps) => {
             </Stack>
             {children}
         </Stack>
-    )
-}
+    );
+};

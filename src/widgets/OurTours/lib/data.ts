@@ -26,6 +26,11 @@ export interface DateTours {
     spots: number;
 };
 
+export interface Locations {
+    place_start: string;
+    place_finish: string;
+}
+
 export interface DayProgram {
     title: string;
     images?: Images[]; //TODO
@@ -41,6 +46,7 @@ export interface Tour {
         amount: number;
         currency: "₽" | "$";
     };
+    locations: Locations,
     details: {
         included: string;
         notIncluded: string
@@ -68,6 +74,7 @@ export const dataTours: Tour[] = [
                 _id: '11',
                 date_start: '2025-07-14T00:00:00.000Z',
                 date_finish: '2025-07-20T23:59:59.000Z',
+
                 price: {
                     amount: 169000,
                     currency: "₽"
@@ -75,6 +82,10 @@ export const dataTours: Tour[] = [
                 spots: 16,
             },
         ], //TODO
+        locations: {
+            place_start: 'Петропавловск-Камчатский',
+            place_finish: 'Петропавловск-Камчатский',
+        },
         price: {
             amount: 169000,
             currency: "₽"
@@ -104,6 +115,7 @@ export const dataTours: Tour[] = [
                 _id: '21',
                 date_start: '2025-08-22T00:00:00.000Z',
                 date_finish: '2025-08-28T23:59:59.000Z',
+
                 price: {
                     amount: 176000,
                     currency: "₽"
@@ -111,6 +123,10 @@ export const dataTours: Tour[] = [
                 spots: 10,
             }
         ], //TODO
+        locations: {
+            place_start: 'Петропавловск-Камчатский',
+            place_finish: 'Петропавловск-Камчатский',
+        },
         price: {
             amount: 176000,
             currency: "₽"
@@ -140,6 +156,7 @@ export const dataTours: Tour[] = [
                 _id: '31',
                 date_start: '2025-01-06T00:00:00.000Z',
                 date_finish: '2025-01-13T23:59:59.000Z',
+
                 price: {
                     amount: 3700,
                     currency: "$"
@@ -147,6 +164,10 @@ export const dataTours: Tour[] = [
                 spots: 10,
             }
         ], //TODO
+        locations: {
+            place_start: 'Буэнос-Айрос, Аргентина',
+            place_finish: 'Сантьяго, Чили',
+        },
         price: {
             amount: 3700,
             currency: "$"
@@ -172,6 +193,7 @@ export const dataTours: Tour[] = [
                 _id: '41',
                 date_start: '2025-01-04T00:00:00.000Z',
                 date_finish: '2025-01-08T23:59:59.000Z',
+
                 price: {
                     amount: 55000,
                     currency: "₽"
@@ -179,6 +201,10 @@ export const dataTours: Tour[] = [
                 spots: 10,
             }
         ], //TODO
+        locations: {
+            place_start: 'Махачкала',
+            place_finish: 'Махачкала',
+        },
         price: {
             amount: 55000,
             currency: "₽"
@@ -231,6 +257,10 @@ export const dataTours: Tour[] = [
                 spots: 15,
             },
         ], //TODO
+        locations: {
+            place_start: 'Буэнос-Айрос, Аргентина',
+            place_finish: 'Сантьяго, Чили',
+        },
         price: {
             amount: 3650,
             currency: "$"
@@ -510,6 +540,7 @@ export const dataTours: Tour[] = [
                 _id: '61',
                 date_start: '2025-01-15T00:00:00.000Z',
                 date_finish: '2025-01-19T23:59:59.000Z',
+
                 price: {
                     amount: 48000,
                     currency: "₽"
@@ -517,6 +548,10 @@ export const dataTours: Tour[] = [
                 spots: 10,
             }
         ], //TODO
+        locations: {
+            place_start: 'Владикавказ',
+            place_finish: 'Грозный',
+        },
         price: {
             amount: 48000,
             currency: "₽"
@@ -542,6 +577,7 @@ export const dataTours: Tour[] = [
                 _id: '71',
                 date_start: '2025-02-10T00:00:00.000Z',
                 date_finish: '2025-02-14T23:59:59.000Z',
+
                 price: {
                     amount: 96000,
                     currency: "₽"
@@ -549,6 +585,10 @@ export const dataTours: Tour[] = [
                 spots: 6,
             }
         ], //TODO
+        locations: {
+            place_start: 'Иркутск',
+            place_finish: 'Иркутск',
+        },
         price: {
             amount: 96000,
             currency: "₽"
@@ -574,6 +614,7 @@ export const dataTours: Tour[] = [
                 _id: '81',
                 date_start: '2025-02-14T00:00:00.000Z',
                 date_finish: '2025-02-17T23:59:59.000Z',
+
                 price: {
                     amount: 62000,
                     currency: "₽"
@@ -581,6 +622,10 @@ export const dataTours: Tour[] = [
                 spots: 6,
             }
         ], //TODO
+        locations: {
+            place_start: 'Иркутск',
+            place_finish: 'Иркутск',
+        },
         price: {
             amount: 62000,
             currency: "₽"
@@ -606,6 +651,7 @@ export const dataTours: Tour[] = [
                 _id: '82',
                 date_start: '2025-02-24T00:00:00.000Z',
                 date_finish: '2025-03-02T23:59:59.000Z',
+
                 price: {
                     amount: 1150,
                     currency: "$"
@@ -613,6 +659,10 @@ export const dataTours: Tour[] = [
                 spots: 14,
             }
         ], //TODO
+        locations: {
+            place_start: 'Баку',
+            place_finish: 'Баку',
+        },
         price: {
             amount: 1150,
             currency: "$"

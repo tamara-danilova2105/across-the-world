@@ -1,15 +1,20 @@
-export const formatDateRange = (dateStart: string, dateFinish: string) => {
+export const formatDateRange = (dateStart: string, dateFinish?: string) => {
     const months = [
         "янв.", "фев.", "мар.", "апр.", "мая", "июня",
         "июля", "авг.", "сент.", "окт.", "нояб.", "дек."
     ];
 
     const start = new Date(dateStart);
-    const finish = new Date(dateFinish);
 
     const startDay = start.getDate();
     const startMonth = months[start.getMonth()];
     const startYear = start.getFullYear();
+
+    if (!dateFinish) {
+        return `${startDay} ${startMonth} ${startYear}`;
+    }
+
+    const finish = new Date(dateFinish);
 
     const finishDay = finish.getDate();
     const finishMonth = months[finish.getMonth()];

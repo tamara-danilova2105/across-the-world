@@ -23,7 +23,7 @@ export const IncludedInPrice = (props: IncludedInPriceProps) => {
             direction="column" 
             gap='24' max
         >
-            <Text size='24' font='geometria500'>Включено в стоимость</Text>
+            <Text type="h3" size='24' font='geometria500'>Включено в стоимость</Text>
 
             {Object.entries(details).map(([key, value]) => 
                 <React.Fragment key={key}>
