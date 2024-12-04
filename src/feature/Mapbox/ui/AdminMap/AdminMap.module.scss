@@ -1,0 +1,11 @@
+.marker {
+    background-color: limegreen;
+    color: var(--white-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

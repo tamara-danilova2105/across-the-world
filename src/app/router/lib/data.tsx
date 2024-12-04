@@ -15,6 +15,7 @@ import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
 import { TourDetailsPage } from "@/pages/TourDetailsPage";
+import { AdminPage } from "@/pages/AdminPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -48,7 +49,8 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     },
     [AppRouters.admin]: {
         path: getRouteAdmin(),
-        onlyAdmin: true,
+        // onlyAdmin: true, //TODO
+        page: <AdminPage />
     },
     [AppRouters.not_found]: {
         path: '*',
