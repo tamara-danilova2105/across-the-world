@@ -1,6 +1,7 @@
 import { CalendarIcon } from "@/shared/assets/svg/calendarIcon";
 import styles from './LocationInfo.module.scss';
 import { Stack } from "@/shared/ui/Stack";
+import { formatDateRange } from "@/shared/lib/formatDateRange";
 
 interface LocationInfoProps {
     type: 'start' | 'finish';
@@ -18,8 +19,12 @@ export const LocationInfo = ({ type, date, location }: LocationInfoProps) => (
             className={styles.date_container}
         >
             <CalendarIcon />
-            <span>{date}</span>
+            <span>
+                {formatDateRange(date)}
+            </span>
         </Stack>
-        <div className={styles.location}>{location}</div>
+        <div className={styles.location}>
+            {location}
+        </div>
     </Stack>
 );

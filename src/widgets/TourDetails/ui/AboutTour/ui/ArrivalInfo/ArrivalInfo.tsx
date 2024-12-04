@@ -1,17 +1,31 @@
 import { PlaneIcon } from "@/shared/assets/svg/planeIcon";
-import { LocationInfo } from "./ui/LocationInfo";
 import { Text } from "@/shared/ui/Text";
-import styles from './ArrivalInfo.module.scss';
 import { Stack } from "@/shared/ui/Stack";
+import { LocationInfo } from "./ui/LocationInfo";
+import styles from './ArrivalInfo.module.scss';
+import { DateTours, Locations } from "@/widgets/OurTours/lib/data"; //TODO publick api
 
-export const ArrivalInfo = () => {
+interface ArrivalInfoProps {
+    locations: Locations;
+    dates: DateTours
+};
+
+export const ArrivalInfo = (props: ArrivalInfoProps) => {
+    const { locations, dates } = props;
+
     return (
-        <div className={styles.travel_card}>
+        <Stack
+            direction="column" 
+            gap='24' max
+        >
             <Text type="h3" size='24' font='geometria500'>
                 Информация по прибытию
             </Text>
 
-            <Stack direction='column' gap='16'>
+            <Stack 
+                direction='column' gap='16'
+                className={styles.travel_card}
+            >
                 <Stack 
                     align='center' 
                     justify='between' 
@@ -20,8 +34,8 @@ export const ArrivalInfo = () => {
                 >
                     <LocationInfo
                         type="start"
-                        date="21 января"
-                        location="Буэнос-Айрос, Аргентина" //TODO
+                        date={dates.date_start}
+                        location={locations.place_start}
                     />
 
                     <div className={styles.plane_icon}>
@@ -30,11 +44,11 @@ export const ArrivalInfo = () => {
 
                     <LocationInfo
                         type="finish"
-                        date="29 января"
-                        location="Сантьяго, Чили" //TODO
+                        date={dates.date_finish}
+                        location={locations.place_finish}
                     />
                 </Stack>
             </Stack>
-        </div>
+        </Stack>
     );
 };
