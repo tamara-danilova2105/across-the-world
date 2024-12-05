@@ -1,4 +1,5 @@
 @use '@/app/styles/mixin' as *;
+@use '@/app/styles/media-queries.scss' as *;
 
 .main {
     @include section-style;
@@ -14,4 +15,16 @@
     justify-content: space-between;
     gap: 48;
     width: 100%;
+
+    @include tablet-m {
+        flex-direction: column-reverse;
+    }
+}
+
+.tour_container {
+    width: 60%;
+
+    @include tablet-m {
+        width: 100%;
+    }
 }

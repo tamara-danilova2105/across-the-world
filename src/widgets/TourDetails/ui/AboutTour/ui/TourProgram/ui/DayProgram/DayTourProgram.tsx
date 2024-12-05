@@ -15,7 +15,7 @@ export const DayTourProgram = (props: DayTourProgramProps) => {
             direction='column' gap="24"
             className={styles.main}
         >
-            <Stack justify='between' max>
+            <Stack justify='between' max gap="8">
                 {images && images.map(img => (
                     <img 
                         key={img._id} 

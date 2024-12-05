@@ -50,9 +50,15 @@ export const AboutTour = (props: AboutTourProps) => {
             <TourProgram program={tour.program} />
             <RouteMap locations={locations} />
             <IncludedInPrice details={tour.details} />
-            <StayDetails images={tour.hotels} comfort={tour.comfort} />
+            <StayDetails 
+                images={tour.hotels} 
+                comfort={tour.comfort} 
+            />
             <FAQSection />
-            <ArrivalInfo locations={tour.locations} dates={tour.dates[0]} />
+            <ArrivalInfo 
+                locations={tour.locations} 
+                dates={tour.dates[0]} 
+            />
             <ReviewsTour />
         </Stack>
     );

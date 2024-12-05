@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .short_description {
     > div {
         padding: 20px 24px;
@@ -5,6 +7,10 @@
         background: var(--white-color);
         border-radius: 16px;
         flex: 1;
+    }
+
+    @include tablet-m {
+        flex-direction: column;
     }
 }
 

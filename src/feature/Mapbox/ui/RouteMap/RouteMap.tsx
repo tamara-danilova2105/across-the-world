@@ -1,8 +1,11 @@
 import Map, { Marker, Source, Layer } from 'react-map-gl';
 import { MovingMarker } from './ui/MovingMarker';
+import styles from './RouteMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { useEffect, useRef } from 'react';
+import { calculateRouteBounds, createRouteGeoJson } from './libs/helpers';
 
-interface Location {
+export interface Location {
     id: string;
     coordinates: [number, number];
 };
@@ -11,24 +14,59 @@ interface RouteMapProps {
     locations: Location[];
 };
 
+
 export const RouteMap = ({ locations }: RouteMapProps) => {
 
     const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
     const routeCoordinates = locations.map((location) => location.coordinates);
 
-    const geojson: GeoJSON.Feature<GeoJSON.LineString> = {
-        type: "Feature",
-        properties: {},
-        geometry: {
-            type: "LineString",
-            coordinates: routeCoordinates,
-        },
+    const mapRef = useRef<mapboxgl.Map | null>(null);
+
+    useEffect(() => {
+        if (!mapRef.current || !locations.length) return;
+
+        const bounds = calculateRouteBounds(locations);
+        if (!bounds) return;
+
+        mapRef.current.fitBounds(
+            [
+                [bounds.minLng, bounds.minLat],
+                [bounds.maxLng, bounds.maxLat]
+            ],
+            {
+                padding: { top: 50, bottom: 50, left: 50, right: 50 },
+                duration: 1000,
+                maxZoom: 10
+            }
+        );
+    }, [locations]);
+
+    const onMapLoad = (event: any) => {
+        mapRef.current = event.target;
+        
+        if (locations.length) {
+            const bounds = calculateRouteBounds(locations);
+            if (!bounds) return;
+
+            event.target.fitBounds(
+                [
+                    [bounds.minLng, bounds.minLat],
+                    [bounds.maxLng, bounds.maxLat]
+                ],
+                {
+                    padding: { top: 50, bottom: 50, left: 50, right: 50 },
+                    duration: 0,
+                    maxZoom: 10
+                }
+            );
+        }
     };
 
     return (
-        <div style={{ width: '100%', height: '500px' }}>
+        <div className={styles.map_container}>
             <Map
                 mapboxAccessToken={accessToken}
+                onLoad={onMapLoad}
                 initialViewState={{
                     longitude: routeCoordinates[0]?.[0] || 0,
                     latitude: routeCoordinates[0]?.[1] || 0,
@@ -46,7 +84,11 @@ export const RouteMap = ({ locations }: RouteMapProps) => {
                     />
                 ))}
 
-                <Source id="route" type="geojson" data={geojson}>
+                <Source 
+                    id="route" 
+                    type="geojson" 
+                    data={createRouteGeoJson(locations)}
+                >
                     <Layer
                         id="route-line"
                         type="line"
@@ -57,7 +99,7 @@ export const RouteMap = ({ locations }: RouteMapProps) => {
                     />
                 </Source>
 
-                <MovingMarker routeData={geojson} />
+                <MovingMarker routeData={createRouteGeoJson(locations)}  />
             </Map>
         </div>
     );

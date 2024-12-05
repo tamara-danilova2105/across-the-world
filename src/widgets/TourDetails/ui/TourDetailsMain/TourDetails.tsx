@@ -42,8 +42,7 @@ export const TourDetails = () => {
             }
 
             <section className={styles.sticky_container}>
-                {/* TODO */}
-                <div style={{ width: '60%'}}>
+                <div className={styles.tour_container}>
                     <AboutTour tour={tour}/>
                 </div>
                 <BookingForm 

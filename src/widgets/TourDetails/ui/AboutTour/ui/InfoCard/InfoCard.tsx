@@ -36,7 +36,7 @@ export const InfoCard = (props: InfoCardProps) => {
     }, [hrefLink]);
 
     return (
-        <Stack justify='between' align='center'>
+        <Stack justify='between' align='center' max>
             <Stack direction='column' gap="16">
                 <Stack direction='column' gap="4">
                     <Text>{category}</Text>

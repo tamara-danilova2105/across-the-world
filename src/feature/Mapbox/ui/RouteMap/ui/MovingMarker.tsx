@@ -63,10 +63,11 @@ export const MovingMarker = ({ routeData, duration = 10000 }: MovingMarkerProps)
 
     return (
         <Marker longitude={position[0]} latitude={position[1]} anchor="center">
-            <div style={{ 
+            <div 
+                style={{ 
                     transform: `rotate(${rotation - DEFAULT_ROTATE_ICON}deg)`, 
-                    fontSize: '24px' }
-                }
+                    fontSize: '24px',
+                }}
             >
                 ✈️
             </div>

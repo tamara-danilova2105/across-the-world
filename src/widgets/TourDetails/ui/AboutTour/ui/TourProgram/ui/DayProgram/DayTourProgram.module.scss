@@ -1,9 +1,15 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 main {
     img {
         width: 32%;
         height: 250px;
         object-fit: cover;
         border-radius: 16px;
+
+        @include tablet-m {
+            width: 70%;
+        }
     }
 }
 
