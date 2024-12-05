@@ -1,5 +1,6 @@
 import Map, { Marker, Source, Layer } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { MovingMarker } from './ui/MovingMarker';
 
 interface Location {
     id: string;
@@ -15,17 +16,13 @@ export const RouteMap = ({ locations }: RouteMapProps) => {
     const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
     const routeCoordinates = locations.map((location) => location.coordinates);
 
-    const geojson = {
-        type: "FeatureCollection",
-        features: [
-            {
-                type: "Feature",
-                geometry: {
-                    type: "LineString",
-                    coordinates: routeCoordinates,
-                },
-            },
-        ],
+    const geojson: GeoJSON.Feature<GeoJSON.LineString> = {
+        type: "Feature",
+        properties: {},
+        geometry: {
+            type: "LineString",
+            coordinates: routeCoordinates,
+        },
     };
 
     return (
@@ -35,7 +32,7 @@ export const RouteMap = ({ locations }: RouteMapProps) => {
                 initialViewState={{
                     longitude: routeCoordinates[0]?.[0] || 0,
                     latitude: routeCoordinates[0]?.[1] || 0,
-                    zoom: 5,
+                    zoom: 3,
                 }}
                 style={{ width: '100%', height: '100%' }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
@@ -59,6 +56,8 @@ export const RouteMap = ({ locations }: RouteMapProps) => {
                         }}
                     />
                 </Source>
+
+                <MovingMarker routeData={geojson} />
             </Map>
         </div>
     );
