@@ -1,6 +1,6 @@
 import Map, { Marker, Source, Layer } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { MovingMarker } from './ui/MovingMarker';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface Location {
     id: string;

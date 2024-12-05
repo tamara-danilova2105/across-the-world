@@ -3,10 +3,12 @@ import { Marker } from 'react-map-gl';
 import along from '@turf/along';
 import length from '@turf/length';
 
-export interface MovingMarkerProps {
+interface MovingMarkerProps {
     routeData: GeoJSON.Feature<GeoJSON.LineString>;
     duration?: number;
-}
+};
+
+const DEFAULT_ROTATE_ICON = 45;
 
 const calculateRotationAngle = (
     currentPosition: [number, number],
@@ -35,11 +37,9 @@ export const MovingMarker = ({ routeData, duration = 10000 }: MovingMarkerProps)
         const progress = (timestamp - start) % duration;
         const percentage = progress / duration;
 
-        // Get point along the route
         const point = along(routeData, routeLength * percentage);
         const coordinates = point.geometry.coordinates as [number, number];
 
-        // Calculate rotation angle based on current and next position
         const nextPoint = along(routeData, routeLength * ((progress + 100) / duration));
         const angle = calculateRotationAngle(
             coordinates,
@@ -63,7 +63,11 @@ export const MovingMarker = ({ routeData, duration = 10000 }: MovingMarkerProps)
 
     return (
         <Marker longitude={position[0]} latitude={position[1]} anchor="center">
-            <div style={{ transform: `rotate(${rotation}deg)`, fontSize: '24px' }}>
+            <div style={{ 
+                    transform: `rotate(${rotation - DEFAULT_ROTATE_ICON}deg)`, 
+                    fontSize: '24px' }
+                }
+            >
                 ✈️
             </div>
         </Marker>
