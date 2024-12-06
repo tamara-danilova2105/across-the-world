@@ -6,22 +6,25 @@ import { ImagesTourGrid } from "../ImagesTourGrid/ImagesTourGrid";
 import { ImageTourSwiper } from "../ImageTourSwiper/ImageTourSwiper";
 import styles from './TourDetails.module.scss';
 import { BookingForm } from "../BookingForm/BookingForm";
+import { AboutTour } from "../AboutTour/AboutTour";
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
     const id = '5'
      //TODO - получать данные о туре с бэкенда 
-    const data = dataTours.find(tour => tour._id === id);
+    const tour = dataTours.find(tour => tour._id === id);
     
     const width = useResize();
     const isMobile = width <= 767;
 
      //TODO - если будет error, то делать редирект на Not Found Page
-    if (!data) return null
+    if (!tour) return null
+
+    const allImages = tour.program.flatMap(item => item.images || []);
 
     return (
         <Stack 
-            tag="section" gap="32"
+            tag="section" gap="48"
             direction="column"
             className={styles.main}
         >
@@ -29,22 +32,23 @@ export const TourDetails = () => {
                 type='h2' color='blue' 
                 size='32' font='geometria500'
             >
-                {data.tour}
+                {tour.tour}
             </Text>
 
             {
                 isMobile 
-                    ? <ImageTourSwiper images={data.images} />
-                    : <ImagesTourGrid images={data.images} />
+                    ? <ImageTourSwiper images={allImages} />
+                    : <ImagesTourGrid images={allImages} />
             }
 
             <section className={styles.sticky_container}>
-                <div style={{ width: '60%', height: '1000px'}}>
-                    ЗДЕСЬ БУДЕТ ИНФОРМАЦИЯ О ТУРЕ
+                {/* TODO */}
+                <div style={{ width: '60%'}}>
+                    <AboutTour tour={tour}/>
                 </div>
                 <BookingForm 
-                    options={data.dates} 
-                    tour={data.tour}
+                    options={tour.dates} 
+                    tour={tour.tour}
                 />
             </section>
         </Stack>

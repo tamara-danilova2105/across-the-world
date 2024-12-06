@@ -8,6 +8,7 @@ import { useResize } from "@/shared/hooks/useResize";
 import { dataBlog, NewsBlogData } from "../../lib/data";
 import { CardBlog } from "../CardBlog/CardBlog";
 import styles from './NewsBlog.module.scss';
+import { useCallback } from "react";
 
 
 export const NewsBlog = () => {
@@ -15,6 +16,8 @@ export const NewsBlog = () => {
     const width = useResize()
     const { containerRef } = useScrollSlider(width)
     const isSwiperActive = width <= 590;
+
+    const renderItem = useCallback((news: NewsBlogData) => <CardBlog news={news} />, []);
 
     return(
         <Stack 
@@ -50,7 +53,7 @@ export const NewsBlog = () => {
                     <div style={{width: '100%'}}>
                             <CustomeSwiper<NewsBlogData>
                                 items={dataBlog}
-                                renderItem={(news) => <CardBlog news={news} />}
+                                renderItem={renderItem}
                             />
                     </div>
                 ) : (

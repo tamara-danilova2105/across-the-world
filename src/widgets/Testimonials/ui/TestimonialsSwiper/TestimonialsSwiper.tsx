@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { CustomeSwiper } from '@/entities/CustomeSwiper';
 import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
 import { useResize } from '@/shared/hooks/useResize';
@@ -23,20 +23,22 @@ export const TestimonialsSwiper = () => {
         toggleShowMore 
     } = useMaxHeight(initialHeight, dataTestimonials.length);
 
+    const renderItem = useCallback((testimonial: DataTestimonial, index: number) => (
+        <TestimonialItem
+            ref={(el) => (itemRefs.current[index] = el)}
+            testimonial={testimonial}
+            maxHeight={{
+                height: maxHeight ? `${maxHeight}px` : 'auto',
+            }}
+            showMore={showMoreStates[index]}
+            onToggleShowMore={() => toggleShowMore(index)}
+        />
+    ), []);
+    
     return (
         <CustomeSwiper<DataTestimonial>
             items={dataTestimonials}
-            renderItem={(testimonial, index) => (
-                <TestimonialItem
-                    ref={(el) => (itemRefs.current[index] = el)}
-                    testimonial={testimonial}
-                    maxHeight={{
-                        height: maxHeight ? `${maxHeight}px` : 'auto',
-                    }}
-                    showMore={showMoreStates[index]}
-                    onToggleShowMore={() => toggleShowMore(index)}
-                />
-            )}
+            renderItem={renderItem}
         />
     );
 };

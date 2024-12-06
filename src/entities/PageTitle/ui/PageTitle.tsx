@@ -1,9 +1,10 @@
-import { Stack } from "@/shared/ui/Stack/Stack"
-import styles from './PageTitle.module.scss'
+import { ReactNode } from "react";
+import { Stack } from "@/shared/ui/Stack/Stack";
+import styles from './PageTitle.module.scss';
 
 interface PageTitleProps {
-    children: JSX.Element;
-}
+    children: ReactNode;
+};
 
 export const PageTitle = ({ children } : PageTitleProps) => {
     return (
@@ -16,5 +17,5 @@ export const PageTitle = ({ children } : PageTitleProps) => {
         >
             {children}
         </Stack>
-    )
-}
+    );
+};

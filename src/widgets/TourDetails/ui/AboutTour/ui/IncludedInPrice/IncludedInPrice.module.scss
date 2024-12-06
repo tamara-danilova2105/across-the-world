@@ -1,0 +1,25 @@
+.includedList {
+    li {
+        margin-top: 8px;
+
+        &::before {
+            content: '✔️';
+            margin: 8px;
+            font-size: 14px;
+        }
+    }
+}
+
+.notIncludedList {
+    li {
+        margin-top: 8px;
+
+        &::before {
+            content: '❌';
+            margin: 8px;
+            font-size: 14px;
+        }
+    }
+}
+
+

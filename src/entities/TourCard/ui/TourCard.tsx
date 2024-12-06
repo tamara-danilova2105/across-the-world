@@ -4,20 +4,32 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
 import styles from './TourCard.module.scss';
+import { useMemo } from "react";
 
 interface TourCardProps {
     tourData: Tour;
 };
 
 export const TourCard = ({ tourData }: TourCardProps) => {
-    const { tour, date, price, image, discount, _id } = tourData;
+    const { 
+        tour, 
+        date, 
+        price: { amount, currency },
+        image, 
+        discount, 
+        _id 
+    } = tourData;
 
-    const discountedPrice = discount 
-        ? price.amount - (price.amount * discount.percentage) / 100 
-        : price.amount;
+    const discountedPrice = useMemo(() => 
+        discount 
+            ? amount - (amount * discount.percentage) / 100 
+            : amount,
+        [amount, discount]
+    );
+
 
     return (
-        <div className={styles.tour_card}>
+        <article className={styles.tour_card}>
             <Stack 
                 direction="column" 
                 justify='between'
@@ -40,29 +52,36 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                     {discount ? (
                         <Stack gap="16" align='center'>
                             <Text size="18" className={styles.old_price}>
-                                {price.amount.toLocaleString("ru-RU")} {price.currency}
+                                {amount.toLocaleString("ru-RU")} {currency}
                             </Text>
 
                             <Text size="18" font='geometria500' className={styles.new_price}>
-                                {discountedPrice.toLocaleString("ru-RU")} {price.currency}
+                                {discountedPrice.toLocaleString("ru-RU")} {currency}
                             </Text>
                         </Stack>
                     ) : (
                         <Text size="18" color="blue" font='geometria500'>
-                            {price.amount.toLocaleString("ru-RU")} {price.currency}
+                            {amount.toLocaleString("ru-RU")} {currency}
                         </Text>
                     )}
 
-                    <AppLink className={styles.link} to={getRouteToursDetails(_id)}>
+                    <AppLink 
+                        className={styles.link} 
+                        to={getRouteToursDetails(_id)}
+                        aria-label={`Подробнее о туре "${tour}"`}
+                    >
                         Подробнее
                     </AppLink>
                 </Stack>
             </Stack>
             {discount && (
-                <div className={styles.badge}>
+                <div 
+                    className={styles.badge}
+                    aria-label={`Скидка ${discount.percentage}%`}
+                >
                     скидка {discount.percentage}%
                 </div>
             )}
-        </div>
+        </article>
     );
 };

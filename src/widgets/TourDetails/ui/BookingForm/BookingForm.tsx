@@ -64,7 +64,7 @@ export const BookingForm = (props: BookingFormProps) => {
         const start = new Date(dateStart);
         const finish = new Date(dateFinish);
         const differenceInTime = finish.getTime() - start.getTime();
-        return Math.ceil(differenceInTime / (1000 * 3600 * 24) + 1);
+        return Math.ceil(differenceInTime / (1000 * 3600 * 24));
     };
     
     const days = calculateDays(options[0].date_start, options[0].date_finish);

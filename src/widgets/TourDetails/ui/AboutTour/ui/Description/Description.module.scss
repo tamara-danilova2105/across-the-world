@@ -1,0 +1,48 @@
+.short_description {
+    > div {
+        padding: 20px 24px;
+        box-shadow: var(--box-shadow);
+        background: var(--white-color);
+        border-radius: 16px;
+        flex: 1;
+    }
+}
+
+.description_container {
+    .description_container {
+        white-space: pre-wrap;
+        line-height: 1.6;
+        font-size: var(--font-size-18);
+    }
+
+    hr {
+        height: 1px;
+        width: 100%;
+        background-color: var(--pink-color);
+        border: none;
+    }
+
+    p {
+        text-indent: var(--text-indent);
+    }
+
+    ul {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    li {
+        margin-top: 10px;
+        list-style: disc;
+    }
+
+    button {
+        background: inherit;
+        color: var(--blue-color);
+        font-size: var(--font-size-16);
+        font-family: var(--font-family-geometria500);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 5px;
+    }
+}

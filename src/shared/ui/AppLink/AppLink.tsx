@@ -8,6 +8,7 @@ interface AppLinkProps extends LinkProps  {
     className?: string;
     children: ReactNode;
     variant?: 'link' | 'button';
+    size?: '14' | '16' | '18';
     circle?: boolean;
     cta?: boolean; 
 }
@@ -17,6 +18,7 @@ export const AppLink = (props: AppLinkProps) => {
         className, 
         children, 
         variant = 'link',
+        size = '18',
         circle,
         cta,
         ...otherProps
@@ -30,6 +32,7 @@ export const AppLink = (props: AppLinkProps) => {
     const additional = [
         className,
         styles[variant],
+        styles[`size-${size}`],
     ];
 
     return (

@@ -3,6 +3,7 @@ import { Stack } from "@/shared/ui/Stack";
 import styles from './FAQ.module.scss';
 import { DataFAQ, faqData } from "../lib/data";
 import { Accordion } from "@/entities/Accordion";
+import { Text } from "@/shared/ui/Text";
 
 export const FAQ = () => {
     return (
@@ -22,7 +23,8 @@ export const FAQ = () => {
             >
                 {faqData.map((accordion: DataFAQ, index: number) => (
                     <Accordion 
-                        accordion={accordion}
+                        title={<Text size="24" font="geometria500">{accordion.question}</Text>}
+                        content={<Text size="18">{accordion.answer}</Text>}
                         isSecond={index === 1}
                         key={index}
                     />

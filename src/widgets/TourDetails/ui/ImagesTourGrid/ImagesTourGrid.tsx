@@ -1,21 +1,27 @@
+import { useMemo, useState } from "react";
 import { Images } from "@/shared/types/types";
 import { Text } from "@/shared/ui/Text";
-import { useMemo, useState } from "react";
 import { useResize } from "@/shared/hooks/useResize";
-import styles from './ImagesTourGrid.module.scss';
 import { useModal } from "@/shared/hooks/useModal";
 import { ImageTourCarousel } from "../ImageTourCarousel/ImageTourCarousel";
+import styles from './ImagesTourGrid.module.scss';
 
 interface ImagesTourProps {
     images: Images[] //TODO
+    variant?: "main" | "accommodation";
+    showImagesDesktop?: number;
+    showImagesTablet?: number;
 };
 
-const SHOW_IMAGES_DESKTOP = 4;
-const SHOW_IMAGES_TABLET = 2;
 const WITH_ANIMATION = false;
 
 export const ImagesTourGrid = (props: ImagesTourProps) => {
-    const { images } = props;
+    const { 
+        images,
+        variant = "main",
+        showImagesDesktop = 4,
+        showImagesTablet = 2,
+    } = props;
 
     const width = useResize();
     const [changeModal, drawModal] = useModal();
@@ -24,7 +30,7 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
     const isTablet = width <= 1024;
 
     const visibleImagesCount = useMemo(() => 
-        (isTablet ? SHOW_IMAGES_TABLET  : SHOW_IMAGES_DESKTOP ), [width]
+        (isTablet ? showImagesTablet  : showImagesDesktop ), [width]
     );
 
     const handleClick = (index: number) => {
@@ -42,7 +48,13 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
                 WITH_ANIMATION
             )}
 
-            <div className={styles.main}>
+            <div 
+                className={
+                    variant === "main"
+                        ? styles.main
+                        : styles.accommodation
+                }
+            >
                 {images.slice(0, visibleImagesCount).map((img, index) => (
                     <img 
                         key={index} 

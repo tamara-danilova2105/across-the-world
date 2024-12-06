@@ -1,11 +1,11 @@
+import { Link } from 'react-router-dom';
+import { getRoutePrivacyPolicy } from '@/app/router/lib/helper';
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { ContactUs } from '@/entities/ContactUs';
 import { ObfuscatedEmail } from './ObfuscatedEmail/ObfuscatedEmail';
 import { ObfuscatedPhone } from './ObfuscatedPhone/ObfuscatedPhone';
 import styles from './Footer.module.scss';
-import { Link } from 'react-router-dom';
-import { getRoutePrivacyPolicy } from '@/app/router/lib/helper';
 
 export const Footer = () => {
     return (

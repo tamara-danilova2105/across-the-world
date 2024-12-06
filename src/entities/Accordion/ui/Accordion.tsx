@@ -1,26 +1,22 @@
+import { ReactNode, useState } from "react";
 import { LessIcon } from "@/shared/assets/svg/lessIcon";
 import { MoreIcon } from "@/shared/assets/svg/moreIcon";
 import { Stack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/Text";
-import { useState } from "react";
-import styles from './Accordion.module.scss';
-import { DataFAQ } from "@/widgets/FAQ/lib/data";
 import { getStyles } from "@/shared/lib/getStyles";
+import styles from './Accordion.module.scss';
 
 interface AccordionProps {
-    accordion: DataFAQ;
-    isSecond: boolean;
+    title: ReactNode;
+    content: ReactNode;
+    isSecond?: boolean;
 };
 
-export const Accordion = ({accordion, isSecond = false}: AccordionProps) => {
+export const Accordion = (props: AccordionProps) => {
+    const { title, content, isSecond = false } = props;
 
-    const { question, answer } = accordion;
+    const [isOpen, setIsOpen] = useState(isSecond); 
 
-    const [isOpen, setIsOpen] = useState(isSecond || false); 
-
-    const handleClick = () => {
-        setIsOpen(prev => !prev);
-    };
+    const handleClick = () => setIsOpen(prev => !prev);
 
     const accordionStyles = getStyles(
         isOpen ? styles.openAnswer : styles.closedAnswer,
@@ -38,12 +34,18 @@ export const Accordion = ({accordion, isSecond = false}: AccordionProps) => {
                 justify='between'
                 align='center'
                 className={styles.questionContainer}
+                role="button"
+                aria-expanded={isOpen}
             >
-                <Text size="24" font="geometria500">{question}</Text>
+                {title}
                 {isOpen ? <LessIcon/> : <MoreIcon/>}
             </Stack>
-            <Stack className={isOpen ? styles.visible : styles.hidden}>
-                <Text size="18">{answer}</Text>
+
+            <Stack 
+                className={isOpen ? styles.visible : styles.hidden}
+                aria-hidden={!isOpen}
+            >
+                {content}
             </Stack>
         </Stack>
     );
