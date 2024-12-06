@@ -1,0 +1,9 @@
+@use '@/app/styles/mixin' as mixin;
+
+.tours_page {
+    @include mixin.section-style;
+
+    & {
+        margin-bottom: 50px;
+    }
+}

@@ -4,7 +4,7 @@ interface UseScrollSliderReturn {
     containerRef: React.RefObject<HTMLDivElement>
 }
 
-export const useScrollSlider = (width: number): UseScrollSliderReturn => {
+export const useScrollSlider = (width?: number): UseScrollSliderReturn => {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const isDragging = useRef(false)
@@ -14,7 +14,7 @@ export const useScrollSlider = (width: number): UseScrollSliderReturn => {
     useEffect(() => {
         const container = containerRef.current;
 
-        if (container && width > 590) {
+        if (container && width && width > 590) {
             container.scrollLeft = 0
         }
 
