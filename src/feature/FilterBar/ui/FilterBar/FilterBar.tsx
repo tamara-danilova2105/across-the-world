@@ -2,24 +2,29 @@ import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import * as React from "react"
 import { useState } from "react"
-import { dataFilter, FilterCategory, FilterKeys } from "../../lib/data"
+import { dataFilter, dataFilterRange, FilterCategory, FilterKeys, FilterRangeCategory, FilterRangeKeys } from "../../lib/data"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
+import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
 
 export const FilterBar = () => {
 
-    const [selectedFilters, setSelectedFilters] = useState<Record<FilterKeys, Record<string, boolean>>>({
+    const [selectedFilters, setSelectedFilters] = useState<
+    Record<FilterKeys, Record<string, boolean>> & Record<FilterRangeKeys, Record<number, number>>
+    >({
         type_tour: {},
         load_level: {},
         placement: {},
         season: {},
-    })
+        duration: [10, 30],
+        price: [20000, 100000],
+    });
 
 
-    const handleChange = React.useCallback((key: FilterKeys, value: Record<string, boolean>) => {
+    const handleChange = React.useCallback((key: FilterKeys | FilterRangeKeys, value: any) => {
         setSelectedFilters((prev) => ({
             ...prev,
-            [key]: { ...prev[key], ...value },
+            [key]: key === 'price' || key === 'duration' ? value : { ...prev[key], ...value },
         }));
     }, []);
 
@@ -39,6 +44,26 @@ export const FilterBar = () => {
         )
     }
 
+    const renderFilterRangeElement = (key: FilterRangeKeys) => {
+        const { title, defaultValues, minLimit, maxLimit, step }: FilterRangeCategory = dataFilterRange[key];
+
+        return (
+            <React.Fragment>
+                <FilterRange
+                    key={key}
+                    title={title}
+                    defaultValues={defaultValues}
+                    minLimit={minLimit}
+                    maxLimit={maxLimit}
+                    step={step}
+                    selectedFilters={selectedFilters[key]}
+                    onChange={(values: Record<number, number>) => handleChange(key, values)}
+                />
+            </React.Fragment>
+        )
+    }
+
+
     return(
         <Stack
             direction='column'
@@ -55,6 +80,10 @@ export const FilterBar = () => {
             </Stack>
             {Object.keys(dataFilter).map((key) => 
                 renderFilterElement(key as FilterKeys)
+            )}
+
+            {Object.keys(dataFilterRange).map((key) => 
+                renderFilterRangeElement(key as FilterRangeKeys)
             )}
         </Stack>
     )

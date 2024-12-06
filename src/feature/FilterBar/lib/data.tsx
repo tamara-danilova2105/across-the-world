@@ -1,3 +1,5 @@
+//Фильтры - checkbox
+
 export interface FilterItem {
     _id: number;
     value: string;
@@ -62,4 +64,39 @@ export const dataFilter: FilterData = {
             { _id: 4, value: 'Autumn', label: 'Осень' },
         ],
     },
-};
+}
+
+//Фильтры - range
+
+export interface FilterRangeCategory {
+    title: string;
+    defaultValues: [number, number]; 
+    minLimit: number;
+    maxLimit: number;
+    step: number;
+}
+
+export interface FilterRangeData {
+    duration: FilterRangeCategory;
+    price: FilterRangeCategory;
+}
+
+export type FilterRangeKeys = "duration" | "price";
+
+export const dataFilterRange : FilterRangeData = {
+    duration: {
+        title: 'Количество мест',
+        defaultValues: [10, 30],
+        minLimit: 1,
+        maxLimit: 50,
+        step: 1
+    },
+
+    price: {
+        title: 'Цена',
+        defaultValues: [20000, 100000],
+        minLimit: 0,
+        maxLimit: 500000,
+        step: 500
+    }
+}

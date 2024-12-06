@@ -1,0 +1,71 @@
+@use '@/app/styles/media-queries' as *;
+
+.mobileFilter {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 7;
+    height: 100%;
+    width: 100%;
+    background-color: var(--blue-opacity20);
+    transform: translateY(-100%); 
+    opacity: 1;
+    transition: all 0.5s ease; 
+    pointer-events: all;
+
+    &.open {
+        transform: translateY(0%); 
+        opacity: 1;
+    }
+
+    &.closed {
+        transform: translateY(100%); 
+        opacity: 0;
+    }
+
+    .mobileFilterBar {
+        position: relative;
+        width: 500px;
+        padding: 0 20px 20px 20px;
+        border-top: 20px solid var(--white-color);
+        height: 100vh;
+        background-color: white;
+        box-shadow: var(--box-shadow);
+        overflow-y: scroll;
+
+        @include mobile-xl {
+            width: 100%;
+        }
+
+        .btnClose {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: var(--white-color);
+            align-items: flex-end;
+            z-index: 10;
+            svg {
+                width: 40px;
+                height: 100%;
+    
+                path {
+                    color: var(--blue-color);
+                }
+            }
+        }
+    }
+
+}
+
+
+
+.toggleButton {
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    > div {
+        display: none;
+    }
+}

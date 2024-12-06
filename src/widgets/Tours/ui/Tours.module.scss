@@ -1,0 +1,92 @@
+@use '@/app/styles/media-queries' as *;
+
+.tours_container {
+    position: relative;
+
+    @include mobile-l {
+        gap: 0;
+    }
+
+    .filter_panel {
+        position: sticky;
+        background-color: var(--white-color);
+        top: 200px;
+        z-index: 3;
+        width: 100%;
+        padding: 20px 0;
+
+        &.open {
+            z-index: 5;
+        }
+
+        @include mobile-xl {
+            top: 190px;
+        }
+
+        @include mobile-l {
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 140px;
+        }
+
+        .quantityFilters {
+            margin-right: auto;
+            align-self: center;
+            padding: 12px;
+            background-color: var(--pink-opacity40);
+            border-radius: 50px;
+        }
+
+        .button {
+            width: auto;
+            cursor: pointer;
+    
+            @include mobile-l {
+                position:absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+
+
+    .our_tours {
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 5px;
+        overflow: hidden;
+
+        > div {
+            flex: 1 1 calc(33% - 16px); 
+            max-width: calc(32.5% - 16px);
+            height: 600px;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            @include desktop-m {
+                flex: 1 1 calc(50% - 16px); 
+                max-width: calc(50% - 16px);
+            }
+            @include tablet-m {
+                height: 500px;
+
+                img {
+                    height: 300px;
+                }
+            }
+
+            @include mobile-xl {
+                flex: 1 1 100%;
+                max-width: 100%;
+
+                img {
+                    height: 350px;
+                }
+            }
+        }
+    }
+}

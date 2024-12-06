@@ -1,0 +1,56 @@
+@use '@/app/styles/media-queries' as *;
+
+.shedule_container {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 16px;
+    width: 450px;
+    height: 600px;
+    overflow-y: scroll;
+
+    @include mobile-l {
+        width: 100%;
+    }
+
+    .contact_container {
+        svg {
+            width: 60px;
+        }
+
+        > div {
+            align-items: center;
+            gap: 16px;
+            a {
+                display: flex;
+                align-items: center;
+                svg {
+                    width: 24px;
+                    height: 24px;
+                    fill: var(--blue-color);
+                }
+            }
+
+            a:nth-last-of-type(1) {
+                svg {
+                    height: 28px;
+                    width: 30px;
+                }
+            }
+        }
+    }
+
+    .heading {
+        text-align: center;
+    }
+
+    .month {
+        width: 100%;
+        border-bottom: 1px solid var(--blue-opacity80);
+
+        @include mobile-l {
+            p {
+                font-size: 18px;
+            }
+        }
+    }
+}
