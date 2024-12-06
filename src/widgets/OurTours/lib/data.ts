@@ -411,6 +411,12 @@ export const dataTours: Tour[] = [
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
                         alt: 'Ледник Перито Морено, Аргентина'
                     },
+                    ,
+                    {
+                        _id: '56',
+                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
+                        alt: 'Ледник Перито Морено, Аргентина'
+                    },
                 ],
             },
             {
