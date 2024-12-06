@@ -1,5 +1,4 @@
 import { Tour } from "@/widgets/OurTours/lib/data";
-import { Description } from "./ui/Description/Description";
 import { TourProgram } from "./ui/TourProgram/TourProgram";
 import { Stack } from "@/shared/ui/Stack";
 import { IncludedInPrice } from "./ui/IncludedInPrice/IncludedInPrice";
@@ -8,6 +7,7 @@ import { FAQSection } from "./ui/FAQSection/FAQSection";
 import { ArrivalInfo } from "./ui/ArrivalInfo/ArrivalInfo";
 import { ReviewsTour } from "./ui/ReviewsTour/ReviewsTour";
 import { RouteMap } from "@/feature/Mapbox";
+import { Description } from "./ui/Description/Description";
 
 interface AboutTourProps {
     tour: Tour;
@@ -42,11 +42,7 @@ export const AboutTour = (props: AboutTourProps) => {
 
     return (
         <Stack direction='column' gap='48'>
-            <Description 
-                activity={tour.activity}
-                comfort={tour.comfort}
-                description={tour.description}
-            />
+            <Description description={tour.description} />
             <TourProgram program={tour.program} />
             <RouteMap locations={locations} />
             <IncludedInPrice details={tour.details} />

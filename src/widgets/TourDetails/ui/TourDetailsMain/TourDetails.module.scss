@@ -16,7 +16,7 @@
     gap: 48;
     width: 100%;
 
-    @include tablet-m {
+    @include tablet-l {
         flex-direction: column-reverse;
     }
 }
@@ -24,7 +24,16 @@
 .tour_container {
     width: 60%;
 
-    @include tablet-m {
+    hr {
+        height: 1px;
+        width: 100%;
+        background-color: var(--pink-color);
+        border: none;
+        margin: 32px 0;
+    }
+
+
+    @include tablet-l {
         width: 100%;
     }
 }

@@ -10,10 +10,11 @@
     position: sticky;
     top: 100px;
 
-    @include tablet-m {
+    @include tablet-l {
         position: static;
         width: 100%;
         margin-bottom: 32px;
+        gap: 16px;
     }
 }
 

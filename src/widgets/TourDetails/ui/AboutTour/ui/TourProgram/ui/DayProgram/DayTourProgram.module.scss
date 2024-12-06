@@ -7,7 +7,7 @@ main {
         object-fit: cover;
         border-radius: var(--border-radius);
 
-        @include tablet-m {
+        @include mobile-l {
             width: 70%;
         }
     }

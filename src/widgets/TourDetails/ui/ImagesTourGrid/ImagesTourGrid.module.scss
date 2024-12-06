@@ -80,6 +80,15 @@
         object-fit: cover;
         border-radius: var(--border-radius);
         cursor: pointer;
+
+        @include tablet-l {
+            width: 300px;
+            height: 300px;
+        }
+
+        @include tablet-m {
+            width: 240px;
+        }
     }
 
     .overlay_container {
