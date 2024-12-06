@@ -9,7 +9,6 @@ import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
 import { dataTours } from "@/widgets/OurTours/lib/data"
-import { useState } from "react"
 import styles from './Tours.module.scss'
 
 export const Tours = () => {
