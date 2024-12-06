@@ -1,9 +1,17 @@
 main {
-    img {
-        width: 32%;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 16px;
+
+    .scrollImages {
+        width: 100%;
+        overflow: hidden;
+
+        > div {
+            img {
+                width: 50%;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 16px;
+            }
+        }
     }
 }
 
