@@ -1,7 +1,7 @@
 @use '@/app/styles/media-queries.scss' as *;
 
 .travel_card {
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 24px;
     width: 100%;

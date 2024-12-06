@@ -118,7 +118,7 @@
             width: 48%;
             height: 240px;
             object-fit: cover;
-            border-radius: 16px;
+            border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
         }
     }
