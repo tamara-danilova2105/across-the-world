@@ -36,9 +36,14 @@ export const ArrivalInfo = (props: ArrivalInfoProps) => {
                         type="start"
                         date={dates.date_start}
                         location={locations.place_start}
+                        aria-label={`Start location: ${locations.place_start}`}
                     />
 
-                    <div className={styles.plane_icon}>
+                    <div 
+                        className={styles.plane_icon}
+                        role="img" 
+                        aria-label="Icon of a plane"
+                    >
                         <PlaneIcon />
                     </div>
 
@@ -46,6 +51,7 @@ export const ArrivalInfo = (props: ArrivalInfoProps) => {
                         type="finish"
                         date={dates.date_finish}
                         location={locations.place_finish}
+                        aria-label={`Finish location: ${locations.place_finish}`}
                     />
                 </Stack>
             </Stack>

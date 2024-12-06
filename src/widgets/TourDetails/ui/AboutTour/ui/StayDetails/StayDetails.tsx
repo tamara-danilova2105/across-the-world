@@ -39,7 +39,8 @@ export const StayDetails = ({ images, comfort }: StayDetailsProps) => {
                 ) : (
                     <ImagesTourGrid 
                         showImagesDesktop={2}
-                        images={images} variant="accommodation" 
+                        images={images} 
+                        variant="accommodation" 
                     />
                 ) 
             }

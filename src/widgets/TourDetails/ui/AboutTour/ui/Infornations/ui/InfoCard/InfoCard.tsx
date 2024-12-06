@@ -44,7 +44,11 @@ export const InfoCard = (props: InfoCardProps) => {
                     <Stack gap="8" className={styles.tooltipContainer}>
                         <Text font='geometria500'>{categoryType}</Text>
                         
-                        <div className={styles.tooltipWrapper}>
+                        <div 
+                            className={styles.tooltipWrapper}
+                            role="tooltip"
+                            aria-label={description}
+                        >
                             <ExclamatiomMarkIcon />
                             <div className={styles.tooltip}>
                                 {description}
