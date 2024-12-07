@@ -15,7 +15,7 @@ export const FilterRegionItem = () => {
             className={styles.filterRegion}
             ref={ containerRef }
         >
-            {dataRegion.map((item) : RegionDataProps  => (
+            {dataRegion.map((item : RegionDataProps)  => (
             <Stack 
                 justify='between'
                 align='center'

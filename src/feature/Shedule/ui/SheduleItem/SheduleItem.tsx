@@ -2,7 +2,13 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
 import styles from './SheduleItem.module.scss'
 
-export const SheduleItem = ({ date, tour, spots }) => {
+interface SheduleItemProps {
+    date: string;
+    tour: string;
+    spots: number;
+}
+
+export const SheduleItem = ({ date, tour, spots } : SheduleItemProps) => {
     return(
         <Stack 
             direction='column'

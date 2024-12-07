@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { EndpointBuilder } from "@reduxjs/toolkit/query"; 
-import * as Cookies from "js-cookie";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Cookies from "js-cookie";
 import { apiUrl } from "./endpoints";
 
 export const api = createApi({
@@ -8,7 +8,7 @@ export const api = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: apiUrl,
         prepareHeaders: (headers: Headers) => {
-            const token = Cookies.get('accessToken');
+            const token = Cookies.get('accessToken') as string | undefined;
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
             }
@@ -16,5 +16,5 @@ export const api = createApi({
         },
     }),
     tagTypes: [],
-    endpoints: (builder: EndpointBuilder<any, any, any>) => ({})
+    endpoints: () => ({})
 });

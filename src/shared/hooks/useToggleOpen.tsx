@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 export const useToggleOpen = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef<HTMLElement | null>(null);
+    const menuRef = useRef<HTMLDivElement | null>(null);
 
     const closeMenu = useCallback(() => {
         setIsOpen(false);

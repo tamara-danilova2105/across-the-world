@@ -16,7 +16,7 @@
         padding: 20px 0;
 
         &.open {
-            z-index: 5;
+            z-index: 101;
         }
 
         @include mobile-xl {
@@ -27,14 +27,6 @@
             align-items: flex-end;
             justify-content: space-between;
             height: 140px;
-        }
-
-        .quantityFilters {
-            margin-right: auto;
-            align-self: center;
-            padding: 12px;
-            background-color: var(--pink-opacity40);
-            border-radius: 50px;
         }
 
         .button {

@@ -1,35 +1,25 @@
 .checkboxContainer {
     position: relative;
+    flex-direction: row-reverse;
 
-    > div {
-        display: flex;
-        flex-direction: row-reverse;
+    label {
+        font-size: var(--font-size-18);
+        font-family: var(--font-family-geometria400);
+    }
 
-        label {
-            font-size: var(--font-size-18);
-            font-family: var(--font-family-geometria400);
-        }
-
-        > div {
-            position: relative;
-            width: auto;
-
-            .checkboxInput {
-                width: 20px;
-                height: 20px;
-                opacity: 0; 
-                cursor: pointer;
-                z-index: 2;
-            }
-
-            p {
-                display: none;
-            }
-        }
+    .checkboxInput {
+        position: relative;
+        width: auto;
+        width: 20px;
+        height: 20px;
+        opacity: 0; 
+        cursor: pointer;
+        z-index: 2;
     }
 
     .checkmark {
         position: absolute;
+        left: 0;
         width: 20px;
         height: 20px;
         border-radius: 4px;
