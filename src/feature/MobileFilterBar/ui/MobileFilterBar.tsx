@@ -13,12 +13,6 @@ interface MobileFilterBarProps {
     menuRef: React.RefObject<HTMLElement | null>;
 }
 
-interface MenuProps {
-    toggleMenu: () => void;
-    isOpen: boolean;
-    menuRef: React.MutableRefObject<HTMLElement | null>;
-}
-
 export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBarProps) => {
 
     const width = useResize();
