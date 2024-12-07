@@ -49,6 +49,7 @@ export const FilterRange = ({
                         />
                         <Input
                             name="max"
+                            register={register}
                             onChange={handleMaxInputChange}
                             value={maxValue} 
                             placeholder={`${maxValue}`}
