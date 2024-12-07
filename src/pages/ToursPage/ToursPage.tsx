@@ -1,7 +1,6 @@
 import { routeConfig } from "@/app/router/lib/data";
 import { BreadCrumbs } from "@/entities/BreadCrumbs/index";
 import { PageTitle } from "@/entities/PageTitle/index";
-import { RunningLine } from "@/entities/RunningLine/index";
 import { FilterBar } from "@/feature/FilterBar/index";
 import { FilterRegion } from "@/feature/FilterRegion/index";
 import { useResize } from "@/shared/hooks/useResize";
