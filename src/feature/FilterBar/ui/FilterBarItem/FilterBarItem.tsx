@@ -21,7 +21,6 @@ export const FilterBarItem = ({
     onChange
 } : FilterBarItemProps ) => {
 
-    console.log(selectedFilters)
 
 
     const handleChecked = (name: string, checked: boolean) => {
