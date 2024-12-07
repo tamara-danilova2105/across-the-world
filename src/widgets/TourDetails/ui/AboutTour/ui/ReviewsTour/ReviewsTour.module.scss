@@ -1,0 +1,25 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.modal {
+    background-color: var(--white-color);
+    width: 60vw;
+    height: 80vh;
+    padding: 32px 72px;
+    border-radius: var(--border-radius);
+    overflow-y: scroll;
+    clip-path: inset(0 round 0 16px 16px 16px);
+
+    @include mobile-l {
+        width: 85vw;
+        padding: 20px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--blue-color);
+        border-radius: 8px;
+    }
+}
