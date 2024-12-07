@@ -10,7 +10,7 @@ type SelectedFilters = {
 interface FilterBarItemProps {
     title: string;
     filters: FilterItem[];
-    selectedFilters: SelectedFilters; // Выбранные фильтры
+    selectedFilters: SelectedFilters;
     onChange: (updatedFilters: SelectedFilters) => void;
 }
 
