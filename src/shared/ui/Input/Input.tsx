@@ -16,7 +16,6 @@ interface InputProps extends HTMLInputProps {
     label?: string;
     error?: FieldError;
     register?: UseFormRegisterReturn; 
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, _) => {

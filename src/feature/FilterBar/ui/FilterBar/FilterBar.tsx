@@ -2,10 +2,13 @@ import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import * as React from "react"
 import { useState } from "react"
-import { dataFilter, dataFilterRange, FilterCategory, FilterKeys, FilterRangeCategory, FilterRangeKeys } from "../../lib/data"
+import { dataFilter, dataFilterRange, FilterCategory, FilterRangeCategory } from "../../lib/data"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
+
+type FilterKeys = keyof typeof dataFilter;
+type FilterRangeKeys = keyof typeof dataFilterRange;
 
 export const FilterBar = () => {
 
@@ -13,10 +16,9 @@ export const FilterBar = () => {
     Record<FilterKeys, Record<string, boolean>> & Record<FilterRangeKeys, [number, number]>
     >({
         type_tour: {},
-        load_level: {},
-        placement: {},
-        season: {},
-        duration: [10, 30],
+        region: {},
+
+        duration: [3, 10],
         price: [20000, 100000],
     });
 
@@ -79,12 +81,13 @@ export const FilterBar = () => {
                 <Button>Применить</Button>
                 <Button color='outline'>Очистить</Button>
             </Stack>
-            {Object.keys(dataFilter).map((key) => 
-                renderFilterElement(key as FilterKeys)
-            )}
 
             {Object.keys(dataFilterRange).map((key) => 
                 renderFilterRangeElement(key as FilterRangeKeys)
+            )}
+
+            {Object.keys(dataFilter).map((key) => 
+                renderFilterElement(key as FilterKeys)
             )}
         </Stack>
     )

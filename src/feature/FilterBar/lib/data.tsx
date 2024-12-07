@@ -11,13 +11,9 @@ export interface FilterCategory {
     items: FilterItem[];
 }
 
-export type FilterKeys = "type_tour" | "load_level" | "placement" | "season";
-
 export interface FilterData {
     type_tour: FilterCategory;
-    load_level: FilterCategory;
-    placement: FilterCategory;
-    season: FilterCategory;
+    region: FilterCategory;
 }
 
 
@@ -25,45 +21,26 @@ export const dataFilter: FilterData = {
     type_tour: {
         title: "Тип тура",
         items: [
-            { _id: 1, value: 'Ski', label: 'Горнолыжные туры' },
-            { _id: 2, value: 'Combined', label: 'Комбинированные туры' },
-            { _id: 3, value: 'Expeditions', label: 'Экспедиции' },
-            { _id: 4, value: 'Automotive', label: 'Автомобильные туры' },
-            { _id: 5, value: 'Trekking', label: 'Треккинг' },
-            { _id: 6, value: 'Cruises', label: 'Круизы' },
-            { _id: 7, value: 'Alloys', label: 'Сплавы' },
-            { _id: 8, value: 'Climbing', label: 'Восхождения' },
-            { _id: 10, value: 'Overview', label: 'Обзорные туры' },
+            { _id: 1, value: 'Tracking', label: 'Трекинг' },
+            { _id: 2, value: 'Retreat', label: 'Ретрит / оздоровительный' },
+            { _id: 3, value: 'Excusion', label: 'Экскурсионный' },
+            { _id: 4, value: 'Child', label: 'Детский' },
+            { _id: 5, value: 'Photo_tour', label: 'Фототур' },
         ],
     },
-    load_level: {
-        title: "Сложность",
+    region: {
+        title: "Регион",
         items: [
-            { _id: 1, value: 'Basic', label: 'Базовая' },
-            { _id: 2, value: 'Increased', label: 'Повышенная' },
-            { _id: 3, value: 'Average', label: 'Средняя' },
-            { _id: 4, value: 'Extreme', label: 'Экстремальная' },
+            {_id: 1, value: 'Russia', label: 'Россия'},
+            {_id: 2, value: 'Japan', label: 'Япония'},
+            {_id: 3, value: 'Turkey', label: 'Турция'},
+            {_id: 4, value: 'Armenia', label: 'Армения'},
+            {_id: 5, value: 'Iran', label: 'Иран'},
+            {_id: 6, value: 'Uzbekistan', label: 'Узбекистан'},
+            {_id: 7, value: 'South_America', label: 'Южная Америка'},
+            {_id: 8, value: 'Africa', label: 'Африка'}
         ],
-    },
-    placement: {
-        title: "Размещение",
-        items: [
-            { _id: 1, value: 'Tent', label: 'Палатка' },
-            { _id: 2, value: 'Hotel', label: 'Гостиница' },
-            { _id: 3, value: 'Guest_house', label: 'Гостевой дом или турбаза' },
-            { _id: 4, value: 'Glamping', label: 'Глэмпинг' },
-            { _id: 5, value: 'Cabin', label: 'Каюта' },
-        ],
-    },
-    season: {
-        title: "Сезон",
-        items: [
-            { _id: 1, value: 'Winter', label: 'Зима' },
-            { _id: 2, value: 'Spring', label: 'Весна' },
-            { _id: 3, value: 'Summer', label: 'Лето' },
-            { _id: 4, value: 'Autumn', label: 'Осень' },
-        ],
-    },
+    }
 }
 
 //Фильтры - range
@@ -81,14 +58,12 @@ export interface FilterRangeData {
     price: FilterRangeCategory;
 }
 
-export type FilterRangeKeys = "duration" | "price";
-
 export const dataFilterRange : FilterRangeData = {
     duration: {
-        title: 'Количество мест',
-        defaultValues: [10, 30],
+        title: 'Количество дней',
+        defaultValues: [3, 10],
         minLimit: 1,
-        maxLimit: 50,
+        maxLimit: 25,
         step: 1
     },
 

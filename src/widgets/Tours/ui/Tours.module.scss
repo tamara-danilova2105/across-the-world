@@ -10,7 +10,7 @@
     .filter_panel {
         position: sticky;
         background-color: var(--white-color);
-        top: 200px;
+        top: 135px;
         z-index: 3;
         width: 100%;
         padding: 20px 0;
@@ -19,14 +19,23 @@
             z-index: 101;
         }
 
+        @include tablet-l {
+            justify-content: space-between;
+        }
+
         @include mobile-xl {
-            top: 190px;
+            border-top: 20px solid white;
+            top: 110px;
+            height: 160px;
         }
 
         @include mobile-l {
             align-items: flex-end;
             justify-content: space-between;
-            height: 140px;
+        }
+
+        .filter_panel_btn {
+            align-self: flex-end;
         }
 
         .button {
@@ -52,14 +61,15 @@
         > article {
             flex: 1 1 calc(33% - 16px); 
             max-width: calc(32.5% - 16px);
-            height: 600px;
+            height: 450px;
 
             img {
                 width: 100%;
+                height: 250px;
                 object-fit: cover;
             }
 
-            @include desktop-m {
+            @include tablet-m {
                 flex: 1 1 calc(50% - 16px); 
                 max-width: calc(50% - 16px);
             }

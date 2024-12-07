@@ -2,7 +2,7 @@
 
 .filterBarContainer {
     position: sticky;
-    top: 200px;
+    top: 135px;
     width: 330px;
 
     @include tablet-l {
@@ -13,7 +13,7 @@
     .btnContainer {
         position: sticky;
         background-color: var(--white-color);
-        top: 200px;
+        top: 135px;
         z-index: 3;
         width: 100%;
         padding: 20px 0;

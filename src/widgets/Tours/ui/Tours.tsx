@@ -27,7 +27,6 @@ export const Tours = () => {
             )}
             <Stack
                 justify='end'
-                gap='16'
                 max
                 className={`${styles.filter_panel} ${isOpen ? styles.open : ''}`}
             >
@@ -36,15 +35,18 @@ export const Tours = () => {
                     isOpen={isOpen} 
                     menuRef={menuRef}
                 />
-                <SortTour/>
-
-                <Button
-                    cta 
-                    onClick={changeModal}
-                    className={styles.button}
+                <Stack
+                    gap='16'
                 >
-                    Расписание
-                </Button>
+                    <SortTour/>
+                    <Button
+                        cta 
+                        onClick={changeModal}
+                        className={styles.button}
+                    >
+                        Расписание
+                    </Button>
+                </Stack>
             </Stack>
             <Stack 
                 gap="32"

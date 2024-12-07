@@ -1,3 +1,3 @@
-import { FilterRegion } from './ui/FilterRegion/FilterRegion'
+import { FilterRegion } from './ui/FilterRegion'
 
 export { FilterRegion }

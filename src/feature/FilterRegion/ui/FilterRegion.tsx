@@ -1,5 +1,5 @@
+import { RunningLine } from "@/entities/RunningLine/index"
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { FilterRegionItem } from "../FilterRegionItem/FilterRegionItem"
 import styles from './FilterRegion.module.scss'
 
 
@@ -11,9 +11,7 @@ export const FilterRegion = () => {
             max
             className={styles.filterRegionContainer}
         >
-            <Stack>
-                <FilterRegionItem/>
-            </Stack>
+            <RunningLine/>
         </Stack>
     )
 }
