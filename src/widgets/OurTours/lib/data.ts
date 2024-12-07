@@ -431,7 +431,7 @@ export const dataTours: Tour[] = [
                 `,
                 images: [
                     {
-                        _id: '56',
+                        _id: '561',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
                         alt: 'Торрес Дель Пайне, Патагония, Чили'
                     },
