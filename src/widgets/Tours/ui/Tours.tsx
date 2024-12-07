@@ -3,11 +3,9 @@ import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
 import { Shedule } from "@/feature/Shedule/index"
 import { SortTour } from "@/feature/SortTour/index"
 import { useModal } from "@/shared/hooks/useModal"
-import { useResize } from "@/shared/hooks/useResize"
 import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { Text } from "@/shared/ui/Text/Text"
 import { dataTours } from "@/widgets/OurTours/lib/data"
 import styles from './Tours.module.scss'
 
@@ -16,8 +14,6 @@ export const Tours = () => {
     const [changeModal, drawModal] = useModal();
 
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
-
-    const width = useResize();
 
     return(
         <Stack
