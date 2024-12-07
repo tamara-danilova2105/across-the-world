@@ -10,7 +10,7 @@ import { useOverflowHidden } from "@/shared/hooks/useOverflowHidden";
 interface MobileFilterBarProps {
     toggleMenu: () => void;
     isOpen: boolean;
-    menuRef: React.RefObject<HTMLElement | null>;
+    menuRef: React.RefObject<HTMLDivElement>;
 }
 
 export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBarProps) => {
