@@ -3,19 +3,14 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import { FormProvider } from "react-hook-form";
 import ReactSlider from "react-slider";
+import { FilterRangeCategory } from "../../lib/data";
 import { useRange } from "../../lib/useRange";
 import styles from './FilterRange.module.scss';
 
-interface FilterRangeProps {
-    title: string;
-    defaultValues: [number, number];
-    minLimit: number;
-    maxLimit: number;
-    step: number;
+interface FilterRangeProps extends FilterRangeCategory {
     onChange: (values: [number, number]) => void;
     selectedFilters: [number, number];
 }
-
 export const FilterRange = ({
     title,
     defaultValues,
