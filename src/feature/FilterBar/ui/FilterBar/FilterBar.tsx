@@ -10,7 +10,7 @@ import styles from './FilterBar.module.scss'
 export const FilterBar = () => {
 
     const [selectedFilters, setSelectedFilters] = useState<
-    Record<FilterKeys, Record<string, boolean>> & Record<FilterRangeKeys, Record<number, number>>
+    Record<FilterKeys, Record<string, boolean>> & Record<FilterRangeKeys, [number, number]>
     >({
         type_tour: {},
         load_level: {},
@@ -24,7 +24,8 @@ export const FilterBar = () => {
     const handleChange = React.useCallback((key: FilterKeys | FilterRangeKeys, value: any) => {
         setSelectedFilters((prev) => ({
             ...prev,
-            [key]: key === 'price' || key === 'duration' ? value : { ...prev[key], ...value },
+            [key]: key === 'price' || key === 'duration' ? value as [number, number]
+            : { ...prev[key], ...value },
         }));
     }, []);
 
@@ -57,7 +58,7 @@ export const FilterBar = () => {
                     maxLimit={maxLimit}
                     step={step}
                     selectedFilters={selectedFilters[key]}
-                    onChange={(values: Record<number, number>) => handleChange(key, values)}
+                    onChange={(values: [number, number]) => handleChange(key, values)}
                 />
             </React.Fragment>
         )
