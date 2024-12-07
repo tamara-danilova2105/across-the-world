@@ -8,12 +8,12 @@
         @include mixin.section-style;
 
         @include mq.desktop-m {
-            gap: 32px;
+            gap: var(--gap-xl);
         }
         
         @include mq.tablet-m {
             width: 100%;
-            gap: 24px;
+            gap: var(--gap-l);
         }
 
         @include mq.mobile-xl {

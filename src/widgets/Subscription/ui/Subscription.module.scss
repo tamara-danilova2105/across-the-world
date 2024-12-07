@@ -44,7 +44,7 @@
             align-items: flex-start;
             justify-content: center;
             height: 100px;
-            gap: 16px;
+            gap: var(--gap-m);
 
             @include mq.mobile-xl {
                 flex-direction: column;

@@ -117,7 +117,7 @@
 
             .textContainer {
                 @include media.mobile-l {
-                    gap: 16px;
+                    gap: var(--gap-m);
                 }
                 :nth-child(1) {
                     @include media.mobile-l {

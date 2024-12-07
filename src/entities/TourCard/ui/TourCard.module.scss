@@ -55,7 +55,7 @@
         height: 100%;
 
         @include mq.mobile-xl {
-            gap: 8px;
+            gap: var(--gap-s);
         }
 
         .old_price {

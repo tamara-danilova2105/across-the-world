@@ -13,7 +13,7 @@
 .sticky_container {
     display: flex;
     justify-content: space-between;
-    gap: 48;
+    gap: var(--gap-xxl);
     width: 100%;
 
     @include tablet-l {

@@ -29,7 +29,7 @@
 
 .pagination {
     display: flex;
-    gap: 8px;
+    gap: var(--gap-s);
 
     div {
         border-radius: var(--border-radius);

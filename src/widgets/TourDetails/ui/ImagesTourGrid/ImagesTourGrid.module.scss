@@ -8,7 +8,7 @@
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 50% 50%;
     height: 450px;
-    gap: 16px;
+    gap: var(--gap-m);
     width: 100%;
 
     @include tablet-l {
@@ -72,7 +72,7 @@
 .accommodation {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
+    gap: var(--gap-s);
 
     .image {
         width: 250px;

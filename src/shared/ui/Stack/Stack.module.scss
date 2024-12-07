@@ -1,3 +1,19 @@
+$gaps: (
+    4: var(--gap-xs),
+    8: var(--gap-s),
+    16: var(--gap-m),
+    24: var(--gap-l),
+    32: var(--gap-xl),
+    48: var(--gap-xxl),
+    64: var(--gap-xxxl)
+);
+
+@each $gap, $value in $gaps {
+    .gap#{$gap} {
+        gap: #{$value};
+    }
+}
+
 .flex {
     display: flex;
 }
@@ -46,33 +62,34 @@
     flex-direction: column;
 }
 
-.gap4 {
-    gap: 4px;
-}
+//TODO - удалить после проверки
+// .gap4 {
+//     gap: var(--gap-xs);
+// }
 
-.gap8 {
-    gap: 8px;
-}
+// .gap8 {
+//     gap: var(--gap-s);
+// }
 
-.gap16 {
-    gap: 16px;
-}
+// .gap16 {
+//     gap: var(--gap-m);
+// }
 
-.gap24 {
-    gap: 24px;
-}
+// .gap24 {
+//     gap: var(--gap-l);
+// }
 
-.gap32 {
-    gap: 32px;
-}
+// .gap32 {
+//     gap: var(--gap-xl);
+// }
 
-.gap48 {
-    gap: 48px;
-}
+// .gap48 {
+//     gap: var(--gap-xxl);
+// }
 
-.gap64 {
-    gap: 64px;
-}
+// .gap64 {
+//     gap: var(--gap-xxxl);
+// }
 
 .max {
     width: 100%;

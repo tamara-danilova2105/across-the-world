@@ -4,13 +4,13 @@
     nav {
         ul {
             display: flex;
-            gap: 12px;
+            gap: 12px; //TODO - заменить на 8 var(--gap-s) или 16 (--gap-m)
 
             li {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                color: var(--peach-color);
+                gap: 12px; //TODO - заменить на 8 var(--gap-s) или 16 (--gap-m)
+                color: var(--peach-color); 
                 font-size: 18px;
             }
         }

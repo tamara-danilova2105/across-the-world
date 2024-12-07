@@ -1,8 +1,8 @@
-@use '@/app/styles/media-queries.scss' as mq;
+@use '@/app/styles/media-queries.scss' as *;
 
 .button_container {
-    @include mq.mobile-l {
+    @include mobile-l {
         flex-direction: column;
-        gap: 24px
+        gap: var(--gap-l);
     }
 }
