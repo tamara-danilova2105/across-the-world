@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
-import { FieldError, UseFormRegister } from 'react-hook-form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { getStyles } from '@/shared/lib/getStyles';
 import { Stack } from '../Stack';
 import styles from './Input.module.scss'; //TODO
@@ -15,7 +15,7 @@ interface InputProps extends HTMLInputProps {
     placeholder?: string;
     label?: string;
     error?: FieldError;
-    register?: UseFormRegister; 
+    register?: UseFormRegisterReturn; 
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
