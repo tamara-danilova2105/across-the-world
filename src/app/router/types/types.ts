@@ -10,7 +10,8 @@ export enum AppRouters {
     testimonials = 'testimonials',
     not_found = 'not_found',
     admin = 'admin',
-    privacy_policy = 'privacy_policy'
+    privacy_policy = 'privacy_policy',
+    signin = 'signin',
 };
 
 export type AppRoutesProps = {
