@@ -40,19 +40,6 @@ export const Tours = () => {
                     isOpen={isOpen} 
                     menuRef={menuRef}
                 />
-                {width >= 590 &&
-                <Stack 
-                    className={styles.quantityFilters}
-                >
-                    <Text
-                        size='18'
-                        font='geometria500'
-                        color='blue'
-                    >
-                        Количество фильтров
-                    </Text>
-                </Stack>
-                }
                 <SortTour/>
 
                 <Button

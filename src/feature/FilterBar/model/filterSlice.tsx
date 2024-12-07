@@ -24,8 +24,6 @@ const initialState: FiltersState = {
 }
 
 
-
-
 const filterSlice = createSlice({
     name: 'filters',
     initialState,
@@ -44,14 +42,12 @@ const filterSlice = createSlice({
             } else if (filter === 'duration') {
                 state.duration = [10, 30];
             } else if (key) {
-                // Проверяем, является ли фильтр ключом для категорий
                 if (filter in state && typeof state[filter] === 'object' && !Array.isArray(state[filter])) {
                     const category = state[filter] as Record<string, string>;
-                    delete category[key]; // Удаляем ключ из категории
+                    delete category[key]; 
                 }
             }
         },
-        // Очистка всех фильтров
         clearAllFilters: () => {
             return initialState;
         },

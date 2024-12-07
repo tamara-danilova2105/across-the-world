@@ -11,7 +11,7 @@ import styles from './SortTourItem.module.scss'
 
 interface SortTourItemProps {
     selectSort: string;
-    dataSort: SortDataProps
+    dataSort: SortDataProps[];
 }
 
 export const SortTourItem = ({ 
@@ -46,7 +46,6 @@ export const SortTourItem = ({
             </Button>
                 :
             <Button
-                color='button'
                 onClick={toggleMenu}
                 className={styles.sort_button}
             >
