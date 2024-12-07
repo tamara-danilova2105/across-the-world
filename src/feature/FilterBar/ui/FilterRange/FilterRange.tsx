@@ -41,15 +41,13 @@ export const FilterRange = ({
                 <form>
                     <Stack gap="16" className={styles.inputContainer}>
                         <Input
-                            name="min"
-                            register={register}
+                            {...register("min")}
                             onChange={handleMinInputChange}
                             value={minValue} 
                             placeholder={`${minValue}`}
                         />
                         <Input
-                            name="max"
-                            register={register}
+                            {...register("max")}
                             onChange={handleMaxInputChange}
                             value={maxValue} 
                             placeholder={`${maxValue}`}
@@ -59,7 +57,7 @@ export const FilterRange = ({
                         min={minLimit}
                         max={maxLimit}
                         step={step}
-                        value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues}
+                        value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues} 
                         onChange={handleSliderChange}
                         renderThumb={(props) => <div {...props} className={styles.thumb} />}
                         renderTrack={(props, state) => (
