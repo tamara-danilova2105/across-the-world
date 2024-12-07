@@ -1,0 +1,36 @@
+.reviewCard {
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--box-shadow);
+
+    
+    button {
+        background: inherit;
+        color: var(--blue-color);
+        font-size: var(--font-size-16);
+        font-family: var(--font-family-geometria500);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 5px;
+    }
+}
+
+.nameCity {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--blue-color);
+}
+
+.city {
+    margin-left: 4px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #718096; //TODO
+}
+
+.review {
+    line-height: 1.6;
+    text-indent: var(--text-indent);
+}

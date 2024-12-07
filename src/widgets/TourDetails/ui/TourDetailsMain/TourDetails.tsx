@@ -8,6 +8,7 @@ import { BookingForm } from "../BookingForm/BookingForm";
 import { AboutTour } from "../AboutTour/AboutTour";
 import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
+import { OurTours } from "@/widgets/OurTours";
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
@@ -79,6 +80,9 @@ export const TourDetails = () => {
                     {bookingContent}
                 </section>
             )}
+{/* 
+            TODO - добавить рекомендации */}
+            <OurTours />
         </Stack>
     );
 };

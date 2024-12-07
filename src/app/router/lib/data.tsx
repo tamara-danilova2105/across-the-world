@@ -7,6 +7,7 @@ import {
     getRouteBlogDetails,
     getRouteMain, 
     getRoutePrivacyPolicy, 
+    getRouteSignin, 
     getRouteTestimonials, 
     getRouteTours, 
     getRouteToursDetails,
@@ -16,6 +17,7 @@ import { ToursPage } from "@/pages/ToursPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
 import { TourDetailsPage } from "@/pages/TourDetailsPage";
 import { AdminPage } from "@/pages/AdminPage";
+import { SigninPage } from "@/pages/SigninPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -59,5 +61,9 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.privacy_policy]: {
         path: getRoutePrivacyPolicy(),
         page: <PrivacyPolicyPage />
+    },
+    [AppRouters.signin]: {
+        path: getRouteSignin(),
+        page: <SigninPage />
     }
 };
