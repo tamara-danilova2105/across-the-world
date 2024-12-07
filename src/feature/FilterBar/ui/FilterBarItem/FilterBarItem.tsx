@@ -21,7 +21,16 @@ export const FilterBarItem = ({
     onChange
 } : FilterBarItemProps ) => {
 
+    console.log(selectedFilters)
 
+
+    const handleChecked = (name: string, checked: boolean) => {
+        const updatedFilters = {
+            ...selectedFilters,
+            [name]: checked
+        };
+        onChange(updatedFilters)
+    };
 
     return(
         <Stack
@@ -45,9 +54,7 @@ export const FilterBarItem = ({
                     label={item.label}
                     name={item.value}
                     checked={selectedFilters[item.value] || false}
-                    onChange={(name: string, checked: boolean) => {                    
-                        onChange({ ...selectedFilters, [name]: checked })
-                    }}
+                    onChange={handleChecked}
                 />))}                       
             </Stack>
         </Stack>
