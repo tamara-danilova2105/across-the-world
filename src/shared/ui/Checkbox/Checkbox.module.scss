@@ -1,0 +1,58 @@
+.checkboxContainer {
+    position: relative;
+
+    > div {
+        display: flex;
+        flex-direction: row-reverse;
+
+        label {
+            font-size: var(--font-size-18);
+            font-family: var(--font-family-geometria400);
+        }
+
+        > div {
+            position: relative;
+            width: auto;
+
+            .checkboxInput {
+                width: 20px;
+                height: 20px;
+                opacity: 0; 
+                cursor: pointer;
+                z-index: 2;
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    .checkmark {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        background-color: var(--white-color);
+        border: 1px solid var(--blue-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        pointer-events: none; 
+
+        svg {
+            width: 15px;
+            height: 15px;
+            display: none;
+        }
+    }
+
+    .checked {
+        background-color: var(--blue-color);
+
+        svg {
+            display: block;
+        }
+    }
+}

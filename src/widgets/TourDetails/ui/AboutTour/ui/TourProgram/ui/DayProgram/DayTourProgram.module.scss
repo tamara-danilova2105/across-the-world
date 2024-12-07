@@ -1,14 +1,17 @@
 @use '@/app/styles/media-queries.scss' as *;
 
 main {
-    img {
-        width: 32%;
-        height: 250px;
-        object-fit: cover;
-        border-radius: var(--border-radius);
+    .scrollImages {
+        width: 100%;
+        overflow: hidden;
 
-        @include mobile-l {
-            width: 70%;
+        > div {
+            img {
+                width: 50%;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 16px;
+            }
         }
     }
 }

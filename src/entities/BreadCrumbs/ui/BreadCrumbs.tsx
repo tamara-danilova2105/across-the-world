@@ -19,7 +19,7 @@ interface BreadcrumbsProps {
 
 export const BreadCrumbs = ({   
     routes,
-    separator = ' - - - ',
+    separator = ' / ',
     isTour = false,
     name } : BreadcrumbsProps) => {
 
