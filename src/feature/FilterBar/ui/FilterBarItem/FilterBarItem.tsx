@@ -1,13 +1,17 @@
 import { Checkbox } from "@/shared/ui/Checkbox/Checkbox"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
-import { FilterData, FilterItem } from "../../lib/data";
+import { FilterItem } from "../../lib/data";
+
+type SelectedFilters = {
+    [key: string]: boolean;
+}
 
 interface FilterBarItemProps {
     title: string;
     filters: FilterItem[];
-    selectedFilters: FilterData;
-    onChange: () => void ;
+    selectedFilters: SelectedFilters; // Выбранные фильтры
+    onChange: (updatedFilters: SelectedFilters) => void;
 }
 
 export const FilterBarItem = ({
@@ -38,8 +42,8 @@ export const FilterBarItem = ({
                     key={item._id}
                     label={item.label}
                     name={item.value}
-                    checked={selectedFilters[item.value]}
-                    onChange={(name, checked) => {                    
+                    checked={selectedFilters[item.value] || false}
+                    onChange={(name: string, checked: boolean) => {                    
                         onChange({ ...selectedFilters, [name]: checked })
                     }}
                 />))}                       
