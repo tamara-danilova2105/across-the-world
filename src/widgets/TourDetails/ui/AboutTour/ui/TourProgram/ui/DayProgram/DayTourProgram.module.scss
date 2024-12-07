@@ -11,10 +11,14 @@ main {
             }
 
             img {
-                width: 70%;
+                width: 32%;
                 height: 250px;
                 object-fit: cover;
                 border-radius: 16px;
+
+                @include mobile-l {
+                    width: 70%;
+                }
             }
         }
     }
