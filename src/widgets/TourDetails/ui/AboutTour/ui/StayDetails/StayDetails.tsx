@@ -3,6 +3,8 @@ import { Text } from "@/shared/ui/Text";
 import { ImagesTourGrid } from "../../../ImagesTourGrid/ImagesTourGrid";
 import { Images } from "@/shared/types/types";
 import { comfortData } from "@/widgets/TourDetails/lib/activity";
+import { useResize } from "@/shared/hooks/useResize";
+import { ImageTourSwiper } from "../../../ImageTourSwiper/ImageTourSwiper";
 
 interface StayDetailsProps {
     images: Images[];
@@ -12,6 +14,9 @@ interface StayDetailsProps {
 export const StayDetails = ({ images, comfort }: StayDetailsProps) => {
 
     const comfortText = comfortData.find(com => com.comfort === comfort);
+
+    const width = useResize();
+    const isMobile = width <= 767;
 
     return (
         <Stack
@@ -28,11 +33,17 @@ export const StayDetails = ({ images, comfort }: StayDetailsProps) => {
                 {comfortText?.descriptoin}
             </Text>
 
-            <ImagesTourGrid 
-                showImagesDesktop={2} 
-                showImagesTablet={1} 
-                images={images} variant="accommodation" 
-            />
+            {
+                isMobile ? (
+                    <ImageTourSwiper images={images} />
+                ) : (
+                    <ImagesTourGrid 
+                        showImagesDesktop={2}
+                        images={images} 
+                        variant="accommodation" 
+                    />
+                ) 
+            }
         </Stack>
     );
 };

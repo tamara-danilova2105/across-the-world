@@ -1,0 +1,10 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.map_container {
+    width: 100%;
+    height: 500px;
+
+    @include mobile-l {
+        height: 450px;
+    }
+}

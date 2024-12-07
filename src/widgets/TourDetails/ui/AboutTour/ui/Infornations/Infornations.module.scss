@@ -1,0 +1,23 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.short_description {
+    > div {
+        padding: 20px 24px;
+        box-shadow: var(--box-shadow);
+        background: var(--white-color);
+        border-radius: var(--border-radius);
+        flex: 1;
+    }
+
+    @include tablet-l {
+        flex-direction: column;
+    }
+
+    @include tablet-m {
+        flex-direction: row;
+    }
+
+    @include mobile-l {
+        flex-direction: column;
+    }
+}

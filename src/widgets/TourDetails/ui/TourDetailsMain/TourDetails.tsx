@@ -4,9 +4,10 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { ImagesTourGrid } from "../ImagesTourGrid/ImagesTourGrid";
 import { ImageTourSwiper } from "../ImageTourSwiper/ImageTourSwiper";
-import styles from './TourDetails.module.scss';
 import { BookingForm } from "../BookingForm/BookingForm";
 import { AboutTour } from "../AboutTour/AboutTour";
+import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
+import styles from './TourDetails.module.scss';
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
@@ -15,12 +16,31 @@ export const TourDetails = () => {
     const tour = dataTours.find(tour => tour._id === id);
     
     const width = useResize();
-    const isMobile = width <= 767;
+    const isMobile = width <= 768;
+    const isTablet = width <= 1024;
 
      //TODO - если будет error, то делать редирект на Not Found Page
     if (!tour) return null
 
     const allImages = tour.program.flatMap(item => item.images || []);
+
+    const infoContant = (
+        <Infornations 
+            activity={tour.activity}
+            comfort={tour.comfort}
+        />
+    );
+
+    const bookingContent = (
+        <BookingForm 
+            options={tour.dates} 
+            tour={tour.tour}
+        />
+    );
+
+    const aboutContent = (
+        <AboutTour tour={tour}/>
+    );
 
     return (
         <Stack 
@@ -41,16 +61,24 @@ export const TourDetails = () => {
                     : <ImagesTourGrid images={allImages} />
             }
 
-            <section className={styles.sticky_container}>
-                {/* TODO */}
-                <div style={{ width: '60%'}}>
-                    <AboutTour tour={tour}/>
-                </div>
-                <BookingForm 
-                    options={tour.dates} 
-                    tour={tour.tour}
-                />
-            </section>
+            {(isTablet && !isMobile) ? (
+                <Stack direction="column" gap="24" >
+                    <Stack gap="24" justify='between' max>
+                        {infoContant}
+                        {bookingContent}
+                    </Stack>
+                    {aboutContent}
+                </Stack>
+            ) : (
+                <section className={styles.sticky_container}>
+                    <div className={styles.tour_container}>
+                        {infoContant}
+                        <hr />
+                        {aboutContent}
+                    </div>
+                    {bookingContent}
+                </section>
+            )}
         </Stack>
     );
 };

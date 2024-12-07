@@ -23,7 +23,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 16px;
+        border-radius: var(--border-radius);
         cursor: pointer;
     }
     
@@ -61,7 +61,7 @@
         transform: translate(-50%, -50%);
         background: rgba(0, 0, 0, 0.5);
         font-weight: bold;
-        border-radius: 16px;
+        border-radius: var(--border-radius);
         padding: 5px 10px;
         display: flex;
         align-items: center;
@@ -78,8 +78,17 @@
         width: 250px;
         height: 200px;
         object-fit: cover;
-        border-radius: 16px;
+        border-radius: var(--border-radius);
         cursor: pointer;
+
+        @include tablet-l {
+            width: 300px;
+            height: 300px;
+        }
+
+        @include tablet-m {
+            width: 240px;
+        }
     }
 
     .overlay_container {
@@ -89,7 +98,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        border-radius: 16px;
+        border-radius: var(--border-radius);
     }
 
     .overlay {
@@ -100,7 +109,7 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
         font-weight: bold;
-        border-radius: 16px;
+        border-radius: var(--border-radius);
         padding: 5px 10px;
         display: flex;
         align-items: center;

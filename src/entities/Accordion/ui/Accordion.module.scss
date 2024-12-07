@@ -1,8 +1,8 @@
-@use '@/app/styles/media-queries.scss' as mq;
+@use '@/app/styles/media-queries.scss' as *;
 
 .accordionContainer {
     width: 100%;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     padding: 15px;
     color: var(--blue-color);
     box-shadow: var(--box-shadow);
@@ -26,7 +26,7 @@
             line-height: 25px;
             text-align: left;
 
-            @include mq.mobile-xl {
+            @include mobile-xl {
                 font-size: 18px;
             }
         }
@@ -49,7 +49,7 @@
             line-height: 28px;
             text-align: left;
 
-            @include mq.mobile-xl {
+            @include mobile-xl {
                 font-size: 16px;
             }
         }

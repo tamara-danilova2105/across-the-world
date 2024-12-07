@@ -32,7 +32,7 @@
     gap: 8px;
 
     div {
-        border-radius: 20px;
+        border-radius: var(--border-radius);
         height: 6px;
         width: 38px;
         background-color: var(--white-color);

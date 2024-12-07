@@ -2,6 +2,8 @@ import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { Images } from "@/shared/types/types";
 import { Stack } from "@/shared/ui/Stack";
 import styles from './DayTourProgram.module.scss';
+import { useResize } from "@/shared/hooks/useResize";
+import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 
 interface DayTourProgramProps {
     images?: Images[];
