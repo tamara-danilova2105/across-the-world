@@ -23,7 +23,6 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
     return (
         <Stack>
             <Button
-                color='button'
                 className={styles.toggleButton} 
                 onClick={toggleMenu}
             >

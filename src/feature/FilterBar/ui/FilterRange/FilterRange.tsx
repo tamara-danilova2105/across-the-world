@@ -58,7 +58,7 @@ export const FilterRange = ({
                         min={minLimit}
                         max={maxLimit}
                         step={step}
-                        value={[minValue, maxValue] || defaultValues} 
+                        value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues}
                         onChange={handleSliderChange}
                         renderThumb={(props) => <div {...props} className={styles.thumb} />}
                         renderTrack={(props, state) => (
