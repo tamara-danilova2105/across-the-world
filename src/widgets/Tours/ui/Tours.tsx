@@ -53,11 +53,7 @@ export const Tours = () => {
                     </Text>
                 </Stack>
                 }
-                <SortTour
-                    toggleMenu={toggleMenu} 
-                    isOpen={isOpen} 
-                    menuRef={menuRef}
-                />
+                <SortTour/>
 
                 <Button
                     cta 
