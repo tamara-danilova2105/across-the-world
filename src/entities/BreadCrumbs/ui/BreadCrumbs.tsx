@@ -70,10 +70,11 @@ export const BreadCrumbs = ({
                         <Text 
                             key={crumb.link}
                             type='li' 
+                            size="24"
                         >
                             {crumb.isLast ? (
                             <Text 
-                                size='18'
+                                size='24'
                                 color='peach'
                             >
                                 {isTour ? name : crumb.title}
@@ -81,7 +82,7 @@ export const BreadCrumbs = ({
                             ) : (
                             <Link to={crumb.link}>
                                 <Text 
-                                    size='18'
+                                    size='24'
                                     color='peach'
                                 >
                                     {crumb.title}
