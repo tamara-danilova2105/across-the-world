@@ -1,5 +1,5 @@
 import { CheckmarkIcon } from "@/shared/assets/svg/checkMarkIcon";
-import { Input } from "../Input/Input";
+import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "../Stack/Stack";
 import styles from './Checkbox.module.scss'
 
@@ -24,10 +24,11 @@ export const Checkbox = ({
 
     return (
         <Stack
+            gap='16'
             className={styles.checkboxContainer}
         >
-            <Input
-                label={label}
+            <label>{label}</label>
+            <input
                 type="checkbox"
                 name={name}
                 id={name}
@@ -35,9 +36,10 @@ export const Checkbox = ({
                 className={styles.checkboxInput}
                 onChange={handleCheckboxChange}
             />
-            <span className={`${styles.checkmark} ${checked ? styles.checked : ''}`}>
+            <span className={getStyles(styles.checkmark, {[styles.checked]: checked}, [])}>
                 {checked && <CheckmarkIcon />}
             </span>
+
         </Stack>
     )
 }

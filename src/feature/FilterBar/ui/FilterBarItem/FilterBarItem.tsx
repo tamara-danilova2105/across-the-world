@@ -21,6 +21,8 @@ export const FilterBarItem = ({
     onChange
 } : FilterBarItemProps ) => {
 
+
+
     return(
         <Stack
             direction='column'
