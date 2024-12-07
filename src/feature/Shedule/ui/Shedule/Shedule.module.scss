@@ -6,52 +6,52 @@
     border-radius: 16px;
     width: 450px;
     height: 600px;
-    overflow-y: scroll;
 
     @include mobile-l {
         width: 100%;
     }
 
     .contact_container {
+        background-color: var(--white-color);
         svg {
             width: 60px;
         }
 
-        > div {
+        > ul {
+            display: flex;
             align-items: center;
-            gap: var(--gap-s);
+            gap: var(--gap-m);
 
-            a {
-                display: flex;
-                align-items: center;
-                svg {
-                    width: 24px;
-                    height: 24px;
-                    fill: var(--blue-color);
+                a {
+                    display: flex;
+                    align-items: center;
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        fill: var(--blue-color);
+                    }
                 }
-            }
-
-            a:nth-last-of-type(1) {
-                svg {
-                    height: 28px;
-                    width: 30px;
+    
+                li:nth-last-of-type(1) {
+                    a svg {
+                        height: 28px;
+                        width: 30px;
+                    }
                 }
-            }
         }
     }
 
     .heading {
         text-align: center;
+        background-color: var(--white-color);
     }
 
-    .month {
-        width: 100%;
-        border-bottom: 1px solid var(--blue-opacity80);
+    .shedule_item {
+        overflow-y: scroll;
 
-        @include mobile-l {
-            p {
-                font-size: 18px;
-            }
+        .month {
+            width: 100%;
+            border-bottom: 1px solid var(--blue-opacity80);
         }
     }
 }

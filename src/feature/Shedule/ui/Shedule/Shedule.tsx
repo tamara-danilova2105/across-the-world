@@ -89,43 +89,49 @@ export const Shedule = () => {
                     Свяжитесь с менеджером для уточнения деталей тура!
                 </Text>
             </Stack>
-            {Object.keys(groupedTours).map(month => (
-            <Stack 
-                key={month}
+            <Stack
                 direction='column'
                 gap='16'
-                max
+                className={styles.shedule_item}
             >
+                {Object.keys(groupedTours).map(month => (
                 <Stack 
+                    key={month}
+                    direction='column'
                     gap='16'
-                    className={styles.month}
+                    max
                 >
-                    <Text
-                        size='24'
-                        font='geometria500'
-                        color='blue'
+                    <Stack 
+                        gap='16'
+                        className={styles.month}
                     >
-                        {month}
-                    </Text>
-                    <Text
-                        size='24'
-                        font='geometria500'
-                        color='blue'
-                    >
-                        2024
-                        {/* todo */}
-                    </Text>
+                        <Text
+                            size='18'
+                            font='geometria600'
+                            color='blue'
+                        >
+                            {month}
+                        </Text>
+                        <Text
+                            size='18'
+                            font='geometria600'
+                            color='blue'
+                        >
+                            2024
+                            {/* todo */}
+                        </Text>
+                    </Stack>
+                    {groupedTours[month].map(tour => (
+                    <SheduleItem
+                        key={tour._id}
+                        date={tour.date}
+                        tour={tour.tour}
+                        spots={tour.spots}
+                    />
+                    ))}
                 </Stack>
-                {groupedTours[month].map(tour => (
-                <SheduleItem
-                    key={tour._id}
-                    date={tour.date}
-                    tour={tour.tour}
-                    spots={tour.spots}
-                />
                 ))}
             </Stack>
-            ))}
         </Stack>
     )
 }

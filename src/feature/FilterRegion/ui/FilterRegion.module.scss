@@ -5,14 +5,9 @@
     position: sticky;
     top: 70px;
     background-color: var(--white-color);
-    padding: 20px 0;
     z-index: 4;
 
     @include mobile-xl {
         top: 60px;
-    }
-
-    > div {
-        @include mixin.section-style;
     }
 }
