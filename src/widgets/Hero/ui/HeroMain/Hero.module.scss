@@ -18,7 +18,7 @@
         gap: 100px;
 
         @include mq.tablet-l {
-            gap: 48px;
+            gap: var(--gap-xxl);
         }
     }
 

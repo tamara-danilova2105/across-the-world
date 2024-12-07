@@ -6,8 +6,12 @@ main {
         overflow: hidden;
 
         > div {
+            @include mobile-l {
+                gap: var(--gap-s);
+            }
+
             img {
-                width: 50%;
+                width: 70%;
                 height: 250px;
                 object-fit: cover;
                 border-radius: 16px;

@@ -19,7 +19,8 @@
 
         > div {
             align-items: center;
-            gap: 16px;
+            gap: var(--gap-s);
+
             a {
                 display: flex;
                 align-items: center;

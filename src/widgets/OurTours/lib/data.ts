@@ -411,12 +411,6 @@ export const dataTours: Tour[] = [
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
                         alt: 'Ледник Перито Морено, Аргентина'
                     },
-                    ,
-                    {
-                        _id: '56',
-                        src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
-                        alt: 'Ледник Перито Морено, Аргентина'
-                    },
                 ],
             },
             {
@@ -431,7 +425,7 @@ export const dataTours: Tour[] = [
                 `,
                 images: [
                     {
-                        _id: '561',
+                        _id: '56',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
                         alt: 'Торрес Дель Пайне, Патагония, Чили'
                     },

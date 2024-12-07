@@ -1,6 +1,6 @@
 import { Additional, getStyles, Mods } from '@/shared/lib/getStyles';
-import styles from './Stack.module.scss';
 import { DetailedHTMLProps, forwardRef, HTMLAttributes, ReactNode } from "react";
+import styles from './Stack.module.scss';
 
 export type StackDirection = 'row' | 'column';
 export type StackJustify = 'start' | 'center' | 'end' | 'between' | 'around';
@@ -101,5 +101,5 @@ export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
         >
             {children}
         </StackTag>
-    )
-})
+    );
+});

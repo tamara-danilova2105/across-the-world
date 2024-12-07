@@ -1,9 +1,9 @@
-@use '@/app/styles/media-queries.scss' as mq;
+@use '@/app/styles/media-queries.scss' as *;
 
 .rating_main {
-    @include mq.mobile-l {
+    @include mobile-l {
         flex-direction: column;
-        gap: 16px;
+        gap: var(--gap-m);
         width: 100%;
     }
 
@@ -21,7 +21,7 @@
     }
 
     .rating_text {
-        @include mq.mobile-l {
+        @include mobile-l {
             align-items: center;
         }
     }

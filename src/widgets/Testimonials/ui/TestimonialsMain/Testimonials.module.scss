@@ -20,7 +20,7 @@
     @include mq.tablet-l {
         padding-top: 70px;
         padding-bottom: 70px;
-        gap: 24px;
+        gap: var(--gap-l);
     }
 
     @include mq.mobile-xl {
