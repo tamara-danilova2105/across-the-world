@@ -2,13 +2,13 @@ import { ContactUs } from "@/entities/ContactUs/index"
 import { Logo_main } from "@/shared/assets/svg/logo_main"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
-import { dataTours } from "@/widgets/OurTours/lib/data"
+import { dataTours, Tour } from "@/widgets/OurTours/lib/data"
 import { SheduleItem } from "../SheduleItem/SheduleItem"
 import styles from './Shedule.module.scss'
 
 export const Shedule = () => {
 
-    function getMonthFromDate(date) {
+    function getMonthFromDate(date: string): string {
         const monthNames = [
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", 
             "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
@@ -17,8 +17,8 @@ export const Shedule = () => {
         return monthNames[monthIndex];
     }
 
-    function groupToursByMonth(tours) {
-        const toursByMonth = {};
+    function groupToursByMonth(tours: Tour[]) {
+        const toursByMonth: Record<string, { date: string; _id: string; tour: string; spots: number }[]> = {};
     
         tours.forEach(tour => {
             tour.dates.forEach(dateObj => {
@@ -41,7 +41,7 @@ export const Shedule = () => {
         return toursByMonth;
     }
     
-    function formatDate(dateString) {
+    function formatDate(dateString: string): string {
         const date = new Date(dateString);
         const day = date.getDate().toString().padStart(2, '0');
         const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
