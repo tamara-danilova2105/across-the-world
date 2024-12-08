@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Review } from '../../../../../../model/types/types';
 import styles from './ReviewCard.module.scss';
 import { Stack } from '@/shared/ui/Stack';
+import { BackticsIcon } from '@/shared/assets/svg/bacticksIcon';
 
 interface ReviewCardProps {
     review: Review;
@@ -32,7 +33,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
     return (
         <Stack 
             direction='column' gap='16'
-            className={styles.reviewCard}
+            className={styles.review_card}
         >
             <Stack direction='column' gap='4'>
                 <div className={styles.nameCity}>
@@ -51,6 +52,9 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
                     {isExpanded ? 'Свернуть' : 'Показать все'}
                 </button>
             )}
+            <Stack className={styles.backtics_container}>
+                <BackticsIcon />
+            </Stack>
         </Stack>
     );
 };

@@ -1,7 +1,8 @@
-.reviewCard {
+.review_card {
     border-radius: var(--border-radius);
     padding: 24px;
     box-shadow: var(--box-shadow);
+    position: relative;
 
     
     button {
@@ -33,4 +34,11 @@
 .review {
     line-height: 1.6;
     text-indent: var(--text-indent);
+}
+
+.backtics_container {
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    z-index: -1;
 }
