@@ -108,13 +108,7 @@
                 transition: background-color 0.3s;
                 border: 2px solid transparent;
                 text-align: center;
-    
-    
-                @include mq.mobile-l {
-                    width: 15px;
-                    height: 15px;
-                }
-    
+
                 a {
                     display: flex;
                     align-items: center;
