@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Review } from '../../../../../../model/types/types';
-import styles from './ReviewCard.module.scss';
 import { Stack } from '@/shared/ui/Stack';
 import { BackticsIcon } from '@/shared/assets/svg/bacticksIcon';
+import { useExpandableText } from '@/shared/hooks/useExpandableText';
+import { Review } from '../../../../../../model/types/types';
+import styles from './ReviewCard.module.scss';
 
 interface ReviewCardProps {
     review: Review;
@@ -17,18 +17,17 @@ const formatDate = (dateString: string): string => {
     });
 };
 
-//TODO хук для текста
+const MAX_LENGTH = 200;
 
 export const ReviewCard = ({ review }: ReviewCardProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const { name, city, date, feedback} = review;
 
-    const maxLength = 200;
+    const { isExpanded, displayText, toggleExpanded } = useExpandableText({
+        text: feedback,
+        maxLength: MAX_LENGTH,
+    });
 
-    const shouldShowButton = review.review.length > maxLength;
-
-    const displayText = shouldShowButton && !isExpanded 
-        ? `${review.review.slice(0, maxLength)}...` 
-        : review.review;
+    const shouldShowButton = review.feedback.length > MAX_LENGTH;
 
     return (
         <Stack 
@@ -37,10 +36,10 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
         >
             <Stack direction='column' gap='4'>
                 <div className={styles.nameCity}>
-                    {review.name}, 
-                    {review.city && <span className={styles.city}>{review.city}</span>}
+                    {name}, 
+                    {city && <span className={styles.city}>{city}</span>}
                 </div>
-                <div className={styles.date}>{formatDate(review.date)}</div>
+                <div className={styles.date}>{formatDate(date)}</div>
             </Stack>
 
             <div className={styles.review}>
@@ -48,10 +47,11 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
             </div>
 
             {shouldShowButton && (
-                <button onClick={() => setIsExpanded(!isExpanded)}>
+                <button onClick={toggleExpanded}>
                     {isExpanded ? 'Свернуть' : 'Показать все'}
                 </button>
             )}
+
             <Stack className={styles.backtics_container}>
                 <BackticsIcon />
             </Stack>
