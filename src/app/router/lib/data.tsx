@@ -10,7 +10,7 @@ import {
     getRouteSignin, 
     getRouteTestimonials, 
     getRouteTours, 
-    getRouteToursDetails,
+    getRouteToursDetails
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";

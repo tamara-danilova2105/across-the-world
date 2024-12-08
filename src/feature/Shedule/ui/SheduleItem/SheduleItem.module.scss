@@ -39,6 +39,11 @@
             @include mobile-l {
                 padding: 3px 5px;
             }
+
+            &.soldout {
+                background-color: transparent;
+                color: var(--error-color);
+            }
         }
     }
 }

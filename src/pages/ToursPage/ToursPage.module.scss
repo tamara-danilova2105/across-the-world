@@ -1,6 +1,19 @@
 @use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as *;
+
+.region {
+    position: sticky;
+    top: 70px;
+    background-color: var(--white-color);
+    z-index: 4;
+
+    @include mobile-xl {
+        top: 60px;
+    }
+}
 
 .tours_page {
+    height: 100%;
     @include mixin.section-style;
 
     & {

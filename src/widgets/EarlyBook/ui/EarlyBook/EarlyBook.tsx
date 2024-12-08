@@ -5,6 +5,7 @@ import { Text } from "@/shared/ui/Text/Text";
 import { Button } from "@/shared/ui/Button";
 import { bookData } from "../../lib/data";
 import { Images } from "../Images/Images";
+import { dataPromo } from "@/entities/RunningLine/lib/data";
 import styles from './EarlyBook.module.scss';
 
 const END_TIME = '2024-12-01T20:59:59.000Z' //TODO
@@ -18,7 +19,7 @@ export const EarlyBook = () => {
             gap="32"
             className={styles.earlyBook}
         >
-            <RunningLine/>
+            <RunningLine data={dataPromo}/>
 
             <Stack
                 justify='between'

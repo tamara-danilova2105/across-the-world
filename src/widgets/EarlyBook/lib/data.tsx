@@ -26,3 +26,4 @@ export const bookData: BookData[] = [
         description: 'Действующий вулкан на юге Камчатки.',
     }
 ]
+

@@ -81,14 +81,19 @@ export const FilterBar = () => {
                 <Button>Применить</Button>
                 <Button color='outline'>Очистить</Button>
             </Stack>
+            <Stack
+                direction='column'
+                gap='32'
+                className={styles.filterBar}
+            >
+                {Object.keys(dataFilterRange).map((key) => 
+                    renderFilterRangeElement(key as FilterRangeKeys)
+                )}
 
-            {Object.keys(dataFilterRange).map((key) => 
-                renderFilterRangeElement(key as FilterRangeKeys)
-            )}
-
-            {Object.keys(dataFilter).map((key) => 
-                renderFilterElement(key as FilterKeys)
-            )}
+                {Object.keys(dataFilter).map((key) => 
+                    renderFilterElement(key as FilterKeys)
+                )}
+            </Stack>
         </Stack>
     )
 }

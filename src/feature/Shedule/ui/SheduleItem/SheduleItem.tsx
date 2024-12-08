@@ -1,3 +1,5 @@
+import { declOfNum } from "@/shared/lib/declOfNum";
+import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
 import styles from './SheduleItem.module.scss'
@@ -36,10 +38,12 @@ export const SheduleItem = ({ date, tour, spots } : SheduleItemProps) => {
                     size='18'
                     font='geometria600'
                     color='blue'
-                    className={styles.quantity_places}
+                    className={getStyles(styles.quantity_places, {[styles.soldout]: spots === 0}, [])}
                 >
-                    {spots} мест
-                    {/* склонения todo */}
+                    {spots > 0 
+                        ? `${spots} ${declOfNum(spots, ['место', 'места', 'мест'])}`
+                        : 'sold out'
+                    }
                 </Text>
             </Stack>
         </Stack>
