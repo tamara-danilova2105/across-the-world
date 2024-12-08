@@ -1,3 +1,4 @@
+import { Pagination } from "@/entities/Pagination/index"
 import { TourCard } from "@/entities/TourCard/index"
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
 import { Shedule } from "@/feature/Shedule/index"
@@ -59,6 +60,13 @@ export const Tours = () => {
                         tourData={tour} 
                     />
                 ))}
+                <Pagination
+                    onPageChange={2}
+                    forcePage={1}
+                    pageCount={3}
+                    hasBackground={true}
+                    pagePagination={true}
+                />
             </Stack>
         </Stack>
     )
