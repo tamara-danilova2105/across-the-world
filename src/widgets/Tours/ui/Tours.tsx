@@ -1,3 +1,4 @@
+import { Pagination } from "@/entities/Pagination/index"
 import { TourCard } from "@/entities/TourCard/index"
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
 import { Shedule } from "@/feature/Shedule/index"
@@ -7,13 +8,19 @@ import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { dataTours } from "@/widgets/OurTours/lib/data"
+import { useCallback, useState } from "react"
 import styles from './Tours.module.scss'
 
 export const Tours = () => {
 
     const [changeModal, drawModal] = useModal();
-
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handlePageChange = useCallback((pageIndex: number) => {
+        setCurrentIndex(pageIndex);
+    }, [])
 
     return(
         <Stack
@@ -59,6 +66,13 @@ export const Tours = () => {
                         tourData={tour} 
                     />
                 ))}
+                <Pagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentIndex}
+                    pageCount={3}
+                    hasBackground={true}
+                    pagePagination={true}
+                />
             </Stack>
         </Stack>
     )

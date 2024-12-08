@@ -1,6 +1,7 @@
 import ReactPaginate from "react-paginate";
 import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack";
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -8,16 +9,18 @@ interface PaginationProps {
     forcePage?: number;
     pageCount: number;
     hasBackground?: boolean;
+    pagePagination?: boolean;
 };
 
 export const Pagination = (props: PaginationProps) => {
-    const { onPageChange, forcePage, pageCount, hasBackground } = props;
+    const { onPageChange, forcePage, pageCount, hasBackground, pagePagination } = props;
 
     const handlePageChange = (e: { selected: number }) => {
         onPageChange?.(e.selected);
     };
 
     const bullitStyle = getStyles(styles.page, {[styles.whiteBullit]: hasBackground}, []);
+    const paginationStyle = getStyles(styles.paginationContainer, {[styles.paginationPageContainer]: pagePagination}, []);
 
     const pageRangeDisplayed = pageCount <= 6 ? pageCount : 3;
     const marginPagesDisplayed = pageCount <= 6 ? 0 : 1;
@@ -31,12 +34,13 @@ export const Pagination = (props: PaginationProps) => {
             aria-label="Pagination Navigation"
         >
             <ReactPaginate
-                previousLabel={<span aria-label="Previous Page">«</span>}
-                nextLabel={<span aria-label="Next Page">»</span>}
-                containerClassName={styles.paginationContainer}
+                previousLabel={<span aria-label="Previous Page"><ChevronLeft /></span>}
+                nextLabel={<span aria-label="Next Page"><ChevronRight/></span>}
+                containerClassName={paginationStyle}
                 nextClassName={styles.next}
                 previousClassName={styles.previous}
                 activeClassName={styles.active}
+                disabledLinkClassName={styles.disabledLink}
                 pageClassName={bullitStyle}
                 onPageChange={handlePageChange}
                 forcePage={forcePage}
