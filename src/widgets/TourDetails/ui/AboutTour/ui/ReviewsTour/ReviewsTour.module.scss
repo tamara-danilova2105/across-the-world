@@ -13,13 +13,4 @@
         width: 85vw;
         padding: 20px;
     }
-
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--blue-color);
-        border-radius: 8px;
-    }
 }

@@ -4,11 +4,11 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { declOfNum } from "@/shared/lib/declOfNum";
 import { Button } from "@/shared/ui/Button";
+import { useModal } from "@/shared/hooks/useModal";
 import { ParticipantCounter } from "./ui/ParticipantCounter/ParticipantCounter";
 import { Dropdown } from "./ui/Dropdown/Dropdown";
-import styles from './BookingForm.module.scss';
-import { useModal } from "@/shared/hooks/useModal";
 import { ContactForm } from "./ui/ContactForm/ContactForm";
+import styles from './BookingForm.module.scss';
 
 interface BookingFormProps {
     options: DateTours[];
