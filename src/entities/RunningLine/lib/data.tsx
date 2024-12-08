@@ -3,7 +3,7 @@ interface RunningLineProps {
 }
 
 export interface DataProps {
-    data: RunningLineProps
+    data: RunningLineProps[]
 }
 
 
