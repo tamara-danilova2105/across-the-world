@@ -1,13 +1,13 @@
-@use '@/app/styles/media-queries.scss' as mq;
+@use '@/app/styles/media-queries.scss' as *;
 
 .preview_container {
     position: relative;
 
-    @include mq.tablet-m {
+    @include tablet-m {
         align-self: flex-end;
     }
     
-    @include mq.mobile-l {
+    @include mobile-l {
         width: 100%;
     }
 
@@ -33,7 +33,7 @@
         }
     }
 
-    @include mq.mobile-xl {
+    @include mobile-xl {
         font-size: var(--font-size-42);
 
         br {
@@ -41,7 +41,7 @@
         }
     }
 
-    @include mq.mobile-l {
+    @include mobile-l {
         font-size: var(--font-size-24);
         
         br {
@@ -57,7 +57,7 @@
 .description_text {
     text-indent: var(--text-indent);
 
-    @include mq.mobile-xl {
+    @include mobile-xl {
         text-align: justify;
     }
 }

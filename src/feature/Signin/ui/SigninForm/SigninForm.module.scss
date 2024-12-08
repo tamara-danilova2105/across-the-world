@@ -1,0 +1,21 @@
+.signin_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-s);
+    width: 500px;
+
+    input {
+        border: 1px solid var(--blue-color);
+    }
+}
+
+.logo_container {
+    margin-bottom: 30px;
+
+    :last-child {
+        path {
+            fill: var(--blue-color)
+        }
+    }
+}

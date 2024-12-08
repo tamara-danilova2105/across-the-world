@@ -1,8 +1,8 @@
-@use '@/app/styles/media-queries.scss' as mq;
-@use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/media-queries.scss' as *;
+@use '@/app/styles/mixin.scss' as *;
 
 .hero {
-    @include mixin.decorate-style;
+    @include decorate-style;
 
     & {
         background-color: var(--peach-opacity20);
@@ -10,25 +10,25 @@
 }
 
 .content_desktop {
-    @include mixin.section-style;
+    @include section-style;
 
     & {
         padding-top: 70px;
         padding-bottom: 70px;
         gap: 100px;
 
-        @include mq.tablet-l {
+        @include tablet-l {
             gap: var(--gap-xxl);
         }
     }
 
-    @include mq.tablet-l {
+    @include tablet-l {
         display: none;
     }
 }
 
 .content_mobile {
-    @include mixin.section-style;
+    @include section-style;
 
     & {
         display: none;

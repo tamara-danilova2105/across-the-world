@@ -1,5 +1,5 @@
 import { ContactUs } from "@/entities/ContactUs/index"
-import { Logo_main } from "@/shared/assets/svg/logo_main"
+import { LogoMain } from "@/shared/assets/svg/logo_main"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
 import { dataTours, Tour } from "@/widgets/OurTours/lib/data"
@@ -63,8 +63,8 @@ export const Shedule = () => {
                 className={styles.contact_container}
                 max
             >
-                <Logo_main/>
-                <ContactUs/>
+                <LogoMain />
+                <ContactUs />
             </Stack>
             <Stack
                 align='center'
