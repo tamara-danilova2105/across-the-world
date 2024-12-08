@@ -39,10 +39,10 @@ export const InfoCard = (props: InfoCardProps) => {
         <Stack justify='between' align='center' max>
             <Stack direction='column' gap="16">
                 <Stack direction='column' gap="4">
-                    <Text>{category}</Text>
+                    <Text size="16">{category}</Text>
 
                     <Stack gap="8" className={styles.tooltipContainer}>
-                        <Text font='geometria500'>{categoryType}</Text>
+                        <Text size="16" font='geometria500'>{categoryType}</Text>
                         
                         <div 
                             className={styles.tooltipWrapper}
@@ -60,7 +60,7 @@ export const InfoCard = (props: InfoCardProps) => {
                     <AppLink 
                         to={hrefLink}
                         variant='link'
-                        size="14"
+                        size="16"
                         onClick={handleLinkClick}
                     >
                         {textLink}
