@@ -1,8 +1,9 @@
 import { routeConfig } from "@/app/router/lib/data";
 import { BreadCrumbs } from "@/entities/BreadCrumbs/index";
 import { PageTitle } from "@/entities/PageTitle/index";
+import { RunningLine } from "@/entities/RunningLine/index";
+import { dataRegion } from "@/entities/RunningLine/lib/data";
 import { FilterBar } from "@/feature/FilterBar/index";
-import { FilterRegion } from "@/feature/FilterRegion/index";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Tours } from "@/widgets/Tours/index";
@@ -17,7 +18,14 @@ const ToursPage = () => {
             <PageTitle>
                 <BreadCrumbs routes={Object.values(routeConfig)} />
             </PageTitle>
-            <FilterRegion/>
+            <Stack
+                justify='center'
+                align='center'
+                max
+                className={styles.region}
+            >
+                <RunningLine data={ dataRegion }/>
+            </Stack>
             <Stack 
                 tag='section'
                 gap='32'

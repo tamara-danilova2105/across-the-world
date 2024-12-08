@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export enum AppRouters {
     main = 'main',
     tours = 'tours',
+    region = 'region',
     tour_detais = 'tour_detais',
     about = 'about',
     blog = 'blog',

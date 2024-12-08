@@ -1,5 +1,4 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { RunningLine } from "@/entities/RunningLine";
 import { TitleSection } from "@/entities/TitleSection";
 import { Text } from "@/shared/ui/Text";
 import { Input } from "@/shared/ui/Input";
@@ -9,6 +8,8 @@ import { data, emailRegex } from '@/shared/lib/validateInput';
 import { EnvelopeIcon } from "@/shared/assets/svg/envelopeIcon";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import styles from './Subscription.module.scss'
+import { RunningLine } from "@/entities/RunningLine/index";
+import { dataPromo } from "@/entities/RunningLine/lib/data";
 
 interface FormInputs {
     email: string;
@@ -31,7 +32,7 @@ export const Subscription = () => {
             align='center'
             className={styles.main}
         >
-            <RunningLine />
+            <RunningLine data={dataPromo}/>
             <Stack 
                 className={styles.subscriptionContainer} 
                 align="center" 

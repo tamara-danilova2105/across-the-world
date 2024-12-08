@@ -4,8 +4,8 @@
     background-color: var(--white-color);
     padding: 20px;
     border-radius: 16px;
-    width: 450px;
-    height: 600px;
+    width: 550px;
+    height: 700px;
 
     @include mobile-l {
         width: 100%;
@@ -47,6 +47,7 @@
     }
 
     .shedule_item {
+        width: 100%;
         overflow-y: scroll;
 
         .month {

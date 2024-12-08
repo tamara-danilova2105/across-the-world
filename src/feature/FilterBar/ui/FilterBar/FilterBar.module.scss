@@ -1,13 +1,13 @@
 @use '@/app/styles/media-queries' as *;
 
 .filterBarContainer {
-    position: sticky;
-    top: 135px;
     width: 330px;
+    height: 100%;
 
     @include tablet-l {
         width: 100%;
         z-index: 3;
+        top: 0;
     }
 
     .btnContainer {

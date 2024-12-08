@@ -11,6 +11,7 @@ import {
     getRouteTestimonials, 
     getRouteTours, 
     getRouteToursDetails,
+    getRouteToursRegion,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
