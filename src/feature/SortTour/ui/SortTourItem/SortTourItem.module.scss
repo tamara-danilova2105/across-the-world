@@ -1,4 +1,5 @@
 @use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as *;
 
 .sortTourContainer {
     position: relative;
@@ -14,16 +15,12 @@
         text-align: left;
         width: auto;
         gap: var(--gap-s);
-    }
 
-    .sort_button {
-        width: auto;
-        padding: 0;
-        background-color: transparent;
-        cursor: pointer;
-
-        > div {
-            display: none;
+        @include mobile-s {
+            p {
+                font-size: var(--font-size-14);
+            }
+            padding: 12px 10px;
         }
     }
 
