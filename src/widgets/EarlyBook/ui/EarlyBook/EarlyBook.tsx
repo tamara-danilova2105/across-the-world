@@ -8,7 +8,7 @@ import { Images } from "../Images/Images";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
 import styles from './EarlyBook.module.scss';
 
-const END_TIME = '2024-12-01T20:59:59.000Z' //TODO
+const END_TIME = '2024-12-31T20:59:59.000Z' //TODO
 
 export const EarlyBook = () => {
     return(
