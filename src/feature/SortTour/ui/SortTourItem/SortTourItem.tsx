@@ -1,7 +1,5 @@
 import { ArrowDropwownIcon } from "@/shared/assets/svg/arrowIcons";
 import { CheckmarkIcon } from "@/shared/assets/svg/checkMarkIcon";
-import { MobileSort } from "@/shared/assets/svg/mobileSort";
-import { useResize } from "@/shared/hooks/useResize";
 import { useToggleOpen } from "@/shared/hooks/useToggleOpen";
 import { getStyles } from "@/shared/lib/getStyles";
 import { Button } from "@/shared/ui/Button/Button"
@@ -18,7 +16,6 @@ export const SortTourItem = ({
     dataSort } : SortTourItemProps ) => {
 
         const { toggleMenu, isOpen, menuRef, closeMenu } = useToggleOpen();
-        const width = useResize();
 
     return(
         <Stack
@@ -27,7 +24,7 @@ export const SortTourItem = ({
             ref={menuRef}
             className={styles.sortTourContainer}
         >
-            {width > 1280 ? 
+
             <Button
                 color='outline'
                 onClick={toggleMenu}
@@ -43,14 +40,6 @@ export const SortTourItem = ({
                     <ArrowDropwownIcon/>
                 </span> 
             </Button>
-                :
-            <Button
-                onClick={toggleMenu}
-                className={styles.sort_button}
-            >
-                <MobileSort/>
-            </Button>}
-            
             {isOpen && 
             <ul 
                 onClick={closeMenu}
