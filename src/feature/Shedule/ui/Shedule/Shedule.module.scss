@@ -11,6 +11,10 @@
         width: 100%;
     }
 
+    @include mobile-s {
+        height: 500px;
+    }
+
     .contact_container {
         background-color: var(--white-color);
         svg {
