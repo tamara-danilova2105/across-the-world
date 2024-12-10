@@ -1,0 +1,14 @@
+.headerContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px; 
+    margin-bottom: 8px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 0.875rem; 
+    color: #6b7280;
+    font-weight: 500;
+    padding: 8px 0;
+}

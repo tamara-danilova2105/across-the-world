@@ -1,0 +1,44 @@
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.dateButton {
+    height: 40px; 
+    width: 100%;
+    border-radius: 4px; 
+    font-size: 0.875rem;
+    position: relative;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f3f4f6;
+    }
+}
+
+.currentMonth {
+    color: var(--black-color);
+}
+
+.otherMonth {
+    color: #9ca3af;
+}
+
+.selected {
+    background-color: var(--blue-color);
+    color: var(--white-color);
+
+    &:hover {
+        background-color: var(--blue-color);
+    }
+}
+
+.inRange {
+    background-color: var(--blue-opacity20);
+
+    &:hover {
+        background-color: var(--blue-opacity20);
+    }
+}

@@ -51,7 +51,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     },
     [AppRouters.admin]: {
         path: getRouteAdmin(),
-        onlyAdmin: true,
+        // onlyAdmin: true, //TODO
         page: <AdminPage />
     },
     [AppRouters.not_found]: {

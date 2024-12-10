@@ -1,0 +1,39 @@
+.calendarContainer {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 24px;
+    width: 700px;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.button {
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: #f3f4f6;
+    }
+}
+
+.monthTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.spacer {
+    width: 28px;
+}
