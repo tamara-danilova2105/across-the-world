@@ -25,13 +25,22 @@ export const Calendar = () => {
 
     const handleDateClick = (date: Date) => {
         if (!isSelectingRange) {
-            setSelectedRange({ startDate: date, endDate: null });
+            setSelectedRange({ 
+                startDate: date, 
+                endDate: null 
+            });
             setIsSelectingRange(true);
         } else {
             if (date < selectedRange.startDate!) {
-                setSelectedRange({ startDate: date, endDate: selectedRange.startDate });
+                setSelectedRange({ 
+                    startDate: date, 
+                    endDate: selectedRange.startDate 
+                });
             } else {
-                setSelectedRange({ ...selectedRange, endDate: date });
+                setSelectedRange({ 
+                    ...selectedRange, 
+                    endDate: date 
+                });
             }
         setIsSelectingRange(false);
         }

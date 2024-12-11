@@ -1,13 +1,13 @@
-@use '@/app/styles/mixin' as mixin;
-@use '@/app/styles/media-queries.scss' as mq;
+@use '@/app/styles/mixin' as *;
+@use '@/app/styles/media-queries.scss' as *;
 
 .aboutUsContainer {
     width: 100%;
 
     > div {
-        @include mixin.section-style;
+        @include ection-style;
 
-        @include mq.tablet-m {
+        @include tablet-m {
             flex-direction: column-reverse;
         }
     
@@ -26,7 +26,7 @@
         box-shadow: var(--box-shadow);
         object-fit: cover;
 
-        @include mq.tablet-m {
+        @include tablet-m {
             align-self: center;
         }
     }
@@ -34,12 +34,12 @@
     .img_tablet {
         display: none;
 
-        @include mq.tablet-m {
+        @include tablet-m {
             display: flex;
             width: 300px;
         }
 
-        @include mq.mobile-xl {
+        @include mobile-xl {
             display: none;
         }
     }
@@ -47,12 +47,12 @@
     .img_large {
         width: 430px;
 
-        @include mq.tablet-l {
+        @include tablet-l {
             width: 300px;
             height: 375px;
         }
 
-        @include mq.mobile-xl {
+        @include mobile-xl {
             width: 100%;
             height: auto;
         }
@@ -61,7 +61,7 @@
     .img_small {
         width: 160px;
 
-        @include mq.tablet-l {
+        @include tablet-l {
             display: none;
         }
     }
@@ -70,7 +70,7 @@
 .desc_text {
     text-indent: var(--text-indent);
 
-    @include mq.mobile-xl {
+    @include mobile-xl {
         text-align: justify;
     }
 }
@@ -88,7 +88,7 @@
     }
 
 
-    @include mq.mobile-xl {
+    @include mobile-xl {
         > p {
             &:nth-child(3) {
                 display: block;

@@ -1,0 +1,97 @@
+@use '@/app/styles/mixin' as *;
+
+.container {
+    @include section-style;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+.form {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--box-shadow);
+}
+
+.formGroup {
+    margin-bottom: 24px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.input {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid grey;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+
+    &:focus {
+        outline: none;
+        border-color: var(--blue-color);
+        box-shadow: var(--box-shadow);
+    }
+}
+
+.imagePreview {
+    margin-top: 16px;
+    max-width: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.toolbar {
+    display: flex;
+    gap: 16px;
+    margin-top: 52px;
+}
+
+.button {
+    padding: 16px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &.primary {
+        background-color: var(--blue-color);
+        color: var(--white-color);
+        border: none;
+
+        &:hover {
+        // background-color: darken($primary-color, 10%);
+        }
+    }
+
+    &.secondary {
+        background-color: white;
+        border: 1px solid grey;
+
+        &:hover {
+        // background-color: $secondary-color;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
