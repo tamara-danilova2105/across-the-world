@@ -6,6 +6,7 @@ import { formatDateRange } from "@/shared/lib/formatDateRange";
 import { declOfNum } from "@/shared/lib/declOfNum";
 import { BookingData } from "../../BookingForm";
 import styles from "./Dropdown.module.scss";
+import { useResize } from "@/shared/hooks/useResize";
 
 interface DropdownProps {
     options: DateTours[];
@@ -18,6 +19,9 @@ export const Dropdown = (props: DropdownProps) => {
     const { options, isOpen, handleIsOpen, changeBookingData } = props;
 
     const [selectedDate, setSelectedDate] = useState<string>();
+
+    const width = useResize()
+    const isMobile = width <= 590;
 
     const toggleDropdown = () => handleIsOpen(!isOpen);
 
@@ -52,7 +56,7 @@ export const Dropdown = (props: DropdownProps) => {
                             onClick={() => handleSelected(item)}
                         >
                             <div className={styles.itemTitle}>
-                                {formatDateRange(item.date_start, item.date_finish)}
+                                {formatDateRange(item.date_start, item.date_finish, isMobile)}
                             </div>
 
                             <div className={styles.itemDetails}>

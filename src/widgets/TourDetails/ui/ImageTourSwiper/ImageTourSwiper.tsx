@@ -22,6 +22,10 @@ export const ImageTourSwiper = (props: ImageTourSwiperProps) => {
             <CustomeSwiper 
                 items={images} 
                 renderItem={renderItem}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
             />
         </div>
     );

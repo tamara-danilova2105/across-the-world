@@ -1,4 +1,4 @@
-export const formatDateRange = (dateStart: string, dateFinish?: string) => {
+export const formatDateRange = (dateStart: string, dateFinish?: string, isMobile?: boolean) => {
     const months = [
         "янв.", "фев.", "мар.", "апр.", "мая", "июня",
         "июля", "авг.", "сент.", "окт.", "нояб.", "дек."
@@ -20,6 +20,8 @@ export const formatDateRange = (dateStart: string, dateFinish?: string) => {
     const finishMonth = months[finish.getMonth()];
     const finishYear = finish.getFullYear();
 
+    const separator = isMobile ? ' -\n' : ' - ';
+
     if (startYear === finishYear) {
         if (startMonth === finishMonth) {
             return `${startDay} - ${finishDay} ${startMonth} ${startYear}`;
@@ -28,5 +30,5 @@ export const formatDateRange = (dateStart: string, dateFinish?: string) => {
         }
     }
 
-    return `${startDay} ${startMonth} ${startYear} - ${finishDay} ${finishMonth} ${finishYear}`;
+    return `${startDay} ${startMonth} ${startYear}${separator}${finishDay} ${finishMonth} ${finishYear}`;
 };

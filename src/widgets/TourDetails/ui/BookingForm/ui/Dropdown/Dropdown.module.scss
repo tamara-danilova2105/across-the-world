@@ -74,14 +74,13 @@
 .itemTitle {
     font-size: var(--font-size-14);
     font-weight: 600;
-    white-space: nowrap;
+    white-space: pre-wrap; 
 }
 
 .itemDetails {
     display: flex;
     align-items: center;
-    gap: 12px; //TODO
-    white-space: nowrap;
+    gap: var(--gap-s);
 }
 
 .price {
