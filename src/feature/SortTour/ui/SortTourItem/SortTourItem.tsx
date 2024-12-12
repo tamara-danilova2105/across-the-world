@@ -34,7 +34,7 @@ export const SortTourItem = ({
                     color='blue'
                     font='geometria500'
                 >
-                    По количеству отзывов
+                    Ближайшие
                 </Text>
                 <span className={getStyles(styles.icon, {[styles.rotateOpen]: isOpen, [styles.rotateClosed]: !isOpen}, [])}>
                     <ArrowDropwownIcon/>

@@ -53,10 +53,22 @@
     .shedule_item {
         width: 100%;
         overflow-y: scroll;
+        padding-top: 30px;
 
         .month {
             width: 100%;
             border-bottom: 1px solid var(--blue-opacity80);
+        }
+
+        .logoFont_svg {
+            svg {
+                fill: var(--blue-color);
+                width: 200px;
+            }
+            
+            path {
+                stroke: var(--blue-color);
+            }
         }
     }
 }

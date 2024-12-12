@@ -14,6 +14,7 @@ export interface FilterCategory {
 export interface FilterData {
     type_tour: FilterCategory;
     region: FilterCategory;
+    season: FilterCategory;
 }
 
 
@@ -39,6 +40,15 @@ export const dataFilter: FilterData = {
             {_id: 6, value: 'Uzbekistan', label: 'Узбекистан'},
             {_id: 7, value: 'South_America', label: 'Южная Америка'},
             {_id: 8, value: 'Africa', label: 'Африка'}
+        ],
+    },
+    season: {
+        title: "Сезон",
+        items: [
+            {_id: 1, value: 'Winter', label: 'Зима'},
+            {_id: 2, value: 'Spring', label: 'Весна'},
+            {_id: 3, value: 'Summer', label: 'Лето'},
+            {_id: 4, value: 'Autumn', label: 'Осень'}
         ],
     }
 }

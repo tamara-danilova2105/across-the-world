@@ -17,7 +17,8 @@ export const FilterBar = () => {
     >({
         type_tour: {},
         region: {},
-
+        season: {},
+        
         duration: [3, 10],
         price: [20000, 100000],
     });
