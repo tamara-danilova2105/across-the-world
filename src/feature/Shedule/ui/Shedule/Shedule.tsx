@@ -1,4 +1,5 @@
 import { ContactUs } from "@/entities/ContactUs/index"
+import { LogoFont } from "@/shared/assets/svg/logoFont"
 import { LogoMain } from "@/shared/assets/svg/logo_main"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
@@ -49,7 +50,6 @@ export const Shedule = () => {
     }
     
     const groupedTours = groupToursByMonth(dataTours);
-    console.log(groupedTours);
 
     return(
         <Stack
@@ -91,7 +91,7 @@ export const Shedule = () => {
             </Stack>
             <Stack
                 direction='column'
-                gap='16'
+                gap='32'
                 className={styles.shedule_item}
             >
                 {Object.keys(groupedTours).map(month => (
@@ -131,6 +131,14 @@ export const Shedule = () => {
                     ))}
                 </Stack>
                 ))}
+                <Stack
+                    justify='center'
+                    align='center'
+                    max
+                    className={styles.logoFont_svg}
+                >
+                    <LogoFont/>
+                </Stack>
             </Stack>
         </Stack>
     )

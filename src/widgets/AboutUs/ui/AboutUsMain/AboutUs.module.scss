@@ -5,7 +5,7 @@
     width: 100%;
 
     > div {
-        @include ection-style;
+        @include section-style;
 
         @include tablet-m {
             flex-direction: column-reverse;
