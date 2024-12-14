@@ -1,5 +1,5 @@
 interface CreateApiConfigProps {
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'; 
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE' ; 
     url: string;
     body?: Record<string, any> | null;
 }

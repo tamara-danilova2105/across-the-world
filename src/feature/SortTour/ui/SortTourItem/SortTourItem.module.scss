@@ -39,6 +39,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-size: var(--font-size-18);
+            color: var(--blue-color);
             gap: 8px;
             padding: 5px 15px;
             cursor: pointer;
