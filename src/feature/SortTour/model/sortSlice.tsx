@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SortDataProps } from '../lib/data';
 
 interface SortState {
-    option?: string;
-    label?: string;
+    option: string;
+    label: string;
 }
 
 const initialState: SortState = {
@@ -15,7 +15,7 @@ const sortSlice = createSlice({
     name: 'sort',
     initialState,
     reducers: {
-        setSort: (state: SortState , action: PayloadAction<SortDataProps>) => {
+        setSort: (state: SortState , action: PayloadAction<SortState>) => {
             const { value = 'soon', label = 'Ближайшие' } = action.payload; 
             state.option = value;
             state.label = label;

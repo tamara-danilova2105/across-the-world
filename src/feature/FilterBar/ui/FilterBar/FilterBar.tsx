@@ -114,9 +114,9 @@ export const FilterBar = () => {
                     regions={regions} 
                     country={country} 
                     selectedFilters={selectedFilters['region']} 
-                    onChange={(value: { regions: Record<string, boolean>
+                    onChange={(values: { regions: Record<string, boolean>
                         country: Record<string, boolean> }) =>
-                        handleChange(key, value) 
+                        handleChange(key, values) 
                     }
                 />
             </React.Fragment>
