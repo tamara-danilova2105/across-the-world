@@ -11,9 +11,13 @@ import { FilterRange } from "../FilterRange/FilterRange"
 import { FilterRegion } from "../FilterRegion/ui/FilterRegion/FilterRegion"
 import styles from './FilterBar.module.scss'
 
-type FilterKeys = keyof typeof dataFilter;
-type FilterRangeKeys = keyof typeof dataFilterRange;
-type FilterRegionKeys = keyof typeof dataRegionGroups;
+type DataFilter = typeof dataFilter;
+type DataFilterRange = typeof dataFilterRange;
+type DataRegionGroups = typeof dataRegionGroups;
+
+type FilterKeys = keyof DataFilter;
+type FilterRangeKeys = keyof DataFilterRange;
+type FilterRegionKeys = keyof DataRegionGroups;
 
 export const FilterBar = () => {
 
