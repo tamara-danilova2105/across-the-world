@@ -50,8 +50,16 @@ export interface RegionGroup {
     country: FilterItem[];
 }
 
+export interface DataRegionProps {
+    Russia: RegionGroup;
+    Middle_East: RegionGroup;
+    Asia: RegionGroup;
+    South_America: RegionGroup;
+    Africa: RegionGroup;
+}
 
-export const dataRegionGroups: { [key: string]: RegionGroup } = {
+
+export const dataRegionGroups: DataRegionProps = {
     Russia: {
         regions: {
             value: 'Russia',

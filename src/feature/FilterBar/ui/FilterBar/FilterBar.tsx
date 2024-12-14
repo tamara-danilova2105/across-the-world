@@ -13,11 +13,11 @@ import styles from './FilterBar.module.scss'
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
-type DataRegionGroups = typeof dataRegionGroups;
+type DataRegionProps = typeof dataRegionGroups;
 
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
-type FilterRegionKeys = keyof DataRegionGroups;
+type FilterRegionKeys = keyof DataRegionProps;
 
 export const FilterBar = () => {
 
@@ -109,8 +109,6 @@ export const FilterBar = () => {
     const renderFilterRegionElement = (key: FilterRegionKeys) => {
         const { regions, country } = dataRegionGroups[key]
 
-        console.log(key)
-
         return (
             <React.Fragment>
                 <FilterRegion
@@ -118,7 +116,7 @@ export const FilterBar = () => {
                     regions={regions} 
                     country={country} 
                     selectedFilters={selectedFilters['region']} 
-                    onChange={(values: { regions: Record<string, boolean>
+                    onChange={(values: { regions: Record<string, boolean>,
                         country: Record<string, boolean> }) =>
                         handleChange(key, values) 
                     }
