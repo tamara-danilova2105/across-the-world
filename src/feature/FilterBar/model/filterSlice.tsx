@@ -34,10 +34,10 @@ const filterSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
-        setFilter: (state, action: PayloadAction<Partial<FiltersState>>) => {
+        setFilter: (state: FiltersState, action: PayloadAction<Partial<FiltersState>>) => {
             return { ...state, ...action.payload };
         },
-        clearFilter: (state, action: PayloadAction<ClearFilterPayload>) => {
+        clearFilter: (state: FiltersState, action: PayloadAction<ClearFilterPayload>) => {
             const { filter, key } = action.payload;
 
             if (filter === 'price') {
@@ -56,5 +56,5 @@ const filterSlice = createSlice({
 });
 
 export const { setFilter, clearFilter, clearAllFilters } = filterSlice.actions;
-export const getFiltersState = (state) => state.filters;
+export const getFiltersState = (state: {filters: FiltersState}) => state.filters;
 export default filterSlice.reducer;
