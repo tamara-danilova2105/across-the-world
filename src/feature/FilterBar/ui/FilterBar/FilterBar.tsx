@@ -14,10 +14,6 @@ import styles from './FilterBar.module.scss'
 type FilterKeys = keyof typeof dataFilter;
 type FilterRangeKeys = keyof typeof dataFilterRange;
 type FilterRegionKeys = keyof typeof dataRegionGroups;
-type SelectedRegion = {
-    regions: Record<string, boolean>,
-    country: Record<string, boolean>;
-}
 
 export const FilterBar = () => {
 
@@ -26,10 +22,7 @@ export const FilterBar = () => {
 
     console.log(filterState)
 
-    const [selectedFilters, setSelectedFilters] = useState<
-        Record<FilterKeys, Record<string, boolean>> &
-        Record<FilterRangeKeys, [number, number]> &
-        Record<FilterRegionKeys, SelectedRegion>>(filterState)
+    const [selectedFilters, setSelectedFilters] = useState<FiltersState>(filterState)
 
         const handleChange = React.useCallback(
             (key: FilterKeys | FilterRangeKeys, value: any) => {

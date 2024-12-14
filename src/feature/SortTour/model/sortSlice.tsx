@@ -1,15 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { SortDataProps } from '../lib/data';
 
-const initialState = {
+interface SortState {
+    option: string;
+    label: string;
+}
+
+const initialState: SortState = {
     option: 'soon',
-    label: 'Ближайшие'
+    label: 'Ближайшие',
 };
 
 const sortSlice = createSlice({
     name: 'sort',
     initialState,
     reducers: {
-        setSort: (state, action) => {
+        setSort: (state: SortState , action: PayloadAction<Partial<SortDataProps>>) => {
             const { value, label } = action.payload; 
             state.option = value;
             state.label = label;
@@ -18,5 +24,5 @@ const sortSlice = createSlice({
 });
 
 export const { setSort } = sortSlice.actions;
-export const getSortState = (state) => state.sort;
+export const getSortState = (state: { sort: SortState }) => state.sort;
 export default sortSlice.reducer;
