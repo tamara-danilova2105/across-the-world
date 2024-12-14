@@ -4,8 +4,16 @@ import { Text } from "@/shared/ui/Text/Text"
 import * as React from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { dataFilter, dataFilterRange, dataRegionGroups, DataRegionProps, FilterCategory, FilterRangeCategory } from "../../lib/data"
-import { clearAllFilters, FiltersState, getFiltersState, setFilter } from "../../model/filterSlice"
+import { dataFilter,
+        dataFilterRange,
+        dataRegionGroups,
+        FilterCategory,
+        FilterRangeCategory
+        } from "../../lib/data"
+import { clearAllFilters,
+        FiltersState, 
+        getFiltersState, 
+        setFilter } from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import { FilterRegion } from "../FilterRegion/ui/FilterRegion/FilterRegion"
