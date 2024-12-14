@@ -4,7 +4,7 @@ import { Text } from "@/shared/ui/Text/Text"
 import * as React from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { dataFilter, dataFilterRange, dataRegionGroups, FilterCategory, FilterRangeCategory } from "../../lib/data"
+import { dataFilter, dataFilterRange, dataRegionGroups, DataRegionProps, FilterCategory, FilterRangeCategory } from "../../lib/data"
 import { clearAllFilters, FiltersState, getFiltersState, setFilter } from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
@@ -13,23 +13,21 @@ import styles from './FilterBar.module.scss'
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
-type DataRegionProps = typeof dataRegionGroups;
+type DataRegion = typeof dataRegionGroups;
 
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
-type FilterRegionKeys = keyof DataRegionProps;
+type FilterRegionKeys = keyof DataRegion;
 
 export const FilterBar = () => {
 
     const filterState = useSelector(getFiltersState) 
     const dispatch = useDispatch()
 
-    console.log(filterState)
-
     const [selectedFilters, setSelectedFilters] = useState<FiltersState>(filterState)
 
         const handleChange = React.useCallback(
-            (key: FilterKeys | FilterRangeKeys, value: any) => {
+            (key: FilterKeys | FilterRangeKeys | FilterRegionKeys, value: any) => {
                 
                 const updatedFilters = (prevFilters: FiltersState) => {
                     if (key === 'type_tour' || key === 'season') {
