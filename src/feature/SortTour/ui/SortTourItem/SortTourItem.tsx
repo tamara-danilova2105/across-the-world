@@ -5,7 +5,9 @@ import { getStyles } from "@/shared/lib/getStyles";
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
+import { useDispatch, useSelector } from "react-redux";
 import { SortDataProps } from "../../lib/data";
+import { getSortState, setSort } from "../../model/sortSlice";
 import styles from './SortTourItem.module.scss'
 
 interface SortTourItemProps {
@@ -15,7 +17,15 @@ interface SortTourItemProps {
 export const SortTourItem = ({ 
     dataSort } : SortTourItemProps ) => {
 
-        const { toggleMenu, isOpen, menuRef, closeMenu } = useToggleOpen();
+    const dispatch = useDispatch()
+    const selectedSort = useSelector(getSortState)
+
+    const { toggleMenu, isOpen, menuRef, closeMenu } = useToggleOpen()
+
+    const handleChangeSort = (option: string, label: string) => {
+        dispatch(setSort({ option, label }))
+        closeMenu()
+    }
 
     return(
         <Stack
@@ -34,27 +44,27 @@ export const SortTourItem = ({
                     color='blue'
                     font='geometria500'
                 >
-                    Ближайшие
+                    {selectedSort.label}
                 </Text>
-                <span className={getStyles(styles.icon, {[styles.rotateOpen]: isOpen, [styles.rotateClosed]: !isOpen}, [])}>
+                <span className={getStyles(styles.icon, 
+                    {[styles.rotateOpen]: isOpen, 
+                    [styles.rotateClosed]: !isOpen}, [])}>
                     <ArrowDropwownIcon/>
                 </span> 
             </Button>
             {isOpen && 
             <ul 
-                onClick={closeMenu}
                 className={styles.list}
             >
                 {dataSort.map(item => (
-                <Text 
-                    type='li' 
+                <li 
                     key={item._id}
-                    size='18'
-                    color='blue'
+                    onClick={() => handleChangeSort(item.value, item.label)}
                 >
                     {item.label}
-                    <span><CheckmarkIcon/></span>
-                </Text>
+                    {selectedSort.option === item.value && 
+                    <span><CheckmarkIcon /></span>}
+                </li>
                 ))}
             </ul>}
         </Stack>

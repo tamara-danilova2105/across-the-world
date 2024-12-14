@@ -8,10 +8,7 @@
     }
 
     .filter_panel {
-        position: sticky;
         background-color: var(--white-color);
-        top: 70px;
-        z-index: 3;
         width: 100%;
         padding: 20px 0;
 
@@ -20,19 +17,13 @@
         }
 
         @include tablet-l {
-            border-top: 10px solid white;
             justify-content: space-between;
-        }
-
-        @include mobile-l {
-            border-top: 20px solid white;
-            top: 60px;
         }
 
         @include mobile-l {
             align-items: flex-end;
             justify-content: space-between;
-            height: 160px;
+            height: 140px;
         }
 
         .filter_panel_btn {
@@ -82,7 +73,7 @@
                 }
             }
 
-            @include mobile-xl {
+            @include mobile-l {
                 flex: 1 1 100%;
                 max-width: 100%;
 

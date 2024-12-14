@@ -1,0 +1,55 @@
+@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as *;
+
+.filterRegion_container {
+    width: 100%;
+    .groupHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: min-content;
+        color: var(--blue-color);
+        font-family: var(--font-family-geometria500);
+        font-size: var(--font-size-18);
+
+        p {
+            width: 100%;
+            text-align: start;
+        }
+
+        .quantity_direction {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--pink-opacity40);
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 16px;
+
+            @include mobile-l {
+                padding: 5px;
+            }
+        }
+
+        .icon {
+            @include mixin.icon-drop-down;
+        }
+    }
+
+    .regionList {
+        overflow: hidden;
+        padding-left: 30px;
+        max-height: 0; 
+        transition: max-height 0.3s ease;
+
+        &.regionListOpen {
+            max-height: 700px;
+        }
+        
+        &.regionListClosed {
+            max-height: 0;
+        }
+    }
+}

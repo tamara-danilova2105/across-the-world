@@ -1,36 +1,81 @@
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
+import { Text } from "@/shared/ui/Text/Text"
 import * as React from "react"
 import { useState } from "react"
-import { dataFilter, dataFilterRange, FilterCategory, FilterRangeCategory } from "../../lib/data"
+import { useDispatch, useSelector } from "react-redux"
+import { dataFilter,
+        dataFilterRange,
+        dataRegionGroups,
+        FilterCategory,
+        FilterRangeCategory
+        } from "../../lib/data"
+import { clearAllFilters,
+        FiltersState, 
+        getFiltersState, 
+        setFilter } from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
+import { FilterRegion } from "../FilterRegion/ui/FilterRegion/FilterRegion"
 import styles from './FilterBar.module.scss'
 
-type FilterKeys = keyof typeof dataFilter;
-type FilterRangeKeys = keyof typeof dataFilterRange;
+type DataFilter = typeof dataFilter;
+type DataFilterRange = typeof dataFilterRange;
+type DataRegion = typeof dataRegionGroups;
+
+type FilterKeys = keyof DataFilter;
+type FilterRangeKeys = keyof DataFilterRange;
+type FilterRegionKeys = keyof DataRegion;
 
 export const FilterBar = () => {
 
-    const [selectedFilters, setSelectedFilters] = useState<
-    Record<FilterKeys, Record<string, boolean>> & Record<FilterRangeKeys, [number, number]>
-    >({
-        type_tour: {},
-        region: {},
-        season: {},
-        
-        duration: [3, 10],
-        price: [20000, 100000],
-    });
+    const filterState = useSelector(getFiltersState) 
+    const dispatch = useDispatch()
 
+    const [selectedFilters, setSelectedFilters] = useState<FiltersState>(filterState)
 
-    const handleChange = React.useCallback((key: FilterKeys | FilterRangeKeys, value: any) => {
-        setSelectedFilters((prev) => ({
-            ...prev,
-            [key]: key === 'price' || key === 'duration' ? value as [number, number]
-            : { ...prev[key], ...value },
-        }));
-    }, []);
+        const handleChange = React.useCallback(
+            (key: FilterKeys | FilterRangeKeys | FilterRegionKeys, value: any) => {
+                
+                const updatedFilters = (prevFilters: FiltersState) => {
+                    if (key === 'type_tour' || key === 'season') {
+                        return {
+                            ...prevFilters,
+                            [key]: {
+                                ...(prevFilters[key] as Record<string, boolean>),
+                                ...(value || {}),
+                            },
+                        }
+                    } else if (key === 'price' || key === 'duration') {
+                        return {
+                            ...prevFilters,
+                            [key]: value as [number, number],
+                        }
+                    }
+
+                    return {
+                        ...prevFilters,
+                        region: {
+                            regions: {
+                                ...prevFilters.region.regions,
+                                ...(value.regions || {}),
+                            },
+                            country: {
+                                ...prevFilters.region.country,
+                                ...(value.country || {}),
+                            },
+                        },
+                    }
+                }
+
+                setSelectedFilters((prev) => {
+                    const newFilters = updatedFilters(prev);
+                    dispatch(setFilter(newFilters))
+                    return newFilters; 
+                })
+            },
+            [dispatch]
+        )
 
     const renderFilterElement = (key: FilterKeys) => {
         const { title, items }: FilterCategory = dataFilter[key];
@@ -67,8 +112,26 @@ export const FilterBar = () => {
         )
     }
 
+    const renderFilterRegionElement = (key: FilterRegionKeys) => {
+        const { regions, country } = dataRegionGroups[key]
 
-    return(
+        return (
+            <React.Fragment>
+                <FilterRegion
+                    key={key}
+                    regions={regions} 
+                    country={country} 
+                    selectedFilters={selectedFilters['region']} 
+                    onChange={(values: { regions: Record<string, boolean>,
+                        country: Record<string, boolean> }) =>
+                        handleChange(key, values) 
+                    }
+                />
+            </React.Fragment>
+        );
+    }
+
+    return (
         <Stack
             direction='column'
             gap='32'
@@ -80,18 +143,40 @@ export const FilterBar = () => {
                 className={styles.btnContainer}
             >
                 <Button>Применить</Button>
-                <Button color='outline'>Очистить</Button>
+                <Button 
+                    color='outline'
+                    onClick={() => dispatch(clearAllFilters())}
+                >Очистить</Button>
             </Stack>
             <Stack
                 direction='column'
                 gap='32'
                 className={styles.filterBar}
             >
-                {Object.keys(dataFilterRange).map((key) => 
+                {Object.keys(dataFilterRange).map((key) =>
                     renderFilterRangeElement(key as FilterRangeKeys)
                 )}
 
-                {Object.keys(dataFilter).map((key) => 
+                <Stack
+                    direction='column'
+                    gap='16'
+                    max
+                >
+                    <Text
+                        size='24'
+                        font='geometria500'
+                        color='blue'
+                    >
+                        Регион
+                    </Text>
+
+                    {Object.keys(dataRegionGroups).map((key) =>
+                        renderFilterRegionElement(key as FilterRegionKeys)
+                    )}
+                </Stack>
+
+
+                {Object.keys(dataFilter).map((key) =>
                     renderFilterElement(key as FilterKeys)
                 )}
             </Stack>

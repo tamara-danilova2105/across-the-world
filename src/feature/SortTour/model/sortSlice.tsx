@@ -1,21 +1,27 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// const initialState = {
-//     option: 'soon',
-//     label: 'Ближайшие'
-// };
+interface SortState {
+    option: string;
+    label: string;
+}
 
-// const sortSlice = createSlice({
-//     name: 'sort',
-//     initialState,
-//     reducers: {
-//         setSort: (state, action) => {
-//             const { value, label } = action.payload; 
-//             state.option = value;
-//             state.label = label;
-//         },
-//     },
-// });
+const initialState: SortState = {
+    option: 'soon',
+    label: 'Ближайшие',
+};
 
-// export const { setSort } = sortSlice.actions;
-// export default sortSlice.reducer;
+const sortSlice = createSlice({
+    name: 'sort',
+    initialState,
+    reducers: {
+        setSort: (state: SortState , action: PayloadAction<SortState>) => {
+            const { option = 'soon', label = 'Ближайшие' } = action.payload; 
+            state.option = option;
+            state.label = label;
+        },
+    },
+});
+
+export const { setSort } = sortSlice.actions;
+export const getSortState = (state: { sort: SortState }) => state.sort;
+export default sortSlice.reducer;
