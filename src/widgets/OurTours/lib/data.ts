@@ -13,6 +13,11 @@ export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний
 
 export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
 
+export type Regions = 'Russia' | 'Middle_East' | 'Asia' | 'South_America' | 'Africa';
+export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' | 'Karelia' 
+                        | 'Armenia' | 'Iran' | 'Turkey' | 'Georgia' | 'Socotra' | 'Azerbaijan' | 'Uzbekistan' | 'Pakistan'
+                        | 'Japan' | 'Argentina' | 'Brazil' | 'Peru' | 'Chile' | 'Bolivia'
+
 interface Price {
     amount: number;
     currency: "₽" | "$";
@@ -53,6 +58,8 @@ export interface Tour {
     },
     image: string; //TODO
     direction: "Россия" | "Заграница";
+    region: Regions,
+    counrty: Countries,
     discount?: {
         endDate: Date;
         percentage: number;
@@ -96,6 +103,8 @@ export const dataTours: Tour[] = [
         },
         image: kamchatkaOne, //TODO
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'Kamchatka',
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -137,6 +146,8 @@ export const dataTours: Tour[] = [
         },
         image: kamchatkaTwo, //TODO
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'Kamchatka',
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -178,6 +189,8 @@ export const dataTours: Tour[] = [
         },
         image: southAmericaOne, //TODO
         direction: "Заграница",
+        region: 'South_America',
+        counrty: 'Argentina',
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: '',
@@ -215,6 +228,8 @@ export const dataTours: Tour[] = [
         },
         image: dagestan,
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'North_Caucasus',
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -293,6 +308,8 @@ export const dataTours: Tour[] = [
         },
         image: southAmericaTwo, //TODO
         direction: "Заграница",
+        region: 'South_America',
+        counrty: 'Argentina',
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: `
@@ -562,6 +579,8 @@ export const dataTours: Tour[] = [
         },
         image: ingushetia,
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'North_Caucasus',
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -599,6 +618,8 @@ export const dataTours: Tour[] = [
         },
         image: baikalOne, //TODO
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'Baikal',
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -636,6 +657,8 @@ export const dataTours: Tour[] = [
         },
         image: baikalTwo, //TODO
         direction: "Россия",
+        region: 'Russia',
+        counrty: 'Baikal',
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -673,6 +696,8 @@ export const dataTours: Tour[] = [
         },
         image: azerbadgan, //TODO
         direction: "Заграница",
+        region: 'Russia',
+        counrty: 'Azerbaijan',
         activity: 'Средний',
         comfort: 'Уникальное жилье',
         description: '',
