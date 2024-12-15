@@ -66,19 +66,11 @@ export const dataRegionGroups: DataRegionProps = {
             label: 'Россия'
         },
         country: [
-            { _id: 1, value: 'Chechnya', label: 'Чечня' },
+            { _id: 1, value: 'North_Caucasus', label: 'Северный Кавказ' },
             { _id: 2, value: 'Kamchatka', label: 'Камчатка' },
             { _id: 3, value: 'Baikal', label: 'Байкал' },
-            { _id: 4, value: 'Bermamyt', label: 'Бермамыт' },
-            { _id: 5, value: 'Dagestan', label: 'Дагестан' },
-            { _id: 6, value: 'North_Ossetia', label: 'Северная Осетия' },
-            { _id: 7, value: 'South_Ossetia', label: 'Южная Осетия' },
-            { _id: 8, value: 'Karachay_Cherkessia', label: 'Карачаево-Черкесия' },
-            { _id: 9, value: 'Kabardino_Balkaria', label: 'Кабардино-Балкария' },
-            { _id: 10, value: 'Kavminvody', label: 'Кавминводы' },
             { _id: 11, value: 'Kalmykia', label: 'Калмыкия' },
             { _id: 12, value: 'Karelia', label: 'Карелия' },
-            { _id: 13, value: 'Ingushetia', label: 'Ингушетия' },
         ]
     },
     Middle_East:{
@@ -91,6 +83,10 @@ export const dataRegionGroups: DataRegionProps = {
             { _id: 2, value: 'Iran', label: 'Иран' },
             { _id: 3, value: 'Turkey', label: 'Турция' },
             { _id: 4, value: 'Georgia', label: 'Грузия' },
+            { _id: 5, value: 'Socotra', label: 'Сокотра' },
+            { _id: 6, value: 'Azerbaijan', label: 'Азербайджан' },
+            { _id: 7, value: 'Uzbekistan', label: 'Узбекистан' },
+            { _id: 8, value: 'Pakistan', label: 'Пакистан' },
         ]
     },
     Asia:{
@@ -100,9 +96,6 @@ export const dataRegionGroups: DataRegionProps = {
         },
         country: [
             { _id: 1, value: 'Japan', label: 'Япония' },
-            { _id: 2, value: 'Uzbekistan', label: 'Узбекистан' },
-            { _id: 3, value: 'Azerbaijan', label: 'Азербайджан' },
-            { _id: 4, value: 'Pakistan', label: 'Пакистан' },
         ]
     },
     South_America:{
@@ -111,11 +104,11 @@ export const dataRegionGroups: DataRegionProps = {
             label: 'Южная Америка'
         },
         country: [
-            { _id: 1, value: 'Patagonia', label: 'Патагония' },
             { _id: 2, value: 'Argentina', label: 'Аргентина' },
             { _id: 3, value: 'Brazil', label: 'Бразилия' },
             { _id: 4, value: 'Peru', label: 'Перу' },
             { _id: 5, value: 'Chile', label: 'Чили' },
+            { _id: 1, value: 'Bolivia', label: 'Боливия' },
         ]
     },
     Africa:{
@@ -124,7 +117,7 @@ export const dataRegionGroups: DataRegionProps = {
             label: 'Африка'
         },
         country: [
-            { _id: 1, value: 'Socotra', label: 'Сокотра' },
+
         ]
     }
 }
