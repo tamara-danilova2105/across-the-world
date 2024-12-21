@@ -31,7 +31,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         page: <ToursPage />
     },
     [AppRouters.tour_detais]: {
-        path: getRouteToursDetails(':id'),
+        path: getRouteToursDetails(':region', ':id'),
         page: <TourDetailsPage />
     },
     [AppRouters.about]: {

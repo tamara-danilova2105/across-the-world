@@ -2,7 +2,7 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
-import styles from './BreadCrumbs.module.scss'
+import styles from './BreadCrumbs.module.scss';
 
 interface Breadcrumb  {
     title: string;
@@ -25,7 +25,7 @@ export const BreadCrumbs = ({
 
     const location = useLocation();
 
-    const breadcrumbs : Breadcrumb[] = location.pathname
+    const breadcrumbs: Breadcrumb[] = location.pathname
     .split('/')
     .reduce<Breadcrumb[]>((acc, segment, index, arr) => {
         if (!segment) return acc;
@@ -48,6 +48,7 @@ export const BreadCrumbs = ({
 
     const currentRoute = breadcrumbs[breadcrumbs.length - 1];
     const title = currentRoute.isLast ? currentRoute.title : '';
+
 
     return(
         <Stack

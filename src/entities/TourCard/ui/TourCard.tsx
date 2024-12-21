@@ -17,6 +17,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
         price: { amount, currency },
         image, 
         discount, 
+        region,
         _id 
     } = tourData;
 
@@ -67,7 +68,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
 
                     <AppLink 
                         className={styles.link} 
-                        to={getRouteToursDetails(_id)}
+                        to={getRouteToursDetails(region, _id)}
                         aria-label={`Подробнее о туре "${tour}"`}
                     >
                         Подробнее
