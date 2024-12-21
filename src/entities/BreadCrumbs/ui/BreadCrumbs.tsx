@@ -49,7 +49,6 @@ export const BreadCrumbs = ({
     const currentRoute = breadcrumbs[breadcrumbs.length - 1];
     const title = currentRoute.isLast ? currentRoute.title : '';
 
-
     return(
         <Stack
             className={styles.breadCrumbsContainer}

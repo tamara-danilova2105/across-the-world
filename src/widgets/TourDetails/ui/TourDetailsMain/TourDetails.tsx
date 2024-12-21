@@ -1,14 +1,16 @@
+import { routeConfig } from "@/app/router/lib/data";
+import { OurTours } from "@/widgets/OurTours";
 import { dataTours } from "@/widgets/OurTours/lib/data";
+import { PageTitle } from "@/entities/PageTitle";
+import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/Text";
 import { ImagesTourGrid } from "../ImagesTourGrid/ImagesTourGrid";
 import { ImageTourSwiper } from "../ImageTourSwiper/ImageTourSwiper";
 import { BookingForm } from "../BookingForm/BookingForm";
 import { AboutTour } from "../AboutTour/AboutTour";
 import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
-import { OurTours } from "@/widgets/OurTours";
 
 export const TourDetails = () => {
      //TODO - id получать из роутера
@@ -44,45 +46,48 @@ export const TourDetails = () => {
     );
 
     return (
-        <Stack 
-            tag="section" gap="48"
-            direction="column"
-            className={styles.main}
-        >
-            <Text 
-                type='h2' color='blue' 
-                size='32' font='geometria500'
+        <main>
+            <PageTitle>
+                <BreadCrumbs
+                    routes={Object.values(routeConfig)}
+                    isTour
+                    name={tour.tour}
+                />
+            </PageTitle>
+
+            <Stack 
+                tag="section" gap="48"
+                direction="column"
+                className={styles.main}
             >
-                {tour.tour}
-            </Text>
+                {
+                    isMobile 
+                        ? <ImageTourSwiper images={allImages} />
+                        : <ImagesTourGrid images={allImages} />
+                }
 
-            {
-                isMobile 
-                    ? <ImageTourSwiper images={allImages} />
-                    : <ImagesTourGrid images={allImages} />
-            }
-
-            {(isTablet && !isMobile) ? (
-                <Stack direction="column" gap="24" >
-                    <Stack gap="24" justify='between' max>
-                        {infoContant}
-                        {bookingContent}
-                    </Stack>
-                    {aboutContent}
-                </Stack>
-            ) : (
-                <section className={styles.sticky_container}>
-                    <div className={styles.tour_container}>
-                        {infoContant}
-                        <hr />
+                {(isTablet && !isMobile) ? (
+                    <Stack direction="column" gap="24" >
+                        <Stack gap="24" justify='between' max>
+                            {infoContant}
+                            {bookingContent}
+                        </Stack>
                         {aboutContent}
-                    </div>
-                    {bookingContent}
-                </section>
-            )}
-{/* 
-            TODO - добавить рекомендации */}
-            <OurTours />
-        </Stack>
+                    </Stack>
+                ) : (
+                    <section className={styles.sticky_container}>
+                        <div className={styles.tour_container}>
+                            {infoContant}
+                            <hr />
+                            {aboutContent}
+                        </div>
+                        {bookingContent}
+                    </section>
+                )}
+
+                {/* TODO - добавить рекомендации */}
+                <OurTours />
+            </Stack>
+        </main>
     );
 };

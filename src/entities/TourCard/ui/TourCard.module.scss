@@ -68,6 +68,15 @@
             padding: 3px 10px;
             border-radius: var(--border-radius);
         }
+
+        span {
+            margin-left: 8px;
+            font-size: var(--font-size-14);
+            background: var(--blue-color);
+            color: var(--white-color);
+            border-radius: var(--border-radius);
+            padding: 2px 5px;
+        }
     }
 }
 

@@ -3,8 +3,11 @@ import { Tour } from "@/widgets/OurTours/lib/data";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
+import { formatDateRange } from "@/shared/lib/formatDateRange";
 import styles from './TourCard.module.scss';
-import { useMemo } from "react";
+import { declOfNum } from "@/shared/lib/declOfNum";
+
+const NOW_DATE = new Date();
 
 interface TourCardProps {
     tourData: Tour;
@@ -13,21 +16,16 @@ interface TourCardProps {
 export const TourCard = ({ tourData }: TourCardProps) => {
     const { 
         tour, 
-        date, 
-        price: { amount, currency },
+        dates,
         image, 
         discount, 
         region,
         _id 
     } = tourData;
 
-    const discountedPrice = useMemo(() => 
-        discount 
-            ? amount - (amount * discount.percentage) / 100 
-            : amount,
-        [amount, discount]
-    );
-
+    const discountedPrice = (amount: number, discount: number) => {
+        return discount ? amount - (amount * discount) / 100 : amount
+    };
 
     return (
         <article className={styles.tour_card}>
@@ -48,21 +46,30 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                     <Text size='18' color='blue' font='geometria500'>
                         {tour}
                     </Text>
-                    <Text size="18">{date}</Text>
+                    <Text size="16">
+                        {formatDateRange(dates[0].date_start, dates[0].date_finish)}
+                        {dates.length > 1 && 
+                            <span>+{dates.length - 1} 
+                            {declOfNum(dates.length, ['дата', 'даты', 'дат'])}</span>
+                        }
+                    </Text>
 
-                    {discount ? (
+                    {(discount && discount.endDate > NOW_DATE) ? (
                         <Stack gap="16" align='center'>
                             <Text size="18" className={styles.old_price}>
-                                {amount.toLocaleString("ru-RU")} {currency}
+                                {dates[0].price.amount.toLocaleString("ru-RU")} 
+                                {dates[0].price.currency}
                             </Text>
 
                             <Text size="18" font='geometria500' className={styles.new_price}>
-                                {discountedPrice.toLocaleString("ru-RU")} {currency}
+                                {discountedPrice(dates[0].price.amount, discount.percentage).toLocaleString("ru-RU")} 
+                                {dates[0].price.currency}
                             </Text>
                         </Stack>
                     ) : (
                         <Text size="18" color="blue" font='geometria500'>
-                            {amount.toLocaleString("ru-RU")} {currency}
+                            {dates[0].price.amount.toLocaleString("ru-RU")} 
+                            {dates[0].price.currency}
                         </Text>
                     )}
 
@@ -75,7 +82,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                     </AppLink>
                 </Stack>
             </Stack>
-            {discount && (
+            {(discount && discount.endDate > NOW_DATE) && (
                 <div 
                     className={styles.badge}
                     aria-label={`Скидка ${discount.percentage}%`}
