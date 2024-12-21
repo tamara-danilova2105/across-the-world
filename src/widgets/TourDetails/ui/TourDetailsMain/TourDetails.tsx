@@ -16,7 +16,7 @@ export const TourDetails = () => {
      //TODO - id получать из роутера
     const id = '5'
      //TODO - получать данные о туре с бэкенда 
-    const tour = dataTours.find(tour => tour._id === id);
+    const tour = dataTours.find((tour) => tour._id === id);
     
     const width = useResize();
     const isMobile = width <= 768;
