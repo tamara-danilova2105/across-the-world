@@ -1,8 +1,8 @@
 import { getStyles } from "@/shared/lib/getStyles";
 import { ReactNode } from "react";
 import { Link, LinkProps } from "react-router-dom";
-import styles from './AppLink.module.scss';
 import { ArrowLink } from "@/shared/assets/svg/arrowLink";
+import styles from './AppLink.module.scss';
 
 interface AppLinkProps extends LinkProps  {
     className?: string;
@@ -10,7 +10,7 @@ interface AppLinkProps extends LinkProps  {
     variant?: 'link' | 'button';
     size?: '14' | '16' | '18';
     circle?: boolean;
-    cta?: boolean; 
+    cta?: boolean;
 }
 
 export const AppLink = (props: AppLinkProps) => {

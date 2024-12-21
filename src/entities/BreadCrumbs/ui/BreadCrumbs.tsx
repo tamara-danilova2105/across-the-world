@@ -5,11 +5,11 @@ import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss';
 import { Tour } from "@/widgets/OurTours/lib/data";
-import { getTextRegion } from "@/shared/lib/getTextReguin";
+import { getTextRegion } from "@/shared/lib/getTextRegion";
 
 interface Breadcrumb  {
     title: string;
-    link: string;
+    link?: string;
     isLast?: boolean;
 };
 
@@ -34,7 +34,6 @@ export const BreadCrumbs = ({
     const breadcrumbs: Breadcrumb[] = location.pathname
     .split('/')
     .reduce<Breadcrumb[]>((acc, segment, index, arr) => {
-        console.log(acc, segment, index, arr)
         if (!segment) return acc;
 
         const prevLink = acc.length > 1 ? acc[acc.length - 1].link : '';
@@ -51,13 +50,15 @@ export const BreadCrumbs = ({
         } else if (index === arr.length - 1 && region) {
             acc.push({
                 title:  getTextRegion(region),
-                link: `${prevLink}/${segment}`,
                 isLast: false,
             });
         }
 
         return acc;
     }, [{ title: 'Главная', link: '/' }]);
+
+    console.log(breadcrumbs);
+    
 
     const currentRoute = breadcrumbs[breadcrumbs.length - 1];
     const title = currentRoute.isLast ? currentRoute.title : '';
@@ -86,21 +87,30 @@ export const BreadCrumbs = ({
                             size="24"
                         >
                             {crumb.isLast ? (
-                            <Text 
-                                size='24'
-                                color='peach'
-                            >
-                                {isTour ? name : crumb.title}
-                            </Text>
-                            ) : (
-                            <Link to={crumb.link}>
                                 <Text 
                                     size='24'
                                     color='peach'
                                 >
-                                    {crumb.title}
+                                    {isTour ? name : crumb.title}
                                 </Text>
-                            </Link>
+                            ) : (
+                                crumb.link ? (
+                                    <Link to={crumb.link}>
+                                        <Text 
+                                            size='24'
+                                            color='peach'
+                                        >
+                                            {crumb.title}
+                                        </Text>
+                                    </Link>
+                                ) : (
+                                    <Text 
+                                        size='24'
+                                        color='peach'
+                                    >
+                                        {crumb.title}
+                                    </Text>
+                                )
                             )}
                             {index < breadcrumbs.length - 1 && separator}
                         </Text>
