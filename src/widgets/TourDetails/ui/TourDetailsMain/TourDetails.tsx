@@ -8,12 +8,17 @@ import { AboutTour } from "../AboutTour/AboutTour";
 import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
 import { OurTours } from "@/widgets/OurTours";
+import { Tour } from "@/widgets/OurTours/lib/data";
 
-export const TourDetails = ({ dataTours }) => {
+interface TourDetailsProps {
+    dataTours: Tour[];
+}
+
+export const TourDetails = ({ dataTours }: TourDetailsProps) => {
      //TODO - id получать из роутера
     const id = '5'
      //TODO - получать данные о туре с бэкенда 
-    const tour = dataTours.find(tour => tour._id === id);
+    const tour = dataTours.find((tour: Tour) => tour._id === id);
     
     const width = useResize();
     const isMobile = width <= 768;

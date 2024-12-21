@@ -17,7 +17,7 @@ interface BreadcrumbsProps {
     separator?: string; 
     isTour?: boolean; 
     name?: string; 
-    dataTours: Tour[]
+    dataTours?: Tour[]
 }
 
 export const BreadCrumbs = ({   
