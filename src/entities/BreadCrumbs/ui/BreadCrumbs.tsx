@@ -1,40 +1,35 @@
-import { Stack } from "@/shared/ui/Stack/Stack"
+import { Stack } from "@/shared/ui/Stack/Stack";
 import { Link, useLocation } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppRoutesProps } from "@/app/router/types/types";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss';
 import { Tour } from "@/widgets/OurTours/lib/data";
+import { getTextRegion } from "@/shared/lib/getTextReguin";
 
 interface Breadcrumb  {
     title: string;
     link: string;
     isLast?: boolean;
-}
+};
 
 interface BreadcrumbsProps {
     routes: AppRoutesProps[];
-    separator?: string; 
     isTour?: boolean; 
     name?: string; 
     dataTours?: Tour[]
-}
+};
+
+const separator = ' / ';
 
 export const BreadCrumbs = ({   
     routes,
-    separator = ' / ',
     isTour = false,
     name,
-    dataTours= [] } : BreadcrumbsProps) => {
+} : BreadcrumbsProps) => {
 
-    const { region, id } = useParams()
-    const tour = Array.isArray(dataTours)
-    ? dataTours.find((tour) => tour.region === region && tour._id === id)
-    : null
-
-    const displayName = isTour && tour ? tour.tour : name
-
-    const location = useLocation()
+    const { region } = useParams();
+    const location = useLocation();
 
     const breadcrumbs: Breadcrumb[] = location.pathname
     .split('/')
@@ -53,9 +48,9 @@ export const BreadCrumbs = ({
                 link: link,
                 isLast: isLast,
             }) 
-        } else if (index === arr.length - 1 && tour?.direction) {
+        } else if (index === arr.length - 1 && region) {
             acc.push({
-                title: tour.direction,
+                title:  getTextRegion(region),
                 link: `${prevLink}/${segment}`,
                 isLast: false,
             });
@@ -80,7 +75,7 @@ export const BreadCrumbs = ({
                 type='h2'
                 font='unbounded'
             >
-                {isTour ? displayName : title}
+                {isTour ? name : title}
             </Text>
             <nav>
                 <ul>
@@ -95,7 +90,7 @@ export const BreadCrumbs = ({
                                 size='24'
                                 color='peach'
                             >
-                                {isTour ? displayName : crumb.title}
+                                {isTour ? name : crumb.title}
                             </Text>
                             ) : (
                             <Link to={crumb.link}>
