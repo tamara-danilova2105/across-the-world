@@ -1,4 +1,3 @@
-import { dataTours } from "@/widgets/OurTours/lib/data";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
@@ -10,7 +9,7 @@ import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
 import { OurTours } from "@/widgets/OurTours";
 
-export const TourDetails = () => {
+export const TourDetails = ({ dataTours }) => {
      //TODO - id получать из роутера
     const id = '5'
      //TODO - получать данные о туре с бэкенда 
