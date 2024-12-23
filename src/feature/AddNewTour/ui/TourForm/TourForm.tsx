@@ -36,12 +36,13 @@ export const TourForm = () => {
         >
             <form>
                 <Stack direction='column' gap="8">
-                    <label>Название тура</label>
+                    <label className={styles.label}>Название тура</label>
                     <input
                         type="text"
                         value={formData.tour}
                         onChange={(e) => setFormData({ ...formData, tour: e.target.value })}
                         placeholder="Например: Южная Америка: Патагония"
+                        className={styles.input}
                     />
                 </Stack>
 
