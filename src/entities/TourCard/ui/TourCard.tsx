@@ -46,14 +46,14 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                     <Text size='18' color='blue' font='geometria500'>
                         {tour}
                     </Text>
-                    <Text size="16">
-                        {formatDateRange(dates[0].date_start, dates[0].date_finish)}
+                    <Stack justify='between' max>
+                        <Text size="16">
+                            {formatDateRange(dates[0].date_start, dates[0].date_finish)}
+                        </Text>
                         {dates.length > 1 && 
-                            <span>+{dates.length - 1} 
-                            {declOfNum(dates.length, ['дата', 'даты', 'дат'])}</span>
+                            <span>+{dates.length - 1} {declOfNum(dates.length, ['дата', 'даты', 'дат'])}</span>
                         }
-                    </Text>
-
+                    </Stack>
                     {(discount && discount.endDate > NOW_DATE) ? (
                         <Stack gap="16" align='center'>
                             <Text size="18" className={styles.old_price}>

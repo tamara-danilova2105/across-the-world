@@ -18,7 +18,7 @@ export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' |
                         | 'Armenia' | 'Iran' | 'Turkey' | 'Georgia' | 'Socotra' | 'Azerbaijan' | 'Uzbekistan' | 'Pakistan'
                         | 'Japan' | 'Argentina' | 'Brazil' | 'Peru' | 'Chile' | 'Bolivia'
 
-interface Price {
+export interface Price {
     amount: number;
     currency: "₽" | "$";
 };

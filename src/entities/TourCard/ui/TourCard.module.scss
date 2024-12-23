@@ -1,4 +1,4 @@
-@use '@/app/styles/media-queries' as mq;
+@use '@/app/styles/media-queries' as *;
 
 .tour_card {
     width: auto;
@@ -7,7 +7,7 @@
     position: relative;
     height: 580px;
     
-    @include mq.mobile-xl {
+    @include mobile-xl {
         width: 100%;
     }
 
@@ -26,7 +26,7 @@
             border-radius: 16px 16px 0 0;
             object-fit: cover;
     
-            @include mq.mobile-m {
+            @include mobile-m {
                 width: 100vw;
             }
         }
@@ -51,10 +51,10 @@
 
     .text_container {
         width: 100%;
-        padding: 0px 20px 20px 20px;
+        padding: 0px 12px 12px 12px;
         height: 100%;
 
-        @include mq.mobile-xl {
+        @include mobile-xl {
             gap: var(--gap-s);
         }
 
@@ -70,10 +70,8 @@
         }
 
         span {
-            margin-left: 8px;
-            font-size: var(--font-size-14);
-            background: var(--blue-color);
-            color: var(--white-color);
+            font-size: var(--font-size-12);
+            background: var(--peach-color);
             border-radius: var(--border-radius);
             padding: 2px 5px;
         }

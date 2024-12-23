@@ -1,4 +1,4 @@
-@use '@/app/styles/mixin.scss' as mixin;
+@use '@/app/styles/mixin.scss' as *;
 
 @mixin buttonUnderline($line-color) {
     position: relative;
@@ -67,15 +67,13 @@
 }
 
 .cta {
-    @include mixin.cta-style;
+    @include cta-style;
 }
 
 .transparent {
-    width: 40px;
-    height: 40px;
     background-color: transparent;
     display: flex;
     align-items: center;
-    justify-content: end;
     padding: 0;
+    color: var(--blue-color);
 }

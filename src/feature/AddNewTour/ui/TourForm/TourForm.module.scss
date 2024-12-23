@@ -1,0 +1,12 @@
+@use '@/app/styles/mixin' as *;
+
+.container {
+    @include section-style;
+
+    form {
+        > label {
+            font-size: var(--font-size-18);
+            font-family: var(--font-family-geometria500);
+        }
+    }
+}
