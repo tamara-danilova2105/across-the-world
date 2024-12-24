@@ -81,15 +81,13 @@ export const FilterBar = () => {
         const { title, items }: FilterCategory = dataFilter[key];
 
         return (
-            <React.Fragment>
-                <FilterBarItem
-                    key={key}
-                    title={title}
-                    filters={items}
-                    selectedFilters={selectedFilters[key]}
-                    onChange={(value: Record<string, boolean>) => handleChange(key, value)}
-                />
-            </React.Fragment>
+            <FilterBarItem
+                key={key}
+                title={title}
+                filters={items}
+                selectedFilters={selectedFilters[key]}
+                onChange={(value: Record<string, boolean>) => handleChange(key, value)}
+            />
         )
     }
 
@@ -97,18 +95,16 @@ export const FilterBar = () => {
         const { title, defaultValues, minLimit, maxLimit, step }: FilterRangeCategory = dataFilterRange[key];
 
         return (
-            <React.Fragment>
-                <FilterRange
-                    key={key}
-                    title={title}
-                    defaultValues={defaultValues}
-                    minLimit={minLimit}
-                    maxLimit={maxLimit}
-                    step={step}
-                    selectedFilters={selectedFilters[key]}
-                    onChange={(values: [number, number]) => handleChange(key, values)}
-                />
-            </React.Fragment>
+            <FilterRange
+                key={key}
+                title={title}
+                defaultValues={defaultValues}
+                minLimit={minLimit}
+                maxLimit={maxLimit}
+                step={step}
+                selectedFilters={selectedFilters[key]}
+                onChange={(values: [number, number]) => handleChange(key, values)}
+            />
         )
     }
 
@@ -116,19 +112,17 @@ export const FilterBar = () => {
         const { regions, country } = dataRegionGroups[key]
 
         return (
-            <React.Fragment>
-                <FilterRegion
-                    key={key}
-                    regions={regions} 
-                    country={country} 
-                    selectedFilters={selectedFilters['region']} 
-                    onChange={(values: { regions: Record<string, boolean>,
-                        country: Record<string, boolean> }) =>
-                        handleChange(key, values) 
-                    }
-                />
-            </React.Fragment>
-        );
+            <FilterRegion
+                key={key}
+                regions={regions} 
+                country={country} 
+                selectedFilters={selectedFilters['region']} 
+                onChange={(values: { regions: Record<string, boolean>,
+                    country: Record<string, boolean> }) =>
+                    handleChange(key, values) 
+                }
+            />
+        )
     }
 
     return (
@@ -170,9 +164,9 @@ export const FilterBar = () => {
                         Регион
                     </Text>
 
-                    {Object.keys(dataRegionGroups).map((key) =>
-                        renderFilterRegionElement(key as FilterRegionKeys)
-                    )}
+                {Object.keys(dataRegionGroups).map((key) =>
+                    renderFilterRegionElement(key as FilterRegionKeys)
+                )}
                 </Stack>
 
 

@@ -1,0 +1,50 @@
+@use 'sass:map';
+
+$blue: var(--blue-color);
+$white: var(--white-color);
+$pink: var(--pink-color);
+$peach: var(--peach-color);
+
+$secondary-blue: var(--blue-opacity20);
+$secondary-white: var(--white-opacity20);
+$secondary-pink: var(--pink-opacity20);
+$secondary-peach: var(--peach-opacity20);
+
+$colors: (
+    "blue": (primary: $blue, secondary: $secondary-blue),
+    "white": (primary: $white, secondary: $secondary-white),
+    "pink": (primary: $pink, secondary: $secondary-pink),
+    "peach": (primary: $peach, secondary: $secondary-peach)
+);
+
+.waiting {
+    width: 100%;
+    height: 100%;
+
+    @each $name, $color-pair in $colors {
+        $primary: map.get($color-pair, primary);
+        $secondary: map.get($color-pair, secondary);
+
+        &.#{$name} {
+            circle {
+                color: $primary;
+                animation: fade-in-#{$name} 1.2s infinite;
+
+                @keyframes fade-in-#{$name} {
+                    0%{
+                        color: $primary;
+                    }
+                    50%, 100% {
+                        color: $secondary;
+                    }
+                }
+
+                @for $i from 1 through 3 {
+                    &:nth-child(#{$i}) {
+                        animation-delay: .4s * ($i - 1);
+                    }
+                }
+            }
+        }
+    }
+}

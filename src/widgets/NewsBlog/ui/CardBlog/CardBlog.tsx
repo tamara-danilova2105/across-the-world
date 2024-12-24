@@ -72,7 +72,7 @@ export const CardBlog = ({news}: NewsBlogProps) => {
                             font="geometria500" 
                             color="blue"
                         >
-                            {title}
+                            {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                         </Text>
                         <Text 
                             size='18' 

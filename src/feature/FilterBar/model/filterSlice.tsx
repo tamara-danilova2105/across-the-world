@@ -15,8 +15,8 @@ const initialState: FiltersState = {
     type_tour: {},
     region: { regions: {}, country: {} },
     season: {},
-    duration: [3, 10],
-    price: [20000, 100000],
+    duration: [1, 25],
+    price: [0, 500000],
 }
 
 type FilterKeys = keyof FiltersState;
