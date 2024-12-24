@@ -1,0 +1,24 @@
+@use '@/app/styles/media-queries' as *;
+
+.badSearch_container {
+    svg {
+        width: 100px;
+        height: 100px;
+
+        path, circle {
+            color: var(--blue-color);
+        }
+    }
+
+    h2, p {
+        text-align: center;
+    }
+
+    button {
+        width: 300px;
+
+        @include mobile-l {
+            width: 100%;
+        }
+    }
+}

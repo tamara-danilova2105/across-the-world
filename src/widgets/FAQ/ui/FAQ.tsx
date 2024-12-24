@@ -1,9 +1,9 @@
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
-import styles from './FAQ.module.scss';
 import { DataFAQ, faqData } from "../lib/data";
 import { Accordion } from "@/entities/Accordion";
 import { Text } from "@/shared/ui/Text";
+import styles from './FAQ.module.scss';
 
 export const FAQ = () => {
     return (

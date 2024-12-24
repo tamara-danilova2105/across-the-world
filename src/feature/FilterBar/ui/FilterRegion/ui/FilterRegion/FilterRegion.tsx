@@ -57,7 +57,13 @@ export const FilterRegion = ({
                 <Text size="18" font="geometria500" color="blue">
                     {regions.label}
                 </Text>
-                <Stack align="center" justify="end" gap="8" max>
+                {country.length > 0 && 
+                <Stack 
+                    align="center" 
+                    justify="end" 
+                    gap="8" 
+                    max
+                >
                     <Text
                         font="geometria500"
                         color="blue"
@@ -77,7 +83,7 @@ export const FilterRegion = ({
                     >
                         <ArrowDropwownIcon />
                     </span>
-                </Stack>
+                </Stack>}
             </Button>
             <Stack
                 direction="column"

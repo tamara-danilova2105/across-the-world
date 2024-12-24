@@ -140,7 +140,7 @@ export interface FilterRangeData {
 export const dataFilterRange : FilterRangeData = {
     duration: {
         title: 'Количество дней',
-        defaultValues: [3, 10],
+        defaultValues: [1, 25],
         minLimit: 1,
         maxLimit: 25,
         step: 1
@@ -148,7 +148,7 @@ export const dataFilterRange : FilterRangeData = {
 
     price: {
         title: 'Цена',
-        defaultValues: [20000, 100000],
+        defaultValues: [0, 500000],
         minLimit: 0,
         maxLimit: 500000,
         step: 500
