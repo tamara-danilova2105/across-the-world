@@ -3,6 +3,7 @@ import { Tour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { useState } from "react";
 import styles from './TourForm.module.scss';
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
+import { LocationsInput } from "../LocationsInput/LocationsInput";
 
 export const TourForm = () => {
 
@@ -49,6 +50,11 @@ export const TourForm = () => {
                 <DateRangeInput
                     dates={formData.dates}
                     onChange={(dates) => setFormData({ ...formData, dates })}
+                />
+
+                <LocationsInput
+                    locations={formData.locations}
+                    onChange={(locations) => setFormData({ ...formData, locations })}
                 />
             </form>
         </Stack>
