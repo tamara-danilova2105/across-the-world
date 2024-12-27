@@ -13,14 +13,15 @@
         align-items: center;
         justify-content: space-between;
         text-align: left;
-        width: auto;
+        width: 300px;
         gap: var(--gap-s);
 
-        @include mobile-s {
+        @include mobile-m {
             p {
-                font-size: var(--font-size-14);
+                font-size: var(--font-size-16);
             }
             padding: 12px 10px;
+            width: 250px;
         }
     }
 
