@@ -49,6 +49,7 @@ export const FilterRegion = ({
             gap="8"
             className={styles.filterRegion_container}
         >
+            {country.length > 0 &&
             <Button
                 color="transparent"
                 className={styles.groupHeader}
@@ -57,7 +58,6 @@ export const FilterRegion = ({
                 <Text size="18" font="geometria500" color="blue">
                     {regions.label}
                 </Text>
-                {country.length > 0 && 
                 <Stack 
                     align="center" 
                     justify="end" 
@@ -83,8 +83,8 @@ export const FilterRegion = ({
                     >
                         <ArrowDropwownIcon />
                     </span>
-                </Stack>}
-            </Button>
+                </Stack>
+            </Button>}
             <Stack
                 direction="column"
                 gap="8"
@@ -108,5 +108,5 @@ export const FilterRegion = ({
                 ))}
             </Stack>
         </Stack>
-    );
-};
+    )
+}
