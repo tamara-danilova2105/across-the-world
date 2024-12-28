@@ -10,8 +10,8 @@ import azerbadgan from '@/shared/assets/png/Азейрбаджан.jpg';
 import { Images } from '@/shared/types/types';
 
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
-
 export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
+export type DirectionTour = "Россия" | "Заграница";
 
 export type Regions = 'Russia' | 'Middle_East' | 'Asia' | 'South_America' | 'Africa';
 export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' | 'Karelia' 
@@ -52,7 +52,7 @@ export interface Tour {
         notIncluded: string
     },
     image: string; //TODO
-    direction: "Россия" | "Заграница";
+    direction: DirectionTour;
     region: Regions,
     counrty: Countries,
     discount?: {

@@ -17,7 +17,6 @@ export const Calendar = () => {
         startDate: null,
         endDate: null,
     });
-    console.log(selectedRange);
     
     const [isSelectingRange, setIsSelectingRange] = useState(false);
 
