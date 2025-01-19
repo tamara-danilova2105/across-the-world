@@ -1,9 +1,16 @@
 import { Stack } from "@/shared/ui/Stack";
-import { Tour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { ActivityLevel, ComfortType, DirectionTour, Tour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { useState } from "react";
 import styles from './TourForm.module.scss';
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
+import { OptionsSelect } from "../OptionsSelect/OptionsSelect";
+import { RichEditor } from "../RichEditor/RichEditor";
+import { DetailsInput } from "../DetailsInput/DetailsInput";
+
+const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
+const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
+const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 
 export const TourForm = () => {
 
@@ -29,6 +36,8 @@ export const TourForm = () => {
         program: [],
         hotels: [],
     });
+
+    console.log(formData);
     
     return (
         <Stack 
@@ -37,7 +46,9 @@ export const TourForm = () => {
         >
             <form>
                 <Stack direction='column' gap="8">
-                    <label className={styles.label}>Название тура</label>
+                    <label className={styles.label}>
+                        Название тура
+                    </label>
                     <input
                         type="text"
                         value={formData.tour}
@@ -55,6 +66,57 @@ export const TourForm = () => {
                 <LocationsInput
                     locations={formData.locations}
                     onChange={(locations) => setFormData({ ...formData, locations })}
+                />
+
+                <Stack direction='column' gap="8">
+                    <label className={styles.label}>
+                        Направление
+                    </label>
+                    <OptionsSelect 
+                        value={formData.direction} 
+                        options={directionOptions}
+                        onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option})}
+                    />
+                </Stack>
+
+                <Stack direction='column' gap="8">
+                    <label className={styles.label}>
+                        Уровень активности
+                    </label>
+                    <OptionsSelect 
+                        value={formData.activity} 
+                        options={activityOptions}
+                        onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option})}
+                    />
+                </Stack>
+
+                <Stack direction='column' gap="8">
+                    <label className={styles.label}>
+                        Уровень комфорта
+                    </label>
+                    <OptionsSelect 
+                        value={formData.comfort} 
+                        options={comfortOptions}
+                        onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option})}
+                    />
+                </Stack>
+
+                <Stack direction='column' gap="8">
+                    <label className={styles.label}>
+                        Описание тура
+                    </label>
+                    <div className={styles.editor_container}>
+                        <RichEditor
+                            value={formData.description}
+                            onChange={(value) => setFormData({ ...formData, description: value })}
+                            placeholder="Опишите тур..."
+                        />
+                    </div>
+                </Stack>
+
+                <DetailsInput
+                    details={formData.details}
+                    onChange={(details) => setFormData({ ...formData, details })}
                 />
             </form>
         </Stack>

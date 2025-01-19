@@ -25,9 +25,6 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
         ]);
     };
 
-    console.log(dates);
-    
-
     const updateDateRange = <K extends keyof DateTours>(
         index: number,
         field: K,

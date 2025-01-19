@@ -41,3 +41,12 @@ img {
     position: fixed;
     transform: scale(0);
 }
+
+.ql-editor {
+    font-family: var(--font-family-geometria400);
+    font-size: var(--font-size-16);
+}
+
+.ql-editor.ql-blank::before {
+    font-style: normal !important;
+}

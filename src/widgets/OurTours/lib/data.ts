@@ -42,15 +42,17 @@ export interface DayProgram {
     details: string;
 };
 
+export interface Details {
+    included: string;
+    notIncluded: string;
+}
+
 export interface Tour {
     _id: string;
     tour: string;
     dates: DateTours[]; //TODO
     locations: Locations,
-    details: {
-        included: string;
-        notIncluded: string
-    },
+    details: Details,
     image: string; //TODO
     direction: DirectionTour;
     region: Regions,
