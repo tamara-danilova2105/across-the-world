@@ -3,7 +3,7 @@ import { AppRouter } from "./router/ui/AppRouter";
 import { Parallax } from "@/entities/Parallax";
 import { Footer } from "@/widgets/Footer";
 import { ScrollToTop } from "@/entities/ScrollToTop";
-import { Cookie } from "@/widgets/Cookie/index";
+import { Cookie } from "@/entities/Cookie/index";
 
 function App() {
   return (

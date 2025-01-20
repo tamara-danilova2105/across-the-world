@@ -26,7 +26,7 @@ export const Cookie = () => {
     if (!isVisible) return null;
 
     return (
-        <Stack 
+        <Stack
             justify='between'
             align='center'
             max
@@ -40,18 +40,19 @@ export const Cookie = () => {
                 direction='column'
                 gap='16'
             >
-                <Text size='16'
-                    font='geometria500'
-                    color='blue'>Мы используем cookies для улучшения вашего опыта на сайте.</Text>
                 <Text
                     size='16'
                     font='geometria500'
                     color='blue'
                 >
-                    Чтобы узнать больше, ознакомьтесь с нашей <br/> 
-                    <AppLink to={getRoutePrivacyPolicy()}>
-                        политикой конфиденциальности
-                    </AppLink>.
+                    Мы используем cookies для улучшения вашего опыта на сайте.
+                </Text>
+                <Text
+                    size='16'
+                    font='geometria500'
+                    color='blue'
+                >
+                    Чтобы узнать больше, ознакомьтесь с нашей <AppLink size="16" to={getRoutePrivacyPolicy()}> политикой конфиденциальности</AppLink>.
                 </Text>
             </Stack>
             <Button onClick={handleAccept}>Принять</Button>
