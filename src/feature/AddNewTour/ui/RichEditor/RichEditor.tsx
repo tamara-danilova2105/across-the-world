@@ -3,16 +3,20 @@ import styles from './RichEditor.module.scss';
 
 const modules = {
     toolbar: [
-        [{ 'list': 'bullet' }],
-        ['bold', 'italic'],
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        ['link', 'image'],
         ['clean']
-    ]
+    ],
 };
 
 const formats = [
-    'list',
-    'bold',
-    'italic'
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'list', 'bullet', 'indent',
+    'link', 'image'
 ];
 
 interface RichEditorProps {
@@ -33,6 +37,7 @@ export const RichEditor = (props: RichEditorProps) => {
             formats={formats}
             placeholder={placeholder}
             className={styles.quill}
+
         />
     );
 };

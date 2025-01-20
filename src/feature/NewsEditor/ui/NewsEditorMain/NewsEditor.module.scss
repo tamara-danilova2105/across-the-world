@@ -44,18 +44,6 @@
     }
 }
 
-.imagePreview {
-    margin-top: 16px;
-    max-width: 300px;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .toolbar {
     display: flex;
     gap: 16px;
@@ -70,28 +58,16 @@
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--gap-s);
 
     &.primary {
         background-color: var(--blue-color);
         color: var(--white-color);
         border: none;
-
-        &:hover {
-        // background-color: darken($primary-color, 10%);
-        }
     }
 
     &.secondary {
         background-color: white;
         border: 1px solid grey;
-
-        &:hover {
-        // background-color: $secondary-color;
-        }
     }
-}
-
-.hidden {
-    display: none;
 }

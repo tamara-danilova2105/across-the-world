@@ -11,7 +11,6 @@ interface DetailsInputProps {
 
 export const DetailsInput = (props: DetailsInputProps) => {
     const { details, onChange } = props;
-    console.log(details);
     
     return (
         <Stack direction='column' gap='16'>

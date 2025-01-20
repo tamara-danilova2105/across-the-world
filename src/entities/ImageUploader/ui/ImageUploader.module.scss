@@ -1,0 +1,28 @@
+.button {
+    padding: 16px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-s);
+    background-color: white;
+    border: 1px solid grey;
+}
+
+.hidden {
+    display: none;
+}
+
+.imagePreview {
+    margin-top: 16px;
+    max-width: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import { Image as ImageIcon, Save, Eye } from 'lucide-react';
-import styles from './NewsEditor.module.scss';
-import 'react-quill/dist/quill.snow.css';
+import { Save, Eye } from 'lucide-react';
+import { ImageUploader } from '@/entities/ImageUploader';
 import { NewsArticle } from '../../model/types/types';
 import { NewsPreview } from '../NewsPreview/NewsPreview';
-import { Stack } from '@/shared/ui/Stack';
+import styles from './NewsEditor.module.scss';
+import 'react-quill/dist/quill.snow.css';
 
 interface NewsEditorProps {
     initialArticle?: NewsArticle;
@@ -15,8 +15,8 @@ const modules = {
     toolbar: [
         [{ 'header': [1, 2, 3, false] }],
         ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
         ['link', 'image'],
         ['clean']
     ],
@@ -30,7 +30,7 @@ const formats = [
 ];
 
 export function NewsEditor({
-    initialArticle 
+    initialArticle
 }: NewsEditorProps) {
     const [article, setArticle] = useState<NewsArticle>(initialArticle || {
         id: crypto.randomUUID(),
@@ -48,10 +48,8 @@ export function NewsEditor({
         console.log('handleSave');
     };
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+    const handleImageChange = (file: File | null) => {
         if (file) {
-            // In a real app, you would upload this to your server/CDN
             const imageUrl = URL.createObjectURL(file);
             setCoverImageUrl(imageUrl);
         }
@@ -92,23 +90,10 @@ export function NewsEditor({
                     <label className={styles.label}>
                         Изображение для обложки
                     </label>
-                    <Stack gap='4' align='center'>
-                        <label className={`${styles.button} ${styles.secondary}`}>
-                            <ImageIcon />
-                            Загрузить изображение
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className={styles.hidden}
-                            />
-                        </label>
-                        {coverImageUrl && (
-                        <div className={styles.imagePreview}>
-                            <img src={coverImageUrl} alt="Cover preview" />
-                        </div>
-                        )}
-                    </Stack>
+                    <ImageUploader
+                        imageUrl={coverImageUrl}
+                        onImageChange={handleImageChange}
+                    />
                 </div>
 
                 <div className={styles.formGroup}>

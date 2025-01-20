@@ -7,6 +7,7 @@ import { LocationsInput } from "../LocationsInput/LocationsInput";
 import { OptionsSelect } from "../OptionsSelect/OptionsSelect";
 import { RichEditor } from "../RichEditor/RichEditor";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
+import { ProgramInput } from "../ProgramInput/ProgramInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -38,9 +39,9 @@ export const TourForm = () => {
     });
 
     console.log(formData);
-    
+
     return (
-        <Stack 
+        <Stack
             direction='column' gap="16"
             className={styles.container}
         >
@@ -72,10 +73,10 @@ export const TourForm = () => {
                     <label className={styles.label}>
                         Направление
                     </label>
-                    <OptionsSelect 
-                        value={formData.direction} 
+                    <OptionsSelect
+                        value={formData.direction}
                         options={directionOptions}
-                        onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option})}
+                        onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option })}
                     />
                 </Stack>
 
@@ -83,10 +84,10 @@ export const TourForm = () => {
                     <label className={styles.label}>
                         Уровень активности
                     </label>
-                    <OptionsSelect 
-                        value={formData.activity} 
+                    <OptionsSelect
+                        value={formData.activity}
                         options={activityOptions}
-                        onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option})}
+                        onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
                     />
                 </Stack>
 
@@ -94,10 +95,10 @@ export const TourForm = () => {
                     <label className={styles.label}>
                         Уровень комфорта
                     </label>
-                    <OptionsSelect 
-                        value={formData.comfort} 
+                    <OptionsSelect
+                        value={formData.comfort}
                         options={comfortOptions}
-                        onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option})}
+                        onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
                     />
                 </Stack>
 
@@ -117,6 +118,11 @@ export const TourForm = () => {
                 <DetailsInput
                     details={formData.details}
                     onChange={(details) => setFormData({ ...formData, details })}
+                />
+
+                <ProgramInput
+                    program={formData.program}
+                    onChange={(program) => setFormData({ ...formData, program })}
                 />
             </form>
         </Stack>
