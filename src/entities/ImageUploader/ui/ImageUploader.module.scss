@@ -1,5 +1,5 @@
 .button {
-    padding: 16px 24px;
+    padding: 12px 24px;
     border-radius: var(--border-radius);
     font-weight: 500;
     cursor: pointer;
@@ -9,6 +9,7 @@
     gap: var(--gap-s);
     background-color: white;
     border: 1px solid grey;
+    width: 300px;
 }
 
 .hidden {

@@ -5,8 +5,8 @@ const modules = {
     toolbar: [
         [{ 'header': [1, 2, 3, false] }],
         ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
         ['link', 'image'],
         ['clean']
     ],
@@ -37,7 +37,6 @@ export const RichEditor = (props: RichEditorProps) => {
             formats={formats}
             placeholder={placeholder}
             className={styles.quill}
-
         />
     );
 };

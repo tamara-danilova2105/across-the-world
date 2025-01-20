@@ -5,7 +5,6 @@ import { ImageUploader } from '@/entities/ImageUploader';
 import { NewsArticle } from '../../model/types/types';
 import { NewsPreview } from '../NewsPreview/NewsPreview';
 import styles from './NewsEditor.module.scss';
-import 'react-quill/dist/quill.snow.css';
 
 interface NewsEditorProps {
     initialArticle?: NewsArticle;

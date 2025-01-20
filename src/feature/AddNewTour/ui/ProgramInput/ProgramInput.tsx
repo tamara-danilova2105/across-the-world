@@ -82,7 +82,7 @@ export const ProgramInput = (props: ProgramInputProps) => {
                             direction='column' gap="8"
                             className={styles.inputGroup}
                         >
-                            <label>Название дня</label>
+                            <label className={styles.label}>Название дня</label>
                             <input
                                 type="text"
                                 value={day.title}
@@ -95,7 +95,7 @@ export const ProgramInput = (props: ProgramInputProps) => {
                             direction='column' gap="8"
                             className={styles.inputGroup}
                         >
-                            <label>Описание дня</label>
+                            <label className={styles.label}>Описание дня</label>
                             <div className={styles.richEditorContainer}>
                                 <RichEditor
                                     value={day.details}
@@ -109,9 +109,9 @@ export const ProgramInput = (props: ProgramInputProps) => {
                             direction='column' gap="8"
                             className={styles.inputGroup}
                         >
-                            <label>Фотографии</label>
+                            <label className={styles.label}>Фотографии</label>
                             {day.images?.map((image, imageIndex) => (
-                                <Stack key={imageIndex} gap="16" max>
+                                <Stack key={imageIndex} align='center' gap="16" max>
                                     <ImageUploader
                                         imageUrl={image.src}
                                         onImageChange={(file) => {

@@ -1,0 +1,35 @@
+.label {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+.input {
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    font-size: 1rem;
+
+    &:focus {
+        border-color: #3b82f6;
+        outline: none;
+        box-shadow: 0 0 0 1px #3b82f6;
+    }
+}
+
+.removeButton {
+    margin-top: 4px;
+    padding: 8px;
+    color: var(--error-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #b91c1c;
+    }
+}

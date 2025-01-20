@@ -8,6 +8,7 @@ import { OptionsSelect } from "../OptionsSelect/OptionsSelect";
 import { RichEditor } from "../RichEditor/RichEditor";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
+import { HotelsInput } from "../HotelsInput/HotelsInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -123,6 +124,11 @@ export const TourForm = () => {
                 <ProgramInput
                     program={formData.program}
                     onChange={(program) => setFormData({ ...formData, program })}
+                />
+
+                <HotelsInput
+                    images={formData.hotels}
+                    onChange={(hotels) => setFormData({ ...formData, hotels })}
                 />
             </form>
         </Stack>
