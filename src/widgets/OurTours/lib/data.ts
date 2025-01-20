@@ -12,6 +12,7 @@ import { Images } from '@/shared/types/types';
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
 export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
 export type DirectionTour = "Россия" | "Заграница";
+export type TypeTour = 'Трекинг' | 'Ретрит / оздоровительный' | 'Экскурсионный' | 'Детский' | 'Фототур';
 
 export type Regions = 'Russia' | 'Middle_East' | 'Asia' | 'South_America' | 'Africa';
 export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' | 'Karelia' 
@@ -49,6 +50,7 @@ export interface Details {
 
 export interface Tour {
     _id: string;
+    type: TypeTour; //TODO
     tour: string;
     dates: DateTours[]; //TODO
     locations: Locations,
@@ -72,6 +74,7 @@ export const dataTours: Tour[] = [
     {
         _id: "1",
         tour: "Камчатка: 7 дней",
+        type: 'Трекинг',
         dates: [
             {
                 _id: '11',
@@ -110,6 +113,7 @@ export const dataTours: Tour[] = [
     {
         _id: "2",
         tour: "Камчатка: Толбачик",
+        type: 'Трекинг',
         dates: [
             {
                 _id: '21',
@@ -148,6 +152,7 @@ export const dataTours: Tour[] = [
     {
         _id: "3",
         tour: "Южная Америка: 4 страны",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '31',
@@ -182,6 +187,7 @@ export const dataTours: Tour[] = [
     {
         _id: "4",
         tour: "Дагестан «5 дней в горах»",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '41',
@@ -216,6 +222,7 @@ export const dataTours: Tour[] = [
     {
         _id: "5",
         tour: "Южная Америка: Патагония",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '50',
@@ -523,6 +530,7 @@ export const dataTours: Tour[] = [
     {
         _id: "6",
         tour: "Чечня и Ингушетия",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '61',
@@ -557,6 +565,7 @@ export const dataTours: Tour[] = [
     {
         _id: "7",
         tour: "Байкал макси",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '71',
@@ -591,6 +600,7 @@ export const dataTours: Tour[] = [
     {
         _id: "8",
         tour: "Байкал мини",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '81',
@@ -625,6 +635,7 @@ export const dataTours: Tour[] = [
     {
         _id: "9",
         tour: "Азербайджан",
+        type: 'Экскурсионный',
         dates: [
             {
                 _id: '82',

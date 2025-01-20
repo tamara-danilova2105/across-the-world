@@ -1,5 +1,5 @@
 import { Stack } from "@/shared/ui/Stack";
-import { ActivityLevel, ComfortType, DirectionTour, Tour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { useState } from "react";
 import styles from './TourForm.module.scss';
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
@@ -13,11 +13,13 @@ import { HotelsInput } from "../HotelsInput/HotelsInput";
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
+const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздоровительный', 'Экскурсионный', 'Детский', 'Фототур'];
 
 export const TourForm = () => {
 
     const [formData, setFormData] = useState<Tour>({
         _id: '',
+        type: 'Экскурсионный',
         tour: '',
         dates: [],
         locations: {
@@ -69,6 +71,17 @@ export const TourForm = () => {
                     locations={formData.locations}
                     onChange={(locations) => setFormData({ ...formData, locations })}
                 />
+
+                <Stack direction='column' gap="8">
+                    <label className={styles.label}>
+                        Типа тура
+                    </label>
+                    <OptionsSelect
+                        value={formData.type}
+                        options={typeTourOptions}
+                        onChange={(option: TypeTour) => setFormData({ ...formData, type: option })}
+                    />
+                </Stack>
 
                 <Stack direction='column' gap="8">
                     <label className={styles.label}>
