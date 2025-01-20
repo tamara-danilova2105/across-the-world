@@ -1,0 +1,31 @@
+@use '@/app/styles/mixin' as mixin;
+@use '@/app//styles/media-queries' as *;
+
+.cookie_banner {
+    z-index: 1000;
+    background-color: var(--peach-color);
+    padding: 20px;
+    @include mixin.decorate-style;
+
+    position: fixed;
+    bottom: 0;
+
+    svg {
+        width: 150px;
+        opacity: 0.3;
+    }
+
+
+    @include mobile-l {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    button {
+        width: 300px;
+
+        @include mobile-l {
+            width: 100%;
+        }
+    }
+}
