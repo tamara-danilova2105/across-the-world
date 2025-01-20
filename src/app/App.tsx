@@ -3,6 +3,7 @@ import { AppRouter } from "./router/ui/AppRouter";
 import { Parallax } from "@/entities/Parallax";
 import { Footer } from "@/widgets/Footer";
 import { ScrollToTop } from "@/entities/ScrollToTop";
+import { Cookie } from "@/widgets/Cookie/index";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Parallax />
       <AppRouter />
       <Footer />
+      <Cookie/>
     </>
   );
 };
