@@ -3,6 +3,7 @@
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     height: 100vh;
+    position: fixed;
 }
 
 .header {
@@ -28,7 +29,7 @@
 
 .navItemActive {
     background-color: #f3f4f6;
-    color: #2563eb;
+    color: var(--blue-color-light);
 }
 
 .icon {

@@ -10,6 +10,7 @@ import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
 import styles from './TourForm.module.scss';
+import { Text } from "@/shared/ui/Text";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -46,9 +47,13 @@ export const TourForm = () => {
 
     return (
         <Stack
-            direction='column' gap="16"
+            direction='column' gap="24"
             className={styles.container}
         >
+            <Text type='h2' size='32' color='blue' font='geometria600'>
+                Создать новый тур
+            </Text>
+
             <form>
                 <Stack direction='column' gap="8">
                     <label className={styles.label}>

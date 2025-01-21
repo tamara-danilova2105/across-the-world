@@ -6,7 +6,12 @@ export const AdminLayout = () => {
     return (
         <Stack>
             <SideBar />
-            <Stack tag="main" align='center' max>
+            <Stack
+                tag="main"
+                align='center'
+                max
+                style={{marginLeft: '300px'}}
+            >
                 <AppRouter />
             </Stack>
         </Stack>
