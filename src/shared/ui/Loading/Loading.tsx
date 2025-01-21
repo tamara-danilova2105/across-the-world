@@ -11,23 +11,20 @@ interface LoadingProps {
     variant?: Variant;
     }
 
-    
-
 export const Loading = ({
     width = 24,
     height = 24,
     variant = 'blue',
     }: LoadingProps) => {
 
-    console.log(variant)
-
-
     return (
         <Stack
+            justify='center'
+            align='center'
             className={styles.loader_container}
-            style={{ width, height }}
         >
-            <Loader className={getStyles(styles.rotating_loader, {}, [styles[variant]])}/>
+            <Loader className={getStyles(styles.rotating_loader, {}, [styles[variant]])}
+                    style={{ width, height }}/>
         </Stack>
     )
 }

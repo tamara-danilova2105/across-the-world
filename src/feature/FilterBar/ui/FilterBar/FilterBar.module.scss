@@ -20,8 +20,19 @@
         width: 100%;
         padding: 20px 0;
 
+
+        @include desktop-m {
+            flex-direction: column;
+        }
+
         @include tablet-l {
             top: 40px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 

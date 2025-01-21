@@ -8,7 +8,7 @@ import { Loading } from "@/shared/ui/Loading";
 export const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = (
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<Loading  width = '100' height = '100'/>}>
                 {route.page}
             </Suspense>
         );

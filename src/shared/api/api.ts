@@ -1,5 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import { apiUrl } from "./endpoints";
 
@@ -15,6 +14,6 @@ export const api = createApi({
             return headers;
         },
     }),
-    tagTypes: [],
-    endpoints: () => ({})
+    tagTypes: ['Tour'],
+    endpoints: (builder) => ({})
 });

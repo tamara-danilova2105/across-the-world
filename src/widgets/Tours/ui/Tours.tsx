@@ -1,5 +1,7 @@
 import { Pagination } from "@/entities/Pagination/index"
 import { TourCard } from "@/entities/TourCard/index"
+import { getFiltersState } from "@/feature/FilterBar/model/filterSlice"
+import { getSortState } from '@/feature/SortTour/model/sortSlice'
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
 import { Shedule } from "@/feature/Shedule/index"
 import { SortTour } from "@/feature/SortTour/index"
@@ -9,9 +11,31 @@ import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { dataTours } from "@/widgets/OurTours/lib/data"
 import { useCallback, useState } from "react"
+import { useSelector } from "react-redux"
+import { useGetAllToursQuery } from "../api/toursApi"
 import styles from './Tours.module.scss'
 
+const LIMIT = 12;
+const PAGE = 1;
+
 export const Tours = () => {
+
+    const filters = useSelector(getFiltersState)
+    const sorts = useSelector(getSortState)
+
+    const { 
+        data,
+        error, 
+        isLoading } = useGetAllToursQuery({
+            limit: LIMIT,
+            page: PAGE,
+            filters: {
+                sort: sorts,
+                filter: filters
+            }
+        })
+
+        console.log( data, error, isLoading)
 
     const [changeModal, drawModal] = useModal();
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();

@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Ellipsis } from 'lucide-react';
 import { getStyles } from '@/shared/lib/getStyles';
 import styles from './Button.module.scss';
 
@@ -8,6 +9,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     color?: 'primary' | 'secondary' | 'outline' | 'transparent';
     circle?: boolean;
     cta?: boolean;
+    loading?: boolean;
+    width?: number;
+    height?: number;
+    variant?: 'blue' | 'white' | 'pink' | 'peach';
 }
 
 export const Button = (props: ButtonProps) => {
@@ -17,6 +22,10 @@ export const Button = (props: ButtonProps) => {
         color = 'primary',
         circle,
         cta,
+        loading,
+        width,
+        height,
+        variant= 'blue',
         ...otherProps
     } = props;
 
@@ -35,8 +44,11 @@ export const Button = (props: ButtonProps) => {
             className={getStyles(styles.button, mode, additional)}
             {...otherProps}
         >
-            {children}
             {!cta && <div className={styles.underLine} />}
+            {loading ? 
+                <Ellipsis className={getStyles(styles.waiting, {}, [styles[variant]])}
+                        style={{ width, height }}/>
+            : children}
         </button>
     );
 };

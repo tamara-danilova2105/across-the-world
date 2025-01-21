@@ -55,10 +55,7 @@ export const BreadCrumbs = ({
         }
 
         return acc;
-    }, [{ title: 'Главная', link: '/' }]);
-
-    console.log(breadcrumbs);
-    
+    }, [{ title: 'Главная', link: '/' }])
 
     const currentRoute = breadcrumbs[breadcrumbs.length - 1];
     const title = currentRoute.isLast ? currentRoute.title : '';
