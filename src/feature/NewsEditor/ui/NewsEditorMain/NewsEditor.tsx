@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import { Save, Eye } from 'lucide-react';
 import { ImageUploader } from '@/entities/ImageUploader';
+import { Text } from '@/shared/ui/Text';
+import { Stack } from '@/shared/ui/Stack';
+import { Button } from '@/shared/ui/Button';
 import { NewsArticle } from '../../model/types/types';
 import { NewsPreview } from '../NewsPreview/NewsPreview';
 import styles from './NewsEditor.module.scss';
-import { Text } from '@/shared/ui/Text';
-import { Stack } from '@/shared/ui/Stack';
 
 interface NewsEditorProps {
     initialArticle?: NewsArticle;
@@ -63,12 +63,9 @@ export function NewsEditor({
                 className={styles.container}
             >
                 <NewsPreview article={article} />
-                <button
-                    className={`${styles.button} ${styles.secondary}`}
-                    onClick={() => setIsPreviewMode(false)}
-                >
-                    Back to Editor
-                </button>
+                <Button onClick={() => setIsPreviewMode(false)}>
+                    Вернуть к редактированию
+                </Button>
             </Stack>
         );
     }
@@ -122,20 +119,15 @@ export function NewsEditor({
                 </div>
 
                 <div className={styles.toolbar}>
-                    <button
-                        onClick={handleSave}
-                        className={`${styles.button} ${styles.primary}`}
-                    >
-                        <Save />
+                    <Button onClick={handleSave}>
                         Сохранить
-                    </button>
-                    <button
+                    </Button>
+                    <Button
+                        color='outline'
                         onClick={() => setIsPreviewMode(true)}
-                        className={`${styles.button} ${styles.secondary}`}
                     >
-                        <Eye />
                         Просмотреть
-                    </button>
+                    </Button>
                 </div>
             </form>
         </Stack>
