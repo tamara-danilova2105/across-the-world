@@ -3,11 +3,12 @@ import { Route, Routes } from "react-router";
 import { routeConfig } from "../lib/data";
 import { AppRoutesProps } from "../types/types";
 import { RequireAuth } from "./RequireAuth ";
+import { Loading } from "@/shared/ui/Loading";
 
 export const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = (
-            <Suspense fallback=''>
+            <Suspense fallback={<Loading />}>
                 {route.page}
             </Suspense>
         );
