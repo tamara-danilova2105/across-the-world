@@ -4,6 +4,8 @@ import {
     getRouteAbout, 
     getRouteAdmin,
     getRouteAdminNews,
+    getRouteAdminNewsCreate,
+    getRouteAdminNewsEdit,
     getRouteAdminTours,
     getRouteAdminToursCreate,
     getRouteAdminToursEdit,
@@ -23,6 +25,7 @@ import { TourDetailsPage } from "@/pages/TourDetailsPage";
 import { AdminPage } from "@/pages/AdminPage";
 import { SigninPage } from "@/pages/SigninPage";
 import { CreateTourPage } from "@/pages/CreateTourPage";
+import { CreateNewsPage } from "@/pages/CreateNewsPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -81,11 +84,20 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         page: <CreateTourPage />
     },
     [AppRouters.admin_tours_edit]: {
-        path: getRouteAdminToursEdit(),
+        path: getRouteAdminToursEdit(':id'),
         // onlyAdmin: true,
     },
     [AppRouters.admin_news]: {
         path: getRouteAdminNews(),
+        // onlyAdmin: true,
+    },
+    [AppRouters.admin_news_create]: {
+        path: getRouteAdminNewsCreate(),
+        // onlyAdmin: true,
+        page: <CreateNewsPage />
+    },
+    [AppRouters.admin_news_edit]: {
+        path: getRouteAdminNewsEdit(':id'),
         // onlyAdmin: true,
     },
 };

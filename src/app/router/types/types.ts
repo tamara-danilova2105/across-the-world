@@ -16,6 +16,8 @@ export enum AppRouters {
     admin_tours_create = 'admin_tours_create',
     admin_tours_edit = 'admin_tours_edit',
     admin_news = 'admin_news',
+    admin_news_create = 'admin_news_create',
+    admin_news_edit = 'admin_news_edit',
 };
 
 export type AppRoutesProps = {

@@ -5,6 +5,8 @@ import { ImageUploader } from '@/entities/ImageUploader';
 import { NewsArticle } from '../../model/types/types';
 import { NewsPreview } from '../NewsPreview/NewsPreview';
 import styles from './NewsEditor.module.scss';
+import { Text } from '@/shared/ui/Text';
+import { Stack } from '@/shared/ui/Stack';
 
 interface NewsEditorProps {
     initialArticle?: NewsArticle;
@@ -56,7 +58,10 @@ export function NewsEditor({
 
     if (isPreviewMode) {
         return (
-            <div className={styles.container}>
+            <Stack
+                direction='column' gap='32' max
+                className={styles.container}
+            >
                 <NewsPreview article={article} />
                 <button
                     className={`${styles.button} ${styles.secondary}`}
@@ -64,12 +69,19 @@ export function NewsEditor({
                 >
                     Back to Editor
                 </button>
-            </div>
+            </Stack>
         );
     }
 
     return (
-        <div className={styles.container}>
+        <Stack
+            direction='column' gap='32' max
+            className={styles.container}
+        >
+            <Text type='h2' size='32' color='blue' font='geometria600'>
+                Написать новость
+            </Text>
+
             <form className={styles.form}>
                 <div className={styles.formGroup}>
                     <label htmlFor="title" className={styles.label}>
@@ -126,6 +138,6 @@ export function NewsEditor({
                     </button>
                 </div>
             </form>
-        </div>
+        </Stack>
     );
 }

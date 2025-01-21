@@ -1,5 +1,5 @@
-import { getRouteAdmin, getRouteAdminNews, getRouteAdminTours, getRouteAdminToursCreate } from "@/app/router/lib/helper";
-import { LayoutDashboard, List, Map, Newspaper } from "lucide-react";
+import { getRouteAdmin, getRouteAdminNews, getRouteAdminNewsCreate, getRouteAdminTours, getRouteAdminToursCreate } from "@/app/router/lib/helper";
+import { FilePlus, LayoutDashboard, List, Map, Newspaper } from "lucide-react";
 
 export const sidebarItems = [
     {
@@ -21,5 +21,10 @@ export const sidebarItems = [
         path: getRouteAdminNews(),
         icon: <Newspaper className="w-5 h-5" />,
         label: 'Мои новости'
+    },
+    {
+        path: getRouteAdminNewsCreate(),
+        icon: <FilePlus className="w-5 h-5" />,
+        label: 'Написать новость'
     },
 ];

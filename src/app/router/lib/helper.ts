@@ -10,5 +10,7 @@ export const getRouteSignin = () => '/signin';
 export const getRouteAdmin = () => '/admin';
 export const getRouteAdminTours = () => '/admin/tours';
 export const getRouteAdminToursCreate = () => '/admin/tours/create';
-export const getRouteAdminToursEdit = (id: string = ':id') => `/admin/tours/edit/${id}`;
+export const getRouteAdminToursEdit = (id: string) => `/admin/tours/edit/${id}`;
 export const getRouteAdminNews = () => '/admin/news';
+export const getRouteAdminNewsCreate = () => '/admin/news/create';
+export const getRouteAdminNewsEdit = (id: string) => `/admin/news/edit/${id}`;

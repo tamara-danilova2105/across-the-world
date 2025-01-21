@@ -1,0 +1,1 @@
+export { LazyCreateNewsPage as CreateNewsPage } from './CreateNewsPage.lazy';
