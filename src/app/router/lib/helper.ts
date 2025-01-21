@@ -5,6 +5,10 @@ export const getRouteBlogDetails = (id: string) => `/blog/${id}`;
 export const getRouteTours = () => '/tours';
 export const getRouteToursDetails = (region: string, id: string) => `/tours/${region}/${id}`;
 export const getRouteTestimonials = () => '/testimonials';
-export const getRouteAdmin = () => '/admin';
 export const getRoutePrivacyPolicy = () => '/privacy-policy';
-export const getRouteSignin = () => '/signin'
+export const getRouteSignin = () => '/signin';
+export const getRouteAdmin = () => '/admin';
+export const getRouteAdminTours = () => '/admin/tours';
+export const getRouteAdminToursCreate = () => '/admin/tours/create';
+export const getRouteAdminToursEdit = (id: string = ':id') => `/admin/tours/edit/${id}`;
+export const getRouteAdminNews = () => '/admin/news';

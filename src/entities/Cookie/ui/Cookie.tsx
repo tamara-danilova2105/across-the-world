@@ -1,13 +1,17 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import { getRoutePrivacyPolicy } from "@/app/router/lib/helper";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { Button } from "@/shared/ui/Button/Button";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
-import { useEffect, useState } from "react";
 import styles from './Cookie.module.scss'
 
+
 export const Cookie = () => {
+    const { pathname } = useLocation();
+    if (pathname === "/admin") return null;
 
     const [isVisible, setIsVisible] = useState(false);
 

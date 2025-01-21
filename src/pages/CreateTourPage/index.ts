@@ -1,0 +1,1 @@
+export { LazyCreateTourPage as CreateTourPage } from './CreateTourPage.lazy';

@@ -6,7 +6,7 @@ import { StayDetails } from "./ui/StayDetails/StayDetails";
 import { FAQSection } from "./ui/FAQSection/FAQSection";
 import { ArrivalInfo } from "./ui/ArrivalInfo/ArrivalInfo";
 import { ReviewsTour } from "./ui/ReviewsTour/ReviewsTour";
-import { RouteMap } from "@/feature/Mapbox";
+import { RouteMap } from "@/entities/Mapbox";
 import { Description } from "./ui/Description/Description";
 
 interface AboutTourProps {

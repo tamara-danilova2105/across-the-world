@@ -1,7 +1,7 @@
-import { Stack } from "@/shared/ui/Stack";
-import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { useState } from "react";
-import styles from './TourForm.module.scss';
+import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { AdminMap } from "@/entities/Mapbox";
+import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
 import { OptionsSelect } from "../OptionsSelect/OptionsSelect";
@@ -9,6 +9,7 @@ import { RichEditor } from "../RichEditor/RichEditor";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
+import styles from './TourForm.module.scss';
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -143,6 +144,8 @@ export const TourForm = () => {
                     images={formData.hotels}
                     onChange={(hotels) => setFormData({ ...formData, hotels })}
                 />
+
+                <AdminMap />
             </form>
         </Stack>
     );

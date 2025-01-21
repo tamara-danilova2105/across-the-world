@@ -2,7 +2,11 @@ import { MainPage } from "@/pages/MainPage";
 import { AppRouters, AppRoutesProps } from "../types/types";
 import { 
     getRouteAbout, 
-    getRouteAdmin, 
+    getRouteAdmin,
+    getRouteAdminNews,
+    getRouteAdminTours,
+    getRouteAdminToursCreate,
+    getRouteAdminToursEdit,
     getRouteBlog, 
     getRouteBlogDetails,
     getRouteMain, 
@@ -18,6 +22,7 @@ import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
 import { TourDetailsPage } from "@/pages/TourDetailsPage";
 import { AdminPage } from "@/pages/AdminPage";
 import { SigninPage } from "@/pages/SigninPage";
+import { CreateTourPage } from "@/pages/CreateTourPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -49,11 +54,6 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         path: getRouteTestimonials(),
         title: 'Отзывы',
     },
-    [AppRouters.admin]: {
-        path: getRouteAdmin(),
-        // onlyAdmin: true, //TODO
-        page: <AdminPage />
-    },
     [AppRouters.not_found]: {
         path: '*',
         page: <NotFoundPage />
@@ -65,5 +65,27 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.signin]: {
         path: getRouteSignin(),
         page: <SigninPage />
-    }
+    },
+    [AppRouters.admin]: {
+        path: getRouteAdmin(),
+        // onlyAdmin: true, //TODO
+        page: <AdminPage />,
+    },
+    [AppRouters.admin_tours]: {
+        path: getRouteAdminTours(),
+        // onlyAdmin: true,
+    },
+    [AppRouters.admin_tours_create]: {
+        path: getRouteAdminToursCreate(),
+        // onlyAdmin: true,
+        page: <CreateTourPage />
+    },
+    [AppRouters.admin_tours_edit]: {
+        path: getRouteAdminToursEdit(),
+        // onlyAdmin: true,
+    },
+    [AppRouters.admin_news]: {
+        path: getRouteAdminNews(),
+        // onlyAdmin: true,
+    },
 };

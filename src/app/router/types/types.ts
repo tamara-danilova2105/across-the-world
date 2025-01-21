@@ -9,9 +9,13 @@ export enum AppRouters {
     blog_details = 'blog_details',
     testimonials = 'testimonials',
     not_found = 'not_found',
-    admin = 'admin',
     privacy_policy = 'privacy_policy',
     signin = 'signin',
+    admin = 'admin',
+    admin_tours = 'admin_tours',
+    admin_tours_create = 'admin_tours_create',
+    admin_tours_edit = 'admin_tours_edit',
+    admin_news = 'admin_news',
 };
 
 export type AppRoutesProps = {
@@ -19,4 +23,4 @@ export type AppRoutesProps = {
     page?: ReactNode; 
     title?: string;
     onlyAdmin?: boolean;
-}
+};
