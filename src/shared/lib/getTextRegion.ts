@@ -1,6 +1,6 @@
 const regionText: Record<string, string> = {
     Russia: "Россия",
-    Middle_East: "",
+    Middle_East: "Ближний восток",
     Asia: "Азия",
     South_America: "Южная Америка",
     Africa: 'Африка',

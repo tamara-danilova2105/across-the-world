@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { ActivityLevel, ComfortType, Countries, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { AdminMap } from "@/entities/Mapbox";
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
@@ -11,11 +11,19 @@ import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
 import styles from './TourForm.module.scss';
 import { Text } from "@/shared/ui/Text";
+import { DiscountInput } from "../DiscountInput/DiscountInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздоровительный', 'Экскурсионный', 'Детский', 'Фототур'];
+const regionsOptions: Regions[] = ['Russia', 'Middle_East', 'Asia', 'South_America', 'Africa']
+const countriesOptions: Countries[] = [
+    'North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia',
+    'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
+    'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
+];
+
 
 export const TourForm = () => {
 
@@ -43,8 +51,6 @@ export const TourForm = () => {
         hotels: [],
     });
 
-    console.log(formData);
-
     return (
         <Stack
             direction='column' gap="24"
@@ -55,10 +61,10 @@ export const TourForm = () => {
             </Text>
 
             <form>
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
+                <Stack direction='column' gap="16">
+                    <Text size='18' font='geometria500'>
                         Название тура
-                    </label>
+                    </Text>
                     <input
                         type="text"
                         value={formData.tour}
@@ -73,59 +79,102 @@ export const TourForm = () => {
                     onChange={(dates) => setFormData({ ...formData, dates })}
                 />
 
+                <DiscountInput
+                    discount={formData.discount}
+                    onChange={(discount) => setFormData({ ...formData, discount })}
+                />
+
+
                 <LocationsInput
                     locations={formData.locations}
                     onChange={(locations) => setFormData({ ...formData, locations })}
                 />
 
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
-                        Типа тура
-                    </label>
-                    <OptionsSelect
-                        value={formData.type}
-                        options={typeTourOptions}
-                        onChange={(option: TypeTour) => setFormData({ ...formData, type: option })}
-                    />
+                <Stack direction='column' gap='16'>
+                    <Text size='18' font='geometria500'>
+                        Опции тура
+                    </Text>
+
+                    <Stack gap="24">
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Регион
+                            </label>
+                            <OptionsSelect
+                                value={formData.region}
+                                options={regionsOptions}
+                                isTransleteText
+                                onChange={(option: Regions) => setFormData({ ...formData, region: option })}
+                            />
+                        </Stack>
+
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Страна
+                            </label>
+                            <OptionsSelect
+                                value={formData.counrty}
+                                options={countriesOptions}
+                                isTransleteText
+                                onChange={(option: Countries) => setFormData({ ...formData, counrty: option })}
+                            />
+                        </Stack>
+                    </Stack>
+
+                    <Stack gap="24">
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Типа тура
+                            </label>
+                            <OptionsSelect
+                                value={formData.type}
+                                options={typeTourOptions}
+                                onChange={(option: TypeTour) => setFormData({ ...formData, type: option })}
+                            />
+                        </Stack>
+
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Направление
+                            </label>
+                            <OptionsSelect
+                                value={formData.direction}
+                                options={directionOptions}
+                                onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option })}
+                            />
+                        </Stack>
+                    </Stack>
+
+                    <Stack gap="24">
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Уровень активности
+                            </label>
+                            <OptionsSelect
+                                value={formData.activity}
+                                options={activityOptions}
+                                onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
+                            />
+                        </Stack>
+
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Уровень комфорта
+                            </label>
+                            <OptionsSelect
+                                value={formData.comfort}
+                                options={comfortOptions}
+                                onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
+                            />
+                        </Stack>
+                    </Stack>
                 </Stack>
 
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
-                        Направление
-                    </label>
-                    <OptionsSelect
-                        value={formData.direction}
-                        options={directionOptions}
-                        onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option })}
-                    />
-                </Stack>
-
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
-                        Уровень активности
-                    </label>
-                    <OptionsSelect
-                        value={formData.activity}
-                        options={activityOptions}
-                        onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
-                    />
-                </Stack>
-
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
-                        Уровень комфорта
-                    </label>
-                    <OptionsSelect
-                        value={formData.comfort}
-                        options={comfortOptions}
-                        onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
-                    />
-                </Stack>
-
-                <Stack direction='column' gap="8">
-                    <label className={styles.label}>
+                <Stack direction='column' gap="16">
+                    <Text size='18' font='geometria500'>
                         Описание тура
-                    </label>
+                    </Text>
+
                     <div className={styles.editor_container}>
                         <RichEditor
                             value={formData.description}
@@ -150,7 +199,12 @@ export const TourForm = () => {
                     onChange={(hotels) => setFormData({ ...formData, hotels })}
                 />
 
-                <AdminMap />
+                <Stack direction='column' gap="16">
+                    <Text size='18' font='geometria500'>
+                        Карта тура
+                    </Text>
+                    <AdminMap />
+                </Stack>
             </form>
         </Stack>
     );

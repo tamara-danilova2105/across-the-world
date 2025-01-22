@@ -15,7 +15,7 @@ export  const LocationsInput = (props: LocationsInputProps) => {
             <Text size='18' font='geometria500'>
                 Локации
             </Text>
-            <Stack gap='16' max className={styles.container}>
+            <Stack gap='16' max>
                 <Stack direction='column' max>
                     <label className={styles.label}>Место начала</label>
                     <input

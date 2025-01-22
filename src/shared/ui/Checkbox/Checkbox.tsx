@@ -39,7 +39,6 @@ export const Checkbox = ({
             <span className={getStyles(styles.checkmark, {[styles.checked]: checked}, [])}>
                 {checked && <CheckmarkIcon />}
             </span>
-
         </Stack>
-    )
-}
+    );
+};
