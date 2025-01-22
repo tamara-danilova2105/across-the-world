@@ -3,7 +3,6 @@ import { endpoints } from "@/shared/api/endpoints";
 import { createApiConfig } from "@/shared/api/helper";
 import { Tour } from "@/widgets/OurTours/lib/data";
 import { createQueryString } from "./queryUtils";
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
 
 interface TourTag {
     type: 'Tour';
@@ -41,11 +40,11 @@ interface GetToursParams {
 const TOURS_TAG: TourTag[] = [{ type: 'Tour', id: 'Tours'}];
 
 const toursApi = api.injectEndpoints({
-    endpoints:(build: EndpointBuilder<any, TourTag[], 'api'>) => ({
+    endpoints:(build) => ({
         getAllTours: build.query({
             query: (params: GetToursParams) => createApiConfig({
                 method: 'GET',
-                url: `${endpoints.path.tours}/${params.limit}/${params.page}?${createQueryString(params.filters)}`,
+                url: `${endpoints.path.tours}/${params.limit}/${params.page}?${createQueryString(params.filters || {})}`,
             }),
             providesTags: () => TOURS_TAG,
         }),
