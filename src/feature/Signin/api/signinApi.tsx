@@ -7,14 +7,14 @@ interface AdminTag {
     id: string; 
 }
 
-interface Admin {
-    login: string;
-    email: string;
-    password: string | number;
-}
-
 interface ResetPasswordBody {
     email: string;
+}
+
+interface Admin {
+    login: string;
+    email?: ResetPasswordBody;
+    password: string | number;
 }
 
 interface RefreshPasswordBody {
@@ -37,7 +37,7 @@ const adminApi = api.injectEndpoints({
                     url: `${endpoints.admin.login}`,
                     body,
                 }),
-            providesTags: () => ADMIN_TAG,
+            providesTags:() => ADMIN_TAG,
         }),
         resetPassword: build.mutation({
             query: (body: ResetPasswordBody) =>
