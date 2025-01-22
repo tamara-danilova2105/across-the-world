@@ -3,6 +3,7 @@ import { LogoFont } from "@/shared/assets/svg/logoFont";
 import { Stack } from "@/shared/ui/Stack";
 import { Input } from "@/shared/ui/Input";
 import styles from './SigninForm.module.scss';
+import { Button } from "@/shared/ui/Button/Button";
 
 export const SigninForm = () => {
     return (
@@ -21,9 +22,12 @@ export const SigninForm = () => {
             />
             <Input 
                 label="Пароль"
-                placeholder='введите Пароль' 
+                placeholder='введите пароль' 
                 type="password"
             />
+            <Button>
+                Войти
+            </Button>
         </form>
     );
 };
