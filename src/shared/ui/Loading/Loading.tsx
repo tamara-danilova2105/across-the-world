@@ -6,28 +6,25 @@ import styles from './Loading.module.scss';
 type Variant = 'blue' | 'white' | 'pink' | 'peach';
 
 interface LoadingProps {
-    width?: number;
-    height?: number;
+    width?: string;
+    height?: string;
     variant?: Variant;
     }
 
-    
-
 export const Loading = ({
-    width = 24,
-    height = 24,
+    width = '24',
+    height = '24',
     variant = 'blue',
     }: LoadingProps) => {
 
-    console.log(variant)
-
-
     return (
         <Stack
+            justify='center'
+            align='center'
             className={styles.loader_container}
-            style={{ width, height }}
         >
-            <Loader className={getStyles(styles.rotating_loader, {}, [styles[variant]])}/>
+            <Loader className={getStyles(styles.rotating_loader, {}, [styles[variant]])}
+                    style={{ width, height }}/>
         </Stack>
     )
 }

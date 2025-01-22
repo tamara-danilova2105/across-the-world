@@ -69,8 +69,8 @@ export const dataRegionGroups: DataRegionProps = {
             { _id: 1, value: 'North_Caucasus', label: 'Северный Кавказ' },
             { _id: 2, value: 'Kamchatka', label: 'Камчатка' },
             { _id: 3, value: 'Baikal', label: 'Байкал' },
-            { _id: 11, value: 'Kalmykia', label: 'Калмыкия' },
-            { _id: 12, value: 'Karelia', label: 'Карелия' },
+            { _id: 4, value: 'Kalmykia', label: 'Калмыкия' },
+            { _id: 5, value: 'Karelia', label: 'Карелия' },
         ]
     },
     Middle_East:{
@@ -104,11 +104,11 @@ export const dataRegionGroups: DataRegionProps = {
             label: 'Южная Америка'
         },
         country: [
-            { _id: 2, value: 'Argentina', label: 'Аргентина' },
-            { _id: 3, value: 'Brazil', label: 'Бразилия' },
-            { _id: 4, value: 'Peru', label: 'Перу' },
-            { _id: 5, value: 'Chile', label: 'Чили' },
-            { _id: 1, value: 'Bolivia', label: 'Боливия' },
+            { _id: 1, value: 'Argentina', label: 'Аргентина' },
+            { _id: 2, value: 'Brazil', label: 'Бразилия' },
+            { _id: 3, value: 'Peru', label: 'Перу' },
+            { _id: 4, value: 'Chile', label: 'Чили' },
+            { _id: 5, value: 'Bolivia', label: 'Боливия' },
         ]
     },
     Africa:{

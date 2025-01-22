@@ -17,31 +17,36 @@ $colors: (
     "peach": (primary: $peach, secondary: $secondary-peach)
 );
 
-.rotating_loader {
+.loader_container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
-    @each $name, $color-pair in $colors {
-        $primary: map.get($color-pair, primary);
-        $secondary: map.get($color-pair, secondary);
+    .rotating_loader {
+        width: 100%;
+        height: 100%;
 
-        &.#{$name} {
-            path {
-                color: $primary;
-                animation: fade-in-#{$name} 2s infinite;
+        @each $name, $color-pair in $colors {
+            $primary: map.get($color-pair, primary);
+            $secondary: map.get($color-pair, secondary);
 
-                @for $i from 1 through 8 {
-                    &:nth-child(#{$i}) {
-                        animation-delay: 0.25s * ($i - 1);
+            &.#{$name} {
+                path {
+                    color: $primary;
+                    animation: fade-in-#{$name} 2s infinite;
+
+                    @for $i from 1 through 8 {
+                        &:nth-child(#{$i}) {
+                            animation-delay: 0.25s * ($i - 1);
+                        }
                     }
-                }
 
-                @keyframes fade-in-#{$name} {
-                    0%, 100% {
-                        color: $secondary;
-                    }
-                    50% {
-                        color: $primary;
+                    @keyframes fade-in-#{$name} {
+                        0%, 100% {
+                            color: $secondary;
+                        }
+                        50% {
+                            color: $primary;
+                        }
                     }
                 }
             }

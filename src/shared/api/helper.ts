@@ -9,7 +9,7 @@ export const createApiConfig = ({
     url,
     body,
 }: CreateApiConfigProps) => ({
-    url,
     method,
-    ...(body && { body }),
-});
+    url,
+    ...(body && { body })
+})

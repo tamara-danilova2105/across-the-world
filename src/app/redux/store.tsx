@@ -1,7 +1,8 @@
 import filterSlice from "@/feature/FilterBar/model/filterSlice";
 import sortSlice from "@/feature/SortTour/model/sortSlice";
+import { api } from "@/shared/api/api";
 import { combineReducers, configureStore} from "@reduxjs/toolkit";
-import { api } from "../../shared/api/api";
+
 
 const rootReducer = combineReducers({
     [api.reducerPath]: api.reducer,

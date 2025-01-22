@@ -58,15 +58,27 @@ export const FilterRange = ({
                         step={step}
                         value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues} 
                         onChange={handleSliderChange}
-                        renderThumb={(props) => <div {...props} className={styles.thumb} />}
-                        renderTrack={(props, state) => (
-                            <div
-                                {...props}
-                                className={`${styles.track} ${
-                                    state.index === 1 ? styles.trackMax : styles.trackMin
-                                }`}
-                            />
-                        )}
+                        renderThumb={(props) => {
+                            const { key, ...restProps } = props;
+                            return (
+                                <div 
+                                    {...restProps} 
+                                    aria-labelledby="price-slider"
+                                    key={key} 
+                                    className={styles.thumb} 
+                                />
+                            )
+                        }}
+                        renderTrack={(props, state) => {
+                            const { key, ...restProps } = props;
+                            return (
+                                <div
+                                    {...restProps}
+                                    key={key}
+                                    className={`${styles.track} ${state.index === 1 ? styles.trackMax : styles.trackMin}`}
+                                />
+                            );
+                        }}
                         className={styles.slider}
                     />
                 </form>
