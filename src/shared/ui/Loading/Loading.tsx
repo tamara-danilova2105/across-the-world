@@ -6,14 +6,14 @@ import styles from './Loading.module.scss';
 type Variant = 'blue' | 'white' | 'pink' | 'peach';
 
 interface LoadingProps {
-    width?: number;
-    height?: number;
+    width?: string;
+    height?: string;
     variant?: Variant;
     }
 
 export const Loading = ({
-    width = 24,
-    height = 24,
+    width = '24',
+    height = '24',
     variant = 'blue',
     }: LoadingProps) => {
 

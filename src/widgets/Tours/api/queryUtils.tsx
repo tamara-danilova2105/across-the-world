@@ -1,4 +1,6 @@
-export const createQueryString = (params) => {
+import { Filters } from "./toursApi"
+
+export const createQueryString = (params: Filters) => {
     const query = new URLSearchParams()
 
     if (params?.sort) {

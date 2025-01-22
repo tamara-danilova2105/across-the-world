@@ -15,5 +15,5 @@ export const api = createApi({
         },
     }),
     tagTypes: ['Tour'],
-    endpoints: (builder) => ({})
+    endpoints: () => ({})
 });
