@@ -27,7 +27,7 @@ export interface Filters {
     }
     sort?: {
         label: string; 
-        option: string; 
+        option: string;  
     }
 }
 
