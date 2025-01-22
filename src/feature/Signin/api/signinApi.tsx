@@ -37,7 +37,7 @@ const adminApi = api.injectEndpoints({
                     url: `${endpoints.admin.login}`,
                     body,
                 }),
-            providesTags: (): AdminTag[] => ADMIN_TAG,
+            invalidatesTags: ADMIN_TAG,
         }),
         resetPassword: build.mutation({
             query: (body: ResetPasswordBody) =>
