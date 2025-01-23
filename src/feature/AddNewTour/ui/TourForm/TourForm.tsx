@@ -90,12 +90,12 @@ export const TourForm = () => {
                     onChange={(locations) => setFormData({ ...formData, locations })}
                 />
 
-                <Stack direction='column' gap='16'>
+                <Stack direction='column' gap='16' max>
                     <Text size='18' font='geometria500'>
                         Опции тура
                     </Text>
 
-                    <Stack gap="24">
+                    <Stack gap="24" max>
                         <Stack direction='column' gap="8" max>
                             <label className={styles.label}>
                                 Регион
@@ -121,7 +121,7 @@ export const TourForm = () => {
                         </Stack>
                     </Stack>
 
-                    <Stack gap="24">
+                    <Stack gap="24" max>
                         <Stack direction='column' gap="8" max>
                             <label className={styles.label}>
                                 Типа тура
@@ -145,7 +145,7 @@ export const TourForm = () => {
                         </Stack>
                     </Stack>
 
-                    <Stack gap="24">
+                    <Stack gap="24" max>
                         <Stack direction='column' gap="8" max>
                             <label className={styles.label}>
                                 Уровень активности
