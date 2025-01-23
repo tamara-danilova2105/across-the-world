@@ -2,13 +2,15 @@
 @use '@/app/styles/media-queries' as *;
 
 .cookie_banner {
-    z-index: 1000;
-    background-color: var(--peach-color);
-    padding: 20px;
     @include mixin.decorate-style;
 
-    position: fixed;
-    bottom: 0;
+    & {
+        z-index: 1000;
+        background-color: var(--peach-color);
+        padding: 20px;
+        position: fixed;
+        bottom: 0;
+    }
 
     svg {
         width: 150px;
