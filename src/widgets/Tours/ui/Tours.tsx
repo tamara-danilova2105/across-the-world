@@ -82,6 +82,7 @@ export const Tours = () => {
             <Stack 
                 gap="32"
                 align='center'
+                wrap
                 className={styles.our_tours}
             >
                 {dataTours.map((tour) => (

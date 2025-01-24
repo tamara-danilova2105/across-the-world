@@ -1,18 +1,14 @@
-@use '@/app/styles/media-queries' as media;
+@use '@/app/styles/media-queries' as *;
 
 .filterbar {
     width: 40%;
 
-    @include media.desktop-m {
+    @include desktop-m {
         width: 70%;
     }
 
-    @include media.tablet-l {
+    @include tablet-l {
         width: 100%;
-    }
-
-    @include media.mobile-xl {
-        flex-wrap: wrap;
     }
 
     > button:nth-child(1) {

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { X, Upload } from 'lucide-react';
 import styles from './ImageUploader.module.scss';
 import { Images } from '@/shared/types/types';
+import { Stack } from '@/shared/ui/Stack';
 
 
 interface ImageUploaderProps {
@@ -44,8 +45,8 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.imagesWrapper}>
+        <Stack direction='column' gap='16'>
+            <Stack gap='16' wrap>
                 {images.map(image => (
                     <div key={image._id} className={styles.imageContainer}>
                         <img
@@ -72,7 +73,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                         <span className={styles.addButtonText}>Добавить фото</span>
                     </button>
                 )}
-            </div>
+            </Stack>
 
             <input
                 ref={fileInputRef}
@@ -86,6 +87,6 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             <p className={styles.instructions}>
                 Вы можете добавить до {maxImages} фото
             </p>
-        </div>
+        </Stack>
     );
 };

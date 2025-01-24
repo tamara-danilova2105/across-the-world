@@ -23,6 +23,7 @@ export const Filterbar = (props: FilterbarProps) => {
             gap="16" 
             align="center"
             justify='end' 
+            wrap
             className={styles.filterbar}
         >
             {filters.map(filter => (

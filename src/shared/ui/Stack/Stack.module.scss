@@ -18,6 +18,10 @@ $gaps: (
     display: flex;
 }
 
+.wrap {
+    flex-wrap: wrap;
+}
+
 .justifyStart {
     justify-content: flex-start;
 }

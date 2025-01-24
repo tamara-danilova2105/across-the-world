@@ -51,6 +51,7 @@ export interface FlexProps extends DivProps {
     tag?: StackTag;
     width?: string | number; 
     height?: string | number;
+    wrap?: boolean;
 }
 
 export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
@@ -65,6 +66,7 @@ export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
         tag = 'div',
         width,
         height,
+        wrap,
         ...otherProps
     } = props;
 
@@ -90,6 +92,7 @@ export const Stack = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
 
     const mods: Mods = {
         [styles.max]: max,
+        [styles.wrap]: wrap,
     };
 
     return (
