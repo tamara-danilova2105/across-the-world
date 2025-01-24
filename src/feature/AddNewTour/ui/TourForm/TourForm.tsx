@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ActivityLevel, ComfortType, Countries, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
-import { AdminMap } from "@/entities/Mapbox";
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
@@ -12,6 +11,7 @@ import { HotelsInput } from "../HotelsInput/HotelsInput";
 import styles from './TourForm.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { DiscountInput } from "../DiscountInput/DiscountInput";
+import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -81,7 +81,7 @@ export const TourForm = () => {
                     <Text size='18' font='geometria500'>
                         Обложка тура
                     </Text>
-                    
+
                 </Stack>
 
                 <DateRangeInput
@@ -209,12 +209,10 @@ export const TourForm = () => {
                     onChange={(hotels) => setFormData({ ...formData, hotels })}
                 />
 
-                <Stack direction='column' gap="16">
-                    <Text size='18' font='geometria500'>
-                        Карта тура
-                    </Text>
-                    <AdminMap />
-                </Stack>
+                <MapMarkerInput
+                    markers={formData.mapMarker}
+                    onChange={(markers) => setFormData({ ...formData, mapMarker: markers })}
+                />
             </form>
         </Stack>
     );

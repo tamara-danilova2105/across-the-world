@@ -48,6 +48,11 @@ export interface Details {
     notIncluded: string;
 }
 
+export interface MapMarker {
+    id: string;
+    coordinates: number[];
+};
+
 export interface Tour {
     _id: string;
     type: TypeTour;
@@ -68,6 +73,7 @@ export interface Tour {
     description: string;
     program: DayProgram[],
     hotels: Image[],
+    mapMarker?: MapMarker[]
 }
 
 export const dataTours: Tour[] = [
@@ -526,6 +532,28 @@ export const dataTours: Tour[] = [
                 alt: 'отель'
             },
         ],
+        mapMarker: [
+            {
+                id: "location-1733329476113",
+                coordinates: [-58.447933381645925, -34.638358928286344],
+            },
+            {
+                id: "location-1733329480096",
+                coordinates: [-68.319650307479, -54.837934769449866],
+            },
+            {
+                id: "location-1733329485192",
+                coordinates: [-72.28162600227157, -50.32867882685762],
+            },
+            {
+                id: "location-1733329486528",
+                coordinates: [-73.09860435931529, -51.04907697034242],
+            },
+            {
+                id: "location-1733329493248",
+                coordinates: [-70.60210248986168, -33.327769692886505],
+            }
+        ]
     },
     {
         _id: "6",
