@@ -1,0 +1,10 @@
+@use '@/app/styles/mixin' as *;
+
+.main {
+    @include section-style;
+
+    & {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+}

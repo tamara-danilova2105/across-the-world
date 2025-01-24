@@ -1,0 +1,165 @@
+@use '@/app/styles/media-queries' as media;
+
+.cardBlogsContainer {
+    position: relative;
+    width: auto;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: var(--box-shadow);
+    height: 500px;
+
+
+    @include media.tablet-l {
+        width: auto;
+    }
+
+    @include media.mobile-l {
+        height: auto;
+        padding: 20px;
+        height: 450px;
+    }
+
+    .read_more {
+        position: absolute;
+        padding: 30px;
+        bottom: 0;
+        right: 0;
+
+        @include media.mobile-l {
+            padding: 20px;
+        }
+    }
+
+    > div { 
+        position: relative;
+
+        .imagesContainer {
+            position: relative; 
+
+            @include media.mobile-xl {
+                display: none;
+            }
+    
+            img {
+                border-radius: 24px;
+                width: 360px;
+                box-shadow: var(--box-shadow);
+            }
+    
+            p {
+                position: absolute;
+                border-radius: 16px 16px 0 0;
+                background-color: var(--blue-color);
+                color: var(--white-color);
+                border: 3.5px solid var(--white-color);
+                border-bottom: none;
+                padding: 10px 20px;
+                bottom: 0; 
+            }
+        }
+    
+        > div:nth-child(2) {
+            position: relative;
+            width: 400px;
+
+            @include media.mobile-l {
+                width: 100%;
+            }
+
+            .anotherImage {
+                width: 100%;
+                height: 130px;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                position: relative;
+                box-shadow: var(--box-shadow);
+
+                p {
+                    display: none;
+                }
+
+                img {
+                    flex: 1 1 calc(33%); 
+                    max-width: calc(34%);
+                    object-fit: cover;
+                }
+
+                @include media.tablet-l {
+                    height: 120px;
+                }
+
+                @include media.mobile-xl {
+                    height: 185px;
+
+                    p {
+                        display: block;
+                        position: absolute;
+                        right: -2px;
+                        top: 0;
+                        border-radius: 0 0 0 16px;
+                        background-color: var(--blue-color);
+                        color: var(--white-color);
+                        border: 2px solid var(--white-color);
+                        border-top: none;
+                        padding: 5px 10px;
+                    }
+                    img {
+                        max-width: 50%;
+                        :last-child {
+                            display: none;
+                        }
+                    }
+                }
+
+                @include media.mobile-s {
+                    height: 150px;
+                }
+            }
+
+            .textContainer {
+                @include media.mobile-l {
+                    gap: var(--gap-m);
+                }
+                :nth-child(1) {
+                    @include media.mobile-l {
+                        font-size: var(--font-size-18);
+                    }
+                    @include media.mobile-l {
+                        font-weight: var(--font-family-geometria600);
+                    }
+                }
+                .description {
+                    text-indent: var(--text-indent);
+                    text-align: justify;
+                    height: 110px;
+                    line-height: 30px;
+    
+                    @include media.mobile-xl {
+                        height: 150px;
+                    }
+
+                    @include media.mobile-l {
+                        font-size: var(--font-size-16);
+                    }
+
+                    @include media.mobile-m {
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.pink {
+        background: var(--pink-opacity20);
+    }
+    
+    &.peach {
+        background: var(--peach-opacity20);
+    }
+
+    &.white {
+        background: var(--white-color);
+    }
+}
+

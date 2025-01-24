@@ -7,6 +7,7 @@ export const getRouteToursDetails = (region: string, id: string) => `/tours/${re
 export const getRouteTestimonials = () => '/testimonials';
 export const getRoutePrivacyPolicy = () => '/privacy-policy';
 export const getRouteSignin = () => '/signin';
+export const getRouteRefreshPassword = () => '/refresh-password/:resetToken';
 export const getRouteAdmin = () => '/admin';
 export const getRouteAdminTours = () => '/admin/tours';
 export const getRouteAdminToursCreate = () => '/admin/tours/create';

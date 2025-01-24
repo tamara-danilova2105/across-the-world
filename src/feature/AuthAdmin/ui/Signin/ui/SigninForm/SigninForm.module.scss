@@ -1,0 +1,33 @@
+.signin_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-s);
+    width: 500px;
+
+    input {
+        border: 1px solid var(--blue-color);
+    }
+
+    .error {
+        color: var(--error-color);
+    }
+
+    .password {
+        position: relative;
+        width: 100%;
+
+        .password_btn {
+            display: flex;
+            background: none;
+            position: absolute;
+            top: 40%;
+            right: 24px;
+    
+            svg {
+                color: var(--blue-color);
+            }
+        }
+    }
+}

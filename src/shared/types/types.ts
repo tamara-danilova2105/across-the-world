@@ -4,3 +4,8 @@ export interface Image {
     alt: string;
     file?: File;
 };
+
+export interface Function {
+    handleChangeState?: () => void;
+    showExplain?: () => void;
+}

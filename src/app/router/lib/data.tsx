@@ -14,6 +14,7 @@ import {
     getRouteMain, 
     getRoutePrivacyPolicy, 
     getRouteSignin, 
+    getRouteRefreshPassword,
     getRouteTestimonials, 
     getRouteTours, 
     getRouteToursDetails
@@ -26,6 +27,8 @@ import { AdminPage } from "@/pages/AdminPage";
 import { SigninPage } from "@/pages/SigninPage";
 import { CreateTourPage } from "@/pages/CreateTourPage";
 import { CreateNewsPage } from "@/pages/CreateNewsPage";
+import { RefreshPasswordPage } from "@/pages/RefreshPasswordPage";
+import { BlogsPage } from "@/pages/BlogsPage/index";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -49,6 +52,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.blog]: {
         path: getRouteBlog(),
         title: 'Блог',
+        page: <BlogsPage/>,
     },
     [AppRouters.blog_details]: {
         path: getRouteBlogDetails(':id'),
@@ -68,6 +72,10 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.signin]: {
         path: getRouteSignin(),
         page: <SigninPage />
+    },
+    [AppRouters.refresh_password]: {
+        path: getRouteRefreshPassword(),
+        page: <RefreshPasswordPage />
     },
     [AppRouters.admin]: {
         path: getRouteAdmin(),
