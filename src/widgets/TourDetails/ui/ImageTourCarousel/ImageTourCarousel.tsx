@@ -1,5 +1,5 @@
 import { useSlider } from "@/shared/hooks/useSlider";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 import styles from './ImageTourCarousel.module.scss';
 import { Stack } from "@/shared/ui/Stack";
 import { ArrowIcon } from "@/shared/assets/svg/arrowIcons";
@@ -7,7 +7,7 @@ import { Text } from "@/shared/ui/Text";
 
 interface ImageTourCarouselProps {
     index: number;
-    images: Images[] //TODO
+    images: Image[] //TODO
 }
 
 export const ImageTourCarousel = (props: ImageTourCarouselProps) => {

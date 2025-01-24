@@ -1,16 +1,16 @@
 import { useCallback } from "react";
 import { CustomeSwiper } from "@/entities/CustomeSwiper";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 import styles from './ImageTourSwiper.module.scss';
 
 interface ImageTourSwiperProps {
-    images: Images[];
+    images: Image[];
 };
 
 export const ImageTourSwiper = (props: ImageTourSwiperProps) => {
     const { images } = props;
 
-    const renderItem = useCallback((image: Images) => 
+    const renderItem = useCallback((image: Image) => 
         <img 
             src={image.src} alt={image.alt} 
             className={styles.swiper_img} 

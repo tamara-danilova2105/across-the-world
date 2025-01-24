@@ -7,5 +7,5 @@ export interface Image {
 
 export interface Function {
     handleChangeState?: () => void;
-    showExplain?: () => void;
+    showExplain?: () => void | undefined;
 }

@@ -30,7 +30,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : Function
             className={styles.forgotPassword}
         >
             {error && <Text className={styles.error}>
-                {error?.data?.message}
+                {error.data.message}
             </Text>}
             <Input 
                 label='Почта'

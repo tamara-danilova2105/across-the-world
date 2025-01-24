@@ -43,7 +43,7 @@ export const SigninForm = () => {
             onSubmit={handleSubmit(onSubmit)}
         >
             {error && <Text className={styles.error}>
-                {error?.data?.message}
+                {error.data.message}
             </Text>}
             <Input 
                 label="Логин" 

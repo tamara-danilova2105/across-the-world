@@ -17,7 +17,7 @@ export const textRegex = /^[а-яА-ЯёЁ\s]+$|^[a-zA-Z\s]+$/;
 export const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
 export const numberRegex = /^[0-9]+$/;
 
-export const validatePassword = (password: string) => {
+export const validatePassword = (password: string): string | null => {
     if (!password) {
         return data.required;
     }
@@ -33,5 +33,5 @@ export const validatePassword = (password: string) => {
     if (!/\d/.test(password)) {
         return data.errors.passwordMissingDigit;
     }
-    return null; 
-};
+    return null;
+}
