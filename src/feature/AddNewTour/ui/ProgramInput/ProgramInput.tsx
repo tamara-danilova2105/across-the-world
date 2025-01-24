@@ -4,7 +4,8 @@ import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
 import { RichEditor } from "../RichEditor/RichEditor";
 import styles from './ProgramInput.module.scss';
-import { ImageUploader } from "@/entities/ImageUploader";
+import { ImageUploader } from "../ImageUploader/ImageUploader";
+import { Images } from "@/shared/types/types";
 
 interface ProgramInputProps {
     program: DayProgram[];
@@ -28,32 +29,18 @@ export const ProgramInput = (props: ProgramInputProps) => {
         onChange(program.filter((_, i) => i !== index));
     };
 
-    const addImage = (dayIndex: number) => {
+    const handleImagesChange = (dayIndex: number, newImages: Images[]) => {
         const newProgram = [...program];
-        if (!newProgram[dayIndex].images) {
-            newProgram[dayIndex].images = [];
-        }
-        newProgram[dayIndex].images?.push({ _id: '', src: '', alt: '' });
+        newProgram[dayIndex] = {
+            ...newProgram[dayIndex],
+            images: newImages.map(img => ({
+                _id: img._id,
+                src: img.src,
+                file: img.file,
+                alt: img.alt || '',
+            }))
+        };
         onChange(newProgram);
-    };
-
-    const updateImage = (dayIndex: number, imageIndex: number, field: 'src' | 'alt', value: string) => {
-        const newProgram = [...program];
-        if (newProgram[dayIndex].images) {
-            newProgram[dayIndex].images![imageIndex] = {
-                ...newProgram[dayIndex].images![imageIndex],
-                [field]: value,
-            };
-            onChange(newProgram);
-        }
-    };
-
-    const removeImage = (dayIndex: number, imageIndex: number) => {
-        const newProgram = [...program];
-        if (newProgram[dayIndex].images) {
-            newProgram[dayIndex].images = newProgram[dayIndex].images!.filter((_, i) => i !== imageIndex);
-            onChange(newProgram);
-        }
     };
 
     return (
@@ -110,40 +97,16 @@ export const ProgramInput = (props: ProgramInputProps) => {
                             className={styles.inputGroup}
                         >
                             <label className={styles.label}>Фотографии</label>
-                            {day.images?.map((image, imageIndex) => (
-                                <Stack key={imageIndex} align='center' gap="16" max>
-                                    <ImageUploader
-                                        imageUrl={image.src}
-                                        onImageChange={(file) => {
-                                            if (file) {
-                                                const imageUrl = URL.createObjectURL(file);
-                                                updateImage(dayIndex, imageIndex, 'src', imageUrl);
-                                            }
-                                        }}
-                                    />
-                                    <input
-                                        type="text"
-                                        value={image.alt}
-                                        onChange={(e) => updateImage(dayIndex, imageIndex, 'alt', e.target.value)}
-                                        placeholder="Описание изображения"
-                                        className={styles.imageInput}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => removeImage(dayIndex, imageIndex)}
-                                        className={styles.deleteButton}
-                                    >
-                                        ✕
-                                    </button>
-                                </Stack>
-                            ))}
-                            <Button
-                                type="button"
-                                color='transparent'
-                                onClick={() => addImage(dayIndex)}
-                            >
-                                + Добавить фото
-                            </Button>
+                            <ImageUploader
+                                images={day.images?.map(img => ({
+                                    _id: img._id,
+                                    src: img.src,
+                                    file: img.file,
+                                    alt: img.alt
+                                })) || []}
+                                onChange={(images) => handleImagesChange(dayIndex, images)}
+                                maxImages={3}
+                            />
                         </Stack>
                     </Stack>
                 </div>

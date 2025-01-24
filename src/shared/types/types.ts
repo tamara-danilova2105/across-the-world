@@ -2,4 +2,5 @@ export interface Images {
     _id: string;
     src: string;
     alt: string;
-}; //TODO
+    file?: File;
+}; //TODO - в единственном числе

@@ -51,6 +51,9 @@ export const TourForm = () => {
         hotels: [],
     });
 
+    console.log(formData);
+    
+
     return (
         <Stack
             direction='column' gap="24"
