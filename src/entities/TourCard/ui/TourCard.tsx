@@ -17,7 +17,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
     const { 
         tour, 
         dates,
-        image, 
+        imageCover, 
         discount, 
         region,
         _id 
@@ -35,7 +35,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                 gap="16"
             >
                 <Stack className={styles.imageContainer}>
-                    <img src={image} alt={tour} draggable={false} />
+                    <img src={imageCover} alt={tour} draggable={false} />
                 </Stack>
                 
                 <Stack 

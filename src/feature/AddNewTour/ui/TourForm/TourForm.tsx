@@ -40,7 +40,7 @@ export const TourForm = () => {
             included: '',
             notIncluded: '',
         },
-        image: '',
+        imageCover: '',
         direction: 'Россия',
         region: 'Russia',
         counrty: 'Kamchatka',
@@ -52,7 +52,7 @@ export const TourForm = () => {
     });
 
     console.log(formData);
-    
+
 
     return (
         <Stack
@@ -75,6 +75,13 @@ export const TourForm = () => {
                         placeholder="Например: Южная Америка: Патагония"
                         className={styles.input}
                     />
+                </Stack>
+
+                <Stack direction='column' gap="16">
+                    <Text size='18' font='geometria500'>
+                        Обложка тура
+                    </Text>
+                    
                 </Stack>
 
                 <DateRangeInput

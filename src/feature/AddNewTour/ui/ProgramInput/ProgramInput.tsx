@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui/Button";
 import { RichEditor } from "../RichEditor/RichEditor";
 import styles from './ProgramInput.module.scss';
 import { ImageUploader } from "../ImageUploader/ImageUploader";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 
 interface ProgramInputProps {
     program: DayProgram[];
@@ -29,7 +29,7 @@ export const ProgramInput = (props: ProgramInputProps) => {
         onChange(program.filter((_, i) => i !== index));
     };
 
-    const handleImagesChange = (dayIndex: number, newImages: Images[]) => {
+    const handleImagesChange = (dayIndex: number, newImages: Image[]) => {
         const newProgram = [...program];
         newProgram[dayIndex] = {
             ...newProgram[dayIndex],

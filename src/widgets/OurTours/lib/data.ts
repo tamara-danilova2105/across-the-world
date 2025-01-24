@@ -7,7 +7,7 @@ import ingushetia from '@/shared/assets/png/Ингушетия.jpg';
 import baikalOne from '@/shared/assets/png/Байкал1.jpg';
 import baikalTwo from '@/shared/assets/png/Байкал2.jpg';
 import azerbadgan from '@/shared/assets/png/Азейрбаджан.jpg';
-import { Images } from '@/shared/types/types';
+import { Image } from '@/shared/types/types';
 
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
 export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
@@ -39,7 +39,7 @@ export interface Locations {
 
 export interface DayProgram {
     title: string;
-    images?: Images[]; //TODO
+    images?: Image[]; //TODO
     details: string;
 };
 
@@ -50,12 +50,12 @@ export interface Details {
 
 export interface Tour {
     _id: string;
-    type: TypeTour; //TODO
+    type: TypeTour;
     tour: string;
-    dates: DateTours[]; //TODO
+    dates: DateTours[]; 
     locations: Locations,
     details: Details,
-    image: string; //TODO
+    imageCover: string; 
     direction: DirectionTour;
     region: Regions,
     counrty: Countries,
@@ -67,7 +67,7 @@ export interface Tour {
     comfort: ComfortType;
     description: string;
     program: DayProgram[],
-    hotels: Images[],
+    hotels: Image[],
 }
 
 export const dataTours: Tour[] = [
@@ -96,7 +96,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: kamchatkaOne, //TODO
+        imageCover: kamchatkaOne, //TODO
         direction: "Россия",
         region: 'Russia',
         counrty: 'Kamchatka',
@@ -135,7 +135,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: kamchatkaTwo, //TODO
+        imageCover: kamchatkaTwo, //TODO
         direction: "Россия",
         region: 'Russia',
         counrty: 'Kamchatka',
@@ -174,7 +174,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: southAmericaOne, //TODO
+        imageCover: southAmericaOne, //TODO
         direction: "Заграница",
         region: 'South_America',
         counrty: 'Argentina',
@@ -209,7 +209,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: dagestan,
+        imageCover: dagestan,
         direction: "Россия",
         region: 'Russia',
         counrty: 'North_Caucasus',
@@ -285,7 +285,7 @@ export const dataTours: Tour[] = [
                 </ul>
             `,
         },
-        image: southAmericaTwo, //TODO
+        imageCover: southAmericaTwo, //TODO
         direction: "Заграница",
         region: 'South_America',
         counrty: 'Argentina',
@@ -552,7 +552,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: ingushetia,
+        imageCover: ingushetia,
         direction: "Россия",
         region: 'Russia',
         counrty: 'North_Caucasus',
@@ -587,7 +587,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: baikalOne, //TODO
+        imageCover: baikalOne, //TODO
         direction: "Россия",
         region: 'Russia',
         counrty: 'Baikal',
@@ -622,7 +622,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: baikalTwo, //TODO
+        imageCover: baikalTwo, //TODO
         direction: "Россия",
         region: 'Russia',
         counrty: 'Baikal',
@@ -657,7 +657,7 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        image: azerbadgan, //TODO
+        imageCover: azerbadgan, //TODO
         direction: "Заграница",
         region: 'Russia',
         counrty: 'Azerbaijan',

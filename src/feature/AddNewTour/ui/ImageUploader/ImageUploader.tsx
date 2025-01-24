@@ -1,21 +1,20 @@
 import React, { useRef } from 'react';
 import { X, Upload } from 'lucide-react';
 import styles from './ImageUploader.module.scss';
-import { Images } from '@/shared/types/types';
+import { Image } from '@/shared/types/types';
 import { Stack } from '@/shared/ui/Stack';
 
 
 interface ImageUploaderProps {
-    images: Images[];
-    onChange: (images: Images[]) => void;
+    images: Image[];
+    onChange: (images: Image[]) => void;
     maxImages?: number;
 }
 
-export const ImageUploader: React.FC<ImageUploaderProps> = ({
-    images,
-    onChange,
-    maxImages = 3
-}) => {
+export const ImageUploader = (props: ImageUploaderProps) => {
+    const { images, onChange, maxImages = 3 } = props;
+    console.log(images);
+    
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +23,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         const files = event.target.files;
         if (!files) return;
 
-        const newImages: Images[] = Array.from(files).map(file => ({
+        const newImages: Image[] = Array.from(files).map(file => ({
             _id: crypto.randomUUID(),
             src: URL.createObjectURL(file),
             file,
