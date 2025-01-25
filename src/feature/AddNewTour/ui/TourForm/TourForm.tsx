@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActivityLevel, ComfortType, Countries, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
@@ -12,14 +12,16 @@ import styles from './TourForm.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { DiscountInput } from "../DiscountInput/DiscountInput";
 import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
+import { MultiSelect } from "../MultiSelect/MultiSelect";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздоровительный', 'Экскурсионный', 'Детский', 'Фототур'];
-const regionsOptions: Regions[] = ['Russia', 'Middle_East', 'Asia', 'South_America', 'Africa']
-const countriesOptions: Countries[] = [
-    'North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia',
+
+//TODO - запрос регионов делать 
+const regionsRussiaOptions = ['North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia']
+const regionsWorldOptions = [
     'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
     'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
 ];
@@ -29,7 +31,7 @@ export const TourForm = () => {
 
     const [formData, setFormData] = useState<Tour>({
         _id: '',
-        type: 'Экскурсионный',
+        types: [],
         tour: '',
         dates: [],
         locations: {
@@ -41,18 +43,14 @@ export const TourForm = () => {
             notIncluded: '',
         },
         imageCover: '',
-        direction: 'Россия',
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        direction: [],
+        regions: [],
         activity: 'Для всех',
         comfort: 'Высокий',
         description: '',
         program: [],
         hotels: [],
     });
-
-    console.log(formData);
-
 
     return (
         <Stack
@@ -105,54 +103,40 @@ export const TourForm = () => {
                         Опции тура
                     </Text>
 
-                    <Stack gap="24" max>
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Регион
-                            </label>
-                            <OptionsSelect
-                                value={formData.region}
-                                options={regionsOptions}
-                                isTransleteText
-                                onChange={(option: Regions) => setFormData({ ...formData, region: option })}
-                            />
-                        </Stack>
-
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Страна
-                            </label>
-                            <OptionsSelect
-                                value={formData.counrty}
-                                options={countriesOptions}
-                                isTransleteText
-                                onChange={(option: Countries) => setFormData({ ...formData, counrty: option })}
-                            />
-                        </Stack>
+                    <Stack direction='column' gap="8" max>
+                        <label className={styles.label}>
+                            Направление
+                        </label>
+                        <MultiSelect
+                            value={formData.direction}
+                            options={directionOptions}
+                            onChange={(option: DirectionTour[]) => setFormData({ ...formData, direction: option, regions: [] })}
+                            isSingleSelect
+                        />
                     </Stack>
 
-                    <Stack gap="24" max>
+                    {formData.direction.length !== 0 && (
                         <Stack direction='column' gap="8" max>
                             <label className={styles.label}>
-                                Типа тура
+                                {formData.direction[0] === 'Россия' ? 'Регионы' : 'Страны'}
                             </label>
-                            <OptionsSelect
-                                value={formData.type}
-                                options={typeTourOptions}
-                                onChange={(option: TypeTour) => setFormData({ ...formData, type: option })}
+                            <MultiSelect
+                                value={formData.regions}
+                                options={formData.direction[0] === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
+                                onChange={(option: string[]) => setFormData({ ...formData, regions: option })}
                             />
                         </Stack>
+                    )}
 
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Направление
-                            </label>
-                            <OptionsSelect
-                                value={formData.direction}
-                                options={directionOptions}
-                                onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option })}
-                            />
-                        </Stack>
+                    <Stack direction='column' gap="8" max>
+                        <label className={styles.label}>
+                            Типа тура
+                        </label>
+                        <MultiSelect
+                            value={formData.types}
+                            options={typeTourOptions}
+                            onChange={(option: TypeTour[]) => setFormData({ ...formData, types: option })}
+                        />
                     </Stack>
 
                     <Stack gap="24" max>

@@ -13,7 +13,6 @@ interface ImageUploaderProps {
 
 export const ImageUploader = (props: ImageUploaderProps) => {
     const { images, onChange, maxImages = 3 } = props;
-    console.log(images);
     
     const fileInputRef = useRef<HTMLInputElement>(null);
 

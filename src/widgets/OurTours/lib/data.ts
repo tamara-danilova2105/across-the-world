@@ -14,11 +14,6 @@ export type ComfortType = 'Высокий' | 'Уникальное жилье' |
 export type DirectionTour = "Россия" | "Заграница";
 export type TypeTour = 'Трекинг' | 'Ретрит / оздоровительный' | 'Экскурсионный' | 'Детский' | 'Фототур';
 
-export type Regions = 'Russia' | 'Middle_East' | 'Asia' | 'South_America' | 'Africa';
-export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' | 'Karelia' 
-                        | 'Armenia' | 'Iran' | 'Turkey' | 'Georgia' | 'Socotra' | 'Azerbaijan' | 'Uzbekistan' | 'Pakistan'
-                        | 'Japan' | 'Argentina' | 'Brazil' | 'Peru' | 'Chile' | 'Bolivia'
-
 export interface Price {
     amount: number;
     currency: "₽" | "$";
@@ -55,15 +50,14 @@ export interface MapMarker {
 
 export interface Tour {
     _id: string;
-    type: TypeTour;
+    types: TypeTour[];
     tour: string;
-    dates: DateTours[]; 
+    dates: DateTours[];
     locations: Locations,
     details: Details,
-    imageCover: string; 
-    direction: DirectionTour;
-    region: Regions,
-    counrty: Countries,
+    imageCover: string;
+    direction: DirectionTour[];
+    regions: string[],
     discount?: {
         endDate: Date;
         percentage: number;
@@ -80,7 +74,7 @@ export const dataTours: Tour[] = [
     {
         _id: "1",
         tour: "Камчатка: 7 дней",
-        type: 'Трекинг',
+        types: ['Трекинг'],
         dates: [
             {
                 _id: '11',
@@ -103,9 +97,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: kamchatkaOne, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        direction: ["Россия"],
+        regions: ['Kamchatka'],
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -119,7 +112,7 @@ export const dataTours: Tour[] = [
     {
         _id: "2",
         tour: "Камчатка: Толбачик",
-        type: 'Трекинг',
+        types: ['Трекинг'],
         dates: [
             {
                 _id: '21',
@@ -142,9 +135,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: kamchatkaTwo, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        direction: ["Россия"],
+        regions: ['Kamchatka'],
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -158,7 +150,7 @@ export const dataTours: Tour[] = [
     {
         _id: "3",
         tour: "Южная Америка: 4 страны",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '31',
@@ -181,9 +173,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: southAmericaOne, //TODO
-        direction: "Заграница",
-        region: 'South_America',
-        counrty: 'Argentina',
+        direction: ["Заграница"],
+        regions: ['Argentina'],
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: '',
@@ -193,7 +184,7 @@ export const dataTours: Tour[] = [
     {
         _id: "4",
         tour: "Дагестан «5 дней в горах»",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '41',
@@ -216,9 +207,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: dagestan,
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'North_Caucasus',
+        direction: ["Россия"],
+        regions: ['North_Caucasus'],
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -228,7 +218,7 @@ export const dataTours: Tour[] = [
     {
         _id: "5",
         tour: "Южная Америка: Патагония",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '50',
@@ -292,9 +282,8 @@ export const dataTours: Tour[] = [
             `,
         },
         imageCover: southAmericaTwo, //TODO
-        direction: "Заграница",
-        region: 'South_America',
-        counrty: 'Argentina',
+        direction: ["Заграница"],
+        regions: ['Argentina', 'Chili'],
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: `
@@ -558,7 +547,7 @@ export const dataTours: Tour[] = [
     {
         _id: "6",
         tour: "Чечня и Ингушетия",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '61',
@@ -571,7 +560,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 10,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Владикавказ',
             place_finish: 'Грозный',
@@ -581,9 +570,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: ingushetia,
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'North_Caucasus',
+        direction: ["Россия"],
+        regions: ['North_Caucasus',],
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -593,7 +581,7 @@ export const dataTours: Tour[] = [
     {
         _id: "7",
         tour: "Байкал макси",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '71',
@@ -616,9 +604,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: baikalOne, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Baikal',
+        direction: ["Россия"],
+        regions: ['Baikal'],
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -628,7 +615,7 @@ export const dataTours: Tour[] = [
     {
         _id: "8",
         tour: "Байкал мини",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '81',
@@ -651,9 +638,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: baikalTwo, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Baikal',
+        direction: ["Россия"],
+        regions: ['Baikal'],
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -663,7 +649,7 @@ export const dataTours: Tour[] = [
     {
         _id: "9",
         tour: "Азербайджан",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '82',
@@ -686,9 +672,8 @@ export const dataTours: Tour[] = [
             notIncluded: '',
         },
         imageCover: azerbadgan, //TODO
-        direction: "Заграница",
-        region: 'Russia',
-        counrty: 'Azerbaijan',
+        direction: ["Заграница"],
+        regions: ['Azerbaijan'],
         activity: 'Средний',
         comfort: 'Уникальное жилье',
         description: '',
