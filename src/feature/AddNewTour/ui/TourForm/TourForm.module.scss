@@ -34,3 +34,46 @@
         width: 100%;
     }
 }
+
+.input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+
+    &:focus {
+        border-color: #ec4899;
+        box-shadow: 0 0 0 1px #ec4899;
+    }
+}
+
+.cancelButton {
+    padding: 8px 16px;
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+        color: #374151;
+        background-color: #e5e7eb;
+    }
+}
+
+.addButton {
+    padding: 8px 16px;
+    color: #ffffff;
+    background-color: #ec4899;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #db2777;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
