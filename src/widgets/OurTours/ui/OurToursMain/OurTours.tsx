@@ -21,14 +21,15 @@ export const OurTours = () => {
             return dataTours;
         }
         return dataTours.filter((tour) => tour.direction.includes(filter));
-    }
-
-    const filtredTours = useCallback((filter: DirectionTour | 'все туры') => {
-        const filtered = filterTours(filter);
+    };
+    
+    const filtredTours = useCallback((filter: string) => {
+        const filtered = filterTours(filter as DirectionTour | 'все туры');
         setTours(filtered);
-    }, [])
-
+    }, []);
+    
     const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
+    
 
     return (
         <Stack 
