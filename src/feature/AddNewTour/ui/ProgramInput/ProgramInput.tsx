@@ -2,10 +2,10 @@ import { DayProgram } from "@/widgets/OurTours/lib/data";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
-import { RichEditor } from "../RichEditor/RichEditor";
 import styles from './ProgramInput.module.scss';
 import { ImageUploader } from "../ImageUploader/ImageUploader";
 import { Image } from "@/shared/types/types";
+import { TextEditor } from "@/entities/TextEditor";
 
 interface ProgramInputProps {
     program: DayProgram[];
@@ -82,13 +82,10 @@ export const ProgramInput = (props: ProgramInputProps) => {
                             className={styles.inputGroup}
                         >
                             <label className={styles.label}>Описание дня</label>
-                            <div className={styles.richEditorContainer}>
-                                <RichEditor
-                                    value={day.details}
-                                    onChange={(value) => updateDay(dayIndex, 'details', value)}
-                                    placeholder="Опишите программу дня..."
-                                />
-                            </div>
+                            <TextEditor
+                                initialContent={day.details}
+                                onChange={(value) => updateDay(dayIndex, 'details', value)}
+                            />
                         </Stack>
 
                         <Stack
