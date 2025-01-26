@@ -50,7 +50,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
                     }
                 })}
                 placeholder="Введите свою почту"
-                error={errors.email}
+                error={errors.email} 
             />
             <Stack
                 direction="column"
