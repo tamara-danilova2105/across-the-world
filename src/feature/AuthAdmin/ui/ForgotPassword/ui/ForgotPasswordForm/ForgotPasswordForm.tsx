@@ -37,9 +37,11 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
             onSubmit={handleSubmit(onSubmit)}
             className={styles.forgotPassword}
         >
-            {error && <Text className={styles.error}>
-                {error.data.message}
-            </Text>}
+            {error && "data" in error && (
+                <Text className={styles.error}>
+                    {(error.data as { message?: string })?.message || "Произошла ошибка"}
+                </Text>
+            )}
             <Input 
                 label='Почта'
                 name="email"
