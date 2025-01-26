@@ -26,9 +26,8 @@ export const SigninForm = () => {
         try {
             const response = await signin({ login, password }).unwrap();
             if (response?.token) {
-                Cookies.set(
-                'authToken', response.token.accessToken, { secure: true },
-                'refreshToken', response.token.refreshToken, { secure: true })
+                Cookies.set('authToken', response.token.accessToken, { secure: true })
+                Cookies.set('refreshToken', response.token.refreshToken, { secure: true })
             }
             reset()
             navigate(getRouteAdmin())

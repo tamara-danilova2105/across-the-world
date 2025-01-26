@@ -8,12 +8,15 @@ import { Text } from "@/shared/ui/Text/Text";
 import { ChangeStateProps } from "@/shared/types/types";
 import styles from './ForgotPasswordForm.module.scss'
 
+interface FormInputs {
+    email: string;
+}
 
 export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeStateProps ) => {
 
-    const { register, handleSubmit, formState: { errors } } = useFormContext() 
+    const { register, handleSubmit, formState: { errors } } = useFormContext<FormInputs>() 
     const [ reset_password, {error, isLoading}] = useResetPasswordMutation()
-    
+
     const onSubmit = async (formData: FormData ) => {
         const { email } = formData
         if (!email) {
