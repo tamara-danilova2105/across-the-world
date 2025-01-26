@@ -9,7 +9,7 @@ export const endpoints = {
     },
     admin: {
         registration: '/registration',
-        login: '/login',
+        signin: '/login',
         logout: '/logout',
         reset_password: '/reset-password',
         refresh_password: '/refresh-password',

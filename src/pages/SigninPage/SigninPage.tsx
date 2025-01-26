@@ -1,7 +1,7 @@
-import { Signin } from "@/feature/Signin";
+import { AuthAdmin } from "@/feature/AuthAdmin/index";
 
 const SigninPage = () => {
-    return <Signin />;
+    return <AuthAdmin />;
 };
 
 export default SigninPage;

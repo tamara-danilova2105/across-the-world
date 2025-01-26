@@ -2,6 +2,7 @@ import { FilterItem, RegionGroup } from '@/feature/FilterBar/lib/data';
 import { ArrowDropwownIcon } from '@/shared/assets/svg/arrowIcons';
 import { useToggleOpen } from '@/shared/hooks/useToggleOpen';
 import { getStyles } from '@/shared/lib/getStyles';
+import { getTextRegion } from '@/shared/lib/getTextRegion';
 import { Button } from '@/shared/ui/Button/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 import { Stack } from '@/shared/ui/Stack/Stack';
@@ -97,15 +98,18 @@ export const FilterRegion = ({
                     []
                 )}
             >
-                {country.map((item: FilterItem) => (
-                    <Checkbox
-                        key={item._id}
-                        label={item.label}
-                        name={item.value}
-                        checked={selectedFilters.country[item.value]}
-                        onChange={handleChecked}
-                    />
-                ))}
+                {country.map((item: FilterItem) => {
+                    const regionName = getTextRegion(item.value)
+                    return (
+                        <Checkbox
+                            key={item._id}
+                            label={regionName}
+                            name={item.value}
+                            checked={selectedFilters.country[item.value] ?? false}
+                            onChange={handleChecked}
+                        />
+                    )
+                })}
             </Stack>
         </Stack>
     )

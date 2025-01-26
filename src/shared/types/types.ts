@@ -3,3 +3,8 @@ export interface Image {
     src: string;
     file?: File;
 };
+
+export interface ChangeStateProps {
+    handleChangeState?: () => void;
+    showExplain?: () => void;
+}

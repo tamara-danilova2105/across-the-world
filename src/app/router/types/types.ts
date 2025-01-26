@@ -11,6 +11,7 @@ export enum AppRouters {
     not_found = 'not_found',
     privacy_policy = 'privacy_policy',
     signin = 'signin',
+    refresh_password = 'refresh_password',
     admin = 'admin',
     admin_tours = 'admin_tours',
     admin_tours_create = 'admin_tours_create',

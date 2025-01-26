@@ -49,13 +49,13 @@ export const ContactForm = (props: ContactFormProps) => {
                     label="Имя" 
                     placeholder='введите имя' 
                     register={register("firstname", {required: data.required})} 
-                    error={errors.firstname}
+                    error={errors?.firstname}
                 />
                 <Input 
                     label="Фамилия"
                     placeholder='введите фамилию' 
                     register={register("lastname", {required: data.required})} 
-                    error={errors.lastname}
+                    error={errors?.lastname}
                 />
             </Stack>
 
@@ -70,7 +70,7 @@ export const ContactForm = (props: ContactFormProps) => {
                         message: data.errors.validEmail
                     }
                 })} 
-                error={errors.email}
+                error={errors?.email}
             />
             <Input 
                 label="Номер телефона"
@@ -82,7 +82,7 @@ export const ContactForm = (props: ContactFormProps) => {
                         message: data.errors.validPhone
                     }
                 })} 
-                error={errors.phone}
+                error={errors?.phone}
             />
             <Button>
                 Заказать тур

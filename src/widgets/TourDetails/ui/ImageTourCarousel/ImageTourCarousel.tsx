@@ -5,6 +5,7 @@ import { Stack } from "@/shared/ui/Stack";
 import { ArrowIcon } from "@/shared/assets/svg/arrowIcons";
 import { Text } from "@/shared/ui/Text";
 
+
 interface ImageTourCarouselProps {
     index: number;
     images: Image[]

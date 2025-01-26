@@ -1,0 +1,1 @@
+export {LazyBlogsPage as BlogsPage} from './BlogsPage.lazy'
