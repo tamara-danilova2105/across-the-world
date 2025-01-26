@@ -16,7 +16,7 @@ export const OurTours = () => {
     const { containerRef } = useScrollSlider(width);
 
 
-    const filterTours = (filter: DirectionTour) => {
+    const filterTours = (filter: DirectionTour | 'все туры') => {
         if (filter === 'все туры') {
             return dataTours;
         }
