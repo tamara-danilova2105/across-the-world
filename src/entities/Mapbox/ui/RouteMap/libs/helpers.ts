@@ -1,4 +1,4 @@
-import { Location } from "../RouteMap";
+import { MapMarker } from "@/widgets/OurTours/lib/data";
 
 interface Bounds {
     minLng: number;
@@ -7,7 +7,7 @@ interface Bounds {
     maxLat: number;
 }
 
-export const calculateRouteBounds = (locations: Location[]): Bounds | null => {
+export const calculateRouteBounds = (locations: MapMarker[]): Bounds | null => {
     if (!locations.length) return null;
 
     return locations.reduce(
@@ -29,7 +29,7 @@ export const calculateRouteBounds = (locations: Location[]): Bounds | null => {
     );
 };
 
-export const createRouteGeoJson = (locations: Location[]): GeoJSON.Feature<GeoJSON.LineString> => {
+export const createRouteGeoJson = (locations: MapMarker[]): GeoJSON.Feature<GeoJSON.LineString> => {
     return {
         type: "Feature",
         properties: {},
