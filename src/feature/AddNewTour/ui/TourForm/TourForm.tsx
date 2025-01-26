@@ -8,7 +8,6 @@ import { RichEditor } from "../RichEditor/RichEditor";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
-import styles from './TourForm.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { DiscountInput } from "../DiscountInput/DiscountInput";
 import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
@@ -16,6 +15,8 @@ import { MultiSelect } from "../MultiSelect/MultiSelect";
 import { useModal } from "@/shared/hooks/useModal";
 import { AddNewRegion } from "../AddNewRegion/AddNewRegion";
 import { Button } from "@/shared/ui/Button";
+import styles from './TourForm.module.scss';
+import { ImageCoverInput } from "../ImageCoverInput/ImageCoverInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -45,7 +46,7 @@ export const TourForm = () => {
             included: '',
             notIncluded: '',
         },
-        imageCover: '',
+        imageCover: [],
         direction: [],
         regions: [],
         activity: 'Для всех',
@@ -83,12 +84,10 @@ export const TourForm = () => {
                         />
                     </Stack>
 
-                    <Stack direction='column' gap="16">
-                        <Text size='18' font='geometria500'>
-                            Обложка тура
-                        </Text>
-
-                    </Stack>
+                    <ImageCoverInput
+                        images={formData.imageCover}
+                        onChange={(imageCover) => setFormData({ ...formData, imageCover })}
+                    />
 
                     <DateRangeInput
                         dates={formData.dates}

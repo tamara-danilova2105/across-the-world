@@ -37,7 +37,6 @@ export const ProgramInput = (props: ProgramInputProps) => {
                 _id: img._id,
                 src: img.src,
                 file: img.file,
-                alt: img.alt || '',
             }))
         };
         onChange(newProgram);
@@ -102,7 +101,6 @@ export const ProgramInput = (props: ProgramInputProps) => {
                                     _id: img._id,
                                     src: img.src,
                                     file: img.file,
-                                    alt: img.alt
                                 })) || []}
                                 onChange={(images) => handleImagesChange(dayIndex, images)}
                                 maxImages={3}

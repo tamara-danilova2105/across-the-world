@@ -15,7 +15,6 @@ export const HotelsInput = (props: HotelsInputProps) => {
         const updatedImages = newImages.map(img => ({
             _id: img._id,
             src: img.src,
-            alt: '',
             file: img.file
         }));
         onChange(updatedImages);
@@ -33,7 +32,6 @@ export const HotelsInput = (props: HotelsInputProps) => {
                         _id: img._id,
                         src: img.src,
                         file: img.file,
-                        alt: img.alt
                     }))}
                     onChange={handleImagesChange}
                     maxImages={10}

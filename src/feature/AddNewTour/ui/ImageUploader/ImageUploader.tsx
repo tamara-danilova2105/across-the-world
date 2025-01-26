@@ -3,17 +3,18 @@ import { X, Upload } from 'lucide-react';
 import styles from './ImageUploader.module.scss';
 import { Image } from '@/shared/types/types';
 import { Stack } from '@/shared/ui/Stack';
-
+import { getStyles } from '@/shared/lib/getStyles';
 
 interface ImageUploaderProps {
     images: Image[];
     onChange: (images: Image[]) => void;
     maxImages?: number;
+    isCover?: boolean;
 }
 
 export const ImageUploader = (props: ImageUploaderProps) => {
-    const { images, onChange, maxImages = 3 } = props;
-    
+    const { images, onChange, maxImages = 3, isCover } = props;
+
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +47,10 @@ export const ImageUploader = (props: ImageUploaderProps) => {
         <Stack direction='column' gap='16'>
             <Stack gap='16' wrap>
                 {images.map(image => (
-                    <div key={image._id} className={styles.imageContainer}>
+                    <div
+                        key={image._id}
+                        className={getStyles(styles.imageContainer, {[styles.cover]: isCover}, [])}
+                    >
                         <img
                             src={image.src}
                             alt="Uploaded preview"
@@ -65,7 +69,7 @@ export const ImageUploader = (props: ImageUploaderProps) => {
                     <button
                         type='button'
                         onClick={() => fileInputRef.current?.click()}
-                        className={styles.addButton}
+                        className={getStyles(styles.addButton, {[styles.coverBtn]: isCover}, [])}
                     >
                         <Upload className={styles.icon} />
                         <span className={styles.addButtonText}>Добавить фото</span>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 import { Text } from "@/shared/ui/Text";
 import { useResize } from "@/shared/hooks/useResize";
 import { useModal } from "@/shared/hooks/useModal";
@@ -7,7 +7,7 @@ import { ImageTourCarousel } from "../ImageTourCarousel/ImageTourCarousel";
 import styles from './ImagesTourGrid.module.scss';
 
 interface ImagesTourProps {
-    images: Images[] //TODO
+    images: Image[]
     variant?: "main" | "accommodation";
     showImagesDesktop?: number;
     showImagesTablet?: number;
@@ -59,7 +59,7 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
                     <img 
                         key={index} 
                         src={img.src} 
-                        alt={img.alt} 
+                        alt='' //TODO
                         className={styles.image}
                         onClick={() => handleClick(index)}
                     />
@@ -71,7 +71,7 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
                     >
                         <img
                             src={images[visibleImagesCount].src}
-                            alt={images[visibleImagesCount].alt}
+                            alt='' //TODO alt добавить
                             className={styles.image}
                         />
                         <Text color='white' font='geometria500' size='32' className={styles.overlay}>

@@ -1,13 +1,13 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { ImagesTourGrid } from "../../../ImagesTourGrid/ImagesTourGrid";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 import { comfortData } from "@/widgets/TourDetails/lib/activity";
 import { useResize } from "@/shared/hooks/useResize";
 import { ImageTourSwiper } from "../../../ImageTourSwiper/ImageTourSwiper";
 
 interface StayDetailsProps {
-    images: Images[];
+    images: Image[];
     comfort: string;
 };
 
