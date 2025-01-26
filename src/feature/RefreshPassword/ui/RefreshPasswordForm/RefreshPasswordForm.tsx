@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { useFormContext } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 import { data, validatePassword } from "@/shared/lib/validateInput";
@@ -43,9 +42,11 @@ export const RefreshPasswordForm = () => {
 
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
-            {error && <Text className={styles.error}>
-                {error.data.message}
-            </Text>}
+            {error && "data" in error && (
+                <Text className={styles.error}>
+                    {(error.data as { message?: string })?.message || "Произошла ошибка"}
+                </Text>
+            )}
 
             <Stack className={styles.password}>
                 <Input 

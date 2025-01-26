@@ -46,9 +46,11 @@ export const SigninForm = () => {
             className={styles.signin_form}
             onSubmit={handleSubmit(onSubmit)}
         >
-            {error && <Text className={styles.error}>
-                {error.data.message}
-            </Text>}
+            {error && "data" in error && (
+                <Text className={styles.error}>
+                    {(error.data as { message?: string })?.message || "Произошла ошибка"}
+                </Text>
+            )}
             <Input 
                 label="Логин" 
                 placeholder='введите логин' 
