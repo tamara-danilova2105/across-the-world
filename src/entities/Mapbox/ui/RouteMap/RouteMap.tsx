@@ -4,14 +4,10 @@ import styles from './RouteMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useEffect, useRef } from 'react';
 import { calculateRouteBounds, createRouteGeoJson } from './libs/helpers';
-
-export interface Location {
-    id: string;
-    coordinates: [number, number];
-};
+import { MapMarker } from '@/widgets/OurTours/lib/data'; //TODO фича в ентити
 
 interface RouteMapProps {
-    locations: Location[];
+    locations: MapMarker[];
 };
 
 

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import Map, { Marker } from 'react-map-gl';
-import { Button } from '@/shared/ui/Button';
+import { MapMarker } from '@/widgets/OurTours/lib/data'; //TODO - виджет в ентити
 import styles from './AdminMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-interface Location {
-    id: string;
-    coordinates: number[];
-};
+interface AdminMapProps {
+    markers?: MapMarker[];
+    onChange: (markers?: MapMarker[]) => void;
+}
 
-export const AdminMap = () => {
-    const [locations, setLocations] = useState<Location[]>([]);
+export const AdminMap = (props: AdminMapProps) => {
+    const { markers, onChange } = props;
+
+    const [locations, setLocations] = useState<MapMarker[]>(markers ?? []);
 
     const accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -18,18 +20,22 @@ export const AdminMap = () => {
         const { lng, lat } = event.lngLat;
         const newId = `location-${Date.now()}`;
         if (!locations.some(location => location.id === newId)) {
-            setLocations([
-                ...locations, 
-                { 
-                    id: newId, 
+            const newLocations = [
+                ...locations,
+                {
+                    id: newId,
                     coordinates: [lng, lat],
                 }
-            ]);
+            ];
+            setLocations(newLocations);
+            onChange?.(newLocations);
         }
     };
 
     const removeLocation = (id: string) => {
-        setLocations(locations.filter((location) => location.id !== id));
+        const newLocations = locations.filter((location) => location.id !== id);
+        setLocations(newLocations);
+        onChange?.(newLocations);
     };
 
     return (
@@ -46,33 +52,24 @@ export const AdminMap = () => {
                 onClick={handleMapClick}
             >
                 {locations.map((location) => (
-                <Marker
-                    key={location.id}
-                    longitude={location.coordinates[0]}
-                    latitude={location.coordinates[1]}
-                    anchor="bottom"
-                >
-                    <div 
-                        className={styles.marker}
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            removeLocation(location.id)
-                        }}
+                    <Marker
+                        key={location.id}
+                        longitude={location.coordinates[0]}
+                        latitude={location.coordinates[1]}
+                        anchor="bottom"
                     >
-                    {'X'}
-                    </div>
-                </Marker>
+                        <div
+                            className={styles.marker}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                removeLocation(location.id)
+                            }}
+                        >
+                            {'X'}
+                        </div>
+                    </Marker>
                 ))}
             </Map>
-
-            <Button
-                onClick={() => {
-                    console.log(JSON.stringify({ locations }));
-                    alert('Данные сохранены в консоль');
-                }}
-            >
-                Сохранить маршрут
-            </Button>
         </div>
     );
 };

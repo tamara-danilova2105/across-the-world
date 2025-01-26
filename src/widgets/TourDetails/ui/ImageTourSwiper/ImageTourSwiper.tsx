@@ -12,7 +12,7 @@ export const ImageTourSwiper = (props: ImageTourSwiperProps) => {
 
     const renderItem = useCallback((image: Image) => 
         <img 
-            src={image.src} alt={image.alt} 
+            src={image.src} alt='' //TODO - alt
             className={styles.swiper_img} 
         />, 
     []);

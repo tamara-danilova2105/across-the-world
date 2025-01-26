@@ -14,11 +14,6 @@ export type ComfortType = 'Высокий' | 'Уникальное жилье' |
 export type DirectionTour = "Россия" | "Заграница";
 export type TypeTour = 'Трекинг' | 'Ретрит / оздоровительный' | 'Экскурсионный' | 'Детский' | 'Фототур';
 
-export type Regions = 'Russia' | 'Middle_East' | 'Asia' | 'South_America' | 'Africa';
-export type Countries = 'North_Caucasus' | 'Kamchatka' | 'Baikal' | 'Kalmykia' | 'Karelia' 
-                        | 'Armenia' | 'Iran' | 'Turkey' | 'Georgia' | 'Socotra' | 'Azerbaijan' | 'Uzbekistan' | 'Pakistan'
-                        | 'Japan' | 'Argentina' | 'Brazil' | 'Peru' | 'Chile' | 'Bolivia'
-
 export interface Price {
     amount: number;
     currency: "₽" | "$";
@@ -39,7 +34,7 @@ export interface Locations {
 
 export interface DayProgram {
     title: string;
-    images?: Image[]; //TODO
+    images?: Image[];
     details: string;
 };
 
@@ -48,17 +43,21 @@ export interface Details {
     notIncluded: string;
 }
 
+export interface MapMarker {
+    id: string;
+    coordinates: number[];
+};
+
 export interface Tour {
     _id: string;
-    type: TypeTour;
+    types: TypeTour[];
     tour: string;
-    dates: DateTours[]; 
+    dates: DateTours[];
     locations: Locations,
     details: Details,
-    imageCover: string; 
-    direction: DirectionTour;
-    region: Regions,
-    counrty: Countries,
+    imageCover: Image[];
+    direction: DirectionTour[];
+    regions: string[],
     discount?: {
         endDate: Date;
         percentage: number;
@@ -68,13 +67,14 @@ export interface Tour {
     description: string;
     program: DayProgram[],
     hotels: Image[],
+    mapMarker?: MapMarker[]
 }
 
 export const dataTours: Tour[] = [
     {
         _id: "1",
         tour: "Камчатка: 7 дней",
-        type: 'Трекинг',
+        types: ['Трекинг'],
         dates: [
             {
                 _id: '11',
@@ -87,7 +87,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 16,
             },
-        ], //TODO
+        ],
         locations: {
             place_start: 'Петропавловск-Камчатский',
             place_finish: 'Петропавловск-Камчатский',
@@ -96,10 +96,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: kamchatkaOne, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        imageCover: [{
+            _id: '1555152',
+            src: kamchatkaOne,
+        }],
+        direction: ["Россия"],
+        regions: ['Kamchatka'],
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -113,7 +115,7 @@ export const dataTours: Tour[] = [
     {
         _id: "2",
         tour: "Камчатка: Толбачик",
-        type: 'Трекинг',
+        types: ['Трекинг'],
         dates: [
             {
                 _id: '21',
@@ -126,7 +128,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 10,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Петропавловск-Камчатский',
             place_finish: 'Петропавловск-Камчатский',
@@ -135,10 +137,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: kamchatkaTwo, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        imageCover: [{
+            _id: '4541563',
+            src: kamchatkaTwo,
+        }],
+        direction: ["Россия"],
+        regions: ['Kamchatka'],
         discount: {
             endDate: new Date("2023-12-01"),
             percentage: 8
@@ -152,7 +156,7 @@ export const dataTours: Tour[] = [
     {
         _id: "3",
         tour: "Южная Америка: 4 страны",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '31',
@@ -165,7 +169,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 10,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Буэнос-Айрос, Аргентина',
             place_finish: 'Сантьяго, Чили',
@@ -174,10 +178,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: southAmericaOne, //TODO
-        direction: "Заграница",
-        region: 'South_America',
-        counrty: 'Argentina',
+        imageCover: [{
+            _id: '16658622',
+            src: southAmericaOne,
+        }],
+        direction: ["Заграница"],
+        regions: ['Argentina'],
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: '',
@@ -187,7 +193,7 @@ export const dataTours: Tour[] = [
     {
         _id: "4",
         tour: "Дагестан «5 дней в горах»",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '41',
@@ -200,7 +206,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 10,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Махачкала',
             place_finish: 'Махачкала',
@@ -209,10 +215,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: dagestan,
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'North_Caucasus',
+        imageCover: [{
+            _id: '5666411',
+            src: dagestan,
+        }],
+        direction: ["Россия"],
+        regions: ['North_Caucasus'],
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -222,7 +230,7 @@ export const dataTours: Tour[] = [
     {
         _id: "5",
         tour: "Южная Америка: Патагония",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '50',
@@ -254,7 +262,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 15,
             },
-        ], //TODO
+        ],
         locations: {
             place_start: 'Буэнос-Айрос, Аргентина',
             place_finish: 'Сантьяго, Чили',
@@ -285,10 +293,12 @@ export const dataTours: Tour[] = [
                 </ul>
             `,
         },
-        imageCover: southAmericaTwo, //TODO
-        direction: "Заграница",
-        region: 'South_America',
-        counrty: 'Argentina',
+        imageCover: [{
+            _id: '5562155',
+            src: southAmericaTwo,
+        }],
+        direction: ["Заграница"],
+        regions: ['Argentina', 'Chili'],
         activity: 'Высокий',
         comfort: 'Уникальное жилье',
         description: `
@@ -330,7 +340,6 @@ export const dataTours: Tour[] = [
                     {
                         _id: '52',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/a4c/m6m6njbigoeen9n9ulbhmyussqhaanz1.jpeg',
-                        alt: 'Буэнос Айрос, Аргентина'
                     },
                 ],
             },
@@ -354,7 +363,6 @@ export const dataTours: Tour[] = [
                     {
                         _id: '53',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/d79/g6f3h1tplt74ej2bf0ss5hx45v89o42l.jpg',
-                        alt: 'стейки, Аргентина'
                     },
                 ],
             },
@@ -375,7 +383,6 @@ export const dataTours: Tour[] = [
                     {
                         _id: '60',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
-                        alt: 'Патагония, Аргентина'
                     },
                 ],
             },
@@ -395,17 +402,14 @@ export const dataTours: Tour[] = [
                     {
                         _id: '51',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/f9b/xqibcdntphopbuw7vvcvyt0hrcs5z69b.jpeg',
-                        alt: 'Ледник Перито Морено, Аргентина'
                     },
                     {
                         _id: '54',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/707/t88ve6bqedu28w5ynfct2he1qkv92msv.JPEG',
-                        alt: 'Ледник Перито Морено, Аргентина'
                     },
                     {
                         _id: '55',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/038/jm5go3fbuaj64mdgf2jndw198qupimob.JPEG',
-                        alt: 'Ледник Перито Морено, Аргентина'
                     },
                 ],
             },
@@ -423,17 +427,14 @@ export const dataTours: Tour[] = [
                     {
                         _id: '56',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/973/6pp34h6q1a8iy5aut2azko2nn04cyea7.jpg',
-                        alt: 'Торрес Дель Пайне, Патагония, Чили'
                     },
                     {
                         _id: '57',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/74f/w6tw3s5qujd36smt458960nl433gxi4o.jpg',
-                        alt: 'Торрес Дель Пайне, Патагония, Чили'
                     },
                     {
                         _id: '58',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/b1e/affr0zgih25tgjtias57huvkohh9p11s.jpeg',
-                        alt: 'Торрес Дель Пайне, Патагония, Чили'
                     },
                 ],
             },
@@ -454,7 +455,6 @@ export const dataTours: Tour[] = [
                     {
                         _id: '6044',
                         src: 'https://cf.youtravel.me/tr:w-1500/upload/tours/37c/jq3dyx955zy0ninmg4fe56jb7nkpvinc.jpeg',
-                        alt: 'Патагония, Аргентина'
                     },
                 ],
             },
@@ -503,34 +503,51 @@ export const dataTours: Tour[] = [
             {
                 _id: '511',
                 src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/204/fbwtxbmb3gs8oyam04zo313tm0yv3aol.jpg',
-                alt: 'отель'
             },
             {
                 _id: '512',
                 src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/790/h18kthqzos1wyf45wre1inly5lp4udak.jpg',
-                alt: 'отель'
             },
             {
                 _id: '513',
                 src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/ea2/brb12duf7ztzndlfu3rj4sdn6960xin9.jpg',
-                alt: 'отель'
             },
             {
                 _id: '514',
                 src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/893/oy7rwxfp3aisepx4fj2e6byvg2z73q5x.jpg',
-                alt: 'отель'
             },
             {
                 _id: '515',
                 src: 'https://cf.youtravel.me/tr:w-1000/upload/allocation/483/8uvlvfnn0xi8lzl19j752nlxvc35x90r.jpg',
-                alt: 'отель'
             },
         ],
+        mapMarker: [
+            {
+                id: "location-1733329476113",
+                coordinates: [-58.447933381645925, -34.638358928286344],
+            },
+            {
+                id: "location-1733329480096",
+                coordinates: [-68.319650307479, -54.837934769449866],
+            },
+            {
+                id: "location-1733329485192",
+                coordinates: [-72.28162600227157, -50.32867882685762],
+            },
+            {
+                id: "location-1733329486528",
+                coordinates: [-73.09860435931529, -51.04907697034242],
+            },
+            {
+                id: "location-1733329493248",
+                coordinates: [-70.60210248986168, -33.327769692886505],
+            }
+        ]
     },
     {
         _id: "6",
         tour: "Чечня и Ингушетия",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '61',
@@ -543,7 +560,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 10,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Владикавказ',
             place_finish: 'Грозный',
@@ -552,10 +569,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: ingushetia,
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'North_Caucasus',
+        imageCover: [{
+            _id: '55511',
+            src: ingushetia,
+        }],
+        direction: ["Россия"],
+        regions: ['North_Caucasus',],
         activity: 'Средний',
         comfort: 'Высокий',
         description: '',
@@ -565,7 +584,7 @@ export const dataTours: Tour[] = [
     {
         _id: "7",
         tour: "Байкал макси",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '71',
@@ -578,7 +597,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 6,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Иркутск',
             place_finish: 'Иркутск',
@@ -587,10 +606,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: baikalOne, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Baikal',
+        imageCover: [{
+            _id: '56148862',
+            src: baikalOne,
+        }],
+        direction: ["Россия"],
+        regions: ['Baikal'],
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -600,7 +621,7 @@ export const dataTours: Tour[] = [
     {
         _id: "8",
         tour: "Байкал мини",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '81',
@@ -613,7 +634,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 6,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Иркутск',
             place_finish: 'Иркутск',
@@ -622,10 +643,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: baikalTwo, //TODO
-        direction: "Россия",
-        region: 'Russia',
-        counrty: 'Baikal',
+        imageCover: [{
+            _id: '511552',
+            src: baikalTwo,
+        }],
+        direction: ["Россия"],
+        regions: ['Baikal'],
         activity: 'Средний',
         comfort: 'Средний',
         description: '',
@@ -635,7 +658,7 @@ export const dataTours: Tour[] = [
     {
         _id: "9",
         tour: "Азербайджан",
-        type: 'Экскурсионный',
+        types: ['Экскурсионный'],
         dates: [
             {
                 _id: '82',
@@ -648,7 +671,7 @@ export const dataTours: Tour[] = [
                 },
                 spots: 14,
             }
-        ], //TODO
+        ],
         locations: {
             place_start: 'Баку',
             place_finish: 'Баку',
@@ -657,10 +680,12 @@ export const dataTours: Tour[] = [
             included: '',
             notIncluded: '',
         },
-        imageCover: azerbadgan, //TODO
-        direction: "Заграница",
-        region: 'Russia',
-        counrty: 'Azerbaijan',
+        imageCover: [{
+            _id: '51661',
+            src: azerbadgan,
+        }],
+        direction: ["Заграница"],
+        regions: ['Azerbaijan'],
         activity: 'Средний',
         comfort: 'Уникальное жилье',
         description: '',

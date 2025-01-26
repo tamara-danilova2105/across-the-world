@@ -19,13 +19,16 @@ export const TourCard = ({ tourData }: TourCardProps) => {
         dates,
         imageCover, 
         discount, 
-        region,
+        regions,
         _id 
     } = tourData;
 
     const discountedPrice = (amount: number, discount: number) => {
         return discount ? amount - (amount * discount) / 100 : amount
     };
+
+    console.log(imageCover);
+    
 
     return (
         <article className={styles.tour_card}>
@@ -35,7 +38,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                 gap="16"
             >
                 <Stack className={styles.imageContainer}>
-                    <img src={imageCover} alt={tour} draggable={false} />
+                    <img src={imageCover[0]?.src} alt={tour} draggable={false} />
                 </Stack>
                 
                 <Stack 
@@ -75,7 +78,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
 
                     <AppLink 
                         className={styles.link} 
-                        to={getRouteToursDetails(region, _id)}
+                        to={getRouteToursDetails(regions[0], _id)}
                         aria-label={`Подробнее о туре "${tour}"`}
                     >
                         Подробнее

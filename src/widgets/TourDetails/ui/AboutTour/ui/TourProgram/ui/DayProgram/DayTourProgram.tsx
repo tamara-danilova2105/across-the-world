@@ -30,7 +30,7 @@ export const DayTourProgram = (props: DayTourProgramProps) => {
                         <img 
                             key={img._id} 
                             src={img.src} 
-                            alt={img.alt} 
+                            alt='' //TODO - alt добавить
                         />
                     ))}
                 </Stack>

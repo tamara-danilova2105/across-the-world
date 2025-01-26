@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ActivityLevel, ComfortType, Countries, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
-import { AdminMap } from "@/entities/Mapbox";
+import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
@@ -9,17 +8,24 @@ import { RichEditor } from "../RichEditor/RichEditor";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
-import styles from './TourForm.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { DiscountInput } from "../DiscountInput/DiscountInput";
+import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
+import { MultiSelect } from "../MultiSelect/MultiSelect";
+import { useModal } from "@/shared/hooks/useModal";
+import { AddNewRegion } from "../AddNewRegion/AddNewRegion";
+import { Button } from "@/shared/ui/Button";
+import styles from './TourForm.module.scss';
+import { ImageCoverInput } from "../ImageCoverInput/ImageCoverInput";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздоровительный', 'Экскурсионный', 'Детский', 'Фототур'];
-const regionsOptions: Regions[] = ['Russia', 'Middle_East', 'Asia', 'South_America', 'Africa']
-const countriesOptions: Countries[] = [
-    'North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia',
+
+//TODO - запрос регионов делать 
+const regionsRussiaOptions = ['North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia']
+const regionsWorldOptions = [
     'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
     'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
 ];
@@ -29,7 +35,7 @@ export const TourForm = () => {
 
     const [formData, setFormData] = useState<Tour>({
         _id: '',
-        type: 'Экскурсионный',
+        types: [],
         tour: '',
         dates: [],
         locations: {
@@ -40,10 +46,9 @@ export const TourForm = () => {
             included: '',
             notIncluded: '',
         },
-        imageCover: '',
-        direction: 'Россия',
-        region: 'Russia',
-        counrty: 'Kamchatka',
+        imageCover: [],
+        direction: [],
+        regions: [],
         activity: 'Для всех',
         comfort: 'Высокий',
         description: '',
@@ -51,171 +56,163 @@ export const TourForm = () => {
         hotels: [],
     });
 
-    console.log(formData);
-
+    const [changeModal, drawModal] = useModal();
 
     return (
-        <Stack
-            direction='column' gap="24"
-            className={styles.container}
-        >
-            <Text type='h2' size='32' color='blue' font='geometria600'>
-                Создать новый тур
-            </Text>
+        <>
+            {drawModal(<AddNewRegion />)}
 
-            <form>
-                <Stack direction='column' gap="16">
-                    <Text size='18' font='geometria500'>
-                        Название тура
-                    </Text>
-                    <input
-                        type="text"
-                        value={formData.tour}
-                        onChange={(e) => setFormData({ ...formData, tour: e.target.value })}
-                        placeholder="Например: Южная Америка: Патагония"
-                        className={styles.input}
-                    />
-                </Stack>
+            <Stack
+                direction='column' gap="24"
+                className={styles.container}
+            >
+                <Text type='h2' size='32' color='blue' font='geometria600'>
+                    Создать новый тур
+                </Text>
 
-                <Stack direction='column' gap="16">
-                    <Text size='18' font='geometria500'>
-                        Обложка тура
-                    </Text>
-                    
-                </Stack>
-
-                <DateRangeInput
-                    dates={formData.dates}
-                    onChange={(dates) => setFormData({ ...formData, dates })}
-                />
-
-                <DiscountInput
-                    discount={formData.discount}
-                    onChange={(discount) => setFormData({ ...formData, discount })}
-                />
-
-
-                <LocationsInput
-                    locations={formData.locations}
-                    onChange={(locations) => setFormData({ ...formData, locations })}
-                />
-
-                <Stack direction='column' gap='16' max>
-                    <Text size='18' font='geometria500'>
-                        Опции тура
-                    </Text>
-
-                    <Stack gap="24" max>
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Регион
-                            </label>
-                            <OptionsSelect
-                                value={formData.region}
-                                options={regionsOptions}
-                                isTransleteText
-                                onChange={(option: Regions) => setFormData({ ...formData, region: option })}
-                            />
-                        </Stack>
-
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Страна
-                            </label>
-                            <OptionsSelect
-                                value={formData.counrty}
-                                options={countriesOptions}
-                                isTransleteText
-                                onChange={(option: Countries) => setFormData({ ...formData, counrty: option })}
-                            />
-                        </Stack>
+                <form>
+                    <Stack direction='column' gap="16">
+                        <Text size='18' font='geometria500'>
+                            Название тура
+                        </Text>
+                        <input
+                            type="text"
+                            value={formData.tour}
+                            onChange={(e) => setFormData({ ...formData, tour: e.target.value })}
+                            placeholder="Например: Южная Америка: Патагония"
+                            className={styles.input}
+                        />
                     </Stack>
 
-                    <Stack gap="24" max>
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Типа тура
-                            </label>
-                            <OptionsSelect
-                                value={formData.type}
-                                options={typeTourOptions}
-                                onChange={(option: TypeTour) => setFormData({ ...formData, type: option })}
-                            />
-                        </Stack>
+                    <ImageCoverInput
+                        images={formData.imageCover}
+                        onChange={(imageCover) => setFormData({ ...formData, imageCover })}
+                    />
+
+                    <DateRangeInput
+                        dates={formData.dates}
+                        onChange={(dates) => setFormData({ ...formData, dates })}
+                    />
+
+                    <DiscountInput
+                        discount={formData.discount}
+                        onChange={(discount) => setFormData({ ...formData, discount })}
+                    />
+
+
+                    <LocationsInput
+                        locations={formData.locations}
+                        onChange={(locations) => setFormData({ ...formData, locations })}
+                    />
+
+                    <Stack direction='column' gap='16' max>
+                        <Text size='18' font='geometria500'>
+                            Опции тура
+                        </Text>
 
                         <Stack direction='column' gap="8" max>
                             <label className={styles.label}>
                                 Направление
                             </label>
-                            <OptionsSelect
+                            <MultiSelect
                                 value={formData.direction}
                                 options={directionOptions}
-                                onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option })}
+                                onChange={(option: DirectionTour[]) => setFormData({ ...formData, direction: option, regions: [] })}
+                                isSingleSelect
                             />
+                        </Stack>
+
+                        {formData.direction.length !== 0 && (
+                            <Stack direction='column' gap="8" max>
+                                <label className={styles.label}>
+                                    {formData.direction[0] === 'Россия' ? 'Регионы' : 'Страны'}
+                                </label>
+                                <MultiSelect
+                                    value={formData.regions}
+                                    options={formData.direction[0] === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
+                                    onChange={(option: string[]) => setFormData({ ...formData, regions: option })}
+                                />
+                                <Button
+                                    type="button"
+                                    color='transparent'
+                                    onClick={changeModal}
+                                >
+                                    + Добавить новый регион/страну
+                                </Button>
+                            </Stack>
+                        )}
+
+                        <Stack direction='column' gap="8" max>
+                            <label className={styles.label}>
+                                Типа тура
+                            </label>
+                            <MultiSelect
+                                value={formData.types}
+                                options={typeTourOptions}
+                                onChange={(option: TypeTour[]) => setFormData({ ...formData, types: option })}
+                            />
+                        </Stack>
+
+                        <Stack gap="24" max>
+                            <Stack direction='column' gap="8" max>
+                                <label className={styles.label}>
+                                    Уровень активности
+                                </label>
+                                <OptionsSelect
+                                    value={formData.activity}
+                                    options={activityOptions}
+                                    onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
+                                />
+                            </Stack>
+
+                            <Stack direction='column' gap="8" max>
+                                <label className={styles.label}>
+                                    Уровень комфорта
+                                </label>
+                                <OptionsSelect
+                                    value={formData.comfort}
+                                    options={comfortOptions}
+                                    onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
+                                />
+                            </Stack>
                         </Stack>
                     </Stack>
 
-                    <Stack gap="24" max>
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Уровень активности
-                            </label>
-                            <OptionsSelect
-                                value={formData.activity}
-                                options={activityOptions}
-                                onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
-                            />
-                        </Stack>
+                    <Stack direction='column' gap="16">
+                        <Text size='18' font='geometria500'>
+                            Описание тура
+                        </Text>
 
-                        <Stack direction='column' gap="8" max>
-                            <label className={styles.label}>
-                                Уровень комфорта
-                            </label>
-                            <OptionsSelect
-                                value={formData.comfort}
-                                options={comfortOptions}
-                                onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
+                        <div className={styles.editor_container}>
+                            <RichEditor
+                                value={formData.description}
+                                onChange={(value) => setFormData({ ...formData, description: value })}
+                                placeholder="Опишите тур..."
                             />
-                        </Stack>
+                        </div>
                     </Stack>
-                </Stack>
 
-                <Stack direction='column' gap="16">
-                    <Text size='18' font='geometria500'>
-                        Описание тура
-                    </Text>
+                    <DetailsInput
+                        details={formData.details}
+                        onChange={(details) => setFormData({ ...formData, details })}
+                    />
 
-                    <div className={styles.editor_container}>
-                        <RichEditor
-                            value={formData.description}
-                            onChange={(value) => setFormData({ ...formData, description: value })}
-                            placeholder="Опишите тур..."
-                        />
-                    </div>
-                </Stack>
+                    <ProgramInput
+                        program={formData.program}
+                        onChange={(program) => setFormData({ ...formData, program })}
+                    />
 
-                <DetailsInput
-                    details={formData.details}
-                    onChange={(details) => setFormData({ ...formData, details })}
-                />
+                    <HotelsInput
+                        images={formData.hotels}
+                        onChange={(hotels) => setFormData({ ...formData, hotels })}
+                    />
 
-                <ProgramInput
-                    program={formData.program}
-                    onChange={(program) => setFormData({ ...formData, program })}
-                />
-
-                <HotelsInput
-                    images={formData.hotels}
-                    onChange={(hotels) => setFormData({ ...formData, hotels })}
-                />
-
-                <Stack direction='column' gap="16">
-                    <Text size='18' font='geometria500'>
-                        Карта тура
-                    </Text>
-                    <AdminMap />
-                </Stack>
-            </form>
-        </Stack>
+                    <MapMarkerInput
+                        markers={formData.mapMarker}
+                        onChange={(markers) => setFormData({ ...formData, mapMarker: markers })}
+                    />
+                </form>
+            </Stack>
+        </>
     );
 };
