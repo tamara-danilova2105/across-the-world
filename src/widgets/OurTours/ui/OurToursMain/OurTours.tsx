@@ -15,26 +15,21 @@ export const OurTours = () => {
     const isSwiperActive = width <= 590;
     const { containerRef } = useScrollSlider(width);
 
-    const filterTours = (filter: DirectionTour[] | 'все туры') => {
+
+    const filterTours = (filter: DirectionTour | 'все туры') => {
         if (filter === 'все туры') {
             return dataTours;
         }
-
-        if (Array.isArray(filter)) {
-            return dataTours.filter((tour) =>
-                filter.some((dir) => tour.direction.includes(dir))
-            )
-        }
-
-        return dataTours.filter((tour) => tour.direction === filter);
-    }
-
+        return dataTours.filter((tour) => tour.direction.includes(filter));
+    };
+    
     const filtredTours = useCallback((filter: string) => {
-        const filtered = filterTours(filter as DirectionTour[] | 'все туры');
+        const filtered = filterTours(filter as DirectionTour | 'все туры');
         setTours(filtered);
-    }, [tours]);
-
+    }, []);
+    
     const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
+    
 
     return (
         <Stack 
