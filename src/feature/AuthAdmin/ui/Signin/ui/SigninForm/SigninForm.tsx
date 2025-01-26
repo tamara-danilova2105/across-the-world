@@ -12,10 +12,15 @@ import Cookies from "js-cookie";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './SigninForm.module.scss';
 
+interface FormInputs {
+    login: string;
+    password: string;
+}
+
 export const SigninForm = () => {
 
     const [showPassword, setShowPassword] = useState(false)
-    const { register, handleSubmit, reset, formState: { errors } } = useFormContext()
+    const { register, handleSubmit, reset, formState: { errors } } = useFormContext<FormInputs>()
     const passwordIcon = showPassword ? <EyeOff /> : <Eye />
 
     const [signin, {error, isLoading}] = useSigninMutation();

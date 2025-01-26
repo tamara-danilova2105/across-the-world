@@ -12,9 +12,13 @@ import { getRouteSignin } from "@/app/router/lib/helper";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './RefreshPasswordForm.module.scss'
 
+interface FormInputs {
+    newPassword: string;
+}
+
 export const RefreshPasswordForm = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useFormContext()
+    const { register, handleSubmit, formState: { errors } } = useFormContext<FormInputs>()
     const [showPassword, setShowPassword] = useState(false)
     const passwordIcon = showPassword ? <EyeOff /> : <Eye />
 
