@@ -13,9 +13,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
 
     const { register, handleSubmit, formState: { errors } } = useFormContext() 
     const [ reset_password, {error, isLoading}] = useResetPasswordMutation()
-
-    console.log(error)
-
+    
     const onSubmit = async (formData: FormData ) => {
         const { email } = formData
         if (!email) {
@@ -49,7 +47,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
                         message: data.errors.validEmail,
                     }
                 })}
-                placeholder="Введите свою почту"
+                placeholder="Введите свою почту" 
                 error={errors.email} 
             />
             <Stack

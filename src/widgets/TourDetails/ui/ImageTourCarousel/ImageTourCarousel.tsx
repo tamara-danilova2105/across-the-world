@@ -8,11 +8,7 @@ import { Text } from "@/shared/ui/Text";
 
 interface ImageTourCarouselProps {
     index: number;
-<<<<<<< HEAD
-    images: Image[] //TODO
-=======
     images: Image[]
->>>>>>> e1b47589e9eef088c973c2d36ff2e787ea4a4b55
 }
 
 export const ImageTourCarousel = (props: ImageTourCarouselProps) => {
