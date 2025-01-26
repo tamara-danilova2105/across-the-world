@@ -2,9 +2,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { SigninForm } from "../SigninForm/SigninForm"
-import { Function } from '@/shared/types/types';
+import { ChangeStateProps } from '@/shared/types/types';
 
-export const Signin = ({ handleChangeState } : Function) => {
+export const Signin = ({ handleChangeState } : ChangeStateProps) => {
 
     const methods = useForm()
 
