@@ -6,7 +6,7 @@ import { CustomeSwiper } from "@/entities/CustomeSwiper";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";
-import { dataTours, Tour } from "../../lib/data";
+import { dataTours, DirectionTour, Tour } from "../../lib/data";
 import styles from './OurTours.module.scss';
 
 export const OurTours = () => {
@@ -15,14 +15,14 @@ export const OurTours = () => {
     const isSwiperActive = width <= 590;
     const { containerRef } = useScrollSlider(width);
 
-    const filterTours = (filter: string) => {
+    const filterTours = (filter: DirectionTour[] | 'все туры') => {
         if (filter === 'все туры') {
             return dataTours;
         }
         return dataTours.filter((tour) => tour.direction === filter);
     };
 
-    const filtredTours = useCallback((filter: string) => {
+    const filtredTours = useCallback((filter: DirectionTour[] | 'все туры') => {
         const filtered = filterTours(filter);
         setTours(filtered);
     }, [tours]);
