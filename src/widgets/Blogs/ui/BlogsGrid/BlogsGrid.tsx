@@ -1,13 +1,27 @@
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { dataBlog } from "@/widgets/NewsBlog/lib/data";
-import { CardBlog } from '@/entities/CardBlog/ui/CardBlog'
 import styles from './BlogsGrid.module.scss'
+import { Cards } from "../Cards/Cards";
 
 
 export const BlogsGrid = () => {
 
-    const colorSchemes: Array<'pink' | 'peach' | 'white'> = ['pink', 'peach', 'white'];
-    const variants: Array<'large' | 'small'> = ['large', 'small'];
+    const determineVariant = (index: number): 'large' | 'medium' | 'image' => {
+        console.log(index)
+        if (index % 6 === 0 || (index - 6) % 6 === 0) {
+            return 'large';
+        }
+        if ((index - 1) % 2 === 0 || (index - 6) % 3 === 0) {
+            return 'image';
+        }
+        return 'medium'; 
+    }
+    
+
+    const determineColorScheme = (index: number): 'pink' | 'peach' | 'white' | 'blue' => {
+        const colorSchemes: Array<'pink' | 'peach' | 'white' | 'blue'> = ['pink', 'peach', 'white', 'blue'];
+        return colorSchemes[index % colorSchemes.length];
+    };
 
     return(
         <Stack 
@@ -16,11 +30,11 @@ export const BlogsGrid = () => {
             wrap
         >
             {dataBlog.map((news, index) => (
-                <CardBlog
+                <Cards
                     key={news._id}
                     news={news}
-                    variant={variants[index % variants.length]}
-                    colorScheme={colorSchemes[index % colorSchemes.length]}
+                    variant={determineVariant(index)}
+                    colorScheme={determineColorScheme(index)}
                 />
             ))}
         </Stack>

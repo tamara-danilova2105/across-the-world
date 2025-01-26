@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { useFormContext } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 import { data, validatePassword } from "@/shared/lib/validateInput";
@@ -10,7 +11,6 @@ import { FormData, useRefreshPasswordMutation } from "@/feature/AuthAdmin/api/si
 import { getRouteSignin } from "@/app/router/lib/helper";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './RefreshPasswordForm.module.scss'
-
 
 export const RefreshPasswordForm = () => {
 
@@ -25,6 +25,10 @@ export const RefreshPasswordForm = () => {
 
     const onSubmit = async (formData: FormData) => {
         const { newPassword } = formData
+
+        if (!newPassword) {
+            throw new Error('New password is required');
+        }
         try {
             await refreshPassword({ resetToken, newPassword })
             navigate(getRouteSignin())
@@ -49,7 +53,7 @@ export const RefreshPasswordForm = () => {
                         required: data.required,
                         validate: validatePassword,
                     })}
-                    error={errors.newPassword}
+                    error={errors?.newPassword}
                 />
                 <button 
                     type='button'

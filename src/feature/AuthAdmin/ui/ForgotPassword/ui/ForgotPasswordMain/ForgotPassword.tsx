@@ -4,10 +4,10 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { Instruction } from "../Instruction/Instruction";
 import { ForgotPasswordForm } from "../ForgotPasswordForm/ForgotPasswordForm";
 import { Text } from "@/shared/ui/Text/Text";
-import { Function } from "@/shared/types/types";
+import { ChangeStateProps } from "@/shared/types/types";
 import styles from './ForgotPassword.module.scss'
 
-export const ForgotPassword = ({ handleChangeState } : Function) => {
+export const ForgotPassword = ({ handleChangeState } : ChangeStateProps) => {
 
     const methods = useForm()
     const [ isExplain, setIsExplain ] = useState(false)

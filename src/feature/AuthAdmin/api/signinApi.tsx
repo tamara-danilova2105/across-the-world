@@ -19,8 +19,8 @@ export interface FormData {
 }
 
 interface RefreshPasswordBody {
-    password: string;
-    resetToken: string;
+    newPassword: string;
+    resetToken?: string;
 }
 
 interface LogoutBody {

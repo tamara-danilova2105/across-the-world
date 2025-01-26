@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Images } from "@/shared/types/types";
+import { Image } from "@/shared/types/types";
 import { Text } from "@/shared/ui/Text";
 import { useResize } from "@/shared/hooks/useResize";
 import { useModal } from "@/shared/hooks/useModal";
@@ -7,7 +7,7 @@ import { ImageTourCarousel } from "../ImageTourCarousel/ImageTourCarousel";
 import styles from './ImagesTourGrid.module.scss';
 
 interface ImagesTourProps {
-    images: Images[] //TODO
+    images: Image[] //TODO
     variant?: "main" | "accommodation";
     showImagesDesktop?: number;
     showImagesTablet?: number;

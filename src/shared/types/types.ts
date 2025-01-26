@@ -5,7 +5,7 @@ export interface Image {
     file?: File;
 };
 
-export interface Function {
+export interface ChangeStateProps {
     handleChangeState?: () => void;
-    showExplain?: () => void | undefined;
+    showExplain?: () => void;
 }

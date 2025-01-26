@@ -25,7 +25,7 @@ export const BlogsMain = () => {
                 gap="48"
                 className={styles.main}
             >
-                {width > 590 ? 
+                {width > 540 ? 
                 <BlogsGrid />
                 :
                 <Blogs />}

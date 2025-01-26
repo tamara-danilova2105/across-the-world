@@ -17,21 +17,23 @@ export const textRegex = /^[а-яА-ЯёЁ\s]+$|^[a-zA-Z\s]+$/;
 export const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
 export const numberRegex = /^[0-9]+$/;
 
-export const validatePassword = (password: string): string | null => {
+type ValidateResult = string | boolean | Promise<string | boolean>;
+
+export const validatePassword = (password: string): ValidateResult => {
     if (!password) {
-        return data.required;
+        return 'Обязательное поле';
     }
     if (password.length < 8) {
-        return data.errors.passwordTooShort;
+        return 'Минимум 8 символов';
     }
     if (!/[a-z]/.test(password)) {
-        return data.errors.passwordMissingLowercase;
+        return 'Хотя бы одна строчная буква';
     }
     if (!/[A-Z]/.test(password)) {
-        return data.errors.passwordMissingUppercase;
+        return 'Хотя бы одна заглавная буква';
     }
     if (!/\d/.test(password)) {
-        return data.errors.passwordMissingDigit;
+        return 'Хотя бы одна цифра';
     }
-    return null;
-}
+    return true; 
+};

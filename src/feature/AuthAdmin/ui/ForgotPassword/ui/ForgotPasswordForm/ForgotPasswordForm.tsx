@@ -5,20 +5,27 @@ import { Button } from "@/shared/ui/Button/Button"
 import { Input } from "@/shared/ui/Input/Input"
 import { FormData, useResetPasswordMutation } from "@/feature/AuthAdmin/api/signinApi";
 import { Text } from "@/shared/ui/Text/Text";
-import { Function } from "@/shared/types/types";
+import { ChangeStateProps } from "@/shared/types/types";
 import styles from './ForgotPasswordForm.module.scss'
 
 
-export const ForgotPasswordForm = ({ handleChangeState, showExplain } : Function) => {
+export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeStateProps ) => {
 
     const { register, handleSubmit, formState: { errors } } = useFormContext() 
     const [ reset_password, {error, isLoading}] = useResetPasswordMutation()
 
-    const onSubmit = async (formData: FormData) => {
+    console.log(error)
+
+    const onSubmit = async (formData: FormData ) => {
         const { email } = formData
+        if (!email) {
+            throw new Error("Неверный email");
+        }
         try {
             await reset_password({ email }).unwrap()
-            showExplain()
+            if (showExplain) {
+                showExplain()
+            }
         } catch (e) {
             console.error('Ошибка сброса пароля:', e)
         }

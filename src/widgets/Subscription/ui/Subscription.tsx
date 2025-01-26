@@ -72,7 +72,7 @@ export const Subscription = () => {
                                     }
                                 })}
                                 placeholder="Введите свою почту"
-                                error={errors.email}
+                                error={errors?.email}
                             />
                             <Button cta type="submit">
                                 Подписаться
