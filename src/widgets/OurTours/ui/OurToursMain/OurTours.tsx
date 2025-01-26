@@ -19,16 +19,22 @@ export const OurTours = () => {
         if (filter === 'все туры') {
             return dataTours;
         }
-        return dataTours.filter((tour) => tour.direction === filter);
-    };
 
-    const filtredTours = useCallback((filter: DirectionTour[] | 'все туры') => {
-        const filtered = filterTours(filter);
+        if (Array.isArray(filter)) {
+            return dataTours.filter((tour) =>
+                filter.some((dir) => tour.direction.includes(dir))
+            )
+        }
+
+        return dataTours.filter((tour) => tour.direction === filter);
+    }
+
+    const filtredTours = useCallback((filter: string) => {
+        const filtered = filterTours(filter as DirectionTour[] | 'все туры');
         setTours(filtered);
     }, [tours]);
 
     const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
-
 
     return (
         <Stack 
