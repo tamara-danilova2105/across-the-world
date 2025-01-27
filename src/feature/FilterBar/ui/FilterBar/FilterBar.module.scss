@@ -3,10 +3,10 @@
 .filterBarContainer {
     position: sticky;
     top: 70px;
-    width: 330px;
+    width: 270px;
     height: 100%;
 
-    @include tablet-l {
+    @include tablet-m {
         width: 100%;
         z-index: 3;
         top: 0;
@@ -38,13 +38,13 @@
 
     .filterBar {
         height: auto;
-        width: 100%;
+        width: 270px;
         max-height: 70vh;
         overflow-y: scroll;
         padding: 0 10px 60px 0;
         overflow-x: hidden;
 
-        @include tablet-l {
+        @include tablet-m {
             max-height: 75vh;
             width: 100%;
         }

@@ -33,7 +33,7 @@ export const FilterRange = ({
 
     return (
         <Stack direction="column" gap="16">
-            <Text size="24" font="geometria500" color="blue">
+            <Text size="16" font="geometria500" color="blue">
                 {title}
             </Text>
             <FormProvider {...methods}>

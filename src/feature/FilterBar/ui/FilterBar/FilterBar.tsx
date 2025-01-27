@@ -1,12 +1,10 @@
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { Text } from "@/shared/ui/Text/Text"
 import * as React from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { dataFilter,
         dataFilterRange,
-        dataRegionGroups,
         FilterCategory,
         FilterRangeCategory
         } from "../../lib/data"
@@ -16,16 +14,13 @@ import { clearAllFilters,
         setFilter } from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
-import { FilterRegion } from "../FilterRegion/ui/FilterRegion/FilterRegion"
 import styles from './FilterBar.module.scss'
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
-type DataRegion = typeof dataRegionGroups;
 
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
-type FilterRegionKeys = keyof DataRegion;
 
 export const FilterBar = () => {
 
@@ -35,10 +30,10 @@ export const FilterBar = () => {
     const [selectedFilters, setSelectedFilters] = useState<FiltersState>(filterState)
 
         const handleChange = React.useCallback(
-            (key: FilterKeys | FilterRangeKeys | FilterRegionKeys, value: any) => {
+            (key: FilterKeys | FilterRangeKeys , value: any) => {
                 
                 const updatedFilters = (prevFilters: FiltersState) => {
-                    if (key === 'type_tour' || key === 'season') {
+                    if (key === 'type_tour') {
                         return {
                             ...prevFilters,
                             [key]: {
@@ -46,26 +41,11 @@ export const FilterBar = () => {
                                 ...(value || {}),
                             },
                         }
-                    } else if (key === 'price' || key === 'duration') {
+                    } 
                         return {
                             ...prevFilters,
                             [key]: value as [number, number],
                         }
-                    }
-
-                    return {
-                        ...prevFilters,
-                        region: {
-                            regions: {
-                                ...prevFilters.region.regions,
-                                ...(value.regions || {}),
-                            },
-                            country: {
-                                ...prevFilters.region.country,
-                                ...(value.country || {}),
-                            },
-                        },
-                    }
                 }
 
                 setSelectedFilters((prev) => {
@@ -108,27 +88,10 @@ export const FilterBar = () => {
         )
     }
 
-    const renderFilterRegionElement = (key: FilterRegionKeys) => {
-        const { regions, country } = dataRegionGroups[key]
-
-        return (
-            <FilterRegion
-                key={key}
-                regions={regions} 
-                country={country} 
-                selectedFilters={selectedFilters['region']} 
-                onChange={(values: { regions: Record<string, boolean>,
-                    country: Record<string, boolean> }) =>
-                    handleChange(key, values) 
-                }
-            />
-        )
-    }
-
     return (
         <Stack
             direction='column'
-            gap='32'
+            gap='16'
             className={styles.filterBarContainer}
         >
             <Stack
@@ -144,31 +107,12 @@ export const FilterBar = () => {
             </Stack>
             <Stack
                 direction='column'
-                gap='32'
+                gap='16'
                 className={styles.filterBar}
             >
                 {Object.keys(dataFilterRange).map((key) =>
                     renderFilterRangeElement(key as FilterRangeKeys)
                 )}
-
-                <Stack
-                    direction='column'
-                    gap='16'
-                    max
-                >
-                    <Text
-                        size='24'
-                        font='geometria500'
-                        color='blue'
-                    >
-                        Регион
-                    </Text>
-
-                {Object.keys(dataRegionGroups).map((key) =>
-                    renderFilterRegionElement(key as FilterRegionKeys)
-                )}
-                </Stack>
-
 
                 {Object.keys(dataFilter).map((key) =>
                     renderFilterElement(key as FilterKeys)
