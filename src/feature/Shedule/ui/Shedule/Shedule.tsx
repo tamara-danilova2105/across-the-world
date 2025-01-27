@@ -19,7 +19,7 @@ export const Shedule = () => {
     }
 
     function groupToursByMonth(tours: Tour[]) {
-        const toursByMonth: Record<string, { date: string; _id: string; tour: string; spots: number }[]> = {};
+        const toursByMonth: Record<string, { date: string; _id: string; tour: string; spots: number, regions: string[] }[]> = {};
     
         tours.forEach(tour => {
             tour.dates.forEach(dateObj => {
@@ -28,7 +28,8 @@ export const Shedule = () => {
                     date: `${formatDate(dateObj.date_start)} - ${formatDate(dateObj.date_finish)}`,
                     _id: tour._id,
                     tour: tour.tour,
-                    spots: dateObj.spots 
+                    spots: dateObj.spots,
+                    regions: tour.regions
                 }
 
                 if (!toursByMonth[month]) {
@@ -124,9 +125,11 @@ export const Shedule = () => {
                     {groupedTours[month].map(tour => (
                     <SheduleItem
                         key={tour._id}
+                        _id={tour._id}
                         date={tour.date}
                         tour={tour.tour}
                         spots={tour.spots}
+                        regions={tour.regions}
                     />
                     ))}
                 </Stack>
