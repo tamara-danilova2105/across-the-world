@@ -1,19 +1,20 @@
 import React, { useRef } from 'react';
 import { X, Upload } from 'lucide-react';
-import styles from './ImageUploader.module.scss';
 import { Image } from '@/shared/types/types';
 import { Stack } from '@/shared/ui/Stack';
 import { getStyles } from '@/shared/lib/getStyles';
+import styles from './ImageUploader.module.scss';
 
 interface ImageUploaderProps {
     images: Image[];
     onChange: (images: Image[]) => void;
     maxImages?: number;
     isCover?: boolean;
+    uploadHint?: string;
 }
 
 export const ImageUploader = (props: ImageUploaderProps) => {
-    const { images, onChange, maxImages = 3, isCover } = props;
+    const { images, onChange, maxImages = 3, uploadHint, isCover } = props;
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,7 +28,6 @@ export const ImageUploader = (props: ImageUploaderProps) => {
             _id: crypto.randomUUID(),
             src: URL.createObjectURL(file),
             file,
-            alt: ''
         }));
 
         const updatedImages = [...images, ...newImages].slice(0, maxImages);
@@ -49,7 +49,7 @@ export const ImageUploader = (props: ImageUploaderProps) => {
                 {images.map(image => (
                     <div
                         key={image._id}
-                        className={getStyles(styles.imageContainer, {[styles.cover]: isCover}, [])}
+                        className={getStyles(styles.imageContainer, { [styles.cover]: isCover }, [])}
                     >
                         <img
                             src={image.src}
@@ -69,7 +69,7 @@ export const ImageUploader = (props: ImageUploaderProps) => {
                     <button
                         type='button'
                         onClick={() => fileInputRef.current?.click()}
-                        className={getStyles(styles.addButton, {[styles.coverBtn]: isCover}, [])}
+                        className={getStyles(styles.addButton, { [styles.coverBtn]: isCover }, [])}
                     >
                         <Upload className={styles.icon} />
                         <span className={styles.addButtonText}>Добавить фото</span>
@@ -87,7 +87,7 @@ export const ImageUploader = (props: ImageUploaderProps) => {
             />
 
             <p className={styles.instructions}>
-                Вы можете добавить до {maxImages} фото
+                {uploadHint ? uploadHint : `Вы можете добавить до ${maxImages} фото`}
             </p>
         </Stack>
     );

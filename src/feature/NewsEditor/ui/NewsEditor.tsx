@@ -62,7 +62,7 @@ export const NewsEditor = () => {
 
                 <Stack direction='column' gap='8' max>
                     <Text size='18' font='geometria500'>
-                        Загрузить фотографии (1 фотография будет обложкой статьи)
+                        Загрузить фотографии
                     </Text>
 
                     <Stack direction='column' gap='8'>
@@ -74,6 +74,7 @@ export const NewsEditor = () => {
                             }))}
                             onChange={handleImagesChange}
                             maxImages={4}
+                            uploadHint="Загрузите минимум 4 фото, первая фотография станет обложкой статьи"
                         />
                     </Stack>
                 </Stack>
