@@ -35,7 +35,7 @@ export const FilterBarItem = ({
             gap='16'
         >
             <Text
-                size='24'
+                size='16'
                 font='geometria500'
                 color='blue'
             >

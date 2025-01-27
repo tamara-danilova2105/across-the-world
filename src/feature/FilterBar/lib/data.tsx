@@ -12,7 +12,6 @@ export interface FilterCategory {
 
 export interface FilterData {
     type_tour: FilterCategory;
-    season: FilterCategory;
 }
 
 
@@ -25,15 +24,6 @@ export const dataFilter: FilterData = {
             { _id: 3, value: 'Excusion', label: 'Экскурсионный' },
             { _id: 4, value: 'Child', label: 'Детский' },
             { _id: 5, value: 'Photo_tour', label: 'Фототур' },
-        ],
-    },
-    season: {
-        title: "Сезон",
-        items: [
-            {_id: 1, value: 'Winter', label: 'Зима'},
-            {_id: 2, value: 'Spring', label: 'Весна'},
-            {_id: 3, value: 'Summer', label: 'Лето'},
-            {_id: 4, value: 'Autumn', label: 'Осень'}
         ],
     }
 }
@@ -116,9 +106,7 @@ export const dataRegionGroups: DataRegionProps = {
             value: 'Africa',
             label: 'Африка'
         },
-        country: [
-
-        ]
+        country: []
     }
 }
 

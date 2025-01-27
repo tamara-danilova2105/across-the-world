@@ -12,7 +12,8 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { dataTours } from "@/widgets/OurTours/lib/data"
 import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
-import { useGetAllToursQuery } from "../api/toursApi"
+import { getStyles } from "@/shared/lib/getStyles"
+import { useGetAllToursQuery } from "../../api/toursApi"
 import styles from './Tours.module.scss'
 
 const LIMIT = 12;
@@ -59,7 +60,7 @@ export const Tours = () => {
             <Stack
                 justify='end'
                 max
-                className={`${styles.filter_panel} ${isOpen ? styles.open : ''}`}
+                className={getStyles(styles.filter_panel, {[styles.open] : isOpen}, [])}
             >
                 <MobileFilterBar 
                     toggleMenu={toggleMenu} 
@@ -68,6 +69,7 @@ export const Tours = () => {
                 />
                 <Stack
                     gap='16'
+                    className={styles.filter_panel_btn}
                 >
                     <SortTour/>
                     <Button

@@ -2,19 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface FiltersState {
     type_tour: Record<string, boolean>;
-    region: { 
-        regions: Record<string, boolean>,
-        country: Record<string, boolean> 
-    },
-    season: Record<string, boolean>;
     price: [number, number];
     duration: [number, number];
 }
 
 const initialState: FiltersState = {
     type_tour: {},
-    region: { regions: {}, country: {} },
-    season: {},
     duration: [1, 25],
     price: [0, 500000],
 }
@@ -41,15 +34,7 @@ const filterSlice = createSlice({
                 state.price = initialState.price;
             } else if (filter === 'duration') {
                 state.duration = initialState.duration;
-            } else if (filter === 'region') {
-                if (key) {
-                    if (key in state.region.regions) {
-                        delete state.region.regions[key];
-                    } else if (key in state.region.country) {
-                        delete state.region.country[key];
-                    }
-                }
-            } else if (key && filter in state) {
+            }  else if (key && filter in state) {
                 const category = state[filter as keyof FiltersState] as Record<string, boolean>;
                 if (category) {
                     delete category[key];

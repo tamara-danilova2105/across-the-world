@@ -16,18 +16,13 @@
             z-index: 101;
         }
 
-        @include tablet-l {
-            justify-content: space-between;
-        }
-
         @include mobile-l {
             align-items: flex-end;
-            justify-content: space-between;
             height: 140px;
         }
 
         .filter_panel_btn {
-            align-self: flex-end;
+            align-items: flex-end;
         }
 
         .button {
@@ -59,10 +54,11 @@
                 object-fit: cover;
             }
 
-            @include tablet-m {
+            @include desktop-m {
                 flex: 1 1 calc(50% - 16px); 
                 max-width: calc(50% - 16px);
             }
+
             @include tablet-m {
                 height: 500px;
 
