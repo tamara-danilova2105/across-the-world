@@ -14,13 +14,13 @@ interface NewsBlogProps {
 }
 
 export const CardBlog = ({
-    news, 
-    variant = 'large', 
+    news,
+    variant = 'large',
     colorScheme = 'white' }: NewsBlogProps) => {
 
     const { title, description, createdAt, images, _id } = news;
-    const mainImage = images[0]; 
-    const otherImages = images.slice(1); 
+    const mainImage = images[0];
+    const otherImages = images.slice(1);
 
     const containerClass = getStyles(
         styles.cardBlogsContainer,
@@ -29,36 +29,41 @@ export const CardBlog = ({
             variant ? styles[variant] : undefined,
             colorScheme ? styles[colorScheme] : undefined,
         ]
-    )
+    );
 
-    return(
+    const truncatedDescription =
+        description.length > 130 ? `${description.slice(0, 130)} ...` : description;
+
+    const displayText = `<span>${truncatedDescription}</span>`;
+
+    return (
         <Stack
             className={containerClass}
         >
             <div className={styles.read_more}>
-                <AppLink to={getRouteBlogDetails(_id)}> 
+                <AppLink to={getRouteBlogDetails(_id)}>
                     Подробнее
                 </AppLink>
             </div>
             <Stack gap="32">
-                <Stack 
+                <Stack
                     align="center"
                     justify="center"
                     className={styles.imagesContainer}
                 >
                     {mainImage && (
-                        <img 
-                            src={mainImage.src} 
+                        <img
+                            src={mainImage.src}
                             alt={mainImage._id} //TODO - id будет UUID
-                            width='' height="430px" 
-                            draggable={false} 
+                            width='' height="430px"
+                            draggable={false}
                         />
                     )}
                     <Text size='18' font="geometria500">
                         {formatToRussianDate(createdAt)}
                     </Text>
                 </Stack>
-                <Stack 
+                <Stack
                     align="start"
                     direction='column'
                     gap='32'
@@ -76,25 +81,25 @@ export const CardBlog = ({
                             {formatToRussianDate(createdAt)}
                         </Text>
                     </Stack>
-                    <Stack 
+                    <Stack
                         direction='column'
                         gap='24'
                         className={styles.textContainer}
                     >
-                        <Text 
-                            size="24" 
-                            font="geometria500" 
+                        <Text
+                            size="24"
+                            font="geometria500"
                             color="blue"
                         >
                             {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                         </Text>
-                        <Text 
-                            size='18' 
-                            color="blue"
+
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: displayText,
+                            }}
                             className={styles.description}
-                        >
-                            {description.length > 130 ? `${description.slice(0, 130)} ...` : description}
-                        </Text>
+                        />
                     </Stack>
                 </Stack>
             </Stack>

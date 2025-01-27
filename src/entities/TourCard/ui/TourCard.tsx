@@ -27,9 +27,6 @@ export const TourCard = ({ tourData }: TourCardProps) => {
         return discount ? amount - (amount * discount) / 100 : amount
     };
 
-    console.log(imageCover);
-    
-
     return (
         <article className={styles.tour_card}>
             <Stack 

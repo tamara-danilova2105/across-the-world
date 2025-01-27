@@ -1,7 +1,6 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import ImageExtension from '@tiptap/extension-image';
-import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3, Image } from 'lucide-react';
+import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3 } from 'lucide-react';
 import styles from './TextEditor.module.scss';
 
 interface TextEditorProps {
@@ -29,10 +28,7 @@ const MenuButton = ({
 
 export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
     const editor = useEditor({
-        extensions: [
-            StarterKit, 
-            ImageExtension,
-        ],
+        extensions: [StarterKit],
         content: initialContent,
         editorProps: {
             attributes: {
@@ -98,17 +94,6 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
                 </MenuButton>
 
                 <div className={styles.separator} />
-
-                <MenuButton
-                    onClick={() => {
-                        const url = window.prompt('Enter the image URL:');
-                        if (url) {
-                            editor.chain().focus().setImage({ src: url }).run();
-                        }
-                    }}
-                >
-                    <Image size={18} />
-                </MenuButton>
 
                 <div className={styles.flexGrow} />
             </div>

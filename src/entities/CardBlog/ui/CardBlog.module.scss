@@ -131,7 +131,7 @@
                     text-indent: var(--text-indent);
                     text-align: justify;
                     height: 110px;
-                    line-height: 30px;
+                    line-height: 24px;
     
                     @include media.mobile-xl {
                         height: 150px;
@@ -142,7 +142,7 @@
                     }
 
                     @include media.mobile-m {
-                        line-height: 20px;
+                        line-height: 18px;
                     }
                 }
             }
