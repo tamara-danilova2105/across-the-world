@@ -11,7 +11,7 @@ interface SheduleItemProps {
     date: string;
     tour: string;
     spots: number;
-    regions: string;
+    regions: string[];
 }
 
 export const SheduleItem = ({ date, tour, spots, _id, regions } : SheduleItemProps) => {
@@ -28,7 +28,7 @@ export const SheduleItem = ({ date, tour, spots, _id, regions } : SheduleItemPro
             direction='column'
             gap='16'
             className={styles.sheduleItem_container}
-            onClick={() => router(regions, _id)}
+            onClick={() => router(regions[0], _id)}
         >
             <Stack
                 align='center'
