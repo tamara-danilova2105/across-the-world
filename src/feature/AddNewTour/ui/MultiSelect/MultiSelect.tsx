@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
-import styles from './MultiSelect.module.scss';
 import { getStyles } from '@/shared/lib/getStyles';
+import styles from './MultiSelect.module.scss';
 
 interface MultiSelectProps<T> {
     value: T[];
@@ -64,7 +64,7 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
                 </div>
                 <ChevronDown
                     size={20}
-                    className={`${styles.chevronIcon} ${isOpen ? styles.rotate : ''}`}
+                    className={getStyles(styles.chevronIcon, { [styles.rotate]: isOpen }, [])}
                 />
             </button>
 

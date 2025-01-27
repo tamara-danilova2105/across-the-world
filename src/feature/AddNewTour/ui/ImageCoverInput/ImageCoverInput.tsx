@@ -1,6 +1,6 @@
+import { ImageUploader } from "@/entities/ImageUploader";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { ImageUploader } from "../ImageUploader/ImageUploader";
 import { Image } from "@/shared/types/types";
 
 interface ImageCoverInputProps {

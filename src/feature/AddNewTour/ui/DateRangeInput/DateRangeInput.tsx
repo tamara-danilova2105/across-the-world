@@ -36,17 +36,17 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
         else newDates[index][field] = value;
         onChange(newDates);
     };
-    
+
     const removeDateRange = (index: number) => {
         onChange(dates.filter((_, i) => i !== index));
     };
-    
+
     return (
         <Stack direction='column' gap='16'>
             <Text size='18' font='geometria500'>
                 Даты тура
             </Text>
-            
+
             {dates.map((date, index) => (
                 <div key={index} className={styles.dateRangeContainer}>
                     <div>
@@ -78,7 +78,7 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
                             />
                             <select
                                 value={date.price.currency}
-                                onChange={(e) => updateDateRange(index, 'price', { ...date.price, currency: e.target.value as "$" | "₽"})}
+                                onChange={(e) => updateDateRange(index, 'price', { ...date.price, currency: e.target.value as "$" | "₽" })}
                                 className={styles.select}
                             >
                                 <option value="$">$</option>
@@ -105,15 +105,17 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
                         </div>
                     </div>
                 </div>
-                ))}
+            ))}
 
-            <Button 
-                color='transparent'
-                onClick={addDateRange}
-                type="button"
-            >
-                + Добавить даты
-            </Button>
+            <div>
+                <Button
+                    color='transparent'
+                    onClick={addDateRange}
+                    type="button"
+                >
+                    + Добавить даты
+                </Button>
+            </div>
         </Stack>
     );
 };

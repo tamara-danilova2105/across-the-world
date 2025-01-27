@@ -29,20 +29,3 @@
         }
     }
 }
-
-.cancelButton {
-    padding: 8px 16px;
-    color: #4b5563;
-    background-color: #f3f4f6;
-    border-radius: 6px;
-    transition: background-color 0.2s, color 0.2s;
-
-    &:hover {
-        color: #374151;
-        background-color: #e5e7eb;
-    }
-}
-
-.addButton {
-    font-size: var(--font-size-16) !important;
-}

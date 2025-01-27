@@ -1,11 +1,11 @@
-import { DayProgram } from "@/widgets/OurTours/lib/data";
+import { DayProgram } from "@/widgets/OurTours/lib/data"; //TODO
+import { TextEditor } from "@/entities/TextEditor";
+import { ImageUploader } from "@/entities/ImageUploader";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
-import styles from './ProgramInput.module.scss';
-import { ImageUploader } from "../ImageUploader/ImageUploader";
 import { Image } from "@/shared/types/types";
-import { TextEditor } from "@/entities/TextEditor";
+import styles from './ProgramInput.module.scss';
 
 interface ProgramInputProps {
     program: DayProgram[];
@@ -106,13 +106,16 @@ export const ProgramInput = (props: ProgramInputProps) => {
                     </Stack>
                 </div>
             ))}
-            <Button
-                type="button"
-                color='transparent'
-                onClick={addDay}
-            >
-                + Добавить день
-            </Button>
+
+            <div>
+                <Button
+                    type="button"
+                    color='transparent'
+                    onClick={addDay}
+                >
+                    + Добавить день
+                </Button>
+            </div>
         </Stack >
     );
 };

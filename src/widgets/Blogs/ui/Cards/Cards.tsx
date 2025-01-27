@@ -21,9 +21,9 @@ export const Cards = ({
     colorScheme='white'
     } : BlogsData) => {
 
-    const { title, description, createdAt, image, _id } = news;
-    const mainImage = image[0]; 
-    const otherImages = image.slice(1); 
+    const { title, description, createdAt, images, _id } = news;
+    const mainImage = images[0]; 
+    const otherImages = images.slice(1); 
     const width = useResize()
     const navigate = useNavigate()
 
@@ -65,8 +65,8 @@ export const Cards = ({
                 >
                     {mainImage && (
                         <img 
-                            src={mainImage.url} 
-                            alt={mainImage.alt} 
+                            src={mainImage.src} 
+                            alt={mainImage._id} //TODO - id будет UUID
                             width='' height="460px" 
                             draggable={false} 
                         />
@@ -84,8 +84,8 @@ export const Cards = ({
                         {otherImages.map((item, index) => (
                             <img
                                 key={index}
-                                src={item.url}
-                                alt={item.alt}
+                                src={item.src}
+                                alt={item._id} //TODO - id будет UUID
                                 draggable={false}
                             />
                         ))}

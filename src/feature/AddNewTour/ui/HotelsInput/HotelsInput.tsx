@@ -1,7 +1,7 @@
+import { ImageUploader } from '@/entities/ImageUploader';
 import { Image } from '@/shared/types/types';
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
-import { ImageUploader } from '../ImageUploader/ImageUploader';
 
 interface HotelsInputProps {
     images: Image[];

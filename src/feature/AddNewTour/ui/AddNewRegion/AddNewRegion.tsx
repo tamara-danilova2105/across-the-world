@@ -4,6 +4,10 @@ import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
 
+// interface AddNewRegionProps {
+    
+// }
+
 export const AddNewRegion = () => {
     const [newRegion, setNewRegion] = useState('');
 
@@ -17,7 +21,7 @@ export const AddNewRegion = () => {
             className={styles.container}
         >
             <Text size='24' font='geometria500'>
-                Добавить новый регион
+                Добавить новый регион/страну
             </Text>
             <input
                 type="text"

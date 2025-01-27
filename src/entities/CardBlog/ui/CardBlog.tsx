@@ -18,9 +18,9 @@ export const CardBlog = ({
     variant = 'large', 
     colorScheme = 'white' }: NewsBlogProps) => {
 
-    const { title, description, createdAt, image, _id } = news;
-    const mainImage = image[0]; 
-    const otherImages = image.slice(1); 
+    const { title, description, createdAt, images, _id } = news;
+    const mainImage = images[0]; 
+    const otherImages = images.slice(1); 
 
     const containerClass = getStyles(
         styles.cardBlogsContainer,
@@ -48,8 +48,8 @@ export const CardBlog = ({
                 >
                     {mainImage && (
                         <img 
-                            src={mainImage.url} 
-                            alt={mainImage.alt} 
+                            src={mainImage.src} 
+                            alt={mainImage._id} //TODO - id будет UUID
                             width='' height="430px" 
                             draggable={false} 
                         />
@@ -67,8 +67,8 @@ export const CardBlog = ({
                         {otherImages.map((item, index) => (
                             <img
                                 key={index}
-                                src={item.url}
-                                alt={item.alt}
+                                src={item.src}
+                                alt={item._id} //TODO - id будет UUID
                                 draggable={false}
                             />
                         ))}

@@ -17,7 +17,8 @@ import {
     getRouteRefreshPassword,
     getRouteTestimonials, 
     getRouteTours, 
-    getRouteToursDetails
+    getRouteToursDetails,
+    getRouteAdminDiscount
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
@@ -108,4 +109,8 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         path: getRouteAdminNewsEdit(':id'),
         // onlyAdmin: true,
     },
+    [AppRouters.admin_discount]: {
+        path: getRouteAdminDiscount(),
+        // onlyAdmin: true,
+    }
 };

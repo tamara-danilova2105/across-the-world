@@ -14,17 +14,17 @@ export const BlogsGrid = () => {
         if ((index - 1) % 2 === 0 || (index - 6) % 3 === 0) {
             return 'image';
         }
-        return 'medium'; 
+        return 'medium';
     }
-    
+
 
     const determineColorScheme = (index: number): 'pink' | 'peach' | 'white' | 'blue' => {
         const colorSchemes: Array<'pink' | 'peach' | 'white' | 'blue'> = ['pink', 'peach', 'white', 'blue'];
         return colorSchemes[index % colorSchemes.length];
     };
 
-    return(
-        <Stack 
+    return (
+        <Stack
             className={styles.grid}
             gap='32'
             wrap

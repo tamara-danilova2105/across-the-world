@@ -15,3 +15,4 @@ export const getRouteAdminToursEdit = (id: string) => `/admin/tours/edit/${id}`;
 export const getRouteAdminNews = () => '/admin/news';
 export const getRouteAdminNewsCreate = () => '/admin/news/create';
 export const getRouteAdminNewsEdit = (id: string) => `/admin/news/edit/${id}`;
+export const getRouteAdminDiscount = () => '/admin/discount';

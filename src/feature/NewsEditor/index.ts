@@ -1,3 +1,3 @@
-import { NewsEditor } from './ui/NewsEditorMain/NewsEditor';
+import { NewsEditor } from './ui/NewsEditor';
 
 export { NewsEditor };

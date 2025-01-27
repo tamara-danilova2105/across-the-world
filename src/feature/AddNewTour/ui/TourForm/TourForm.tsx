@@ -30,11 +30,10 @@ const regionsWorldOptions = [
     'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
 ];
 
-
 export const TourForm = () => {
 
     const [formData, setFormData] = useState<Tour>({
-        _id: '',
+        _id: crypto.randomUUID(),
         types: [],
         tour: '',
         dates: [],
@@ -135,13 +134,16 @@ export const TourForm = () => {
                                     options={formData.direction[0] === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
                                     onChange={(option: string[]) => setFormData({ ...formData, regions: option })}
                                 />
-                                <Button
-                                    type="button"
-                                    color='transparent'
-                                    onClick={changeModal}
-                                >
-                                    + Добавить новый регион/страну
-                                </Button>
+                                <div>
+                                    <Button
+                                        type="button"
+                                        color='transparent'
+                                        onClick={changeModal}
+                                        className={styles.addButton}
+                                    >
+                                        + Добавить новый регион/страну
+                                    </Button>
+                                </div>
                             </Stack>
                         )}
 

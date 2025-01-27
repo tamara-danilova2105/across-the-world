@@ -12,23 +12,23 @@ export const BlogsMain = () => {
 
     const width = useResize()
 
-    return(
+    return (
         <main>
             <PageTitle>
                 <BreadCrumbs
                     routes={Object.values(routeConfig)}
                 />
             </PageTitle>
-            <Stack 
+            <Stack
                 tag="section"
-                direction='column' 
+                direction='column'
                 gap="48"
                 className={styles.main}
             >
-                {width > 540 ? 
-                <BlogsGrid />
-                :
-                <Blogs />}
+                {width > 540 ?
+                    <BlogsGrid />
+                    :
+                    <Blogs />}
                 <Pagination
                     forcePage={1}
                     pageCount={3}
