@@ -7,7 +7,6 @@ import { Cards } from "../Cards/Cards";
 export const BlogsGrid = () => {
 
     const determineVariant = (index: number): 'large' | 'medium' | 'image' => {
-        console.log(index)
         if (index % 6 === 0 || (index - 6) % 6 === 0) {
             return 'large';
         }
