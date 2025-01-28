@@ -1,7 +1,6 @@
 import { routeConfig } from "@/app/router/lib/data";
 import { OurTours } from "@/widgets/OurTours";
 import { dataTours } from "@/widgets/OurTours/lib/data";
-import { PageTitle } from "@/entities/PageTitle";
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack";
@@ -13,55 +12,52 @@ import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
 
 export const TourDetails = () => {
-     //TODO - id получать из роутера
+    //TODO - id получать из роутера
     const id = '5'
-     //TODO - получать данные о туре с бэкенда 
+    //TODO - получать данные о туре с бэкенда 
     const tour = dataTours.find((tour) => tour._id === id);
-    
+
     const width = useResize();
     const isMobile = width <= 768;
     const isTablet = width <= 1024;
 
-     //TODO - если будет error, то делать редирект на Not Found Page
+    //TODO - если будет error, то делать редирект на Not Found Page
     if (!tour) return null
 
     const allImages = tour.program.flatMap(item => item.images || []);
 
     const infoContant = (
-        <Infornations 
+        <Infornations
             activity={tour.activity}
             comfort={tour.comfort}
         />
     );
 
     const bookingContent = (
-        <BookingForm 
-            options={tour.dates} 
+        <BookingForm
+            options={tour.dates}
             tour={tour.tour}
         />
     );
 
     const aboutContent = (
-        <AboutTour tour={tour}/>
+        <AboutTour tour={tour} />
     );
 
     return (
         <main>
-            <PageTitle>
-                <BreadCrumbs
-                    routes={Object.values(routeConfig)}
-                    isTour
-                    name={tour.tour}
-                />
-            </PageTitle>
+            <BreadCrumbs
+                isTour
+                name={tour.tour}
+            />
 
-            <Stack 
+            <Stack
                 tag="section" gap="48"
                 direction="column"
                 className={styles.main}
             >
                 {
-                    isMobile 
+                    isMobile
                         ? <ImageTourSwiper images={allImages} />
                         : <ImagesTourGrid images={allImages} />
                 }

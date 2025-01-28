@@ -3,10 +3,10 @@ import { Stack } from "@/shared/ui/Stack";
 import { EarlyBook } from "@/widgets/EarlyBook";
 import { Subscription } from "@/widgets/Subscription";
 import { Testimonials } from "@/widgets/Testimonials";
-import { AboutUs } from "@/widgets/AboutUs";
 import { FAQ } from "@/widgets/FAQ";
 import { NewsBlog } from "@/widgets/NewsBlog";
 import { OurTours } from "@/widgets/OurTours";
+import { AboutUs } from "@/widgets/AboutUsMain";
 
 const MainPage = () => {
     return (
@@ -14,11 +14,11 @@ const MainPage = () => {
             <Hero />
             <AboutUs />
             <OurTours />
-            <EarlyBook/>
+            <EarlyBook />
             <Testimonials />
-            <NewsBlog/>
+            <NewsBlog />
             <FAQ />
-            <Subscription/>
+            <Subscription />
         </Stack>
     );
 };

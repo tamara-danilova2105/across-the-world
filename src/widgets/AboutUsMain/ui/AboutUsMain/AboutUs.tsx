@@ -7,7 +7,7 @@ import styles from './AboutUs.module.scss';
 import { Statictics } from "../Statictics/Statictics";
 
 export const AboutUs = () => {
-    return(
+    return (
         <Stack
             align="center"
             justify="center"
@@ -16,16 +16,16 @@ export const AboutUs = () => {
             <Stack
                 justify="between"
                 gap="32"
-            > 
+            >
                 <Stack justify='around' max>
-                    <img 
-                        src={aboutUs_large} 
-                        alt='Кругостветка - авторский туры по России и миру' 
+                    <img
+                        src={aboutUs_large}
+                        alt='Кругостветка - авторский туры по России и миру'
                         className={styles.img_large}
                     />
-                    <img 
-                        src={aboutUs_small} 
-                        alt='Кругосветка - авторские туры по России и миру' 
+                    <img
+                        src={aboutUs_small}
+                        alt='Кругосветка - авторские туры по России и миру'
                         className={styles.img_tablet}
                     />
                 </Stack>
@@ -34,7 +34,7 @@ export const AboutUs = () => {
                     direction="column"
                     gap="32"
                 >
-                    <Stack 
+                    <Stack
                         gap="32"
                         justify="between"
                         className={styles.heading}
@@ -44,63 +44,63 @@ export const AboutUs = () => {
                             direction="column"
                             justify="end"
                         >
-                            <TitleSection 
-                                subtitle="О НАС" 
-                                title="Кругостветка - тур мечты" 
+                            <TitleSection
+                                subtitle="О НАС"
+                                title="Кругостветка - тур мечты"
                             />
-                            <Stack 
-                                direction='column' 
+                            <Stack
+                                direction='column'
                                 gap="8"
                                 className={styles.subtitle}
                             >
                                 {/* DESKTOP TEXT */}
-                                <Text 
+                                <Text
                                     font='geometria400'
                                     color="blue" size="24"
                                 >
                                     Групповые и индивидуальные туры
                                 </Text>
-                                <Text 
+                                <Text
                                     font='unbounded'
-                                    color="blue" size="24" 
+                                    color="blue" size="24"
                                 >
-                                    Туры по России и миру 
+                                    Туры по России и миру
                                 </Text>
 
                                 {/* MOBILE TEXT */}
-                                <Text 
+                                <Text
                                     font='unbounded'
-                                    color="blue" size="18" 
+                                    color="blue" size="18"
                                 >
                                     Групповые и индивидуальные туры по России и миру
                                 </Text>
                             </Stack>
                         </Stack>
-                        <img 
-                            src={aboutUs_small} 
-                            alt='Кругосветка - авторские туры по России и миру' 
+                        <img
+                            src={aboutUs_small}
+                            alt='Кругосветка - авторские туры по России и миру'
                             className={styles.img_small}
                         />
                     </Stack>
                     <div>
-                    <Text 
-                        color="blue" 
-                        size="18"
-                        className={styles.desc_text}
-                    >
-                        Кругосветка — туристическая фирма, организующая увлекательные туры по России и за границу. 
-                        Мы предлагаем разнообразные маршруты для любителей приключений, культурных открытий и комфортного отдыха. 
-                    </Text>
-                    <Text
-                        color="blue" 
-                        size="18"
-                        className={styles.desc_text}
-                    >
-                        С нами вы сможете исследовать величественные горы, древние города, золотые пляжи и другие 
-                        уникальные уголки мира, создавая незабываемые впечатления!
-                    </Text>
+                        <Text
+                            color="blue"
+                            size="18"
+                            className={styles.desc_text}
+                        >
+                            Кругосветка — туристическая фирма, организующая увлекательные туры по России и за границу.
+                            Мы предлагаем разнообразные маршруты для любителей приключений, культурных открытий и комфортного отдыха.
+                        </Text>
+                        <Text
+                            color="blue"
+                            size="18"
+                            className={styles.desc_text}
+                        >
+                            С нами вы сможете исследовать величественные горы, древние города, золотые пляжи и другие
+                            уникальные уголки мира, создавая незабываемые впечатления!
+                        </Text>
                     </div>
-                    
+
                     <Statictics />
                 </Stack>
             </Stack>

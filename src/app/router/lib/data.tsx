@@ -1,7 +1,7 @@
 import { MainPage } from "@/pages/MainPage";
 import { AppRouters, AppRoutesProps } from "../types/types";
-import { 
-    getRouteAbout, 
+import {
+    getRouteAbout,
     getRouteAdmin,
     getRouteAdminNews,
     getRouteAdminNewsCreate,
@@ -9,14 +9,14 @@ import {
     getRouteAdminTours,
     getRouteAdminToursCreate,
     getRouteAdminToursEdit,
-    getRouteBlog, 
+    getRouteBlog,
     getRouteBlogDetails,
-    getRouteMain, 
-    getRoutePrivacyPolicy, 
-    getRouteSignin, 
+    getRouteMain,
+    getRoutePrivacyPolicy,
+    getRouteSignin,
     getRouteRefreshPassword,
-    getRouteTestimonials, 
-    getRouteTours, 
+    getRouteTestimonials,
+    getRouteTours,
     getRouteToursDetails,
     getRouteAdminDiscount
 } from "./helper";
@@ -30,6 +30,8 @@ import { CreateTourPage } from "@/pages/CreateTourPage";
 import { CreateNewsPage } from "@/pages/CreateNewsPage";
 import { RefreshPasswordPage } from "@/pages/RefreshPasswordPage";
 import { BlogsPage } from "@/pages/BlogsPage/index";
+import { BlogDetailsPage } from "@/pages/BlogDetailsPage";
+import { AboutUsPage } from "@/pages/AboutUsPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -49,14 +51,16 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.about]: {
         path: getRouteAbout(),
         title: 'О нас',
+        page: <AboutUsPage />
     },
     [AppRouters.blog]: {
         path: getRouteBlog(),
         title: 'Блог',
-        page: <BlogsPage/>,
+        page: <BlogsPage />,
     },
     [AppRouters.blog_details]: {
         path: getRouteBlogDetails(':id'),
+        page: <BlogDetailsPage />
     },
     [AppRouters.testimonials]: {
         path: getRouteTestimonials(),

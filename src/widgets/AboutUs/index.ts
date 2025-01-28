@@ -1,3 +1,3 @@
-import { AboutUs } from './ui/AboutUsMain/AboutUs';
+import { AboutUs } from './ui/AboutUs';
 
 export { AboutUs };

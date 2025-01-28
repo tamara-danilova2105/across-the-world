@@ -1,15 +1,35 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.pageTitleContainer {
+    width: 100%;
+    height: 450px;
+    margin-top: 70px;
+    background-color: var(--blue-color);
+    background-image: url('@/shared/assets/png/page_cloud.png');
+    background-position: center;
+    background-size: cover;
+
+    @include desktop-m {
+        height: 350px;
+    }
+
+    @include mobile-xl {
+        height: 250px;
+    }
+}
+
 .breadCrumbsContainer {
     height: 150px;
     
     nav {
         ul {
             display: flex;
-            gap: 12px; //TODO - заменить на 8 var(--gap-s) или 16 (--gap-m)
+            gap: var(--gap-m);
 
             li {
                 display: flex;
                 align-items: center;
-                gap: 12px; //TODO - заменить на 8 var(--gap-s) или 16 (--gap-m)
+                gap: var(--gap-m);
                 color: var(--peach-color); 
             }
         }
