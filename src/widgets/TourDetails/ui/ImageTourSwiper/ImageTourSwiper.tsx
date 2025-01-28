@@ -10,17 +10,17 @@ interface ImageTourSwiperProps {
 export const ImageTourSwiper = (props: ImageTourSwiperProps) => {
     const { images } = props;
 
-    const renderItem = useCallback((image: Image) => 
-        <img 
+    const renderItem = useCallback((image: Image) =>
+        <img
             src={image.src} alt='' //TODO - alt
-            className={styles.swiper_img} 
-        />, 
-    []);
+            className={styles.swiper_img}
+        />,
+        []);
 
     return (
         <div style={{ width: '100%' }}>
-            <CustomeSwiper 
-                items={images} 
+            <CustomeSwiper
+                items={images}
                 renderItem={renderItem}
                 autoplay={{
                     delay: 3000,

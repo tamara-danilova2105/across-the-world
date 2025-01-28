@@ -15,11 +15,16 @@
 
     @include mobile-xl {
         height: 250px;
+        margin-top: 60px;
     }
 }
 
 .breadCrumbsContainer {
     height: 150px;
+
+    @include mobile-xl {
+        height: 120px;
+    }
     
     nav {
         ul {
@@ -32,6 +37,12 @@
                 gap: var(--gap-m);
                 color: var(--peach-color); 
             }
+        }
+    }
+
+    h2 {
+        @include mobile-xl {
+            font-size: var(--font-size-24);
         }
     }
 }

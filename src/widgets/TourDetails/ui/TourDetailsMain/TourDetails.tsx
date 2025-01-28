@@ -1,4 +1,3 @@
-import { routeConfig } from "@/app/router/lib/data";
 import { OurTours } from "@/widgets/OurTours";
 import { dataTours } from "@/widgets/OurTours/lib/data";
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
@@ -47,7 +46,7 @@ export const TourDetails = () => {
     return (
         <main>
             <BreadCrumbs
-                isTour
+                isDetails
                 name={tour.tour}
             />
 

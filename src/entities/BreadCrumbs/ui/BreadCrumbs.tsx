@@ -14,7 +14,7 @@ interface Breadcrumb {
 };
 
 interface BreadcrumbsProps {
-    isTour?: boolean;
+    isDetails?: boolean;
     name?: string;
     dataTours?: Tour[]
 };
@@ -22,7 +22,7 @@ interface BreadcrumbsProps {
 const separator = ' / ';
 
 export const BreadCrumbs = ({
-    isTour = false,
+    isDetails = false,
     name,
 }: BreadcrumbsProps) => {
 
@@ -78,7 +78,7 @@ export const BreadCrumbs = ({
                     type='h2'
                     font='unbounded'
                 >
-                    {isTour ? name : title}
+                    {isDetails ? name : title}
                 </Text>
                 <nav>
                     <ul>
@@ -93,7 +93,7 @@ export const BreadCrumbs = ({
                                         size='24'
                                         color='peach'
                                     >
-                                        {isTour ? name : crumb.title}
+                                        {isDetails ? name : crumb.title}
                                     </Text>
                                 ) : (
                                     crumb.link ? (
