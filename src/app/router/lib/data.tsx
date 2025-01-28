@@ -32,6 +32,7 @@ import { RefreshPasswordPage } from "@/pages/RefreshPasswordPage";
 import { BlogsPage } from "@/pages/BlogsPage/index";
 import { BlogDetailsPage } from "@/pages/BlogDetailsPage";
 import { AboutUsPage } from "@/pages/AboutUsPage";
+import { ReviewsPage } from "@/pages/ReviewsPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -65,6 +66,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.testimonials]: {
         path: getRouteTestimonials(),
         title: 'Отзывы',
+        page: <ReviewsPage />
     },
     [AppRouters.not_found]: {
         path: '*',

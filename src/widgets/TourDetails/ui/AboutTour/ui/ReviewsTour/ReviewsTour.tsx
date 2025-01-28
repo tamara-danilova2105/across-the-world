@@ -1,10 +1,10 @@
+import { ReviewCard } from "@/entities/ReviewCard";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { ReviewCard } from "./ui/ReviewCard/ReviewCard";
-import { reviews } from "../../../../lib/reviews";
 import { Button } from "@/shared/ui/Button";
 import { useModal } from "@/shared/hooks/useModal";
 import { Review } from "../../../../model/types/types";
+import { reviews } from "../../../../lib/reviews"; //TODO - моковые данные, заменить на серверные
 import styles from './ReviewsTour.module.scss';
 
 export const ReviewsTour = () => {
@@ -13,9 +13,9 @@ export const ReviewsTour = () => {
     const renderReviews = (reviewList: Review[]) => (
         <Stack direction='column' gap="24">
             {reviewList.map((review) => (
-                <ReviewCard 
-                    key={review._id} 
-                    review={review} 
+                <ReviewCard
+                    key={review._id}
+                    review={review}
                 />
             ))}
         </Stack>
@@ -24,8 +24,8 @@ export const ReviewsTour = () => {
     return (
         <>
             {drawModal(
-                <Stack 
-                    direction='column' gap="24" 
+                <Stack
+                    direction='column' gap="24"
                     className={styles.modal}
                 >
                     <Text type="h3" size='24' font='geometria500'>
@@ -36,7 +36,7 @@ export const ReviewsTour = () => {
             )}
 
             <Stack
-                direction="column" 
+                direction="column"
                 gap='24' max
             >
                 <Text type="h3" size='24' font='geometria500'>

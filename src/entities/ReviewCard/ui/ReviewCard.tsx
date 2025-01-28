@@ -1,7 +1,7 @@
 import { Stack } from '@/shared/ui/Stack';
 import { BackticsIcon } from '@/shared/assets/svg/bacticksIcon';
 import { useExpandableText } from '@/shared/hooks/useExpandableText';
-import { Review } from '../../../../../../model/types/types';
+import { Review } from '../../../widgets/TourDetails/model/types/types';
 import styles from './ReviewCard.module.scss';
 
 interface ReviewCardProps {
