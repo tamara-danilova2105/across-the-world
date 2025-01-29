@@ -45,7 +45,7 @@ export const RegionTours = ({placeholder} : PlaceholderTypes) => {
                     required: data.required,
                 })}
                 placeholder={placeholder ? placeholder : "Куда отправляемся?"}
-                error={errors.region}
+                error={errors?.region}
                 onFocus={() => setShowRegionsList(true)}
             />
             {showRegionsList && 
