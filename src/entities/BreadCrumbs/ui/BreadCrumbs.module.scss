@@ -21,7 +21,7 @@
 
 .breadCrumbsContainer {
     height: 150px;
-    z-index: 11;
+    z-index: 3;
 
     @include mobile-xl {
         height: 120px;

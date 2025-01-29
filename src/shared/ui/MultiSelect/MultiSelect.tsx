@@ -1,26 +1,23 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 import { getStyles } from '@/shared/lib/getStyles';
+import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import styles from './MultiSelect.module.scss';
 
 interface MultiSelectProps<T> {
     value: T[];
     options: T[];
     onChange: (options: T[]) => void;
-    isSingleSelect?: boolean;
 }
 
 export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
-    const { value, options, onChange, isSingleSelect = false } = props;
+    const { value, options, onChange } = props;
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSelect = (option: T) => {
-        if (isSingleSelect) {
-            onChange([option]);
-            setIsOpen(false);
-            return;
-        }
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    useClickOutside(dropdownRef, () => setIsOpen(false));
 
+    const handleSelect = (option: T) => {
         const newSelection = value.includes(option)
             ? value.filter(item => item !== option)
             : [...value, option];
@@ -33,7 +30,7 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
     };
 
     return (
-        <div className={styles.dropdown}>
+        <div className={styles.dropdown} ref={dropdownRef}>
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
@@ -44,18 +41,14 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
                         value.map((option) => (
                             <div
                                 key={String(option)}
-                                className={getStyles('', { [styles.selectedOption]: !isSingleSelect }, [])}
-                                onClick={
-                                    !isSingleSelect
-                                        ? (e) => {
-                                            e.stopPropagation();
-                                            handleRemove(option);
-                                        }
-                                        : undefined
-                                }
+                                className={styles.selectedOption}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemove(option);
+                                }}
                             >
                                 {String(option)}
-                                {!isSingleSelect && <X size={14} className={styles.removeIcon} />}
+                                <X size={14} className={styles.removeIcon} />
                             </div>
                         ))
                     ) : (

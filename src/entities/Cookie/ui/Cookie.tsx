@@ -48,9 +48,11 @@ export const Cookie = () => {
                     size='16'
                     font='geometria500'
                     color='blue'
+                    className={styles.par}
                 >
                     Мы используем cookies для улучшения вашего опыта на сайте.
                 </Text>
+
                 <Text
                     size='16'
                     font='geometria500'

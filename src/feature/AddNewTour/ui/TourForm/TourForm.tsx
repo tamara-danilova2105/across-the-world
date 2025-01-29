@@ -3,20 +3,20 @@ import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/wid
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
-import { OptionsSelect } from "../OptionsSelect/OptionsSelect";
 import { DetailsInput } from "../DetailsInput/DetailsInput";
 import { ProgramInput } from "../ProgramInput/ProgramInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
 import { Text } from "@/shared/ui/Text";
 import { DiscountInput } from "../DiscountInput/DiscountInput";
 import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
-import { MultiSelect } from "../MultiSelect/MultiSelect";
 import { useModal } from "@/shared/hooks/useModal";
 import { AddNewRegion } from "../AddNewRegion/AddNewRegion";
 import { Button } from "@/shared/ui/Button";
-import styles from './TourForm.module.scss';
 import { ImageCoverInput } from "../ImageCoverInput/ImageCoverInput";
 import { TextEditor } from "@/entities/TextEditor";
+import { MultiSelect } from "@/shared/ui/MultiSelect";
+import { Select } from "@/shared/ui/Select";
+import styles from './TourForm.module.scss';
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -29,6 +29,15 @@ const regionsWorldOptions = [
     'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
     'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
 ];
+
+
+// const regionsList = [
+//     { direction: 'Россия', region: 'Байкал' },
+//     { direction: 'Россия', region: 'Камчатка' },
+//     { direction: 'Заграница', region: 'Япония' },
+//     { direction: 'Заграница', region: 'Турция' }
+// ];
+
 
 export const TourForm = () => {
 
@@ -46,7 +55,7 @@ export const TourForm = () => {
             notIncluded: '',
         },
         imageCover: [],
-        direction: [],
+        direction: 'Россия', //TODO - мне не нравится, что здесь массив, когда по сути только 1 значение
         regions: [],
         activity: 'Для всех',
         comfort: 'Высокий',
@@ -62,7 +71,7 @@ export const TourForm = () => {
 
     return (
         <>
-            {drawModal(<AddNewRegion />)}
+            {drawModal(<AddNewRegion direction={formData.direction} />)}
 
             <Stack
                 direction='column' gap="24"
@@ -116,22 +125,21 @@ export const TourForm = () => {
                             <label className={styles.label}>
                                 Направление
                             </label>
-                            <MultiSelect
+                            <Select
                                 value={formData.direction}
                                 options={directionOptions}
-                                onChange={(option: DirectionTour[]) => setFormData({ ...formData, direction: option, regions: [] })}
-                                isSingleSelect
+                                onChange={(option: DirectionTour) => setFormData({ ...formData, direction: option, regions: [] })}
                             />
                         </Stack>
 
                         {formData.direction.length !== 0 && (
                             <Stack direction='column' gap="8" max>
                                 <label className={styles.label}>
-                                    {formData.direction[0] === 'Россия' ? 'Регионы' : 'Страны'}
+                                    {formData.direction === 'Россия' ? 'Регионы' : 'Страны'}
                                 </label>
                                 <MultiSelect
                                     value={formData.regions}
-                                    options={formData.direction[0] === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
+                                    options={formData.direction === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
                                     onChange={(option: string[]) => setFormData({ ...formData, regions: option })}
                                 />
                                 <div>
@@ -163,7 +171,7 @@ export const TourForm = () => {
                                 <label className={styles.label}>
                                     Уровень активности
                                 </label>
-                                <OptionsSelect
+                                <Select
                                     value={formData.activity}
                                     options={activityOptions}
                                     onChange={(option: ActivityLevel) => setFormData({ ...formData, activity: option })}
@@ -174,7 +182,7 @@ export const TourForm = () => {
                                 <label className={styles.label}>
                                     Уровень комфорта
                                 </label>
-                                <OptionsSelect
+                                <Select
                                     value={formData.comfort}
                                     options={comfortOptions}
                                     onChange={(option: ComfortType) => setFormData({ ...formData, comfort: option })}
