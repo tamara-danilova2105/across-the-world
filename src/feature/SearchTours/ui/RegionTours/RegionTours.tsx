@@ -7,7 +7,11 @@ import { Text } from "@/shared/ui/Text/Text";
 import { data } from "@/shared/lib/validateInput";
 import styles from "./RegionTours.module.scss";
 
-export const RegionTours = () => {
+interface PlaceholderTypes {
+    placeholder: string
+}
+
+export const RegionTours = ({placeholder} : PlaceholderTypes) => {
     const [showRegionsList, setShowRegionsList] = useState(false);
     const { register, setValue, watch, formState: { errors } } = useFormContext();
 
@@ -40,8 +44,8 @@ export const RegionTours = () => {
                 register={register("region", {
                     required: data.required,
                 })}
-                placeholder="Куда отправляемся?"
-                error={errors?.region}
+                placeholder={placeholder ? placeholder : "Куда отправляемся?"}
+                error={errors.region}
                 onFocus={() => setShowRegionsList(true)}
             />
             {showRegionsList && 

@@ -13,7 +13,7 @@ interface DateRange {
 
 export const DateTours = () => {
     const [showCalendar, setShowCalendar] = useState(false);
-    const { register, setValue, watch, formState: { errors } } = useFormContext();
+    const { register, setValue, watch } = useFormContext();
 
     const dateValue = watch('date')
 
@@ -49,7 +49,6 @@ export const DateTours = () => {
                 name="date"
                 register={register("date")}
                 placeholder="Дата поездки"
-                error={errors?.date}
                 className={styles.calendarInput}
                 onFocus={() => setShowCalendar(true)}
                 readOnly
