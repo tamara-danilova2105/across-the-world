@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { X, CalendarRange } from 'lucide-react';
 import { Calendar } from "@/entities/Calendar/index";
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import styles from "./DateTours.module.scss";
+import { useClickOutside } from '@/shared/hooks/useClickOutside';
 
 interface DateRange {
     startDate: Date | null;
@@ -15,7 +16,10 @@ export const DateTours = () => {
     const [showCalendar, setShowCalendar] = useState(false);
     const { register, setValue, watch } = useFormContext();
 
-    const dateValue = watch('date')
+    const dateValue = watch('date');
+
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    useClickOutside(dropdownRef, () => setShowCalendar(false));
 
     const handleClearDate = () => {
         setValue('date', '');
@@ -32,20 +36,21 @@ export const DateTours = () => {
         }
     }
 
-    const dateIcon = dateValue 
-        ? <X onClick={handleClearDate} style={{ cursor: 'pointer' }} type="button"/>
+    const dateIcon = dateValue
+        ? <X onClick={handleClearDate} style={{ cursor: 'pointer' }} type="button" />
         : <CalendarRange />
 
     return (
-        <Stack 
-            direction='column' 
+        <Stack
+            direction='column'
             max
             className={styles.date}
+            ref={dropdownRef}
         >
             <Stack className={styles.svg}>
                 {dateIcon}
             </Stack>
-            <Input 
+            <Input
                 name="date"
                 register={register("date")}
                 placeholder="Дата поездки"
@@ -54,9 +59,9 @@ export const DateTours = () => {
                 readOnly
             />
             {showCalendar &&
-            <Stack className={styles.calendar}>
-                <Calendar onRangeChange={onRangeChange}/>
-            </Stack>}
+                <Stack className={styles.calendar}>
+                    <Calendar onRangeChange={onRangeChange} />
+                </Stack>}
         </Stack>
     );
 };

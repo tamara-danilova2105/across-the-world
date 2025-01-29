@@ -17,11 +17,11 @@ interface SearchTypes {
     main?: boolean
 }
 
-export const SearchToursMain = ({main} : SearchTypes) => {
+export const SearchToursMain = ({ main }: SearchTypes) => {
 
     const width = useResize()
 
-    const methods = useForm({ 
+    const methods = useForm({
         mode: 'onSubmit',
         defaultValues: {
             region: '',
@@ -37,24 +37,24 @@ export const SearchToursMain = ({main} : SearchTypes) => {
 
     return (
         <FormProvider {...methods}>
-            <form  onSubmit={handleSubmit(onSubmit)}>
-                {main ? 
-                <SearchMainPage/>
-                : (<Stack className={styles.searchContainer}>
-                    {width > 768 ? (
-                    <Stack
-                        gap='4'>
-                        <RegionTours />
-                        <DateTours />
-                    </Stack> ) :
-                    <MobileSearchTours/>}
-                    <Button 
-                        type='submit'
-                        className={styles.button}
-                    >
-                        Найти
-                    </Button>
-                </Stack>)}
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {main ?
+                    <SearchMainPage />
+                    : (<Stack className={styles.searchContainer}>
+                        {width > 768 ? (
+                            <Stack
+                                gap='4'>
+                                <RegionTours />
+                                <DateTours />
+                            </Stack>) :
+                            <MobileSearchTours />}
+                        <Button
+                            type='submit'
+                            className={styles.button}
+                        >
+                            Найти
+                        </Button>
+                    </Stack>)}
             </form>
         </FormProvider>
     )

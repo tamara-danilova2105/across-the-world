@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { data } from "@/shared/lib/validateInput";
 import { Review } from "@/widgets/TourDetails/model/types/types";
 import { Button } from "@/shared/ui/Button";
+import { TextArea } from "@/shared/ui/TextArea";
 
 // _id: string;
 // name: string;
@@ -57,10 +58,12 @@ export const AddNewReview = () => {
                     placeholder='выберите направление'
                 />
 
-                {/* TODO - Label + стиль */}
-                <textarea
+                <TextArea
+                    label="Ваш отзыв"
                     placeholder='расскажите о вашем опыте путешествия...'
                     rows={8}
+                    register={register("feedback", { required: data.required })}
+                    error={errors?.feedback}
                 />
 
                 <Button>

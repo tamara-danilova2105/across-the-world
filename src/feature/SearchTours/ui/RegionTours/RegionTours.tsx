@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFormContext, FieldError } from 'react-hook-form';
 import { Search, X } from 'lucide-react';
 import { Input } from "@/shared/ui/Input/Input";
@@ -6,16 +6,30 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import { data, textRegex } from "@/shared/lib/validateInput";
 import styles from "./RegionTours.module.scss";
+import { useClickOutside } from '@/shared/hooks/useClickOutside';
 
 interface PlaceholderTypes {
     placeholder?: string
 }
 
-export const RegionTours = ({placeholder} : PlaceholderTypes) => {
+//TODO - заменить запрос с бэкенда, будет тот же список и тот же ендпоинт, который используется в форме создания тура
+//только там приходит с учетом направления - или россия или заграница, здесь приходит все
+//еще бы хорошо добавить autocomplit
+const regionsRussiaOptions = ['North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia']
+const regionsWorldOptions = [
+    'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
+    'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
+];
+
+export const RegionTours = ({ placeholder }: PlaceholderTypes) => {
     const [showRegionsList, setShowRegionsList] = useState(false);
     const { register, setValue, watch, formState: { errors } } = useFormContext();
 
     const regionValue = watch('region');
+
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    useClickOutside(dropdownRef, () => setShowRegionsList(false));
+
 
     const handleClearRegion = () => {
         setValue('region', '')
@@ -26,20 +40,37 @@ export const RegionTours = ({placeholder} : PlaceholderTypes) => {
         setShowRegionsList(false)
     };
 
-    const searchIcon = regionValue 
-        ? <X onClick={handleClearRegion} style={{ cursor: 'pointer' }} type="button"/> 
+    const searchIcon = regionValue
+        ? <X onClick={handleClearRegion} style={{ cursor: 'pointer' }} type="button" />
         : <Search />
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setShowRegionsList(false);
+            }
+        };
+
+        if (showRegionsList) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showRegionsList]);
+
     return (
-        <Stack 
-            direction='column' 
+        <Stack
+            direction='column'
             max
             className={styles.search}
+            ref={dropdownRef}
         >
             <Stack className={styles.svg}>
                 {searchIcon}
             </Stack>
-            <Input 
+            <Input
                 name="region"
                 register={register('region', {
                     required: data.required,
@@ -52,41 +83,28 @@ export const RegionTours = ({placeholder} : PlaceholderTypes) => {
                 error={errors?.region as FieldError | undefined}
                 onFocus={() => setShowRegionsList(true)}
             />
-            {showRegionsList && 
+            {showRegionsList && (
                 <Stack
                     direction='column'
                     className={styles.list}
                     gap='16'
                 >
                     <ul>
-                        <Text 
-                            type='h2' 
+                        <Text
+                            type='h2'
                             font='geometria500'
                             size='16'
-                        >Результат поиска:</Text>
-                        <li onClick={() => handleRegionSelect('Байкал')}>
-                            <Text font='geometria500'>Байкал</Text>
-                            <Text 
-                                font='geometria500'
-                                className={styles.span}
-                            >23</Text>
-                        </li>
+                        >
+                            Результат поиска:
+                        </Text>
+                        {[...regionsRussiaOptions, ...regionsWorldOptions].map(region => (
+                            <li onClick={() => handleRegionSelect(region)}>
+                                <Text font='geometria500'>{region}</Text>
+                            </li>
+                        ))}
                     </ul>
-                    <ul>
-                        <Text 
-                            type='h2' 
-                            font='geometria500'
-                            size='16'
-                        >Популярное:</Text>
-                        <li>
-                            <Text font='geometria500'>Байкал</Text>
-                            <Text 
-                                font='geometria500'
-                                className={styles.span}
-                            >23</Text>
-                        </li>
-                    </ul>
-                </Stack>}
+                </Stack>
+            )}
         </Stack>
-    )
-}
+    );
+};

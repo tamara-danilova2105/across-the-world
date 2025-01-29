@@ -22,27 +22,28 @@ export const ToursMain = () => {
     return (
         <main>
             <BreadCrumbs>
-                {width > 768 ? 
-                <SearchToursMain/> : 
-                (<Stack
-                    align='center'
-                    gap='16'
-                    className={styles.searchBlock}
-                    onClick={toggleMenu}
-                >
-                    <Search/>
-                    <Text
-                        color='blue'
-                        size='18'
-                    >Куда отправимся?</Text>
-                </Stack>)
+                {width > 768
+                    ? <SearchToursMain />
+                    : <Stack
+                        align='center'
+                        gap='16'
+                        className={styles.searchBlock}
+                        onClick={toggleMenu}
+                    >
+                        <Search />
+                        <Text
+                            color='blue'
+                            size='18'
+                        >Куда отправимляемся?</Text>
+                    </Stack> //TODO - надо сделать как на you travel, инпуты также остаются как и в десктопе, только меняют вертикальное направлени
+                    // и в мобильной версии открывается модальное окно с опциями или календариком
                 }
             </BreadCrumbs>
             {width <= 768 && (
-                <Stack 
+                <Stack
                     align='end'
-                    className={getStyles(styles.search, 
-                    {[styles.open]: isOpen, [styles.closed]: !isOpen}, [])}>
+                    className={getStyles(styles.search,
+                        { [styles.open]: isOpen, [styles.closed]: !isOpen }, [])}>
                     <SearchToursMain />
                 </Stack>
             )}
@@ -60,8 +61,7 @@ export const ToursMain = () => {
                 gap='32'
                 className={styles.tours_page}
             >
-                {width > 1023 ?
-                    <FilterBar /> : ''}
+                {width > 1023 ? <FilterBar /> : ''}
                 <Tours />
             </Stack>
         </main>

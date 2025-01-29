@@ -24,9 +24,9 @@ export const Tours = () => {
     const filters = useSelector(getFiltersState)
     const sorts = useSelector(getSortState)
 
-    const { 
+    const {
         data,
-        error, 
+        error,
         isLoading } = useGetAllToursQuery({
             limit: LIMIT,
             page: PAGE,
@@ -36,7 +36,7 @@ export const Tours = () => {
             }
         })
 
-        console.log( data, error, isLoading)
+    console.log(data, error, isLoading)
 
     const [changeModal, drawModal] = useModal();
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
@@ -47,7 +47,7 @@ export const Tours = () => {
         setCurrentIndex(pageIndex);
     }, [])
 
-    return(
+    return (
         <Stack
             direction='column'
             gap='32'
@@ -55,25 +55,25 @@ export const Tours = () => {
             className={styles.tours_container}
         >
             {drawModal(
-                <Shedule/>
+                <Shedule />
             )}
             <Stack
                 justify='end'
                 max
-                className={getStyles(styles.filter_panel, {[styles.open] : isOpen}, [])}
+                className={getStyles(styles.filter_panel, { [styles.open]: isOpen }, [])}
             >
-                <MobileFilterBar 
-                    toggleMenu={toggleMenu} 
-                    isOpen={isOpen} 
+                <MobileFilterBar
+                    toggleMenu={toggleMenu}
+                    isOpen={isOpen}
                     menuRef={menuRef}
                 />
                 <Stack
                     gap='16'
                     className={styles.filter_panel_btn}
                 >
-                    <SortTour/>
+                    <SortTour />
                     <Button
-                        cta 
+                        cta
                         onClick={changeModal}
                         className={styles.button}
                     >
@@ -81,16 +81,16 @@ export const Tours = () => {
                     </Button>
                 </Stack>
             </Stack>
-            <Stack 
+            <Stack
                 gap="32"
                 align='center'
                 wrap
                 className={styles.our_tours}
             >
                 {dataTours.map((tour) => (
-                    <TourCard 
-                        key={tour._id} 
-                        tourData={tour} 
+                    <TourCard
+                        key={tour._id}
+                        tourData={tour}
                     />
                 ))}
                 <Pagination

@@ -1,0 +1,40 @@
+//TODO дублируются стили
+
+.input {
+    border: var(--border-input);
+    font-size: var(--font-size-16);
+    transition: border-color 0.3s ease;
+    color: var(--blue-color);
+    background-color: var(--white-color);
+    width: 100%;
+    padding: 12px 24px;
+    font-family: var(--font-family-geometria500);
+
+    &::placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder,
+    &::-webkit-input-placeholder {
+        font-size: var(--font-size-14);
+        color: var(--error-color);
+        opacity: 0.8;
+    }
+}
+
+.error {
+    border: 1px solid var(--error-color) !important;
+}
+
+.errorMessage {
+    font-size: var(--font-size-12);
+    font-family: var(--font-family-geometria400);
+    color: var(--error-color);
+    height: 18px;
+}
+
+.label {
+    font-size: var(--font-size-18);
+    font-family: var(--font-family-geometria500);
+    color: var(--blue-color);
+    font-weight: 500;
+}
