@@ -1,0 +1,39 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+form {
+    position: sticky;
+    top: 180px;
+    width: 100%;
+
+    .searchContainer {
+        box-shadow: var(--box-shadow);
+        padding: 10px;
+        gap: 4px;
+        width: 100%;
+        background-color: var(--white-color);
+        flex: 1;
+
+        @include mobile-xl {
+            flex-direction: column;
+            padding: 15px;
+            gap: var(--gap-m);
+        }
+
+        & div {
+            flex: 1;
+        }
+
+        .button {
+            width: 250px;
+
+            @include tablet-m {
+                width: 200px;
+            }
+
+            @include mobile-xl {
+                width: 100%;
+            }
+        }
+    }
+}
+

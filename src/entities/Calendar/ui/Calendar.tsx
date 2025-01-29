@@ -11,7 +11,7 @@ export interface DateRange {
     endDate: Date | null;
 };
 
-export const Calendar = () => {
+export const Calendar = ({ onRangeChange }: { onRangeChange: (range: DateRange) => void }) => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedRange, setSelectedRange] = useState<DateRange>({
         startDate: null,
@@ -28,6 +28,10 @@ export const Calendar = () => {
                 startDate: date, 
                 endDate: null 
             });
+            onRangeChange({ 
+                startDate: date, 
+                endDate: null 
+            });
             setIsSelectingRange(true);
         } else {
             if (date < selectedRange.startDate!) {
@@ -35,8 +39,16 @@ export const Calendar = () => {
                     startDate: date, 
                     endDate: selectedRange.startDate 
                 });
+                onRangeChange({ 
+                    startDate: date, 
+                    endDate: selectedRange.startDate 
+                })
             } else {
                 setSelectedRange({ 
+                    ...selectedRange, 
+                    endDate: date 
+                });
+                onRangeChange({ 
                     ...selectedRange, 
                     endDate: date 
                 });
@@ -59,6 +71,7 @@ export const Calendar = () => {
                 <div className={styles.flex1}>
                     <div className={styles.header}>
                         <button
+                            type='button'
                             onClick={handlePrevMonth}
                             className={styles.button}
                         >
@@ -89,6 +102,7 @@ export const Calendar = () => {
                             })}
                         </Text>
                         <button
+                            type='button'
                             onClick={handleNextMonth}
                             className={styles.button}
                         >

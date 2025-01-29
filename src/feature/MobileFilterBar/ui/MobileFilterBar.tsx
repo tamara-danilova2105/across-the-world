@@ -6,6 +6,7 @@ import { MobileFilter } from "@/shared/assets/svg/mobileFilter";
 import { X } from "lucide-react";
 import styles from "./MobileFilterBar.module.scss";
 import { useOverflowHidden } from "@/shared/hooks/useOverflowHidden";
+import { getStyles } from "@/shared/lib/getStyles";
 
 interface MobileFilterBarProps {
     toggleMenu: () => void;
@@ -28,12 +29,12 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
                 className={styles.toggleButton} 
                 onClick={toggleMenu}
             >
-                
                 <MobileFilter/>
             </Button>
             <Stack 
                 max
-                className={`${styles.mobileFilter} ${isOpen ? styles.open : styles.closed}`}
+                className={getStyles(styles.mobileFilter, 
+                    {[styles.open]: isOpen, [styles.closed]: !isOpen}, [])}
             >
                 <Stack
                     ref={menuRef}

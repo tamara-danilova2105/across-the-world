@@ -6,6 +6,7 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss';
 import { routeConfig } from '@/app/router/lib/data';
+import { ReactNode } from 'react';
 
 interface Breadcrumb {
     title: string;
@@ -17,6 +18,7 @@ interface BreadcrumbsProps {
     isDetails?: boolean;
     name?: string;
     dataTours?: Tour[]
+    children?: ReactNode;
 };
 
 const separator = ' / ';
@@ -24,6 +26,7 @@ const separator = ' / ';
 export const BreadCrumbs = ({
     isDetails = false,
     name,
+    children
 }: BreadcrumbsProps) => {
 
     const { region } = useParams();
@@ -119,6 +122,8 @@ export const BreadCrumbs = ({
                         ))}
                     </ul>
                 </nav>
+
+                {children}
             </Stack>
         </Stack>
     );

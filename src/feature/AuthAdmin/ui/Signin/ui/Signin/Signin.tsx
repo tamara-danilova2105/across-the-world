@@ -12,7 +12,7 @@ export const Signin = ({ handleChangeState } : ChangeStateProps) => {
         <FormProvider {...methods}>
             <Stack
                 direction='column'
-                gap='8'
+                gap='16'
             >
                 <SigninForm/>
                 <Button
