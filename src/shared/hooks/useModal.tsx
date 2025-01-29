@@ -3,7 +3,6 @@ import { ReactNode, useEffect, useState } from "react";
 
 type UseModalReturn = [
     () => void,
-    (modalType?: string) => void,
     (children: ReactNode, withAnimation?: boolean, modalType?: string) => JSX.Element | null,
     boolean
 ];
