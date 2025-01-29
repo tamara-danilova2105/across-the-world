@@ -15,8 +15,6 @@ export const MobileSearchTours = () => {
     const dateValue = watch("date")
     const regionValue = watch("region")
 
-    console.log(dateValue, regionValue)
-
     const handleClearDate = () => {
         setValue("date", "");
     };
