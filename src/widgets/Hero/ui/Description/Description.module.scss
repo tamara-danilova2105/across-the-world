@@ -2,6 +2,8 @@
 
 .preview_container {
     position: relative;
+    width: 100%;
+    z-index: 11;
 
     @include tablet-m {
         align-self: flex-end;

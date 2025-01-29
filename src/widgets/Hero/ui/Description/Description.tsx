@@ -1,9 +1,10 @@
-import { SearchTours } from "@/feature/SearchTours";
+
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { FireWorks } from "@/shared/assets/svg/heroIcons";
 import { heroData } from "../../lib/data";
 import styles from './Description.module.scss';
+import { SearchToursMain } from "@/feature/SearchTours/index";
 
 export const Description = () => {
     const { description } = heroData;
@@ -11,7 +12,7 @@ export const Description = () => {
     return (
         <>
             <div className={styles.preview_container}>
-                <SearchTours />
+                <SearchToursMain main='true'/>
                 <span>
                     <FireWorks />
                 </span>

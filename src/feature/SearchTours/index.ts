@@ -1,3 +1,3 @@
-import { SearchTours } from './ui/SearchTours';
+import { SearchToursMain } from "./ui/SearchToursMain/SearchToursMain";
 
-export { SearchTours };
+export { SearchToursMain }

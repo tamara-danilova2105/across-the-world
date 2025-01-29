@@ -16,13 +16,13 @@
         }
     }
 
-    .input {
+    input {
         background-color: var(--white-color);
         padding: 16px 24px 16px 50px;
         border-radius: 50px;
         border: none;
         font-family: var(--font-family-geometria400);
-        width: 450px;
+        width: 100%;
         font-size: var(--font-size-18);
 
         -webkit-appearance: none;
@@ -45,4 +45,3 @@
         }
     }
 }
-

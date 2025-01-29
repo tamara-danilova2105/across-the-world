@@ -9,7 +9,7 @@
     background-position: center;
     background-size: cover;
 
-    @include desktop-m {
+    @include tablet-l {
         height: 350px;
     }
 
@@ -21,6 +21,7 @@
 
 .breadCrumbsContainer {
     height: 150px;
+    z-index: 11;
 
     @include mobile-xl {
         height: 120px;

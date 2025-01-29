@@ -51,9 +51,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, _) => {
                     {...register}
                     {...otherProps}
                 />
-                <p className={styles.errorMessage}>
-                    {error ? error.message : ''}
-                </p>
+                {error && <p className={styles.errorMessage}>
+                    {error.message}
+                </p>}
             </Stack>
         </Stack>
     );

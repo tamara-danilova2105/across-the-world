@@ -32,6 +32,7 @@ export const MonthCalendar = (props: MonthCalendarProps) => {
 
                     return (
                     <button
+                        type='button'
                         key={index}
                         onClick={() => onDateClick(date)}
                         className={`
