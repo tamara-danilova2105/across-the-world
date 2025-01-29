@@ -4,7 +4,7 @@ import { Search, X } from 'lucide-react';
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
-import { data } from "@/shared/lib/validateInput";
+import { data, textRegex } from "@/shared/lib/validateInput";
 import styles from "./RegionTours.module.scss";
 
 interface PlaceholderTypes {
@@ -41,8 +41,12 @@ export const RegionTours = ({placeholder} : PlaceholderTypes) => {
             </Stack>
             <Input 
                 name="region"
-                register={register("region", {
+                register={register('region', {
                     required: data.required,
+                    pattern: {
+                        value: textRegex,
+                        message: data.errors.validName
+                    }
                 })}
                 placeholder={placeholder ? placeholder : "Куда отправляемся?"}
                 error={errors?.region}

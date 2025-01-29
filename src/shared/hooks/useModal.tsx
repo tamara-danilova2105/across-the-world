@@ -2,7 +2,7 @@ import { Modal } from "@/entities/Modal";
 import { ReactNode, useEffect, useState } from "react";
 
 type UseModalReturn = [
-    (modalTypeOrEvent?: string | MouseEvent<HTMLButtonElement>) => void, 
+    (modalType?: string | React.MouseEvent<HTMLButtonElement>) => void, 
     (children: ReactNode, withAnimation?: boolean, modalType?: string) => JSX.Element | null,
     boolean
 ];
@@ -11,9 +11,9 @@ export const useModal = (): UseModalReturn => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState<string | null>(null);
 
-    const changeOpen = (modalTypeOrEvent?: string | MouseEvent<HTMLButtonElement>) => {
-        if (typeof modalTypeOrEvent === "string") {
-            setCurrentModal(modalTypeOrEvent)
+    const changeOpen = (modalType?: string | React.MouseEvent<HTMLButtonElement>) => {
+        if (typeof modalType === "string") {
+            setCurrentModal(modalType)
         } else {
             setCurrentModal(null)
         }
