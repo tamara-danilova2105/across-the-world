@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, FieldError } from 'react-hook-form';
 import { Search, X } from 'lucide-react';
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
@@ -49,7 +49,7 @@ export const RegionTours = ({placeholder} : PlaceholderTypes) => {
                     }
                 })}
                 placeholder={placeholder ? placeholder : "Куда отправляемся?"}
-                error={errors?.region}
+                error={errors?.region as FieldError | undefined}
                 onFocus={() => setShowRegionsList(true)}
             />
             {showRegionsList && 

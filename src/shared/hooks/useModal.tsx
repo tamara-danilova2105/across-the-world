@@ -17,15 +17,15 @@ export const useModal = (): UseModalReturn => {
         } else {
             setCurrentModal(null)
         }
-        setIsOpen((prev) => !prev)
-    };
+        setIsOpen(p => !p)
+    }
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "";
         return () => {
             document.body.style.overflow = "";
         };
-    }, [isOpen]);
+    }, [isOpen])
 
     const drawModal = (
         children: ReactNode,
