@@ -9,11 +9,11 @@ import { Text } from "@/shared/ui/Text/Text";
 
 export const MobileSearchTours = () => {
 
-    const [changeModal, drawModal] = useModal();
+    const [changeOpen, drawModal] = useModal();
     const { watch, setValue } = useFormContext();
 
-    const dateValue = watch("date");
-    const regionValue = watch("region");
+    const dateValue = watch("date")
+    const regionValue = watch("region")
 
     console.log(dateValue, regionValue)
 
@@ -49,7 +49,7 @@ export const MobileSearchTours = () => {
 
             <Stack
                 justify='between'
-                onClick={() => changeModal("region")}
+                onClick={() => changeOpen("region")}
                 className={styles.openModal}
                 max
             >
@@ -58,7 +58,7 @@ export const MobileSearchTours = () => {
             </Stack>
             <Stack
                 justify='between'
-                onClick={() => changeModal("date")}
+                onClick={() => changeOpen("date")}
                 className={styles.openModal}
                 max
             >

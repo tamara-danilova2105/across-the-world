@@ -12,7 +12,7 @@ export const Description = () => {
     return (
         <>
             <div className={styles.preview_container}>
-                <SearchToursMain main='true'/>
+                <SearchToursMain main/>
                 <span>
                     <FireWorks />
                 </span>
