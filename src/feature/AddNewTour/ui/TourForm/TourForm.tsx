@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ActivityLevel, ComfortType, DirectionTour, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
+import { useMemo, useState } from "react";
+import { ActivityLevel, ComfortType, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
@@ -17,27 +17,12 @@ import { TextEditor } from "@/entities/TextEditor";
 import { MultiSelect } from "@/shared/ui/MultiSelect";
 import { Select } from "@/shared/ui/Select";
 import styles from './TourForm.module.scss';
+import { useGetRegionsQuery } from "@/entities/Region/api/api";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздоровительный', 'Экскурсионный', 'Детский', 'Фототур'];
-
-//TODO - запрос регионов делать 
-const regionsRussiaOptions = ['North_Caucasus', 'Kamchatka', 'Baikal', 'Kalmykia', 'Karelia']
-const regionsWorldOptions = [
-    'Armenia', 'Iran', 'Turkey', 'Georgia', 'Socotra', 'Azerbaijan', 'Uzbekistan', 'Pakistan',
-    'Japan', 'Argentina', 'Brazil', 'Peru', 'Chile', 'Bolivia'
-];
-
-
-// const regionsList = [
-//     { direction: 'Россия', region: 'Байкал' },
-//     { direction: 'Россия', region: 'Камчатка' },
-//     { direction: 'Заграница', region: 'Япония' },
-//     { direction: 'Заграница', region: 'Турция' }
-// ];
-
 
 export const TourForm = () => {
 
@@ -55,7 +40,7 @@ export const TourForm = () => {
             notIncluded: '',
         },
         imageCover: [],
-        direction: 'Россия', //TODO - мне не нравится, что здесь массив, когда по сути только 1 значение
+        direction: 'Заграница',
         regions: [],
         activity: 'Для всех',
         comfort: 'Высокий',
@@ -66,6 +51,10 @@ export const TourForm = () => {
 
     console.log(formData);
 
+    //TODO добавить обработку ошибки и загрузкуи
+    const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
+
+    const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
     const [changeModal, drawModal] = useModal();
 
@@ -139,7 +128,7 @@ export const TourForm = () => {
                                 </label>
                                 <MultiSelect
                                     value={formData.regions}
-                                    options={formData.direction === 'Россия' ? regionsRussiaOptions : regionsWorldOptions}
+                                    options={optionsRegions ?? []}
                                     onChange={(option: string[]) => setFormData({ ...formData, regions: option })}
                                 />
                                 <div>

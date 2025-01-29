@@ -11,7 +11,7 @@ import { Image } from '@/shared/types/types';
 
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
 export type ComfortType = 'Высокий' | 'Уникальное жилье' | 'Средний';
-export type DirectionTour = "все туры" | "Россия" | "Заграница";
+export type DirectionTour = "все туры" | "Россия" | "Заграница"; //TODO - все туры нужны?
 export type TypeTour = 'Трекинг' | 'Ретрит / оздоровительный' | 'Экскурсионный' | 'Детский' | 'Фототур';
 
 export interface Price {
@@ -47,6 +47,11 @@ export interface MapMarker {
     id: string;
     coordinates: number[];
 };
+
+export interface Regions {
+    direction: DirectionTour;
+    region: string;
+}
 
 export interface Tour {
     _id: string;

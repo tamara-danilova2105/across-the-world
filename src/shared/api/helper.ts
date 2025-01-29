@@ -1,18 +1,20 @@
-interface CreateApiConfigProps {
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' ; 
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+interface ApiConfig {
     url: string;
-    body?: Record<string, any> | null;
-    cookies?: string;
+    method: HttpMethod;
+    meta?: { requiresAuth?: boolean };
+    body?: Record<string, string> | FormData;
 }
 
-export const createApiConfig = ({
-    method,
+export const createApiConfig = (
+    method: HttpMethod,
+    url: string,
+    requiresAuth: boolean = false,
+    body?: Record<string, string> | FormData,
+): ApiConfig => ({
     url,
-    body,
-    cookies,
-}: CreateApiConfigProps) => ({
     method,
-    url,
-    cookies,
+    meta: { requiresAuth }, //токен подставлять для роутеров админа
     ...(body && { body })
-})
+});

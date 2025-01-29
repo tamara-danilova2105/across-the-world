@@ -5,7 +5,8 @@ export const apiUrl = config.develop;
 
 export const endpoints = {
     path: {
-        tours: '/tours'
+        tours: '/tours',
+        regions: '/regions',
     },
     admin: {
         registration: '/registration',

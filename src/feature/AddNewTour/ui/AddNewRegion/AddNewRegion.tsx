@@ -5,6 +5,7 @@ import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import styles from './AddNewRegion.module.scss';
+import { useSaveRegionMutation } from '@/entities/Region/api/api';
 
 interface AddNewRegionProps {
     direction: DirectionTour;
@@ -15,19 +16,28 @@ const directionOptions: DirectionTour[] = ["Россия", "Заграница"]
 
 export const AddNewRegion = (props: AddNewRegionProps) => {
     const { direction } = props;
-    const [newRegion, setNewRegion] = useState('');
+    const [region, setRegion] = useState('');
 
-    const handleAddOption = () => {
-        console.log(newRegion.trim());
-        console.log(direction);
-    }; //TODO - отправлять новый регион на сервер
+    const [saveRegion, { error, isSuccess }] = useSaveRegionMutation();
+
+    console.log(error);
+
+
+    const handleAddOption = async () => {
+        try {
+            const newRegion = { direction, region }
+            await saveRegion(newRegion).unwrap();
+        } catch (error) {
+            console.error('Save region', error); //TODO как-то обработать ошибку
+        }
+    };
 
     return (
         <Stack
             direction='column' gap='16'
             className={styles.container}
         >
-            <Text size='24' font='geometria500'>
+            <Text type='h3' size='24' font='geometria500'>
                 Добавить новый регион/страну
             </Text>
             <Stack direction='column' gap="4" max>
@@ -43,17 +53,26 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
 
             <input
                 type="text"
-                value={newRegion}
-                onChange={(e) => setNewRegion(e.target.value)}
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
                 placeholder="Введите название типа тура"
                 className={styles.input}
             />
-            <Button
-                onClick={handleAddOption}
-                disabled={!newRegion.trim()}
-            >
-                Добавить
-            </Button>
+
+            <Stack direction='column' gap='4' max>
+                {error && "status" in error && error.status === 409 && (
+                    <Text className={styles.error}>Такой регион уже существует</Text>
+                )}
+
+                {isSuccess && <Text color='blue'>Регион добавлен</Text>}
+
+                <Button
+                    onClick={handleAddOption}
+                    disabled={!region.trim()}
+                >
+                    Добавить
+                </Button>
+            </Stack>
         </Stack>
-    )
-}
+    );
+};

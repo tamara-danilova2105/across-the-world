@@ -13,8 +13,8 @@ interface AuthContextProps {
 
 export const AuthContext = createContext<AuthContextProps>({
     isAuth: false,
-    logout: () => {},
-    login: () => {}
+    logout: () => { },
+    login: () => { }
 });
 
 export const AuthProvider = (props: AuthProviderProps) => {

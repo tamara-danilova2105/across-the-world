@@ -74,7 +74,7 @@ export const NewsEditor = () => {
                             }))}
                             onChange={handleImagesChange}
                             maxImages={4}
-                            uploadHint="Загрузите минимум 4 фото, первая фотография станет обложкой статьи"
+                            uploadHint="Загрузите 4 фото, первая станет обложкой статьи"
                         />
                     </Stack>
                 </Stack>

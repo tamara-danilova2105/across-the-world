@@ -37,7 +37,7 @@ export const Dropdown = (props: DropdownProps) => {
     return (
         <div className={styles.dropdown}>
             <div
-                className={getStyles(styles.select, {[styles.focused]: isOpen})}
+                className={getStyles(styles.select, { [styles.focused]: isOpen })}
                 onClick={toggleDropdown}
             >
                 <div className={styles.label}>
@@ -50,8 +50,8 @@ export const Dropdown = (props: DropdownProps) => {
             {isOpen && (
                 <ul className={styles.list}>
                     {options.map(item => (
-                        <li 
-                            key={item._id} 
+                        <li
+                            key={item._id}
                             className={styles.item}
                             onClick={() => handleSelected(item)}
                         >
@@ -64,8 +64,8 @@ export const Dropdown = (props: DropdownProps) => {
                                     {item.price.amount.toLocaleString("ru-RU")} {item.price.currency}
                                 </span>
 
-                                <span className={getStyles(styles.spots, {[styles.soldout]: item.spots === 0}, [])}>
-                                    {item.spots > 0 
+                                <span className={getStyles(styles.spots, { [styles.soldout]: item.spots === 0 }, [])}>
+                                    {item.spots > 0
                                         ? `${item.spots} ${declOfNum(item.spots, ['место', 'места', 'мест'])}`
                                         : 'sold out'
                                     }
