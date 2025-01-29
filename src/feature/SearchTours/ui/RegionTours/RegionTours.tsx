@@ -8,7 +8,7 @@ import { data } from "@/shared/lib/validateInput";
 import styles from "./RegionTours.module.scss";
 
 interface PlaceholderTypes {
-    placeholder: string
+    placeholder?: string
 }
 
 export const RegionTours = ({placeholder} : PlaceholderTypes) => {
