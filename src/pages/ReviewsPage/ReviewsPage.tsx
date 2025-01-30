@@ -1,7 +1,7 @@
-import { Reviews } from "@/widgets/Reviews";
+import { ReviewsSection } from "@/widgets/ReviewsSection";
 
 const ReviewsPage = () => {
-    return <Reviews />;
+    return <ReviewsSection />;
 };
 
 export default ReviewsPage;

@@ -7,6 +7,7 @@ export const endpoints = {
     path: {
         tours: '/tours',
         regions: '/regions',
+        reviews: '/reviews'
     },
     admin: {
         registration: '/registration',

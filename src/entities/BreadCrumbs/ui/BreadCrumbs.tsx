@@ -87,7 +87,7 @@ export const BreadCrumbs = ({
                     <ul>
                         {breadcrumbs.map((crumb, index) => (
                             <Text
-                                key={crumb.link}
+                                key={crumb.title}
                                 type='li'
                                 size="24"
                             >

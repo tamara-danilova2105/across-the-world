@@ -1,25 +1,21 @@
-import { ReviewCard } from "@/entities/ReviewCard";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
 import { useModal } from "@/shared/hooks/useModal";
-import { Review } from "../../../../model/types/types";
-import { reviews } from "../../../../lib/reviews"; //TODO - моковые данные, заменить на серверные
 import styles from './ReviewsTour.module.scss';
+import { ReviewsList } from "@/entities/Review";
+import { useState } from "react";
+import { AddNewReview } from "@/feature/AddNewReview";
 
-export const ReviewsTour = () => {
+interface ReviewsTourProps {
+    tourId: string
+}
+
+export const ReviewsTour = (props: ReviewsTourProps) => {
+    const { tourId } = props;
+
+    const [reviewsCount, setReviewsCount] = useState(0);
     const [changeModal, drawModal] = useModal();
-
-    const renderReviews = (reviewList: Review[]) => (
-        <Stack direction='column' gap="24">
-            {reviewList.map((review) => (
-                <ReviewCard
-                    key={review._id}
-                    review={review}
-                />
-            ))}
-        </Stack>
-    );
 
     return (
         <>
@@ -31,7 +27,7 @@ export const ReviewsTour = () => {
                     <Text type="h3" size='24' font='geometria500'>
                         Отзывы
                     </Text>
-                    {renderReviews(reviews)}
+                    <ReviewsList tourId={tourId} />
                 </Stack>
             )}
 
@@ -43,12 +39,25 @@ export const ReviewsTour = () => {
                     Отзывы
                 </Text>
 
-                {renderReviews(reviews.slice(0, 2))}
+                <ReviewsList
+                    limit={2}
+                    tourId={tourId}
+                    onReviewsCountChange={setReviewsCount}
+                />
 
-                {reviews.length > 2 && (
+                {reviewsCount > 2 && (
                     <Button onClick={changeModal}>
                         смотреть все отзывы
                     </Button>
+                )}
+
+                {reviewsCount === 0 && (
+                    <>
+                        <Text size="18" color='pink' font='geometria500'>
+                            Отзывов пока нет — станьте первым, кто поделится впечатлениями!
+                        </Text>
+                        <AddNewReview />
+                    </>
                 )}
             </Stack>
         </>

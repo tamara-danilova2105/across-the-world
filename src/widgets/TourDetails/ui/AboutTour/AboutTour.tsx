@@ -1,13 +1,13 @@
 import { Tour } from "@/widgets/OurTours/lib/data";
-import { TourProgram } from "./ui/TourProgram/TourProgram";
+import { RouteMap } from "@/entities/Mapbox";
 import { Stack } from "@/shared/ui/Stack";
 import { IncludedInPrice } from "./ui/IncludedInPrice/IncludedInPrice";
 import { StayDetails } from "./ui/StayDetails/StayDetails";
 import { FAQSection } from "./ui/FAQSection/FAQSection";
 import { ArrivalInfo } from "./ui/ArrivalInfo/ArrivalInfo";
 import { ReviewsTour } from "./ui/ReviewsTour/ReviewsTour";
-import { RouteMap } from "@/entities/Mapbox";
 import { Description } from "./ui/Description/Description";
+import { TourProgram } from "./ui/TourProgram/TourProgram";
 
 interface AboutTourProps {
     tour: Tour;
@@ -33,7 +33,7 @@ export const AboutTour = (props: AboutTourProps) => {
                 locations={tour.locations}
                 dates={tour.dates[0]}
             />
-            <ReviewsTour />
+            <ReviewsTour tourId={tour._id} />
         </Stack>
     );
 };

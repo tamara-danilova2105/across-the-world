@@ -4,19 +4,19 @@ import { Text } from "@/shared/ui/Text";
 import { Input } from "@/shared/ui/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { data } from "@/shared/lib/validateInput";
-import { Review } from "@/widgets/TourDetails/model/types/types";
 import { Button } from "@/shared/ui/Button";
 import { TextArea } from "@/shared/ui/TextArea";
 import { SelectApp } from "@/shared/ui/SelectApp/SelectApp";
 import { useMemo } from "react";
 import { dataTours, Tour } from "@/widgets/OurTours/lib/data";
+import { Review } from "@/entities/Review";
+
+type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 
 export const AddNewReview = () => {
     const tourOptions = useMemo(() => dataTours.map((tour: Tour) => tour.tour), []);
-    console.log(tourOptions);
-    
 
-    const onSubmit: SubmitHandler<Omit<Review, '_id'>> = (data) => {
+    const onSubmit: SubmitHandler<TypeReviewRequest> = (data) => {
         console.log(data);
     };
 
