@@ -6,7 +6,7 @@ import { Button } from "@/shared/ui/Button/Button";
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { EyeOff, Eye } from 'lucide-react';
-import { FormData, useRefreshPasswordMutation } from "@/feature/AuthAdmin/api/signinApi";
+import { useRefreshPasswordMutation } from "@/feature/AuthAdmin/api/signinApi";
 import { getRouteSignin } from "@/app/router/lib/helper";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './RefreshPasswordForm.module.scss'
@@ -26,7 +26,7 @@ export const RefreshPasswordForm = () => {
     const { resetToken } = useParams()
     const navigate = useNavigate()
 
-    const onSubmit = async (formData: FormData) => {
+    const onSubmit = async (formData: FormInputs) => {
         const { newPassword } = formData
 
         if (!newPassword) {
