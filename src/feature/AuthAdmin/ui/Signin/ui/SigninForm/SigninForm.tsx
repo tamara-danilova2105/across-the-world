@@ -6,7 +6,7 @@ import { data, textRegex, validatePassword } from "@/shared/lib/validateInput";
 import { Input } from "@/shared/ui/Input";
 import { Button } from "@/shared/ui/Button/Button";
 import { EyeOff, Eye } from 'lucide-react';
-import { FormData, useSigninMutation } from "@/feature/AuthAdmin/api/signinApi";
+import { useSigninMutation } from "@/feature/AuthAdmin/api/signinApi";
 import { getRouteAdmin } from "@/app/router/lib/helper";
 import Cookies from "js-cookie";
 import { Text } from "@/shared/ui/Text/Text";
@@ -26,7 +26,7 @@ export const SigninForm = () => {
     const [signin, {error, isLoading}] = useSigninMutation();
     const navigate = useNavigate()
 
-    const onSubmit = async (formData: FormData) => {
+    const onSubmit = async (formData: FormInputs) => {
         const { login , password } = formData
         try {
             const response = await signin({ login, password }).unwrap();

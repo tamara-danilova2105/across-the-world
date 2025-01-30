@@ -7,64 +7,28 @@ interface AdminTag {
     id: string; 
 }
 
-interface ResetPasswordBody {
-    email: string;
-}
-
-export interface FormData {
-    login?: string;
-    email?: string;
-    password?: string;
-    newPassword?:string;
-}
-
-interface RefreshPasswordBody {
-    newPassword: string;
-    resetToken?: string;
-}
-
-interface LogoutBody {
-    cookies:  string;
-}
-
 const ADMIN_TAG: AdminTag[] = [{ type: 'Admin', id: 'Admins' }];
 
 const adminApi = api.injectEndpoints({
     endpoints: (build) => ({
         signin: build.mutation({
-            query: (body: FormData) =>
-                createApiConfig({
-                    method: 'POST',
-                    url: `${endpoints.admin.signin}`,
-                    body,
-                }),
+            query: (body) =>
+                createApiConfig('POST', `${endpoints.admin.signin}`, true, body),
             invalidatesTags: ADMIN_TAG,
         }),
         resetPassword: build.mutation({
-            query: (body: ResetPasswordBody) =>
-                createApiConfig({
-                    method: 'POST',
-                    url: `${endpoints.admin.reset_password}`,
-                    body,
-                }),
+            query: (body) =>
+                createApiConfig('POST', `${endpoints.admin.reset_password}`, true, body),
             invalidatesTags: ADMIN_TAG,
         }),
         refreshPassword: build.mutation({
-            query: (body: RefreshPasswordBody) =>
-                createApiConfig({
-                    method: 'PUT',
-                    url: `${endpoints.admin.refresh_password}`,
-                    body,
-                }),
+            query: (body) =>
+                createApiConfig('PUT', `${endpoints.admin.refresh_password}`, true, body),
             invalidatesTags: ADMIN_TAG,
         }),
         logout: build.mutation({
-            query: ({ cookies }: LogoutBody) =>
-                createApiConfig({
-                    method: 'DELETE',
-                    url: `${endpoints.admin.logout}`,
-                    cookies,
-                }),
+            query: (body) =>
+                createApiConfig('DELETE', `${endpoints.admin.logout}`, true, body),
             invalidatesTags: ADMIN_TAG,
         }),
     }),
