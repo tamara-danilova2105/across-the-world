@@ -3,7 +3,7 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { data, emailRegex } from "@/shared/lib/validateInput"
 import { Button } from "@/shared/ui/Button/Button"
 import { Input } from "@/shared/ui/Input/Input"
-import { FormData, useResetPasswordMutation } from "@/feature/AuthAdmin/api/signinApi";
+import { useResetPasswordMutation } from "@/feature/AuthAdmin/api/signinApi";
 import { Text } from "@/shared/ui/Text/Text";
 import { ChangeStateProps } from "@/shared/types/types";
 import styles from './ForgotPasswordForm.module.scss'
@@ -17,8 +17,9 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
     const { register, handleSubmit, formState: { errors } } = useFormContext<FormInputs>() 
     const [ reset_password, {error, isLoading}] = useResetPasswordMutation()
 
-    const onSubmit = async (formData: FormData ) => {
+    const onSubmit = async (formData: FormInputs ) => {
         const { email } = formData
+        console.log(email)
         if (!email) {
             throw new Error("Неверный email");
         }
