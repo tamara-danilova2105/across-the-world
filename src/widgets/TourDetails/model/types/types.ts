@@ -4,4 +4,5 @@ export interface Review {
     date: string;
     feedback: string;
     city?: string;
+    tourId: string
 }
