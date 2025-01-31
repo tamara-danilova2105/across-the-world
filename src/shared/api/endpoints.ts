@@ -1,7 +1,8 @@
 const config = {
     develop: 'http://localhost:8000',
+    production: 'https://across-the-world-backend.onrender.com:8000'
 }
-export const apiUrl = config.develop;
+export const apiUrl = config.production;
 
 export const endpoints = {
     path: {
