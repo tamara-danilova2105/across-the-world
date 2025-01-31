@@ -28,6 +28,9 @@ export const ReviewsList = (props: ReviewsListProps) => {
         offset,
     });
 
+    console.log(reviews);
+    
+
     useEffect(() => {
         if (onReviewsCountChange && reviews?.reviews) {
             onReviewsCountChange(reviews.reviews.length);

@@ -7,17 +7,30 @@ import { data } from "@/shared/lib/validateInput";
 import { Button } from "@/shared/ui/Button";
 import { TextArea } from "@/shared/ui/TextArea";
 import { SelectApp } from "@/shared/ui/SelectApp/SelectApp";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { dataTours, Tour } from "@/widgets/OurTours/lib/data";
 import { Review } from "@/entities/Review";
+import { useAddReviewMutation } from "@/entities/Review/api/api";
 
 type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 
 export const AddNewReview = () => {
     const tourOptions = useMemo(() => dataTours.map((tour: Tour) => tour.tour), []);
 
-    const onSubmit: SubmitHandler<TypeReviewRequest> = (data) => {
-        console.log(data);
+    const [addReview, { isLoading, error }] = useAddReviewMutation();
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const onSubmit: SubmitHandler<TypeReviewRequest> = async (data) => {
+        setIsSubmitted(false);
+        try {
+            const selectedTour = dataTours.find((tour) => tour.tour === data.tourId);
+            const newData = { ...data, tourId: selectedTour?._id };
+
+            await addReview(newData).unwrap();
+            setIsSubmitted(true);
+        } catch (err) {
+            setIsSubmitted(false);
+        }
     };
 
     const {
@@ -69,9 +82,18 @@ export const AddNewReview = () => {
                     error={errors?.feedback}
                 />
 
-                <Button>
+                <Button loading={isLoading}>
                     Отправить отзыв
                 </Button>
+
+                {(isSubmitted || error) && (
+                    <Text color={error ? 'red' : 'blue'}>
+                        {error
+                            ? 'Произошла ошибка при отправке отзыва. Пожалуйста, попробуйте еще раз. Если проблема сохраняется, свяжитесь с нами.'
+                            : 'Ваш отзыв успешно отправлен! После модерации он будет опубликован. Спасибо, что делитесь своими впечатлениями!'
+                        }
+                    </Text>
+                )}
             </form>
         </Stack>
     );
