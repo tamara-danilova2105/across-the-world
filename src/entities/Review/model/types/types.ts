@@ -4,5 +4,5 @@ export interface Review {
     createdAt: string;
     feedback: string;
     city?: string;
-    tourId: string
+    tourId: string;
 }

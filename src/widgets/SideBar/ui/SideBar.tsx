@@ -3,8 +3,12 @@ import { sidebarItems } from "../lib/config";
 import styles from './SideBar.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { getStyles } from "@/shared/lib/getStyles";
+import { getRouteAdminModerationReviews } from "@/app/router/lib/helper";
+import { useGetReviewsQuery } from "@/entities/Review/api/api";
 
 export const SideBar = () => {
+    const { data: reviews } = useGetReviewsQuery({ isModeration: false }); 
+
     return (
         <aside className={styles.sidebar}>
             <div className={styles.header}>
@@ -24,6 +28,10 @@ export const SideBar = () => {
                     >
                         <span className={styles.icon}>{item.icon}</span>
                         {item.label}
+
+                        {item.path === getRouteAdminModerationReviews() && reviews?.total > 0 && (
+                            <span className={styles.badge}>{reviews.total}</span>
+                        )}
                     </NavLink>
                 ))}
             </nav>

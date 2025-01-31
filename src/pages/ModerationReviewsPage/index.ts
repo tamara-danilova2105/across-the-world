@@ -1,0 +1,1 @@
+export { LazyModerationReviewsPage as ModerationReviewsPage } from './ModerationReviewsPage.lazy';

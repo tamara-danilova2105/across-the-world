@@ -22,9 +22,7 @@
     }
 }
 
-
 .button {
-    // padding: 14px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +31,7 @@
     font-family: var(--font-family-geometria500);
     font-size: var(--font-size-18);
     border: none;
+    position: relative;
 }
 
 .primary {
@@ -58,6 +57,7 @@
 
 .secondary {
     background-color: var(--pink-color);
+    color: var(--white-color);
 }
 
 .transparent {
@@ -88,11 +88,11 @@
     width: 42px;
     position: absolute;
     top: 40%;
-    left: 50%;
+    left: 48%;
     transform: translate(-50%, -50%);
 
     circle {
-        fill: white;
+        fill: black;
         transform: scale(1.5);
         animation: fade-in 1.2s infinite;
 

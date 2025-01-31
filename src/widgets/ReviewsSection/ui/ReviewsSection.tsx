@@ -29,10 +29,7 @@ export const Reviews = () => {
                         </Text>
 
                         <ReviewsList offset={offset} />
-
-                        <Text size="18" color='pink' font='geometria500'>
-                            Отзывов пока нет — станьте первым, кто поделится впечатлениями!
-                        </Text>
+                        
                     </div>
                     <div className={styles.form_container}>
                         <AddNewReview />

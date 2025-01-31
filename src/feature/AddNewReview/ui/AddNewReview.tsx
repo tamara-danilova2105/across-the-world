@@ -64,6 +64,7 @@ export const AddNewReview = () => {
                 <Input
                     label="Город"
                     placeholder='введите город'
+                    register={register("city")}
                 />
 
                 <SelectApp

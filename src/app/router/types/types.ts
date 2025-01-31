@@ -20,6 +20,7 @@ export enum AppRouters {
     admin_news_create = 'admin_news_create',
     admin_news_edit = 'admin_news_edit',
     admin_discount = 'admin_discount',
+    admin_moderation_reviews = 'admin_moderation_reviews',
 };
 
 export type AppRoutesProps = {
