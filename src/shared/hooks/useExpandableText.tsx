@@ -10,7 +10,9 @@ export const useExpandableText = ({ text, maxLength }: UseExpandableTextProps) =
 
     const toggleExpanded = () => setIsExpanded((prev) => !prev);
 
-    const displayText = isExpanded ? text : `${text.slice(0, maxLength)}...`;
+    const displayText = isExpanded || text.length <= maxLength
+        ? text
+        : `${text.slice(0, maxLength)}...`;
 
     return { isExpanded, displayText, toggleExpanded };
 };

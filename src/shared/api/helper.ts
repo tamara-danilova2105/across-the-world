@@ -4,14 +4,14 @@ interface ApiConfig {
     url: string;
     method: HttpMethod;
     meta?: { requiresAuth?: boolean };
-    body?: Record<string, string> | FormData;
+    body?: Record<string, unknown> | FormData;
 }
 
 export const createApiConfig = (
     method: HttpMethod,
     url: string,
     requiresAuth: boolean = false,
-    body?: Record<string, string> | FormData,
+    body?: Record<string, unknown> | FormData,
 ): ApiConfig => ({
     url,
     method,

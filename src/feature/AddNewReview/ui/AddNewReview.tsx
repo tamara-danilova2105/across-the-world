@@ -4,18 +4,19 @@ import { Text } from "@/shared/ui/Text";
 import { Input } from "@/shared/ui/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { data } from "@/shared/lib/validateInput";
-import { Review } from "@/widgets/TourDetails/model/types/types";
 import { Button } from "@/shared/ui/Button";
 import { TextArea } from "@/shared/ui/TextArea";
+import { SelectApp } from "@/shared/ui/SelectApp/SelectApp";
+import { useMemo } from "react";
+import { dataTours, Tour } from "@/widgets/OurTours/lib/data";
+import { Review } from "@/entities/Review";
 
-// _id: string;
-// name: string;
-// date: string;
-// feedback: string;
-// city?: string;
+type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 
 export const AddNewReview = () => {
-    const onSubmit: SubmitHandler<Omit<Review, '_id'>> = (data) => {
+    const tourOptions = useMemo(() => dataTours.map((tour: Tour) => tour.tour), []);
+
+    const onSubmit: SubmitHandler<TypeReviewRequest> = (data) => {
         console.log(data);
     };
 
@@ -52,10 +53,12 @@ export const AddNewReview = () => {
                     placeholder='введите город'
                 />
 
-                {/* TODO - выпадающий список */}
-                <Input
-                    label="Направление"
-                    placeholder='выберите направление'
+                <SelectApp
+                    label="Тур"
+                    options={tourOptions}
+                    placeholder="выберите тур"
+                    register={register('tourId', { required: data.required })}
+                    error={errors.tourId}
                 />
 
                 <TextArea

@@ -1,7 +1,7 @@
 import { Stack } from '@/shared/ui/Stack';
 import { BackticsIcon } from '@/shared/assets/svg/bacticksIcon';
 import { useExpandableText } from '@/shared/hooks/useExpandableText';
-import { Review } from '../../../widgets/TourDetails/model/types/types';
+import { Review } from '../../model/types/types';
 import styles from './ReviewCard.module.scss';
 
 interface ReviewCardProps {
@@ -17,10 +17,10 @@ const formatDate = (dateString: string): string => {
     });
 };
 
-const MAX_LENGTH = 200;
+const MAX_LENGTH = 300;
 
 export const ReviewCard = ({ review }: ReviewCardProps) => {
-    const { name, city, date, feedback} = review;
+    const { name, city, createdAt, feedback } = review;
 
     const { isExpanded, displayText, toggleExpanded } = useExpandableText({
         text: feedback,
@@ -30,16 +30,16 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
     const shouldShowButton = review.feedback.length > MAX_LENGTH;
 
     return (
-        <Stack 
+        <Stack
             direction='column' gap='16'
             className={styles.review_card}
         >
             <Stack direction='column' gap='4'>
                 <div className={styles.nameCity}>
-                    {name}, 
+                    {name},
                     {city && <span className={styles.city}>{city}</span>}
                 </div>
-                <div className={styles.date}>{formatDate(date)}</div>
+                <div className={styles.date}>{formatDate(createdAt)}</div>
             </Stack>
 
             <div className={styles.review}>

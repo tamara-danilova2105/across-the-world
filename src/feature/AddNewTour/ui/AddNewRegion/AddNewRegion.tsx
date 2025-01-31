@@ -20,9 +20,6 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
 
     const [saveRegion, { error, isSuccess }] = useSaveRegionMutation();
 
-    console.log(error);
-
-
     const handleAddOption = async () => {
         try {
             const newRegion = { direction, region }

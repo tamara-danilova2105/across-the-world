@@ -1,12 +1,12 @@
-import { BreadCrumbs } from "@/entities/BreadCrumbs";
-import styles from './Reviews.module.scss';
 import { AddNewReview } from "@/feature/AddNewReview";
+import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { Stack } from "@/shared/ui/Stack";
-import { ReviewCard } from "@/entities/ReviewCard";
-import { reviews } from "@/widgets/TourDetails/lib/reviews"; //TODO - моковые данные
 import { Text } from "@/shared/ui/Text";
+import { ReviewsList } from "@/entities/Review";
+import styles from './ReviewsSection.module.scss';
 
 export const Reviews = () => {
+    const offset = 0 //TODO - брать из пагинации
     return (
         <main>
             <BreadCrumbs />
@@ -27,17 +27,16 @@ export const Reviews = () => {
                             Мы с благодарностью собираем каждое ваше слово, ведь ваша искренность делает эту страницу особенной.
                             Спасибо, что доверяете нам свои эмоции и вдохновляете других!
                         </Text>
-                        
-                        <Stack direction='column' gap="24">
-                            {reviews.map((review) => (
-                                <ReviewCard
-                                    key={review._id}
-                                    review={review}
-                                />
-                            ))}
-                        </Stack>
+
+                        <ReviewsList offset={offset} />
+
+                        <Text size="18" color='pink' font='geometria500'>
+                            Отзывов пока нет — станьте первым, кто поделится впечатлениями!
+                        </Text>
                     </div>
-                    <AddNewReview />
+                    <div className={styles.form_container}>
+                        <AddNewReview />
+                    </div>
                 </div>
             </Stack>
 
