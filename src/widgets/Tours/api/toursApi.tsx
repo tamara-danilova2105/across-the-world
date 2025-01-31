@@ -16,7 +16,6 @@ const toursApi = api.injectEndpoints({
             query: (params) => createApiConfig(
                 'GET',
                 `${endpoints.path.tours}/${params.limit}/${params.page}?${createQueryString(params.filters || {})}`,
-                
             ),
             providesTags: () => TOURS_TAG,
         }),

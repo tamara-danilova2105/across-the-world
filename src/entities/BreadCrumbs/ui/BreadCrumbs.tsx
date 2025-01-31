@@ -73,7 +73,7 @@ export const BreadCrumbs = ({
                 className={styles.breadCrumbsContainer}
                 direction="column"
                 align="center"
-                gap="16"
+                gap="24"
             >
                 <Text
                     size='32'

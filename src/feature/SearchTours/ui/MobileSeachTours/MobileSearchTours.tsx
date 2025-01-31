@@ -2,12 +2,21 @@ import { useModal } from "@/shared/hooks/useModal";
 import { useFormContext } from 'react-hook-form';
 import { Search, X, CalendarRange } from 'lucide-react';
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { DateTours } from "../DateTours/DateTours";
-import { RegionTours } from "../RegionTours/RegionTours";
-import styles from './MobileSearchTours.module.scss'
 import { Text } from "@/shared/ui/Text/Text";
+import { DateToursMobile } from "../DateTours/DateToursMobile/DateToursMobile";
+import { RegionToursMobile } from "../RegionTours/RegionToursMobile/RegionToursMobile";
+import styles from './MobileSearchTours.module.scss'
+import { Region } from "@/shared/types/types";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { SerializedError } from "@reduxjs/toolkit";
 
-export const MobileSearchTours = () => {
+interface MobileSearchProps {
+    regions?: Region[] | [];
+    error?: FetchBaseQueryError | SerializedError | undefined;
+    isLoading?: boolean;
+}
+
+export const MobileSearchTours = ({ regions, error, isLoading} : MobileSearchProps) => {
 
     const [changeOpen, drawModal] = useModal();
     const { watch, setValue } = useFormContext();
@@ -38,15 +47,22 @@ export const MobileSearchTours = () => {
     return(
         <Stack 
             direction='column'
+            align="center"
             gap='16'
             max
             className={styles.mobileSearch}
         >
-            {drawModal(<RegionTours />, true, "region")}
-            {drawModal(<DateTours />, true, "date",)}
+            {drawModal(<RegionToursMobile 
+                regions={regions}
+                error={error}
+                isLoading={isLoading}
+                changeOpen={changeOpen}/>,
+                true, "region")}
+            {drawModal(<DateToursMobile changeOpen={changeOpen}/>, true, "date",)}
 
             <Stack
                 justify='between'
+                align="center"
                 onClick={() => changeOpen("region")}
                 className={styles.openModal}
                 max
@@ -56,6 +72,7 @@ export const MobileSearchTours = () => {
             </Stack>
             <Stack
                 justify='between'
+                align="center"
                 onClick={() => changeOpen("date")}
                 className={styles.openModal}
                 max

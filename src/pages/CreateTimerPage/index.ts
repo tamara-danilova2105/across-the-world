@@ -1,0 +1,1 @@
+export { LazyCreateTimerPage as CreateTimerPage } from './CreateTimerPage.lazy';

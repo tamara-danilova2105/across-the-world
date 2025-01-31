@@ -15,3 +15,4 @@ export function useClickOutside(ref: RefObject<HTMLElement>, callback: () => voi
         };
     }, [ref, callback]);
 }
+
