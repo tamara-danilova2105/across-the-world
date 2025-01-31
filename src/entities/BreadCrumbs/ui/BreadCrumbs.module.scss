@@ -1,4 +1,5 @@
 @use '@/app/styles/media-queries.scss' as *;
+@use '@/app/styles/mixin.scss' as mixin;
 
 .pageTitleContainer {
     width: 100%;
@@ -9,24 +10,20 @@
     background-position: center;
     background-size: cover;
 
-    @include tablet-l {
-        height: 350px;
-    }
-
     @include mobile-xl {
-        height: 250px;
         margin-top: 60px;
     }
 }
 
 .breadCrumbsContainer {
-    height: 150px;
-    z-index: 3;
+    height: auto;
+    width: 100%;
+    @include mixin.section-style;
 
-    @include mobile-xl {
-        height: 120px;
+    @include desktop-xl {
+        z-index: 3;
     }
-    
+
     nav {
         ul {
             display: flex;

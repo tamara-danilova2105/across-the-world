@@ -1,13 +1,28 @@
+@use '@/app/styles/media-queries' as *;
+
 .calendarContainer {
     background-color: var(--white-color);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 24px;
     width: 700px;
+
+    @include mobile-xl {
+        width: 100%;
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }
 
 .flex1 {
     flex: 1;
+
+    @include mobile-xl {
+        width: 100%;
+    }
 }
 
 .header {

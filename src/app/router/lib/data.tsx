@@ -18,7 +18,7 @@ import {
     getRouteTestimonials,
     getRouteTours,
     getRouteToursDetails,
-    getRouteAdminDiscount
+    getRouteAdminDiscount,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
@@ -33,6 +33,7 @@ import { BlogsPage } from "@/pages/BlogsPage/index";
 import { BlogDetailsPage } from "@/pages/BlogDetailsPage";
 import { AboutUsPage } from "@/pages/AboutUsPage";
 import { ReviewsPage } from "@/pages/ReviewsPage";
+import { CreateTimerPage } from "@/pages/CreateTimerPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -118,5 +119,6 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_discount]: {
         path: getRouteAdminDiscount(),
         // onlyAdmin: true,
-    }
+        page: <CreateTimerPage />
+    },
 };
