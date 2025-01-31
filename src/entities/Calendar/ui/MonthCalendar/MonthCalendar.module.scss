@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries' as *;
+
 .calendarGrid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -15,6 +17,10 @@
 
     &:hover {
         background-color: #f3f4f6;
+    }
+
+    @include mobile-xl {
+        height: 25px; 
     }
 }
 

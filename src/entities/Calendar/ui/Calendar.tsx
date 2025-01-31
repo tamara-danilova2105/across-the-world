@@ -67,7 +67,7 @@ export const Calendar = ({ onRangeChange }: { onRangeChange: (range: DateRange) 
 
     return (
         <div className={styles.calendarContainer}>
-            <Stack gap='32'>
+            <Stack gap='32' className={styles.calendar}>
                 <div className={styles.flex1}>
                     <div className={styles.header}>
                         <button

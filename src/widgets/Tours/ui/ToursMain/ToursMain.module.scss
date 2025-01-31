@@ -3,44 +3,6 @@
 
 main {
     width: 100%;
-
-    .searchBlock {
-        box-shadow: var(--box-shadow);
-        padding: 20px 10px;
-        width: 300px;
-        background-color: var(--peach-color);
-        border-radius: var(--border-radius);
-
-        svg {
-            color: var(--blue-color);
-            opacity: 0.7;
-            z-index: 3;
-        }
-    }
-
-    .search {
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        z-index: 10;
-        height: 100%;
-        width: 100%;
-        background-color: var(--blue-opacity20);
-        transform: translateY(-100%);
-        opacity: 1;
-        transition: all 0.5s ease;
-        pointer-events: all;
-
-        &.open {
-            transform: translateY(0%);
-            opacity: 1;
-        }
-
-        &.closed {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-    }
 }
 
 
