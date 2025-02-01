@@ -19,9 +19,6 @@ interface CalendarProps {
 export const Calendar = (props: CalendarProps) => {
     const { onRangeChange, initialRange } = props;
 
-    console.log(initialRange);
-    
-
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedRange, setSelectedRange] = useState<DateRange>({
         startDate: initialRange?.startDate || null,

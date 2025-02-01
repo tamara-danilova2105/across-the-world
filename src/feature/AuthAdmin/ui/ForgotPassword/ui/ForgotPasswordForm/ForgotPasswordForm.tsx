@@ -19,7 +19,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain }: ChangeSta
 
     const onSubmit = async (formData: FormInputs) => {
         const { email } = formData
-        console.log(email)
+
         if (!email) {
             throw new Error("Неверный email");
         }

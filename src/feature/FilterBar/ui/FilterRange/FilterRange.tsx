@@ -29,8 +29,6 @@ export const FilterRange = ({
         handleSliderChange,
     } = useRange({ defaultValues, onChange, minLimit, maxLimit, selectedFilters });
 
-    console.log(minValue, maxValue)
-
     const { register } = methods;
 
     return (
