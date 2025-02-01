@@ -81,3 +81,9 @@
 //         </FormProvider>
 //     )
 // };
+
+export const AddNewTimerMain = () => {
+    return(
+        <p>fgfhsg</p>
+    )
+}
