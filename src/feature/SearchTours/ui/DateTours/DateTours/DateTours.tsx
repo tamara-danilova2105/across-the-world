@@ -12,8 +12,11 @@ interface DateRange {
     endDate: Date | null;
 }
 
+const initialRange = { startDate: null, endDate: null }
+
 export const DateTours = () => {
     const [showCalendar, setShowCalendar] = useState(false);
+    const [selectedRange, setSelectedRange] = useState<DateRange>(initialRange);
     const { register, setValue, watch } = useFormContext();
 
     const dateValue = watch('date');
@@ -23,10 +26,13 @@ export const DateTours = () => {
 
     const handleClearDate = () => {
         setValue('date', '');
+        setSelectedRange(initialRange);
     }
 
     const onRangeChange = (range: DateRange) => {
         const { startDate, endDate } = range;
+        setSelectedRange(range);
+
         if (startDate && endDate) {
             const formattedDate = `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
             setValue('date', formattedDate);
@@ -60,7 +66,10 @@ export const DateTours = () => {
             />
             {showCalendar &&
                 <Stack className={styles.calendar}>
-                    <Calendar onRangeChange={onRangeChange} />
+                    <Calendar
+                        onRangeChange={onRangeChange}
+                        initialRange={selectedRange}
+                    />
                 </Stack>}
         </Stack>
     );

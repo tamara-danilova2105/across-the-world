@@ -41,6 +41,14 @@
     }
 }
 
+.today {
+    background-color: var(--pink-color);
+
+    &:hover {
+        background-color: var(--pink-color);
+    }
+}
+
 .inRange {
     background-color: var(--blue-opacity20);
 

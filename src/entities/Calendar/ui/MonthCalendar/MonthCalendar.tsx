@@ -13,6 +13,8 @@ interface MonthCalendarProps {
 export const MonthCalendar = (props: MonthCalendarProps) => {
     const { monthData, selectedRange, onDateClick } = props;
 
+    const today = new Date();
+
     return (
         <div>
             <CalendarHeader />
@@ -21,28 +23,31 @@ export const MonthCalendar = (props: MonthCalendarProps) => {
                     const isCurrentMonth = date.getMonth() === monthData[1][0].getMonth();
 
                     const isSelected =
-                    selectedRange.startDate &&
-                    (isSameDay(date, selectedRange.startDate) ||
-                        (selectedRange.endDate && isSameDay(date, selectedRange.endDate)));
+                        selectedRange.startDate &&
+                        (isSameDay(date, selectedRange.startDate) ||
+                            (selectedRange.endDate && isSameDay(date, selectedRange.endDate)));
 
                     const isInRange =
-                    selectedRange.startDate &&
-                    selectedRange.endDate &&
-                    isDateInRange(date, selectedRange.startDate, selectedRange.endDate);
+                        selectedRange.startDate &&
+                        selectedRange.endDate &&
+                        isDateInRange(date, selectedRange.startDate, selectedRange.endDate);
+
+                    const isToday = isSameDay(date, today);
 
                     return (
-                    <button
-                        type='button'
-                        key={index}
-                        onClick={() => onDateClick(date)}
-                        className={`
+                        <button
+                            type='button'
+                            key={index}
+                            onClick={() => onDateClick(date)}
+                            className={`
                             ${styles.dateButton} 
                             ${isCurrentMonth ? styles.currentMonth : styles.otherMonth} 
                             ${isSelected ? styles.selected : isInRange ? styles.inRange : ''}
+                            ${isToday && !isSelected && !isInRange ? styles.today : ''}
                         `}
-                    >
-                        {date.getDate()}
-                    </button>
+                        >
+                            {date.getDate()}
+                        </button>
                     );
                 })}
             </div>

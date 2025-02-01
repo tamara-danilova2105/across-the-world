@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -11,60 +11,52 @@ export interface DateRange {
     endDate: Date | null;
 };
 
-export const Calendar = ({ onRangeChange }: { onRangeChange: (range: DateRange) => void }) => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    console.log(currentDate)
-    const [selectedRange, setSelectedRange] = useState<DateRange>({
-        startDate: null,
-        endDate: null,
-    });
+interface CalendarProps {
+    onRangeChange: (range: DateRange) => void;
+    initialRange?: DateRange;
+}
+
+export const Calendar = (props: CalendarProps) => {
+    const { onRangeChange, initialRange } = props;
+
+    console.log(initialRange);
     
+
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [selectedRange, setSelectedRange] = useState<DateRange>({
+        startDate: initialRange?.startDate || null,
+        endDate: initialRange?.endDate || null,
+    });
+
     const [isSelectingRange, setIsSelectingRange] = useState(false);
 
     const nextMonth = addMonths(currentDate, 1);
 
+    useEffect(() => {
+        if (initialRange) {
+            setSelectedRange(initialRange);
+        }
+    }, [initialRange]);
+
     const handleDateClick = (date: Date) => {
         if (!isSelectingRange) {
-            setSelectedRange({ 
-                startDate: date, 
-                endDate: null 
-            });
-            onRangeChange({ 
-                startDate: date, 
-                endDate: null 
-            });
+            setSelectedRange({ startDate: date, endDate: null });
+            onRangeChange({ startDate: date, endDate: null });
             setIsSelectingRange(true);
         } else {
             if (date < selectedRange.startDate!) {
-                setSelectedRange({ 
-                    startDate: date, 
-                    endDate: selectedRange.startDate 
-                });
-                onRangeChange({ 
-                    startDate: date, 
-                    endDate: selectedRange.startDate 
-                })
+                setSelectedRange({ startDate: date, endDate: selectedRange.startDate });
+                onRangeChange({ startDate: date, endDate: selectedRange.startDate })
             } else {
-                setSelectedRange({ 
-                    ...selectedRange, 
-                    endDate: date 
-                });
-                onRangeChange({ 
-                    ...selectedRange, 
-                    endDate: date 
-                });
+                setSelectedRange({ ...selectedRange, endDate: date });
+                onRangeChange({ ...selectedRange, endDate: date });
             }
-        setIsSelectingRange(false);
+            setIsSelectingRange(false);
         }
     };
 
-    const handlePrevMonth = () => {
-        setCurrentDate(addMonths(currentDate, -1));
-    };
-    
-    const handleNextMonth = () => {
-        setCurrentDate(addMonths(currentDate, 1));
-    };
+    const handlePrevMonth = () => setCurrentDate(addMonths(currentDate, -1));
+    const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
     return (
         <div className={styles.calendarContainer}>
