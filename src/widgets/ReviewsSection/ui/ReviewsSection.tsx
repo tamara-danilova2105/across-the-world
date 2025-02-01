@@ -7,6 +7,7 @@ import styles from './ReviewsSection.module.scss';
 
 export const Reviews = () => {
     const offset = 0 //TODO - брать из пагинации
+    
     return (
         <main>
             <BreadCrumbs />

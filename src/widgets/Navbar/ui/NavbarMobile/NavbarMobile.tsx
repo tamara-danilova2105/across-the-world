@@ -26,7 +26,7 @@ export const NavbarMobile = () => {
 
     const renderLogo = () => {
         return (
-            <Stack 
+            <Stack
                 gap='24' align="center"
                 className={styles.logo_container}
             >
@@ -40,7 +40,7 @@ export const NavbarMobile = () => {
         <nav className={styles.navbar_mobile}>
             {renderLogo()}
             <button
-                className={getStyles(styles.hamburger, {[styles.open]: isOpen}, [])}
+                className={getStyles(styles.hamburger, { [styles.open]: isOpen }, [])}
                 onClick={toggleMenu}
             >
                 <div className={styles.line_top}></div>
@@ -48,9 +48,9 @@ export const NavbarMobile = () => {
                 <div className={styles.line_bottom}></div>
             </button>
 
-            <ul className={getStyles(styles.menu, {[styles.menu_open]: isOpen}, [])}>
+            <ul className={getStyles(styles.menu, { [styles.menu_open]: isOpen }, [])}>
                 <DecorationIcon />
-                <Stack 
+                <Stack
                     direction='column'
                     align='center'
                     gap='32' max
@@ -58,12 +58,12 @@ export const NavbarMobile = () => {
                 >
                     {Object.values(routeConfig).map(route => (
                         route.title && (
-                            <NavLink 
+                            <NavLink
                                 key={route.path}
                                 to={route.path}
                                 role='li'
                                 className={({ isActive }) =>
-                                    getStyles(styles.link, {[styles.opened_page]: isActive }, [])
+                                    getStyles(styles.link, { [styles.opened_page]: isActive }, [])
                                 }
                                 onClick={closeMenu}
                             >
@@ -72,8 +72,8 @@ export const NavbarMobile = () => {
                         )
                     ))}
                 </Stack>
-                <Stack 
-                    direction='column' 
+                <Stack
+                    direction='column'
                     gap='32' max
                     align='center'
                 >

@@ -1,7 +1,7 @@
 import { ReviewsList } from "@/entities/Review";
 import { Stack } from "@/shared/ui/Stack";
-import styles from './ModerationReviews.module.scss';
 import { Text } from "@/shared/ui/Text";
+import styles from './ModerationReviews.module.scss';
 
 export const ModerationReviews = () => {
     return (
