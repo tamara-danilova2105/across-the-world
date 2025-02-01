@@ -1,22 +1,4 @@
 @use '@/app/styles/mixin.scss' as *;
-@use 'sass:map';
-
-$blue: var(--blue-color);
-$white: var(--white-color);
-$pink: var(--pink-color);
-$peach: var(--peach-color);
-
-$secondary-blue: var(--blue-opacity20);
-$secondary-white: var(--white-opacity20);
-$secondary-pink: var(--pink-opacity20);
-$secondary-peach: var(--peach-opacity20);
-
-$colors: (
-    "blue": (primary: $blue, secondary: $secondary-blue),
-    "white": (primary: $white, secondary: $secondary-white),
-    "pink": (primary: $pink, secondary: $secondary-pink),
-    "peach": (primary: $peach, secondary: $secondary-peach)
-);
 
 @mixin buttonUnderline($line-color) {
     position: relative;
@@ -40,13 +22,16 @@ $colors: (
     }
 }
 
-
 .button {
-    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
     width: 100%;
     font-family: var(--font-family-geometria500);
     font-size: var(--font-size-18);
     border: none;
+    position: relative;
 }
 
 .primary {
@@ -72,6 +57,16 @@ $colors: (
 
 .secondary {
     background-color: var(--pink-color);
+    color: var(--white-color);
+}
+
+.transparent {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--blue-color);
 }
 
 .circle {
@@ -88,39 +83,33 @@ $colors: (
     @include cta-style;
 }
 
-.transparent {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    color: var(--blue-color);
-}
 
 .waiting {
-    @each $name, $color-pair in $colors {
-        $primary: map.get($color-pair, primary);
-        $secondary: map.get($color-pair, secondary);
+    width: 42px;
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%, -50%);
 
-        &.#{$name} {
-            circle {
-                color: $primary;
-                animation: fade-in-#{$name} 1.2s infinite;
+    circle {
+        fill: black;
+        transform: scale(1.5);
+        animation: fade-in 1.2s infinite;
 
-                @keyframes fade-in-#{$name} {
-                    0%{
-                        color: $primary;
-                    }
-                    50%, 100% {
-                        color: $secondary;
-                    }
-                }
+        @keyframes fade-in {
+            0% {
+                opacity: 1;
+            }
 
-                @for $i from 1 through 3 {
-                    &:nth-child(#{$i}) {
-                        animation-delay: .4s * ($i - 1);
-                    }
-                }
+            50%,
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @for $i from 1 through 3 {
+            &:nth-child(#{$i}) {
+                animation-delay: 0.4s * ($i - 1);
             }
         }
     }

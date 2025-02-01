@@ -1,3 +1,5 @@
+@use './media-queries' as *;
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -49,4 +51,13 @@ img {
 
 .ql-editor.ql-blank::before {
     font-style: normal !important;
+}
+
+.admin_layout {
+    margin-left: 300px;
+
+    @include tablet-l {
+        margin-left: 0px;
+        padding-top: 2rem;
+    }
 }

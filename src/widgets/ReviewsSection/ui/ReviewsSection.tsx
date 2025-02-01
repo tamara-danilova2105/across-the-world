@@ -7,6 +7,7 @@ import styles from './ReviewsSection.module.scss';
 
 export const Reviews = () => {
     const offset = 0 //TODO - брать из пагинации
+    
     return (
         <main>
             <BreadCrumbs />
@@ -29,10 +30,7 @@ export const Reviews = () => {
                         </Text>
 
                         <ReviewsList offset={offset} />
-
-                        <Text size="18" color='pink' font='geometria500'>
-                            Отзывов пока нет — станьте первым, кто поделится впечатлениями!
-                        </Text>
+                        
                     </div>
                     <div className={styles.form_container}>
                         <AddNewReview />

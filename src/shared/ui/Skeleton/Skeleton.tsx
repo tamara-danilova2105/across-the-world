@@ -1,9 +1,8 @@
-import { CSSProperties } from "react";
 import styles from "./Skeleton.module.scss";
 
 interface SkeletonProps {
-    width: CSSProperties;
-    height: CSSProperties;
+    width: string;
+    height: string;
 }
 
 export const Skeleton = (props: SkeletonProps) => {

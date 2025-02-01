@@ -9,6 +9,7 @@ $blue: var(--blue-color);
 $white: var(--white-color);
 $pink: var(--pink-color);
 $peach: var(--peach-color);
+$red: var(--error-color);
 $unbounded: var(--font-family-unbounded);
 $geometria600: var(--font-family-geometria600);
 $geometria500: var(--font-family-geometria500);
@@ -29,6 +30,7 @@ $colors: (
     "white": $white,
     "pink": $pink,
     "peach": $peach,
+    "red": $red,
 );
 
 $families: (

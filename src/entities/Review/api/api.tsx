@@ -25,7 +25,7 @@ const reviewsApi = api.injectEndpoints({
             invalidatesTags: REVIEWS_TAG,
         }),
         moderateReview: build.mutation({
-            query: ({ id }) => createApiConfig('PUT', `${endpoints.path.reviews}/${id}`, true, { isModeration: true }),
+            query: (id) => createApiConfig('PUT', `${endpoints.path.reviews}/${id}`, true, { isModeration: true }),
             invalidatesTags: REVIEWS_TAG,
         }),
         deleteReview: build.mutation({

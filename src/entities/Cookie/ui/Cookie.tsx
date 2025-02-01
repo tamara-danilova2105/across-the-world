@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { getRoutePrivacyPolicy } from "@/app/router/lib/helper";
-import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { Button } from "@/shared/ui/Button/Button";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './Cookie.module.scss'
+import { useResize } from "@/shared/hooks/useResize";
 
 
 export const Cookie = () => {
@@ -14,6 +14,8 @@ export const Cookie = () => {
     if (pathname === "/admin") return null;
 
     const [isVisible, setIsVisible] = useState(false);
+    const width = useResize();
+    const isTablet = width <= 820;
 
     useEffect(() => {
         const cookieConsent = localStorage.getItem('cookieConsent')
@@ -37,9 +39,6 @@ export const Cookie = () => {
             gap='16'
             className={styles.cookie_banner}
         >
-            <DecorationIcon />
-            <DecorationIcon />
-
             <Stack
                 direction='column'
                 gap='16'
@@ -53,15 +52,19 @@ export const Cookie = () => {
                     Мы используем cookies для улучшения вашего опыта на сайте.
                 </Text>
 
-                <Text
-                    size='16'
-                    font='geometria500'
-                    color='blue'
-                >
-                    Чтобы узнать больше, ознакомьтесь с нашей <AppLink size="16" to={getRoutePrivacyPolicy()}> политикой конфиденциальности</AppLink>.
-                </Text>
+                {!isTablet && (
+                    <Text
+                        size='16'
+                        font='geometria500'
+                        color='blue'
+                    >
+                        Чтобы узнать больше, ознакомьтесь с нашей <AppLink size="16" to={getRoutePrivacyPolicy()}> политикой конфиденциальности</AppLink>.
+                    </Text>
+                )}
             </Stack>
-            <Button onClick={handleAccept}>Принять</Button>
+            <Button onClick={handleAccept}>
+                Принять
+            </Button>
         </Stack>
     )
 }

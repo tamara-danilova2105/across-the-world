@@ -13,7 +13,6 @@ interface ReviewsTourProps {
 
 export const ReviewsTour = (props: ReviewsTourProps) => {
     const { tourId } = props;
-
     const [reviewsCount, setReviewsCount] = useState(0);
     const [changeModal, drawModal] = useModal();
 
@@ -51,14 +50,7 @@ export const ReviewsTour = (props: ReviewsTourProps) => {
                     </Button>
                 )}
 
-                {reviewsCount === 0 && (
-                    <>
-                        <Text size="18" color='pink' font='geometria500'>
-                            Отзывов пока нет — станьте первым, кто поделится впечатлениями!
-                        </Text>
-                        <AddNewReview />
-                    </>
-                )}
+                {reviewsCount === 0 && <AddNewReview />}
             </Stack>
         </>
     );

@@ -12,12 +12,12 @@ interface FormInputs {
     email: string;
 }
 
-export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeStateProps ) => {
+export const ForgotPasswordForm = ({ handleChangeState, showExplain }: ChangeStateProps) => {
 
-    const { register, handleSubmit, formState: { errors } } = useFormContext<FormInputs>() 
-    const [ reset_password, {error, isLoading}] = useResetPasswordMutation()
+    const { register, handleSubmit, formState: { errors } } = useFormContext<FormInputs>()
+    const [reset_password, { error, isLoading }] = useResetPasswordMutation()
 
-    const onSubmit = async (formData: FormInputs ) => {
+    const onSubmit = async (formData: FormInputs) => {
         const { email } = formData
         console.log(email)
         if (!email) {
@@ -33,8 +33,8 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
         }
     }
 
-    return(
-        <form 
+    return (
+        <form
             onSubmit={handleSubmit(onSubmit)}
             className={styles.forgotPassword}
         >
@@ -43,7 +43,7 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
                     {(error.data as { message?: string })?.message || "Произошла ошибка"}
                 </Text>
             )}
-            <Input 
+            <Input
                 label='Почта'
                 name="email"
                 register={register("email", {
@@ -53,8 +53,8 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
                         message: data.errors.validEmail,
                     }
                 })}
-                placeholder="Введите свою почту" 
-                error={errors.email} 
+                placeholder="Введите свою почту"
+                error={errors.email}
             />
             <Stack
                 direction="column"
@@ -62,17 +62,18 @@ export const ForgotPasswordForm = ({ handleChangeState, showExplain } : ChangeSt
                 max
             >
                 <Button
-                type='button' onClick={handleChangeState}>
+                    type='button'
+                    onClick={handleChangeState}
+                >
                     Отмена
                 </Button>
 
-                <Button 
-                type='submit'
-                    loading={isLoading} 
-                    variant='white'
+                <Button
+                    type='submit'
+                    loading={isLoading}
                 >
                     Сбросить пароль
-                </Button> 
+                </Button>
             </Stack>
         </form>
     )

@@ -38,4 +38,8 @@
 
 .form_container {
     width: 600px;
+
+    @include tablet-l {
+        width: 100%;
+    }
 }

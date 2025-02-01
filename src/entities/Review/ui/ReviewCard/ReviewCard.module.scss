@@ -6,8 +6,8 @@
     min-height: 180px;
     width: 100%;
 
-    
-    button {
+
+    >button {
         background: inherit;
         color: var(--blue-color);
         font-size: var(--font-size-16);
@@ -43,4 +43,10 @@
     right: 35px;
     top: 35px;
     z-index: -1;
+}
+
+.button_group {
+    >button {
+        width: 200px;
+    }
 }

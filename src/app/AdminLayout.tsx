@@ -10,7 +10,7 @@ export const AdminLayout = () => {
                 tag="main"
                 align='center'
                 max
-                style={{marginLeft: '300px'}}
+                className='admin_layout'
             >
                 <AppRouter />
             </Stack>

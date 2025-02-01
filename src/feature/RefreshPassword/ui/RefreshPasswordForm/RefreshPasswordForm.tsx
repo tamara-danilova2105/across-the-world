@@ -67,7 +67,7 @@ export const RefreshPasswordForm = () => {
                     {passwordIcon}
                 </button>
             </Stack>
-            <Button loading={isLoading} variant='white'>
+            <Button loading={isLoading}>
                 Обновить пароль
             </Button>
         </form>

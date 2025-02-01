@@ -23,11 +23,11 @@ export const SigninForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useFormContext<FormInputs>()
     const passwordIcon = showPassword ? <EyeOff /> : <Eye />
 
-    const [signin, {error, isLoading}] = useSigninMutation();
+    const [signin, { error, isLoading }] = useSigninMutation();
     const navigate = useNavigate()
 
     const onSubmit = async (formData: FormInputs) => {
-        const { login , password } = formData
+        const { login, password } = formData
         try {
             const response = await signin({ login, password }).unwrap();
             if (response?.token) {
@@ -42,7 +42,7 @@ export const SigninForm = () => {
     }
 
     return (
-        <form 
+        <form
             className={styles.signin_form}
             onSubmit={handleSubmit(onSubmit)}
         >
@@ -51,9 +51,9 @@ export const SigninForm = () => {
                     {(error.data as { message?: string })?.message || "Произошла ошибка"}
                 </Text>
             )}
-            <Input 
-                label="Логин" 
-                placeholder='введите логин' 
+            <Input
+                label="Логин"
+                placeholder='введите логин'
                 name="login"
                 register={register('login', {
                     required: data.required,
@@ -65,7 +65,7 @@ export const SigninForm = () => {
                 error={errors.login}
             />
             <Stack className={styles.password}>
-                <Input 
+                <Input
                     label="Пароль"
                     type={!showPassword ? 'password' : 'text'}
                     placeholder="Введите пароль"
@@ -76,7 +76,7 @@ export const SigninForm = () => {
                     })}
                     error={errors.password}
                 />
-                <button 
+                <button
                     type='button'
                     className={styles.password_btn}
                     onClick={() => setShowPassword(!showPassword)}
@@ -84,10 +84,7 @@ export const SigninForm = () => {
                     {passwordIcon}
                 </button>
             </Stack>
-            <Button 
-                loading={isLoading} 
-                variant='white'
-            >
+            <Button loading={isLoading}>
                 Войти
             </Button>
         </form>

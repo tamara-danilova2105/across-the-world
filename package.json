@@ -40,6 +40,7 @@
     "react-router": "^6.27.0",
     "react-router-dom": "^6.27.0",
     "react-slider": "^2.0.6",
+    "react-toastify": "^11.0.3",
     "swiper": "^11.1.14"
   },
   "devDependencies": {

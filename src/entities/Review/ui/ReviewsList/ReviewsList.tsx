@@ -3,6 +3,8 @@ import { ReviewCard } from "../ReviewCard/ReviewCard";
 import { useGetReviewsQuery } from "../../api/api";
 import { Review } from "../../model/types/types";
 import { useEffect } from "react";
+import { Text } from "@/shared/ui/Text";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 interface ReviewsListProps {
     limit?: number;
@@ -21,30 +23,48 @@ export const ReviewsList = (props: ReviewsListProps) => {
         onReviewsCountChange,
     } = props;
 
-    const { data: reviews, isLoading, isError } = useGetReviewsQuery({
+    const { data: reviews, isLoading, error } = useGetReviewsQuery({
         isModeration,
-        tourId,
         limit,
         offset,
+        ...(tourId ? { tourId } : {}),
     });
 
     useEffect(() => {
         if (onReviewsCountChange && reviews?.reviews) {
-            onReviewsCountChange(reviews.reviews.length);
+            onReviewsCountChange(reviews.total);
         }
     }, [reviews?.reviews, onReviewsCountChange]);
 
-    //TODO - добавить красивые обработчики
-    if (isLoading) return <p>Загрузка...</p>
-    if (isError) return <p>Ошибка загрузки</p>
+    if (isLoading) {
+        return (
+            <Stack direction="column" gap="24" max>
+                {Array.from({ length: 4 }).map((_, index) => (
+                    <Skeleton key={index} width="100%" height="270px" />
+                ))}
+            </Stack>
+        );
+    };
 
+
+    if (error) return (
+        <Text color="red" size="18">
+            Произошла ошибка при загрузке отзывов
+        </Text>
+    );
 
     return (
-        <Stack direction='column' gap="24">
+        <Stack direction='column' gap="24" max>
+            {(reviews?.total === 0 && isModeration) && (
+                <Text size="18" color='pink' font='geometria500'>
+                    Отзывов пока нет — станьте первым, кто поделится впечатлениями!
+                </Text>
+            )}
             {reviews?.reviews.map((review: Review) => (
                 <ReviewCard
                     key={review._id}
                     review={review}
+                    isModeration={isModeration}
                 />
             ))}
         </Stack>

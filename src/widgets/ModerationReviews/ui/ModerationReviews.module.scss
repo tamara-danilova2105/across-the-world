@@ -1,0 +1,12 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.container {
+    padding: 1.5rem 0;
+    width: 80%;
+    margin: auto;
+
+    @include tablet-l {
+        width: 100%;
+        padding: 1.5rem;
+    }
+}

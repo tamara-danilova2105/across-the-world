@@ -10,9 +10,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     circle?: boolean;
     cta?: boolean;
     loading?: boolean;
-    width?: number;
-    height?: number;
-    variant?: 'blue' | 'white' | 'pink' | 'peach';
 }
 
 export const Button = (props: ButtonProps) => {
@@ -23,9 +20,6 @@ export const Button = (props: ButtonProps) => {
         circle,
         cta,
         loading,
-        width,
-        height,
-        variant= 'blue',
         ...otherProps
     } = props;
 
@@ -40,15 +34,15 @@ export const Button = (props: ButtonProps) => {
     ];
 
     return (
-        <button 
+        <button
             className={getStyles(styles.button, mode, additional)}
             {...otherProps}
         >
             {!cta && <div className={styles.underLine} />}
-            {loading ? 
-                <Ellipsis className={getStyles(styles.waiting, {}, [styles[variant]])}
-                    style={{ width, height }}/>
-            : children}
+            {loading
+                ? <Ellipsis className={styles.waiting} />
+                : children
+            }
         </button>
     );
 };
