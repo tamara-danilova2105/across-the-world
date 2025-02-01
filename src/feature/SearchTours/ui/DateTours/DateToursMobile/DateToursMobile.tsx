@@ -10,20 +10,28 @@ interface DateRange {
     endDate: Date | null;
 }
 
-interface Open {
-    changeOpen: () => void
+interface DateToursMobileProps {
+    changeOpen: () => void;
+    selectedRange: DateRange;
+    setSelectedRange: (range: DateRange) => void;
 }
 
-export const DateToursMobile = ({ changeOpen }: Open) => {
+
+export const DateToursMobile = (props: DateToursMobileProps) => {
+    const { changeOpen, selectedRange, setSelectedRange } = props;
+
     const { register, setValue, watch } = useFormContext();
     const dateValue = watch('date');
 
     const handleClearDate = () => {
-        setValue('date', '')
+        setValue('date', '');
+        setSelectedRange({ startDate: null, endDate: null });
     }
 
     const onRangeChange = (range: DateRange) => {
         const { startDate, endDate } = range;
+        setSelectedRange(range);
+
         if (startDate && endDate) {
             const formattedDate = `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
             setValue('date', formattedDate);
@@ -53,7 +61,10 @@ export const DateToursMobile = ({ changeOpen }: Open) => {
                 className={styles.calendarInput}
                 readOnly
             />
-            <Calendar onRangeChange={onRangeChange} />
+            <Calendar
+                onRangeChange={onRangeChange}
+                initialRange={selectedRange}
+            />
         </Stack>
     );
 };

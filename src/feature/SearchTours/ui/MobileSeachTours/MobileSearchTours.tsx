@@ -9,6 +9,8 @@ import styles from './MobileSearchTours.module.scss'
 import { Region } from "@/shared/types/types";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { useState } from "react";
+import { DateRange } from "../SearchToursMain/SearchToursMain";
 
 interface MobileSearchProps {
     regions?: Region[] | [];
@@ -16,8 +18,8 @@ interface MobileSearchProps {
     isLoading?: boolean;
 }
 
-export const MobileSearchTours = ({ regions, error, isLoading} : MobileSearchProps) => {
-
+export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchProps) => {
+    const [selectedRange, setSelectedRange] = useState<DateRange>({ startDate: null, endDate: null });
     const [changeOpen, drawModal] = useModal();
     const { watch, setValue } = useFormContext();
 
@@ -44,21 +46,26 @@ export const MobileSearchTours = ({ regions, error, isLoading} : MobileSearchPro
         <Search />
     );
 
-    return(
-        <Stack 
+    return (
+        <Stack
             direction='column'
             align="center"
             gap='16'
             max
             className={styles.mobileSearch}
         >
-            {drawModal(<RegionToursMobile 
+            {drawModal(<RegionToursMobile
                 regions={regions}
                 error={error}
                 isLoading={isLoading}
-                changeOpen={changeOpen}/>,
+                changeOpen={changeOpen} />,
                 true, "region")}
-            {drawModal(<DateToursMobile changeOpen={changeOpen}/>, true, "date",)}
+            {drawModal(
+                <DateToursMobile
+                    selectedRange={selectedRange}
+                    setSelectedRange={setSelectedRange}
+                    changeOpen={changeOpen}
+                />, true, "date",)}
 
             <Stack
                 justify='between'
@@ -68,7 +75,7 @@ export const MobileSearchTours = ({ regions, error, isLoading} : MobileSearchPro
                 max
             >
                 <Text>{regionValue || "Куда?"}</Text>
-                {searchIcon} 
+                {searchIcon}
             </Stack>
             <Stack
                 justify='between'
@@ -78,7 +85,7 @@ export const MobileSearchTours = ({ regions, error, isLoading} : MobileSearchPro
                 max
             >
                 <Text>{dateValue || "Когда?"}</Text>
-                {dateIcon} 
+                {dateIcon}
             </Stack>
         </Stack>
     )
