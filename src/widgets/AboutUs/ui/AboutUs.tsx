@@ -1,19 +1,16 @@
-// import { BreadCrumbs } from "@/entities/BreadCrumbs"
+import { BreadCrumbs } from "@/entities/BreadCrumbs"
 // import styles from './AboutUs.module.scss';
 // import { Text } from "@/shared/ui/Text";
 // import { Stack } from "@/shared/ui/Stack";
 
 
-// export const AboutUs = () => {
+export const AboutUs = () => {
 
     
      
-//     return (
-//         <main>
-//             <BreadCrumbs />
-//             <Stack>
-
-//             </Stack>
-//         </main>
-//     )
-// }
+    return (
+        <main>
+            <BreadCrumbs />
+        </main>
+    )
+}
