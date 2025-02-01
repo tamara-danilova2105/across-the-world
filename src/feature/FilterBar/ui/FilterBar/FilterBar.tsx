@@ -1,7 +1,5 @@
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
-import * as React from "react"
-import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { dataFilter,
         dataFilterRange,
@@ -9,12 +7,12 @@ import { dataFilter,
         FilterRangeCategory
         } from "../../lib/data"
 import { clearAllFilters,
-        FiltersState, 
         getFiltersState, 
         setFilter } from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
+import { useCallback } from "react"
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
@@ -27,35 +25,21 @@ export const FilterBar = () => {
     const filterState = useSelector(getFiltersState) 
     const dispatch = useDispatch()
 
-    const [selectedFilters, setSelectedFilters] = useState<FiltersState>(filterState)
-
-        const handleChange = React.useCallback(
-            (key: FilterKeys | FilterRangeKeys , value: any) => {
-                
-                const updatedFilters = (prevFilters: FiltersState) => {
-                    if (key === 'type_tour') {
-                        return {
-                            ...prevFilters,
-                            [key]: {
-                                ...(prevFilters[key] as Record<string, boolean>),
-                                ...(value || {}),
-                            },
-                        }
-                    } 
-                        return {
-                            ...prevFilters,
-                            [key]: value as [number, number],
-                        }
-                }
-
-                setSelectedFilters((prev) => {
-                    const newFilters = updatedFilters(prev);
-                    dispatch(setFilter(newFilters))
-                    return newFilters; 
-                })
-            },
-            [dispatch]
-        )
+    const handleChange = useCallback(
+        (key: FilterKeys | FilterRangeKeys, value: any) => {
+            if (key === 'type_tour') {
+                const updatedTypeTour = {
+                    ...(filterState.type_tour || {}),
+                    ...value,
+                };
+                dispatch(setFilter({ type_tour: updatedTypeTour }));
+            } else {
+                dispatch(setFilter({ [key]: value }));
+            }
+        },
+        [dispatch, filterState]
+    );
+    
 
     const renderFilterElement = (key: FilterKeys) => {
         const { title, items }: FilterCategory = dataFilter[key];
@@ -65,7 +49,7 @@ export const FilterBar = () => {
                 key={key}
                 title={title}
                 filters={items}
-                selectedFilters={selectedFilters[key]}
+                selectedFilters={filterState[key]}
                 onChange={(value: Record<string, boolean>) => handleChange(key, value)}
             />
         )
@@ -82,7 +66,7 @@ export const FilterBar = () => {
                 minLimit={minLimit}
                 maxLimit={maxLimit}
                 step={step}
-                selectedFilters={selectedFilters[key]}
+                selectedFilters={filterState[key]}
                 onChange={(values: [number, number]) => handleChange(key, values)}
             />
         )
@@ -99,7 +83,8 @@ export const FilterBar = () => {
                 gap='8'
                 className={styles.btnContainer}
             >
-                <Button>Применить</Button>
+                <Button 
+                >Применить</Button>
                 <Button 
                     color='outline'
                     onClick={() => dispatch(clearAllFilters())}

@@ -47,7 +47,7 @@ export const Button = (props: ButtonProps) => {
             {!cta && <div className={styles.underLine} />}
             {loading ? 
                 <Ellipsis className={getStyles(styles.waiting, {}, [styles[variant]])}
-                        style={{ width, height }}/>
+                    style={{ width, height }}/>
             : children}
         </button>
     );

@@ -28,7 +28,13 @@ export function getMonthData(date: Date): Date[][] {
 
 export function addMonths(date: Date, months: number): Date {
     const result = new Date(date);
-    result.setMonth(result.getMonth() + months);
+    const targetMonth = result.getMonth() + months;
+    result.setMonth(targetMonth); 
+
+    if (result.getMonth() !== (targetMonth % 12 + 12) % 12) {
+        result.setDate(0);
+    }
+
     return result;
 }
 

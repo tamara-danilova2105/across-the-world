@@ -27,24 +27,28 @@ const filterSlice = createSlice({
         setFilter: (state: FiltersState, action: PayloadAction<Partial<FiltersState>>) => {
             return { ...state, ...action.payload };
         },
-        clearFilter: (state: FiltersState, action: PayloadAction<ClearFilterPayload>) => {
-            const { filter, key } = action.payload;
+        // clearAllFilters: (state: FiltersState, action: PayloadAction<ClearFilterPayload>) => {
+        //     const { filter, key } = action.payload;
 
-            if (filter === 'price') {
-                state.price = initialState.price;
-            } else if (filter === 'duration') {
-                state.duration = initialState.duration;
-            }  else if (key && filter in state) {
-                const category = state[filter as keyof FiltersState] as Record<string, boolean>;
-                if (category) {
-                    delete category[key];
-                }
-            }
+        //     if (filter === 'price') {
+        //         state.price = initialState.price;
+        //     } else if (filter === 'duration') {
+        //         state.duration = initialState.duration;
+        //     }  else if (key && filter in state) {
+        //         const category = state[filter as keyof FiltersState] as Record<string, boolean>;
+        //         if (category) {
+        //             delete category[key];
+        //         }
+        //     }
+        // },
+        clearAllFilters: (state: FiltersState) => {
+            state.type_tour = initialState.type_tour;
+            state.price = initialState.price;
+            state.duration = initialState.duration;
         },
-        clearAllFilters: () => initialState,
     },
 });
 
-export const { setFilter, clearFilter, clearAllFilters } = filterSlice.actions;
+export const { setFilter, clearAllFilters } = filterSlice.actions;
 export const getFiltersState = (state: {filters: FiltersState}) => state.filters;
 export default filterSlice.reducer;

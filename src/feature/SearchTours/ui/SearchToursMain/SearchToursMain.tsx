@@ -31,16 +31,23 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
         }
     });
 
-    const { handleSubmit, reset, watch } = methods;
-    const regionValue = watch('region');
-
-    const onSubmit = () => {
-        reset()
-    }
+    const { handleSubmit, watch, getValues } = methods;
+    const regionValue = watch('region')
 
     const debouncedSearch = useDebounce({ value: regionValue, delay: 300 })
     const { data: regions, error, isLoading } = useGetRegionsQuery({
         search: debouncedSearch})
+
+    const onSubmit = () => {
+        const { region, date } = getValues();
+        
+        if (!region && !date) {
+            console.log("Форма не может быть полностью пустой. Пожалуйста, заполните хотя бы одно поле.")
+            return;
+        }
+
+        console.log('Отправка данных:', { region, date })
+    }
 
     return (
         <FormProvider {...methods}>
