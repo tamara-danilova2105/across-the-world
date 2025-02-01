@@ -1,13 +1,17 @@
-import { useCallback } from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
-
+import { useCallback, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface UseRangeParams {
     defaultValues: [number, number];
     onChange: (values: [number, number]) => void;
     minLimit: number;
     maxLimit: number;
-    selectedFilters: [number, number]
+    selectedFilters?: [number, number];
+}
+
+interface RangeFormValues {
+    min: number;
+    max: number;
 }
 
 export const useRange = ({
@@ -16,43 +20,52 @@ export const useRange = ({
     minLimit,
     maxLimit,
     selectedFilters
-    }: UseRangeParams) => {
+}: UseRangeParams) => {
+    const methods = useForm<RangeFormValues>({
+        mode: 'onChange',
+        defaultValues: {
+            min: selectedFilters?.[0] ?? defaultValues[0],
+            max: selectedFilters?.[1] ?? defaultValues[1]
+        }
+    });
 
-    const methods = useForm({
-        mode: 'onChange'
-    })
+    const { setValue, watch } = methods;
+    const minValue = watch('min');
+    const maxValue = watch('max');
 
-    const { setValue, watch }: UseFormReturn = methods;
-
-    const minValue = watch('min', !selectedFilters ? defaultValues[0] : selectedFilters[0]);
-    const maxValue = watch('max', !selectedFilters ? defaultValues[1] : selectedFilters[1]);
+    useEffect(() => {
+        if (selectedFilters) {
+            setValue('min', selectedFilters[0]);
+            setValue('max', selectedFilters[1]);
+        }
+    }, [selectedFilters, setValue]);
 
     const handleMinInputChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.min(maxLimit, Math.max(minLimit, Number(e.target.value)));
-        setValue('min', value);
-        onChange([value, maxValue]);
+            const value = Math.min(maxValue, Math.max(minLimit, Number(e.target.value)));
+            setValue('min', value);
+            onChange([value, maxValue]);
         },
-        [maxLimit, minLimit, maxValue, setValue, onChange]
-    )
+        [maxValue, minLimit, setValue, onChange]
+    );
 
     const handleMaxInputChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.min(maxLimit, Math.max(minLimit, Number(e.target.value)));
-        setValue('max', value);
-        onChange([minValue, value]);
+            const value = Math.min(maxLimit, Math.max(minValue, Number(e.target.value)));
+            setValue('max', value);
+            onChange([minValue, value]);
         },
-        [maxLimit, minLimit, minValue, setValue, onChange]
-    )
+        [maxLimit, minValue, setValue, onChange]
+    );
 
     const handleSliderChange = useCallback(
         ([newMin, newMax]: [number, number]) => {
-        setValue('min', newMin);
-        setValue('max', newMax);
-        onChange([newMin, newMax]);
+            setValue('min', newMin);
+            setValue('max', newMax);
+            onChange([newMin, newMax]);
         },
         [setValue, onChange]
-    )
+    );
 
     return {
         methods,
@@ -61,5 +74,5 @@ export const useRange = ({
         handleMinInputChange,
         handleMaxInputChange,
         handleSliderChange,
-    }
-}
+    };
+};

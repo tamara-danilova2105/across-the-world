@@ -13,6 +13,7 @@ export interface DateRange {
 
 export const Calendar = ({ onRangeChange }: { onRangeChange: (range: DateRange) => void }) => {
     const [currentDate, setCurrentDate] = useState(new Date());
+    console.log(currentDate)
     const [selectedRange, setSelectedRange] = useState<DateRange>({
         startDate: null,
         endDate: null,

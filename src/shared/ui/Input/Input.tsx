@@ -11,7 +11,7 @@ type HTMLInputProps = Omit<
 
 interface InputProps extends HTMLInputProps {
     className?: string;
-    value?: string;
+    value?: string | number;
     placeholder?: string;
     label?: string;
     error?: FieldError;
