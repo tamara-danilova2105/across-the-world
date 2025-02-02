@@ -1,7 +1,6 @@
 import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { Stack } from "@/shared/ui/Stack";
 import { NewsBlogData } from "../../model/types/types";
-import { dataBlog } from "@/widgets/NewsBlog/lib/data";
 import { NewsCard } from "../NewsCard/NewsCard";
 import styles from './NewsScroll.module.scss';
 import { useResize } from "@/shared/hooks/useResize";
@@ -28,7 +27,7 @@ export const NewsScroll = ({ news }: NewsScrollProps) => {
             {isSwiperActive ? (
                 <div style={{ width: '100%' }}>
                     <CustomeSwiper<NewsBlogData>
-                        items={dataBlog}
+                        items={news}
                         renderItem={renderItem}
                     />
                 </div>
