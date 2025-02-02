@@ -83,7 +83,7 @@ export const AddNewReview = () => {
                     error={errors?.feedback}
                 />
 
-                <Button loading={isLoading}>
+                <Button loading={isLoading} disabled={isLoading}>
                     Отправить отзыв
                 </Button>
 

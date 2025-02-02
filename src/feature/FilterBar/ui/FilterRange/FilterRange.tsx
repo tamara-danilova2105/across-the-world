@@ -1,8 +1,8 @@
+import { FormProvider } from "react-hook-form";
+import ReactSlider from "react-slider";
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
-import { FormProvider } from "react-hook-form";
-import ReactSlider from "react-slider";
 import { FilterRangeCategory } from "../../lib/data";
 import { useRange } from "../../lib/useRange";
 import styles from './FilterRange.module.scss';
@@ -18,11 +18,11 @@ export const FilterRange = ({
     maxLimit,
     step,
     onChange,
-    selectedFilters}: FilterRangeProps) => {
+    selectedFilters }: FilterRangeProps) => {
 
     const {
         methods,
-        minValue, 
+        minValue,
         maxValue,
         handleMinInputChange,
         handleMaxInputChange,
@@ -42,13 +42,13 @@ export const FilterRange = ({
                         <Input
                             {...register("min")}
                             onChange={handleMinInputChange}
-                            value={minValue} 
+                            value={minValue}
                             placeholder={`${minValue}`}
                         />
                         <Input
                             {...register("max")}
                             onChange={handleMaxInputChange}
-                            value={maxValue} 
+                            value={maxValue}
                             placeholder={`${maxValue}`}
                         />
                     </Stack>
@@ -56,16 +56,16 @@ export const FilterRange = ({
                         min={minLimit}
                         max={maxLimit}
                         step={step}
-                        value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues} 
+                        value={minValue !== undefined && maxValue !== undefined ? [minValue, maxValue] : defaultValues}
                         onChange={handleSliderChange}
                         renderThumb={(props) => {
                             const { key, ...restProps } = props;
                             return (
-                                <div 
-                                    {...restProps} 
+                                <div
+                                    {...restProps}
                                     aria-labelledby="price-slider"
-                                    key={key} 
-                                    className={styles.thumb} 
+                                    key={key}
+                                    className={styles.thumb}
                                 />
                             )
                         }}

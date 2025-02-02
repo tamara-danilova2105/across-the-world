@@ -58,6 +58,6 @@ const baseQueryWithReath: BaseQueryFn<
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReath,
-    tagTypes: ['Tour', 'Admin', 'Regions', 'Reviews'],
+    tagTypes: ['Tour', 'Admin', 'Regions', 'Reviews', 'News'],
     endpoints: () => ({})
 })

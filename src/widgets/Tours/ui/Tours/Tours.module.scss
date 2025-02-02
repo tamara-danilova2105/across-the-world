@@ -26,8 +26,7 @@
         }
 
         .button {
-            width: auto;
-            cursor: pointer;
+            width: 200px;
     
             @include mobile-l {
                 position:absolute;

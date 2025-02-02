@@ -30,7 +30,7 @@ export const ToursMain = () => {
                 gap='32'
                 className={styles.tours_page}
             >
-                {width > 1023 ? <FilterBar /> : ''}
+                {width > 1023 && <FilterBar />}
                 <Tours />
             </Stack>
         </main>

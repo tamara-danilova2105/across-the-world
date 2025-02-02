@@ -3,7 +3,6 @@ import { TourCard } from "@/entities/TourCard/index"
 import { getFiltersState } from "@/feature/FilterBar/model/filterSlice"
 import { getSortState } from '@/feature/SortTour/model/sortSlice'
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
-import { Shedule } from "@/feature/Shedule/index"
 import { SortTour } from "@/feature/SortTour/index"
 import { useModal } from "@/shared/hooks/useModal"
 import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
@@ -15,6 +14,7 @@ import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
 import { useGetAllToursQuery } from "../../api/toursApi"
 import styles from './Tours.module.scss'
+import { Shedule } from "@/entities/Shedule"
 
 const LIMIT = 12;
 const PAGE = 1;
@@ -54,9 +54,8 @@ export const Tours = () => {
             max
             className={styles.tours_container}
         >
-            {drawModal(
-                <Shedule />
-            )}
+            {drawModal(<Shedule />)}
+
             <Stack
                 justify='end'
                 max
@@ -73,7 +72,6 @@ export const Tours = () => {
                 >
                     <SortTour />
                     <Button
-                        cta
                         onClick={changeModal}
                         className={styles.button}
                     >

@@ -1,14 +1,17 @@
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { useDispatch, useSelector } from "react-redux"
-import { dataFilter,
-        dataFilterRange,
-        FilterCategory,
-        FilterRangeCategory
-        } from "../../lib/data"
-import { clearAllFilters,
-        getFiltersState, 
-        setFilter } from "../../model/filterSlice"
+import {
+    dataFilter,
+    dataFilterRange,
+    FilterCategory,
+    FilterRangeCategory
+} from "../../lib/data"
+import {
+    clearAllFilters,
+    getFiltersState,
+    setFilter
+} from "../../model/filterSlice"
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
@@ -22,7 +25,7 @@ type FilterRangeKeys = keyof DataFilterRange;
 
 export const FilterBar = () => {
 
-    const filterState = useSelector(getFiltersState) 
+    const filterState = useSelector(getFiltersState)
     const dispatch = useDispatch()
 
     const handleChange = useCallback(
@@ -39,7 +42,7 @@ export const FilterBar = () => {
         },
         [dispatch, filterState]
     );
-    
+
 
     const renderFilterElement = (key: FilterKeys) => {
         const { title, items }: FilterCategory = dataFilter[key];
@@ -83,12 +86,15 @@ export const FilterBar = () => {
                 gap='8'
                 className={styles.btnContainer}
             >
-                <Button 
-                >Применить</Button>
-                <Button 
+                <Button>
+                    Применить
+                </Button>
+                <Button
                     color='outline'
                     onClick={() => dispatch(clearAllFilters())}
-                >Очистить</Button>
+                >
+                    Очистить
+                </Button>
             </Stack>
             <Stack
                 direction='column'

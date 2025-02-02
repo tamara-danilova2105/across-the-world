@@ -18,7 +18,7 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
     const { direction } = props;
     const [region, setRegion] = useState('');
 
-    const [saveRegion, { error, isSuccess }] = useSaveRegionMutation();
+    const [saveRegion, { error, isSuccess, isLoading }] = useSaveRegionMutation();
 
     const handleAddOption = async () => {
         try {
@@ -65,7 +65,8 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
 
                 <Button
                     onClick={handleAddOption}
-                    disabled={!region.trim()}
+                    disabled={!region.trim() || isLoading}
+                    loading={isLoading}
                 >
                     Добавить
                 </Button>
