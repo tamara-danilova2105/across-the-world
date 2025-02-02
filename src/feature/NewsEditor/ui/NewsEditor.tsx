@@ -10,15 +10,17 @@ import { Button } from "@/shared/ui/Button";
 import { toast, ToastContainer } from "react-toastify";
 import { NewsBlogData } from "@/entities/News";
 
-const initialStateNews = {
+type FormDaraRequest = Omit<NewsBlogData, 'createdAt' | '_id'>
+
+const initialStateNews: FormDaraRequest = {
     title: '',
     description: '',
-    images: [],
+    photos: [],
 }
 
 export const NewsEditor = () => {
 
-    const [formData, setFormData] = useState<Omit<NewsBlogData, 'createdAt' | '_id'>>(initialStateNews);
+    const [formData, setFormData] = useState<FormDaraRequest>(initialStateNews);
 
     const [addNews, { isLoading }] = useAddNewsMutation();
 
@@ -29,7 +31,7 @@ export const NewsEditor = () => {
             file: img.file
         }));
 
-        setFormData({ ...formData, images: updatedImages })
+        setFormData({ ...formData, photos: updatedImages })
     };
 
     const handleSaveNews = async (e: React.FormEvent) => {
@@ -40,7 +42,7 @@ export const NewsEditor = () => {
             data.append('title', formData.title);
             data.append('description', formData.description);
 
-            formData.images.forEach((image) => {
+            formData.photos.forEach((image) => {
                 if (image.file) {
                     data.append('images', image.file);
                 }
@@ -112,7 +114,7 @@ export const NewsEditor = () => {
 
                         <Stack direction='column' gap='8'>
                             <ImageUploader
-                                images={formData.images.map(img => ({
+                                images={formData.photos.map(img => ({
                                     _id: img._id,
                                     src: img.src,
                                     file: img.file,

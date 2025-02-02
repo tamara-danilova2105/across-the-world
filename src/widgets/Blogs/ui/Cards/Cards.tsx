@@ -8,6 +8,7 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './Cards.module.scss'
 import { NewsBlogData } from "@/entities/News";
+import { Image } from "@/shared/types/types";
 
 interface BlogsData {
     variant?: 'large' | 'medium' | 'image';
@@ -21,9 +22,9 @@ export const Cards = ({
     colorScheme='white'
     } : BlogsData) => {
 
-    const { title, description, createdAt, images, _id } = news;
-    const mainImage = images[0]; 
-    const otherImages = images.slice(1); 
+    const { title, description, createdAt, photos, _id } = news;
+    const mainImage = photos[0]; 
+    const otherImages = photos.slice(1); 
     const width = useResize()
     const navigate = useNavigate()
 
@@ -81,9 +82,9 @@ export const Cards = ({
                     gap='32'
                 >
                     <Stack className={styles.anotherImage}>
-                        {otherImages.map((item, index) => (
+                        {otherImages.map((item: Image) => (
                             <img
-                                key={index}
+                                key={item._id}
                                 src={item.src}
                                 alt={item._id} //TODO - id будет UUID
                                 draggable={false}
