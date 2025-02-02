@@ -10,16 +10,7 @@ import HNY_glacier from '@/shared/assets/webp/HNY_glacier.webp';
 import HNY_meal from '@/shared/assets/webp/HNY_meal.webp';
 import HNY_mosque from '@/shared/assets/webp/HNY_mosque.webp';
 import HNY_person from '@/shared/assets/webp/HNY_person.webp';
-import { Image } from '@/shared/types/types';
-
-export interface NewsBlogData {
-    _id: string;
-    title: string;
-    description: string;
-    images: Image[];
-    createdAt: string;
-};
-
+import { NewsBlogData } from '@/entities/News';
 //TODO - я заменила alt на _id
 
 export const dataBlog: NewsBlogData[] = [

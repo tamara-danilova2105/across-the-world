@@ -1,4 +1,4 @@
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
+import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { Stack } from "@/shared/ui/Stack";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { Description } from "../Description/Description";

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { CustomeSwiper } from '@/entities/CustomeSwiper';
+import { CustomeSwiper } from '@/shared/ui/CustomeSwiper';
 import { useMaxHeight } from '@/shared/hooks/useMaxHeight';
 import { useResize } from '@/shared/hooks/useResize';
 import { DataTestimonial, dataTestimonials } from '../../lib/data';

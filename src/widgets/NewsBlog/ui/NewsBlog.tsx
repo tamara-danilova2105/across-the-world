@@ -1,70 +1,44 @@
-import { useCallback } from "react";
 import { getRouteBlog } from "@/app/router/lib/helper";
 import { TitleSection } from "@/entities/TitleSection";
 import { AppLink } from "@/shared/ui/AppLink";
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
 import { Stack } from "@/shared/ui/Stack";
-import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
-import { useResize } from "@/shared/hooks/useResize";
-import { dataBlog, NewsBlogData } from "../lib/data";
-import { CardBlog } from "@/entities/CardBlog/index";
+import { NewsScroll } from "@/entities/News";
+import { useGetAllNewsQuery } from "@/entities/News/api/api";
 import styles from './NewsBlog.module.scss';
 
-
 export const NewsBlog = () => {
+    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 3, page: 1 });
 
-    const width = useResize()
-    const { containerRef } = useScrollSlider(width)
-    const isSwiperActive = width <= 590;
+    if (isLoading) return <p>Загрузка</p> //TODO - заменить на что-то красивое
+    if (error) return <p>Произошла ошибка при загрузке</p>  //TODO - заменить на что-то красивое
 
-    const renderItem = useCallback((news: NewsBlogData) => <CardBlog news={news} />, []);
-
-    return(
-        <Stack 
+    return (
+        <Stack
             tag='section'
-            direction="column" 
+            direction="column"
             gap="48" max
             className={styles.main}
         >
-            <Stack 
+            <Stack
                 justify='between' align='end'
                 className={styles.news_title}
             >
-                <TitleSection 
-                    title="Всё о путешествиях и наших турах" 
+                <TitleSection
+                    title="Всё о путешествиях и наших турах"
                     subtitle="НОВОСТИ И БЛОГ"
                 />
                 <div>
-                    <AppLink 
-                        className={styles.appLink} 
+                    <AppLink
+                        className={styles.appLink}
                         variant='button' to={getRouteBlog()}
                     >
                         Посмотреть все
                     </AppLink>
                 </div>
             </Stack>
-            
-            <Stack
-                gap="32"
-                ref={containerRef}
-                className={styles.news}
-            >
-                {isSwiperActive ? (
-                    <div style={{width: '100%'}}>
-                        <CustomeSwiper<NewsBlogData>
-                            items={dataBlog}
-                            renderItem={renderItem}
-                        />
-                    </div> 
-                ) : (
-                    dataBlog.map((news) => (
-                        <CardBlog 
-                            key={news._id} 
-                            news={news}
-                        /> 
-                    ))
-                )}
-            </Stack>
+
+            {news && <NewsScroll news={news?.blogs} />}
+
         </Stack>
     )
 }

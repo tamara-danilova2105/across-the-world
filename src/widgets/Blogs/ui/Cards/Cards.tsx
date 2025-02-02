@@ -6,8 +6,8 @@ import { getStyles } from "@/shared/lib/getStyles";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
-import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import styles from './Cards.module.scss'
+import { NewsBlogData } from "@/entities/News";
 
 interface BlogsData {
     variant?: 'large' | 'medium' | 'image';

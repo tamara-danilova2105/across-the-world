@@ -4,6 +4,6 @@ export interface NewsBlogData {
     _id: string;
     title: string;
     description: string;
-    images: Image[];
+    photos: Image[];
     createdAt: string;
 };

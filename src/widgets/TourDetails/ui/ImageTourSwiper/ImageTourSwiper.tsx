@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
+import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { Image } from "@/shared/types/types";
 import styles from './ImageTourSwiper.module.scss';
 

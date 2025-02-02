@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3 } from 'lucide-react';
 import styles from './TextEditor.module.scss';
+import { useEffect } from 'react';
 
 interface TextEditorProps {
     initialContent?: string;
@@ -39,6 +40,12 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
             onChange(editor.getHTML());
         },
     });
+
+    useEffect(() => {
+        if (editor && editor.getHTML() !== initialContent) {
+            editor.commands.setContent(initialContent);
+        }
+    }, [initialContent, editor]);
 
     if (!editor) {
         return null;

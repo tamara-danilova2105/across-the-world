@@ -1,6 +1,5 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { NewsBlogData } from "@/widgets/NewsBlog/lib/data"; //TODO
 import { useState } from "react";
 import { TextEditor } from "@/entities/TextEditor";
 import { ImageUploader } from "@/entities/ImageUploader";
@@ -9,19 +8,19 @@ import styles from './NewsEditor.module.scss';
 import { useAddNewsMutation } from "@/entities/News/api/api"; //TODO public api
 import { Button } from "@/shared/ui/Button";
 import { toast, ToastContainer } from "react-toastify";
+import { NewsBlogData } from "@/entities/News";
+
+const initialStateNews = {
+    title: '',
+    description: '',
+    images: [],
+}
 
 export const NewsEditor = () => {
 
-    const [formData, setFormData] = useState<Omit<NewsBlogData, 'createdAt' | '_id'>>({
-        title: '',
-        description: '',
-        images: [],
-    });
-
-    console.log(formData);
+    const [formData, setFormData] = useState<Omit<NewsBlogData, 'createdAt' | '_id'>>(initialStateNews);
 
     const [addNews, { isLoading }] = useAddNewsMutation();
-
 
     const handleImagesChange = (newImages: Image[]) => {
         const updatedImages = newImages.map(img => ({
@@ -49,7 +48,7 @@ export const NewsEditor = () => {
 
             await addNews(data).unwrap();
             toast.success('Новость успешно добавлена.');
-            setFormData({ title: '', description: '', images: [] });
+            setFormData(initialStateNews);
         } catch (err) {
             toast.error('Произошла ошибка. Попробуйте снова.');
         }

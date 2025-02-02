@@ -1,33 +1,37 @@
 import { useParams } from "react-router";
 import { Calendar } from "lucide-react";
-import { dataBlog } from "@/widgets/NewsBlog/lib/data";
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { formatToRussianDate } from "@/shared/lib/formatDate";
 import { Text } from "@/shared/ui/Text";
 import { Stack } from "@/shared/ui/Stack";
 import styles from './BlogDetails.module.scss';
 import { useResize } from "@/shared/hooks/useResize";
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
+import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { useCallback } from "react";
 import { Image } from "@/shared/types/types";
+import { useGetNewsByIdQuery } from "@/entities/News/api/api";
+import { apiUrl } from "@/shared/api/endpoints";
 
 export const BlogDetails = () => {
     const { id } = useParams();
 
+    if (!id) return <p>Новость не найдена.</p>; //TODO -заменить на что-то более красивое
+
     const width = useResize();
     const isMobile = width <= 768;
 
-    //TODO - получать данные о туре с бэкенда 
-    const news = dataBlog.find((news) => news._id === id);
-
-    if (!news) return;
+    const { data: news, isLoading, error } = useGetNewsByIdQuery(id);
 
     const renderItem = useCallback((image: Image) =>
         <img
-            src={image.src} alt={news.title}
+            src={`${apiUrl}${image.src}`} alt={news?.title}
             className={styles.swiper_img}
         />,
         []);
+
+    if (isLoading) return <p>Загрузка...</p>; // TODO -заменить на что-то более красивое
+
+    if (error) return <p>Ошибка при загрузке новости.</p>; // TODO -заменить на что-то более красивое
 
     return (
         <main>
@@ -61,7 +65,7 @@ export const BlogDetails = () => {
                     isMobile
                         ? <div style={{ width: '100%' }}>
                             <CustomeSwiper
-                                items={news.images}
+                                items={news.photos}
                                 renderItem={renderItem}
                                 autoplay={{
                                     delay: 3000,
@@ -70,9 +74,9 @@ export const BlogDetails = () => {
                             />
                         </div>
                         : <Stack justify='between' max>
-                            {news.images.map(img => (
+                            {news.photos.map((img: Image) => (
                                 <img
-                                    src={img.src}
+                                    src={`${apiUrl}${img.src}`} //TODO
                                     alt={news.title}
                                     className={styles.image}
                                 />

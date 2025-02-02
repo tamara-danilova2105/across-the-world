@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
 import { TourCard } from "@/entities/TourCard";
-import { CustomeSwiper } from "@/entities/CustomeSwiper";
+import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";

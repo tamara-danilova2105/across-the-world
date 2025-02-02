@@ -14,7 +14,10 @@ const url = endpoints.path.news;
 const newsApi = api.injectEndpoints({
     endpoints: (build) => ({
         getAllNews: build.query({
-            query: ({ limit, page }) => createApiConfig('GET', `${url}/${limit}/${page}`),
+            query: (params) => {
+                const searchParams = new URLSearchParams(params);
+                return createApiConfig('GET', `${url}?${searchParams}`);
+            },
             providesTags: () => NEWS_TAG,
         }),
         getNewsById: build.query({
@@ -22,7 +25,7 @@ const newsApi = api.injectEndpoints({
         }),
         addNews: build.mutation({
             query: (newNews) => {
-                console.log(newNews); 
+                console.log(newNews);
                 return createApiConfig('POST', `${url}`, true, newNews);
             },
             invalidatesTags: NEWS_TAG,

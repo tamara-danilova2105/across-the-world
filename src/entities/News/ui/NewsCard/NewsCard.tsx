@@ -2,25 +2,28 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteBlogDetails } from "@/app/router/lib/helper";
-import { NewsBlogData } from "@/widgets/NewsBlog/lib/data";
 import { formatToRussianDate } from "@/shared/lib/formatDate";
-import styles from './CardBlog.module.scss';
 import { getStyles } from "@/shared/lib/getStyles";
+import { NewsBlogData } from "@/entities/News";
+import styles from './NewsCard.module.scss';
+import { apiUrl } from "@/shared/api/endpoints";
 
-interface NewsBlogProps {
+interface NewsCardProps {
     variant?: 'large' | 'small';
     colorScheme?: 'white' | 'pink' | 'peach';
     news: NewsBlogData;
 }
 
-export const CardBlog = ({
-    news,
-    variant = 'large',
-    colorScheme = 'white' }: NewsBlogProps) => {
+export const NewsCard = (props: NewsCardProps) => {
+    const {
+        news,
+        variant = 'large',
+        colorScheme = 'white'
+    } = props;
 
-    const { title, description, createdAt, images, _id } = news;
-    const mainImage = images[0];
-    const otherImages = images.slice(1);
+    const { title, description, createdAt, photos, _id } = news;
+    const mainImage = photos[0];
+    const otherImages = photos.slice(1);
 
     const containerClass = getStyles(
         styles.cardBlogsContainer,
@@ -53,7 +56,7 @@ export const CardBlog = ({
                 >
                     {mainImage && (
                         <img
-                            src={mainImage.src}
+                            src={`${apiUrl}${mainImage.src}`} //TODO не знаю пока как правильно писать ссылки
                             alt={mainImage._id} //TODO - id будет UUID
                             width='' height="430px"
                             draggable={false}
@@ -72,7 +75,7 @@ export const CardBlog = ({
                         {otherImages.map((item, index) => (
                             <img
                                 key={index}
-                                src={item.src}
+                                src={`${apiUrl}${item.src}`} //TODO не знаю пока как правильно писать ссылки
                                 alt={item._id} //TODO - id будет UUID
                                 draggable={false}
                             />
