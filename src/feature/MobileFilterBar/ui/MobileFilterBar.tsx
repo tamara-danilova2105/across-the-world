@@ -19,7 +19,7 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
     const width = useResize();
     useOverflowHidden(isOpen);
 
-    if (width > 1023 ) return null;
+    if (width > 1024 ) return null;
 
     return (
         <Stack

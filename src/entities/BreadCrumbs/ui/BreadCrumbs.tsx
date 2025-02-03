@@ -127,5 +127,4 @@ export const BreadCrumbs = ({
             </Stack>
         </Stack>
     );
-};
-
+}

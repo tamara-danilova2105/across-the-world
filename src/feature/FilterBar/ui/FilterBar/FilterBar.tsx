@@ -85,6 +85,7 @@ export const FilterBar = () => {
                 justify='between'
                 gap='8'
                 className={styles.btnContainer}
+                max
             >
                 <Button>
                     Применить

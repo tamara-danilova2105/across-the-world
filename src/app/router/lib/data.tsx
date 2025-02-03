@@ -20,6 +20,7 @@ import {
     getRouteToursDetails,
     getRouteAdminDiscount,
     getRouteAdminModerationReviews,
+    getRouteToursByRegion,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
@@ -48,6 +49,11 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         title: 'Туры',
         page: <ToursPage />
     },
+    // [AppRouters.tours_region]: {
+    //     path: getRouteToursByRegion(':region'),
+    //     title: 'Туры',
+    //     page: <ToursPage />
+    // },
     [AppRouters.tour_detais]: {
         path: getRouteToursDetails(':region', ':id'),
         page: <TourDetailsPage />

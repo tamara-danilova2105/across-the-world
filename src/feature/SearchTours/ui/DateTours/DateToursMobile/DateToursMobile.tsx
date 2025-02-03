@@ -50,6 +50,7 @@ export const DateToursMobile = (props: DateToursMobileProps) => {
             direction='column'
             max
             className={styles.date}
+            gap='16'
         >
             <Stack className={styles.svg}>
                 {dateIcon}
