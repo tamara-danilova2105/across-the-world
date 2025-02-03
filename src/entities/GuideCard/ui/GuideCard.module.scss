@@ -1,0 +1,34 @@
+@use '@/app/styles/media-queries' as *;
+
+.guide {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: var(--white-color);
+    width: 500px;
+
+    img {
+        width: 180px;
+        max-height: 200px;
+        border-radius: 16px 0  0 16px;
+        object-fit: cover;
+    }
+
+    .text {
+        padding: 20px;
+    }
+
+    @include mobile-l {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--gap-s);
+
+        img {
+            width: 100%;
+            border-radius: 16px 16px  0 0;
+        }
+
+        .text {
+            padding: 10px;
+        }
+    }
+}

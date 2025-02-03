@@ -35,8 +35,8 @@ export const RegionTours = ({ placeholder, regions = [], error, isLoading }: Reg
     }
 
     const handleRegionSelect = (regionName: string) => {
-        setValue('region', regionName)
-        setShowRegionsList(false)
+        setValue('region', regionName);
+        setShowRegionsList(false);
     };
 
     const searchIcon = regionValue

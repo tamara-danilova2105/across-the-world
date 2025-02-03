@@ -1,0 +1,52 @@
+.country {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.flagContainer {
+    position: relative;
+
+    .flag {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--pink-opacity20);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: var(--font-size-24);
+        transition: transform 0.3s ease, filter 0.3s ease;
+        text-shadow: 5px 5px 5px var(--blue-opacity40);
+    }
+
+    .tooltip {
+        position: absolute;
+        top: 0;
+        right: 0 !important;
+        background-color: var(--blue-opacity60);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    &:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(15px) translateY(-50%);
+    }
+}
+
+
+
+
+
+
+
+
+
+

@@ -32,7 +32,8 @@ export const FilterRange = ({
     const { register } = methods;
 
     return (
-        <Stack direction="column" gap="16">
+        <Stack direction="column" 
+                gap="16" max>
             <Text size="16" font="geometria500" color="blue">
                 {title}
             </Text>
@@ -43,13 +44,13 @@ export const FilterRange = ({
                             {...register("min")}
                             onChange={handleMinInputChange}
                             value={minValue}
-                            placeholder={`${minValue}`}
+                            placeholder={`${minValue.toLocaleString("ru-RU")}`}
                         />
                         <Input
                             {...register("max")}
                             onChange={handleMaxInputChange}
                             value={maxValue}
-                            placeholder={`${maxValue}`}
+                            placeholder={`${maxValue.toLocaleString("ru-RU")}`}
                         />
                     </Stack>
                     <ReactSlider

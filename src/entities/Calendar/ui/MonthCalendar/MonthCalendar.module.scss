@@ -22,6 +22,10 @@
     @include mobile-xl {
         height: 25px; 
     }
+
+    @include mobile-s {
+        height: 15px;
+    }
 }
 
 .currentMonth {

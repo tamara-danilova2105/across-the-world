@@ -1,4 +1,3 @@
-import { SearchIcon } from "@/shared/assets/svg/searchIcon";
 import { RegionTours } from "../RegionTours/RegionTours/RegionTours";
 import styles from "./SearchMainPage.module.scss";
 import { Region } from "@/shared/types/types";
@@ -13,9 +12,9 @@ interface SearchMainProps {
 
 export const SearchMainPage = ({ regions = [], error, isLoading} : SearchMainProps) => {
 
+
     return (
         <div className={styles.wrapper}>
-            <SearchIcon />
             <RegionTours 
                 regions={regions}
                 error={error}

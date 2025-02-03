@@ -14,7 +14,7 @@ export const ToursMain = () => {
 
     return (
         <main>
-            <BreadCrumbs>
+            <BreadCrumbs >
                 <SearchToursMain />
             </BreadCrumbs>
             <Stack
@@ -30,7 +30,7 @@ export const ToursMain = () => {
                 gap='32'
                 className={styles.tours_page}
             >
-                {width > 1023 && <FilterBar />}
+                {width > 1024 && <FilterBar />}
                 <Tours />
             </Stack>
         </main>

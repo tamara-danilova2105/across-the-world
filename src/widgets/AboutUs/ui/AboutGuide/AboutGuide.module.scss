@@ -1,0 +1,13 @@
+@use '@/app/styles/mixin' as mixin;
+
+.aboutGuideContainer {
+    @include mixin.section-style;
+    overflow: hidden;
+
+    .aboutGuide {
+        margin-left: auto;
+        overflow: hidden;
+        cursor: grab;
+        padding: 10px;
+    }
+}
