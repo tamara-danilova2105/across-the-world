@@ -11,7 +11,7 @@ interface SelectProps<T> {
 }
 
 export const Select = <T,>(props: SelectProps<T>) => {
-    const { value, options, onChange } = props
+    const { value, options, onChange } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export const Select = <T,>(props: SelectProps<T>) => {
                 className={styles.button}
             >
                 <span className={value ? styles.buttonTextActive : styles.buttonText}>
-                    {value ? String(value) : 'Выбрать'}
+                    {value !== null && value !== undefined ? String(value) : 'Выбрать'}
                 </span>
                 <ChevronDown
                     size={20}

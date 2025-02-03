@@ -1,0 +1,1 @@
+export { LazyAdminToursPage as AdminToursPage } from './AdminToursPage.lazy';

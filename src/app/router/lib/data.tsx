@@ -36,6 +36,7 @@ import { AboutUsPage } from "@/pages/AboutUsPage";
 import { ReviewsPage } from "@/pages/ReviewsPage";
 import { CreateTimerPage } from "@/pages/CreateTimerPage";
 import { ModerationReviewsPage } from "@/pages/ModerationReviewsPage";
+import { AdminToursPage } from "@/pages/AdminToursPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -95,6 +96,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_tours]: {
         path: getRouteAdminTours(),
         // onlyAdmin: true,
+        page: <AdminToursPage />
     },
     [AppRouters.admin_tours_create]: {
         path: getRouteAdminToursCreate(),
