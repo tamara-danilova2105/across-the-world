@@ -27,6 +27,7 @@ export const RegionToursMobile = ({ changeOpen, regions = [], error, isLoading}:
     }
 
     const handleRegionSelect = (regionName: string) => {
+        console.log(regionName)
         setValue('region', regionName)
         changeOpen()
     }

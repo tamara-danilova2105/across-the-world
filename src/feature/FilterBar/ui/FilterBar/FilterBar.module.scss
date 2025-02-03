@@ -6,33 +6,33 @@
     width: 270px;
     height: 100%;
 
-    @include tablet-m {
-        width: 100%;
+    @include tablet-l {
+        width: 100% !important;
         z-index: 3;
         top: 0;
     }
 
     .btnContainer {
         position: sticky;
+        flex: 1;
         background-color: var(--white-color);
         top: 70px;
         z-index: 3;
         width: 100%;
         padding: 20px 0;
 
-        @include desktop-m {
-            flex-direction: column;
-        }
 
         @include tablet-l {
             top: 40px;
+            flex-direction: column;
+            flex: 0;
         }
 
         button {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 130px; //TODO заменить на flex: 1, не работает сейчас, пришлось захаркодить
+            padding: 12px 30px;
         }
     }
 
@@ -42,7 +42,7 @@
         max-height: 70vh;
         padding: 0 10px 60px 0;
 
-        @include tablet-m {
+        @include tablet-l {
             max-height: 75vh;
             width: 100%;
         }

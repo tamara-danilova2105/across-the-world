@@ -1,7 +1,7 @@
-import { CardBlog } from "@/entities/CardBlog/index"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { dataBlog } from "@/widgets/NewsBlog/lib/data"
 import styles from './Blogs.module.scss'
+import { NewsScroll } from "@/entities/News"
 
 export const Blogs = () => {
     return(
@@ -10,7 +10,7 @@ export const Blogs = () => {
             className={styles.blogs_section}
         >
             {dataBlog.map(news => (
-                <CardBlog key={news._id} news={news}/>
+                <NewsScroll key={news._id} news={news}/>
             ))}
         </Stack>
     )

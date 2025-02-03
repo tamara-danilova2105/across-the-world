@@ -1,6 +1,7 @@
 @use '@/app/styles/media-queries.scss' as mq;
 
 .title_section {
+    z-index: 2;
     @include mq.mobile-l {
         gap: 8px;
     }

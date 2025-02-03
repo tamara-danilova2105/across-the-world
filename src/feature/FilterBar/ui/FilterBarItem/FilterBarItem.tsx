@@ -33,6 +33,7 @@ export const FilterBarItem = ({
         <Stack
             direction='column'
             gap='16'
+            max
         >
             <Text
                 size='16'
