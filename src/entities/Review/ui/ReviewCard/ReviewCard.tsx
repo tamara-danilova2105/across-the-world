@@ -89,7 +89,6 @@ export const ReviewCard = ({ review, isModeration }: ReviewCardProps) => {
                 {!isModeration && (
                     <Stack
                         justify='end' gap='16' max
-                        className={styles.button_group}
                     >
                         <Button
                             loading={isLoadingModerate}

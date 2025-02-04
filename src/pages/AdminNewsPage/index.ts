@@ -1,0 +1,1 @@
+export { LazyAdminNewsPage as AdminNewsPage } from './AdminNewsPage.lazy'

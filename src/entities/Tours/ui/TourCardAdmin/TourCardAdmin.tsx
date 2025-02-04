@@ -1,7 +1,6 @@
 import {
     Calendar,
     MoreVertical,
-    Link,
     Copy,
     Trash2,
     Globe,
@@ -29,7 +28,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     const { tourId, title, imageUrl, dates } = props;
 
     const [formData, setFormData] = useState(dates);
-    
+
     const formattedDates = formData.map(date => ({
         id: date._id,
         spots: date.spots,
@@ -93,10 +92,6 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
 
                 {showMenu && (
                     <div className={styles.dropdownMenu}>
-                        <button className={styles.menuItem}>
-                            <Link className={styles.icon} />
-                            Ссылка на оплату
-                        </button>
                         <button className={styles.menuItem}>
                             <Copy className={styles.icon} />
                             Создать копию тура
