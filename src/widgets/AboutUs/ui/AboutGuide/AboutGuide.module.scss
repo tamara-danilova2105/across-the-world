@@ -1,7 +1,7 @@
-@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/mixin' as *;
 
 .aboutGuideContainer {
-    @include mixin.section-style;
+    @include section-style;
     overflow: hidden;
 
     .aboutGuide {

@@ -1,8 +1,9 @@
 @use '@/app/styles/media-queries' as *;
-@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/mixin' as *;
 
 .storyContainer {
-    @include mixin.section-style;
+    @include section-style;
+
     .story {
         .button {
             width: 100%;
