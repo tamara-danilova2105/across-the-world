@@ -8,7 +8,8 @@ import { apiUrl } from '@/shared/api/endpoints';
 export const NewsAdmin = () => {
     const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 10, page: 1 });
 
-    console.log(news?.blogs);
+    console.log(isLoading);
+    console.log(error);
 
     return (
         <Stack
