@@ -17,6 +17,6 @@ export const endpoints = {
         logout: '/logout',
         reset_password: '/reset-password',
         refresh_password: '/refresh-password',
-        refresh: '/refresh'
+        refresh: '/refresh' 
     }
 }
