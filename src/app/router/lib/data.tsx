@@ -20,7 +20,6 @@ import {
     getRouteToursDetails,
     getRouteAdminDiscount,
     getRouteAdminModerationReviews,
-    getRouteToursByRegion,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";

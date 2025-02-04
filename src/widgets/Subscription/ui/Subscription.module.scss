@@ -38,7 +38,8 @@
             }
         }
 
-        form {
+        .form {
+            position: relative;
             display: flex;
             align-items: flex-start;
             justify-content: center;
@@ -54,9 +55,7 @@
             }
     
 
-            > div {
-                width: 100%;
-                > div > input {
+                .input {
                     position: relative;
                     height: 70px;
                     padding-left: 70px;
@@ -74,7 +73,7 @@
                         height: 50px;
                     }
                 }
-            }
+            
 
             > svg {
                 position: absolute;
@@ -94,7 +93,7 @@
                 }
             }
 
-            button {
+            .button {
                 font-weight: 600;
                 width: 350px;
                 height: 70px;

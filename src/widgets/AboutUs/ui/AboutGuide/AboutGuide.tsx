@@ -24,6 +24,11 @@ export const AboutGuide = () => {
             max
         >
             <TitleSection subtitle="Наша команда" title="Гид — ключ от мира" />
+            <Stack>
+                <Stack>
+                    
+                </Stack>
+            </Stack>
             {isSwiperActive ? (
                 <div style={{ width: "100%", padding: "0 10px" }}>
                     <CustomeSwiper items={Guides} renderItem={renderGuide} />

@@ -16,6 +16,7 @@ export interface ImagesWithDetails {
 export interface TimerData {
     _id: string;
     title: string;
+    region: string;
     description: string;
     timer: string;
     imagesWithDetails: {
@@ -39,7 +40,3 @@ const LABEL: Record<string, string> = {
 export const getLabel = (field: string) => {
     return LABEL[field]
 }
-
-// export const getPlaceholder = (detail: string) => {
-//     return placeholder[detail];
-// }

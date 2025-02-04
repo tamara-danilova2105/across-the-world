@@ -7,9 +7,9 @@ import { Stack } from "@/shared/ui/Stack";
 import { data, emailRegex } from '@/shared/lib/validateInput';
 import { EnvelopeIcon } from "@/shared/assets/svg/envelopeIcon";
 import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
-import styles from './Subscription.module.scss'
 import { RunningLine } from "@/entities/RunningLine/index";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
+import styles from './Subscription.module.scss'
 
 interface FormInputs {
     email: string;
@@ -60,7 +60,8 @@ export const Subscription = () => {
                         <br /> просто подписавшись на наши новости</Text>
                     </Stack>
                     <FormProvider {...methods}>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)}
+                                className={styles.form}>
                             <EnvelopeIcon/>
                             <Input 
                                 name="email"
@@ -71,10 +72,12 @@ export const Subscription = () => {
                                         message: data.errors.validEmail,
                                     }
                                 })}
+                                className={styles.input}
                                 placeholder="Введите свою почту"
                                 error={errors?.email}
                             />
-                            <Button cta type="submit">
+                            <Button cta type="submit"
+                                className={styles.button}>
                                 Подписаться
                             </Button>
                         </form>
