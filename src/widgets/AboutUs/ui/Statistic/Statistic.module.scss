@@ -1,7 +1,8 @@
-@use '@/app/styles/mixin/' as mixin;
+@use '@/app/styles/mixin/' as *;
 
 .statistic {
-    @include mixin.section-style;
+    @include section-style;
+
     .statistic_item {
         background-color: var(--blue-color);
         border-radius: var(--border-radius);

@@ -33,12 +33,16 @@ const handleImageChange = (newImages: Image[]) => {
         }
 
         handleSaveCover({
-            image: selectedImage,
-            details: { header, category, describe }
-        })
+            images: [selectedImage],
+            details: [{ header, category, describe }] 
+        });
 
-        reset();
-        setSelectedImage(null);
+        reset({
+            header: '', 
+            describe: '',
+            selectedImage: ''
+        })
+        setSelectedImage(null)
     };
 
 return (
