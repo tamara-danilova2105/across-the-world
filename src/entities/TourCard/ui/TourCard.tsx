@@ -14,13 +14,13 @@ interface TourCardProps {
 };
 
 export const TourCard = ({ tourData }: TourCardProps) => {
-    const { 
-        tour, 
+    const {
+        tour,
         dates,
-        imageCover, 
-        discount, 
+        imageCover,
+        discount,
         regions,
-        _id 
+        _id
     } = tourData;
 
     const discountedPrice = (amount: number, discount: number) => {
@@ -29,18 +29,18 @@ export const TourCard = ({ tourData }: TourCardProps) => {
 
     return (
         <article className={styles.tour_card}>
-            <Stack 
-                direction="column" 
+            <Stack
+                direction="column"
                 justify='between'
                 gap="16"
             >
                 <Stack className={styles.imageContainer}>
                     <img src={imageCover[0]?.src} alt={tour} draggable={false} />
                 </Stack>
-                
-                <Stack 
-                    gap="16" 
-                    direction='column' 
+
+                <Stack
+                    gap="16"
+                    direction='column'
                     className={styles.text_container}
                 >
                     <Text size='18' color='blue' font='geometria500'>
@@ -50,31 +50,31 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                         <Text size="16">
                             {formatDateRange(dates[0].date_start, dates[0].date_finish)}
                         </Text>
-                        {dates.length > 1 && 
+                        {dates.length > 1 &&
                             <span>+{dates.length - 1} {declOfNum(dates.length, ['дата', 'даты', 'дат'])}</span>
                         }
                     </Stack>
                     {(discount && discount.endDate > NOW_DATE) ? (
                         <Stack gap="16" align='center'>
                             <Text size="18" className={styles.old_price}>
-                                {dates[0].price.amount.toLocaleString("ru-RU")} 
+                                {dates[0].price.amount.toLocaleString("ru-RU")}
                                 {dates[0].price.currency}
                             </Text>
 
                             <Text size="18" font='geometria500' className={styles.new_price}>
-                                {discountedPrice(dates[0].price.amount, discount.percentage).toLocaleString("ru-RU")} 
+                                {discountedPrice(dates[0].price.amount, discount.percentage).toLocaleString("ru-RU")}
                                 {dates[0].price.currency}
                             </Text>
                         </Stack>
                     ) : (
                         <Text size="18" color="blue" font='geometria500'>
-                            {dates[0].price.amount.toLocaleString("ru-RU")} 
+                            {dates[0].price.amount.toLocaleString("ru-RU")}
                             {dates[0].price.currency}
                         </Text>
                     )}
 
-                    <AppLink 
-                        className={styles.link} 
+                    <AppLink
+                        className={styles.link}
                         to={getRouteToursDetails(regions[0], _id)}
                         aria-label={`Подробнее о туре "${tour}"`}
                     >
@@ -83,7 +83,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                 </Stack>
             </Stack>
             {(discount && discount.endDate > NOW_DATE) && (
-                <div 
+                <div
                     className={styles.badge}
                     aria-label={`Скидка ${discount.percentage}%`}
                 >

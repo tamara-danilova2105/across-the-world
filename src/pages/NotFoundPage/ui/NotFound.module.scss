@@ -1,12 +1,44 @@
-@use '@/app/styles/mixin' as mixins;
+@use '@/app/styles/mixin' as *;
+@use '@/app/styles/media-queries' as *;
 
 .not_found {
-    height: calc(100vh - 240px); //TODO
-    margin-top: 120px; //TODO - страница под меню иначе 
-    position: relative;
-    @include mixins.decorate-style;
+    @include decorate-style;
+
+    & {
+        margin-top: 70px;
+
+        @include tablet-l {
+            margin-top: 80px;
+        }
+
+        @include mobile-xl {
+            margin-top: 60px;
+        }
+    }
+}
+
+.content {
+    @include section-style;
+
+    & {
+        height: 100vh;
+    }
 
     h1 {
         font-size: 150px;
+    }
+
+    @include mobile-xl {
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: 1.25rem;
+        }
+
+        .link {
+            width: 100%;
+        }
     }
 }

@@ -15,7 +15,12 @@
 }
 
 .content {
-    font-size: var(--font-size-16);
+    font-size: var(--font-size-24);
+    line-height: 2rem;
+
+    @include mobile-xl {
+        font-size: var(--font-size-18);
+    }
 }
 
 .image {

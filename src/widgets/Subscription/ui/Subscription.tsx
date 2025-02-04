@@ -26,38 +26,38 @@ export const Subscription = () => {
     }
 
     return (
-        <Stack 
+        <Stack
             direction="column"
             justify='center'
             align='center'
             className={styles.main}
         >
-            <RunningLine data={dataPromo}/>
-            <Stack 
-                className={styles.subscriptionContainer} 
-                align="center" 
+            <RunningLine data={dataPromo} />
+            <Stack
+                className={styles.subscriptionContainer}
+                align="center"
                 justify="center"
                 direction="column"
             >
                 <DecorationIcon />
                 <DecorationIcon />
-                <Stack className={styles.subscription} 
-                    direction="column" 
-                    align="center" 
+                <Stack className={styles.subscription}
+                    direction="column"
+                    align="center"
                     justify="center"
                     gap='48'
                 >
-                    <Stack 
-                        direction="column" 
-                        align="center" 
-                        justify="center" 
+                    <Stack
+                        direction="column"
+                        align="center"
+                        justify="center"
                         gap='24'
                     >
-                        <TitleSection title="Будь всегда в теме" subtitle="НОВОСТИ"/>
+                        <TitleSection title="Будь всегда в теме" subtitle="НОВОСТИ" />
                         <Text font='geometria400'
-                        color="blue" size="24"
-                        >Получите скидку <strong>3%</strong> на первый заказ, 
-                        <br /> просто подписавшись на наши новости</Text>
+                            color="blue" size="24"
+                        >Получите скидку <strong>3%</strong> на первый заказ,
+                            <br /> просто подписавшись на наши новости</Text>
                     </Stack>
                     <FormProvider {...methods}>
                         <form onSubmit={handleSubmit(onSubmit)}
