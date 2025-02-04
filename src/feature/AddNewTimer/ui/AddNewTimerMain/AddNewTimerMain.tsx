@@ -42,18 +42,18 @@ export const AddNewTimerMain = () => {
     const { register, handleSubmit, reset, formState: { errors } } = methods;
 
     const handleSaveCover = (newCover: { images: Image[], details: Details[]} | {}) => {
-        setTimerData((prev: TimerData ) => {
-        if (prev.imagesWithDetails.images.length >= 2) {
-            return prev
-        } 
-        console.log(prev, newCover)
-        return {
-            ...prev,
-            imagesWithDetails: {
-            images: [...prev.imagesWithDetails.images, newCover.image],
-            details: [...prev.imagesWithDetails.details, newCover.details]
+        if (!("images" in newCover) || !("details" in newCover)) return; 
+    
+        setTimerData((prev: TimerData) => {
+            if (prev.imagesWithDetails.images.length >= 2) return prev;
+            
+            return {
+                ...prev,
+                imagesWithDetails: {
+                    images: [...prev.imagesWithDetails.images, ...newCover.images], 
+                    details: [...prev.imagesWithDetails.details, ...newCover.details]
+                }
             }
-        }
         })
     }
 
