@@ -7,6 +7,7 @@ import { getStyles } from "@/shared/lib/getStyles";
 import { NewsBlogData } from "@/entities/News";
 import styles from './NewsCard.module.scss';
 import { apiUrl } from "@/shared/api/endpoints";
+import { useResize } from "@/shared/hooks/useResize";
 
 interface NewsCardProps {
     variant?: 'large' | 'small';
@@ -22,8 +23,12 @@ export const NewsCard = (props: NewsCardProps) => {
     } = props;
 
     const { title, description, createdAt, photos, _id } = news;
+
+    const width = useResize();
+    const isMobile = width < 820;
+
     const mainImage = photos[0];
-    const otherImages = photos.slice(1);
+    const otherImages = isMobile ? photos.slice(2) : photos.slice(1);
 
     const containerClass = getStyles(
         styles.cardBlogsContainer,
@@ -40,9 +45,7 @@ export const NewsCard = (props: NewsCardProps) => {
     const displayText = `<span>${truncatedDescription}</span>`;
 
     return (
-        <Stack
-            className={containerClass}
-        >
+        <Stack className={containerClass}>
             <div className={styles.read_more}>
                 <AppLink to={getRouteBlogDetails(_id)}>
                     Подробнее

@@ -11,3 +11,19 @@
         padding: 1.5rem;
     }
 }
+
+.grid_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: stretch;
+    width: 100%;
+    gap: var(--gap-xxl);
+
+    @include tablet-l {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile-l {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

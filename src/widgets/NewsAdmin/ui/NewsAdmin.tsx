@@ -25,7 +25,7 @@ export const NewsAdmin = () => {
                 </Text>
             )}
 
-            <Stack max gap="32" justify='between' wrap>
+            <div className={styles.grid_container}>
                 {isLoading ? (
                     Array.from({ length: 6 }).map((_, index) => (
                         <Skeleton key={index} width="24rem" height="344px" />
@@ -40,7 +40,7 @@ export const NewsAdmin = () => {
                         />
                     ))
                 )}
-            </Stack>
+            </div>
         </Stack>
     )
 }
