@@ -28,6 +28,7 @@ export const NewsEditor = () => {
         data: newsById,
         isLoading: isLoadingGetNewsById,
         error,
+        refetch,
     } = useGetNewsByIdQuery(id || '', { skip: !id });
 
     const [deletedImages, setDeletedImages] = useState<string[]>([]);
@@ -75,11 +76,13 @@ export const NewsEditor = () => {
 
             if (id) {
                 await editNews({ id, updatedData: data }).unwrap();
+                await refetch();
+                toast.success('Новость обновлена.');
+
             } else {
                 await addNews(data).unwrap();
+                toast.success('Новость успешно добавлена.');
             }
-
-            toast.success(!id ? 'Новость успешно добавлена.' : 'Новость обновлена.');
         } catch (err) {
             toast.error('Произошла ошибка. Попробуйте снова.');
         }
@@ -141,7 +144,10 @@ export const NewsEditor = () => {
                                 control={control}
                                 rules={{ required: "Описание обязательно" }}
                                 render={({ field }) => (
-                                    <TextEditor initialContent={field.value} onChange={field.onChange} />
+                                    <TextEditor
+                                        initialContent={field.value}
+                                        onChange={field.onChange}
+                                    />
                                 )}
                             />
                             {errors.description && (
