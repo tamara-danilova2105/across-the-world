@@ -4,17 +4,19 @@ import { Image } from '@/shared/types/types';
 import { Stack } from '@/shared/ui/Stack';
 import { getStyles } from '@/shared/lib/getStyles';
 import styles from './ImageUploader.module.scss';
+import { apiUrl } from '@/shared/api/endpoints';
 
 interface ImageUploaderProps {
     images: Image[];
     onChange: (images: Image[]) => void;
+    onDelete?: (id: string, src: string) => void;
     maxImages?: number;
     isCover?: boolean;
     uploadHint?: string;
 }
 
 export const ImageUploader = (props: ImageUploaderProps) => {
-    const { images, onChange, maxImages = 3, uploadHint, isCover } = props;
+    const { images, onChange, onDelete, maxImages = 3, uploadHint, isCover } = props;
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -38,32 +40,48 @@ export const ImageUploader = (props: ImageUploaderProps) => {
         }
     };
 
-    const handleDelete = (id: string) => {
+    const handleDelete = (id: string, src: string) => {
         const updatedImages = images.filter(image => image._id !== id);
         onChange(updatedImages);
+
+        if (!src.startsWith('blob:')) {
+            const fileName = encodeURIComponent(src.split('/').pop() ?? '');
+
+            if (fileName && onDelete) {
+                onDelete(id, fileName);
+            }
+        }
     };
 
     return (
         <Stack direction='column' gap='16'>
             <Stack gap='16' wrap>
-                {images.map(image => (
-                    <div
-                        key={image._id}
-                        className={getStyles(styles.imageContainer, { [styles.cover]: isCover }, [])}
-                    >
-                        <img
-                            src={image.src}
-                            alt="Uploaded preview"
-                            className={styles.image}
-                        />
-                        <button
-                            onClick={() => handleDelete(image._id)}
-                            className={styles.deleteButton}
+                {images.map(image => {
+                    const isBlob = image.src.startsWith('blob:');
+                    const isLocal = image.src.startsWith('/uploads');
+
+                    const imageUrl = isBlob ? image.src : isLocal ? `${apiUrl}${image.src}` : image.src;
+
+                    return (
+                        <div
+                            key={image._id}
+                            className={getStyles(styles.imageContainer, { [styles.cover]: isCover }, [])}
                         >
-                            <X size={16} />
-                        </button>
-                    </div>
-                ))}
+                            <img
+                                src={imageUrl}
+                                alt="Uploaded preview"
+                                className={styles.image}
+                            />
+                            <button
+                                onClick={() => handleDelete(image._id, image.src)}
+                                className={styles.deleteButton}
+                            >
+                                <X size={16} />
+                            </button>
+                        </div>
+                    );
+                })}
+
 
                 {images.length < maxImages && (
                     <button

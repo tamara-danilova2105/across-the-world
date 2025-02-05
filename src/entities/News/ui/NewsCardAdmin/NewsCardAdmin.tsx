@@ -3,6 +3,8 @@ import styles from './NewsCardAdmin.module.scss';
 import { Button } from '@/shared/ui/Button';
 import { useDeleteNewsMutation } from '../../api/api';
 import { toast } from 'react-toastify';
+import { AppLink } from '@/shared/ui/AppLink';
+import { getRouteAdminNewsEdit } from '@/app/router/lib/helper';
 
 interface NewsCardAdminProps {
     imageUrl: string;
@@ -38,12 +40,12 @@ export const NewsCardAdmin = (props: NewsCardAdminProps) => {
                 <h3 className={styles.title}>{title}</h3>
 
                 <Stack gap='16' max>
-                    <Button
-                    // loading={isLoadingEdit}
-                    // onClick={handleEdit}
+                    <AppLink
+                        to={getRouteAdminNewsEdit(newsId)}
+                        variant='button'
                     >
                         Редактировать
-                    </Button>
+                    </AppLink>
                     <Button
                         color='secondary'
                         loading={isDeleteLoading}
