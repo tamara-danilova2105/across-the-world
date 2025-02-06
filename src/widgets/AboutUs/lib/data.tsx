@@ -11,9 +11,9 @@ import about_us_six from '@/shared/assets/webp/about_us_six.jpg';
 import about_us_seven from '@/shared/assets/webp/about_us_seven.jpg';
 import { Camera, MapPinned, Route } from 'lucide-react';
 import { Argentina, Armenia, Azerbaijan,
-    Cyprus, Georgia, IceLand, Iran, Japan
-    , Kyrgystan, Mongolia, Russia,
-    South_Africa, Uzbekistan, Yemen } from '@/shared/assets/svg/counryFlag';
+    Chile,
+    Earth, Georgia, IceLand, Iran, Japan, Morocco, Pakistan, Peru, Russia
+    , Uzbekistan, Yemen } from '@/shared/assets/svg/counryFlag';
 import React from 'react';
 
 export const Founder = {
@@ -93,10 +93,11 @@ export const destinationFlags: { id: number; flag: React.FC<React.SVGProps<SVGSV
     { id: 6, flag: Yemen, country: "Сокотра" },
     { id: 7, flag: Uzbekistan, country: "Узбекистан" },
     { id: 8, flag: IceLand, country: "Исландия" },
-    { id: 9, flag: Cyprus, country: "Кипр" },
-    { id: 10, flag: Japan, country: "Япония" },
-    { id: 11, flag: South_Africa, country: "ЮАР" },
-    { id: 12, flag: Argentina, country: "Патагония" },
-    { id: 13, flag: Kyrgystan, country: "Кыргызстан" },
-    { id: 14, flag: Mongolia, country: "Монголия" },
+    { id: 9, flag: Japan, country: "Япония" },
+    { id: 10, flag: Chile, country: "Чили" },
+    { id: 11, flag: Peru, country: "Перу" },
+    { id: 12, flag: Argentina, country: "Аргентина" },
+    { id: 13, flag: Pakistan, country: "Пакистан" },
+    { id: 14, flag: Morocco, country: "Марокко" },
+    { id: 15, flag: Earth, country: "Другие" },
 ]
