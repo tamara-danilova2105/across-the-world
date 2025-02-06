@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import BulletList from '@tiptap/extension-bullet-list';
+import OrderedList from '@tiptap/extension-ordered-list';
+import ListItem from '@tiptap/extension-list-item';
 import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3 } from 'lucide-react';
 import styles from './TextEditor.module.scss';
 
@@ -29,7 +32,16 @@ const MenuButton = ({
 
 export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
     const editor = useEditor({
-        extensions: [StarterKit],
+        extensions: [
+            StarterKit.configure({
+                bulletList: false, // Отключаем встроенный, добавим свой
+                orderedList: false,
+                listItem: false,
+            }),
+            BulletList,
+            OrderedList,
+            ListItem.configure({ HTMLAttributes: { class: "list-item" } }), // Фиксирует списки
+        ],
         content: initialContent,
         editorProps: {
             attributes: {
@@ -39,14 +51,18 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
         onUpdate: ({ editor }) => {
             onChange(editor.getHTML());
         },
+        onCreate: ({ editor }) => {
+            if (initialContent) {
+                editor.commands.setContent(initialContent, false);
+            }
+        },
     });
 
     useEffect(() => {
         if (editor && initialContent && editor.getHTML() !== initialContent) {
-            editor.commands.setContent(initialContent, false); // Второй аргумент false отключает историю действий
+            editor.commands.setContent(initialContent, false);
         }
     }, [initialContent, editor]);
-
 
     if (!editor) {
         return null;
@@ -112,3 +128,4 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
         </div>
     );
 };
+

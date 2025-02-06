@@ -47,7 +47,11 @@ export const TourForm = () => {
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     });
+
+    console.log(formData);
+    
 
     //TODO добавить обработку ошибки и загрузкуи
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
