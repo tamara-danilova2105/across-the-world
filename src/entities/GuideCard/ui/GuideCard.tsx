@@ -2,7 +2,6 @@ import { Stack } from "@/shared/ui/Stack"
 import { GuideData } from "../model/types";
 import { Text } from "@/shared/ui/Text";
 import styles from './GuideCard.module.scss';
-import React from "react";
 
 interface GuideProps {
     guide: GuideData
