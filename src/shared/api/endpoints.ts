@@ -20,5 +20,5 @@ export const endpoints = {
         reset_password: '/reset-password',
         refresh_password: '/refresh-password',
         refresh: '/refresh' 
-    }
+    } 
 }
