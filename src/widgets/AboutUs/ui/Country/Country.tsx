@@ -16,7 +16,7 @@ export const Country = () => {
                 className={styles.country}
             >
                 {destinationFlags.map(flag => (
-                    <Stack key={flag.id}
+                    <Stack key={flag.id} max
                         className={styles.flagContainer}>
                         <span className={styles.flag}>
                             <flag.flag/>

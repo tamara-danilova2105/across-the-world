@@ -13,6 +13,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 import styles from "./RegionTours.module.scss";
 
 interface RegionTours {
+    changeOpen?: (() => void | undefined) | undefined;
     placeholder?: string;
     regions?: Region[] | [];
     error?: FetchBaseQueryError | SerializedError | undefined;
@@ -20,7 +21,7 @@ interface RegionTours {
 }
 
 
-export const RegionTours = ({ placeholder, regions = [], error, isLoading }: RegionTours) => {
+export const RegionTours = ({ placeholder, changeOpen = () => {}, regions = [], error, isLoading }: RegionTours) => {
 
     const [showRegionsList, setShowRegionsList] = useState(false);
     const { register, setValue, watch, formState: { errors } } = useFormContext();
@@ -64,6 +65,7 @@ export const RegionTours = ({ placeholder, regions = [], error, isLoading }: Reg
                 placeholder={placeholder ? placeholder : "Куда отправляемся?"}
                 error={errors?.region as FieldError | undefined}
                 onFocus={() => setShowRegionsList(true)}
+                onClick={() => changeOpen && changeOpen()} 
                 autoComplete="off"
             />
             {showRegionsList && (
@@ -71,6 +73,7 @@ export const RegionTours = ({ placeholder, regions = [], error, isLoading }: Reg
                     direction='column'
                     className={styles.list}
                     gap='16'
+                    max
                 >
                     {isLoading ? (
                         <Loading/>

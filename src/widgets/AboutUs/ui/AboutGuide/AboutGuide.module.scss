@@ -1,12 +1,10 @@
-@use '@/app/styles/mixin' as *;
+@use '@/app/styles/mixin' as mixin;
+@use '@/app/styles/media-queries' as *;
 
 .aboutGuideContainer {
-    @include section-style;
-
-    .aboutGuide {
-        padding: 10px;
-    }
-
+    @include mixin.section-style;
+    margin-bottom: 50px;
+    
     .founder_container {
         position: relative;
         padding: 10px;
@@ -17,6 +15,10 @@
             background-color: var(--white-color);
             flex: 1;
 
+            @include tablet-m {
+                flex-direction: column;
+            }
+
             .founder_about {
                 position: relative;
                 align-self: stretch;
@@ -25,6 +27,16 @@
 
                 p {
                     text-indent: var(--text-indent);
+                }
+
+                @include tablet-l {
+                    h3 {
+                        font-size: var(--font-size-18);
+                    }
+
+                    p {
+                        font-size: var(--font-size-14);
+                    }
                 }
             }
 
@@ -38,10 +50,31 @@
             }
             .image {
                 flex: 2;
-                max-height: 500px;
+                max-height: 600px;
                 object-fit: cover;
                 border-radius: 0 16px 16px  0;
+
+                @include tablet-l {
+                    max-height: 550px;
+                }
+
+                @include tablet-m {
+                    width: 100%;
+                    border-radius: 0 0 16px 16px;
+                }
+
+                @include tablet-m {
+                    max-height: 350px;
+                }
             }
+        }
+    }
+
+    .aboutGuide {
+        padding: 10px;
+
+        @include mobile-xl {
+            flex-direction: column;
         }
     }
 }
