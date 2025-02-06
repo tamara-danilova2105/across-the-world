@@ -20,15 +20,16 @@ interface TourCardAdminProps {
     title: string;
     imageUrl: string;
     dates: DateTours[];
+    isPublished: boolean;
 }
 
 const TOTAL_SPOTS = 15;
 
 export const TourCardAdmin = (props: TourCardAdminProps) => {
-    const { tourId, title, imageUrl, dates } = props;
+    const { tourId, title, imageUrl, dates, isPublished } = props;
 
     const [formData, setFormData] = useState(dates);
-
+    
     const formattedDates = formData.map(date => ({
         id: date._id,
         spots: date.spots,
@@ -42,7 +43,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     });
 
     const [showMenu, setShowMenu] = useState(false);
-    const [isPublished, setIsPublished] = useState(true);
+    const [isPublishedState, setIsPublishedState] = useState(isPublished);
 
     const handleDateChange = (option: string) => {
         const selected = formattedDates.find(d => d.option === option);
@@ -57,10 +58,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     };
 
     const handleSpotsChange = (spots: number) => {
-        setSelectedDateInfo(prev => ({
-            ...prev,
-            spots
-        }));
+        setSelectedDateInfo(prev => ({ ...prev, spots }));
     };
 
     const handleSave = () => {
@@ -75,7 +73,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     };
 
     const togglePublished = () => {
-        setIsPublished(!isPublished);
+        setIsPublishedState(!isPublished);
         setShowMenu(false);
     };
 
@@ -123,7 +121,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
 
             <div className={styles.imageWrapper}>
                 <img src={imageUrl} alt={title} className={styles.image} />
-                {isPublished && (
+                {isPublishedState && (
                     <div className={styles.publishedLabel}>Опубликовано</div>
                 )}
             </div>
