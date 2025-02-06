@@ -3,7 +3,11 @@
 
 .aboutGuideContainer {
     @include mixin.section-style;
-    margin-bottom: 50px;
+
+    & {
+        margin-bottom: 50px;
+    }
+    
     
     .founder_container {
         position: relative;

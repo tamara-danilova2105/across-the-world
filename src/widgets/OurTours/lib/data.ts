@@ -72,7 +72,8 @@ export interface Tour {
     description: string;
     program: DayProgram[],
     hotels: Image[],
-    mapMarker?: MapMarker[]
+    mapMarker?: MapMarker[],
+    isPublished: boolean,
 }
 
 export const dataTours: Tour[] = [
@@ -116,6 +117,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "2",
@@ -157,6 +159,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "3",
@@ -194,6 +197,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "4",
@@ -231,6 +235,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "5",
@@ -547,7 +552,8 @@ export const dataTours: Tour[] = [
                 id: "location-1733329493248",
                 coordinates: [-70.60210248986168, -33.327769692886505],
             }
-        ]
+        ],
+        isPublished: true,
     },
     {
         _id: "6",
@@ -585,6 +591,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "7",
@@ -622,6 +629,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "8",
@@ -659,6 +667,7 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     },
     {
         _id: "9",
@@ -696,5 +705,6 @@ export const dataTours: Tour[] = [
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     }
 ];
