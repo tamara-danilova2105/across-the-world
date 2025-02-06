@@ -1,8 +1,12 @@
 @use '@/app/styles/media-queries' as *;
-@use '@/app/styles/mixin' as *;
+@use '@/app/styles/mixin' as mixin;
 
 .storyContainer {
-    @include section-style;
+    @include mixin.section-style;
+
+    @include tablet-l {
+        flex-direction: column;
+    }
 
     .story {
         .story_container {

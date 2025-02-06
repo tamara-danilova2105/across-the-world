@@ -1,11 +1,22 @@
+@use '@/app/styles/media-queries' as *;
+
 .country {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(5, auto);
+    gap: var(--gap-l);
+
+    @include tablet-l {
+        grid-template-columns: repeat(8, auto);
+    }
+
+    @include tablet-m {
+        grid-template-columns: repeat(5, auto);
+    }
 }
 
 .flagContainer {
     position: relative;
+    width: fit-content;
 
     .flag {
         position: relative;
@@ -18,9 +29,19 @@
         border-radius: 50%;
         transition: transform 0.3s ease, filter 0.3s ease;
 
+        @include mobile-l {
+            width: 40px;
+            height: 40px;
+        }
+
         svg {
             width: 30px;
             height: 30px;
+
+            @include mobile-l {
+                width: 25px;
+                height: 25px;
+            }
         }
     }
 
@@ -33,13 +54,13 @@
         padding: 8px 12px;
         border-radius: 5px;
         opacity: 0;
-        visibility: hidden;
+        display: none;
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     &:hover .tooltip {
         opacity: 1;
-        visibility: visible;
+        display: flex;
         transform: translateX(15px) translateY(-50%);
     }
 }

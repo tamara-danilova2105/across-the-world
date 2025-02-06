@@ -19,6 +19,7 @@ interface BreadcrumbsProps {
     name?: string;
     dataTours?: Tour[]
     children?: ReactNode;
+    height?: string
 };
 
 const separator = ' / ';
