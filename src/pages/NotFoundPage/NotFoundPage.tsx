@@ -1,9 +1,8 @@
 import { NotFound } from "./ui/NotFound";
 
-
 const NotFoundPage = () => {
     return (
-        <main>
+        <main style={{width: '100%'}}>
             <NotFound />
         </main>
     );
