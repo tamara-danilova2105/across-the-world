@@ -10,19 +10,28 @@ import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { RunningLine } from "@/entities/RunningLine/index";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
 import styles from './Subscription.module.scss'
+import { useSubscribeMutation } from "../api/subscribeApi";
+import { toast } from "react-toastify";
 
 interface FormInputs {
     email: string;
 }
 
-//TODO
-
 export const Subscription = () => {
     const methods = useForm<FormInputs>();
     const { handleSubmit, register, reset, formState: { errors } } = methods;
 
-    const onSubmit = () => {
-        reset()
+    const [ sendMail, {isLoading}] = useSubscribeMutation({})
+
+    const onSubmit = async (formData: FormInputs) => {
+        const {email} = formData
+        try{
+            await sendMail({email}).unwrap()
+            toast.success("Вы подписались на нащи новости.")
+            reset()
+        } catch (e) {
+            toast.error("Ошибка при отправке почты. Попробуйте снова.")
+        }
     }
 
     return (
@@ -77,7 +86,8 @@ export const Subscription = () => {
                                 error={errors?.email}
                             />
                             <Button cta type="submit"
-                                className={styles.button}>
+                                className={styles.button}
+                                loading={isLoading}>
                                 Подписаться
                             </Button>
                         </form>

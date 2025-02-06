@@ -12,13 +12,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--pink-opacity20);
+        background-color: var(--blue-opacity20);
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        font-size: var(--font-size-24);
         transition: transform 0.3s ease, filter 0.3s ease;
-        text-shadow: 5px 5px 5px var(--blue-opacity40);
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
     }
 
     .tooltip {

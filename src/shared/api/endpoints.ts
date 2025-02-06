@@ -10,6 +10,8 @@ export const endpoints = {
         regions: '/regions',
         reviews: '/reviews',
         news: '/news',
+        timer: '/timer',
+        mail: '/subscribe',
     },
     admin: {
         registration: '/registration',

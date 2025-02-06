@@ -5,6 +5,11 @@
     @include section-style;
 
     .story {
+        .story_container {
+            p {
+                text-indent: var(--text-indent);
+            }
+        }
         .button {
             width: 100%;
         }

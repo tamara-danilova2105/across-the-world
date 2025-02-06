@@ -1,11 +1,12 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(4, 150px); 
     gap: 10px;
-    width: 100%;
-    height: 100%;
+    width: max-content; 
+    height: max-content;
     place-items: center;
+    overflow: hidden;
 }
 
 .photo {
@@ -13,5 +14,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    transition: transform 0.8s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
+
+

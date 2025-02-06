@@ -1,31 +1,22 @@
-import { Image } from "@/shared/types/types";
-
-
-export interface Details {
+export interface ImagesWithDetails {
+    _id: string;
+    src: string;
+    file?: File;
     header: string;
     category: string;
     describe: string;
 }
 
-export interface ImagesWithDetails {
-    images: Image[] | undefined;
-    details: Details[] | undefined;
-}
-
 
 export interface TimerData {
-    _id: string;
     title: string;
     region: string;
     description: string;
     timer: string;
-    imagesWithDetails: {
-        images: Image[];
-        details: Details[]
-    }
+    imagesWithDetails: ImagesWithDetails[]
 }
 
-export const PLACEHOLDER_TEXT: Record<keyof Details, string> = {
+export const PLACEHOLDER_TEXT: Record<string, string> = {
     header: "название места",
     category: "категория достопримечательности",
     describe: "короткое описание места"
