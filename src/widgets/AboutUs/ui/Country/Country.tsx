@@ -16,9 +16,11 @@ export const Country = () => {
                 className={styles.country}
             >
                 {destinationFlags.map(flag => (
-                    <Stack key={flag.id} gap="16"
+                    <Stack key={flag.id}
                         className={styles.flagContainer}>
-                        <span className={styles.flag}>{flag.flag}</span>
+                        <span className={styles.flag}>
+                            <flag.flag/>
+                        </span>
                         <Stack className={styles.tooltip}>
                             <Text size="18" color="white">{flag.country}</Text>
                         </Stack>

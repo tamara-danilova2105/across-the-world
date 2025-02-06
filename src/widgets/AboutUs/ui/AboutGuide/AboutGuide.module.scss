@@ -2,12 +2,46 @@
 
 .aboutGuideContainer {
     @include section-style;
-    overflow: hidden;
 
     .aboutGuide {
-        margin-left: auto;
-        overflow: hidden;
-        cursor: grab;
         padding: 10px;
+    }
+
+    .founder_container {
+        position: relative;
+        padding: 10px;
+
+        .founder {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            background-color: var(--white-color);
+            flex: 1;
+
+            .founder_about {
+                position: relative;
+                align-self: stretch;
+                padding: 20px;
+                flex: 1;
+
+                p {
+                    text-indent: var(--text-indent);
+                }
+            }
+
+            .svg {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 1;
+                color: var(--blue-color);
+                opacity: 0.1;
+            }
+            .image {
+                flex: 2;
+                max-height: 500px;
+                object-fit: cover;
+                border-radius: 0 16px 16px  0;
+            }
+        }
     }
 }

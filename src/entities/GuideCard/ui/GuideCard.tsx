@@ -14,18 +14,20 @@ export const GuideCard = ({ guide } : GuideProps) => {
             key={guide._id}
             gap="16"
         >
-            <img src={guide.image} alt={guide.name}/>
+            <img src={guide.image} alt={guide.name}
+                className={styles.image}/>
             <Stack 
                 className={styles.text}
                 direction="column"
                 gap="8"
             >
+                <guide.svg size={100} className={styles.svg}/>
                 <Text size="16" font="geometria500" 
                     color='blue'
                 >
                     {guide.name}
                 </Text>
-                <Text size="16">
+                <Text>
                     {guide.story}
                 </Text>
             </Stack>

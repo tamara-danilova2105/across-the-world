@@ -10,6 +10,8 @@ export const endpoints = {
         regions: '/regions',
         reviews: '/reviews',
         news: '/news',
+        timer: '/timer',
+        mail: '/subscribe',
     },
     admin: {
         registration: '/registration',
@@ -17,6 +19,6 @@ export const endpoints = {
         logout: '/logout',
         reset_password: '/reset-password',
         refresh_password: '/refresh-password',
-        refresh: '/refresh'
-    }
+        refresh: '/refresh' 
+    } 
 }

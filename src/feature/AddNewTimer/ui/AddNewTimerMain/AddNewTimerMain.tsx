@@ -7,71 +7,87 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { data } from "@/shared/lib/validateInput";
 import styles from './AddNewTimerMain.module.scss';
-import { Details, TimerData } from "../../types/types";
+import { ImagesWithDetails, TimerData } from "../../types/types";
 import { Button } from "@/shared/ui/Button";
-import { Image } from "@/shared/types/types";
+import { RegionTours } from "@/feature/SearchTours/ui/RegionTours/RegionTours/RegionTours";
+import { useDebounce } from "@/shared/hooks/useDebounce";
+import { useGetRegionsQuery } from "@/entities/Region/api/api";
+import { useAddTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
+import { TimerReady } from "../Timer/TimerReady";
 
 const INITIAL_TIMER_STATE: TimerData = {
-    _id: crypto.randomUUID(),
     title: '',
+    region: '',
     description: '',
     timer: '',
-    imagesWithDetails: {
-        images: [],
-        details: []
-    },
-}
+    imagesWithDetails: [],
+    }
 
 export const AddNewTimerMain = () => {
     const [timerData, setTimerData] = useState<TimerData>(INITIAL_TIMER_STATE);
 
     const methods = useForm<TimerData>({ 
         mode: 'onSubmit',
-        defaultValues: {
-            title: '',
-            description: '',
-            timer: '',
-            imagesWithDetails: {
-                images: [],
-                details: []
-            }
-        }
-    });
-    
+        defaultValues: INITIAL_TIMER_STATE})
 
-    const { register, handleSubmit, reset, formState: { errors } } = methods;
+    const { register, handleSubmit, reset, watch, formState: { errors } } = methods;
+    const regionValue = watch('region')
 
-    const handleSaveCover = (newCover: { images: Image[], details: Details[]} | {}) => {
-        if (!("images" in newCover) || !("details" in newCover)) return; 
+    const debouncedSearch = useDebounce({ value: regionValue, delay: 300 })
+
+    const { data: regions, error: regionsError, 
+        isLoading: regionsLoading } = useGetRegionsQuery({
+        search: debouncedSearch})
     
-        setTimerData((prev: TimerData) => {
-            if (prev.imagesWithDetails.images.length >= 2) return prev;
-            
+    const [addNewTimer, { error: addTimerError,
+        isLoading: addTimerLoading }] = useAddTimerMutation()
+
+    console.log(addTimerError)
+
+    const handleSaveCover = (newCover: ImagesWithDetails) => {
+        setTimerData((prev) => {
+            if (prev.imagesWithDetails.length >= 2) return prev;
+    
             return {
                 ...prev,
-                imagesWithDetails: {
-                    images: [...prev.imagesWithDetails.images, ...newCover.images], 
-                    details: [...prev.imagesWithDetails.details, ...newCover.details]
-                }
+                imagesWithDetails: [...prev.imagesWithDetails, newCover]
             }
         })
     }
-
-    const onSubmit = (formData: TimerData) => {
-        if (formData.imagesWithDetails.images.length !== 2) {
-            return
+    const onSubmit = async (formData: TimerData) => {
+        if (timerData.imagesWithDetails.length !== 2) {
+            return;
         }
-        reset()
-        setTimerData(INITIAL_TIMER_STATE)
+
+        const data = new FormData();
+        data.append('title', formData.title);
+        data.append('region', formData.region);
+        data.append('description', formData.description);
+        data.append('timer', formData.timer);
+        data.append('imagesWithDetails', JSON.stringify(timerData.imagesWithDetails));
+        timerData.imagesWithDetails.forEach((image) => {
+            console.log(image.file)
+            if (image.file) {
+                data.append('photos', image.file);
+            }
+        })
+
+        try {
+            await addNewTimer(data).unwrap();
+            setTimerData(INITIAL_TIMER_STATE);
+            reset()
+        } catch (e) {
+            console.error('Ошибка добавления таймера:', e)
+        }
     }
 
     return (
         <FormProvider {...methods}>
             <Stack direction="column" className={styles.timerContainer} gap="24">
+                <TimerReady/>
                 <Text type="h2" color="blue" font="geometria500" size="32">
-                Добавить новый таймер
+                    Добавить новый таймер
                 </Text>
-
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Input
                         label="Название объявления"
@@ -80,6 +96,11 @@ export const AddNewTimerMain = () => {
                         placeholder="Например: `Открываем набор групп на КАМЧАТКУ 2025`"
                         error={get(errors, "title")}
                     />
+                    <RegionTours
+                        regions={regions}
+                        error={regionsError}
+                        isLoading={regionsLoading}
+                        placeholder="Введите аукционный регион"/>
                     <TextArea
                         label="Описание акции"
                         name="description"
@@ -98,7 +119,7 @@ export const AddNewTimerMain = () => {
                         imagesWithDetails={timerData.imagesWithDetails}
                         handleSaveCover={handleSaveCover}
                     />
-                    <Button type="submit">
+                    <Button type="submit" loading={addTimerLoading}>
                         Сохранить таймер
                     </Button>
                 </form>

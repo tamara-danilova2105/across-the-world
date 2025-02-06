@@ -14,6 +14,7 @@ const baseQuery = fetchBaseQuery({
     }
 })
 
+
 const baseQueryWithReath: BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -58,6 +59,6 @@ const baseQueryWithReath: BaseQueryFn<
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReath,
-    tagTypes: ['Tour', 'Admin', 'Regions', 'Reviews', 'News'],
+    tagTypes: ['Tour', 'Admin', 'Regions', 'Reviews', 'News', 'Timer', 'Mail'],
     endpoints: () => ({})
 })

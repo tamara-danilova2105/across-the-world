@@ -4,17 +4,32 @@
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     background-color: var(--white-color);
-    width: 500px;
+    flex: 1;
+    max-height: 150px;
 
-    img {
-        width: 180px;
-        max-height: 200px;
+    .image {
+        width: 130px;
+        min-height: 150px;
         border-radius: 16px 0  0 16px;
         object-fit: cover;
     }
 
     .text {
-        padding: 20px;
+        position: relative;
+        align-self: stretch;
+        padding: 10px;
+
+        :nth-child(3) {
+            text-indent: var(--text-indent);
+        }
+    }
+
+    .svg {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        opacity: 0.1;
+        z-index: 1;
     }
 
     @include mobile-l {

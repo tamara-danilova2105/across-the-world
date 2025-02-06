@@ -51,7 +51,9 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}
+                className={styles.form}
+            >
                 {main ?
                     <SearchMainPage 
                         regions={regions}

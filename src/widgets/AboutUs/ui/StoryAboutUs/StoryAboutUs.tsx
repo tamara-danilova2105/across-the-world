@@ -31,6 +31,7 @@ export const StoryAboutUs = () => {
                 <TitleSection subtitle="Наша компания" 
                     title="Открывай мир вместе с нами" />
                 <Stack 
+                    className={styles.story_container}
                     direction="column"
                     gap="16"
                 >
