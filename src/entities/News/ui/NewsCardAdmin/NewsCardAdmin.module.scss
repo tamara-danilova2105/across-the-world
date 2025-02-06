@@ -1,9 +1,15 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .card {
     width: 24rem;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
     background-color: #fff;
     position: relative;
+
+    @include tablet-l {
+        width: 100%;
+    }
 }
 
 .image {
@@ -14,10 +20,14 @@
 
 .content {
     padding: 1rem;
-}
 
-.title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: var(--blue-color);
+    h3 {
+        height: 50px;
+    }
+
+    a {
+        @include tablet-m {
+            gap: var(--gap-m);
+        }
+    }
 }

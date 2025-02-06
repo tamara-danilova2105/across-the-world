@@ -22,8 +22,8 @@
         }
         
         .page {
-            width: 20px;
-            height: 20px;
+            width: 1.25rem;
+            height: 1.25rem;
             border-radius: 50%;
             background-color: var(--peach-opacity20);
             box-shadow: var(--box-shadow);
@@ -34,8 +34,8 @@
 
 
             @include mq.mobile-l {
-                width: 15px;
-                height: 15px;
+                width: 1rem;
+                height: 1rem;
             }
 
             a {
@@ -51,8 +51,8 @@
         }
     
         .active {
-            width: 24px;
-            height: 24px;
+            width: 1.5rem;
+            height: 1.5rem;
             background-color: var(--blue-color);
         }
     
@@ -72,12 +72,14 @@
         &.paginationPageContainer {
             .previous, .next {
                 display: inline-block; 
-                width: 50px;
-                height: 50px;
+                width: 3.125rem;
+                height: 3.125rem;
                 color: var(--blue-color);
+                cursor: pointer;
         
                 a {
                     display: flex; 
+                    justify-content: center;
                     width: 100%;
                     height: 100%;
         
@@ -85,9 +87,10 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
                         svg {
-                            width: 40px;
-                            height: 40px;
+                            width: 2.5rem;
+                            height: 2.5rem;
                         }
                     }
                 }
@@ -99,12 +102,11 @@
 
 
             .page {
-                width: 40px;
-                height: 40px;
+                width: 2.5rem;
+                height: 2.5rem;
                 border-radius: 50%;
                 background-color: var(--peach-opacity20);
                 box-shadow: var(--box-shadow);
-                cursor: pointer;
                 transition: background-color 0.3s;
                 border: 2px solid transparent;
                 text-align: center;
@@ -122,12 +124,10 @@
             }
 
             .active {
-                width: 45px;
-                height: 45px;
                 background-color: var(--blue-color);
 
                 a {
-                    color: var(--peach-color);
+                    color: var(--white-color);
                 }
             }
         }

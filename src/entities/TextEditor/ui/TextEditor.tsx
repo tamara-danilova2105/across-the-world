@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3 } from 'lucide-react';
 import styles from './TextEditor.module.scss';
-import { useEffect } from 'react';
 
 interface TextEditorProps {
     initialContent?: string;
@@ -42,10 +42,11 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
     });
 
     useEffect(() => {
-        if (editor && editor.getHTML() !== initialContent) {
-            editor.commands.setContent(initialContent);
+        if (editor && initialContent && editor.getHTML() !== initialContent) {
+            editor.commands.setContent(initialContent, false); // Второй аргумент false отключает историю действий
         }
     }, [initialContent, editor]);
+
 
     if (!editor) {
         return null;
@@ -55,7 +56,7 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
         <div className={styles.container}>
             <div className={styles.toolbar}>
                 <MenuButton
-                    onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+                    onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
                     isActive={editor.isActive('heading', { level: 3 })}
                 >
                     <Heading3 size={18} />
@@ -110,4 +111,4 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
             </div>
         </div>
     );
-}
+};

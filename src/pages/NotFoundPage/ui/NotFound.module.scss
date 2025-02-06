@@ -1,7 +1,7 @@
 @use '@/app/styles/mixin' as *;
 @use '@/app/styles/media-queries' as *;
 
-.not_found {
+.not_found_main {
     @include decorate-style;
 
     & {
@@ -17,18 +17,42 @@
     }
 }
 
+.not_found_admin {
+    @include decorate-style;
+
+    & {
+        width: 100%;
+        height: 100vh
+    }
+
+    @include tablet-l {
+        margin-top: 50px;
+    }
+
+    @include mobile-xl {
+        margin-top: 40px;
+        height: calc(100vh - 70px)
+    }
+}
+
 .content {
     @include section-style;
 
     & {
-        height: 100vh;
+        height: calc(100vh - 70px);
     }
 
     h1 {
         font-size: 150px;
     }
 
+    @include tablet-l {
+        height: calc(100vh - 80px);
+    }
+
     @include mobile-xl {
+        height: calc(100vh - 60px);
+
         h2 {
             font-size: 1.5rem;
         }

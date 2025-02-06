@@ -10,12 +10,12 @@
 
     @include media.tablet-l {
         width: auto;
+        height: 550px;
     }
 
     @include media.mobile-l {
         height: auto;
         padding: 20px;
-        height: 450px;
     }
 
     .read_more {
@@ -69,7 +69,7 @@
 
             .anotherImage {
                 width: 100%;
-                height: 130px;
+                height: 170px;
                 border-radius: var(--border-radius);
                 overflow: hidden;
                 position: relative;
@@ -82,15 +82,16 @@
                 img {
                     flex: 1 1 calc(33%); 
                     max-width: calc(34%);
+                    height: 100%;
                     object-fit: cover;
                 }
 
                 @include media.tablet-l {
-                    height: 120px;
+                    height: 150px;
                 }
 
                 @include media.mobile-xl {
-                    height: 185px;
+                    height: 220px;
 
                     p {
                         display: block;
@@ -107,10 +108,6 @@
                     img {
                         max-width: 50%;
                         object-fit: cover;
-
-                        :last-child {
-                            display: none;
-                        }
                     }
                 }
 

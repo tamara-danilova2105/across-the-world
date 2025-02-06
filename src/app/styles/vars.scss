@@ -11,7 +11,7 @@
     --pink-color: #e08478;
     --pink-opacity20: hsla(7, 63%, 67%, 0.2);
     --pink-opacity60: hsla(7, 63%, 67%, 0.6);
-    --pink-opacity40:hsla(7, 63%, 67%, 0.4);
+    --pink-opacity40: hsla(7, 63%, 67%, 0.4);
     --peach-color: #f6d9bb;
     --peach-opacity20: rgba(246, 217, 187, 0.2);
     --white-color: #FFFFFF;
@@ -25,28 +25,29 @@
     --font-family-geometria600: 'Geometria-600';
     --font-family-geometria500: 'Geometria-500';
     --font-family-geometria400: 'Geometria-400';
-    
-    
-    //TODO
-    --font-size-12: 12px;
-    --font-size-14: 14px;
-    --font-size-16: 16px;
-    --font-size-18: 18px;
-    --font-size-24: 24px;
-    --font-size-32: 32px;
-    --font-size-42: 42px;
-    --font-size-48: 48px;
 
-    --text-indent: 20px;
 
-    --border-radius: 16px;
+    /* font size */
+    --font-size-12: 0.75rem;
+    --font-size-14: 0.875rem;
+    --font-size-16: 1rem;
+    --font-size-18: 1.125rem;
+    --font-size-20: 1.25rem;
+    --font-size-24: 1.5rem;
+    --font-size-32: 2rem;
+    --font-size-42: 2.625rem;
+    --font-size-48: 3rem;
 
-    //gap
-    --gap-xs: 4px;
-    --gap-s: 8px;
-    --gap-m: 16px;
-    --gap-l: 24px;
-    --gap-xl: 32px;
-    --gap-xxl: 48px;
-    --gap-xxxl: 64px;
+    --text-indent: 1.25rem;
+
+    --border-radius: 1rem;
+
+    /* Gap */
+    --gap-xs: 0.25rem;
+    --gap-s: 0.5rem;
+    --gap-m: 1rem;
+    --gap-l: 1.5rem;
+    --gap-xl: 2rem;
+    --gap-xxl: 3rem;
+    --gap-xxxl: 4rem;
 }

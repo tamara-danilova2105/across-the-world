@@ -6,10 +6,10 @@ import styles from './Pagination.module.scss';
 
 interface PaginationProps {
     onPageChange?: (selected: number) => void;
-    forcePage?: number;
+    forcePage?: number; //текущая страницв
     pageCount: number;
-    hasBackground?: boolean;
-    pagePagination?: boolean;
+    hasBackground?: boolean; //цвет булитов взависимости от цвета background
+    pagePagination?: boolean; //отображения нумерации страниц 
 };
 
 export const Pagination = (props: PaginationProps) => {

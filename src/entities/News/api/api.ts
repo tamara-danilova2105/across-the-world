@@ -24,19 +24,15 @@ const newsApi = api.injectEndpoints({
             query: (id: string) => createApiConfig('GET', `${url}/${id}`),
         }),
         addNews: build.mutation({
-            query: (newNews) => {
-                console.log(newNews);
-                return createApiConfig('POST', `${url}`, true, newNews);
-            },
+            query: (newNews) => createApiConfig('POST', `${url}`, true, newNews),
             invalidatesTags: NEWS_TAG,
         }),
         editNews: build.mutation({
-            query: ({ id, updatedData }) =>
-                createApiConfig('PUT', `${url}/${id}`, true, updatedData),
+            query: ({ id, updatedData }) => createApiConfig('PUT', `${url}/${id}`, true, updatedData),
             invalidatesTags: NEWS_TAG,
         }),
         deleteNews: build.mutation({
-            query: (id: string) => createApiConfig('DELETE', `${url}/${id}`),
+            query: (id: string) => createApiConfig('DELETE', `${url}/${id}`, true),
             invalidatesTags: NEWS_TAG,
         }),
     }),

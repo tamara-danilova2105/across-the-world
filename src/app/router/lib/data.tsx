@@ -39,6 +39,7 @@ import { CreateTimerPage } from "@/pages/CreateTimerPage";
 import { ModerationReviewsPage } from "@/pages/ModerationReviewsPage";
 import { AdminToursPage } from "@/pages/AdminToursPage";
 import { AdminNewsPage } from "@/pages/AdminNewsPage";
+import { EditNewsPage } from "@/pages/EditNewsPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -127,6 +128,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_news_edit]: {
         path: getRouteAdminNewsEdit(':id'),
         // onlyAdmin: true,
+        page: <EditNewsPage />
     },
     [AppRouters.admin_discount]: {
         path: getRouteAdminDiscount(),

@@ -27,7 +27,8 @@ export const BlogDetails = () => {
             src={`${apiUrl}${image.src}`} alt={news?.title}
             className={styles.swiper_img}
         />,
-        []);
+        [news?.title]
+    );
 
     if (isLoading) return <p>Загрузка...</p>; // TODO -заменить на что-то более красивое
 
@@ -76,6 +77,7 @@ export const BlogDetails = () => {
                         : <Stack justify='between' max>
                             {news.photos.map((img: Image) => (
                                 <img
+                                    key={img._id}
                                     src={`${apiUrl}${img.src}`} //TODO
                                     alt={news.title}
                                     className={styles.image}

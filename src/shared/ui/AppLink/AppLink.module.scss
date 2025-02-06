@@ -48,11 +48,12 @@ $sizes: (
 .button {
     background-color: var(--blue-color);
     color: var(--white-color);
-    padding: 12px 30px;
+    padding: 0 1rem;
     display: flex;
     gap: var(--gap-xl);
     justify-content: space-between;
     align-items: center;
+    height: 50px;
 
     svg {
         transition: transform 0.3s ease-in-out;

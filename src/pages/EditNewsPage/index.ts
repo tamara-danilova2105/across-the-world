@@ -1,0 +1,1 @@
+export { LazyEditNewsPage as EditNewsPage } from './EditNewsPage.lazy';

@@ -1,14 +1,19 @@
-import { Stack } from '@/shared/ui/Stack';
-import styles from './NewsCardAdmin.module.scss';
-import { Button } from '@/shared/ui/Button';
-import { useDeleteNewsMutation } from '../../api/api';
 import { toast } from 'react-toastify';
+import { getRouteAdminNewsEdit } from '@/app/router/lib/helper';
+import { Stack } from '@/shared/ui/Stack';
+import { Button } from '@/shared/ui/Button';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Text } from '@/shared/ui/Text';
+import { useDeleteNewsMutation } from '../../api/api';
+import styles from './NewsCardAdmin.module.scss';
 
 interface NewsCardAdminProps {
     imageUrl: string;
     title: string;
     newsId: string;
 }
+
+const MAX_LENGTH = 50;
 
 export const NewsCardAdmin = (props: NewsCardAdminProps) => {
     const { imageUrl, title, newsId } = props;
@@ -35,15 +40,18 @@ export const NewsCardAdmin = (props: NewsCardAdminProps) => {
                 className={styles.content}
                 direction='column' gap='16'
             >
-                <h3 className={styles.title}>{title}</h3>
+
+                <Text type='h3' size='20' color='blue'>
+                    {title.length > MAX_LENGTH ? `${title.substring(0, MAX_LENGTH)}...` : title}
+                </Text>
 
                 <Stack gap='16' max>
-                    <Button
-                    // loading={isLoadingEdit}
-                    // onClick={handleEdit}
+                    <AppLink
+                        to={getRouteAdminNewsEdit(newsId)}
+                        variant='button'
                     >
                         Редактировать
-                    </Button>
+                    </AppLink>
                     <Button
                         color='secondary'
                         loading={isDeleteLoading}
