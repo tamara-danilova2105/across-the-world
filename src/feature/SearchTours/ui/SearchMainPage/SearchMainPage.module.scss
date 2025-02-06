@@ -2,12 +2,10 @@
 
 .wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
 
     input {
         background-color: var(--white-color);
-        padding: 16px 24px 16px 50px;
+        padding: 14px 24px 14px 50px;
         border-radius: 50px;
         border: none;
         font-family: var(--font-family-geometria400);
@@ -23,8 +21,6 @@
         -o-box-shadow: var(--box-shadow);
 
         @include mq.mobile-l {
-            padding: 10px 24px 10px 50px;
-            width: 100%;
             font-size: var(--font-size-16);
         }
 

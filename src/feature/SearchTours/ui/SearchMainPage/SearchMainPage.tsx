@@ -3,6 +3,7 @@ import styles from "./SearchMainPage.module.scss";
 import { Region } from "@/shared/types/types";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { Stack } from "@/shared/ui/Stack";
 
 interface SearchMainProps {
     regions?: Region[] | [];
@@ -14,13 +15,14 @@ export const SearchMainPage = ({ regions = [], error, isLoading} : SearchMainPro
 
 
     return (
-        <div className={styles.wrapper}>
+        <Stack align="center" justify="center"
+            className={styles.wrapper}>
             <RegionTours 
                 regions={regions}
                 error={error}
                 isLoading={isLoading}
                 placeholder="Найди свое приключение здесь..."
             />
-        </div>
+        </Stack>
     );
 };
