@@ -5,13 +5,24 @@ import { useGetAllNewsQuery } from '@/entities/News/api/api';
 import { NewsBlogData, NewsCardAdmin } from '@/entities/News';
 import { apiUrl } from '@/shared/api/endpoints';
 import { Skeleton } from '@/shared/ui/Skeleton';
+import { Pagination } from '@/entities/Pagination';
+import { useState } from 'react';
+
+const LIMIT_NEWS = 12;
 
 export const NewsAdmin = () => {
-    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 10, page: 1 });
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: LIMIT_NEWS, page: currentPage });
+
+    const handlePageChange = (selectedPage: number) => {
+        setCurrentPage(selectedPage + 1);
+    };
+
 
     return (
         <Stack
-            direction='column' gap="24"
+            direction='column' gap='32'
             className={styles.container}
         >
 
@@ -41,6 +52,15 @@ export const NewsAdmin = () => {
                     ))
                 )}
             </div>
+
+            {news?.totalPages > 1 && (
+                <Pagination
+                    pageCount={news.totalPages}
+                    pagePagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage - 1}
+                />
+            )}
         </Stack>
-    )
-}
+    );
+};
