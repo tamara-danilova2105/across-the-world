@@ -1,4 +1,5 @@
 .search {
+    position: relative;
 
     input {
         position: relative;
@@ -23,6 +24,7 @@
         z-index: 999;
         left: 0 !important;
         height: unset;
+        width: 100%;
         background-color: var(--white-color);
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
