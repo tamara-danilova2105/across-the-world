@@ -12,31 +12,17 @@ import { dataTours } from "@/widgets/OurTours/lib/data"
 import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
-import { useGetAllToursQuery } from "../../api/toursApi"
 import styles from './Tours.module.scss'
 import { Shedule } from "@/entities/Shedule"
 
-const LIMIT = 12;
-const PAGE = 1;
 
 export const Tours = () => {
 
     const filters = useSelector(getFiltersState)
     const sorts = useSelector(getSortState)
 
-    const {
-        data,
-        error,
-        isLoading } = useGetAllToursQuery({
-            limit: LIMIT,
-            page: PAGE,
-            filters: {
-                sort: sorts,
-                filter: filters
-            }
-        })
+    console.log(filters, sorts)
 
-    console.log(data, error, isLoading)
 
     const [changeModal, drawModal] = useModal();
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
