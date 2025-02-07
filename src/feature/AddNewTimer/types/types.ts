@@ -18,7 +18,7 @@ export interface TimerData {
 
 export const PLACEHOLDER_TEXT: Record<string, string> = {
     header: "название места",
-    category: "категория достопримечательности",
+    category: "вид достопримечательности",
     describe: "короткое описание места"
 }
 

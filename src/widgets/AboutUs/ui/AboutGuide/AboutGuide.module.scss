@@ -37,10 +37,6 @@
                     h3 {
                         font-size: var(--font-size-18);
                     }
-
-                    p {
-                        font-size: var(--font-size-14);
-                    }
                 }
             }
 
@@ -59,7 +55,7 @@
                 border-radius: 0 16px 16px  0;
 
                 @include tablet-l {
-                    max-height: 550px;
+                    max-height: 700px;
                 }
 
                 @include tablet-m {

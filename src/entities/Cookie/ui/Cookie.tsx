@@ -33,38 +33,43 @@ export const Cookie = () => {
 
     return (
         <Stack
-            justify='between'
             align='center'
             max
-            gap='16'
             className={styles.cookie_banner}
         >
             <Stack
-                direction='column'
-                gap='16'
+                justify='between'
+                align='center'
+                max gap='16'
+                className={styles.cookie}
             >
-                <Text
-                    size='16'
-                    font='geometria500'
-                    color='blue'
-                    className={styles.par}
+                <Stack
+                    direction='column'
+                    gap='16'
                 >
-                    Мы используем cookies для улучшения вашего опыта на сайте.
-                </Text>
-
-                {!isTablet && (
                     <Text
                         size='16'
                         font='geometria500'
                         color='blue'
+                        className={styles.par}
                     >
-                        Чтобы узнать больше, ознакомьтесь с нашей <AppLink size="16" to={getRoutePrivacyPolicy()}> политикой конфиденциальности</AppLink>.
+                        Мы используем cookies для улучшения вашего опыта на сайте.
                     </Text>
-                )}
+
+                    {!isTablet && (
+                        <Text
+                            size='16'
+                            font='geometria500'
+                            color='blue'
+                        >
+                            Чтобы узнать больше, ознакомьтесь с нашей <AppLink size="16" to={getRoutePrivacyPolicy()}> политикой конфиденциальности</AppLink>.
+                        </Text>
+                    )}
+                </Stack>
+                <Button onClick={handleAccept}>
+                    Принять
+                </Button>
             </Stack>
-            <Button onClick={handleAccept}>
-                Принять
-            </Button>
         </Stack>
     )
 }

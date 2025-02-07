@@ -1,24 +1,28 @@
 @use '@/app/styles/media-queries' as *;
+@use '@/app/styles/mixin' as mixin;
 
 .cookie_banner {
-        z-index: 98;
-        background-color: var(--white-color);
-        padding: 12px 2px;
-        position: fixed;
-        bottom: 0;
+    z-index: 98;
+    background-color: var(--white-color);
+    padding: 12px 2px;
+    position: fixed;
+    bottom: 0;
 
-
-    @include mobile-l {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    button {
-        width: 300px;
+    .cookie {
+        @include mixin.section-style;
 
         @include mobile-l {
-            width: 100%;
-            height: 40px;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        button {
+            width: 300px;
+
+            @include mobile-l {
+                width: 100%;
+                height: 40px;
+            }
         }
     }
 }

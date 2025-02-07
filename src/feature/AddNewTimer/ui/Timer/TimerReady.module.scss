@@ -3,6 +3,10 @@
 .timer_admin {
     .timer_container {
         height: 350px;
+        @include tablet-m {
+            flex-direction: column;
+            height: auto;
+        }
         .timer {
             max-height: 350px;
             width: 500px;
@@ -11,6 +15,10 @@
             background-color: var(--white-color);
             padding: 20px;
             align-self: stretch;
+
+            @include tablet-m {
+                width: 100%;
+            }
 
             > div {
                 width: 100%;
