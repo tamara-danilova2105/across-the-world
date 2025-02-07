@@ -1,4 +1,3 @@
-import { DayProgram } from "@/widgets/OurTours/lib/data"; //TODO
 import { TextEditor } from "@/entities/TextEditor";
 import { ImageUploader } from "@/entities/ImageUploader";
 import { Stack } from "@/shared/ui/Stack";
@@ -6,6 +5,7 @@ import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
 import { Image } from "@/shared/types/types";
 import styles from './ProgramInput.module.scss';
+import { DayProgram } from "@/entities/Tours/model/types/types"; //TODO public api
 
 interface ProgramInputProps {
     program: DayProgram[];

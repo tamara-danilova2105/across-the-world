@@ -1,4 +1,5 @@
-import { MapMarker } from "@/widgets/OurTours/lib/data";
+import { MapMarker } from "@/entities/Tours/model/types/types"; //TODO
+
 
 interface Bounds {
     minLng: number;

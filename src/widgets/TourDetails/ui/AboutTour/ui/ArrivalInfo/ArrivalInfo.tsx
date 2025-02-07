@@ -3,11 +3,11 @@ import { Text } from "@/shared/ui/Text";
 import { Stack } from "@/shared/ui/Stack";
 import { LocationInfo } from "./ui/LocationInfo";
 import styles from './ArrivalInfo.module.scss';
-import { DateTours, Locations } from "@/widgets/OurTours/lib/data"; //TODO publick api
+import { DateTours, Locations } from "@/entities/Tours/model/types/types"; //TODO public api
 
 interface ArrivalInfoProps {
     locations: Locations;
-    dates: DateTours
+    dates: DateTours;
 };
 
 export const ArrivalInfo = (props: ArrivalInfoProps) => {

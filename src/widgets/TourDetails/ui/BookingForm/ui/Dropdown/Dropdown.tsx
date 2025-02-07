@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { DateTours } from "@/widgets/OurTours/lib/data"; //TODO = в public api
 import { ArrowDropwownIcon } from "@/shared/assets/svg/arrowIcons";
 import { getStyles } from "@/shared/lib/getStyles";
 import { formatDateRange } from "@/shared/lib/formatDateRange";
@@ -7,6 +6,7 @@ import { declOfNum } from "@/shared/lib/declOfNum";
 import { BookingData } from "../../BookingForm";
 import styles from "./Dropdown.module.scss";
 import { useResize } from "@/shared/hooks/useResize";
+import { DateTours } from "@/entities/Tours";
 
 interface DropdownProps {
     options: DateTours[];
@@ -30,7 +30,11 @@ export const Dropdown = (props: DropdownProps) => {
 
         const date = formatDateRange(item.date_start, item.date_finish);
         setSelectedDate(date);
-        changeBookingData('id', item._id);
+
+        if (item._id) {
+            changeBookingData('id', item._id);
+        }
+
         handleIsOpen(false);
     };
 

@@ -1,4 +1,5 @@
-import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data";
+import { ActivityLevel, ComfortType } from "@/entities/Tours";
+
 
 interface ActivityData {
     activity: ActivityLevel;

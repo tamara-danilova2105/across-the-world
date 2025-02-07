@@ -1,7 +1,7 @@
 import { Stack } from "@/shared/ui/Stack";
-import { MapMarker } from '@/widgets/OurTours/lib/data';
 import styles from './MapMarkerInput.module.scss';
 import { AdminMap } from "@/entities/Mapbox";
+import { MapMarker } from "@/entities/Tours/model/types/types"; //TODO public api
 
 interface MapMarkerInputProps {
     markers?: MapMarker[];

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Map, { Marker } from 'react-map-gl';
-import { MapMarker } from '@/widgets/OurTours/lib/data'; //TODO - виджет в ентити
 import styles from './AdminMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { MapMarker } from '@/entities/Tours/model/types/types'; //TODO
 
 interface AdminMapProps {
     markers?: MapMarker[];

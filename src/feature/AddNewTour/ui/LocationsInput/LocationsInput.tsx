@@ -1,8 +1,8 @@
-import { Locations } from '@/widgets/OurTours/lib/data';
 import { Text } from '@/shared/ui/Text';
 import { Stack } from '@/shared/ui/Stack';
 import styles from './LocationsInput.module.scss';
 import stylesTour from '../TourForm/TourForm.module.scss';
+import { Locations } from '@/entities/Tours/model/types/types'; //TODO 
 
 interface LocationsInputProps {
     locations: Locations;

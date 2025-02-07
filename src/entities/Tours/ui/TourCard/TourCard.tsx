@@ -1,11 +1,11 @@
 import { getRouteToursDetails } from "@/app/router/lib/helper";
-import { Tour } from "@/widgets/OurTours/lib/data";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
 import { formatDateRange } from "@/shared/lib/formatDateRange";
 import styles from './TourCard.module.scss';
 import { declOfNum } from "@/shared/lib/declOfNum";
+import { Tour } from "../../model/types/types";
 
 const NOW_DATE = new Date();
 

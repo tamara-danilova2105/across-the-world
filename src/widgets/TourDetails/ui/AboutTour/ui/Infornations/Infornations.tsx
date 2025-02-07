@@ -3,7 +3,7 @@ import { InfoCard } from "./ui/InfoCard/InfoCard"
 import { ActivityIcon, ComfortIcon } from "@/shared/assets/svg/tourDetailsIcons"
 import styles from './Infornations.module.scss';
 import { activityData, comfortData } from "../../../../lib/activity";
-import { ActivityLevel, ComfortType } from "@/widgets/OurTours/lib/data"; //TODO 
+import { ActivityLevel, ComfortType } from "@/entities/Tours";
 
 interface InfornationsProps {
     activity: ActivityLevel;

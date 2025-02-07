@@ -1,8 +1,8 @@
 import { Accordion } from "@/entities/Accordion";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { DayProgram } from "@/widgets/OurTours/lib/data"; //TODO - public api
 import { DayTourProgram } from "./ui/DayProgram/DayTourProgram";
+import { DayProgram } from "@/entities/Tours/model/types/types"; //TODO public api
 
 interface TourProgramProps {
     program: DayProgram[];

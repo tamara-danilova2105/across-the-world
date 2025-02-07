@@ -1,12 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useParams } from "react-router";
-import { Tour } from "@/widgets/OurTours/lib/data";
 import { getTextRegion } from "@/shared/lib/getTextRegion";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss';
 import { routeConfig } from '@/app/router/lib/data';
 import { ReactNode } from 'react';
+import { Tour } from '@/entities/Tours';
 
 interface Breadcrumb {
     title: string;

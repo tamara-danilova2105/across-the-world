@@ -3,9 +3,10 @@ import { LogoFont } from "@/shared/assets/svg/logoFont"
 import { LogoMain } from "@/shared/assets/svg/logo_main"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
-import { dataTours, Tour } from "@/widgets/OurTours/lib/data"
+import { dataTours } from "@/widgets/OurTours/lib/data"
 import { SheduleItem } from "../SheduleItem/SheduleItem"
 import styles from './Shedule.module.scss'
+import { Tour } from "@/entities/Tours"
 
 export const Shedule = () => {
 

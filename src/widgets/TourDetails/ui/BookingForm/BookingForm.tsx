@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from "react";
-import { DateTours } from "@/widgets/OurTours/lib/data";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { declOfNum } from "@/shared/lib/declOfNum";
@@ -9,6 +8,7 @@ import { ParticipantCounter } from "./ui/ParticipantCounter/ParticipantCounter";
 import { Dropdown } from "./ui/Dropdown/Dropdown";
 import { ContactForm } from "./ui/ContactForm/ContactForm";
 import styles from './BookingForm.module.scss';
+import { DateTours } from "@/entities/Tours";
 
 interface BookingFormProps {
     options: DateTours[];

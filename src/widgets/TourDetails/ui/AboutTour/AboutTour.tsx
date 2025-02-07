@@ -1,4 +1,3 @@
-import { Tour } from "@/widgets/OurTours/lib/data";
 import { RouteMap } from "@/entities/Mapbox";
 import { Stack } from "@/shared/ui/Stack";
 import { IncludedInPrice } from "./ui/IncludedInPrice/IncludedInPrice";
@@ -8,6 +7,7 @@ import { ArrivalInfo } from "./ui/ArrivalInfo/ArrivalInfo";
 import { ReviewsTour } from "./ui/ReviewsTour/ReviewsTour";
 import { Description } from "./ui/Description/Description";
 import { TourProgram } from "./ui/TourProgram/TourProgram";
+import { Tour } from "@/entities/Tours";
 
 interface AboutTourProps {
     tour: Tour;
