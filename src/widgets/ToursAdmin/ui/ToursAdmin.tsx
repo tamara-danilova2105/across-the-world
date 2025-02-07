@@ -2,10 +2,11 @@ import { Tour, TourCardAdmin, useGetAllToursQuery } from "@/entities/Tours";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import styles from './ToursAdmin.module.scss';
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 export const ToursAdmin = () => {
 
-    const { data: toursData = [], isLoading, error } = useGetAllToursQuery({});
+    const { data: toursData = [], isLoading, error } = useGetAllToursQuery({ admin: true });
     console.log(toursData);
 
 
@@ -25,17 +26,25 @@ export const ToursAdmin = () => {
                 </Text>
             )}
 
-            <Stack max gap="32" justify='between' wrap>
-                {toursData?.tours?.map(({ _id, dates, isPublished, tour, imageCover }: Tour) => (
-                    <TourCardAdmin
-                        title={tour}
-                        imageUrl={imageCover[0].src}
-                        dates={dates}
-                        tourId={_id}
-                        isPublished={isPublished}
-                    />
-                ))}
-            </Stack>
+            <div className={styles.grid_container}>
+                {isLoading ? (
+                    Array.from({ length: 6 }).map((_, index) => (
+                        <Skeleton key={index} width="24rem" height="344px" />
+                    ))
+                ) : (
+                    toursData?.tours?.map(({ _id, dates, isPublished, tour, imageCover }: Tour) => (
+                        <TourCardAdmin
+                            title={tour}
+                            imageUrl={imageCover[0].src}
+                            dates={dates}
+                            tourId={_id}
+                            isPublished={isPublished}
+                        />
+                    ))
+                )}
+            </div>
         </Stack>
     );
 };
+
+
