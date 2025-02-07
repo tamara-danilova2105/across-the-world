@@ -77,14 +77,14 @@ export const Tours = () => {
                         tourData={tour}
                     />
                 ))}
-                <Pagination
+            </Stack>
+            <Pagination
                     onPageChange={handlePageChange}
                     forcePage={currentIndex}
                     pageCount={3}
                     hasBackground={true}
                     pagePagination={true}
                 />
-            </Stack>
         </Stack>
     )
 }
