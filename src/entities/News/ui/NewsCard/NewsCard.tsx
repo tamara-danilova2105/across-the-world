@@ -3,24 +3,20 @@ import { Text } from "@/shared/ui/Text";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteBlogDetails } from "@/app/router/lib/helper";
 import { formatToRussianDate } from "@/shared/lib/formatDate";
-import { getStyles } from "@/shared/lib/getStyles";
 import { NewsBlogData } from "@/entities/News";
-import styles from './NewsCard.module.scss';
 import { apiUrl } from "@/shared/api/endpoints";
 import { useResize } from "@/shared/hooks/useResize";
+import styles from './NewsCard.module.scss';
 
 interface NewsCardProps {
-    variant?: 'large' | 'small';
-    colorScheme?: 'white' | 'pink' | 'peach';
     news: NewsBlogData;
 }
 
+const MAX_LENGTH = 130;
+
 export const NewsCard = (props: NewsCardProps) => {
-    const {
-        news,
-        variant = 'large',
-        colorScheme = 'white'
-    } = props;
+    const { news } = props;
+
 
     const { title, description, createdAt, photos, _id } = news;
 
@@ -30,22 +26,13 @@ export const NewsCard = (props: NewsCardProps) => {
     const mainImage = photos[0];
     const otherImages = isMobile ? photos.slice(2) : photos.slice(1);
 
-    const containerClass = getStyles(
-        styles.cardBlogsContainer,
-        {},
-        [
-            variant ? styles[variant] : undefined,
-            colorScheme ? styles[colorScheme] : undefined,
-        ]
-    );
-
     const truncatedDescription =
-        description.length > 130 ? `${description.slice(0, 130)} ...` : description;
+        description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH)} ...` : description;
 
     const displayText = `<span>${truncatedDescription}</span>`;
 
     return (
-        <Stack className={containerClass}>
+        <Stack className={styles.cardBlogsContainer}>
             <div className={styles.read_more}>
                 <AppLink to={getRouteBlogDetails(_id)}>
                     Подробнее
@@ -59,9 +46,9 @@ export const NewsCard = (props: NewsCardProps) => {
                 >
                     {mainImage && (
                         <img
-                            src={`${apiUrl}${mainImage.src}`} //TODO не знаю пока как правильно писать ссылки
-                            alt={mainImage._id} //TODO - id будет UUID
-                            width='' height="430px"
+                            src={`${apiUrl}${mainImage.src}`}
+                            alt={title}
+                            height="430px"
                             draggable={false}
                         />
                     )}
@@ -78,8 +65,8 @@ export const NewsCard = (props: NewsCardProps) => {
                         {otherImages.map((item, index) => (
                             <img
                                 key={index}
-                                src={`${apiUrl}${item.src}`} //TODO не знаю пока как правильно писать ссылки
-                                alt={item._id} //TODO - id будет UUID
+                                src={`${apiUrl}${item.src}`}
+                                alt={title}
                                 draggable={false}
                             />
                         ))}
@@ -110,5 +97,5 @@ export const NewsCard = (props: NewsCardProps) => {
                 </Stack>
             </Stack>
         </Stack>
-    )
-}
+    );
+};

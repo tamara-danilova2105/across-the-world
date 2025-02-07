@@ -1,19 +1,17 @@
 import { BreadCrumbs } from "@/entities/BreadCrumbs/index";
 import { Pagination } from "@/entities/Pagination/index";
-import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack/Stack";
-import { BlogsGrid } from "../BlogsGrid/BlogsGrid";
 import styles from './BlogsMain.module.scss';
 import { NewList } from "@/entities/News";
 import { useGetAllNewsQuery } from "@/entities/News/api/api";
 import { useState } from "react";
 import { Text } from "@/shared/ui/Text";
+import { TitleSection } from "@/entities/TitleSection";
 
 const LIMIT_NEWS = 12;
 
 export const BlogsMain = () => {
 
-    const width = useResize();
     const [currentPage, setCurrentPage] = useState(1);
 
     const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: LIMIT_NEWS, page: currentPage });
@@ -26,26 +24,27 @@ export const BlogsMain = () => {
         <main>
             <BreadCrumbs />
 
-            {error && (
-                <Text color="red" size="18">
-                    Произошла ошибка при загрузке новостей
-                </Text>
-            )}
-
             <Stack
                 tag="section"
                 direction='column'
                 gap="48"
                 className={styles.main}
             >
-                {width > 540 ? (
-                    <BlogsGrid />
-                ) : (
-                    <NewList
-                        news={news?.blogs}
-                        isLoading={isLoading}
-                    />
+                {error && (
+                    <Text color="red" size="18">
+                        Произошла ошибка при загрузке новостей
+                    </Text>
                 )}
+
+                <TitleSection
+                    title="Всё о путешествиях и турах"
+                    subtitle="НОВОСТИ И БЛОГ"
+                />
+
+                <NewList
+                    news={news?.blogs}
+                    isLoading={isLoading}
+                />
 
                 {news?.totalPages > 1 && (
                     <Pagination

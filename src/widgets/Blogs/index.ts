@@ -1,3 +1,3 @@
-import { BlogsMain } from "./ui/BlogsMain/BlogsMain";
+import { BlogsMain } from "./ui/BlogsMain";
 
 export { BlogsMain }

@@ -6,6 +6,7 @@ import styles from './NewsScroll.module.scss';
 import { useResize } from "@/shared/hooks/useResize";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useCallback } from "react";
+import { NewsCardMobile } from "../NewsCardMobile/NewsCardMobile";
 
 interface NewsScrollProps {
     news: NewsBlogData[];
@@ -16,7 +17,7 @@ export const NewsScroll = ({ news }: NewsScrollProps) => {
     const { containerRef } = useScrollSlider(width)
     const isSwiperActive = width <= 590;
 
-    const renderItem = useCallback((news: NewsBlogData) => <NewsCard news={news} />, []);
+    const renderItem = useCallback((news: NewsBlogData) => <NewsCardMobile news={news} />, []);
 
     return (
         <Stack
