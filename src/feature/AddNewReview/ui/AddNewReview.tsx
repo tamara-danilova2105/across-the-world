@@ -8,9 +8,10 @@ import { Button } from "@/shared/ui/Button";
 import { TextArea } from "@/shared/ui/TextArea";
 import { SelectApp } from "@/shared/ui/SelectApp/SelectApp";
 import { useMemo, useState } from "react";
-import { dataTours, Tour } from "@/widgets/OurTours/lib/data";
+import { dataTours } from "@/widgets/OurTours/lib/data";
 import { Review } from "@/entities/Review";
 import { useAddReviewMutation } from "@/entities/Review/api/api";
+import { Tour } from "@/entities/Tours";
 
 type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 

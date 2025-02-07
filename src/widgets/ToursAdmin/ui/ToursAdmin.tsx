@@ -1,4 +1,4 @@
-import { TourCardAdmin } from "@/entities/Tours";
+import { TourCardAdmin, useGetAllToursQuery } from "@/entities/Tours";
 import { Stack } from "@/shared/ui/Stack";
 import styles from './ToursAdmin.module.scss';
 import { Text } from "@/shared/ui/Text";
@@ -42,6 +42,11 @@ const data = {
 };
 
 export const ToursAdmin = () => {
+
+    const { data: tours } = useGetAllToursQuery({});
+    console.log(tours);
+
+
     return (
         <Stack
             direction='column' gap="24"
