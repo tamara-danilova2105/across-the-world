@@ -37,6 +37,7 @@ export const PhotoAnimation = () => {
                             key={photo._id}
                             src={photo.src}
                             alt={`Photo ${photo._id}`}
+                            loading="lazy"
                             className={styles.photo}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
