@@ -27,7 +27,7 @@ export const GuideCard = ({ guide } : GuideProps) => {
                 >
                     {guide.name}
                 </Text>
-                <Text>
+                <Text size="16">
                     {guide.story}
                 </Text>
             </Stack>

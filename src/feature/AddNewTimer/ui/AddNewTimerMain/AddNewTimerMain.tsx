@@ -83,7 +83,9 @@ export const AddNewTimerMain = () => {
 
     return (
         <FormProvider {...methods}>
-            <Stack direction="column" className={styles.timerContainer} gap="24">
+            <Stack direction="column" align="center"
+                className={styles.timerContainer} gap="24"
+            >
                 <TimerReady/>
                 <Text type="h2" color="blue" font="geometria500" size="32">
                     Добавить новый таймер
@@ -95,6 +97,7 @@ export const AddNewTimerMain = () => {
                         register={register("title", { required: data.required })}
                         placeholder="Например: `Открываем набор групп на КАМЧАТКУ 2025`"
                         error={get(errors, "title")}
+                        className={styles.input}
                     />
                     <RegionTours
                         regions={regions}
@@ -114,6 +117,7 @@ export const AddNewTimerMain = () => {
                         type="date"
                         register={register("timer", { required: data.required })}
                         error={get(errors, "timer")}
+                        className={styles.input}
                     />
                     <TimerImage
                         imagesWithDetails={timerData.imagesWithDetails}

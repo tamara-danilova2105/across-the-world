@@ -5,52 +5,50 @@
     box-shadow: var(--box-shadow);
     background-color: var(--white-color);
     flex: 1;
-    height: 150px;
+    height: 200px;
 
     @include desktop-m {
-        height: 230px;
+        height: 280px;
     }
 
     @include tablet-l {
         flex-direction: column;
-        height: 350px;
-    }
-
-    @include mobile-xl {
         height: 450px;
     }
 
     @include mobile-xl {
         flex-direction: row;
+        height: 230px;
     }
 
-    @include mobile-s {
+    @include mobile-m {
         flex-direction: column;
         height: 230px;
     }
 
     .image {
         width: 130px;
-        min-height: 150px;
+        height: 100%;
         border-radius: 16px 0  0 16px;
         object-fit: cover;
 
-        @include desktop-m {
-            height: 230px;
-        }
-
         @include tablet-l {
             width: 100%;
-            height: 200px;
+            height: 230px;
             border-radius: 16px 16px  0 0;
         }
 
         @include mobile-xl {
-            width: 130px;
+            width: 170px;
+            height: 100%;
             border-radius: 16px 0  0 16px;
         }
 
-        @include mobile-s {
+        @include mobile-l {
+            height: 230px;
+        }
+
+        @include mobile-m {
             width: 100%;
             border-radius: 16px 16px  0 0;
         }
@@ -58,7 +56,7 @@
 
     .text {
         position: relative;
-        align-self: stretch;
+        align-self: stretch; 
         padding: 10px;
 
         :nth-child(3) {
