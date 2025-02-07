@@ -12,8 +12,10 @@ import { useState } from 'react';
 import { Select } from '@/shared/ui/Select';
 import { Button } from '@/shared/ui/Button';
 import { Stack } from '@/shared/ui/Stack';
-import { DateTours } from '@/widgets/OurTours/lib/data'; //TODO public api
 import { formatDateRange } from '@/shared/lib/formatDateRange';
+import { DateTours } from '../../model/types/types';
+import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
+import { toast } from 'react-toastify';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -23,13 +25,15 @@ interface TourCardAdminProps {
     isPublished: boolean;
 }
 
-const TOTAL_SPOTS = 15;
+const TOTAL_SPOTS = 16;
 
 export const TourCardAdmin = (props: TourCardAdminProps) => {
     const { tourId, title, imageUrl, dates, isPublished } = props;
 
     const [formData, setFormData] = useState(dates);
-    
+    const [isPublishedState, setIsPublishedState] = useState(isPublished);
+    const [showMenu, setShowMenu] = useState(false);
+
     const formattedDates = formData.map(date => ({
         id: date._id,
         spots: date.spots,
@@ -41,9 +45,6 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         date: formattedDates[0].option,
         spots: formData[0].spots
     });
-
-    const [showMenu, setShowMenu] = useState(false);
-    const [isPublishedState, setIsPublishedState] = useState(isPublished);
 
     const handleDateChange = (option: string) => {
         const selected = formattedDates.find(d => d.option === option);
@@ -61,20 +62,45 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         setSelectedDateInfo(prev => ({ ...prev, spots }));
     };
 
+    const [updateTourDetails, { isLoading: isLoadingUpdate }] = useUpdateTourDetailsMutation();
+    const [deleteTour] = useDeleteTourMutation();
+
+    const handleUpdateTour = async (updateData: Partial<{ dates: DateTours[]; isPublished: boolean }>) => {
+        try {
+            await updateTourDetails({
+                id: tourId,
+                updateData
+            }).unwrap();
+
+            toast.success("Данные успешно обновлены.");
+        } catch (err) {
+            toast.error("Ошибка при обновлении данных. Попробуйте снова.");
+        }
+    };
+
     const handleSave = () => {
         const updatedFormData = formData.map(item =>
             item._id === selectedDateInfo.id ? { ...item, spots: selectedDateInfo.spots } : item
         );
 
         setFormData(updatedFormData);
-
-        console.log('Tour:', tourId);
-        console.log('Saved:', updatedFormData);
+        handleUpdateTour({ dates: updatedFormData });
     };
 
     const togglePublished = () => {
-        setIsPublishedState(!isPublished);
+        const newPublishedState = !isPublishedState;
+        setIsPublishedState(newPublishedState);
+        handleUpdateTour({ isPublished: newPublishedState });
         setShowMenu(false);
+    };
+
+    const handleDeleteTour = async () => {
+        try {
+            await deleteTour(tourId).unwrap();
+            toast.success("Тур успешно удален.");
+        } catch (err) {
+            toast.error("Ошибка при удалении тура. Попробуйте снова.");
+        }
     };
 
     return (
@@ -98,8 +124,11 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                             <Edit className={styles.icon} />
                             Редактировать
                         </button>
-                        <button onClick={togglePublished} className={styles.menuItem}>
-                            {isPublished ? (
+                        <button
+                            onClick={togglePublished}
+                            className={styles.menuItem}
+                        >
+                            {isPublishedState ? (
                                 <>
                                     <GlobeOff className={styles.icon} />
                                     Снять с публикации
@@ -111,7 +140,10 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                                 </>
                             )}
                         </button>
-                        <button className={styles.deleteItem}>
+                        <button
+                            onClick={handleDeleteTour}
+                            className={styles.deleteItem}
+                        >
                             <Trash2 className={styles.icon} />
                             Удалить
                         </button>
@@ -121,9 +153,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
 
             <div className={styles.imageWrapper}>
                 <img src={imageUrl} alt={title} className={styles.image} />
-                {isPublishedState && (
-                    <div className={styles.publishedLabel}>Опубликовано</div>
-                )}
+                {isPublishedState && <div className={styles.publishedLabel}>Опубликовано</div>}
             </div>
 
             <Stack className={styles.content} direction='column' gap='16'>
@@ -151,7 +181,11 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                     <span>из {TOTAL_SPOTS}</span>
                 </Stack>
 
-                <Button onClick={handleSave}>
+                <Button
+                    onClick={handleSave}
+                    loading={isLoadingUpdate}
+                    disabled={isLoadingUpdate}
+                >
                     Сохранить
                 </Button>
             </Stack>

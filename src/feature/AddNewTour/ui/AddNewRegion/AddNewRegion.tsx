@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { DirectionTour } from '@/widgets/OurTours/lib/data';
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import styles from './AddNewRegion.module.scss';
 import { useSaveRegionMutation } from '@/entities/Region/api/api';
+import { DirectionTour } from '@/entities/Tours';
 
 interface AddNewRegionProps {
     direction: DirectionTour;
 }
 
-//TODO - заменить на данные с сервера
 const directionOptions: DirectionTour[] = ["Россия", "Заграница"];
 
 export const AddNewRegion = (props: AddNewRegionProps) => {

@@ -1,7 +1,7 @@
+import { DateTours, Price } from "@/entities/Tours";
 import { Button } from "@/shared/ui/Button";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { DateTours, Price } from "@/widgets/OurTours/lib/data"; //TODO
 import styles from './DateRangeInput.module.scss';
 
 interface DateRangeInputProps {
@@ -16,7 +16,6 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
         onChange([
             ...dates,
             {
-                _id: '',
                 date_start: '',
                 date_finish: '',
                 price: { amount: 0, currency: '$' },

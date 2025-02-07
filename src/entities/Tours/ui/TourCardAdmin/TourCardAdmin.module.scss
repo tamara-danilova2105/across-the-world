@@ -1,9 +1,15 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .card {
     width: 24rem;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
     background-color: #fff;
     position: relative;
+
+    @include tablet-l {
+        width: 100%;
+    }
 }
 
 .menuWrapper {

@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
-import { TourCard } from "@/entities/TourCard";
 import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
 import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
 import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";
-import { dataTours, DirectionTour, Tour } from "../../lib/data";
+import { dataTours } from "../../lib/data";
 import styles from './OurTours.module.scss';
+import { DirectionTour, Tour, TourCard } from "@/entities/Tours";
 
 export const OurTours = () => {
     const [tours, setTours] = useState(dataTours);
@@ -22,54 +22,54 @@ export const OurTours = () => {
         }
         return dataTours.filter((tour) => tour.direction.includes(filter));
     };
-    
+
     const filtredTours = useCallback((filter: string) => {
         const filtered = filterTours(filter as DirectionTour | 'все туры');
         setTours(filtered);
     }, []);
-    
+
     const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
-    
+
 
     return (
-        <Stack 
-            tag='section' 
+        <Stack
+            tag='section'
             direction='column'
             gap="32" max
         >
-            <Stack 
+            <Stack
                 max justify='between' align='end'
                 className={styles.our_tours_title}
             >
-                <TitleSection 
-                    subtitle="НАШИ ТУРЫ" 
+                <TitleSection
+                    subtitle="НАШИ ТУРЫ"
                     title="Путешествия c Кругосветкой"
                 />
                 <Filterbar filtredTours={filtredTours} />
             </Stack>
-                {isSwiperActive ? (
-                    <div style={{width: '100%', padding: '0 10px'}}>
-                        <CustomeSwiper<Tour> 
-                            items={tours}
-                            renderItem={renderItem}
+            {isSwiperActive ? (
+                <div style={{ width: '100%', padding: '0 10px' }}>
+                    <CustomeSwiper<Tour>
+                        items={tours}
+                        renderItem={renderItem}
+                    />
+                </div>
+
+            ) : (
+                <Stack
+                    gap="32"
+                    align='center'
+                    ref={containerRef}
+                    className={styles.our_tours_container}
+                >
+                    {tours.map((tour) => (
+                        <TourCard
+                            key={tour._id}
+                            tourData={tour}
                         />
-                    </div>
-                    
-                ) : (
-                    <Stack 
-                        gap="32"
-                        align='center'
-                        ref={containerRef}
-                        className={styles.our_tours_container}
-                    >
-                        {tours.map((tour) => (
-                            <TourCard 
-                                key={tour._id} 
-                                tourData={tour} 
-                            />
-                        ))}
-                    </Stack>
-                )}
+                    ))}
+                </Stack>
+            )}
         </Stack>
     );
 };

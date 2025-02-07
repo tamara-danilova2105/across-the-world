@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { ActivityLevel, ComfortType, DirectionTour, Regions, Tour, TypeTour } from "@/widgets/OurTours/lib/data"; //TODO public api
 import { Stack } from "@/shared/ui/Stack";
 import { DateRangeInput } from "../DateRangeInput/DateRangeInput";
 import { LocationsInput } from "../LocationsInput/LocationsInput";
@@ -18,6 +17,7 @@ import { MultiSelect } from "@/shared/ui/MultiSelect";
 import { Select } from "@/shared/ui/Select";
 import styles from './TourForm.module.scss';
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
+import { ActivityLevel, ComfortType, DirectionTour, Regions, Tour, TypeTour } from "@/entities/Tours";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -26,8 +26,7 @@ const typeTourOptions: TypeTour[] = ['Трекинг', 'Ретрит / оздо�
 
 export const TourForm = () => {
 
-    const [formData, setFormData] = useState<Tour>({
-        _id: crypto.randomUUID(),
+    const [formData, setFormData] = useState<Omit<Tour, '_id'>>({
         types: [],
         tour: '',
         dates: [],
@@ -49,6 +48,9 @@ export const TourForm = () => {
         hotels: [],
         isPublished: true,
     });
+
+    console.log(formData);
+
 
     //TODO добавить обработку ошибки и загрузкуи
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });

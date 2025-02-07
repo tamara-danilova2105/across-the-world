@@ -1,5 +1,4 @@
 import { Pagination } from "@/entities/Pagination/index"
-import { TourCard } from "@/entities/TourCard/index"
 import { getFiltersState } from "@/feature/FilterBar/model/filterSlice"
 import { getSortState } from '@/feature/SortTour/model/sortSlice'
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
 import styles from './Tours.module.scss'
 import { Shedule } from "@/entities/Shedule"
+import { TourCard } from "@/entities/Tours"
 
 
 export const Tours = () => {
