@@ -47,6 +47,7 @@ export const TourForm = () => {
         description: '',
         program: [],
         hotels: [],
+        isPublished: true,
     });
 
     //TODO добавить обработку ошибки и загрузкуи
