@@ -36,44 +36,47 @@
             }
         }
     }
-
+    
     .our_tours {
+        display: grid;
         width: 100%;
         padding: 5px;
+        gap: 16px;
         overflow: hidden;
-
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 450px; 
+    
         > article {
-            flex: 1 1 calc(33% - 16px); 
-            max-width: calc(32.5% - 16px);
-            height: 450px;
-
+            width: 100%;
+            height: 100%;
+    
             img {
                 width: 100%;
                 height: 280px;
                 object-fit: cover;
             }
+        }
+    
+        @include desktop-m {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 450px;
+        }
 
-            @include desktop-m {
-                flex: 1 1 calc(50% - 16px); 
-                max-width: calc(50% - 16px);
+        @include tablet-m {
+            grid-auto-rows: 500px;
+    
+            > article img {
+                height: 300px;
             }
+        }
 
-            @include tablet-m {
-                height: 500px;
-
-                img {
-                    height: 300px;
-                }
-            }
-
-            @include mobile-l {
-                flex: 1 1 100%;
-                max-width: 100%;
-
-                img {
-                    height: 350px;
-                }
+        @include mobile-l {
+            grid-template-columns: repeat(1, 1fr);
+    
+            > article img {
+                height: 350px;
             }
         }
     }
+    
 }
