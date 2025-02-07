@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/Button';
 import styles from './ReviewCard.module.scss';
 import { useDeleteReviewMutation, useModerateReviewMutation } from '../../api/api';
 import { toast, ToastContainer } from 'react-toastify';
+import { toastDefaultSetting } from '@/shared/lib/toastDefaultSetting';
 
 interface ReviewCardProps {
     review: Review;
@@ -59,11 +60,7 @@ export const ReviewCard = ({ review, isModeration }: ReviewCardProps) => {
 
     return (
         <>
-            <ToastContainer
-                autoClose={3000}
-                hideProgressBar={true}
-                pauseOnHover={false}
-            />
+            <ToastContainer {...toastDefaultSetting} />
             <Stack
                 direction='column' gap='16'
                 className={styles.review_card}

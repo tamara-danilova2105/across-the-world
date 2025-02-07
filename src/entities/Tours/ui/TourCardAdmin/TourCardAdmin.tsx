@@ -12,8 +12,11 @@ import { useState } from 'react';
 import { Select } from '@/shared/ui/Select';
 import { Button } from '@/shared/ui/Button';
 import { Stack } from '@/shared/ui/Stack';
-import { DateTours } from '@/widgets/OurTours/lib/data'; //TODO public api
 import { formatDateRange } from '@/shared/lib/formatDateRange';
+import { DateTours } from '../../model/types/types';
+import { useUpdateTourDetailsMutation } from '../../api/api';
+import { toast, ToastContainer } from 'react-toastify';
+import { toastDefaultSetting } from '@/shared/lib/toastDefaultSetting';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -23,13 +26,13 @@ interface TourCardAdminProps {
     isPublished: boolean;
 }
 
-const TOTAL_SPOTS = 15;
+const TOTAL_SPOTS = 16;
 
 export const TourCardAdmin = (props: TourCardAdminProps) => {
     const { tourId, title, imageUrl, dates, isPublished } = props;
 
     const [formData, setFormData] = useState(dates);
-    
+
     const formattedDates = formData.map(date => ({
         id: date._id,
         spots: date.spots,
@@ -61,24 +64,36 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         setSelectedDateInfo(prev => ({ ...prev, spots }));
     };
 
-    const handleSave = () => {
+    const togglePublished = () => {
+        setIsPublishedState(!isPublished);
+        setShowMenu(false);
+    };
+
+    const [updateTourDetails, { isLoading }] = useUpdateTourDetailsMutation();
+
+    const handleSave = async () => {
         const updatedFormData = formData.map(item =>
             item._id === selectedDateInfo.id ? { ...item, spots: selectedDateInfo.spots } : item
         );
 
         setFormData(updatedFormData);
 
-        console.log('Tour:', tourId);
-        console.log('Saved:', updatedFormData);
+        try {
+            await updateTourDetails({
+                id: tourId,
+                updateData: { dates: updatedFormData }
+            }).unwrap();
+
+            toast.success("Данные успешно обновлены.");
+        } catch (err) {
+            toast.error("Ошибка при обновлении данных. Попробуйте снова.");
+        }
     };
 
-    const togglePublished = () => {
-        setIsPublishedState(!isPublished);
-        setShowMenu(false);
-    };
 
     return (
         <div className={styles.card}>
+            <ToastContainer {...toastDefaultSetting} />
             <div
                 className={styles.menuWrapper}
                 onMouseEnter={() => setShowMenu(true)}
@@ -151,7 +166,11 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                     <span>из {TOTAL_SPOTS}</span>
                 </Stack>
 
-                <Button onClick={handleSave}>
+                <Button
+                    onClick={handleSave}
+                    loading={isLoading}
+                    disabled={isLoading}
+                >
                     Сохранить
                 </Button>
             </Stack>

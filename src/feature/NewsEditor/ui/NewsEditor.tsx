@@ -12,6 +12,7 @@ import { NewsBlogData } from "@/entities/News";
 import styles from './NewsEditor.module.scss';
 import { useParams } from "react-router";
 import { Loading } from "@/shared/ui/Loading";
+import { toastDefaultSetting } from "@/shared/lib/toastDefaultSetting";
 
 type FormDataRequest = Omit<NewsBlogData, 'createdAt' | '_id'>;
 
@@ -98,7 +99,7 @@ export const NewsEditor = () => {
 
     return (
         <>
-            <ToastContainer autoClose={3000} hideProgressBar pauseOnHover={false} />
+            <ToastContainer {...toastDefaultSetting} />
 
             <Stack direction='column' gap="24" className={styles.container}>
                 <Stack max justify='between' className={styles.header_container}>
