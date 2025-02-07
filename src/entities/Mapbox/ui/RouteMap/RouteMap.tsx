@@ -4,7 +4,7 @@ import styles from './RouteMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useEffect, useRef } from 'react';
 import { calculateRouteBounds, createRouteGeoJson } from './libs/helpers';
-import { MapMarker } from '@/widgets/OurTours/lib/data'; //TODO фича в ентити
+import { MapMarker } from '@/entities/Tours/model/types/types'; //TODO
 
 interface RouteMapProps {
     locations: MapMarker[];

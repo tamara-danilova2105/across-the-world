@@ -1,8 +1,8 @@
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { Details } from "@/widgets/OurTours/lib/data";
 import styles from './DetailsInput.module.scss';
 import { TextEditor } from "@/entities/TextEditor";
+import { Details } from "@/entities/Tours/model/types/types"; //TODO
 
 interface DetailsInputProps {
     details: Details;
