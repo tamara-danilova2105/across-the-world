@@ -1,17 +1,18 @@
+import { useCallback } from "react";
 import { useParams } from "react-router";
 import { Calendar } from "lucide-react";
+import parse from 'html-react-parser';
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
+import { useGetNewsByIdQuery } from "@/entities/News/api/api";
 import { formatToRussianDate } from "@/shared/lib/formatDate";
 import { Text } from "@/shared/ui/Text";
 import { Stack } from "@/shared/ui/Stack";
-import styles from './BlogDetails.module.scss';
 import { useResize } from "@/shared/hooks/useResize";
 import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
-import { useCallback } from "react";
 import { Image } from "@/shared/types/types";
-import { useGetNewsByIdQuery } from "@/entities/News/api/api";
 import { apiUrl } from "@/shared/api/endpoints";
 import { Loading } from "@/shared/ui/Loading";
+import styles from './BlogDetails.module.scss';
 
 export const BlogDetails = () => {
     const { id } = useParams();
@@ -93,10 +94,9 @@ export const BlogDetails = () => {
                         </Stack>
                 }
 
-                <div
-                    className={`${styles.content}`}
-                    dangerouslySetInnerHTML={{ __html: news.description }}
-                />
+                <div className={styles.description}>
+                    {parse(news.description)}
+                </div>
             </Stack>
         </main>
     );

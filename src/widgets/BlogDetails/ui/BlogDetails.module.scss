@@ -5,41 +5,29 @@
     @include section-style;
 
     & {
-        line-height: 24px;
+        line-height: 1.5rem;
         padding: 50px 0;
 
         @include tablet-l {
-            padding: 20px;
+            padding: 1.25px;
         }
     }
 }
 
-.content {
-    line-height: 2rem;
+.description {
+    text-align: justify;
+    font-size: var(--font-size-18);
 
-    br {
-        display: none;
-    }
-
-
-    p {
-        text-align: justify;
-        font-size: var(--font-size-20);
-
-        br {
-            display: block;
-        }
+    @include mobile-xl {
+        font-size: var(--font-size-16);
     }
 
     h3 {
-        margin: 1.5rem 0 0.5rem;
         font-size: var(--font-size-24);
+        margin: 1rem 0;
     }
 
-    // Разрешить <br> только между абзацами (заменяя их на отступ)
-    p+p,
-    ul+p,
-    p+ul {
+    ul+p, p+ul {
         margin-top: 1.5rem;
     }
 
@@ -47,26 +35,31 @@
         li {
             display: flex;
             align-items: center;
+            margin: 0.5rem 0;
 
             &::before {
                 content: '✔️';
-                margin: 0.5rem;
+                margin-right: 0.5rem;
                 font-size: var(--font-size-14);
+            }
+
+            p {
+                margin: 0;
             }
         }
     }
 
     ol {
         li {
-            margin: 1rem;
-            list-style-type: decimal !important; 
+            list-style-type: decimal !important;
             list-style-position: outside;
+            margin: 1rem;
             padding-left: 1rem;
-        }
-    }
 
-    @include mobile-xl {
-        font-size: var(--font-size-18);
+            p {
+                margin: 0;
+            }
+        }
     }
 }
 

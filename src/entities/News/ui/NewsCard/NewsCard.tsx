@@ -7,6 +7,7 @@ import { NewsBlogData } from "@/entities/News";
 import { apiUrl } from "@/shared/api/endpoints";
 import { useResize } from "@/shared/hooks/useResize";
 import styles from './NewsCard.module.scss';
+import parse from 'html-react-parser';
 
 interface NewsCardProps {
     news: NewsBlogData;
@@ -87,12 +88,9 @@ export const NewsCard = (props: NewsCardProps) => {
                             {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                         </Text>
 
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: displayText,
-                            }}
-                            className={styles.description}
-                        />
+                        <div className={styles.description}>
+                            {parse(displayText)}
+                        </div>
                     </Stack>
                 </Stack>
             </Stack>

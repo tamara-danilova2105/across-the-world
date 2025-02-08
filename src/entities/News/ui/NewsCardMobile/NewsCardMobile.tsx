@@ -64,6 +64,7 @@ export const NewsCardMobile = (props: NewsCardMobileProps) => {
                         {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                     </Text>
 
+                    {/* {parse(news.description)} */}
                     <div
                         dangerouslySetInnerHTML={{
                             __html: displayText,

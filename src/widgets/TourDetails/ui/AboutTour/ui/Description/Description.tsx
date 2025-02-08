@@ -22,6 +22,7 @@ export const Description = (props: DescriptionProps) => {
             gap="24" max
             className={styles.description_container}
         >
+            {/* {parse(news.description)} */}
             <div
                 dangerouslySetInnerHTML={{
                 __html: displayText,
