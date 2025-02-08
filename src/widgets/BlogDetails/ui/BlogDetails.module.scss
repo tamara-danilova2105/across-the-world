@@ -14,60 +14,88 @@
     }
 }
 
-.content {
-    line-height: 2rem;
+// .content {
+//     line-height: 2rem;
+//     text-indent: var(--text-indent);
 
-    br {
-        display: none;
-    }
+//     p {
+//         margin-bottom: 1rem;
+//         text-align: justify;
+//         font-size: var(--font-size-20);
+//     }
 
+//     h3 {
+//         margin: 1.5rem 0 0.5rem;
+//         font-size: var(--font-size-24);
+//     }
 
-    p {
-        text-align: justify;
-        font-size: var(--font-size-20);
+//     br {
+//         display: none;
+//     }
 
-        br {
-            display: block;
+//     // Разрешить <br> только между абзацами (заменяя их на отступ)
+//     p + p {
+//         margin-top: 1rem;
+//     }
+
+//     @include mobile-xl {
+//         font-size: var(--font-size-18);
+//     }
+// }
+
+.description {
+    text-indent: var(--text-indent);
+    text-align: justify;
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 16px 0 12px;
+            color: #1a1a1a;
         }
-    }
-
-    h3 {
-        margin: 1.5rem 0 0.5rem;
-        font-size: var(--font-size-24);
-    }
-
-    // Разрешить <br> только между абзацами (заменяя их на отступ)
-    p+p,
-    ul+p,
-    p+ul {
-        margin-top: 1.5rem;
-    }
-
-    ul {
-        li {
-            display: flex;
-            align-items: center;
-
-            &::before {
-                content: '✔️';
-                margin: 0.5rem;
-                font-size: var(--font-size-14);
+    
+        ul {
+            padding-left: 24px;
+            margin: 12px 0;
+            li {
+                list-style-type: disc !important;
+                margin: 8px 0;
+                
+                p {
+                    margin: 0;
+                }
             }
         }
-    }
-
-    ol {
-        li {
-            margin: 1rem;
-            list-style-type: decimal !important; 
-            list-style-position: outside;
-            padding-left: 1rem;
+    
+        ol {
+            padding-left: 24px;
+            margin: 12px 0;
+            li {
+                list-style-type: decimal !important;
+                margin: 8px 0;
+                
+                p {
+                    margin: 0;
+                }
+            }
         }
-    }
-
-    @include mobile-xl {
-        font-size: var(--font-size-18);
-    }
+    
+        p {
+            margin: 12px 0;
+        }
+    
+        strong {
+            font-weight: 600;
+        }
+    
+        em {
+            font-style: italic;
+        }
+    
+        s {
+            text-decoration: line-through;
+        }
+    
 }
 
 
