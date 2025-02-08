@@ -6,6 +6,10 @@
     width: 80%;
     margin: auto;
 
+    @include desktop-1600 {
+        width: 92%;
+    }
+
     @include tablet-l {
         width: 100%;
         padding: 1.5rem;
@@ -18,10 +22,11 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: stretch;
     width: 100%;
-    gap: var(--gap-xxl);
+    gap: var(--gap-xl);
 
-    @include tablet-l {
+    @include desktop-l {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--gap-xxl);
     }
 
     @include mobile-l {

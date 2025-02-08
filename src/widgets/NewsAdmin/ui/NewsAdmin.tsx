@@ -39,7 +39,7 @@ export const NewsAdmin = () => {
             <div className={styles.grid_container}>
                 {isLoading ? (
                     Array.from({ length: 6 }).map((_, index) => (
-                        <Skeleton key={index} width="24rem" height="344px" />
+                        <Skeleton key={index} width="100%" height="344px" />
                     ))
                 ) : (
                     news?.blogs.map(({ _id, photos, title }: NewsBlogData) => (

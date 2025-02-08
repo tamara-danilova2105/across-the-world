@@ -7,7 +7,11 @@
     background-color: #fff;
     position: relative;
 
-    @include tablet-l {
+    @include desktop-1600 {
+        width: 22rem;
+    }
+
+    @include desktop-l {
         width: 100%;
     }
 }
@@ -26,7 +30,7 @@
     }
 
     a {
-        @include tablet-m {
+        @include desktop-1600 {
             gap: var(--gap-m);
         }
     }
