@@ -11,6 +11,7 @@ import { useCallback } from "react";
 import { Image } from "@/shared/types/types";
 import { useGetNewsByIdQuery } from "@/entities/News/api/api";
 import { apiUrl } from "@/shared/api/endpoints";
+import parse from 'html-react-parser';
 
 export const BlogDetails = () => {
     const { id } = useParams();
@@ -86,10 +87,13 @@ export const BlogDetails = () => {
                         </Stack>
                 }
 
-                <div
+                {/* <div
                     className={`${styles.content}`}
                     dangerouslySetInnerHTML={{ __html: news.description }}
-                />
+                /> */}
+                    <div className={styles.description}>
+                        {parse(news.description)}
+                    </div>
             </Stack>
         </main>
     );

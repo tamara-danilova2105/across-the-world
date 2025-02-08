@@ -28,6 +28,7 @@
     "@turf/turf": "^7.1.0",
     "@types/react-redux": "^7.1.34",
     "framer-motion": "^11.11.17",
+    "html-react-parser": "^5.2.2",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.468.0",
     "mapbox-gl": "^3.8.0",

@@ -128,4 +128,3 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
         </div>
     );
 };
-

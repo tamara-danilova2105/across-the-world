@@ -66,12 +66,64 @@
             }
 
             .textContainer {
-                .description {
-                    text-indent: var(--text-indent);
-                    text-align: justify;
-                    height: 110px;
-                    line-height: 24px;
-                }
+                
+            }
+
+            .description {
+                text-indent: var(--text-indent);
+                text-align: justify;
+                height: 110px;
+                line-height: 24px;
+
+                    h3 {
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin: 16px 0 12px;
+                        color: #1a1a1a;
+                    }
+                
+                    ul {
+                        padding-left: 24px;
+                        margin: 12px 0;
+                        li {
+                            list-style-type: disc !important;
+                            margin: 8px 0;
+                            
+                            p {
+                                margin: 0;
+                            }
+                        }
+                    }
+                
+                    ol {
+                        padding-left: 24px;
+                        margin: 12px 0;
+                        li {
+                            list-style-type: decimal !important;
+                            margin: 8px 0;
+                            
+                            p {
+                                margin: 0;
+                            }
+                        }
+                    }
+                
+                    p {
+                        margin: 12px 0;
+                    }
+                
+                    strong {
+                        font-weight: 600;
+                    }
+                
+                    em {
+                        font-style: italic;
+                    }
+                
+                    s {
+                        text-decoration: line-through;
+                    }
+                
             }
         }
     }

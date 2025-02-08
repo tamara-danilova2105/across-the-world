@@ -28,6 +28,8 @@ export const NewList = ({ news = [], isLoading }: NewListProps) => {
         )
     }
 
+    console.log(news)
+
     return (
         <Stack gap='32' wrap max>
             {isMobile ? (
