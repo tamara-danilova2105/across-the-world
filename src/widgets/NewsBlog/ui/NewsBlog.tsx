@@ -27,7 +27,7 @@ export const NewsBlog = () => {
                     title="Всё о путешествиях и наших турах"
                     subtitle="НОВОСТИ И БЛОГ"
                 />
-                
+
                 <div>
                     <AppLink
                         className={styles.appLink}
@@ -38,7 +38,12 @@ export const NewsBlog = () => {
                 </div>
             </Stack>
 
-            {news && <NewsScroll news={news?.blogs} />}
+            {news && (
+                <NewsScroll
+                    news={news?.blogs}
+                    isLoading={isLoading}
+                />
+            )}
 
         </Stack>
     )
