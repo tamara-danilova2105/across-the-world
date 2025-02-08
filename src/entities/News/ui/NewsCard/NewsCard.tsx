@@ -88,15 +88,9 @@ export const NewsCard = (props: NewsCardProps) => {
                             {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                         </Text>
 
-                        {/* <div
-                            dangerouslySetInnerHTML={{
-                                __html: displayText,
-                            }}
-                            className={styles.description}
-                        /> */}
-                            <div className={styles.description}>
-                                {parse(displayText)}
-                            </div>
+                        <div className={styles.description}>
+                            {parse(displayText)}
+                        </div>
                     </Stack>
                 </Stack>
             </Stack>

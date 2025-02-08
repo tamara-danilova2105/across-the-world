@@ -14,7 +14,7 @@ export const DayTourProgram = (props: DayTourProgramProps) => {
     const { containerRef } = useScrollSlider();
 
     return (
-        <Stack 
+        <Stack
             direction='column' gap="24"
             className={styles.main}
         >
@@ -22,23 +22,23 @@ export const DayTourProgram = (props: DayTourProgramProps) => {
                 ref={containerRef}
                 className={styles.scrollImages}
             >
-                <Stack 
+                <Stack
                     gap='16'
                     max
                 >
                     {images && images.map(img => (
-                        <img 
-                            key={img._id} 
-                            src={img.src} 
+                        <img
+                            key={img._id}
+                            src={img.src}
                             alt='' //TODO - alt добавить
                         />
                     ))}
                 </Stack>
             </Stack>
+            
+            {/* {parse(news.description)} */}
             <div
-                dangerouslySetInnerHTML={{
-                __html: details,
-                }}
+                dangerouslySetInnerHTML={{ __html: details }}
                 className={styles.text_container}
             />
         </Stack>
