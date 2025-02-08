@@ -34,13 +34,13 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
-                bulletList: false, // Отключаем встроенный, добавим свой
+                bulletList: false,
                 orderedList: false,
                 listItem: false,
             }),
             BulletList,
             OrderedList,
-            ListItem.configure({ HTMLAttributes: { class: "list-item" } }), // Фиксирует списки
+            ListItem.configure({ HTMLAttributes: { class: "list-item" } }),
         ],
         content: initialContent,
         editorProps: {

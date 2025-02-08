@@ -11,11 +11,12 @@ import { useCallback } from "react";
 import { Image } from "@/shared/types/types";
 import { useGetNewsByIdQuery } from "@/entities/News/api/api";
 import { apiUrl } from "@/shared/api/endpoints";
+import { Loading } from "@/shared/ui/Loading";
 
 export const BlogDetails = () => {
     const { id } = useParams();
 
-    if (!id) return <p>Новость не найдена.</p>; //TODO -заменить на что-то более красивое
+    if (!id) return;
 
     const width = useResize();
     const isMobile = width <= 768;
@@ -30,9 +31,9 @@ export const BlogDetails = () => {
         [news?.title]
     );
 
-    if (isLoading) return <p>Загрузка...</p>; // TODO -заменить на что-то более красивое
-
-    if (error) return <p>Ошибка при загрузке новости.</p>; // TODO -заменить на что-то более красивое
+    if (isLoading) {
+        return <Loading width='100' height='100' />;
+    }
 
     return (
         <main>
@@ -47,6 +48,12 @@ export const BlogDetails = () => {
                 gap='24'
                 className={styles.article}
             >
+                {error && (
+                    <Text color="red" size="18">
+                        Новость не найдена
+                    </Text>
+                )}
+
                 <Stack justify='between' max wrap gap="16">
                     <Text
                         type='h1' size={isMobile ? '24' : '32'}
