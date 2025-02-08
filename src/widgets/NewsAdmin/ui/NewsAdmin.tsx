@@ -19,7 +19,6 @@ export const NewsAdmin = () => {
         setCurrentPage(selectedPage + 1);
     };
 
-
     return (
         <Stack
             direction='column' gap='32'

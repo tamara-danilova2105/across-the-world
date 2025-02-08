@@ -70,18 +70,18 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
                         <label className={styles.label}>Цена</label>
                         <div className={styles.flex}>
                             <input
-                                type="number"
                                 value={date.price.amount}
                                 onChange={(e) => updateDateRange(index, 'price', { ...date.price, amount: Number(e.target.value) })}
                                 className={styles.input}
                             />
                             <select
                                 value={date.price.currency}
-                                onChange={(e) => updateDateRange(index, 'price', { ...date.price, currency: e.target.value as "$" | "₽" })}
+                                onChange={(e) => updateDateRange(index, 'price', { ...date.price, currency: e.target.value as "$" | "₽" | "€" })}
                                 className={styles.select}
                             >
                                 <option value="$">$</option>
                                 <option value="₽">₽</option>
+                                <option value="€">€</option>
                             </select>
                         </div>
                     </div>
@@ -89,7 +89,6 @@ export const DateRangeInput = (props: DateRangeInputProps) => {
                         <label className={styles.label}>Количество мест</label>
                         <div className={styles.flex}>
                             <input
-                                type="number"
                                 value={date.spots}
                                 onChange={(e) => updateDateRange(index, 'spots', Number(e.target.value))}
                                 className={styles.input}

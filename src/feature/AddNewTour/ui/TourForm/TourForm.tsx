@@ -18,6 +18,8 @@ import { Select } from "@/shared/ui/Select";
 import styles from './TourForm.module.scss';
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
 import { ActivityLevel, ComfortType, DirectionTour, Regions, Tour, TypeTour } from "@/entities/Tours";
+import { useAddTourMutation, useEditTourMutation, useUploadFilesMutation } from "@/entities/Tours/api/api";
+import { toast } from "react-toastify";
 
 const activityOptions: ActivityLevel[] = ['Для всех', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'];
 const comfortOptions: ComfortType[] = ['Высокий', 'Уникальное жилье', 'Средний'];
@@ -55,9 +57,50 @@ export const TourForm = () => {
     //TODO добавить обработку ошибки и загрузкуи
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
 
+    const [addTour, { isLoading: isSaveLoading }] = useAddTourMutation();
+    const [editTour, { isLoading: isEditLoading }] = useEditTourMutation();
+    const [uploadFiles, { isLoading: isUploading }] = useUploadFilesMutation();
+
     const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
     const [changeModal, drawModal] = useModal();
+
+    const handleAddTour = async () => {
+        try {
+            const formDataToUpload = new FormData();
+
+            const updateImageSrc = (images: any[] = []) => {
+                return images.map(image => {
+                    if (image.src.startsWith('blob:')) {
+                        const fileId = image._id || crypto.randomUUID();
+                        formDataToUpload.append('files', image.file, `${fileId}.jpg`);
+                        return { ...image, src: `/uploads/${fileId}.webp` };
+                    }
+                    return image;
+                });
+            };
+
+            const updatedTourData = {
+                ...formData,
+                imageCover: updateImageSrc(formData.imageCover ?? []),
+                hotels: updateImageSrc(formData.hotels ?? []),
+                program: (formData.program ?? []).map(day => ({
+                    ...day,
+                    images: updateImageSrc(day.images ?? []),
+                })),
+            };
+
+            if (formDataToUpload.has('files')) {
+                await uploadFiles(formDataToUpload).unwrap();
+            }
+
+            await addTour(updatedTourData).unwrap();
+
+            toast.success('Тур успешно сохранен!');
+        } catch (error) {
+            toast.error('Произошла ошибка при сохранении тура, попробуйте снова');
+        }
+    };
 
     return (
         <>
@@ -67,9 +110,20 @@ export const TourForm = () => {
                 direction='column' gap="24"
                 className={styles.container}
             >
-                <Text type='h2' size='32' color='blue' font='geometria600'>
-                    Создать новый тур
-                </Text>
+                <Stack max justify='between' className={styles.header_container}>
+                    <Text type='h2' size='32' color='blue' font='geometria600'>
+                        Создать новый тур
+                    </Text>
+
+                    <Button
+                        onClick={handleAddTour}
+                        loading={isSaveLoading && isUploading}
+                        disabled
+                    >
+                        сохранить тур
+                    </Button>
+                </Stack>
+
 
                 <form>
                     <Stack direction='column' gap="16">
@@ -203,7 +257,7 @@ export const TourForm = () => {
                     />
 
                     <HotelsInput
-                        images={formData.hotels}
+                        images={formData.hotels ?? []}
                         onChange={(hotels) => setFormData({ ...formData, hotels })}
                     />
 

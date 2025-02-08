@@ -1,25 +1,43 @@
-.includedList {
-    li {
-        margin-top: 8px;
+@use '@/app/styles/mixin' as *;
 
-        &::before {
-            content: '✔️';
-            margin: 8px;
-            font-size: 14px;
+.includedList {
+    @include parse-html;
+    
+    ul {
+        li {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+
+            &::before {
+                content: '✔️';
+                margin-right: 1rem;
+                font-size: var(--font-size-14);
+            }
+
+            p {
+                margin: 0;
+            }
         }
     }
 }
 
 .notIncludedList {
-    li {
-        margin-top: 8px;
+    ul {
+        li {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
 
-        &::before {
-            content: '❌';
-            margin: 8px;
-            font-size: 14px;
+            &::before {
+                content: '❌';
+                margin-right: 1rem;
+                font-size: var(--font-size-14);
+            }
+
+            p {
+                margin: 0;
+            }
         }
     }
 }
-
-

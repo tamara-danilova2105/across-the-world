@@ -16,6 +16,7 @@ import { formatDateRange } from '@/shared/lib/formatDateRange';
 import { DateTours } from '../../model/types/types';
 import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
 import { toast } from 'react-toastify';
+import { apiUrl } from '@/shared/api/endpoints';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -152,7 +153,10 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
             </div>
 
             <div className={styles.imageWrapper}>
-                <img src={imageUrl} alt={title} className={styles.image} />
+                <img
+                    src={`${apiUrl}${imageUrl}`} //TODO
+                    alt={title} className={styles.image}
+                />
                 {isPublishedState && <div className={styles.publishedLabel}>Опубликовано</div>}
             </div>
 

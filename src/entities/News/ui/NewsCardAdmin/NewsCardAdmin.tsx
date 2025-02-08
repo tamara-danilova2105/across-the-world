@@ -26,9 +26,9 @@ export const NewsCardAdmin = (props: NewsCardAdminProps) => {
 
         try {
             await deleteNews(newsId).unwrap();
-            toast.success("Отзыв успешно удален.");
+            toast.success("Новость успешно удалена.");
         } catch (error) {
-            toast.error("Ошибка при удалении отзыва. Попробуйте снова.");
+            toast.error("Ошибка при удалении новости. Попробуйте снова.");
         }
     }
 

@@ -15,8 +15,12 @@
 }
 
 .description {
-    text-align: justify;
-    font-size: var(--font-size-18);
+    @include parse-html;
+
+    & {
+        text-align: justify;
+        font-size: var(--font-size-18);
+    }
 
     @include mobile-xl {
         font-size: var(--font-size-16);
@@ -24,42 +28,6 @@
 
     h3 {
         font-size: var(--font-size-24);
-        margin: 1rem 0;
-    }
-
-    ul+p, p+ul {
-        margin-top: 1.5rem;
-    }
-
-    ul {
-        li {
-            display: flex;
-            align-items: center;
-            margin: 0.5rem 0;
-
-            &::before {
-                content: '✔️';
-                margin-right: 0.5rem;
-                font-size: var(--font-size-14);
-            }
-
-            p {
-                margin: 0;
-            }
-        }
-    }
-
-    ol {
-        li {
-            list-style-type: decimal !important;
-            list-style-position: outside;
-            margin: 1rem;
-            padding-left: 1rem;
-
-            p {
-                margin: 0;
-            }
-        }
     }
 }
 

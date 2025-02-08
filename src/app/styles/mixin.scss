@@ -25,7 +25,7 @@
     position: relative;
     overflow: hidden;
 
-    > svg {
+    >svg {
         position: absolute;
         width: 300px;
         opacity: 0.7;
@@ -62,9 +62,11 @@
     0% {
         background-position: 200% 0;
     }
+
     50% {
         background-position: 0 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -79,7 +81,52 @@
     &.rotateClosed {
         transform: rotate(90deg);
     }
+
     &.rotateOpen {
         transform: rotate(-90deg);
     }
+}
+
+@mixin parse-html {
+    h3 {
+        margin: 1rem 0;
+    }
+
+    ul+p,
+    p+ul,
+    p+p {
+        margin-top: 1.5rem;
+    }
+
+    ul {
+        li {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+
+            &::before {
+                content: '✔️';
+                margin-right: 0.5rem;
+                font-size: var(--font-size-14);
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    ol {
+        li {
+            list-style-type: decimal !important;
+            list-style-position: outside;
+            margin: 1rem;
+            padding-left: 1rem;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
 }

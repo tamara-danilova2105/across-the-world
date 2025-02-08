@@ -2,7 +2,7 @@ const config = {
     develop: 'http://localhost:8000',
     production: 'https://across-the-world-backend.onrender.com'
 }
-export const apiUrl = config.production;
+export const apiUrl = config.develop;
 
 export const endpoints = {
     path: {
@@ -12,6 +12,7 @@ export const endpoints = {
         news: '/news',
         timer: '/timer',
         mail: '/subscribe',
+        upload: '/upload'
     },
     admin: {
         registration: '/registration',

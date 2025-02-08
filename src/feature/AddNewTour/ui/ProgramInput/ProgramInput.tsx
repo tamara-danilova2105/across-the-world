@@ -73,7 +73,7 @@ export const ProgramInput = (props: ProgramInputProps) => {
                                 type="text"
                                 value={day.title}
                                 onChange={(e) => updateDay(dayIndex, 'title', e.target.value)}
-                                placeholder="Например: День 1. Прибытие"
+                                placeholder="Например: Прибытие"
                             />
                         </Stack>
 

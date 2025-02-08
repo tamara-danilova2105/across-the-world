@@ -27,6 +27,9 @@ const toursApi = api.injectEndpoints({
             query: (newTour) => createApiConfig("POST", `${url}`, true, newTour),
             invalidatesTags: TOUR_TAG,
         }),
+        uploadFiles: build.mutation({
+            query: (formData) => createApiConfig("POST", `${endpoints.path.upload}`, false, formData),
+        }),
         editTour: build.mutation({
             query: ({ id, updatedData }) => createApiConfig("PUT", `${url}/${id}`, true, updatedData),
             invalidatesTags: TOUR_TAG,
@@ -46,6 +49,7 @@ export const {
     useGetAllToursQuery,
     useGetTourByIdQuery,
     useAddTourMutation,
+    useUploadFilesMutation,
     useEditTourMutation,
     useUpdateTourDetailsMutation,
     useDeleteTourMutation,

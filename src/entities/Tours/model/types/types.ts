@@ -7,7 +7,7 @@ export type TypeTour = 'Трекинг' | 'Ретрит / оздоровител
 
 export interface Price {
     amount: number;
-    currency: "₽" | "$";
+    currency: "₽" | "$" | "€";
 };
 
 export interface DateTours {
@@ -62,7 +62,7 @@ export interface Tour {
     comfort: ComfortType;
     description: string;
     program: DayProgram[],
-    hotels: Image[],
+    hotels?: Image[],
     mapMarker?: MapMarker[],
     isPublished: boolean,
 }
