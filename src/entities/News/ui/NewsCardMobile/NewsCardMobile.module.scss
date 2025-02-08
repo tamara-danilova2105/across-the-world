@@ -55,6 +55,11 @@
         line-height: 24px;
         font-size: var(--font-size-16);
 
+        h3+p, p+p {
+            margin-bottom: 1rem;
+        }
+
+
         @include media.mobile-m {
             line-height: 18px;
         }

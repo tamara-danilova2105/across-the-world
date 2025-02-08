@@ -1,3 +1,4 @@
+
 import { getRouteBlogDetails } from "@/app/router/lib/helper";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
@@ -5,6 +6,7 @@ import { AppLink } from "@/shared/ui/AppLink";
 import { formatToRussianDate } from "@/shared/lib/formatDate";
 import { NewsBlogData } from "@/entities/News";
 import { apiUrl } from "@/shared/api/endpoints";
+
 
 import styles from './NewsCardMobile.module.scss';
 
@@ -22,7 +24,7 @@ export const NewsCardMobile = (props: NewsCardMobileProps) => {
     const truncatedDescription =
         description.length > MAX_LENGTH ? `${description.slice(0, MAX_LENGTH)} ...` : description;
 
-    const displayText = `<span>${truncatedDescription}</span>`;
+    const displayText = `${truncatedDescription}`;
 
     return (
         <Stack
@@ -64,11 +66,8 @@ export const NewsCardMobile = (props: NewsCardMobileProps) => {
                         {title.length > 50 ? `${title.slice(0, 55)} ...` : title}
                     </Text>
 
-                    {/* {parse(news.description)} */}
                     <div
-                        dangerouslySetInnerHTML={{
-                            __html: displayText,
-                        }}
+                        dangerouslySetInnerHTML={{ __html: displayText }}
                         className={styles.description}
                     />
                 </Stack>

@@ -5,12 +5,10 @@ import { Stack } from "@/shared/ui/Stack";
 import { NewsScroll } from "@/entities/News";
 import { useGetAllNewsQuery } from "@/entities/News/api/api";
 import styles from './NewsBlog.module.scss';
+import { Text } from "@/shared/ui/Text";
 
 export const NewsBlog = () => {
-    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 3, page: 1 });
-
-    if (isLoading) return <p>Загрузка</p> //TODO - заменить на что-то красивое
-    if (error) return <p>Произошла ошибка при загрузке</p>  //TODO - заменить на что-то красивое
+    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 4, page: 1 });
 
     return (
         <Stack
@@ -27,7 +25,13 @@ export const NewsBlog = () => {
                     title="Всё о путешествиях и наших турах"
                     subtitle="НОВОСТИ И БЛОГ"
                 />
-                
+
+                {error && (
+                    <Text color="red" size="18">
+                        Произошла ошибка при загрузке
+                    </Text>
+                )}
+
                 <div>
                     <AppLink
                         className={styles.appLink}
@@ -38,7 +42,12 @@ export const NewsBlog = () => {
                 </div>
             </Stack>
 
-            {news && <NewsScroll news={news?.blogs} />}
+            {news && (
+                <NewsScroll
+                    news={news?.blogs}
+                    isLoading={isLoading}
+                />
+            )}
 
         </Stack>
     )
