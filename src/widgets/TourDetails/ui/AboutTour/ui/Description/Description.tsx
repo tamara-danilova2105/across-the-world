@@ -17,16 +17,13 @@ export const Description = (props: DescriptionProps) => {
     });
 
     return (
-        <Stack 
-            direction='column' 
+        <Stack
+            direction='column'
             gap="24" max
             className={styles.description_container}
         >
-            {/* {parse(news.description)} */}
             <div
-                dangerouslySetInnerHTML={{
-                __html: displayText,
-                }}
+                dangerouslySetInnerHTML={{ __html: displayText }}
                 className={styles.description}
             />
 

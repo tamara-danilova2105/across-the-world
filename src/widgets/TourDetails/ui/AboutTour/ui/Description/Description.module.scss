@@ -1,22 +1,16 @@
+@use '@/app/styles/mixin' as *;
+
 .description_container {
-    .description_container {
-        white-space: pre-wrap;
-        line-height: 1.6;
-        font-size: var(--font-size-18);
-    }
-    
-    p {
-        text-indent: var(--text-indent);
-    }
+    .description {
+        @include parse-html;
 
-    ul {
-        margin-top: 20px;
-        margin-left: 20px;
-    }
+        & {
+            line-height: 1.25;
+            font-size: var(--font-size-18);
+            text-align: justify;
+            text-indent: var(--text-indent);
+        }
 
-    li {
-        margin-top: 10px;
-        list-style: disc;
     }
 
     button {
