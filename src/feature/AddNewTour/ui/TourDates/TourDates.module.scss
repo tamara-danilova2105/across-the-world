@@ -1,0 +1,30 @@
+@use '@/app/styles/media-queries' as *;
+
+.dateRangeContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap-m);
+
+    @include mobile-xl {
+        grid-template-columns: 1fr;
+    }
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap-s);
+}
+
+.removeButton {
+    margin-top: 4px;
+    padding: 8px;
+    color: var(--error-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #b91c1c;
+    }
+}

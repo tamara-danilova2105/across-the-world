@@ -7,11 +7,12 @@ import styles from './MultiSelect.module.scss';
 interface MultiSelectProps<T> {
     value: T[];
     options: T[];
+    isError?: boolean;
     onChange: (options: T[]) => void;
 }
 
 export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
-    const { value, options, onChange } = props;
+    const { value, options, isError, onChange } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -34,7 +35,7 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className={styles.dropdownButton}
+                className={getStyles(styles.dropdownButton, {[styles.error]: isError}, [])}
             >
                 <div className={styles.selectedOptions}>
                     {value.length > 0 ? (

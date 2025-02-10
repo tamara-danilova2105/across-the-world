@@ -28,6 +28,7 @@ export const TourDetails = (props: TourDetailsProps) => {
                     <TextEditor
                         initialContent={details.included}
                         onChange={(value) => setValue("details", { ...details, included: value })}
+                        isError={!!errors.details?.included}
                     />
                     {errors.details?.included && (
                         <Text color='red'>{errors.details.included.message}</Text>
@@ -45,6 +46,7 @@ export const TourDetails = (props: TourDetailsProps) => {
                     <TextEditor
                         initialContent={details.notIncluded}
                         onChange={(value) => setValue("details", { ...details, notIncluded: value })}
+                        isError={!!errors.details?.notIncluded}
                     />
                 </Stack>
                 {errors.details?.notIncluded && (

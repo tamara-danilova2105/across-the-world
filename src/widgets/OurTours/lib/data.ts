@@ -52,6 +52,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "2",
@@ -94,6 +95,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "3",
@@ -132,6 +134,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "4",
@@ -170,6 +173,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "5",
@@ -488,6 +492,7 @@ export const dataTours: Tour[] = [
             }
         ],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "6",
@@ -526,6 +531,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "7",
@@ -564,6 +570,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "8",
@@ -602,6 +609,7 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     },
     {
         _id: "9",
@@ -640,5 +648,6 @@ export const dataTours: Tour[] = [
         program: [],
         hotels: [],
         isPublished: true,
+        mustKnow: [],
     }
 ];

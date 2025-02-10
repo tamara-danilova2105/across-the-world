@@ -14,8 +14,8 @@ export const tourSchema = z.object({
         })
     ).nonempty("Не указаны данные с датами тура"),
     locations: z.object({
-        place_start: z.string().min(1, "Укажите место начала"),
-        place_finish: z.string().min(1, "Укажите место окончания"),
+        place_start: z.string().min(1, "Не указано место начала"),
+        place_finish: z.string().min(1, "Не указано место окончания"),
     }),
     details: z.object({
         included: z.string().min(1, "Не добавлены услуги"),
@@ -31,4 +31,10 @@ export const tourSchema = z.object({
     description: z.string().min(1, "Добавьте описание тура"),
     hotels: z.array(z.object({ src: z.string() })).optional(),
     isPublished: z.boolean().default(true),
+    discount: z.object({
+        endDate: z.string().min(1, "Дата окончания скидки обязательна"),
+        percentage: z.number()
+            .min(1, "Скидка должна быть больше 0%")
+            .max(100, "Скидка не может быть более 100%"),
+    }).optional(),
 });

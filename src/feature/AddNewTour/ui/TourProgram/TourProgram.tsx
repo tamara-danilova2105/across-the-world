@@ -79,6 +79,7 @@ export const TourProgram = (props: TourProgramProps) => {
                                         value={day.title}
                                         onChange={(e) => updateDay(dayIndex, 'title', e.target.value)}
                                         placeholder="Например: Прибытие"
+                                        className={errors.program?.[dayIndex]?.title ? styles.error : undefined}
                                     />
                                     {errors.program?.[dayIndex]?.title && (
                                         <Text color="red">{errors.program[dayIndex].title.message}</Text>
@@ -97,6 +98,7 @@ export const TourProgram = (props: TourProgramProps) => {
                                     <TextEditor
                                         initialContent={day.details}
                                         onChange={(value) => updateDay(dayIndex, 'details', value)}
+                                        isError={!!errors.program?.[dayIndex]?.details }
                                     />
                                     {errors.program?.[dayIndex]?.details && (
                                         <Text color="red">{errors.program[dayIndex].details.message}</Text>

@@ -21,6 +21,7 @@ export const TourDescription = ({ errors, setValue, description }: TourDescripti
                 <TextEditor
                     initialContent={description}
                     onChange={(value) => setValue("description", value)}
+                    isError={!!errors.description}
                 />
                 {errors.description && (
                     <Text color='red'>{errors.description.message}</Text>

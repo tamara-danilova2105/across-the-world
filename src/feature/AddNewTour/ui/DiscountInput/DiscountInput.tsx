@@ -1,6 +1,8 @@
 import { Stack } from "@/shared/ui/Stack";
 import styles from './DiscountInput.module.scss';
 import stylesTour from '../TourForm/TourForm.module.scss';
+import { Text } from "@/shared/ui/Text";
+import { getStyles } from "@/shared/lib/getStyles";
 
 interface DiscountInputProps {
     discount?: {
@@ -8,9 +10,12 @@ interface DiscountInputProps {
         percentage: number;
     };
     onChange: (discount?: { endDate: Date; percentage: number }) => void;
+    error?: string;
 }
 
-export const DiscountInput = ({ discount, onChange }: DiscountInputProps) => {
+export const DiscountInput = (props: DiscountInputProps) => {
+    const { discount, onChange, error } = props;
+
     const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.value) {
             onChange(undefined);
@@ -54,7 +59,6 @@ export const DiscountInput = ({ discount, onChange }: DiscountInputProps) => {
                         id="hasDiscount"
                         checked={!!discount}
                         onChange={handleCheckboxChange}
-                        className="w-4 h-4"
                     />
                     <label htmlFor="hasDiscount" className={styles.label}>
                         Добавить скидку
@@ -65,15 +69,20 @@ export const DiscountInput = ({ discount, onChange }: DiscountInputProps) => {
                     <Stack gap="24" max>
                         <Stack direction="column" gap="8" max>
                             <label className={stylesTour.label}>Процент скидки (%)</label>
-                            <input
-                                type="number"
-                                min="0"
-                                max="100"
-                                value={discount.percentage || ''}
-                                onChange={handlePercentageChange}
-                                placeholder="Например: 10"
-                                className={stylesTour.input}
-                            />
+                            <Stack direction='column' gap='4' max>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value={discount.percentage || ''}
+                                    onChange={handlePercentageChange}
+                                    placeholder="Например: 10"
+                                    className={getStyles(stylesTour.input, {[stylesTour.error]: error}, []) }
+                                />
+                                {error && (
+                                    <Text color='red'>{error}</Text>
+                                )}
+                            </Stack>
                         </Stack>
                         <Stack direction="column" gap="8" max>
                             <label className={stylesTour.label}>Действует до</label>

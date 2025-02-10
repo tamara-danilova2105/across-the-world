@@ -25,8 +25,8 @@ import { TourDetails } from "../TourDetails/TourDetails";
 import { TourProgram } from "../TourProgram/TourProgram";
 import { TourLocation } from "../TourLocation/TourLocation";
 import styles from './TourForm.module.scss';
-import { TourFAQ } from "../TourFAQ/TourFAQ";
-
+import { faq } from "../../lib/faq";
+import { FAQForm } from "@/entities/FAQ";
 
 export const TourForm = () => {
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Tour>({
@@ -52,10 +52,13 @@ export const TourForm = () => {
             program: [],
             hotels: [],
             isPublished: true,
+            mustKnow: faq,
         }
     });
 
     const formData = watch();
+    console.log(formData);
+
 
     //TODO добавить обработку ошибки и загрузки
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
@@ -111,13 +114,19 @@ export const TourForm = () => {
                     Создать новый тур
                 </Text>
 
-                <Button
-                    onClick={handleSubmit(handleAddTour)}
-                    loading={isSaveLoading && isUploading}
-                    disabled={isSaveLoading && isUploading}
-                >
-                    сохранить тур
-                </Button>
+                <Stack gap="8">
+                    <Button
+                        onClick={handleSubmit(handleAddTour)}
+                        loading={isSaveLoading && isUploading}
+                        disabled={isSaveLoading && isUploading}
+                    >
+                        опубликовать тур
+                    </Button>
+
+                    <Button color='secondary'>
+                        сохранить черновик
+                    </Button>
+                </Stack>
             </Stack>
 
 
@@ -126,15 +135,17 @@ export const TourForm = () => {
                     register={register}
                     errors={errors}
                 />
+
                 <TourDates
                     dates={formData.dates}
                     setValue={setValue}
-                    errors={errors}
+                    errors={errors.dates}
                 />
 
                 <DiscountInput
                     discount={formData.discount}
                     onChange={(discount) => setValue("discount", discount)}
+                    error={errors.discount?.percentage?.message}
                 />
 
                 <TourLocation
@@ -188,7 +199,10 @@ export const TourForm = () => {
                     onChange={(markers) => setValue("mapMarker", markers)}
                 />
 
-                <TourFAQ />
+                <FAQForm
+                    faqs={watch('mustKnow')}
+                    onChange={(faqs) => setValue('mustKnow', faqs)}
+                />
             </form>
         </Stack>
     );

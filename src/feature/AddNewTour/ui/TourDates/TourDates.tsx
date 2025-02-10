@@ -1,31 +1,136 @@
+import { FieldErrors, UseFormSetValue } from "react-hook-form";
+import { DateTours, Price, Tour } from "@/entities/Tours";
+import { Button } from "@/shared/ui/Button";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { FieldErrors, UseFormSetValue } from "react-hook-form";
-import { Tour } from "@/entities/Tours";
-import { DateRangeInput } from "./ui/DateRangeInput";
+import styles from './TourDates.module.scss';
+import stylesTour from '../TourForm/TourForm.module.scss';
+import { Select } from "@/shared/ui/Select";
+import { getStyles } from "@/shared/lib/getStyles";
 
-interface Props {
+interface TourDatesProps {
     dates: Tour["dates"];
     setValue: UseFormSetValue<Tour>;
-    errors: FieldErrors<Tour>;
+    errors: FieldErrors<{ dates: DateTours[] }>["dates"];
 }
 
-export const TourDates = ({ dates, setValue, errors }: Props) => (
-    <Stack direction="column" gap="4">
-        <DateRangeInput
-            dates={dates}
-            onChange={(newDates) => setValue("dates", newDates)}
-        />
-        {errors.dates?.message && <Text color="red">{errors.dates.message}</Text>}
-        {Array.isArray(errors.dates) &&
-            errors.dates.map((error, index) => (
-                <Stack key={index} direction="column" gap="4">
-                    {error?.date_start && <Text color="red">Дата начала ({index + 1}): {error.date_start.message}</Text>}
-                    {error?.date_finish && <Text color="red">Дата окончания ({index + 1}): {error.date_finish.message}</Text>}
-                    {error?.price?.amount && <Text color="red">Цена ({index + 1}): {error.price.amount.message}</Text>}
-                    {error?.spots && <Text color="red">Места ({index + 1}): {error.spots.message}</Text>}
-                </Stack>
+export const TourDates = (props: TourDatesProps) => {
+    const { dates, setValue, errors } = props;
+
+    const addDateRange = () => {
+        setValue('dates', [
+            ...dates,
+            {
+                date_start: '',
+                date_finish: '',
+                price: { amount: 0, currency: '$' },
+                spots: 0,
+            },
+        ]);
+    };
+
+    const updateDateRange = <K extends keyof DateTours>(
+        index: number,
+        field: K,
+        value: DateTours[K]
+    ) => {
+        const newDates = [...dates];
+
+        if (field === "price") newDates[index].price = value as Price;
+        else newDates[index][field] = value;
+        setValue("dates", newDates);
+    };
+
+    const removeDateRange = (index: number) => {
+        setValue("dates", dates.filter((_, i) => i !== index));
+    };
+
+    return (
+        <Stack direction="column" gap="16">
+            <Text size='18' font='geometria500'>
+                Даты тура
+            </Text>
+
+            {dates.map((date, index) => (
+                <div key={index} className={styles.dateRangeContainer}>
+                    <div>
+                        <label className={stylesTour.label}>Дата начала</label>
+                        <input
+                            type="date"
+                            value={date.date_start.split("T")[0]}
+                            onChange={(e) => updateDateRange(index, "date_start", e.target.value)}
+                            className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["date_start"]?.message }, [])}
+                        />
+                        {errors?.[index]?.date_start && (
+                            <Text color="red">{errors[index]?.date_start?.message}</Text>
+                        )}
+                    </div>
+
+                    <div>
+                        <label className={stylesTour.label}>Дата окончания</label>
+                        <input
+                            type="date"
+                            value={date.date_finish.split("T")[0]}
+                            onChange={(e) => updateDateRange(index, "date_finish", e.target.value)}
+                            className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["date_finish"]?.message }, [])}
+                        />
+                        {errors?.[index]?.date_finish && (
+                            <Text color="red">{errors[index]?.date_finish?.message}</Text>
+                        )}
+                    </div>
+
+                    <div>
+                        <label className={stylesTour.label}>Цена</label>
+                        <div className={styles.flex}>
+                            <input
+                                value={date.price.amount}
+                                onChange={(e) => updateDateRange(index, "price", { ...date.price, amount: Number(e.target.value) })}
+                                className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["price"]?.["amount"]?.message }, [])}
+                            />
+
+                            <Select
+                                value={date.price.currency}
+                                options={["$", "€", "₽"]}
+                                onChange={(value) => updateDateRange(index, "price", { ...date.price, currency: value as "$" | "₽" | "€" })}
+                            />
+                        </div>
+                        {errors?.[index]?.price?.amount && (
+                            <Text color="red">{errors[index]?.price?.amount?.message}</Text>
+                        )}
+                    </div>
+
+                    <div>
+                        <label className={stylesTour.label}>Количество мест</label>
+                        <div className={styles.flex}>
+                            <input
+                                value={date.spots}
+                                onChange={(e) => updateDateRange(index, "spots", Number(e.target.value))}
+                                className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["spots"]?.message }, [])}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => removeDateRange(index)}
+                                className={styles.removeButton}
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        {errors?.[index]?.spots && (
+                            <Text color="red">{errors[index]?.spots?.message}</Text>
+                        )}
+                    </div>
+                </div>
             ))}
-    </Stack>
-);
+
+            {errors && (
+                <Text color="red">{errors.message}</Text>
+            )}
+            <div>
+                <Button color="transparent" onClick={addDateRange} type="button">
+                    + Добавить даты
+                </Button>
+            </div>
+        </Stack>
+    )
+};
 

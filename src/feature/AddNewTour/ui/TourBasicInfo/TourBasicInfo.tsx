@@ -2,6 +2,7 @@ import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { Tour } from "@/entities/Tours";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
+import { getStyles } from "@/shared/lib/getStyles";
 import styles from '../TourForm/TourForm.module.scss';
 
 interface TourBasicInfoProps {
@@ -20,7 +21,7 @@ export const TourBasicInfo = ({ register, errors }: TourBasicInfoProps) => (
                 type="text"
                 {...register("tour")}
                 placeholder="Например: Южная Америка: Патагония"
-                className={styles.input}
+                className={getStyles(styles.input, {[styles.error]: !!errors.tour}, [])}
             />
             {errors.tour && <Text color="red">{errors.tour.message}</Text>}
         </Stack>

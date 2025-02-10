@@ -1,3 +1,4 @@
+import { DataFAQ } from "@/entities/FAQ/model/types/types";
 import { Image } from "@/shared/types/types";
 
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
@@ -44,11 +45,6 @@ export interface Regions {
     region: string;
 }
 
-export interface MustKnow {
-    question: string;
-    answer: string;
-}
-
 export interface Tour {
     _id: string;
     types: TypeTour[];
@@ -70,5 +66,5 @@ export interface Tour {
     hotels?: Image[],
     mapMarker?: MapMarker[],
     isPublished: boolean,
-    mustKnow?: MustKnow[],
+    mustKnow: DataFAQ[],
 }

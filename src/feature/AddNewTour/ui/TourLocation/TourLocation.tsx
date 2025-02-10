@@ -5,6 +5,7 @@ import stylesTour from '../TourForm/TourForm.module.scss';
 import { Locations } from '@/entities/Tours/model/types/types';
 import { UseFormSetValue, FieldErrors } from 'react-hook-form';
 import { Tour } from '@/entities/Tours';
+import { getStyles } from '@/shared/lib/getStyles';
 
 interface TourLocationProps {
     locations: Locations;
@@ -25,7 +26,7 @@ export const TourLocation = ({ locations, setValue, errors }: TourLocationProps)
                         type="text"
                         value={locations.place_start}
                         onChange={(e) => setValue("locations.place_start", e.target.value)}
-                        className={stylesTour.input}
+                        className={getStyles(stylesTour.input, {[stylesTour.error]: !!errors.locations?.place_start}, [])}
                         placeholder="Например: Москва, Россия"
                     />
                     {errors.locations?.place_start && (
@@ -39,7 +40,7 @@ export const TourLocation = ({ locations, setValue, errors }: TourLocationProps)
                         type="text"
                         value={locations.place_finish}
                         onChange={(e) => setValue("locations.place_finish", e.target.value)}
-                        className={stylesTour.input}
+                        className={getStyles(stylesTour.input, {[stylesTour.error]: !!errors.locations?.place_finish}, [])}
                         placeholder="Например: Санкт-Петербург, Россия"
                     />
                     {errors.locations?.place_finish && (

@@ -1,31 +1,27 @@
 import { Edit2, PlusCircle, Save, Trash2, X } from 'lucide-react';
-import styles from './FAQForm.module.scss';
 import { useState } from 'react';
-import { DataFAQ } from '../../model/types/types';
 import { Stack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
+import { DataFAQ } from '../../model/types/types';
+import styles from './FAQForm.module.scss';
 
 interface FAQFormProps {
-
+    faqs: DataFAQ[];
+    onChange: (faqs: DataFAQ[]) => void;
 }
 
 export const FAQForm = (props: FAQFormProps) => {
-    const { } = props;
+    const { faqs, onChange } = props;
 
-    const [faqs, setFaqs] = useState<DataFAQ[]>([
-        {
-            question: "Какие документы необходимы?",
-            answer: ""
-        }
-    ]);
     const [newQuestion, setNewQuestion] = useState('');
     const [newAnswer, setNewAnswer] = useState('');
     const [editIndex, setEditIndex] = useState<number | null>(null);
 
     const handleAddFAQ = () => {
         if (newQuestion.trim() && newAnswer.trim()) {
-            setFaqs([...faqs, { question: newQuestion, answer: newAnswer }]);
+            const updatedFaqs = [...faqs, { question: newQuestion, answer: newAnswer }];
+            onChange(updatedFaqs);
             setNewQuestion('');
             setNewAnswer('');
         }
@@ -41,7 +37,7 @@ export const FAQForm = (props: FAQFormProps) => {
         if (editIndex !== null && newQuestion.trim() && newAnswer.trim()) {
             const updatedFaqs = [...faqs];
             updatedFaqs[editIndex] = { question: newQuestion, answer: newAnswer };
-            setFaqs(updatedFaqs);
+            onChange(updatedFaqs);
             setEditIndex(null);
             setNewQuestion('');
             setNewAnswer('');
@@ -49,12 +45,11 @@ export const FAQForm = (props: FAQFormProps) => {
     };
 
     const handleDelete = (index: number) => {
-        // Prevent deletion of the required "Какие документы необходимы?" question
         if (faqs[index].question === "Какие документы необходимы?") {
             return;
         }
         const updatedFaqs = faqs.filter((_, i) => i !== index);
-        setFaqs(updatedFaqs);
+        onChange(updatedFaqs);
     };
 
     const handleCancel = () => {
@@ -133,7 +128,7 @@ export const FAQForm = (props: FAQFormProps) => {
                 {faqs.map((faq, index) => (
                     <div key={index} className={styles.faqItem}>
                         <Stack justify='between'>
-                            <Text size='20'>{faq.question}</Text>
+                            <Text size='18' font='geometria500'>{faq.question}</Text>
                             <Stack gap='8'>
                                 <button
                                     type='button'
@@ -151,7 +146,7 @@ export const FAQForm = (props: FAQFormProps) => {
                                 )}
                             </Stack>
                         </Stack>
-                        <Text size='16'>
+                        <Text size='18'>
                             {faq.answer}
                         </Text>
                     </div>

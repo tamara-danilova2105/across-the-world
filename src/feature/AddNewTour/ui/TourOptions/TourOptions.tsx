@@ -53,6 +53,7 @@ export const TourOptions = ({ watch, setValue, errors, optionsRegions }: TourOpt
                             value={watch("regions")}
                             options={optionsRegions ?? []}
                             onChange={(option) => setValue("regions", option)}
+                            isError={!!errors.regions}
                         />
                         {errors.regions && (
                             <Text color='red'>{errors.regions.message}</Text>
@@ -80,6 +81,7 @@ export const TourOptions = ({ watch, setValue, errors, optionsRegions }: TourOpt
                         value={watch("types")}
                         options={typeTourOptions}
                         onChange={(option) => setValue("types", option)}
+                        isError={!!errors.types}
                     />
                     {errors.types && (
                         <Text color="red">{errors.types.message}</Text>
