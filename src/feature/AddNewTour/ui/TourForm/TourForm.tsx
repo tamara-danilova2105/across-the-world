@@ -1,7 +1,7 @@
 import { useMemo } from "react";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "react-toastify";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
@@ -16,7 +16,6 @@ import { DiscountInput } from "../DiscountInput/DiscountInput";
 import { MapMarkerInput } from "../MapMarkerInput/MapMarkerInput";
 import { HotelsInput } from "../HotelsInput/HotelsInput";
 import { ImageCoverInput } from "../ImageCoverInput/ImageCoverInput";
-import styles from './TourForm.module.scss';
 import { tourSchema } from "../../lib/validation";
 import { TourBasicInfo } from "../TourBasicInfo/TourBasicInfo";
 import { TourDates } from "../TourDates/TourDates";
@@ -25,6 +24,8 @@ import { TourDescription } from "../TourDescription/TourDescription";
 import { TourDetails } from "../TourDetails/TourDetails";
 import { TourProgram } from "../TourProgram/TourProgram";
 import { TourLocation } from "../TourLocation/TourLocation";
+import styles from './TourForm.module.scss';
+import { TourFAQ } from "../TourFAQ/TourFAQ";
 
 
 export const TourForm = () => {
@@ -186,6 +187,8 @@ export const TourForm = () => {
                     markers={formData.mapMarker}
                     onChange={(markers) => setValue("mapMarker", markers)}
                 />
+
+                <TourFAQ />
             </form>
         </Stack>
     );

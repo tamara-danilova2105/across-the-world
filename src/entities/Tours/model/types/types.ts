@@ -44,6 +44,11 @@ export interface Regions {
     region: string;
 }
 
+export interface MustKnow {
+    question: string;
+    answer: string;
+}
+
 export interface Tour {
     _id: string;
     types: TypeTour[];
@@ -65,4 +70,5 @@ export interface Tour {
     hotels?: Image[],
     mapMarker?: MapMarker[],
     isPublished: boolean,
+    mustKnow?: MustKnow[],
 }

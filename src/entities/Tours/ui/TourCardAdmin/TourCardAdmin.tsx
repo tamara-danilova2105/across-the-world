@@ -1,7 +1,7 @@
 import {
     Calendar,
     MoreVertical,
-    // Copy,
+    Copy,
     Trash2,
     Globe,
     Globe as GlobeOff,
@@ -117,10 +117,10 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
 
                 {showMenu && (
                     <div className={styles.dropdownMenu}>
-                        {/* <button className={styles.menuItem}>
+                        <button className={styles.menuItem}>
                             <Copy className={styles.icon} />
                             Создать копию тура
-                        </button> */}
+                        </button>
                         <button className={styles.menuItem}>
                             <Edit className={styles.icon} />
                             Редактировать

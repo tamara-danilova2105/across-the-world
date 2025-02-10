@@ -1,0 +1,47 @@
+.input,
+.textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+        border-color: var(--pink-color);
+        box-shadow: 0 0 0 1px var(--pink-color);
+        outline: none;
+    }
+}
+
+.textarea {
+    resize: vertical;
+}
+
+.btn {
+    padding: 0 1.5rem;
+
+    svg {
+        margin-right: 0.5rem;
+    }
+}
+
+.faqItem {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1rem;
+}
+
+.editButton,
+.deleteButton {
+    background: none;
+}
+
+.editButton {
+    color: var(--blue-color);
+}
+
+.deleteButton {
+    color: var(--error-color);
+}

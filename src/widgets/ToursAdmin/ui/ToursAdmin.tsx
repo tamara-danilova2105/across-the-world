@@ -9,7 +9,6 @@ export const ToursAdmin = () => {
     const { data: toursData = [], isLoading, error } = useGetAllToursQuery({ admin: true });
     console.log(toursData);
 
-
     return (
         <Stack
             direction='column' gap="24"

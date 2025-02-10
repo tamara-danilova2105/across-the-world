@@ -26,12 +26,6 @@ export const NewsBlog = () => {
                     subtitle="НОВОСТИ И БЛОГ"
                 />
 
-                {error && (
-                    <Text color="red" size="18">
-                        Произошла ошибка при загрузке
-                    </Text>
-                )}
-
                 <div>
                     <AppLink
                         className={styles.appLink}
@@ -40,6 +34,14 @@ export const NewsBlog = () => {
                         Посмотреть все
                     </AppLink>
                 </div>
+            </Stack>
+
+            <Stack className={styles.news_title}>
+                {error && (
+                    <Text color="red" size="18">
+                        Произошла ошибка при загрузке новостей
+                    </Text>
+                )}
             </Stack>
 
             {news && (
