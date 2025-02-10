@@ -9,10 +9,11 @@ import styles from './FAQForm.module.scss';
 interface FAQFormProps {
     faqs: DataFAQ[];
     onChange: (faqs: DataFAQ[]) => void;
+    allowDeleteFirst?: boolean;
 }
 
 export const FAQForm = (props: FAQFormProps) => {
-    const { faqs, onChange } = props;
+    const { faqs, onChange, allowDeleteFirst } = props;
 
     const [newQuestion, setNewQuestion] = useState('');
     const [newAnswer, setNewAnswer] = useState('');
@@ -45,9 +46,8 @@ export const FAQForm = (props: FAQFormProps) => {
     };
 
     const handleDelete = (index: number) => {
-        if (faqs[index].question === "Какие документы необходимы?") {
-            return;
-        }
+        if (!allowDeleteFirst && index === 0) return;
+
         const updatedFaqs = faqs.filter((_, i) => i !== index);
         onChange(updatedFaqs);
     };
@@ -129,14 +129,14 @@ export const FAQForm = (props: FAQFormProps) => {
                     <div key={index} className={styles.faqItem}>
                         <Stack justify='between'>
                             <Text size='18' font='geometria500'>{faq.question}</Text>
-                            <Stack gap='8'>
+                            <Stack gap='16'>
                                 <button
                                     type='button'
                                     onClick={() => handleEdit(index)} className={styles.editButton}
                                 >
                                     <Edit2 size={20} />
                                 </button>
-                                {index !== 0 && (
+                                {(allowDeleteFirst || index !== 0) && (
                                     <button
                                         type='button'
                                         onClick={() => handleDelete(index)} className={styles.deleteButton}

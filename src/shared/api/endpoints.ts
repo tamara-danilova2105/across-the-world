@@ -12,7 +12,8 @@ export const endpoints = {
         news: '/news',
         timer: '/timer',
         mail: '/subscribe',
-        upload: '/upload'
+        upload: '/upload',
+        faqs: '/faqs'
     },
     admin: {
         registration: '/registration',
