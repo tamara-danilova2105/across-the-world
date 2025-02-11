@@ -10,6 +10,7 @@ import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteToursByRegion } from "@/app/router/lib/helper";
 import { Skeleton } from "@/shared/ui/Skeleton";
+import { apiUrl } from "@/shared/api/endpoints";
 
 export const EarlyBook = () => {
 
@@ -109,7 +110,8 @@ export const EarlyBook = () => {
                     {timerData?.imagesWithDetails.map((item: ImagesWithDetails) => (
                         <img 
                             key={item._id} 
-                            src={item.src} alt={item.describe}
+                            src={`${apiUrl}${item.src}`}
+                            alt={item.describe}
                         />
                     ))}
                 </Stack>
