@@ -1,14 +1,14 @@
 import { getRouteBlog } from "@/app/router/lib/helper";
 import { TitleSection } from "@/entities/TitleSection";
+import { NewsScroll, useGetAllNewsQuery } from "@/entities/News";
 import { AppLink } from "@/shared/ui/AppLink";
 import { Stack } from "@/shared/ui/Stack";
-import { NewsScroll } from "@/entities/News";
-import { useGetAllNewsQuery } from "@/entities/News/api/api";
 import styles from './NewsBlog.module.scss';
-import { Text } from "@/shared/ui/Text";
 
 export const NewsBlog = () => {
     const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: 4, page: 1 });
+
+    if (error) return; //не показывать секцию в случаи ошибки на сервере
 
     return (
         <Stack
@@ -34,14 +34,6 @@ export const NewsBlog = () => {
                         Посмотреть все
                     </AppLink>
                 </div>
-            </Stack>
-
-            <Stack className={styles.news_title}>
-                {error && (
-                    <Text color="red" size="18">
-                        Произошла ошибка при загрузке новостей
-                    </Text>
-                )}
             </Stack>
 
             {news && (
