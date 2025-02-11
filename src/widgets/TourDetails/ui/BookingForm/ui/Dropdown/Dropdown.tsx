@@ -69,8 +69,8 @@ export const Dropdown = (props: DropdownProps) => {
                                 </span>
 
                                 <span className={getStyles(styles.spots, { [styles.soldout]: item.spots === 0 }, [])}>
-                                    {item.spots > 0
-                                        ? `${item.spots} ${declOfNum(item.spots, ['место', 'места', 'мест'])}`
+                                    {item.spots && Number(item.spots) > 0
+                                        ? `${item.spots} ${declOfNum(Number(item.spots), ['место', 'места', 'мест'])}`
                                         : 'sold out'
                                     }
                                 </span>
