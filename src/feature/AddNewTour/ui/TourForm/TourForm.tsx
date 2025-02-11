@@ -34,7 +34,14 @@ export const TourForm = () => {
         defaultValues: {
             types: [],
             tour: '',
-            dates: [],
+            dates: [
+                {
+                    date_start: '',
+                    date_finish: '',
+                    price: { amount: '', currency: '$' },
+                    spotsTotal: '',
+                },
+            ],
             locations: {
                 place_start: '',
                 place_finish: '',
@@ -67,8 +74,6 @@ export const TourForm = () => {
     const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
     const handleAddTour = async (isPublished: boolean) => {
-        console.log('Форма отправлена с isPublished:', isPublished);
-
         try {
             const formDataToUpload = new FormData();
 
@@ -111,31 +116,30 @@ export const TourForm = () => {
             direction='column' gap="24"
             className={styles.container}
         >
-            <Stack
-                max justify='between'
-                className={styles.header_container}
-            >
-                <Text type='h2' size='32' color='blue' font='geometria600'>
-                    Создать новый тур
-                </Text>
+            <Stack className={styles.header_container}>
+                <Stack max justify='between' align='center'>
+                    <Text type='h2' size='32' color='blue' font='geometria600'>
+                        Создать новый тур
+                    </Text>
 
-                <Stack gap="8">
-                    <Button
-                        onClick={handleSubmit(() => handleAddTour(true))}
-                        loading={isSaveLoading && isUploading}
-                        disabled={isSaveLoading && isUploading}
-                    >
-                        опубликовать тур
-                    </Button>
+                    <Stack gap="8">
+                        <Button
+                            onClick={handleSubmit(() => handleAddTour(true))}
+                            loading={isSaveLoading && isUploading}
+                            disabled={isSaveLoading && isUploading}
+                        >
+                            опубликовать тур
+                        </Button>
 
-                    <Button
-                        color="secondary"
-                        onClick={handleSubmit(() => handleAddTour(false))}
-                        loading={isSaveLoading && isUploading}
-                        disabled={isSaveLoading && isUploading}
-                    >
-                        сохранить черновик
-                    </Button>
+                        <Button
+                            color="secondary"
+                            onClick={handleSubmit(() => handleAddTour(false))}
+                            loading={isSaveLoading && isUploading}
+                            disabled={isSaveLoading && isUploading}
+                        >
+                            сохранить черновик
+                        </Button>
+                    </Stack>
                 </Stack>
             </Stack>
 

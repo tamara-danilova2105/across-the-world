@@ -14,7 +14,7 @@ import { Loading } from "@/shared/ui/Loading";
 
 export const TourDetails = () => {
     //TODO - id получать из роутера
-    const id = '67a8ec222ea4f1d8bbf40b24'
+    const id = '67ab78be47cc6848b9dcff72'
 
     const { data: tour, isLoading } = useGetTourByIdQuery(id);
 

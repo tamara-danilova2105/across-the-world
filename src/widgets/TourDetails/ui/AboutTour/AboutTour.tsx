@@ -35,7 +35,7 @@ export const AboutTour = (props: AboutTourProps) => {
                 />
             )}
 
-            <FAQSection />
+            <FAQSection faqs={tour.mustKnow} />
 
             <ArrivalInfo
                 locations={tour.locations}

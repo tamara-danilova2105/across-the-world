@@ -1,24 +1,36 @@
 @use '@/app/styles/media-queries.scss' as *;
+@use '@/app/styles/mixin.scss' as *;
 
 .container {
-    width: 80%;
-    margin: auto;
-    padding-top: 1.5rem;
-    padding-bottom: 4rem;
-
-    @include tablet-l {
-        width: 100%;
-        padding: 2.5rem;
-    }
-
-    @include mobile-xl {
-        padding: 2rem 1rem;
-    }
+    @include section-admin-style;
 
     .header_container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: calc(100% - 300px);
+        margin-left: 300px;
+        z-index: 10;
+        background-color: var(--white-color);
+        padding: 1rem 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
         @include tablet-m {
-            flex-direction: column;
-            gap: var(--gap-m);
+            margin-left: 0;
+            width: 100%;
+            padding-top: 0;
+            margin-top: 50px;
+        }
+
+        >div {
+            width: 80%;
+            margin: auto;
+
+            @include tablet-m {
+                width: 100%;
+                flex-direction: column;
+                gap: var(--gap-s);
+            }
         }
 
         button {
@@ -42,9 +54,11 @@
         flex-direction: column;
         gap: var(--gap-xxl);
         width: 100%;
+        margin-top: 80px;
 
         @include mobile-xl {
             gap: var(--gap-xl);
+            margin-top: 120px;
         }
 
         .label {

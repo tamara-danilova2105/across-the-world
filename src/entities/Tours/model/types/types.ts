@@ -7,7 +7,7 @@ export type DirectionTour = "все туры" | "Россия" | "Заграни
 export type TypeTour = 'Трекинг' | 'Ретрит / оздоровительный' | 'Экскурсионный' | 'Детский' | 'Фототур';
 
 export interface Price {
-    amount: number;
+    amount: number | string;
     currency: "₽" | "$" | "€";
 };
 
@@ -16,7 +16,8 @@ export interface DateTours {
     date_start: string;
     date_finish: string;
     price: Price,
-    spots: number;
+    spots?: number | string;
+    spotsTotal?: number | string;
 };
 
 export interface Locations {
