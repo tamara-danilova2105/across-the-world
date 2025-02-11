@@ -9,6 +9,7 @@ import styles from './EarlyBook.module.scss';
 import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteToursByRegion } from "@/app/router/lib/helper";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 export const EarlyBook = () => {
 
@@ -16,6 +17,11 @@ export const EarlyBook = () => {
     const timerData = timerDataArray?.[0];
 
     console.log(timerData,error, isLoading)
+
+    if(error) {
+        return null
+    }
+
 
     return(
         <Stack
@@ -26,6 +32,8 @@ export const EarlyBook = () => {
             className={styles.earlyBook}
         >
             <RunningLine data={dataPromo}/>
+
+            {isLoading ? <Skeleton width="100%" height="300px"/> :
 
             <Stack
                 justify='between'
@@ -105,7 +113,7 @@ export const EarlyBook = () => {
                         />
                     ))}
                 </Stack>
-            </Stack>
+            </Stack>}
         </Stack>
     )
 }
