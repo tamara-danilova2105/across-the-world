@@ -37,4 +37,10 @@ export const tourSchema = z.object({
             .min(1, "Скидка должна быть больше 0%")
             .max(100, "Скидка не может быть более 100%"),
     }).optional(),
+    mustKnow: z.array(
+        z.object({
+            question: z.string(),
+            answer: z.string().min(1, "Заполните информацию какие документы необходимы для поездки"),
+        })
+    ),
 });

@@ -12,10 +12,11 @@ interface FAQFormProps {
     onChange: (faqs: DataFAQ[]) => void;
     allowDeleteFirst?: boolean;
     isLoading?: boolean;
+    errorMessage?: string;
 }
 
 export const FAQForm = (props: FAQFormProps) => {
-    const { faqs, onChange, allowDeleteFirst, isLoading } = props;
+    const { faqs, onChange, allowDeleteFirst, isLoading, errorMessage } = props;
 
     const [newQuestion, setNewQuestion] = useState('');
     const [newAnswer, setNewAnswer] = useState('');
@@ -123,6 +124,8 @@ export const FAQForm = (props: FAQFormProps) => {
             </Stack>
 
             <Stack direction='column' gap='16' max>
+                {errorMessage && <Text color='red'>{errorMessage}</Text>}
+
                 <Text size='18' font='geometria500'>
                     Список вопросов:
                 </Text>

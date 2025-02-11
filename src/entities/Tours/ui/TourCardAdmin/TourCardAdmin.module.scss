@@ -95,10 +95,15 @@
     position: absolute;
     bottom: -0.5rem;
     left: 0.5rem;
+    background-color: var(--peach-color);
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+}
+
+.publish {
     background-color: var(--blue-color);
     color: var(--white-color);
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
 }
 
 .content {
