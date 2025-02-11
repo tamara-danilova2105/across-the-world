@@ -1,20 +1,39 @@
 @use '@/app/styles/media-queries.scss' as *;
 
 .container {
-    padding: 1.5rem 0;
     width: 80%;
     margin: auto;
+    padding-top: 1.5rem;
     padding-bottom: 4rem;
 
     @include tablet-l {
         width: 100%;
-        padding: 1.5rem;
+        padding: 2.5rem;
+    }
+
+    @include mobile-xl {
+        padding: 2rem 1rem;
     }
 
     .header_container {
+        @include tablet-m {
+            flex-direction: column;
+            gap: var(--gap-m);
+        }
+
         button {
             width: max-content;
             padding: 0 1rem;
+
+            @include mobile-xl {
+                font-size: var(--font-size-16);
+            }
+
+            @include mobile-s {
+                padding: 0 0.5rem;
+                height: 2.75rem;
+                font-size: var(--font-size-14);
+            }
         }
     }
 
@@ -23,6 +42,10 @@
         flex-direction: column;
         gap: var(--gap-xxl);
         width: 100%;
+
+        @include mobile-xl {
+            gap: var(--gap-xl);
+        }
 
         .label {
             font-size: var(--font-size-16);
@@ -48,7 +71,7 @@
         .error {
             border-color: var(--error-color);
         }
-        
+
     }
 }
 

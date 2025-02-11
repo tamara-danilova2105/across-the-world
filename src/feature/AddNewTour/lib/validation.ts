@@ -5,17 +5,17 @@ export const tourSchema = z.object({
     tour: z.string().min(1, "Название тура обязательно"),
     dates: z.array(
         z.object({
-            date_start: z.string().min(1, "Дата начала обязательна"),
-            date_finish: z.string().min(1, "Дата окончания обязательна"),
+            date_start: z.string().min(1, "Дата обязательна"),
+            date_finish: z.string().min(1, "Дата обязательна"),
             price: z.object({
-                amount: z.number().min(1, "Цена должна быть больше 0"),
+                amount: z.number().min(1, "должна быть больше 0"),
             }),
-            spots: z.number().min(1, "Количество мест должно быть больше 0"),
+            spots: z.number().min(1, "должно быть больше 0"),
         })
     ).nonempty("Не указаны данные с датами тура"),
     locations: z.object({
-        place_start: z.string().min(1, "Не указано место начала"),
-        place_finish: z.string().min(1, "Не указано место окончания"),
+        place_start: z.string().min(1, "Не указано место"),
+        place_finish: z.string().min(1, "Не указано место"),
     }),
     details: z.object({
         included: z.string().min(1, "Не добавлены услуги"),

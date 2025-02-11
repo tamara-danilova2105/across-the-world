@@ -19,7 +19,7 @@ export const TourLocation = ({ locations, setValue, errors }: TourLocationProps)
             <Text size='18' font='geometria500'>
                 Локации
             </Text>
-            <Stack gap='16' max>
+            <Stack gap='16' max className={styles.input_container}>
                 <Stack direction='column' max gap='4'>
                     <label className={styles.label}>Место начала</label>
                     <input

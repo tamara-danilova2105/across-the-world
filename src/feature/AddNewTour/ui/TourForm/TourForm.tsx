@@ -109,7 +109,10 @@ export const TourForm = () => {
             direction='column' gap="24"
             className={styles.container}
         >
-            <Stack max justify='between' className={styles.header_container}>
+            <Stack
+                max justify='between'
+                className={styles.header_container}
+            >
                 <Text type='h2' size='32' color='blue' font='geometria600'>
                     Создать новый тур
                 </Text>
