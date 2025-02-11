@@ -105,7 +105,7 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
             >
                 <Button onClick={() => { 
                     dispatch(setFilter(filtersStatus))
-                    toggleMenu()
+                    if (toggleMenu) toggleMenu()
                 }}>
                     Применить
                 </Button>
