@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { DataFAQ, FAQForm } from "@/entities/FAQ";
 import { Button } from "@/shared/ui/Button";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { useEffect, useState } from "react";
-import styles from './FAQEditor.module.scss';
 import { useGetFAQsQuery, useUpdateFAQsMutation } from "../api/api";
-import { toast } from "react-toastify";
+import styles from './FAQEditor.module.scss';
 
 export const FAQEditor = () => {
     const [faqs, setFaqs] = useState<DataFAQ[]>([]);
@@ -18,7 +18,7 @@ export const FAQEditor = () => {
             setFaqs(data);
         }
     }, [data]);
-    
+
 
     const handleSaveFAQs = async () => {
         try {
@@ -27,10 +27,7 @@ export const FAQEditor = () => {
         } catch (err) {
             toast.error('Произошла ошибка, попробуй снова');
         }
-    }
-
-    if (isLoadingGet) return <p>Загрузка...</p> //TODO
-    if (isGetError) return <p>Ошибка загрузки данных</p> //TODO
+    };
 
     return (
         <Stack direction='column' gap="16" max>
@@ -47,11 +44,17 @@ export const FAQEditor = () => {
                 </Button>
             </Stack>
 
+            {isGetError && (
+                <Text color="red" size="18">
+                    Произошла ошибка при загрузке
+                </Text>
+            )}
 
             <FAQForm
                 faqs={faqs}
                 onChange={setFaqs}
                 allowDeleteFirst
+                isLoading={isLoadingGet}
             />
         </Stack>
 

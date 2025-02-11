@@ -5,15 +5,17 @@ import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
 import { DataFAQ } from '../../model/types/types';
 import styles from './FAQForm.module.scss';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface FAQFormProps {
     faqs: DataFAQ[];
     onChange: (faqs: DataFAQ[]) => void;
     allowDeleteFirst?: boolean;
+    isLoading?: boolean;
 }
 
 export const FAQForm = (props: FAQFormProps) => {
-    const { faqs, onChange, allowDeleteFirst } = props;
+    const { faqs, onChange, allowDeleteFirst, isLoading } = props;
 
     const [newQuestion, setNewQuestion] = useState('');
     const [newAnswer, setNewAnswer] = useState('');
@@ -62,7 +64,7 @@ export const FAQForm = (props: FAQFormProps) => {
         <Stack direction='column' max gap='32'>
             <Stack direction='column' gap='24' max>
                 <Text size='18' font='geometria500'>
-                    {editIndex !== null ? 'Редактировать вопрос' : 'Добавить новый вопрос'}
+                    {editIndex !== null ? 'Редактировать вопрос' : 'Добавить новый вопрос'}:
                 </Text>
 
                 <Stack max direction='column' gap='16'>
@@ -122,35 +124,40 @@ export const FAQForm = (props: FAQFormProps) => {
 
             <Stack direction='column' gap='16' max>
                 <Text size='18' font='geometria500'>
-                    Список вопросов
+                    Список вопросов:
                 </Text>
-
-                {faqs.map((faq, index) => (
-                    <div key={index} className={styles.faqItem}>
-                        <Stack justify='between'>
-                            <Text size='18' font='geometria500'>{faq.question}</Text>
-                            <Stack gap='16'>
-                                <button
-                                    type='button'
-                                    onClick={() => handleEdit(index)} className={styles.editButton}
-                                >
-                                    <Edit2 size={20} />
-                                </button>
-                                {(allowDeleteFirst || index !== 0) && (
+                {isLoading ? (
+                    Array.from({ length: 3 }).map((_, index) => (
+                        <Skeleton key={index} width="100%" height="170px" />
+                    ))
+                ) : (
+                    faqs.map((faq, index) => (
+                        <div key={index} className={styles.faqItem}>
+                            <Stack justify='between'>
+                                <Text size='18' font='geometria500'>{faq.question}</Text>
+                                <Stack gap='16'>
                                     <button
                                         type='button'
-                                        onClick={() => handleDelete(index)} className={styles.deleteButton}
+                                        onClick={() => handleEdit(index)} className={styles.editButton}
                                     >
-                                        <Trash2 size={20} />
+                                        <Edit2 size={20} />
                                     </button>
-                                )}
+                                    {(allowDeleteFirst || index !== 0) && (
+                                        <button
+                                            type='button'
+                                            onClick={() => handleDelete(index)} className={styles.deleteButton}
+                                        >
+                                            <Trash2 size={20} />
+                                        </button>
+                                    )}
+                                </Stack>
                             </Stack>
-                        </Stack>
-                        <Text size='18'>
-                            {faq.answer}
-                        </Text>
-                    </div>
-                ))}
+                            <Text size='18'>
+                                {faq.answer}
+                            </Text>
+                        </div>
+                    ))
+                )}
             </Stack>
         </Stack>
     );
