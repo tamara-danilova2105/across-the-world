@@ -8,7 +8,7 @@ import { useGetTimerQuery } from "../../api/timerApi";
 import styles from './EarlyBook.module.scss';
 import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
 import { AppLink } from "@/shared/ui/AppLink";
-import { getRouteTours, getRouteToursByRegion } from "@/app/router/lib/helper";
+import { getRouteToursByRegion } from "@/app/router/lib/helper";
 
 export const EarlyBook = () => {
 

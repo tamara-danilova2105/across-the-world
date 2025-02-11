@@ -22,6 +22,8 @@ export const AddNewTimerMain = () => {
     const methods = useForm({ mode: 'onSubmit', defaultValues: INITIAL_TIMER_STATE });
     const { register, handleSubmit, setValue, reset, formState: { errors } } = methods;
 
+    console.log(deletedImages)
+
     const { data: regions } = useGetRegionsQuery({});
     const { data: getTimer, isLoading: getLoading, error: errorTimer } = useGetTimerQuery(id, {
         skip: !id,  
