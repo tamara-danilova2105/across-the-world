@@ -2,15 +2,28 @@ import { RunningLine } from "@/entities/RunningLine/index";
 import { Timer } from "@/entities/Timer/index";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
-import { Button } from "@/shared/ui/Button";
-import { bookData } from "../../lib/data";
 import { Images } from "../Images/Images";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
+import { useGetTimerQuery } from "../../api/timerApi";
 import styles from './EarlyBook.module.scss';
-
-const END_TIME = '2024-12-31T20:59:59.000Z' //TODO
+import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
+import { AppLink } from "@/shared/ui/AppLink";
+import { getRouteToursByRegion } from "@/app/router/lib/helper";
+import { Skeleton } from "@/shared/ui/Skeleton";
+import { apiUrl } from "@/shared/api/endpoints";
 
 export const EarlyBook = () => {
+
+    const { data: timerDataArray, error, isLoading } = useGetTimerQuery({});
+    const timerData = timerDataArray?.[0];
+
+    console.log(timerData,error, isLoading)
+
+    if(error) {
+        return null
+    }
+
+
     return(
         <Stack
             direction="column"
@@ -20,6 +33,8 @@ export const EarlyBook = () => {
             className={styles.earlyBook}
         >
             <RunningLine data={dataPromo}/>
+
+            {isLoading ? <Skeleton width="100%" height="300px"/> :
 
             <Stack
                 justify='between'
@@ -53,23 +68,25 @@ export const EarlyBook = () => {
                                 font='geometria500'
                                 color="blue" size="18"
                             >
-                                Открываем набор групп на КАМЧАТКУ 2025
+                                {timerData?.title}
                             </Text>
                             <Text 
                                 font='geometria400'
                                 color="blue" size="18"
                             >
-                                При бронировании до 1 декабря действует скидка 8% по акции раннего бронирования.
+                                {timerData?.description}
                             </Text>
                         </Stack>
                         <Timer 
                             styleMode='timer_earlyBook' 
-                            endTime={END_TIME}
+                            endTime={timerData?.timer}
                         />
                         <div className={styles.appLink}>
-                            <Button cta>
-                                Забронировать тур
-                            </Button>
+                            <AppLink 
+                                to={getRouteToursByRegion(timerData?.region)}
+                                variant ='just_button' cta>
+                                Посмотреть предложения
+                            </AppLink>
                         </div>
                     </Stack>
                 </Stack>
@@ -79,9 +96,9 @@ export const EarlyBook = () => {
                     className={styles.posterContainer}
                     gap="16"
                 >
-                    {bookData.map(item => (
+                    {timerData?.imagesWithDetails.map((item: ImagesWithDetails) => (
                         <Images 
-                            key={item.id} 
+                            key={item._id} 
                             item={item} width={245} height={580}
                         />
                     ))}
@@ -90,14 +107,15 @@ export const EarlyBook = () => {
                     justify='between'
                     className={styles.posterContainerMobile}
                 >
-                    {bookData.map(item => (
+                    {timerData?.imagesWithDetails.map((item: ImagesWithDetails) => (
                         <img 
-                            key={item.id} 
-                            src={item.urlImage} alt={item.description}
+                            key={item._id} 
+                            src={`${apiUrl}${item.src}`}
+                            alt={item.describe}
                         />
                     ))}
                 </Stack>
-            </Stack>
+            </Stack>}
         </Stack>
     )
 }

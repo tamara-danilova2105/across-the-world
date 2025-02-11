@@ -1,5 +1,5 @@
 import { Pagination } from "@/entities/Pagination/index"
-import { getFiltersState } from "@/feature/FilterBar/model/filterSlice"
+import { getFiltersState, setFilter } from "@/feature/FilterBar/model/filterSlice"
 import { getSortState } from '@/feature/SortTour/model/sortSlice'
 import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
 import { SortTour } from "@/feature/SortTour/index"
@@ -13,15 +13,33 @@ import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
 import styles from './Tours.module.scss'
 import { Shedule } from "@/entities/Shedule"
-import { TourCard } from "@/entities/Tours"
-
+import { TourCard, useGetAllToursQuery } from "@/entities/Tours"
+import { useParams } from "react-router"
+import { useDispatch } from "react-redux"
 
 export const Tours = () => {
+
+    const { region } = useParams()
+    const dispatch = useDispatch()
+
+    if(region) {
+        dispatch(setFilter({ 
+            region: region
+        }))
+    }
 
     const filters = useSelector(getFiltersState)
     const sorts = useSelector(getSortState)
 
-    console.log(filters, sorts)
+    const readyFilter = JSON.stringify(filters);
+    const readySort = JSON.stringify(sorts);
+    
+    const { data, error, isLoading } = useGetAllToursQuery({
+        filter: readyFilter,
+        sort: readySort
+    })
+
+    console.log(data, error, isLoading)
 
 
     const [changeModal, drawModal] = useModal();

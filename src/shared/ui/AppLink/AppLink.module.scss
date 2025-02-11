@@ -65,6 +65,17 @@ $sizes: (
     }
 }
 
+.just_button {
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    padding: 0 1rem;
+    display: flex;
+    gap: var(--gap-xl);
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
 .circle {
     width: 54px;
     height: 54px;

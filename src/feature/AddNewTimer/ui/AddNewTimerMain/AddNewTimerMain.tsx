@@ -1,19 +1,11 @@
-import { useState } from "react";
-import { FormProvider, useForm, get } from "react-hook-form";
-import { Input } from "@/shared/ui/Input";
-import { TextArea } from "@/shared/ui/TextArea";
-import { TimerImage } from "../TimerImage/TimerImage";
-import { Stack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/Text";
-import { data } from "@/shared/lib/validateInput";
-import styles from './AddNewTimerMain.module.scss';
+import { useMemo, useState, useCallback, useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { ImagesWithDetails, TimerData } from "../../types/types";
-import { Button } from "@/shared/ui/Button";
-import { RegionTours } from "@/feature/SearchTours/ui/RegionTours/RegionTours/RegionTours";
-import { useDebounce } from "@/shared/hooks/useDebounce";
+import { useAddTimerMutation, useEditTimerMutation, useGetTimerQuery } from "@/widgets/EarlyBook/api/timerApi";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
-import { useAddTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
-import { TimerReady } from "../Timer/TimerReady";
+import { Regions } from "@/entities/Tours";
+import { TimerForm } from "../TimerForm/TimerForm";
+import { useParams } from "react-router";
 
 const INITIAL_TIMER_STATE: TimerData = {
     title: '',
@@ -21,113 +13,108 @@ const INITIAL_TIMER_STATE: TimerData = {
     description: '',
     timer: '',
     imagesWithDetails: [],
-    }
+};
 
 export const AddNewTimerMain = () => {
-    const [timerData, setTimerData] = useState<TimerData>(INITIAL_TIMER_STATE);
+    const { id } = useParams()
+    const [deletedImages, setDeletedImages] = useState<string[]>([]);
+    const [timerData, setTimerData] = useState(INITIAL_TIMER_STATE);
+    const methods = useForm({ mode: 'onSubmit', defaultValues: INITIAL_TIMER_STATE });
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = methods;
 
-    const methods = useForm<TimerData>({ 
-        mode: 'onSubmit',
-        defaultValues: INITIAL_TIMER_STATE})
+    console.log(deletedImages)
 
-    const { register, handleSubmit, reset, watch, formState: { errors } } = methods;
-    const regionValue = watch('region')
-
-    const debouncedSearch = useDebounce({ value: regionValue, delay: 300 })
-
-    const { data: regions, error: regionsError, 
-        isLoading: regionsLoading } = useGetRegionsQuery({
-        search: debouncedSearch})
+    const { data: regions } = useGetRegionsQuery({});
+    const { data: getTimer, isLoading: getLoading, error: errorTimer } = useGetTimerQuery(id, {
+        skip: !id,  
+    })
     
-    const [addNewTimer, { error: addTimerError,
-        isLoading: addTimerLoading }] = useAddTimerMutation()
+    const [addNewTimer, { isLoading: addTimerLoading }] = useAddTimerMutation()
+    const [editTimer, {error: editError, isLoading: editTimerLoading}] = useEditTimerMutation()
+    console.log(editError, editTimerLoading)
 
-    console.log(addTimerError)
+    console.log(getTimer, errorTimer, getLoading)
 
-    const handleSaveCover = (newCover: ImagesWithDetails) => {
-        setTimerData((prev) => {
-            if (prev.imagesWithDetails.length >= 2) return prev;
+    const optionsRegions = useMemo(() => regions?.map(({ region }: Regions) => region) || [], [regions]);
+
+    useEffect(() => {
+        if (getTimer && getTimer.length > 0) {
+            const currentTimer = getTimer[0];
+            const formattedDate = new Date(currentTimer.timer).toISOString().split('T')[0];
+
+            setValue('title', currentTimer.title);
+            setValue('description', currentTimer.description);
+            setValue('timer', formattedDate);
     
-            return {
+            setTimerData(prev => ({
                 ...prev,
-                imagesWithDetails: [...prev.imagesWithDetails, newCover]
-            }
-        })
-    }
+                region: currentTimer.region,
+                imagesWithDetails: currentTimer.imagesWithDetails || []
+            }));
+        }
+    }, [getTimer, setValue]);
+
+    const handleSaveCover = useCallback((newCover: ImagesWithDetails) => {
+        setTimerData(prev => prev.imagesWithDetails.length < 2 ? {
+            ...prev,
+            imagesWithDetails: [...prev.imagesWithDetails, newCover]
+        } : prev)
+    }, [])
+
+    const handleRegionChange = useCallback((option: string) => {
+        setTimerData(prev => ({ ...prev, region: option }));
+    }, [])
+
     const onSubmit = async (formData: TimerData) => {
-        if (timerData.imagesWithDetails.length !== 2) {
-            return;
-        }
-
+        const { imagesWithDetails, region } = timerData;
+        
+        if (imagesWithDetails.length !== 2) return; 
+        
         const data = new FormData();
-        data.append('title', formData.title);
-        data.append('region', formData.region);
-        data.append('description', formData.description);
-        data.append('timer', formData.timer);
-        data.append('imagesWithDetails', JSON.stringify(timerData.imagesWithDetails));
-        timerData.imagesWithDetails.forEach((image) => {
-            console.log(image.file)
-            if (image.file) {
-                data.append('photos', image.file);
-            }
-        })
-
+        const fields = {
+            title: formData.title,
+            region,
+            description: formData.description,
+            timer: formData.timer,
+            imagesWithDetails: JSON.stringify(imagesWithDetails),
+        };
+    
+        Object.entries(fields).forEach(([key, value]) => data.append(key, value));
+    
+        imagesWithDetails.forEach(({ file }) => {
+            if (file) data.append('photos', file);
+        });
+    
         try {
-            await addNewTimer(data).unwrap();
+            if (id) {
+                await editTimer({ id, updateTimer: data}).unwrap()
+            } else {
+                await addNewTimer(data).unwrap()
+            }
             setTimerData(INITIAL_TIMER_STATE);
-            reset()
-        } catch (e) {
-            console.error('Ошибка добавления таймера:', e)
+            reset();
+        } catch (error) {
+            console.error(id ? 'Ошибка редактирования таймера:' : 'Ошибка добавления таймера:', error);
         }
-    }
+    };
+    
+    
 
     return (
         <FormProvider {...methods}>
-            <Stack direction="column" align="center"
-                className={styles.timerContainer} gap="24"
-            >
-                <TimerReady/>
-                <Text type="h2" color="blue" font="geometria500" size="32">
-                    Добавить новый таймер
-                </Text>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input
-                        label="Название объявления"
-                        name="title"
-                        register={register("title", { required: data.required })}
-                        placeholder="Например: `Открываем набор групп на КАМЧАТКУ 2025`"
-                        error={get(errors, "title")}
-                        className={styles.input}
-                    />
-                    <RegionTours
-                        regions={regions}
-                        error={regionsError}
-                        isLoading={regionsLoading}
-                        placeholder="Введите аукционный регион"/>
-                    <TextArea
-                        label="Описание акции"
-                        name="description"
-                        register={register("description", { required: data.required })}
-                        placeholder="Например: `При бронировании до 1 декабря действует скидка 8% по акции раннего бронирования.`"
-                        error={get(errors, "description")}
-                    />
-                    <Input
-                        label="Дата окончания таймера"
-                        name="timer"
-                        type="date"
-                        register={register("timer", { required: data.required })}
-                        error={get(errors, "timer")}
-                        className={styles.input}
-                    />
-                    <TimerImage
-                        imagesWithDetails={timerData.imagesWithDetails}
-                        handleSaveCover={handleSaveCover}
-                    />
-                    <Button type="submit" loading={addTimerLoading}>
-                        Сохранить таймер
-                    </Button>
-                </form>
-            </Stack>
+            <TimerForm
+                register={register}
+                errors={errors}
+                timerData={timerData}
+                setTimerData={setTimerData}
+                setDeletedImages={setDeletedImages}
+                optionsRegions={optionsRegions}
+                handleSaveCover={handleSaveCover}
+                onRegionChange={handleRegionChange}
+                isLoading={addTimerLoading}
+                onSubmit={onSubmit}
+                handleSubmit={handleSubmit}
+            />
         </FormProvider>
     )
 }

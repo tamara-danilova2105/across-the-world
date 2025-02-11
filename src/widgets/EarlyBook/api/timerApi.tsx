@@ -31,11 +31,11 @@ const timerApi = api.injectEndpoints({
             invalidatesTags: TIMER_TAG,
         }),
         editTimer: build.mutation({
-            query: (body) => createApiConfig(
+            query: ({id, updateTimer}) => createApiConfig(
                 'PUT',
-                `${urlTimer}`,
+                `${urlTimer}/${id}`,
                 true,
-                body
+                updateTimer
             ),
             invalidatesTags: TIMER_TAG,
         }),

@@ -6,32 +6,4 @@
     border-radius: 16px;
     width: 90vw;
     height: auto;
-
-
-
-    .calendarInput {
-        position: relative;
-        width: 100%;
-        padding: 14px 24px;
-        padding-left: 44px;
-        border: 2px solid var(--blue-color);
-
-        @include mobile-m {
-            padding: 8px;
-            padding-left: 44px;
-        }
-    }
-
-    .svg {
-        position: absolute;
-        transform: translateY(50%);
-        padding-left: 14px;
-        color: var(--blue-color);
-        opacity: 0.7;
-        z-index: 3;
-
-        @include mobile-s {
-            transform: translateY(40%);
-        }
-    }
 }
