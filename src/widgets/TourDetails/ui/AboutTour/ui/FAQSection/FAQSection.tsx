@@ -1,7 +1,7 @@
+import { DataFAQ } from "@/entities/FAQ";
 import { Accordion } from "@/shared/ui/Accordion";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { DataFAQ } from "@/widgets/FAQ/lib/data";
 
 //TODO
 export const faqData: DataFAQ[] = [

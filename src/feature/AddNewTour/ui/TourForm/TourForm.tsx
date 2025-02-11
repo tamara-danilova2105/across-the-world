@@ -59,7 +59,6 @@ export const TourForm = () => {
     const formData = watch();
     console.log(formData);
 
-
     //TODO добавить обработку ошибки и загрузки
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
     const [addTour, { isLoading: isSaveLoading }] = useAddTourMutation();
@@ -67,7 +66,9 @@ export const TourForm = () => {
 
     const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
-    const handleAddTour = async () => {
+    const handleAddTour = async (isPublished: boolean) => {
+        console.log('Форма отправлена с isPublished:', isPublished);
+
         try {
             const formDataToUpload = new FormData();
 
@@ -84,6 +85,7 @@ export const TourForm = () => {
 
             const updatedTourData = {
                 ...formData,
+                isPublished,
                 imageCover: updateImageSrc(formData.imageCover ?? []),
                 hotels: updateImageSrc(formData.hotels ?? []),
                 program: (formData.program ?? []).map(day => ({
@@ -98,7 +100,7 @@ export const TourForm = () => {
 
             await addTour(updatedTourData).unwrap();
 
-            toast.success('Тур успешно сохранен');
+            toast.success(isPublished ? 'Тур успешно опубликован' : 'Тур сохранен в черновиках');
         } catch (error) {
             toast.error('Произошла ошибка, попробуйте снова');
         }
@@ -109,28 +111,36 @@ export const TourForm = () => {
             direction='column' gap="24"
             className={styles.container}
         >
-            <Stack max justify='between' className={styles.header_container}>
+            <Stack
+                max justify='between'
+                className={styles.header_container}
+            >
                 <Text type='h2' size='32' color='blue' font='geometria600'>
                     Создать новый тур
                 </Text>
 
                 <Stack gap="8">
                     <Button
-                        onClick={handleSubmit(handleAddTour)}
+                        onClick={handleSubmit(() => handleAddTour(true))}
                         loading={isSaveLoading && isUploading}
                         disabled={isSaveLoading && isUploading}
                     >
                         опубликовать тур
                     </Button>
 
-                    <Button color='secondary'>
+                    <Button
+                        color="secondary"
+                        onClick={handleSubmit(() => handleAddTour(false))}
+                        loading={isSaveLoading && isUploading}
+                        disabled={isSaveLoading && isUploading}
+                    >
                         сохранить черновик
                     </Button>
                 </Stack>
             </Stack>
 
 
-            <form onSubmit={handleSubmit(handleAddTour)}>
+            <form>
                 <TourBasicInfo
                     register={register}
                     errors={errors}
@@ -202,6 +212,7 @@ export const TourForm = () => {
                 <FAQForm
                     faqs={watch('mustKnow')}
                     onChange={(faqs) => setValue('mustKnow', faqs)}
+                    errorMessage={errors?.mustKnow?.[0]?.answer?.message}
                 />
             </form>
         </Stack>

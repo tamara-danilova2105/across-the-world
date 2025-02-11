@@ -7,6 +7,7 @@ import styles from './TourDates.module.scss';
 import stylesTour from '../TourForm/TourForm.module.scss';
 import { Select } from "@/shared/ui/Select";
 import { getStyles } from "@/shared/lib/getStyles";
+import { Trash2 } from "lucide-react";
 
 interface TourDatesProps {
     dates: Tour["dates"];
@@ -46,13 +47,13 @@ export const TourDates = (props: TourDatesProps) => {
     };
 
     return (
-        <Stack direction="column" gap="16">
+        <Stack direction="column" gap="16" className={styles.main}>
             <Text size='18' font='geometria500'>
                 Даты тура
             </Text>
 
             {dates.map((date, index) => (
-                <div key={index} className={styles.dateRangeContainer}>
+                <div key={index} className={styles.date_container}>
                     <div>
                         <label className={stylesTour.label}>Дата начала</label>
                         <input
@@ -110,9 +111,9 @@ export const TourDates = (props: TourDatesProps) => {
                             <button
                                 type="button"
                                 onClick={() => removeDateRange(index)}
-                                className={styles.removeButton}
+                                className={styles.remove_button}
                             >
-                                ✕
+                                <Trash2 />
                             </button>
                         </div>
                         {errors?.[index]?.spots && (
@@ -125,7 +126,7 @@ export const TourDates = (props: TourDatesProps) => {
             {errors && (
                 <Text color="red">{errors.message}</Text>
             )}
-            <div>
+            <div className={styles.button_container}>
                 <Button color="transparent" onClick={addDateRange} type="button">
                     + Добавить даты
                 </Button>

@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .input,
 .textarea {
     width: 100%;
@@ -18,6 +20,12 @@
     resize: vertical;
 }
 
+.btn_container {
+    @include mobile-xl {
+        width: 100%;
+    }
+}
+
 .btn {
     padding: 0 1.5rem;
 
@@ -26,7 +34,7 @@
     }
 }
 
-.faqItem {
+.faq_item {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -37,15 +45,15 @@
     gap: 1rem;
 }
 
-.editButton,
-.deleteButton {
+.edit_button,
+.delete_button {
     background: none;
 }
 
-.editButton {
+.edit_button {
     color: var(--blue-color);
 }
 
-.deleteButton {
+.delete_button {
     color: var(--error-color);
 }

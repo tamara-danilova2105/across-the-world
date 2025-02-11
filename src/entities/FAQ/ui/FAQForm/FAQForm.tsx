@@ -12,10 +12,11 @@ interface FAQFormProps {
     onChange: (faqs: DataFAQ[]) => void;
     allowDeleteFirst?: boolean;
     isLoading?: boolean;
+    errorMessage?: string;
 }
 
 export const FAQForm = (props: FAQFormProps) => {
-    const { faqs, onChange, allowDeleteFirst, isLoading } = props;
+    const { faqs, onChange, allowDeleteFirst, isLoading, errorMessage } = props;
 
     const [newQuestion, setNewQuestion] = useState('');
     const [newAnswer, setNewAnswer] = useState('');
@@ -89,7 +90,7 @@ export const FAQForm = (props: FAQFormProps) => {
                             placeholder="Введите ответ"
                         />
                     </Stack>
-                    <Stack gap='16'>
+                    <Stack gap='16' className={styles.btn_container}>
                         {editIndex !== null ? (
                             <>
                                 <Button
@@ -123,6 +124,8 @@ export const FAQForm = (props: FAQFormProps) => {
             </Stack>
 
             <Stack direction='column' gap='16' max>
+                {errorMessage && <Text color='red'>{errorMessage}</Text>}
+
                 <Text size='18' font='geometria500'>
                     Список вопросов:
                 </Text>
@@ -132,20 +135,20 @@ export const FAQForm = (props: FAQFormProps) => {
                     ))
                 ) : (
                     faqs.map((faq, index) => (
-                        <div key={index} className={styles.faqItem}>
+                        <div key={index} className={styles.faq_item}>
                             <Stack justify='between'>
                                 <Text size='18' font='geometria500'>{faq.question}</Text>
                                 <Stack gap='16'>
                                     <button
                                         type='button'
-                                        onClick={() => handleEdit(index)} className={styles.editButton}
+                                        onClick={() => handleEdit(index)} className={styles.edit_button}
                                     >
                                         <Edit2 size={20} />
                                     </button>
                                     {(allowDeleteFirst || index !== 0) && (
                                         <button
                                             type='button'
-                                            onClick={() => handleDelete(index)} className={styles.deleteButton}
+                                            onClick={() => handleDelete(index)} className={styles.delete_button}
                                         >
                                             <Trash2 size={20} />
                                         </button>

@@ -1,12 +1,19 @@
 @use '@/app/styles/media-queries' as *;
 
-.dateRangeContainer {
+main {
+    @include mobile-xl {
+        gap: var(--gap-s);
+    }
+}
+
+.date_container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--gap-m);
+    width: 100%;
 
     @include mobile-xl {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -15,16 +22,22 @@
     gap: var(--gap-s);
 }
 
-.removeButton {
-    margin-top: 4px;
-    padding: 8px;
+.remove_button {
     color: var(--error-color);
     background: none;
-    border: none;
-    cursor: pointer;
     transition: color 0.2s;
+    margin-left: 0.5rem;
+
 
     &:hover {
-        color: #b91c1c;
+        color: var(--error-color);
+    }
+}
+
+.button_container {
+    button {
+        @include mobile-xl {
+            height: 30px;
+        }
     }
 }
