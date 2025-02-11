@@ -1,0 +1,1 @@
+export { LazyEditTimerPage as EditTimerPage } from './EditTimerPage.lazy';

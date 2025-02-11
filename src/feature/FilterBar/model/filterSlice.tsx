@@ -1,36 +1,38 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export interface DateRange {
+    startDate: string | null; 
+    endDate: string | null;   
+}
+
 export interface FiltersState {
     type_tour: Record<string, boolean>;
     price: [number, number];
     duration: [number, number];
+    region: string;
+    dates: DateRange;
 }
 
 const initialState: FiltersState = {
     type_tour: {},
     duration: [1, 25],
     price: [0, 500000],
+    region: '',
+    dates: {
+        startDate: null,
+        endDate: null,
+    },
 }
-
-type FilterKeys = keyof FiltersState;
-
-export interface ClearFilterPayload {
-    filter: FilterKeys;
-    key?: string;
-}
-
 
 const filterSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
         setFilter: (state: FiltersState, action: PayloadAction<Partial<FiltersState>>) => {
-            return { ...state, ...action.payload };
+            Object.assign(state, action.payload);
         },
         clearAllFilters: (state: FiltersState) => {
-            state.type_tour = initialState.type_tour;
-            state.price = initialState.price;
-            state.duration = initialState.duration;
+            Object.assign(state, initialState);
         },
     },
 });

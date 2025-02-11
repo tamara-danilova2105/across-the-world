@@ -15,7 +15,7 @@ import {
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
-import { useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
@@ -26,22 +26,34 @@ type FilterRangeKeys = keyof DataFilterRange;
 export const FilterBar = () => {
 
     const filterState = useSelector(getFiltersState)
+    const [filtersStatus, setFiltersStatus] = useState(filterState)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setFiltersStatus(filterState);
+    }, [filterState])
 
     const handleChange = useCallback(
         (key: FilterKeys | FilterRangeKeys, value: any) => {
-            if (key === 'type_tour') {
-                const updatedTypeTour = {
-                    ...(filterState.type_tour || {}),
-                    ...value,
-                };
-                dispatch(setFilter({ type_tour: updatedTypeTour }));
-            } else {
-                dispatch(setFilter({ [key]: value }));
-            }
+            setFiltersStatus((prevFilters) => {
+                if (key === 'type_tour') {
+                    return {
+                        ...prevFilters,
+                        type_tour: {
+                            ...(prevFilters.type_tour || {}),
+                            ...value,
+                        },
+                    };
+                } else {
+                    return {
+                        ...prevFilters,
+                        [key]: value,
+                    };
+                }
+            });
         },
-        [dispatch, filterState]
-    );
+        []
+    )
 
 
     const renderFilterElement = (key: FilterKeys) => {
@@ -52,7 +64,7 @@ export const FilterBar = () => {
                 key={key}
                 title={title}
                 filters={items}
-                selectedFilters={filterState[key]}
+                selectedFilters={filtersStatus[key]}
                 onChange={(value: Record<string, boolean>) => handleChange(key, value)}
             />
         )
@@ -69,7 +81,7 @@ export const FilterBar = () => {
                 minLimit={minLimit}
                 maxLimit={maxLimit}
                 step={step}
-                selectedFilters={filterState[key]}
+                selectedFilters={filtersStatus[key]}
                 onChange={(values: [number, number]) => handleChange(key, values)}
             />
         )
@@ -87,7 +99,7 @@ export const FilterBar = () => {
                 className={styles.btnContainer}
                 max
             >
-                <Button>
+                <Button onClick={() => dispatch(setFilter(filtersStatus))}>
                     Применить
                 </Button>
                 <Button

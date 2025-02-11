@@ -29,4 +29,8 @@
             outline: none; 
         }
     }
+
+    &.modal_open input:focus {
+        pointer-events: none;
+    }
 }

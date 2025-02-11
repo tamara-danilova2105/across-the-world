@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export enum AppRouters {
     main = 'main',
     tours = 'tours',
-    // tours_region = 'tours_region',
+    tours_region = 'tours_region',
     tour_detais = 'tour_detais',
     about = 'about',
     blog = 'blog',
@@ -12,6 +12,7 @@ export enum AppRouters {
     not_found = 'not_found',
     privacy_policy = 'privacy_policy',
     signin = 'signin',
+    forgot_password = 'forgot-password',
     refresh_password = 'refresh_password',
     admin = 'admin',
     admin_tours = 'admin_tours',
@@ -21,6 +22,8 @@ export enum AppRouters {
     admin_news_create = 'admin_news_create',
     admin_news_edit = 'admin_news_edit',
     admin_discount = 'admin_discount',
+    admin_discount_create = 'admin_discount_create',
+    admin_discount_edit = 'admin_discount_edit',
     admin_moderation_reviews = 'admin_moderation_reviews',
 };
 

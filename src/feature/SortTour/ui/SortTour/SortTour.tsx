@@ -5,7 +5,6 @@ import styles from './SortTour.module.scss'
 
 export const SortTour = () => {
 
-
     return(
         <Stack
             align='center'

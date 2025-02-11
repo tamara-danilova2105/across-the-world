@@ -17,7 +17,7 @@
         }
 
         @include mq.mobile-l {
-            gap: 10px; //TODO - заменить на 8 var(--gap-s) или 16 (--gap-m)
+            gap: var(--gap-s);
             padding: 0 10px;
         }
 

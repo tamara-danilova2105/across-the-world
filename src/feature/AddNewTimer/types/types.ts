@@ -1,3 +1,5 @@
+import { DirectionTour } from "@/entities/Tours";
+
 export interface ImagesWithDetails {
     _id: string;
     src: string;
@@ -5,6 +7,11 @@ export interface ImagesWithDetails {
     header: string;
     category: string;
     describe: string;
+}
+
+export interface Regions {
+    direction: DirectionTour;
+    region: string;
 }
 
 

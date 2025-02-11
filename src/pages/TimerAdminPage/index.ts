@@ -1,0 +1,1 @@
+export { LazyTimerAdminPage as TimerAdminPage } from './TimerAdminPage.lazy';
