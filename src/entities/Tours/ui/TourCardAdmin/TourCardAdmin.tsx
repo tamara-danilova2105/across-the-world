@@ -7,17 +7,17 @@ import {
     Globe as GlobeOff,
     Edit
 } from 'lucide-react';
-import styles from './TourCardAdmin.module.scss';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Select } from '@/shared/ui/Select';
 import { Button } from '@/shared/ui/Button';
 import { Stack } from '@/shared/ui/Stack';
 import { formatDateRange } from '@/shared/lib/formatDateRange';
-import { DateTours } from '../../model/types/types';
-import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
-import { toast } from 'react-toastify';
 import { apiUrl } from '@/shared/api/endpoints';
 import { getStyles } from '@/shared/lib/getStyles';
+import { DateTours } from '../../model/types/types';
+import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
+import styles from './TourCardAdmin.module.scss';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -26,8 +26,6 @@ interface TourCardAdminProps {
     dates: DateTours[];
     isPublished: boolean;
 }
-
-const TOTAL_SPOTS = 16; //TODO
 
 export const TourCardAdmin = (props: TourCardAdminProps) => {
     const { tourId, title, imageUrl, dates, isPublished } = props;
@@ -39,15 +37,17 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     const formattedDates = formData.map(date => ({
         id: date._id,
         spots: date.spots,
+        spotsTotal: date.spotsTotal,
         option: formatDateRange(date.date_start, date.date_finish)
     }));
 
     const [selectedDateInfo, setSelectedDateInfo] = useState({
         id: formData[0]._id,
         date: formattedDates[0].option,
-        spots: formData[0].spots
+        spots: formData[0].spots,
+        spotsTotal: formData[0].spotsTotal,
     });
-
+    
     const handleDateChange = (option: string) => {
         const selected = formattedDates.find(d => d.option === option);
         if (selected) {
@@ -182,12 +182,12 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                     <span>Мест осталось:</span>
                     <div className={styles.spots_select}>
                         <Select
-                            value={selectedDateInfo.spots}
-                            options={Array.from({ length: TOTAL_SPOTS + 1 }, (_, i) => i)}
+                            value={Number(selectedDateInfo.spots)}
+                            options={Array.from({ length: 16 + 1 }, (_, i) => i)}
                             onChange={handleSpotsChange}
                         />
                     </div>
-                    <span>из {TOTAL_SPOTS}</span>
+                    <span>из 16</span>
                 </Stack>
 
                 <Button

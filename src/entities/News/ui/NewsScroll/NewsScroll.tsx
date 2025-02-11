@@ -34,7 +34,7 @@ export const NewsScroll = ({ news, isLoading }: NewsScrollProps) => {
                     <Skeleton
                         key={index}
                         width='832px'
-                        height="500px"
+                        height="400px"
                     />
                 ))
             ) : (

@@ -1,13 +1,11 @@
 import { Tour, TourCardAdmin, useGetAllToursQuery } from "@/entities/Tours";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import styles from './ToursAdmin.module.scss';
 import { Skeleton } from "@/shared/ui/Skeleton";
+import styles from './ToursAdmin.module.scss';
 
 export const ToursAdmin = () => {
-
     const { data: toursData = [], isLoading, error } = useGetAllToursQuery({ admin: true });
-    console.log(toursData);
 
     return (
         <Stack
@@ -33,6 +31,7 @@ export const ToursAdmin = () => {
                 ) : (
                     toursData?.tours?.map(({ _id, dates, isPublished, tour, imageCover }: Tour) => (
                         <TourCardAdmin
+                            key={_id}
                             title={tour}
                             imageUrl={imageCover[0].src}
                             dates={dates}
