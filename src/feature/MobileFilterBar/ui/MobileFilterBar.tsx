@@ -48,7 +48,7 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
                     >
                         <X/>
                     </Button>
-                    <FilterBar />
+                    <FilterBar toggleMenu={toggleMenu}/>
                 </Stack>
             </Stack>
         </Stack>

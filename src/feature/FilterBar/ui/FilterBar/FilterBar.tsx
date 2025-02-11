@@ -23,7 +23,11 @@ type DataFilterRange = typeof dataFilterRange;
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
 
-export const FilterBar = () => {
+interface funcProps {
+    toggleMenu?: () => void;
+}
+
+export const FilterBar = ({toggleMenu} : funcProps) => {
 
     const filterState = useSelector(getFiltersState)
     const [filtersStatus, setFiltersStatus] = useState(filterState)
@@ -99,7 +103,10 @@ export const FilterBar = () => {
                 className={styles.btnContainer}
                 max
             >
-                <Button onClick={() => dispatch(setFilter(filtersStatus))}>
+                <Button onClick={() => { 
+                    dispatch(setFilter(filtersStatus))
+                    if (toggleMenu) toggleMenu()
+                }}>
                     Применить
                 </Button>
                 <Button

@@ -15,6 +15,7 @@
         text-align: left;
         width: 300px;
         gap: var(--gap-s);
+        padding: 0 1rem;
 
         @include mobile-m {
             p {
