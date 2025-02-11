@@ -10,7 +10,16 @@ import { Region } from "@/shared/types/types";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
-import { DateRange } from "../SearchToursMain/SearchToursMain";
+import { useRegionHandler } from "@/shared/hooks/useRegionHandler";
+import { useDateRange } from "@/shared/hooks/useDateRange";
+import { useSelector } from "react-redux";
+import { getFiltersState } from "@/feature/FilterBar/model/filterSlice";
+import { parsedDate } from "@/shared/lib/parsedDate";
+
+interface DateRange {
+    startDate: Date | null;
+    endDate: Date | null;
+}
 
 interface MobileSearchProps {
     regions?: Region[] | [];
@@ -21,30 +30,33 @@ interface MobileSearchProps {
 export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchProps) => {
     const [selectedRange, setSelectedRange] = useState<DateRange>({ startDate: null, endDate: null });
     const [changeOpen, drawModal] = useModal();
-    const { watch, setValue } = useFormContext();
+    const { watch } = useFormContext();
 
     const dateValue = watch("date")
     const regionValue = watch("region")
 
-    const handleClearDate = () => {
-        setValue("date", "");
-    };
+    const filters = useSelector(getFiltersState)
+    const date = parsedDate(filters.dates)
 
-    const handleClearRegion = () => {
-        setValue("region", "");
-    };
+    const { handleClearRegion } = useRegionHandler()
+    const { clearDate } = useDateRange({})
 
-    const dateIcon = dateValue ? (
-        <X onClick={handleClearDate} style={{ cursor: "pointer" }} type="button" />
-    ) : (
-        <CalendarRange />
-    );
 
-    const searchIcon = regionValue ? (
-        <X onClick={handleClearRegion} style={{ cursor: "pointer" }} type="button" />
-    ) : (
-        <Search />
-    );
+    const dateIcon = dateValue ? 
+        <X         
+            onClick={(e: React.MouseEvent<SVGElement>) => {
+            e.stopPropagation()
+            clearDate()
+        }}  style={{ cursor: 'pointer' }} type="button" />
+        : <CalendarRange />
+
+    const searchIcon = regionValue ? 
+        <X  onClick={(e: React.MouseEvent<SVGElement>) => {
+            e.stopPropagation()
+            handleClearRegion()
+        }} style={{ cursor: "pointer" }} type="button" />
+        : <Search />
+
 
     return (
         <Stack
@@ -74,7 +86,7 @@ export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchPro
                 className={styles.openModal}
                 max
             >
-                <Text>{regionValue || "Куда?"}</Text>
+                <Text>{filters.region || "Куда?"}</Text>
                 {searchIcon}
             </Stack>
             <Stack
@@ -84,7 +96,7 @@ export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchPro
                 className={styles.openModal}
                 max
             >
-                <Text>{dateValue || "Когда?"}</Text>
+                <Text>{date || "Когда?"}</Text>
                 {dateIcon}
             </Stack>
         </Stack>

@@ -6,6 +6,7 @@ import { Text } from "@/shared/ui/Text/Text";
 import { FilterRangeCategory } from "../../lib/data";
 import { useRange } from "../../lib/useRange";
 import styles from './FilterRange.module.scss';
+import { FilterBarItem } from "../FilterBarItem/FilterBarItem";
 
 interface FilterRangeProps extends FilterRangeCategory {
     onChange: (values: [number, number]) => void;
@@ -83,6 +84,7 @@ export const FilterRange = ({
                         className={styles.slider}
                     />
                 </form>
+               
             </FormProvider>
         </Stack>
     );

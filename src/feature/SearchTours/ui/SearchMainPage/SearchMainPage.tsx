@@ -7,6 +7,7 @@ import { Stack } from "@/shared/ui/Stack";
 import { useResize } from "@/shared/hooks/useResize";
 import { RegionToursMobile } from "../RegionTours/RegionToursMobile/RegionToursMobile";
 import { useModal } from "@/shared/hooks/useModal";
+import { getStyles } from "@/shared/lib/getStyles";
 
 interface SearchMainProps {
     regions?: Region[] | [];
@@ -16,29 +17,29 @@ interface SearchMainProps {
 
 export const SearchMainPage = ({ regions = [], error, isLoading} : SearchMainProps) => {
 
-    const width = useResize();
-    const [changeOpen, drawModal] = useModal();
+    const width = useResize()
+    const [changeOpen, drawModal, isOpen ] = useModal()
 
 
     return (
         <Stack align="center" justify="center"
-            className={styles.wrapper}>
+            className={getStyles(styles.wrapper, {[styles.modal_open]: isOpen}, [])}
+        >
+            <RegionTours 
+                regions={regions}
+                error={error}
+                isLoading={isLoading}
+                changeOpen={width < 768 ? changeOpen : undefined}
+                placeholder="Найди свое приключение здесь..."
+            /> 
 
-                <RegionTours 
-                    regions={regions}
-                    error={error}
-                    isLoading={isLoading}
-                    changeOpen={width < 768 ? changeOpen : undefined}
-                    placeholder="Найди свое приключение здесь..."
-                /> 
-
-                {drawModal(
-                    <RegionToursMobile
-                    regions={regions}
-                    error={error}
-                    isLoading={isLoading}
-                    changeOpen={changeOpen} />,
-                    true)}
+            {drawModal(
+                <RegionToursMobile
+                regions={regions}
+                error={error}
+                isLoading={isLoading}
+                changeOpen={changeOpen} />,
+                true)}
         </Stack>
     )
 }

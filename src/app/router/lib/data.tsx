@@ -20,7 +20,10 @@ import {
     getRouteToursDetails,
     getRouteAdminDiscount,
     getRouteAdminModerationReviews,
-    // getRouteToursByRegion,
+    getRouteAdminDiscountCreate,
+    getRouteAdminDiscountEdit,
+    getRouteToursByRegion,
+    getRouteForgotPassword,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
@@ -40,6 +43,9 @@ import { ModerationReviewsPage } from "@/pages/ModerationReviewsPage";
 import { AdminToursPage } from "@/pages/AdminToursPage";
 import { AdminNewsPage } from "@/pages/AdminNewsPage";
 import { EditNewsPage } from "@/pages/EditNewsPage";
+import { TimerAdminPage } from "@/pages/TimerAdminPage";
+import EditTimerPage from "@/pages/EditTimerPage/EditTimerPage";
+import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -52,11 +58,11 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         title: 'Туры',
         page: <ToursPage />
     },
-    // [AppRouters.tours_region]: {
-    //     path: getRouteToursByRegion(':region'),
-    //     title: 'Туры',
-    //     page: <ToursPage />
-    // },
+    [AppRouters.tours_region]: {
+        path: getRouteToursByRegion(':region'),
+        title: 'Туры',
+        page: <ToursPage />
+    },
     [AppRouters.tour_detais]: {
         path: getRouteToursDetails(':region', ':id'),
         page: <TourDetailsPage />
@@ -91,6 +97,10 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.signin]: {
         path: getRouteSignin(),
         page: <SigninPage />
+    },
+    [AppRouters.forgot_password]: {
+        path: getRouteForgotPassword(),
+        page: <ForgotPasswordPage />
     },
     [AppRouters.refresh_password]: {
         path: getRouteRefreshPassword(),
@@ -133,7 +143,17 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_discount]: {
         path: getRouteAdminDiscount(),
         // onlyAdmin: true,
+        page: <TimerAdminPage />
+    },
+    [AppRouters.admin_discount_create]: {
+        path: getRouteAdminDiscountCreate(),
+        // onlyAdmin: true,
         page: <CreateTimerPage />
+    },
+    [AppRouters.admin_discount_edit]: {
+        path: getRouteAdminDiscountEdit(':id'),
+        // onlyAdmin: true,
+        page: <EditTimerPage />
     },
     [AppRouters.admin_moderation_reviews]: {
         path: getRouteAdminModerationReviews(),

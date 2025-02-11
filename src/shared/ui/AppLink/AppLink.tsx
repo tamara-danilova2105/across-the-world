@@ -7,7 +7,7 @@ import styles from './AppLink.module.scss';
 interface AppLinkProps extends LinkProps  {
     className?: string;
     children: ReactNode;
-    variant?: 'link' | 'button';
+    variant?: 'link' | 'button' | 'just_button';
     size?: '14' | '16' | '18';
     circle?: boolean;
     cta?: boolean;
@@ -26,7 +26,7 @@ export const AppLink = (props: AppLinkProps) => {
 
     const mode = {
         [styles.circle]: circle,
-        [styles.cta]: cta
+        [styles.cta]: cta,
     };
 
     const additional = [

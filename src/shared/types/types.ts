@@ -10,8 +10,3 @@ export interface Region {
     region: string;
     __v: number;
 }
-
-export interface ChangeStateProps {
-    handleChangeState?: () => void;
-    showExplain?: () => void;
-}
