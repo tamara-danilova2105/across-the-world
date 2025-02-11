@@ -1,0 +1,14 @@
+@use '@/app/styles/media-queries.scss' as *;
+
+.label {
+    display: block;
+    font-size: var(--font-size-16);
+    font-family: var(--font-family-geometria500);
+}
+
+.input_container {
+    @include mobile-xl {
+        flex-direction: column;
+        gap: var(--gap-s);
+    }
+}

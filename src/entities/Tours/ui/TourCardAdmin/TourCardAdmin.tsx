@@ -16,6 +16,8 @@ import { formatDateRange } from '@/shared/lib/formatDateRange';
 import { DateTours } from '../../model/types/types';
 import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
 import { toast } from 'react-toastify';
+import { apiUrl } from '@/shared/api/endpoints';
+import { getStyles } from '@/shared/lib/getStyles';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -25,7 +27,7 @@ interface TourCardAdminProps {
     isPublished: boolean;
 }
 
-const TOTAL_SPOTS = 16;
+const TOTAL_SPOTS = 16; //TODO
 
 export const TourCardAdmin = (props: TourCardAdminProps) => {
     const { tourId, title, imageUrl, dates, isPublished } = props;
@@ -152,8 +154,15 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
             </div>
 
             <div className={styles.imageWrapper}>
-                <img src={imageUrl} alt={title} className={styles.image} />
-                {isPublishedState && <div className={styles.publishedLabel}>Опубликовано</div>}
+                <img
+                    src={`${apiUrl}${imageUrl}`} //TODO
+                    alt={title} className={styles.image}
+                />
+
+                <div className={getStyles(styles.publishedLabel, {[styles.publish]: isPublished}, [])}>
+                    {isPublished ? 'Опубликовано' : 'Черновик'}
+                </div>
+
             </div>
 
             <Stack className={styles.content} direction='column' gap='16'>

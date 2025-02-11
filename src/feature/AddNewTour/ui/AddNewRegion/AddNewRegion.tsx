@@ -4,7 +4,7 @@ import { Text } from '@/shared/ui/Text';
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import styles from './AddNewRegion.module.scss';
-import { useSaveRegionMutation } from '@/entities/Region/api/api';
+import { useSaveRegionMutation } from '@/entities/Region/api/api'; //TODO
 import { DirectionTour } from '@/entities/Tours';
 
 interface AddNewRegionProps {
@@ -21,10 +21,10 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
 
     const handleAddOption = async () => {
         try {
-            const newRegion = { direction, region }
-            await saveRegion(newRegion).unwrap();
+            await saveRegion({ direction, region }).unwrap();
+            setRegion('');
         } catch (error) {
-            console.error('Save region', error); //TODO как-то обработать ошибку
+            console.error('Ошибка при добавлении региона:', error); //TODO как-то обработать ошибку
         }
     };
 

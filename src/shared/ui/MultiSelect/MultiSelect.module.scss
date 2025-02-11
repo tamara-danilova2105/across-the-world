@@ -39,6 +39,10 @@
         overflow-y: auto;
     }
 
+    .error {
+        border-color: var(--error-color);
+    }
+
     .option {
         padding: 8px;
         cursor: pointer;

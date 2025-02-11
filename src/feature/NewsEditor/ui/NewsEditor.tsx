@@ -94,16 +94,16 @@ export const NewsEditor = () => {
 
     return (
         <Stack direction='column' gap="24" className={styles.container}>
+            {error && (
+                <Text color="red" size="18">
+                    Новость не найдена
+                </Text>
+            )}
+
             <Stack max justify='between' className={styles.header_container}>
                 <Text type='h2' size='32' color='blue' font='geometria600'>
                     Создать новость
                 </Text>
-
-                {error && (
-                    <Text color="red" size="18">
-                        Новость не найдена
-                    </Text>
-                )}
 
                 <Button
                     loading={isSaveLoading || isEditLoading}

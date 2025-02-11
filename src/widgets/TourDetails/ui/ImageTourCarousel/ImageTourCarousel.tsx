@@ -4,6 +4,7 @@ import styles from './ImageTourCarousel.module.scss';
 import { Stack } from "@/shared/ui/Stack";
 import { ArrowIcon } from "@/shared/assets/svg/arrowIcons";
 import { Text } from "@/shared/ui/Text";
+import { apiUrl } from "@/shared/api/endpoints";
 
 
 interface ImageTourCarouselProps {
@@ -36,7 +37,7 @@ export const ImageTourCarousel = (props: ImageTourCarouselProps) => {
             </Text>
 
             <img 
-                src={images[currentSlide].src} 
+                src={`${apiUrl}${images[currentSlide].src}`} 
                 alt='' //TODO alt добавить
             />
 

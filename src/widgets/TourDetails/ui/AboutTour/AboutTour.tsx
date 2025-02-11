@@ -19,20 +19,29 @@ export const AboutTour = (props: AboutTourProps) => {
     return (
         <Stack direction='column' gap='48'>
             <Description description={tour.description} />
+
             <TourProgram program={tour.program} />
-            {tour.mapMarker && (
+
+            {(tour.mapMarker && tour.mapMarker.length !== 0) && (
                 <RouteMap locations={tour.mapMarker} />
             )}
+
             <IncludedInPrice details={tour.details} />
-            <StayDetails
-                images={tour.hotels}
-                comfort={tour.comfort}
-            />
+
+            {(tour.hotels && tour.hotels.length !== 0) && (
+                <StayDetails
+                    images={tour.hotels}
+                    comfort={tour.comfort}
+                />
+            )}
+
             <FAQSection />
+
             <ArrivalInfo
                 locations={tour.locations}
                 dates={tour.dates[0]}
             />
+
             <ReviewsTour tourId={tour._id} />
         </Stack>
     );

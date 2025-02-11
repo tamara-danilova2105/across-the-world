@@ -1,5 +1,4 @@
 import { OurTours } from "@/widgets/OurTours";
-import { dataTours } from "@/widgets/OurTours/lib/data";
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack";
@@ -9,12 +8,15 @@ import { BookingForm } from "../BookingForm/BookingForm";
 import { AboutTour } from "../AboutTour/AboutTour";
 import { Infornations } from "../AboutTour/ui/Infornations/Infornations";
 import styles from './TourDetails.module.scss';
+import { useGetTourByIdQuery } from "@/entities/Tours/api/api";
+import { DayProgram } from "@/entities/Tours/model/types/types";
+import { Loading } from "@/shared/ui/Loading";
 
 export const TourDetails = () => {
     //TODO - id получать из роутера
-    const id = '5'
-    //TODO - получать данные о туре с бэкенда 
-    const tour = dataTours.find((tour) => tour._id === id);
+    const id = '67a8ec222ea4f1d8bbf40b24'
+
+    const { data: tour, isLoading } = useGetTourByIdQuery(id);
 
     const width = useResize();
     const isMobile = width <= 768;
@@ -23,7 +25,7 @@ export const TourDetails = () => {
     //TODO - если будет error, то делать редирект на Not Found Page
     if (!tour) return null
 
-    const allImages = tour.program.flatMap(item => item.images || []);
+    const allImages = tour.program.flatMap((item: DayProgram) => item.images || []);
 
     const infoContant = (
         <Infornations
@@ -42,6 +44,10 @@ export const TourDetails = () => {
     const aboutContent = (
         <AboutTour tour={tour} />
     );
+
+    if (isLoading) {
+        return <Loading width='100' height='100' />
+    }
 
     return (
         <main>

@@ -5,6 +5,7 @@ import { useResize } from "@/shared/hooks/useResize";
 import { useModal } from "@/shared/hooks/useModal";
 import { ImageTourCarousel } from "../ImageTourCarousel/ImageTourCarousel";
 import styles from './ImagesTourGrid.module.scss';
+import { apiUrl } from "@/shared/api/endpoints";
 
 interface ImagesTourProps {
     images: Image[]
@@ -58,7 +59,7 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
                 {images.slice(0, visibleImagesCount).map((img, index) => (
                     <img 
                         key={index} 
-                        src={img.src} 
+                        src={`${apiUrl}${img.src}`} //TODO
                         alt='' //TODO
                         className={styles.image}
                         onClick={() => handleClick(index)}
@@ -70,7 +71,7 @@ export const ImagesTourGrid = (props: ImagesTourProps) => {
                         onClick={() => handleClick(visibleImagesCount)}
                     >
                         <img
-                            src={images[visibleImagesCount].src}
+                            src={`${apiUrl}${images[visibleImagesCount].src}`} //TODO
                             alt='' //TODO alt добавить
                             className={styles.image}
                         />

@@ -1,3 +1,4 @@
+import { DataFAQ } from "@/entities/FAQ/model/types/types";
 import { Image } from "@/shared/types/types";
 
 export type ActivityLevel = 'Для всех' | 'Низкий' | 'Средний' | 'Высокий' | 'Очень высокий';
@@ -7,7 +8,7 @@ export type TypeTour = 'Трекинг' | 'Ретрит / оздоровител
 
 export interface Price {
     amount: number;
-    currency: "₽" | "$";
+    currency: "₽" | "$" | "€";
 };
 
 export interface DateTours {
@@ -62,7 +63,8 @@ export interface Tour {
     comfort: ComfortType;
     description: string;
     program: DayProgram[],
-    hotels: Image[],
+    hotels?: Image[],
     mapMarker?: MapMarker[],
     isPublished: boolean,
+    mustKnow: DataFAQ[],
 }

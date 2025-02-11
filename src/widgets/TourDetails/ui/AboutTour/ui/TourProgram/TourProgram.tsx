@@ -1,4 +1,4 @@
-import { Accordion } from "@/entities/Accordion";
+import { Accordion } from "@/shared/ui/Accordion";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { DayTourProgram } from "./ui/DayProgram/DayTourProgram";
@@ -12,8 +12,8 @@ export const TourProgram = (props: TourProgramProps) => {
     const { program } = props;
 
     return (
-        <Stack 
-            direction="column" 
+        <Stack
+            direction="column"
             gap='24' max
             tag='section'
             id='tour-program'
@@ -24,11 +24,11 @@ export const TourProgram = (props: TourProgramProps) => {
 
             {program.map((accordion: DayProgram, index: number) => (
                 <Accordion
-                    title={<Text size="18">{accordion.title}</Text>}
+                    title={<Text size="18">День {index + 1}. {accordion.title}</Text>}
                     content={
-                        <DayTourProgram 
-                            images={accordion.images} 
-                            details={accordion.details} 
+                        <DayTourProgram
+                            images={accordion.images}
+                            details={accordion.details}
                         />
                     }
                     isSecond={index === 0}

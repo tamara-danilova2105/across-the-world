@@ -1,7 +1,10 @@
+import { FAQEditor } from "@/feature/FAQEditor";
+import styles from './AdminPage.module.scss';
+
 const AdminPage = () => {
     return (
-        <main>
-
+        <main className={styles.main}>
+            <FAQEditor />
         </main>
     );
 };

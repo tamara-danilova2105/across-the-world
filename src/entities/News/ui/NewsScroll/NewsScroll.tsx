@@ -61,4 +61,3 @@ export const NewsScroll = ({ news, isLoading }: NewsScrollProps) => {
         </Stack>
     );
 };
-

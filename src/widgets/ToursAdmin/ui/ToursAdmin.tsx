@@ -9,7 +9,6 @@ export const ToursAdmin = () => {
     const { data: toursData = [], isLoading, error } = useGetAllToursQuery({ admin: true });
     console.log(toursData);
 
-
     return (
         <Stack
             direction='column' gap="24"
@@ -29,7 +28,7 @@ export const ToursAdmin = () => {
             <div className={styles.grid_container}>
                 {isLoading ? (
                     Array.from({ length: 6 }).map((_, index) => (
-                        <Skeleton key={index} width="24rem" height="344px" />
+                        <Skeleton key={index} width="100%" height="344px" />
                     ))
                 ) : (
                     toursData?.tours?.map(({ _id, dates, isPublished, tour, imageCover }: Tour) => (

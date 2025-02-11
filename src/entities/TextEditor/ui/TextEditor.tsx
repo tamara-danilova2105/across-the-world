@@ -6,9 +6,11 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import { Bold, Italic, Strikethrough, List, ListOrdered, Heading3 } from 'lucide-react';
 import styles from './TextEditor.module.scss';
+import { getStyles } from '@/shared/lib/getStyles';
 
 interface TextEditorProps {
     initialContent?: string;
+    isError?: boolean;
     onChange: (value: string) => void;
 }
 
@@ -30,7 +32,9 @@ const MenuButton = ({
     </button>
 );
 
-export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
+export function TextEditor(props: TextEditorProps) {
+    const { initialContent = '', isError, onChange } = props;
+
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
@@ -69,7 +73,7 @@ export function TextEditor({ initialContent = '', onChange }: TextEditorProps) {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={getStyles(styles.container, { [styles.error]: isError }, [])}>
             <div className={styles.toolbar}>
                 <MenuButton
                     onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}

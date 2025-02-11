@@ -23,14 +23,16 @@ export const IncludedInPrice = (props: IncludedInPriceProps) => {
             direction="column"
             gap='24' max
         >
-            <Text type="h3" size='24' font='geometria500'>Включено в стоимость</Text>
+            <Text type="h3" size='24' font='geometria500'>
+                Включено в стоимость
+            </Text>
 
-            {Object.entries(details).map(([key, value]) =>
+            {Object.entries(details).filter(([key]) => key !== '_id').map(([key, value]) =>
                 <React.Fragment key={key}>
-                    <Text size="14" color='blue' font='unbounded'>
-                        {getText[key as 'included' | 'notIncluded']}
+                    <Text size="16" color='blue' font='unbounded'>
+                        {getText[key as 'included' | 'notIncluded']}:
                     </Text>
-                    {/* {parse(news.description)} */}
+
                     <div
                         dangerouslySetInnerHTML={{ __html: value }}
                         className={key === 'included' ? styles.includedList : styles.notIncludedList}
