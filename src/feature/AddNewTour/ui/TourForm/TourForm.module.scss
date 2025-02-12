@@ -24,7 +24,7 @@
 
         h2 {
             @include mobile-xl {
-                font-size: var(--font-size-24);
+                font-size: var(--font-size-20);
             }
         }
 
@@ -71,8 +71,9 @@
 
             @include mobile-xl {
                 font-size: var(--font-size-16);
-                width: 2.5rem;
-                height: 2.5rem;
+                width: 2.75rem;
+                height: 2.75rem;
+                border-radius: 0.5rem;
 
                 span {
                     display: none;
