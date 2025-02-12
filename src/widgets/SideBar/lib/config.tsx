@@ -39,7 +39,7 @@ export const sidebarItems = [
     {
         path: getRouteAdminDiscount(),
         icon: <Percent className="w-5 h-5" />,
-        label: 'Мои скидки'
+        label: 'Ранее бронирование'
     },
     {
         path: getRouteAdminDiscountCreate(),

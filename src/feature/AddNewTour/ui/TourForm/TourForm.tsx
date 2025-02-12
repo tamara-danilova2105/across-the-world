@@ -27,7 +27,7 @@ import { TourProgram } from "../TourProgram/TourProgram";
 import { TourLocation } from "../TourLocation/TourLocation";
 import styles from './TourForm.module.scss';
 import { FAQForm } from "@/entities/FAQ";
-import { Eye, FileText, Upload } from "lucide-react";
+import { FileText, Upload } from "lucide-react";
 
 const MIN_GRID_LENGHT = 7;
 
@@ -68,7 +68,7 @@ export const TourForm = () => {
 
     const formData = watch();
     console.log(formData);
-    
+
 
     //TODO добавить обработку ошибки и загрузки
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
@@ -159,12 +159,6 @@ export const TourForm = () => {
                         >
                             <FileText />
                             <span>сохранить черновик</span>
-
-                        </Button>
-
-                        <Button color='outline'>
-                            <Eye />
-                            <span>предпросмотр</span>
                         </Button>
                     </Stack>
                 </Stack>

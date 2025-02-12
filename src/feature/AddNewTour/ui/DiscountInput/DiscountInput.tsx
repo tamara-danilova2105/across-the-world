@@ -61,7 +61,7 @@ export const DiscountInput = (props: DiscountInputProps) => {
                         onChange={handleCheckboxChange}
                     />
                     <label htmlFor="hasDiscount" className={styles.label}>
-                        Добавить скидку
+                        Добавить скидку "ранее бронированиe"
                     </label>
                 </Stack>
 
