@@ -1,0 +1,1 @@
+export { LazyEditTourPage as EditTourPage } from './EditTourPage.lazy';

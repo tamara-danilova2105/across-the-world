@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,11 +28,20 @@ import { TourLocation } from "../TourLocation/TourLocation";
 import styles from './TourForm.module.scss';
 import { FAQForm } from "@/entities/FAQ";
 import { FileText, Upload } from "lucide-react";
+import { useParams } from "react-router";
+import { useGetTourByIdQuery } from "@/entities/Tours/api/api";
 
 const MIN_GRID_LENGHT = 7;
 
 export const TourForm = () => {
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Tour>({
+    const { id } = useParams<{ id: string }>();
+
+    const { data: tourData, isLoading } = useGetTourByIdQuery(id || '', { skip: !id });
+    console.log(tourData);
+
+
+
+    const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<Tour>({
         resolver: zodResolver(tourSchema),
         defaultValues: {
             types: [],
@@ -65,6 +74,12 @@ export const TourForm = () => {
             mustKnow: [],
         }
     });
+
+    useEffect(() => {
+        if (tourData) {
+            reset(tourData);
+        }
+    }, [tourData, reset]);
 
     const formData = watch();
     console.log(formData);
@@ -129,6 +144,9 @@ export const TourForm = () => {
             }
         }
     };
+
+    //TODO
+    if (isLoading) return <p>Загрузка...</p>
 
     return (
         <Stack

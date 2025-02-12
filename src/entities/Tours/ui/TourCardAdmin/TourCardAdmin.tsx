@@ -18,6 +18,8 @@ import { getStyles } from '@/shared/lib/getStyles';
 import { DateTours } from '../../model/types/types';
 import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
 import styles from './TourCardAdmin.module.scss';
+import { getRouteAdminToursEdit } from '@/app/router/lib/helper';
+import { Link } from 'react-router-dom';
 
 interface TourCardAdminProps {
     tourId: string;
@@ -47,7 +49,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         spots: formData[0].spots,
         spotsTotal: formData[0].spotsTotal,
     });
-    
+
     const handleDateChange = (option: string) => {
         const selected = formattedDates.find(d => d.option === option);
         if (selected) {
@@ -122,10 +124,13 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                             <Copy className={styles.icon} />
                             Создать копию тура
                         </button>
-                        <button className={styles.menuItem}>
+                        <Link
+                            to={getRouteAdminToursEdit(tourId)}
+                            className={styles.menuItem}
+                        >
                             <Edit className={styles.icon} />
                             Редактировать
-                        </button>
+                        </Link>
                         <button
                             onClick={togglePublished}
                             className={styles.menuItem}
@@ -159,7 +164,7 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                     alt={title} className={styles.image}
                 />
 
-                <div className={getStyles(styles.publishedLabel, {[styles.publish]: isPublished}, [])}>
+                <div className={getStyles(styles.publishedLabel, { [styles.publish]: isPublished }, [])}>
                     {isPublished ? 'Опубликовано' : 'Черновик'}
                 </div>
 
