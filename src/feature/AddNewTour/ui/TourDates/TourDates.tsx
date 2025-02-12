@@ -24,8 +24,8 @@ export const TourDates = (props: TourDatesProps) => {
             {
                 date_start: '',
                 date_finish: '',
-                price: { amount: 0, currency: '$' },
-                spots: 0,
+                price: { amount: '', currency: '$' },
+                spotsTotal: '',
             },
         ]);
     };
@@ -85,7 +85,8 @@ export const TourDates = (props: TourDatesProps) => {
                         <div className={styles.flex}>
                             <input
                                 value={date.price.amount}
-                                onChange={(e) => updateDateRange(index, "price", { ...date.price, amount: Number(e.target.value) })}
+                                type='number'
+                                onChange={(e) => updateDateRange(index, "price", { ...date.price, amount: e.target.value })}
                                 className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["price"]?.["amount"]?.message }, [])}
                             />
 
@@ -104,9 +105,10 @@ export const TourDates = (props: TourDatesProps) => {
                         <label className={stylesTour.label}>Количество мест</label>
                         <div className={styles.flex}>
                             <input
-                                value={date.spots}
-                                onChange={(e) => updateDateRange(index, "spots", Number(e.target.value))}
-                                className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["spots"]?.message }, [])}
+                                value={date.spotsTotal}
+                                type='number'
+                                onChange={(e) => updateDateRange(index, "spotsTotal", e.target.value)}
+                                className={getStyles(stylesTour.input, { [stylesTour.error]: !!errors?.[index]?.["spotsTotal"]?.message }, [])}
                             />
                             <button
                                 type="button"
@@ -116,8 +118,8 @@ export const TourDates = (props: TourDatesProps) => {
                                 <Trash2 />
                             </button>
                         </div>
-                        {errors?.[index]?.spots && (
-                            <Text color="red">{errors[index]?.spots?.message}</Text>
+                        {errors?.[index]?.spotsTotal && (
+                            <Text color="red">{errors[index]?.spotsTotal?.message}</Text>
                         )}
                     </div>
                 </div>

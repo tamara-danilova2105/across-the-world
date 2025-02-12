@@ -62,7 +62,7 @@ export const TourCard = ({ tourData }: TourCardProps) => {
                             </Text>
 
                             <Text size="18" font='geometria500' className={styles.new_price}>
-                                {discountedPrice(dates[0].price.amount, discount.percentage).toLocaleString("ru-RU")}
+                                {discountedPrice(Number(dates[0].price.amount), discount.percentage).toLocaleString("ru-RU")}
                                 {dates[0].price.currency}
                             </Text>
                         </Stack>

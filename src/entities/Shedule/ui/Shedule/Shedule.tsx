@@ -29,7 +29,7 @@ export const Shedule = () => {
                     date: `${formatDate(dateObj.date_start)} - ${formatDate(dateObj.date_finish)}`,
                     _id: tour._id,
                     tour: tour.tour,
-                    spots: dateObj.spots,
+                    spots: Number(dateObj.spots),
                     regions: tour.regions
                 }
 

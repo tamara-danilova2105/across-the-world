@@ -1,23 +1,60 @@
-@use './media-queries' as mq;
+@use './media-queries' as *;
 
 @mixin section-style {
     z-index: 1;
     width: 1280px;
     margin: auto;
 
-    @include mq.desktop-m {
+    @include desktop-m {
         width: 1100px;
         padding: 0 40px;
     }
 
-    @include mq.tablet-l {
+    @include tablet-l {
         width: 100%;
         padding: 0 30px;
     }
 
-    @include mq.mobile-l {
+    @include mobile-l {
         width: 100%;
         padding: 0 20px;
+    }
+}
+
+@mixin section-admin-style {
+    width: 80%;
+    margin: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+
+    @include desktop-1600 {
+        width: 92%;
+    }
+
+    @include tablet-l {
+        width: 100%;
+        padding: 2.5rem;
+    }
+
+    @include mobile-xl {
+        padding: 2rem 1rem;
+    }
+}
+
+@mixin grid-admin {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: stretch;
+    width: 100%;
+    gap: var(--gap-xl);
+
+    @include desktop-l {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--gap-xxl);
+    }
+
+    @include mobile-l {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
@@ -31,11 +68,11 @@
         opacity: 0.7;
         z-index: 0;
 
-        @include mq.tablet-l {
+        @include tablet-l {
             width: 200px;
         }
 
-        @include mq.mobile-xl {
+        @include mobile-xl {
             width: 150px;
         }
 
@@ -128,5 +165,4 @@
             }
         }
     }
-
 }

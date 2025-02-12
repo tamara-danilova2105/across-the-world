@@ -103,7 +103,7 @@ export const BookingForm = (props: BookingFormProps) => {
                             handleIsOpen={handleIsOpen}
                         />
                         <ParticipantCounter 
-                            max={selectedTour ? selectedTour.spots : 10} 
+                            max={selectedTour?.spots ? Number(selectedTour.spots) : 10} 
                             onChange={changeBookingData}
                         />
                     </div>
@@ -115,7 +115,7 @@ export const BookingForm = (props: BookingFormProps) => {
                         className={styles.count_info}
                     >
                         {selectedTour && 
-                            `осталось ${selectedTour.spots} ${declOfNum(selectedTour.spots, ['место', 'места', 'мест'])}`
+                            `осталось ${selectedTour.spots} ${declOfNum(Number(selectedTour.spots), ['место', 'места', 'мест'])}`
                         }
                     </Text>
                 </Stack>
