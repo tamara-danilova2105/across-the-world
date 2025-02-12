@@ -15,6 +15,7 @@ import type {
     TypeTour, 
     Price,
     Regions,
+    DayProgram,
 } from './model/types/types'
 
 export {
@@ -32,4 +33,5 @@ export {
     TypeTour,
     Price,
     Regions,
+    DayProgram,
 };

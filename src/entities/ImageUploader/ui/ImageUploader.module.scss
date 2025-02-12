@@ -1,7 +1,14 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .imageContainer {
     position: relative;
     width: 8rem;
     height: 8rem;
+
+    @include mobile-l {
+        width: 7.25rem;
+        height: 7.25rem;
+    }
 }
 
 .cover {

@@ -25,7 +25,10 @@ export const TourDetails = () => {
     //TODO - если будет error, то делать редирект на Not Found Page
     if (!tour) return null
 
-    const allImages = tour.program.flatMap((item: DayProgram) => item.images || []);
+    const allImages = (tour.imageCover).concat(
+        tour.program.flatMap((item: DayProgram) => item.images || [])
+    );
+
 
     const infoContant = (
         <Infornations

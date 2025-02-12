@@ -75,6 +75,7 @@ export const ImageUploader = (props: ImageUploaderProps) => {
                             <button
                                 onClick={() => handleDelete(image._id, image.src)}
                                 className={styles.deleteButton}
+                                type='button'
                             >
                                 <X size={16} />
                             </button>

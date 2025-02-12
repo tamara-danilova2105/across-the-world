@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
 import {
+    DayProgram,
     Regions,
     Tour,
     useAddTourMutation,
@@ -25,8 +26,10 @@ import { TourDetails } from "../TourDetails/TourDetails";
 import { TourProgram } from "../TourProgram/TourProgram";
 import { TourLocation } from "../TourLocation/TourLocation";
 import styles from './TourForm.module.scss';
-import { faq } from "../../lib/faq";
 import { FAQForm } from "@/entities/FAQ";
+import { Eye, FileText, Upload } from "lucide-react";
+
+const MIN_GRID_LENGHT = 7;
 
 export const TourForm = () => {
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<Tour>({
@@ -59,22 +62,32 @@ export const TourForm = () => {
             program: [],
             hotels: [],
             isPublished: true,
-            mustKnow: faq,
+            mustKnow: [],
         }
     });
 
     const formData = watch();
     console.log(formData);
+    
 
     //TODO добавить обработку ошибки и загрузки
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
-    const [addTour, { isLoading: isSaveLoading }] = useAddTourMutation();
+    const [addTour] = useAddTourMutation();
     const [uploadFiles, { isLoading: isUploading }] = useUploadFilesMutation();
 
     const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
+    const [isPublishing, setIsPublishing] = useState(false);
+    const [isSavingDraft, setIsSavingDraft] = useState(false);
+
     const handleAddTour = async (isPublished: boolean) => {
         try {
+            if (isPublished) {
+                setIsPublishing(true);
+            } else {
+                setIsSavingDraft(true);
+            }
+
             const formDataToUpload = new FormData();
 
             const updateImageSrc = (images: any[] = []) => {
@@ -108,6 +121,12 @@ export const TourForm = () => {
             toast.success(isPublished ? 'Тур успешно опубликован' : 'Тур сохранен в черновиках');
         } catch (error) {
             toast.error('Произошла ошибка, попробуйте снова');
+        } finally {
+            if (isPublished) {
+                setIsPublishing(false);
+            } else {
+                setIsSavingDraft(false);
+            }
         }
     };
 
@@ -122,22 +141,30 @@ export const TourForm = () => {
                         Создать новый тур
                     </Text>
 
-                    <Stack gap="8">
+                    <Stack gap="8" className={styles.btn_group}>
                         <Button
                             onClick={handleSubmit(() => handleAddTour(true))}
-                            loading={isSaveLoading && isUploading}
-                            disabled={isSaveLoading && isUploading}
+                            loading={isPublishing}
+                            disabled={isPublishing || isUploading}
                         >
-                            опубликовать тур
+                            <Upload />
+                            <span>опубликовать тур</span>
                         </Button>
 
                         <Button
                             color="secondary"
                             onClick={handleSubmit(() => handleAddTour(false))}
-                            loading={isSaveLoading && isUploading}
-                            disabled={isSaveLoading && isUploading}
+                            loading={isSavingDraft}
+                            disabled={isSavingDraft || isUploading}
                         >
-                            сохранить черновик
+                            <FileText />
+                            <span>сохранить черновик</span>
+
+                        </Button>
+
+                        <Button color='outline'>
+                            <Eye />
+                            <span>предпросмотр</span>
                         </Button>
                     </Stack>
                 </Stack>
@@ -197,6 +224,7 @@ export const TourForm = () => {
                     <ImageCoverInput
                         images={formData.imageCover}
                         onChange={(imageCover) => setValue("imageCover", imageCover)}
+                        isGridFull={formData.program.flatMap((item: DayProgram) => item.images || []).length > MIN_GRID_LENGHT}
                     />
                     {errors.imageCover && (
                         <Text color='red'>{errors.imageCover.message}</Text>
@@ -216,7 +244,7 @@ export const TourForm = () => {
                 <FAQForm
                     faqs={watch('mustKnow')}
                     onChange={(faqs) => setValue('mustKnow', faqs)}
-                    errorMessage={errors?.mustKnow?.[0]?.answer?.message}
+                    allowDeleteFirst
                 />
             </form>
         </Stack>

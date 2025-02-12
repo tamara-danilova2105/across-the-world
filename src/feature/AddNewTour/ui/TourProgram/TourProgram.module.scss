@@ -17,6 +17,10 @@
     background-color: #f9fafb;
     border-radius: 0.375rem;
     width: 100%;
+
+    @include mobile-l {
+        padding: 0.5rem;
+    }
 }
 
 .dayHeader {
