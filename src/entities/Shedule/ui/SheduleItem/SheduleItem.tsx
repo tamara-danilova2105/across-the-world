@@ -3,8 +3,8 @@ import { declOfNum } from "@/shared/lib/declOfNum";
 import { getStyles } from "@/shared/lib/getStyles";
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
-import styles from './SheduleItem.module.scss'
 import { getRouteToursDetails } from "@/app/router/lib/helper";
+import styles from './SheduleItem.module.scss'
 
 interface SheduleItemProps {
     _id: string
@@ -35,16 +35,10 @@ export const SheduleItem = ({ date, tour, spots, _id, regions } : SheduleItemPro
                 justify='between'
                 className={styles.tour_info}
             >
-                <Text
-                    size='18'
-                    color='blue'
-                >
+                <Text size='18' color='blue'>
                     {date}
                 </Text>
-                <Text
-                    size='18'
-                    color='blue'
-                >
+                <Text size='18' color='blue'>
                     {tour}
                 </Text>
                 <Text
