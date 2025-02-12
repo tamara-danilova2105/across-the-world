@@ -4,7 +4,7 @@ import { TextArea } from "@/shared/ui/TextArea";
 import { TimerImage } from "../TimerImage/TimerImage";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
-import { data } from "@/shared/lib/validateInput";
+import { data, validateTextLength } from "@/shared/lib/validateInput";
 import styles from './TimerForm.module.scss';
 import { ImagesWithDetails, TimerData } from "../../types/types";
 import { Button } from "@/shared/ui/Button";
@@ -59,7 +59,10 @@ export const TimerForm = ({
                 <Input
                     label="Название объявления"
                     name="title"
-                    register={register("title", { required: data.required })}
+                    register={register("title", { 
+                        required: data.required, 
+                        validate: (name: string) => validateTextLength(name, 5, 30) 
+                    })}
                     placeholder="Например: `Открываем набор групп на КАМЧАТКУ 2025`"
                     error={get(errors, "title")}
                     className={styles.input}
@@ -78,7 +81,10 @@ export const TimerForm = ({
                 <TextArea
                     label="Описание акции"
                     name="description"
-                    register={register("description", { required: data.required })}
+                    register={register("description", { 
+                        required: data.required, 
+                        validate: (name: string) => validateTextLength(name, 10, 300) 
+                    })}
                     placeholder="Например: `При бронировании до 1 декабря действует скидка 8% по акции раннего бронирования.`"
                     error={get(errors, "description")}
                 />

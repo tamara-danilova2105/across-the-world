@@ -96,9 +96,7 @@ export const AddNewTimerMain = () => {
         } catch (error) {
             console.error(id ? 'Ошибка редактирования таймера:' : 'Ошибка добавления таймера:', error);
         }
-    };
-    
-    
+    }
 
     return (
         <FormProvider {...methods}>
