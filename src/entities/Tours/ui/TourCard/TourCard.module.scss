@@ -1,80 +1,92 @@
-@use '@/app/styles/media-queries' as *;
-
-.tour_card {
-    width: auto;
-    box-shadow: var(--box-shadow);
+.card {
+    min-width: 18rem;
+    height: 26rem;
     border-radius: var(--border-radius);
-    position: relative;
-    height: 580px;
-    
-    @include mobile-xl {
-        width: 100%;
-    }
+    overflow: hidden;
+    background: inherit;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s ease-in-out;
 
-    > div:nth-child(1) {
-        height: 100%;
-        overflow: hidden;
-        border-radius: var(--border-radius);
-    }
-
-    .imageContainer {
-        width: 100%;
-        
-        img {
-            width: 320px;
-            height: 400px;
-            border-radius: 16px 16px 0 0;
-            object-fit: cover;
-    
-            @include mobile-m {
-                width: 100vw;
-            }
-        }
-    }
-
-    .badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: var(--blue-color);
-        color: var(--white-color);
-        font-family: var(--font-family-unbounded);
-        padding: 5px 10px;
-        border-radius: var(--border-radius);
-    }
-
-    .link {
-        align-self: flex-end;
-        margin-top: auto;
-        width: auto;
-    }
-
-    .text_container {
-        width: 100%;
-        padding: 0px 12px 12px 12px;
-        height: 100%;
-
-        @include mobile-xl {
-            gap: var(--gap-s);
-        }
-
-        .old_price {
-            text-decoration: line-through;
-            opacity: 0.8;
-        }
-
-        .new_price {
-            background-color: var(--pink-opacity40);
-            padding: 3px 10px;
-            border-radius: var(--border-radius);
-        }
-
-        span {
-            font-size: var(--font-size-12);
-            background: var(--peach-color);
-            border-radius: var(--border-radius);
-            padding: 2px 5px;
-        }
+    &:hover {
+        transform: scale(1.02);
     }
 }
 
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.discountBadge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--peach-color);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: var(--font-size-16);
+    font-weight: bold;
+}
+
+.content {
+    padding: 16px;
+    position: relative;
+
+    a {
+        position: absolute;
+        width: max-content;
+        right: 1rem;
+        bottom: -1.5rem;
+    }
+}
+
+.title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-size-18);
+}
+
+.dateText {
+    font-size: 1rem;
+}
+
+
+.priceRow {
+    margin-bottom: 12px;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+    color: #666;
+}
+
+
+.discountedPrice {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: var(--blue-color);
+}
+
+.originalPrice {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+    color: #999;
+}
+
+.price {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #333;
+}
