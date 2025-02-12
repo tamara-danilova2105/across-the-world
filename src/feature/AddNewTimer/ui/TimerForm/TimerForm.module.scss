@@ -7,19 +7,17 @@
         position:  relative;
         display: flex;
         flex-direction: column;
-        gap: var(--gap-xxl);
+        gap: var(--gap-xl);
         width: 100%;
     
-        :nth-child(2) {
-            position: relative !important;
-        }
-    
         > div {
-            gap: var(--gap-l);
+            gap: var(--gap-m);
         }
     
         label {
             font-size: var(--font-size-18);
+            color: var(--black-color);
+            font-family: var(--font-family-geometria500);
         }
     
         .input {

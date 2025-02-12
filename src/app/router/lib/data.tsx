@@ -60,7 +60,6 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     },
     [AppRouters.tours_region]: {
         path: getRouteToursByRegion(':region'),
-        title: 'Туры',
         page: <ToursPage />
     },
     [AppRouters.tour_detais]: {
