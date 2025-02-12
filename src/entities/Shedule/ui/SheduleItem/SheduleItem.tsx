@@ -19,7 +19,7 @@ export const SheduleItem = ({ date, tour, spots, _id, regions } : SheduleItemPro
     const navigate = useNavigate()
 
     const router = (regions: string, _id: string) => {
-        navigate(getRouteToursDetails(regions, _id))
+        navigate(getRouteToursDetails(regions, _id)) 
     }
 
 
