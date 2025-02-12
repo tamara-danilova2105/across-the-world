@@ -29,12 +29,20 @@ export const PLACEHOLDER_TEXT: Record<string, string> = {
     describe: "короткое описание места"
 }
 
-const LABEL: Record<string, string> = {
-    header: "Название",
-    category: "Категория",
-    describe: "Красткое описание"
+const LABEL: Record<string, { label: string; min: number; max: number }> = {
+    header: { label: "Название", min: 2, max: 20 },
+    category: { label: "Категория", min: 3, max: 15 },
+    describe: { label: "Краткое описание", min: 10, max: 80
+    }
 }
 
 export const getLabel = (field: string) => {
-    return LABEL[field]
+    return LABEL[field]?.label;
+}
+
+export const getFieldLimits = (field: string) => {
+    return { 
+        min: LABEL[field]?.min || 1, 
+        max: LABEL[field]?.max || 10 
+    }
 }
