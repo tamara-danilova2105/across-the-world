@@ -99,7 +99,7 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
                         ))
                     ) : (
                         <div className={styles.noResults}>
-                            не найдено
+                            {searchQuery ? `"${searchQuery}" не найдено среди стран или регионов` : "Страна или регион не найдены"}
                         </div>
                     )}
                 </div>
