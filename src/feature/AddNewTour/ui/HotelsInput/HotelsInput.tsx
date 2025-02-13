@@ -6,10 +6,11 @@ import { Text } from '@/shared/ui/Text';
 interface HotelsInputProps {
     images: Image[];
     onChange: (images: Image[]) => void;
+    onDelete?: (id: string, src: string) => void; //удаление
 }
 
 export const HotelsInput = (props: HotelsInputProps) => {
-    const { images, onChange } = props;
+    const { images, onChange, onDelete } = props;
 
     const handleImagesChange = (newImages: Image[]) => {
         const updatedImages = newImages.map(img => ({
@@ -34,6 +35,7 @@ export const HotelsInput = (props: HotelsInputProps) => {
                         file: img.file,
                     }))}
                     onChange={handleImagesChange}
+                    onDelete={onDelete} //удаление
                     maxImages={10}
                 />
             </Stack>

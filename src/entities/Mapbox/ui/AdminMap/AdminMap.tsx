@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Map, { Marker } from 'react-map-gl';
 import styles from './AdminMap.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { MapMarker } from '@/entities/Tours/model/types/types'; //TODO
+import { MapMarker } from '@/entities/Tours';
 
 interface AdminMapProps {
     markers?: MapMarker[];
@@ -39,15 +39,15 @@ export const AdminMap = (props: AdminMapProps) => {
     };
 
     return (
-        <div style={{ width: '100%', height: '100vh' }}>
+        <div style={{ width: '100%', height: '60vh' }}>
             <Map
                 mapboxAccessToken={accessToken}
                 initialViewState={{
-                    longitude: -64.5,
-                    latitude: -40,
-                    zoom: 4,
+                    longitude: 0,
+                    latitude: 0,
+                    zoom: 2,
                 }}
-                style={{ width: '100%', height: '80%' }}
+                style={{ width: '100%', height: '100%' }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 onClick={handleMapClick}
             >

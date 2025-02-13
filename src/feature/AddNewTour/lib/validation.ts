@@ -8,9 +8,9 @@ export const tourSchema = z.object({
             date_start: z.string().min(1, "Дата обязательна"),
             date_finish: z.string().min(1, "Дата обязательна"),
             price: z.object({
-                amount: z.string().min(1, "Укажите цену"),
+                amount: z.union([z.string(), z.number()]).transform((val) => String(val)),
             }),
-            spotsTotal: z.string().min(1, "Укажите количество мест"),
+            spotsTotal: z.union([z.string(), z.number()]).transform((val) => String(val)),
         })
     ).nonempty("Не указаны данные с датами тура"),
     locations: z.object({

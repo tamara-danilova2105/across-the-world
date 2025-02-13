@@ -16,6 +16,7 @@ import type {
     Price,
     Regions,
     DayProgram,
+    MapMarker,
 } from './model/types/types'
 
 export {
@@ -34,4 +35,5 @@ export {
     Price,
     Regions,
     DayProgram,
+    MapMarker,
 };

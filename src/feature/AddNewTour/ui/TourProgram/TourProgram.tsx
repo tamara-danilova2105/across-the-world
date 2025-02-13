@@ -10,12 +10,13 @@ import { FieldErrors, UseFormSetValue } from "react-hook-form";
 
 interface TourProgramProps {
     program: DayProgram[];
-    setValue: UseFormSetValue<Tour>;
     errors: FieldErrors<Tour>;
+    setValue: UseFormSetValue<Tour>;
+    onDelete?: (id: string, src: string) => void; //удаление
 }
 
 export const TourProgram = (props: TourProgramProps) => {
-    const { program, setValue, errors } = props;
+    const { program, errors, setValue, onDelete } = props;
 
     const addDay = () => {
         setValue("program", [...program, { title: '', details: '', images: [] }]);
@@ -118,6 +119,7 @@ export const TourProgram = (props: TourProgramProps) => {
                                         file: img.file,
                                     })) || []}
                                     onChange={(images) => handleImagesChange(dayIndex, images)}
+                                    onDelete={onDelete}
                                     maxImages={3}
                                 />
                             </Stack>

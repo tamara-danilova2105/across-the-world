@@ -29,50 +29,21 @@ import styles from './TourForm.module.scss';
 import { FAQForm } from "@/entities/FAQ";
 import { FileText, Upload } from "lucide-react";
 import { useParams } from "react-router";
-import { useGetTourByIdQuery } from "@/entities/Tours/api/api";
+import { useEditTourMutation, useGetTourByIdQuery } from "@/entities/Tours/api/api";
+import { Loading } from "@/shared/ui/Loading";
+import { defaultTourValues } from "../../lib/defaultValue";
 
 const MIN_GRID_LENGHT = 7;
 
 export const TourForm = () => {
     const { id } = useParams<{ id: string }>();
 
-    const { data: tourData, isLoading } = useGetTourByIdQuery(id || '', { skip: !id });
-    console.log(tourData);
-
-
+    //TODO error обработка
+    const { data: tourData, isLoading: isLoadingTourNewsById } = useGetTourByIdQuery(id || '', { skip: !id });
 
     const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<Tour>({
         resolver: zodResolver(tourSchema),
-        defaultValues: {
-            types: [],
-            tour: '',
-            dates: [
-                {
-                    date_start: '',
-                    date_finish: '',
-                    price: { amount: '', currency: '$' },
-                    spotsTotal: '',
-                },
-            ],
-            locations: {
-                place_start: '',
-                place_finish: '',
-            },
-            details: {
-                included: '',
-                notIncluded: '',
-            },
-            imageCover: [],
-            direction: 'Заграница',
-            regions: [],
-            activity: 'Для всех',
-            comfort: 'Высокий',
-            description: '',
-            program: [],
-            hotels: [],
-            isPublished: true,
-            mustKnow: [],
-        }
+        defaultValues: defaultTourValues,
     });
 
     useEffect(() => {
@@ -88,12 +59,19 @@ export const TourForm = () => {
     //TODO добавить обработку ошибки и загрузки
     const { data: regions } = useGetRegionsQuery({ direction: formData.direction });
     const [addTour] = useAddTourMutation();
+    const [editTour] = useEditTourMutation();
     const [uploadFiles, { isLoading: isUploading }] = useUploadFilesMutation();
 
     const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
 
     const [isPublishing, setIsPublishing] = useState(false);
     const [isSavingDraft, setIsSavingDraft] = useState(false);
+
+    const [deletedImages, setDeletedImages] = useState<string[]>([]);
+    
+    const handleDeleteImage = (_: string, src: string) => {
+        setDeletedImages(prev => [...prev, src]);
+    };
 
     const handleAddTour = async (isPublished: boolean) => {
         try {
@@ -125,13 +103,20 @@ export const TourForm = () => {
                     ...day,
                     images: updateImageSrc(day.images ?? []),
                 })),
+                deletedImages, // удаленные изображения
             };
+
+            console.log("Финальные данные перед отправкой:", updatedTourData);
 
             if (formDataToUpload.has('files')) {
                 await uploadFiles(formDataToUpload).unwrap();
             }
 
-            await addTour(updatedTourData).unwrap();
+            if (id) {
+                await editTour({ id, updatedData: updatedTourData }).unwrap();
+            } else {
+                await addTour(updatedTourData).unwrap();
+            }
 
             toast.success(isPublished ? 'Тур успешно опубликован' : 'Тур сохранен в черновиках');
         } catch (error) {
@@ -145,8 +130,9 @@ export const TourForm = () => {
         }
     };
 
-    //TODO
-    if (isLoading) return <p>Загрузка...</p>
+    if (isLoadingTourNewsById) {
+        return <Loading width='100' height='100' />;
+    }
 
     return (
         <Stack
@@ -156,7 +142,7 @@ export const TourForm = () => {
             <Stack className={styles.header_container}>
                 <Stack max justify='between' align='center'>
                     <Text type='h2' size='32' color='blue' font='geometria600'>
-                        Создать новый тур
+                        {id ? 'Редактировать тур' : 'Создать новый тур'}
                     </Text>
 
                     <Stack gap="8" className={styles.btn_group}>
@@ -230,6 +216,7 @@ export const TourForm = () => {
                     program={formData.program}
                     setValue={setValue}
                     errors={errors}
+                    onDelete={handleDeleteImage} // Передаем функцию удаления
                 />
 
                 <Stack direction='column' gap="4">
@@ -237,6 +224,7 @@ export const TourForm = () => {
                         images={formData.imageCover}
                         onChange={(imageCover) => setValue("imageCover", imageCover)}
                         isGridFull={formData.program.flatMap((item: DayProgram) => item.images || []).length > MIN_GRID_LENGHT}
+                        onDelete={handleDeleteImage} // Передаем функцию удаления
                     />
                     {errors.imageCover && (
                         <Text color='red'>{errors.imageCover.message}</Text>
@@ -246,6 +234,7 @@ export const TourForm = () => {
                 <HotelsInput
                     images={formData.hotels ?? []}
                     onChange={(hotels) => setValue("hotels", hotels)}
+                    onDelete={handleDeleteImage} // Передаем функцию удаления
                 />
 
                 <MapMarkerInput

@@ -1,6 +1,18 @@
+@use '@/app/styles/media-queries.scss' as *;
+
 .header {
+    h2 {
+        @include mobile-xl {
+            font-size: var(--font-size-20);
+        }
+    }
+
     button {
         width: max-content;
-        padding: 0 2rem;
+        padding: 0 1rem;
+
+        svg {
+            margin-right: 0.75rem;
+        }
     }
 }

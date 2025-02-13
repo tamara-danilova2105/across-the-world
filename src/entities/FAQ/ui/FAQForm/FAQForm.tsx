@@ -98,7 +98,7 @@ export const FAQForm = (props: FAQFormProps) => {
                                     onClick={handleSaveEdit}
                                     className={styles.btn}
                                 >
-                                    <Save size={20} /> Сохранить
+                                    <Save size={20} /> сохранить
                                 </Button>
 
                                 <Button
@@ -107,7 +107,7 @@ export const FAQForm = (props: FAQFormProps) => {
                                     onClick={handleCancel}
                                     className={styles.btn}
                                 >
-                                    <X size={20} /> Отменить
+                                    <X size={20} /> отменить
                                 </Button>
                             </>
                         ) : (
@@ -116,7 +116,7 @@ export const FAQForm = (props: FAQFormProps) => {
                                 onClick={handleAddFAQ}
                                 className={styles.btn}
                             >
-                                <PlusCircle size={20} /> Добавить
+                                <PlusCircle size={20} /> добавить
                             </Button>
                         )}
                     </Stack>

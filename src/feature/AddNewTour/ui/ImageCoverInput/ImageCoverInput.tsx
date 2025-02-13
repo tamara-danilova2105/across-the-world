@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImageUploader } from "@/entities/ImageUploader";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
@@ -7,16 +7,20 @@ import styles from './ImageCoverInput.module.scss';
 
 interface ImageCoverInputProps {
     images: Image[];
-    onChange: (images: Image[]) => void;
     isGridFull: boolean;
+    onChange: (images: Image[]) => void;
+    onDelete?: (id: string, src: string) => void; //удаление
 }
 
 export const ImageCoverInput = (props: ImageCoverInputProps) => {
-    const { images, onChange, isGridFull } = props;
+    const { images, isGridFull, onChange, onDelete } = props;
     const [coverImage, setCoverImage] = useState<Image | null>(images[0] || null);
     const [albumImages, setAlbumImages] = useState<Image[]>(images.slice(1, 11));
 
-    // Обновление обложки
+    useEffect(() => {
+        setCoverImage(images[0] )
+    }, [images])
+
     const handleCoverChange = (newImages: Image[]) => {
         if (newImages.length > 0) {
             setCoverImage(newImages[0]);
@@ -47,6 +51,7 @@ export const ImageCoverInput = (props: ImageCoverInputProps) => {
                 <ImageUploader
                     images={coverImage ? [coverImage] : []}
                     onChange={handleCoverChange}
+                    onDelete={onDelete} //удаление
                     maxImages={1}
                     isCover
                     uploadHint={'Внимание, если фотография не выбрана, обложкой тура автоматически становится первая фотография из альбома'}
@@ -61,6 +66,7 @@ export const ImageCoverInput = (props: ImageCoverInputProps) => {
                     </Text>
                     <ImageUploader
                         images={albumImages}
+                        onDelete={onDelete} //удаление
                         onChange={handleAlbumChange}
                         maxImages={10}
                     />

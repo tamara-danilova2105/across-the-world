@@ -53,6 +53,11 @@
     border-radius: var(--border-radius);
     transition: border-color 0.3s;
     color: black;
+
+    @include mobile-l {
+        width: 7.25rem;
+        height: 7.25rem;
+    }
 }
 
 .coverBtn { 

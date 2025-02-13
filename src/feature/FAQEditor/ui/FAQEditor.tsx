@@ -6,6 +6,7 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { useGetFAQsQuery, useUpdateFAQsMutation } from "../api/api";
 import styles from './FAQEditor.module.scss';
+import { UploadIcon } from "lucide-react";
 
 export const FAQEditor = () => {
     const [faqs, setFaqs] = useState<DataFAQ[]>([]);
@@ -31,16 +32,17 @@ export const FAQEditor = () => {
 
     return (
         <Stack direction='column' gap="16" max>
-            <Stack max justify='between' className={styles.header}>
+            <Stack max justify='between' align='center' className={styles.header}>
                 <Text type='h2' color='blue' size='24' font='geometria500'>
-                    Отредактировать FAQ
+                    Управление FAQ
                 </Text>
                 <Button
                     onClick={handleSaveFAQs}
                     disabled={isLoadingSave}
                     loading={isLoadingSave}
                 >
-                    Сохранить
+                    <UploadIcon />
+                    сохранить
                 </Button>
             </Stack>
 
