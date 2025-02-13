@@ -1,35 +1,12 @@
-@use '@/app/styles/mixin' as mixin;
-@use '@/app/styles/media-queries' as media;
+@use '@/app/styles/mixin' as *;
+@use '@/app/styles/media-queries' as *;
 
 .our_tours_title {
-    @include mixin.section-style;
+    @include section-style;
 
-    @include media.tablet-m {
+    @include tablet-m {
         flex-direction: column;
         gap: var(--gap-xl);
-    }
-}
-
-.our_tours_container {
-    width: calc(100vw - ((100vw - 1280px) / 2));
-    margin-left: auto;
-    overflow: hidden;
-    cursor: grab;
-    padding: 10px;
-
-    @include media.desktop-m {
-        width: calc(100vw - ((100vw - 1110px) / 2));
-        padding: 10px 40px;
-    }
-
-    @include media.tablet-l {
-        width: 100%;
-        padding: 10px 30px;
-        margin: auto;
-    }
-
-    @include media.mobile-l {
-        padding: 10px 20px;
     }
 }
 
@@ -49,4 +26,3 @@
     padding: 16px;
     width: 100%;
 }
-

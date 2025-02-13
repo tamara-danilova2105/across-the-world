@@ -1,18 +1,19 @@
 import { TourCardAdmin } from './ui/TourCardAdmin/TourCardAdmin';
 import { TourCard } from './ui/TourCard/TourCard';
-import { 
-    useGetAllToursQuery, 
-    useAddTourMutation, 
+import { TourScroll } from './ui/TourScroll/TourScroll';
+import {
+    useGetAllToursQuery,
+    useAddTourMutation,
     useUploadFilesMutation,
     useEditTourMutation,
 } from './api/api';
-import type { 
-    Tour, 
-    DateTours, 
-    ActivityLevel, 
-    ComfortType, 
-    DirectionTour, 
-    TypeTour, 
+import type {
+    Tour,
+    DateTours,
+    ActivityLevel,
+    ComfortType,
+    DirectionTour,
+    TypeTour,
     Price,
     Regions,
     DayProgram,
@@ -22,15 +23,16 @@ import type {
 export {
     TourCardAdmin,
     TourCard,
+    TourScroll,
     useGetAllToursQuery,
     useAddTourMutation,
     useUploadFilesMutation,
     useEditTourMutation,
     Tour,
-    DateTours, 
-    ActivityLevel, 
-    ComfortType, 
-    DirectionTour, 
+    DateTours,
+    ActivityLevel,
+    ComfortType,
+    DirectionTour,
     TypeTour,
     Price,
     Regions,
