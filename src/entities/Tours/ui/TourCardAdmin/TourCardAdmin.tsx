@@ -16,7 +16,7 @@ import { formatDateRange } from '@/shared/lib/formatDateRange';
 import { apiUrl } from '@/shared/api/endpoints';
 import { getStyles } from '@/shared/lib/getStyles';
 import { DateTours } from '../../model/types/types';
-import { useDeleteTourMutation, useUpdateTourDetailsMutation } from '../../api/api';
+import { useAddTourMutation, useDeleteTourMutation, useLazyGetTourByIdQuery, useUpdateTourDetailsMutation } from '../../api/api';
 import styles from './TourCardAdmin.module.scss';
 import { getRouteAdminToursEdit } from '@/app/router/lib/helper';
 import { Link } from 'react-router-dom';
@@ -35,6 +35,9 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
     const [formData, setFormData] = useState(dates);
     const [isPublishedState, setIsPublishedState] = useState(isPublished);
     const [showMenu, setShowMenu] = useState(false);
+
+    const [getTriggerTour] = useLazyGetTourByIdQuery();
+    const [addTour] = useAddTourMutation();
 
     const formattedDates = formData.map(date => ({
         id: date._id,
@@ -82,21 +85,30 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         }
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const updatedFormData = formData.map(item =>
             item._id === selectedDateInfo.id ? { ...item, spots: selectedDateInfo.spots } : item
         );
 
         setFormData(updatedFormData);
-        handleUpdateTour({ dates: updatedFormData });
+        try {
+            await handleUpdateTour({ dates: updatedFormData });
+        } catch (error) {
+            toast.error("Ошибка при сохранении данных");
+        }
     };
 
-    const togglePublished = () => {
-        const newPublishedState = !isPublishedState;
-        setIsPublishedState(newPublishedState);
-        handleUpdateTour({ isPublished: newPublishedState });
+    const togglePublished = async () => {
+        try {
+            const newPublishedState = !isPublishedState;
+            await handleUpdateTour({ isPublished: newPublishedState });
+            setIsPublishedState(newPublishedState);
+        } catch (error) {
+            toast.error("Ошибка при изменении статуса публикации");
+        }
         setShowMenu(false);
     };
+
 
     const handleDeleteTour = async () => {
         try {
@@ -107,6 +119,32 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
         }
     };
 
+    const createCopyTour = async () => {
+        try {
+            const response = await getTriggerTour(tourId);
+            const originalTour = response.data;
+
+            if (!originalTour) {
+                toast.error("Не удалось получить данные для создания копии");
+                return;
+            }
+
+            const { _id, createdAt, updatedAt, ...tourData } = originalTour;
+
+            const copiedTour = {
+                ...tourData,
+                isPublished: false,
+                tour: `Копия ${originalTour.tour}`,
+            };
+
+            await addTour(copiedTour).unwrap();
+
+            toast.success("Копия тура успешно создана");
+        } catch (error) {
+            toast.error("Ошибка при создании копии тура");
+        }
+    }
+
     return (
         <div className={styles.card}>
             <div
@@ -114,47 +152,46 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                 onMouseEnter={() => setShowMenu(true)}
                 onMouseLeave={() => setShowMenu(false)}
             >
-                <button className={styles.menuButton}>
+                <button className={styles.menuButton} aria-label="Меню действий">
                     <MoreVertical className={styles.menuIcon} />
                 </button>
 
                 {showMenu && (
-                    <div className={styles.dropdownMenu}>
-                        <button className={styles.menuItem}>
-                            <Copy className={styles.icon} />
-                            Создать копию тура
-                        </button>
-                        <Link
-                            to={getRouteAdminToursEdit(tourId)}
-                            className={styles.menuItem}
-                        >
-                            <Edit className={styles.icon} />
-                            Редактировать
-                        </Link>
-                        <button
-                            onClick={togglePublished}
-                            className={styles.menuItem}
-                        >
-                            {isPublishedState ? (
-                                <>
-                                    <GlobeOff className={styles.icon} />
-                                    Снять с публикации
-                                </>
-                            ) : (
-                                <>
-                                    <Globe className={styles.icon} />
-                                    Опубликовать
-                                </>
-                            )}
-                        </button>
-                        <button
-                            onClick={handleDeleteTour}
-                            className={styles.deleteItem}
-                        >
-                            <Trash2 className={styles.icon} />
-                            Удалить
-                        </button>
-                    </div>
+                    <ul className={styles.dropdownMenu} role="menu">
+                        <li role="menuitem">
+                            <button onClick={createCopyTour} className={styles.menuItem}>
+                                <Copy className={styles.icon} />
+                                Создать копию тура
+                            </button>
+                        </li>
+                        <li role="menuitem">
+                            <Link to={getRouteAdminToursEdit(tourId)} className={styles.menuItem}>
+                                <Edit className={styles.icon} />
+                                Редактировать
+                            </Link>
+                        </li>
+                        <li role="menuitem">
+                            <button onClick={togglePublished} className={styles.menuItem}>
+                                {isPublishedState ? (
+                                    <>
+                                        <GlobeOff className={styles.icon} />
+                                        Снять с публикации
+                                    </>
+                                ) : (
+                                    <>
+                                        <Globe className={styles.icon} />
+                                        Опубликовать
+                                    </>
+                                )}
+                            </button>
+                        </li>
+                        <li role="menuitem">
+                            <button onClick={handleDeleteTour} className={styles.deleteItem}>
+                                <Trash2 className={styles.icon} />
+                                Удалить
+                            </button>
+                        </li>
+                    </ul>
                 )}
             </div>
 
@@ -188,11 +225,11 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
                     <div className={styles.spots_select}>
                         <Select
                             value={Number(selectedDateInfo.spots)}
-                            options={Array.from({ length: 16 + 1 }, (_, i) => i)}
+                            options={Array.from({ length: Number(selectedDateInfo.spotsTotal) + 1 }, (_, i) => i)}
                             onChange={handleSpotsChange}
                         />
                     </div>
-                    <span>из 16</span>
+                    <span>из {Number(selectedDateInfo.spotsTotal)}</span>
                 </Stack>
 
                 <Button

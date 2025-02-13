@@ -9,7 +9,7 @@ interface ImageCoverInputProps {
     images: Image[];
     isGridFull: boolean;
     onChange: (images: Image[]) => void;
-    onDelete?: (id: string, src: string) => void; //удаление
+    onDelete?: (id: string, src: string) => void;
 }
 
 export const ImageCoverInput = (props: ImageCoverInputProps) => {
@@ -18,7 +18,8 @@ export const ImageCoverInput = (props: ImageCoverInputProps) => {
     const [albumImages, setAlbumImages] = useState<Image[]>(images.slice(1, 11));
 
     useEffect(() => {
-        setCoverImage(images[0] )
+        setCoverImage(images[0]);
+        setAlbumImages(images.slice(1, 11));
     }, [images])
 
     const handleCoverChange = (newImages: Image[]) => {
@@ -51,7 +52,7 @@ export const ImageCoverInput = (props: ImageCoverInputProps) => {
                 <ImageUploader
                     images={coverImage ? [coverImage] : []}
                     onChange={handleCoverChange}
-                    onDelete={onDelete} //удаление
+                    onDelete={onDelete}
                     maxImages={1}
                     isCover
                     uploadHint={'Внимание, если фотография не выбрана, обложкой тура автоматически становится первая фотография из альбома'}

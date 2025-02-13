@@ -7,12 +7,13 @@ import { TextEditor } from "@/entities/TextEditor";
 import styles from './TourProgram.module.scss';
 import { Image } from "@/shared/types/types";
 import { FieldErrors, UseFormSetValue } from "react-hook-form";
+import { ArrowDown, ArrowUp, Trash2 } from "lucide-react";
 
 interface TourProgramProps {
     program: DayProgram[];
     errors: FieldErrors<Tour>;
     setValue: UseFormSetValue<Tour>;
-    onDelete?: (id: string, src: string) => void; //удаление
+    onDelete?: (id: string, src: string) => void;
 }
 
 export const TourProgram = (props: TourProgramProps) => {
@@ -45,6 +46,20 @@ export const TourProgram = (props: TourProgramProps) => {
         setValue("program", newProgram);
     };
 
+    const moveDayUp = (index: number) => {
+        if (index === 0) return;
+        const newProgram = [...program];
+        [newProgram[index], newProgram[index - 1]] = [newProgram[index - 1], newProgram[index]];
+        setValue("program", newProgram);
+    };
+
+    const moveDayDown = (index: number) => {
+        if (index === program.length - 1) return;
+        const newProgram = [...program];
+        [newProgram[index], newProgram[index + 1]] = [newProgram[index + 1], newProgram[index]];
+        setValue("program", newProgram);
+    };
+
     return (
         <Stack direction="column" gap="4">
             <Stack direction='column' gap='8' max>
@@ -54,18 +69,37 @@ export const TourProgram = (props: TourProgramProps) => {
 
                 {program.map((day, dayIndex) => (
                     <div key={dayIndex} className={styles.day}>
-                        <div className={styles.dayHeader}>
+                        <Stack justify='between' align='center' className={styles.dayHeader}>
                             <Text type='h3' size='18'>
                                 День {dayIndex + 1}
                             </Text>
-                            <button
-                                type="button"
-                                onClick={() => removeDay(dayIndex)}
-                                className={styles.deleteButton}
-                            >
-                                ✕
-                            </button>
-                        </div>
+                            <Stack gap="16" align='center'>
+                                <span>Изменить порядок дней</span>
+                                <button
+                                    type="button"
+                                    onClick={() => moveDayUp(dayIndex)}
+                                    className={styles.directionButton}
+                                    disabled={dayIndex === 0}
+                                >
+                                    <ArrowUp />
+                                </button>
+                                <button
+                                    type="button"
+                                    className={styles.directionButton}
+                                    onClick={() => moveDayDown(dayIndex)}
+                                    disabled={dayIndex === program.length - 1}
+                                >
+                                    <ArrowDown />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => removeDay(dayIndex)}
+                                    className={styles.deleteButton}
+                                >
+                                    <Trash2 />
+                                </button>
+                            </Stack>
+                        </Stack>
 
                         <Stack direction='column' gap="16" max>
                             <Stack
@@ -99,7 +133,7 @@ export const TourProgram = (props: TourProgramProps) => {
                                     <TextEditor
                                         initialContent={day.details}
                                         onChange={(value) => updateDay(dayIndex, 'details', value)}
-                                        isError={!!errors.program?.[dayIndex]?.details }
+                                        isError={!!errors.program?.[dayIndex]?.details}
                                     />
                                     {errors.program?.[dayIndex]?.details && (
                                         <Text color="red">{errors.program[dayIndex].details.message}</Text>

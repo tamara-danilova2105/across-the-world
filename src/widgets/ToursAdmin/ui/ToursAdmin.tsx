@@ -3,13 +3,27 @@ import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import styles from './ToursAdmin.module.scss';
+import { useState } from "react";
+import { Pagination } from "@/entities/Pagination";
+
+const LIMIT_PER_PAGE = 12;
 
 export const ToursAdmin = () => {
-    const { data: toursData = [], isLoading, error } = useGetAllToursQuery({ admin: true });
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const { data: toursData = [], isLoading, error } = useGetAllToursQuery({
+        admin: true,
+        limit: LIMIT_PER_PAGE,
+        page: currentPage
+    });
+
+    const handlePageChange = (selectedPage: number) => {
+        setCurrentPage(selectedPage + 1);
+    };
 
     return (
         <Stack
-            direction='column' gap="24"
+            direction='column' gap='32'
             className={styles.container}
         >
 
@@ -19,7 +33,7 @@ export const ToursAdmin = () => {
 
             {error && (
                 <Text color="red" size="18">
-                    Произошла ошибка при загрузке новостей
+                    Произошла ошибка при загрузке туров
                 </Text>
             )}
 
@@ -41,6 +55,15 @@ export const ToursAdmin = () => {
                     ))
                 )}
             </div>
+
+            {toursData?.totalPages > 1 && (
+                <Pagination
+                    pageCount={toursData.totalPages}
+                    pagePagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage - 1}
+                />
+            )}
         </Stack>
     );
 };

@@ -8,12 +8,12 @@ import { Skeleton } from '@/shared/ui/Skeleton';
 import { Pagination } from '@/entities/Pagination';
 import { useState } from 'react';
 
-const LIMIT_NEWS = 12;
+const LIMIT_PER_PAGE = 12;
 
 export const NewsAdmin = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
-    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: LIMIT_NEWS, page: currentPage });
+    const { data: news, isLoading, error } = useGetAllNewsQuery({ limit: LIMIT_PER_PAGE, page: currentPage });
 
     const handlePageChange = (selectedPage: number) => {
         setCurrentPage(selectedPage + 1);
