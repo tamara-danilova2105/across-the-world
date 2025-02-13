@@ -86,4 +86,43 @@
             transform: rotate(180deg);
         }
     }
+
+    .searchContainer {
+        position: relative;
+        padding: 8px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .searchIcon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+    }
+
+    .searchInput {
+        width: 100%;
+        padding: 0.5rem 0.5rem 0.5rem 2rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        font-size: var(--font-size-14);
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus {
+            border-color: var(--pink-color);
+        }
+
+        &::placeholder {
+            color: #94a3b8;
+        }
+    }
+
+    .noResults {
+        padding: 12px;
+        text-align: center;
+        color: #94a3b8;
+        font-size: var(--font-size-14);
+    }
 }
