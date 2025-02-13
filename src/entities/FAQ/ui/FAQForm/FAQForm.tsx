@@ -77,7 +77,7 @@ export const FAQForm = (props: FAQFormProps) => {
                             onChange={(e) => setNewQuestion(e.target.value)}
                             className={styles.input}
                             placeholder="Введите вопрос"
-                            disabled={editIndex === 0}
+                            disabled={editIndex === 0 && !allowDeleteFirst}
                         />
                     </Stack>
                     <Stack direction='column' gap='8' max>
