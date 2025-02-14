@@ -5,14 +5,14 @@
     padding: 20px;
     border-radius: 16px;
     width: 550px;
-    height: 700px;
+    height: 80vh;
 
     @include mobile-l {
         width: 100%;
     }
 
-    @include mobile-s {
-        height: 500px;
+    @include mobile-l {
+        height: 65vh;
     }
 
     .contact_container {
@@ -64,6 +64,10 @@
             svg {
                 fill: var(--blue-color);
                 width: 200px;
+
+                @include mobile-l {
+                    width: 150px;
+                }
             }
             
             path {

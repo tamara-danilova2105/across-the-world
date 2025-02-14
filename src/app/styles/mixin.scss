@@ -166,3 +166,24 @@
         }
     }
 }
+
+@mixin auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-m);
+    width: 500px;
+
+    @include mobile-l {
+        width: 100%;
+    }
+
+    input {
+        border: 1px solid var(--blue-color);
+    }
+
+    .error {
+        color: var(--error-color);
+    }
+}

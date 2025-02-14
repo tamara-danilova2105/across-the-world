@@ -1,18 +1,7 @@
+@use '@/app/styles/mixin' as mixin;
+
 .signin_form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--gap-m);
-    width: 500px;
-
-    input {
-        border: 1px solid var(--blue-color);
-    }
-
-    .error {
-        color: var(--error-color);
-    }
+    @include mixin.auth_form;
 
     .password {
         position: relative;

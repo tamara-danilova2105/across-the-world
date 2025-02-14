@@ -1,8 +1,14 @@
+@use '@/app/styles/mixin' as mixin;
+
 .instruction {
-    width: 500px;
+    @include mixin.auth_form;
     
     p {
         text-align: center;
-        line-height: 40px;
+        line-height: 30px;
+    }
+
+    a {
+        width: auto;
     }
 }
