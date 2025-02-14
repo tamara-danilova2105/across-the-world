@@ -1,14 +1,13 @@
 import {
     getRouteAdmin,
     getRouteAdminDiscount,
-    getRouteAdminDiscountCreate,
     getRouteAdminModerationReviews,
     getRouteAdminNews,
     getRouteAdminNewsCreate,
     getRouteAdminTours,
     getRouteAdminToursCreate
 } from "@/app/router/lib/helper";
-import { CalendarPlus, FilePlus, LayoutDashboard, List, Map, Newspaper, Percent, ShieldCheck } from "lucide-react";
+import { FilePlus, LayoutDashboard, List, Map, Newspaper, Percent, ShieldCheck } from "lucide-react";
 
 export const sidebarItems = [
     {
@@ -40,11 +39,6 @@ export const sidebarItems = [
         path: getRouteAdminDiscount(),
         icon: <Percent className="w-5 h-5" />,
         label: 'Ранее бронирование'
-    },
-    {
-        path: getRouteAdminDiscountCreate(),
-        icon: <CalendarPlus className="w-5 h-5" />,
-        label: 'Настроить скидки'
     },
     {
         path: getRouteAdminModerationReviews(),

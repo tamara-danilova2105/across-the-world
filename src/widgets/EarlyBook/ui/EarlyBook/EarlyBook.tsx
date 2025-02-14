@@ -5,21 +5,19 @@ import { Text } from "@/shared/ui/Text/Text";
 import { Images } from "../Images/Images";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
 import { useGetTimerQuery } from "../../api/timerApi";
-import styles from './EarlyBook.module.scss';
 import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteToursByRegion } from "@/app/router/lib/helper";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { apiUrl } from "@/shared/api/endpoints";
+import styles from './EarlyBook.module.scss';
 
 export const EarlyBook = () => {
 
     const { data: timerDataArray, error, isLoading } = useGetTimerQuery({});
     const timerData = timerDataArray?.[0];
 
-    console.log(timerData,error, isLoading)
-
-    if(error) {
+    if(error || timerData === undefined) {
         return null
     }
 
@@ -82,9 +80,10 @@ export const EarlyBook = () => {
                             endTime={timerData?.timer}
                         />
                         <div className={styles.appLink}>
-                            <AppLink 
-                                to={getRouteToursByRegion(timerData?.region)}
-                                variant ='just_button' cta>
+                            <AppLink
+                                variant="just_button" cta
+                                to={timerData?.region ? getRouteToursByRegion(timerData.region) : "#"}
+                            >
                                 Посмотреть предложения
                             </AppLink>
                         </div>

@@ -27,4 +27,4 @@ const regionText: Record<string, string> = {
 
 export const getTextRegion = (region: string) => {
     return regionText[region];
-};
+}

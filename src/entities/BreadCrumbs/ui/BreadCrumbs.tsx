@@ -1,15 +1,16 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useParams } from "react-router";
-import { getTextRegion } from "@/shared/lib/getTextRegion";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from './BreadCrumbs.module.scss';
 import { routeConfig } from '@/app/router/lib/data';
 import { ReactNode } from 'react';
 import { Tour } from '@/entities/Tours';
+import { getCountryName } from '@/shared/lib/getCountryName';
+import { useClearFilters } from '@/shared/hooks/useClearFilters';
 
 interface Breadcrumb {
-    title: string;
+    title: string | undefined;
     link?: string;
     isLast?: boolean;
 };
@@ -30,8 +31,7 @@ export const BreadCrumbs = ({
     children
 }: BreadcrumbsProps) => {
 
-    const { region } = useParams();
-    const location = useLocation();
+    const { region } = useParams()
 
     const breadcrumbs: Breadcrumb[] = location.pathname
         .split('/')
@@ -51,7 +51,7 @@ export const BreadCrumbs = ({
                 })
             } else if (index === arr.length - 1 && region) {
                 acc.push({
-                    title: getTextRegion(region),
+                    title: getCountryName(region),
                     isLast: false,
                 });
             }
@@ -101,7 +101,9 @@ export const BreadCrumbs = ({
                                     </Text>
                                 ) : (
                                     crumb.link ? (
-                                        <Link to={crumb.link}>
+                                        <Link to={crumb.link}
+                                            onClick={useClearFilters}
+                                        >
                                             <Text
                                                 size='24'
                                                 color='peach'

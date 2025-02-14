@@ -1,12 +1,12 @@
-import { transliterate } from "@/shared/lib/transliterate";
+import { getCountryName } from "@/shared/lib/getCountryName";
 
 export const getRouteMain = () => '/';
 export const getRouteAbout = () => '/about';
 export const getRouteBlog = () => '/blog';
 export const getRouteBlogDetails = (id: string) => `/blog/${id}`;
 export const getRouteTours = () => '/tours';
-export const getRouteToursByRegion = (region: string) => `/tours/${transliterate(region)}`;
-export const getRouteToursDetails = (region: string, id: string) => `/tours/${transliterate(region)}/${id}`;
+export const getRouteToursByRegion = (region: string) => `/tours/${getCountryName(region)}`;
+export const getRouteToursDetails = (region: string, id: string) => `/tours/${region}/${id}`;
 export const getRouteTestimonials = () => '/testimonials';
 export const getRoutePrivacyPolicy = () => '/privacy-policy';
 export const getRouteSignin = () => '/signin';
@@ -20,6 +20,4 @@ export const getRouteAdminNews = () => '/admin/news';
 export const getRouteAdminNewsCreate = () => '/admin/news/create';
 export const getRouteAdminNewsEdit = (id: string) => `/admin/news/edit/${id}`;
 export const getRouteAdminDiscount = () => '/admin/discount';
-export const getRouteAdminDiscountCreate = () => `/admin/discount/create`;
-export const getRouteAdminDiscountEdit = (id: string) => `/admin/discount/edit/${id}`;
 export const getRouteAdminModerationReviews = () => '/admin/moderation'

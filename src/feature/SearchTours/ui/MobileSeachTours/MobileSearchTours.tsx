@@ -50,13 +50,12 @@ export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchPro
         }}  style={{ cursor: 'pointer' }} type="button" />
         : <CalendarRange />
 
-    const searchIcon = regionValue ? 
+    const searchIcon = regionValue || filters.region ? 
         <X  onClick={(e: React.MouseEvent<SVGElement>) => {
             e.stopPropagation()
             handleClearRegion()
         }} style={{ cursor: "pointer" }} type="button" />
         : <Search />
-
 
     return (
         <Stack

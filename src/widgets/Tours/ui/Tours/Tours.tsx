@@ -11,26 +11,25 @@ import { dataTours } from "@/widgets/OurTours/lib/data"
 import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
-import styles from './Tours.module.scss'
 import { Shedule } from "@/entities/Shedule"
 import { TourCard, useGetAllToursQuery } from "@/entities/Tours"
 import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
+import { getCountryName } from "@/shared/lib/getCountryName"
+import styles from './Tours.module.scss'
 
 export const Tours = () => {
 
     const { region } = useParams()
     const dispatch = useDispatch()
 
-    if(region) {
-        dispatch(setFilter({ 
-            region: region
-        }))
+    if (region) {
+        const regions = getCountryName(region)
+        dispatch(setFilter({ region: regions }))
     }
 
     const filters = useSelector(getFiltersState)
     const sorts = useSelector(getSortState)
-
     const readyFilter = JSON.stringify(filters);
     const readySort = JSON.stringify(sorts);
     
@@ -40,7 +39,6 @@ export const Tours = () => {
     })
 
     console.log(data, error, isLoading)
-
 
     const [changeModal, drawModal] = useModal();
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
@@ -97,12 +95,12 @@ export const Tours = () => {
                 ))}
             </Stack>
             <Pagination
-                    onPageChange={handlePageChange}
-                    forcePage={currentIndex}
-                    pageCount={3}
-                    hasBackground={true}
-                    pagePagination={true}
-                />
+                onPageChange={handlePageChange}
+                forcePage={currentIndex}
+                pageCount={3}
+                hasBackground={true}
+                pagePagination={true}
+            />
         </Stack>
     )
 }

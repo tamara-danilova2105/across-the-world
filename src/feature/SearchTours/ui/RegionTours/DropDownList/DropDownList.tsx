@@ -17,7 +17,13 @@ interface DropdownListProps {
     styleMode: 'list_desktop' | 'list_mobile';
 }
 
-export const DropdownList = ({ regions, isLoading, error, onSelect, styleMode }: DropdownListProps) => {
+export const DropdownList = ({ 
+    regions, 
+    isLoading, 
+    error, 
+    onSelect, 
+    styleMode 
+}: DropdownListProps) => {
 
     const additional: Additional = [styles[styleMode]]
     const nav = useNavigate()

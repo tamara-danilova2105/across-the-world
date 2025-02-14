@@ -20,8 +20,6 @@ import {
     getRouteToursDetails,
     getRouteAdminDiscount,
     getRouteAdminModerationReviews,
-    getRouteAdminDiscountCreate,
-    getRouteAdminDiscountEdit,
     getRouteToursByRegion,
     getRouteForgotPassword,
 } from "./helper";
@@ -43,8 +41,6 @@ import { ModerationReviewsPage } from "@/pages/ModerationReviewsPage";
 import { AdminToursPage } from "@/pages/AdminToursPage";
 import { AdminNewsPage } from "@/pages/AdminNewsPage";
 import { EditNewsPage } from "@/pages/EditNewsPage";
-import { TimerAdminPage } from "@/pages/TimerAdminPage";
-import EditTimerPage from "@/pages/EditTimerPage/EditTimerPage";
 import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
 import { EditTourPage } from "@/pages/EditTourPage";
 
@@ -144,17 +140,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_discount]: {
         path: getRouteAdminDiscount(),
         // onlyAdmin: true,
-        page: <TimerAdminPage />
-    },
-    [AppRouters.admin_discount_create]: {
-        path: getRouteAdminDiscountCreate(),
-        // onlyAdmin: true,
         page: <CreateTimerPage />
-    },
-    [AppRouters.admin_discount_edit]: {
-        path: getRouteAdminDiscountEdit(':id'),
-        // onlyAdmin: true,
-        page: <EditTimerPage />
     },
     [AppRouters.admin_moderation_reviews]: {
         path: getRouteAdminModerationReviews(),

@@ -38,7 +38,11 @@ export const RegionTours = ({
     const regionValue = watch('region')
     const searchIcon = regionValue
         ? <X onClick={handleClearRegion} style={{ cursor: 'pointer' }} type="button" />
-        : <Search />;
+        : <Search />
+
+    const filteredRegions = regions.filter(region =>
+        region.region.toLowerCase().includes(regionValue.toLowerCase())
+    )
 
     return (
         <Stack direction='column' max className={styles.search} ref={dropdownRef}>
@@ -58,7 +62,7 @@ export const RegionTours = ({
             />
             {showRegionsList && (
                 <DropdownList 
-                    regions={regions} 
+                    regions={filteredRegions} 
                     isLoading={isLoading} 
                     error={error} 
                     onSelect={(regionName) => handleRegionSelect(regionName,
@@ -67,5 +71,5 @@ export const RegionTours = ({
                 />
             )}
         </Stack>
-    );
-};
+    )
+}

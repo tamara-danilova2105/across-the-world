@@ -9,6 +9,7 @@ import { useOverflowHidden } from '@/shared/hooks/useOverflowHidden';
 import { getStyles } from '@/shared/lib/getStyles';
 import { DecorationIcon } from '@/shared/assets/svg/heroIcons';
 import styles from './NavbarMobile.module.scss';
+import { useClearFilters } from '@/shared/hooks/useClearFilters';
 
 
 export const NavbarMobile = () => {
@@ -22,7 +23,8 @@ export const NavbarMobile = () => {
 
     const closeMenu = () => {
         setIsOpen(false);
-    };
+        useClearFilters()
+    }
 
     const renderLogo = () => {
         return (

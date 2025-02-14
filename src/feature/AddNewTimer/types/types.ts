@@ -20,13 +20,14 @@ export interface TimerData {
     region: string;
     description: string;
     timer: string;
+    hide: boolean;
     imagesWithDetails: ImagesWithDetails[]
 }
 
 export const PLACEHOLDER_TEXT: Record<string, string> = {
-    header: "название места",
-    category: "вид достопримечательности",
-    describe: "короткое описание места"
+    header: "Сахара",
+    category: "Пустыня",
+    describe: "Таинственная ночь в Сахаре: барханы, звезды и тишина пустыни"
 }
 
 const LABEL: Record<string, { label: string; min: number; max: number }> = {
