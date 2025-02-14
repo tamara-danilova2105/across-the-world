@@ -17,7 +17,7 @@ interface TimerImageProps {
     setDeletedImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const TimerImage = ({ 
+export const TimerImage = ({  
     imagesWithDetails, 
     handleSaveCover, 
     setTimerData, 
