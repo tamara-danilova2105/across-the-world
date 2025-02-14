@@ -7,6 +7,8 @@ import { DirectionTour, Tour, TourScroll, useGetAllToursQuery } from "@/entities
 
 export const OurTours = () => {
     const [tours, setTours] = useState<Tour[]>([]);
+    console.log(tours);
+    
 
     const { data: toursData, isLoading, error } = useGetAllToursQuery({});
 
@@ -20,7 +22,7 @@ export const OurTours = () => {
         if (filter === 'все туры') {
             return toursData.tours;
         }
-        return toursData.tours.filter((tour: Tour) => tour.direction.includes(filter));
+        return toursData?.tours.filter((tour: Tour) => tour.direction.includes(filter));
     };
 
     const filtredTours = useCallback((filter: string) => {

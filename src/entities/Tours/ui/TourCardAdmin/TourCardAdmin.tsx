@@ -111,6 +111,9 @@ export const TourCardAdmin = (props: TourCardAdminProps) => {
 
 
     const handleDeleteTour = async () => {
+        const isConfirmed = window.confirm("Вы уверены, что хотите удалить этот тур?");
+        if (!isConfirmed) return;
+
         try {
             await deleteTour(tourId).unwrap();
             toast.success("Тур успешно удален.");
