@@ -8,12 +8,12 @@ import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { dataTours } from "@/widgets/OurTours/lib/data"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
 import { Shedule } from "@/entities/Shedule"
 import { TourCard, useGetAllToursQuery } from "@/entities/Tours"
-import { useLocation, useParams } from "react-router"
+import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
 import { getCountryName } from "@/shared/lib/getCountryName"
 import styles from './Tours.module.scss'
@@ -27,12 +27,6 @@ export const Tours = () => {
         const regions = getCountryName(region)
         dispatch(setFilter({ region: regions }))
     }
-
-    // const location = useLocation()
-
-    // useEffect(() => {
-    //     dispatch(setFilter({ region: "" }))
-    // }, [location.pathname])
 
     const filters = useSelector(getFiltersState)
     const sorts = useSelector(getSortState)
