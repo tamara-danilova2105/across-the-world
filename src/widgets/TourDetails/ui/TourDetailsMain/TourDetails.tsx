@@ -1,4 +1,3 @@
-import { OurTours } from "@/widgets/OurTours";
 import { BreadCrumbs } from "@/entities/BreadCrumbs";
 import { useResize } from "@/shared/hooks/useResize";
 import { Stack } from "@/shared/ui/Stack";
@@ -12,13 +11,14 @@ import { useGetTourByIdQuery } from "@/entities/Tours/api/api";
 import { DayProgram } from "@/entities/Tours/model/types/types";
 import { Loading } from "@/shared/ui/Loading";
 import { useNavigate, useParams } from "react-router";
+import { TitleSection } from "@/entities/TitleSection";
 
 export const TourDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
     if (!id) return null;
-    
+
     const { data: tour, isLoading, isError } = useGetTourByIdQuery(id);
 
     const width = useResize();
@@ -94,7 +94,10 @@ export const TourDetails = () => {
                 )}
 
                 {/* TODO - добавить рекомендации */}
-                <OurTours />
+                <TitleSection
+                    subtitle="НАШИ ТУРЫ"
+                    title="Вам может понравиться"
+                />
             </Stack>
         </main>
     );

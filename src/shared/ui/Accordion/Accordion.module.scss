@@ -55,7 +55,7 @@
         }
 
         &.visible {
-            max-height: 1000px;
+            max-height: max-content;
             opacity: 1;
             margin-top: 16px;
         }
