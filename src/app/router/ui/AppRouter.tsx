@@ -23,8 +23,10 @@ export const AppRouter = () => {
     }, []);
 
     return (
-        <Routes>
-            {Object.values(routeConfig).map(renderWithWrapper)}
-        </Routes>
+            <>
+            <Routes>
+                {Object.values(routeConfig).map(renderWithWrapper)}
+            </Routes>
+        </>
     );
 };

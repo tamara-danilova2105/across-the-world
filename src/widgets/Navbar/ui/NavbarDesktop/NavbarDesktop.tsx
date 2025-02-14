@@ -6,6 +6,7 @@ import { Stack } from "@/shared/ui/Stack/Stack";
 import { LogoFont } from "@/shared/assets/svg/logoFont";
 import { LogoIcon } from "@/shared/assets/svg/logoIcon";
 import styles from './NavbarDesktop.module.scss';
+import { useClearFilters } from "@/shared/hooks/useClearFilters";
 
 export const NavbarDesktop = () => {
 
@@ -37,6 +38,7 @@ export const NavbarDesktop = () => {
                             <NavLink 
                                 key={route.path}
                                 to={route.path}
+                                onClick={useClearFilters}
                                 className={({ isActive }) =>
                                     getStyles(styles.link, {[styles.opened_page]: isActive, [styles.default]: !isActive}, [])
                                 }

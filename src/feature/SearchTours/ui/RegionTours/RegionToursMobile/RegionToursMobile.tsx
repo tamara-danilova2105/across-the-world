@@ -27,7 +27,11 @@ export const RegionToursMobile = ({
     const regionValue = watch('region')
     const searchIcon = regionValue
         ? <X onClick={handleClearRegion} style={{ cursor: 'pointer' }} type="button" />
-        : <Search />;
+        : <Search />
+
+    const filteredRegions = regions.filter(region =>
+        region.region.toLowerCase().includes(regionValue.toLowerCase())
+    )
 
     return (
         <Stack direction='column' max className={styles.search}>
@@ -46,7 +50,7 @@ export const RegionToursMobile = ({
                 autoComplete='off'
             />
             <DropdownList 
-                regions={regions} 
+                regions={filteredRegions} 
                 isLoading={isLoading} 
                 error={error} 
                 onSelect={(regionName) => handleRegionSelect(regionName, changeOpen)} 

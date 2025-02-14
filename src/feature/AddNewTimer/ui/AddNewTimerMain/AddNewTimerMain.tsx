@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 const INITIAL_TIMER_STATE: TimerData = {
     title: '',
     region: '',
+    hide: true,
     description: '',
     timer: '',
     imagesWithDetails: [],
@@ -25,13 +26,13 @@ export const AddNewTimerMain = () => {
     console.log(deletedImages)
 
     const { data: regions } = useGetRegionsQuery({});
-    const { data: getTimer, isLoading: getLoading, error: errorTimer } = useGetTimerQuery(id, {
-        skip: !id,  
-    })
+    const { data: getTimer, isLoading: getLoading, error: errorTimer } = useGetTimerQuery({})
+
+    console.log(getTimer)
     
     const [addNewTimer, { isLoading: addTimerLoading }] = useAddTimerMutation()
     const [editTimer, {error: editError, isLoading: editTimerLoading}] = useEditTimerMutation()
-    console.log(editError, editTimerLoading)
+    console.log(editTimer, editError, editTimerLoading)
 
     console.log(getTimer, errorTimer, getLoading)
 
@@ -49,8 +50,9 @@ export const AddNewTimerMain = () => {
             setTimerData(prev => ({
                 ...prev,
                 region: currentTimer.region,
+                hide: currentTimer.hide,
                 imagesWithDetails: currentTimer.imagesWithDetails || []
-            }));
+            }))
         }
     }, [getTimer, setValue]);
 
@@ -65,32 +67,32 @@ export const AddNewTimerMain = () => {
         setTimerData(prev => ({ ...prev, region: option }));
     }, [])
 
+    const handleHideChange = useCallback((hide: boolean) => {
+        setTimerData(prev => ({ ...prev, hide: hide }));
+    }, [])
+
     const onSubmit = async (formData: TimerData) => {
-        const { imagesWithDetails, region } = timerData;
+        const { imagesWithDetails, region, hide } = timerData;
         
         if (imagesWithDetails.length !== 2) return; 
-        
-        const data = new FormData();
-        const fields = {
+
+        const data = {
             title: formData.title,
             region,
             description: formData.description,
+            hide,
             timer: formData.timer,
             imagesWithDetails: JSON.stringify(imagesWithDetails),
-        };
+        }
     
-        Object.entries(fields).forEach(([key, value]) => data.append(key, value));
-    
-        imagesWithDetails.forEach(({ file }) => {
-            if (file) data.append('photos', file);
-        });
+        // imagesWithDetails.forEach(({ file }) => {
+        //     if (file) data.append('photos', file);
+        // });
+
+        console.log(data)
     
         try {
-            if (id) {
-                await editTimer({ id, updateTimer: data}).unwrap()
-            } else {
-                await addNewTimer(data).unwrap()
-            }
+            await addNewTimer(data).unwrap()
             setTimerData(INITIAL_TIMER_STATE);
             reset();
         } catch (error) {
@@ -109,6 +111,7 @@ export const AddNewTimerMain = () => {
                 optionsRegions={optionsRegions}
                 handleSaveCover={handleSaveCover}
                 onRegionChange={handleRegionChange}
+                onHideChange={handleHideChange}
                 isLoading={addTimerLoading}
                 onSubmit={onSubmit}
                 handleSubmit={handleSubmit}
