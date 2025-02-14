@@ -1,7 +1,7 @@
 //Фильтры - checkbox
 export interface FilterItem {
     _id: number;
-    value?: string;
+    value: string;
     label: string;
 }
 
