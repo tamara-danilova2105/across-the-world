@@ -7,12 +7,11 @@ import { useModal } from "@/shared/hooks/useModal"
 import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
 import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
-import { dataTours } from "@/widgets/OurTours/lib/data"
 import { useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import { getStyles } from "@/shared/lib/getStyles"
 import { Shedule } from "@/entities/Shedule"
-import { TourCard, useGetAllToursQuery } from "@/entities/Tours"
+import { Tour, TourCard, useGetAllToursQuery } from "@/entities/Tours"
 import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
 import { getCountryName } from "@/shared/lib/getCountryName"
@@ -38,12 +37,16 @@ export const Tours = () => {
         sort: readySort
     })
 
-    console.log(data, error, isLoading)
+    console.log(error, isLoading) //todo
+
+    const tours = data?.tours || [];
+    const currentPage = data?.currentPage || 1;
+    const totalPages = data?.totalPages || 1;
 
     const [changeModal, drawModal] = useModal();
     const { isOpen, toggleMenu, menuRef } = useToggleOpen();
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(currentPage);
 
     const handlePageChange = useCallback((pageIndex: number) => {
         setCurrentIndex(pageIndex);
@@ -87,20 +90,21 @@ export const Tours = () => {
                 wrap
                 className={styles.our_tours}
             >
-                {dataTours.map((tour) => (
+                {tours.map((tour: Tour) => (
                     <TourCard
                         key={tour._id}
                         tourData={tour}
                     />
                 ))}
             </Stack>
-            <Pagination
+            {totalPages > 1 && (
+                <Pagination
                 onPageChange={handlePageChange}
                 forcePage={currentIndex}
-                pageCount={3}
+                pageCount={totalPages}
                 hasBackground={true}
                 pagePagination={true}
-            />
+            />)}
         </Stack>
     )
 }
