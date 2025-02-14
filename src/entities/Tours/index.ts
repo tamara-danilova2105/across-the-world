@@ -1,6 +1,7 @@
 import { TourCardAdmin } from './ui/TourCardAdmin/TourCardAdmin';
 import { TourCard } from './ui/TourCard/TourCard';
 import { TourScroll } from './ui/TourScroll/TourScroll';
+import { TourSelect } from './ui/TourSelect/TourSelect';
 import {
     useGetAllToursQuery,
     useAddTourMutation,
@@ -24,10 +25,13 @@ export {
     TourCardAdmin,
     TourCard,
     TourScroll,
+    TourSelect,
+
     useGetAllToursQuery,
     useAddTourMutation,
     useUploadFilesMutation,
     useEditTourMutation,
+    
     Tour,
     DateTours,
     ActivityLevel,

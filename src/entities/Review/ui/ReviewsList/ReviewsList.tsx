@@ -2,13 +2,13 @@ import { Stack } from "@/shared/ui/Stack";
 import { ReviewCard } from "../ReviewCard/ReviewCard";
 import { useGetReviewsQuery } from "../../api/api";
 import { Review } from "../../model/types/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Text } from "@/shared/ui/Text";
 import { Skeleton } from "@/shared/ui/Skeleton";
+import { Pagination } from "@/entities/Pagination";
 
 interface ReviewsListProps {
     limit?: number;
-    offset?: number;
     isModeration?: boolean
     tourId?: string;
     onReviewsCountChange?: (count: number) => void;
@@ -17,16 +17,21 @@ interface ReviewsListProps {
 export const ReviewsList = (props: ReviewsListProps) => {
     const {
         limit = 10,
-        offset = 0,
         isModeration = true,
         tourId,
         onReviewsCountChange,
     } = props;
 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (selectedPage: number) => {
+        setCurrentPage(selectedPage + 1);
+    };
+
     const { data: reviews, isLoading, error } = useGetReviewsQuery({
         isModeration,
         limit,
-        offset,
+        page: currentPage,
         ...(tourId ? { tourId } : {}),
     });
 
@@ -45,7 +50,6 @@ export const ReviewsList = (props: ReviewsListProps) => {
             </Stack>
         );
     };
-
 
     if (error) return (
         <Text color="red" size="18">
@@ -67,6 +71,15 @@ export const ReviewsList = (props: ReviewsListProps) => {
                     isModeration={isModeration}
                 />
             ))}
+
+            {reviews?.totalPages > 1 && (
+                <Pagination
+                    pageCount={reviews.totalPages}
+                    pagePagination
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage - 1}
+                />
+            )}
         </Stack>
     );
 };

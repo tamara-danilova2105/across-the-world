@@ -1,22 +1,19 @@
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Stack } from "@/shared/ui/Stack";
-import styles from './AddNewReview.module.scss';
 import { Text } from "@/shared/ui/Text";
 import { Input } from "@/shared/ui/Input";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { data } from "@/shared/lib/validateInput";
 import { Button } from "@/shared/ui/Button";
 import { TextArea } from "@/shared/ui/TextArea";
-import { SelectApp } from "@/shared/ui/SelectApp/SelectApp";
-import { useMemo, useState } from "react";
-import { dataTours } from "@/widgets/OurTours/lib/data";
 import { Review } from "@/entities/Review";
 import { useAddReviewMutation } from "@/entities/Review/api/api";
-import { Tour } from "@/entities/Tours";
+import { TourSelect } from "@/entities/Tours";
+import styles from './AddNewReview.module.scss';
 
 type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 
 export const AddNewReview = () => {
-    const tourOptions = useMemo(() => dataTours.map((tour: Tour) => tour.tour), []);
 
     const [addReview, { isLoading, error }] = useAddReviewMutation();
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -24,10 +21,7 @@ export const AddNewReview = () => {
     const onSubmit: SubmitHandler<TypeReviewRequest> = async (data) => {
         setIsSubmitted(false);
         try {
-            const selectedTour = dataTours.find((tour) => tour.tour === data.tourId);
-            const newData = { ...data, tourId: selectedTour?._id };
-
-            await addReview(newData).unwrap();
+            await addReview(data).unwrap();
             setIsSubmitted(true);
         } catch (err) {
             setIsSubmitted(false);
@@ -37,6 +31,7 @@ export const AddNewReview = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm<Review>();
 
@@ -68,12 +63,11 @@ export const AddNewReview = () => {
                     register={register("city")}
                 />
 
-                <SelectApp
-                    label="Тур"
-                    options={tourOptions}
-                    placeholder="выберите тур"
-                    register={register('tourId', { required: data.required })}
+                <TourSelect<Review>
+                    register={register}
                     error={errors.tourId}
+                    name="tourId"
+                    setValue={setValue}
                 />
 
                 <TextArea

@@ -42,6 +42,11 @@
 .directionButton {
     background: none;
     transition: color 0.2s;
+    color: black;
+}
+
+.disabled {
+    color: grey;
 }
 
 .deleteButton {

@@ -11,24 +11,32 @@ import styles from './TourDetails.module.scss';
 import { useGetTourByIdQuery } from "@/entities/Tours/api/api";
 import { DayProgram } from "@/entities/Tours/model/types/types";
 import { Loading } from "@/shared/ui/Loading";
+import { useNavigate, useParams } from "react-router";
 
 export const TourDetails = () => {
-    //TODO - id получать из роутера
-    const id = '67ab78be47cc6848b9dcff72'
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-    const { data: tour, isLoading } = useGetTourByIdQuery(id);
+    if (!id) return null;
+    
+    const { data: tour, isLoading, isError } = useGetTourByIdQuery(id);
 
     const width = useResize();
     const isMobile = width <= 768;
     const isTablet = width <= 1024;
 
-    //TODO - если будет error, то делать редирект на Not Found Page
-    if (!tour) return null
+    if (isLoading) {
+        return <Loading width='100' height='100' />
+    }
+
+    if (isError || !tour) {
+        navigate('*');
+        return null;
+    }
 
     const allImages = (tour.imageCover).concat(
         tour.program.flatMap((item: DayProgram) => item.images || [])
     );
-
 
     const infoContant = (
         <Infornations
@@ -47,10 +55,6 @@ export const TourDetails = () => {
     const aboutContent = (
         <AboutTour tour={tour} />
     );
-
-    if (isLoading) {
-        return <Loading width='100' height='100' />
-    }
 
     return (
         <main>

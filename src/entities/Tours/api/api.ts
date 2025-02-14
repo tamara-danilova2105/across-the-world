@@ -20,6 +20,9 @@ const toursApi = api.injectEndpoints({
             },
             providesTags: () => TOUR_TAG,
         }),
+        getTourList: build.query({
+            query: () => createApiConfig("GET", `${url}/list`),
+        }),
         getTourById: build.query({
             query: (id: string) => createApiConfig("GET", `${url}/${id}`),
         }),
@@ -47,6 +50,7 @@ const toursApi = api.injectEndpoints({
 
 export const {
     useGetAllToursQuery,
+    useGetTourListQuery,
     useGetTourByIdQuery,
     useLazyGetTourByIdQuery,
     useAddTourMutation,

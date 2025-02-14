@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import { Stack } from '@/shared/ui/Stack';
 import { getStyles } from '@/shared/lib/getStyles';
@@ -11,7 +11,7 @@ interface SelectAppProps<T> {
     label?: string;
     placeholder?: string;
     register?: UseFormRegisterReturn;
-    error?: any;
+    error?: FieldError;
     className?: string;
 }
 
@@ -46,7 +46,7 @@ export const SelectApp = <T extends string>(props: SelectAppProps<T>) => {
 
             <div className={styles.dropdownWrapper} ref={dropdownRef}>
                 <div
-                    className={getStyles(styles.select, { [styles.error]: error }, [className])}
+                    className={getStyles(styles.select, { [styles.error]: !!error }, [className])}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <span className={getStyles(styles.text, { [styles.placeholder]: !selectedValue })}>

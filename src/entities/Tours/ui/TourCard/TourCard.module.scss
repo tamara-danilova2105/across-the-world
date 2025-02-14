@@ -1,3 +1,5 @@
+@use '@/app/styles/media-queries' as *;
+
 .card {
     width: 18rem;
     min-width: 18rem;
@@ -10,6 +12,10 @@
 
     &:hover {
         transform: scale(1.02);
+    }
+
+    @include mobile-xl {
+        width: 100%;
     }
 }
 

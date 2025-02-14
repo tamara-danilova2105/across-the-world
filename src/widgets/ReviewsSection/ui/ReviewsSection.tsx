@@ -6,8 +6,6 @@ import { ReviewsList } from "@/entities/Review";
 import styles from './ReviewsSection.module.scss';
 
 export const Reviews = () => {
-    const offset = 0 //TODO - брать из пагинации
-    
     return (
         <main>
             <BreadCrumbs />
@@ -29,16 +27,14 @@ export const Reviews = () => {
                             Спасибо, что доверяете нам свои эмоции и вдохновляете других!
                         </Text>
 
-                        <ReviewsList offset={offset} />
-                        
+                        <ReviewsList />
+
                     </div>
                     <div className={styles.form_container}>
                         <AddNewReview />
                     </div>
                 </div>
             </Stack>
-
-
         </main>
     );
 };

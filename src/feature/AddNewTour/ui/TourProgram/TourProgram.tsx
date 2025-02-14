@@ -8,6 +8,7 @@ import styles from './TourProgram.module.scss';
 import { Image } from "@/shared/types/types";
 import { FieldErrors, UseFormSetValue } from "react-hook-form";
 import { ArrowDown, ArrowUp, Trash2 } from "lucide-react";
+import { getStyles } from "@/shared/lib/getStyles";
 
 interface TourProgramProps {
     program: DayProgram[];
@@ -78,14 +79,14 @@ export const TourProgram = (props: TourProgramProps) => {
                                 <button
                                     type="button"
                                     onClick={() => moveDayUp(dayIndex)}
-                                    className={styles.directionButton}
+                                    className={getStyles(styles.directionButton, { [styles.disabled]: dayIndex === 0 }, [])}
                                     disabled={dayIndex === 0}
                                 >
                                     <ArrowUp />
                                 </button>
                                 <button
                                     type="button"
-                                    className={styles.directionButton}
+                                    className={getStyles(styles.directionButton, { [styles.disabled]: dayIndex === program.length - 1 }, [])}
                                     onClick={() => moveDayDown(dayIndex)}
                                     disabled={dayIndex === program.length - 1}
                                 >
