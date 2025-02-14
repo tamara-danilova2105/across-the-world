@@ -7,6 +7,7 @@ export interface DateRange {
 
 export interface FiltersState {
     type_tour: Record<string, boolean>;
+    discount: Record<string, boolean>;
     price: [number, number];
     duration: [number, number];
     region: string;
@@ -15,6 +16,7 @@ export interface FiltersState {
 
 const initialState: FiltersState = {
     type_tour: {},
+    discount: {},
     duration: [1, 25],
     price: [0, 500000],
     region: '',

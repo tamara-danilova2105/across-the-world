@@ -6,7 +6,7 @@ export const getRouteBlog = () => '/blog';
 export const getRouteBlogDetails = (id: string) => `/blog/${id}`;
 export const getRouteTours = () => '/tours';
 export const getRouteToursByRegion = (region: string) => `/tours/${getCountryName(region)}`;
-export const getRouteToursDetails = (region: string, id: string) => `/tours/${region}/${id}`;
+export const getRouteToursDetails = (region: string, id: string) => `/tours/${getCountryName(region)}/${id}`;
 export const getRouteTestimonials = () => '/testimonials';
 export const getRoutePrivacyPolicy = () => '/privacy-policy';
 export const getRouteSignin = () => '/signin';

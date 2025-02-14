@@ -12,6 +12,7 @@ export interface FilterCategory {
 
 export interface FilterData {
     type_tour: FilterCategory;
+    discount: FilterCategory;
 }
 
 
@@ -19,11 +20,17 @@ export const dataFilter: FilterData = {
     type_tour: {
         title: "Тип тура",
         items: [
-            { _id: 1, value: 'Tracking', label: 'Трекинг' },
-            { _id: 2, value: 'Retreat', label: 'Ретрит / оздоровительный' },
-            { _id: 3, value: 'Excusion', label: 'Экскурсионный' },
-            { _id: 4, value: 'Child', label: 'Детский' },
-            { _id: 5, value: 'Photo_tour', label: 'Фототур' },
+            { _id: 1, value: 'Трекинг', label: 'Трекинг' },
+            { _id: 2, value: 'Ретрит / оздоровительный', label: 'Ретрит / оздоровительный' },
+            { _id: 3, value: 'Экскурсионный', label: 'Экскурсионный' },
+            { _id: 4, value: 'Детский', label: 'Детский' },
+            { _id: 5, value: 'Фототур', label: 'Фототур' },
+        ],
+    },
+    discount: {
+        title: "Тур со скидкой",
+        items: [
+            { _id: 1, value: 'discount', label: 'Скидка' },
         ],
     }
 }
