@@ -3,12 +3,15 @@ import { LogoFont } from "@/shared/assets/svg/logoFont"
 import { LogoMain } from "@/shared/assets/svg/logo_main"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
-import { dataTours } from "@/widgets/OurTours/lib/data"
 import { SheduleItem } from "../SheduleItem/SheduleItem"
 import styles from './Shedule.module.scss'
-import { Tour } from "@/entities/Tours"
+import { Tour, useGetAllToursQuery } from "@/entities/Tours"
 
 export const Shedule = () => {
+
+    const { data: dataTours, error, isLoading } = useGetAllToursQuery({})
+
+    console.log(error, isLoading) //todo
 
     function getMonthFromDate(date: string): string {
         const monthNames = [
@@ -19,7 +22,11 @@ export const Shedule = () => {
         return monthNames[monthIndex];
     }
 
-    function groupToursByMonth(tours: Tour[]) {
+    function groupToursByMonth(tours?: Tour[]) {
+        if (!Array.isArray(tours)) {
+            console.error("groupToursByMonth: tours is not an array", tours);
+            return {};
+        }
         const toursByMonth: Record<string, { date: string; _id: string; tour: string; spots: number, regions: string[] }[]> = {};
 
         tours.forEach(tour => {
@@ -51,7 +58,7 @@ export const Shedule = () => {
         return `${day}.${month}`;
     }
 
-    const groupedTours = groupToursByMonth(dataTours);
+    const groupedTours = groupToursByMonth(dataTours?.tours || [])
 
     return (
         <Stack
@@ -119,7 +126,7 @@ export const Shedule = () => {
                                 font='geometria600'
                                 color='blue'
                             >
-                                2024
+                                2025
                                 {/* todo */}
                             </Text>
                         </Stack>
