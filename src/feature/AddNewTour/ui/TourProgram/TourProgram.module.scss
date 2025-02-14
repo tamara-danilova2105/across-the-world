@@ -24,10 +24,14 @@
 }
 
 .dayHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 1rem;
+
+    span {
+        font-size: var(--font-size-14);
+        color: grey;
+        width: 100px;
+        text-align: end;
+    }
 }
 
 .dayTitle {
@@ -35,13 +39,14 @@
     font-weight: 500;
 }
 
+.directionButton {
+    background: none;
+    transition: color 0.2s;
+}
+
 .deleteButton {
-    margin-top: 4px;
-    padding: 8px;
     color: var(--error-color);
     background: none;
-    border: none;
-    cursor: pointer;
     transition: color 0.2s;
 
     &:hover {

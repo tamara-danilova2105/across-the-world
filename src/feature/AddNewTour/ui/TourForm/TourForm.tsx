@@ -39,7 +39,7 @@ export const TourForm = () => {
     const { id } = useParams<{ id: string }>();
 
     //TODO error обработка
-    const { data: tourData, isLoading: isLoadingTourNewsById } = useGetTourByIdQuery(id || '', { skip: !id });
+    const { data: tourData, refetch, isLoading: isLoadingTourNewsById } = useGetTourByIdQuery(id || '', { skip: !id });
 
     const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<Tour>({
         resolver: zodResolver(tourSchema),
@@ -53,7 +53,6 @@ export const TourForm = () => {
     }, [tourData, reset]);
 
     const formData = watch();
-    console.log(formData);
 
 
     //TODO добавить обработку ошибки и загрузки
@@ -106,8 +105,6 @@ export const TourForm = () => {
                 deletedImages, // удаленные изображения
             };
 
-            console.log("Финальные данные перед отправкой:", updatedTourData);
-
             if (formDataToUpload.has('files')) {
                 await uploadFiles(formDataToUpload).unwrap();
             }
@@ -117,6 +114,8 @@ export const TourForm = () => {
             } else {
                 await addTour(updatedTourData).unwrap();
             }
+
+            await refetch();
 
             toast.success(isPublished ? 'Тур успешно опубликован' : 'Тур сохранен в черновиках');
         } catch (error) {
@@ -216,7 +215,7 @@ export const TourForm = () => {
                     program={formData.program}
                     setValue={setValue}
                     errors={errors}
-                    onDelete={handleDeleteImage} // Передаем функцию удаления
+                    onDelete={handleDeleteImage}
                 />
 
                 <Stack direction='column' gap="4">
@@ -224,7 +223,7 @@ export const TourForm = () => {
                         images={formData.imageCover}
                         onChange={(imageCover) => setValue("imageCover", imageCover)}
                         isGridFull={formData.program.flatMap((item: DayProgram) => item.images || []).length > MIN_GRID_LENGHT}
-                        onDelete={handleDeleteImage} // Передаем функцию удаления
+                        onDelete={handleDeleteImage}
                     />
                     {errors.imageCover && (
                         <Text color='red'>{errors.imageCover.message}</Text>
@@ -234,7 +233,7 @@ export const TourForm = () => {
                 <HotelsInput
                     images={formData.hotels ?? []}
                     onChange={(hotels) => setValue("hotels", hotels)}
-                    onDelete={handleDeleteImage} // Передаем функцию удаления
+                    onDelete={handleDeleteImage}
                 />
 
                 <MapMarkerInput

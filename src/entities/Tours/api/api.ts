@@ -48,6 +48,7 @@ const toursApi = api.injectEndpoints({
 export const {
     useGetAllToursQuery,
     useGetTourByIdQuery,
+    useLazyGetTourByIdQuery,
     useAddTourMutation,
     useUploadFilesMutation,
     useEditTourMutation,

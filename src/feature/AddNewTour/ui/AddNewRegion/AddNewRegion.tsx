@@ -6,6 +6,7 @@ import { Select } from '@/shared/ui/Select';
 import styles from './AddNewRegion.module.scss';
 import { useSaveRegionMutation } from '@/entities/Region/api/api'; //TODO
 import { DirectionTour } from '@/entities/Tours';
+import { toast } from 'react-toastify';
 
 interface AddNewRegionProps {
     direction: DirectionTour;
@@ -24,7 +25,7 @@ export const AddNewRegion = (props: AddNewRegionProps) => {
             await saveRegion({ direction, region }).unwrap();
             setRegion('');
         } catch (error) {
-            console.error('Ошибка при добавлении региона:', error); //TODO как-то обработать ошибку
+            toast.error('Произошла ошибка при добавлении региона')
         }
     };
 

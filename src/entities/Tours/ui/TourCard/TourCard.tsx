@@ -6,6 +6,7 @@ import { AppLink } from "@/shared/ui/AppLink";
 import styles from "./TourCard.module.scss";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
+import { apiUrl } from "@/shared/api/endpoints";
 
 interface TourCardProps {
     tourData: Tour;
@@ -36,7 +37,10 @@ export function TourCard({ tourData }: TourCardProps) {
     return (
         <div className={styles.card}>
             <div className={styles.imageWrapper}>
-                <img src={imageCover[0]?.src} alt={tour} className={styles.image} />
+                <img
+                    src={`${apiUrl}${imageCover[0]?.src}`} alt={tour}
+                    className={styles.image}
+                />
                 {isDiscountActive && (
                     <div className={styles.discountBadge}>-{discount.percentage}%</div>
                 )}

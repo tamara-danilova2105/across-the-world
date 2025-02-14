@@ -1,35 +1,32 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TitleSection } from "@/entities/TitleSection";
 import { Stack } from "@/shared/ui/Stack";
-import { CustomeSwiper } from "@/shared/ui/CustomeSwiper";
-import { useScrollSlider } from "@/shared/hooks/useScrollSlider";
-import { useResize } from "@/shared/hooks/useResize";
 import { Filterbar } from "../Filterbar/Filterbar";
-import { dataTours } from "../../lib/data";
 import styles from './OurTours.module.scss';
-import { DirectionTour, Tour, TourCard } from "@/entities/Tours";
+import { DirectionTour, Tour, TourScroll, useGetAllToursQuery } from "@/entities/Tours";
 
 export const OurTours = () => {
-    const [tours, setTours] = useState(dataTours);
-    const width = useResize();
-    const isSwiperActive = width <= 590;
-    const { containerRef } = useScrollSlider(width);
+    const [tours, setTours] = useState<Tour[]>([]);
 
+    const { data: toursData, isLoading, error } = useGetAllToursQuery({});
+
+    if (error) return; //не показывать секцию в случаи ошибки на сервере
+
+    useEffect(() => {
+        if (toursData) setTours(toursData.tours);
+    }, [toursData]);
 
     const filterTours = (filter: DirectionTour | 'все туры') => {
         if (filter === 'все туры') {
-            return dataTours;
+            return toursData.tours;
         }
-        return dataTours.filter((tour) => tour.direction.includes(filter));
+        return toursData.tours.filter((tour: Tour) => tour.direction.includes(filter));
     };
 
     const filtredTours = useCallback((filter: string) => {
         const filtered = filterTours(filter as DirectionTour | 'все туры');
         setTours(filtered);
     }, []);
-
-    const renderItem = useCallback((tour: Tour) => <TourCard tourData={tour} />, []);
-
 
     return (
         <Stack
@@ -47,29 +44,10 @@ export const OurTours = () => {
                 />
                 <Filterbar filtredTours={filtredTours} />
             </Stack>
-            {isSwiperActive ? (
-                <div style={{ width: '100%', padding: '0 10px' }}>
-                    <CustomeSwiper<Tour>
-                        items={tours}
-                        renderItem={renderItem}
-                    />
-                </div>
-
-            ) : (
-                <Stack
-                    gap="32"
-                    align='center'
-                    ref={containerRef}
-                    className={styles.our_tours_container}
-                >
-                    {tours.map((tour) => (
-                        <TourCard
-                            key={tour._id}
-                            tourData={tour}
-                        />
-                    ))}
-                </Stack>
-            )}
+            <TourScroll
+                tours={tours}
+                isLoading={isLoading}
+            />
         </Stack>
     );
 };

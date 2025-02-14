@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { X, ChevronDown } from 'lucide-react';
+import { X, ChevronDown, Search } from 'lucide-react';
 import { getStyles } from '@/shared/lib/getStyles';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import styles from './MultiSelect.module.scss';
@@ -9,14 +9,20 @@ interface MultiSelectProps<T> {
     options: T[];
     isError?: boolean;
     onChange: (options: T[]) => void;
+    withSearch?: boolean;
 }
 
 export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
-    const { value, options, isError, onChange } = props;
+    const { value, options, isError, onChange, withSearch = false } = props;
+
     const [isOpen, setIsOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const dropdownRef = useRef<HTMLDivElement>(null);
-    useClickOutside(dropdownRef, () => setIsOpen(false));
+    useClickOutside(dropdownRef, () => {
+        setIsOpen(false);
+        setSearchQuery('');
+    });
 
     const handleSelect = (option: T) => {
         const newSelection = value.includes(option)
@@ -30,12 +36,16 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
         onChange(value.filter(option => option !== optionToRemove));
     };
 
+    const filteredOptions = options.filter(option =>
+        String(option).toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className={styles.dropdown} ref={dropdownRef}>
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className={getStyles(styles.dropdownButton, {[styles.error]: isError}, [])}
+                className={getStyles(styles.dropdownButton, { [styles.error]: isError }, [])}
             >
                 <div className={styles.selectedOptions}>
                     {value.length > 0 ? (
@@ -64,15 +74,34 @@ export const MultiSelect = <T,>(props: MultiSelectProps<T>) => {
 
             {isOpen && (
                 <div className={styles.dropdownMenu}>
-                    {options.map((option) => (
-                        <div
-                            key={String(option)}
-                            onClick={() => handleSelect(option)}
-                            className={getStyles(styles.option, { [styles.selected]: value.includes(option) }, [])}
-                        >
-                            {String(option)}
+                    {withSearch && (
+                        <div className={styles.searchContainer}>
+                            <Search size={16} className={styles.searchIcon} />
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder='Поиск...'
+                                className={styles.searchInput}
+                                onClick={(e) => e.stopPropagation()}
+                            />
                         </div>
-                    ))}
+                    )}
+                    {filteredOptions.length > 0 ? (
+                        filteredOptions.map((option) => (
+                            <div
+                                key={String(option)}
+                                onClick={() => handleSelect(option)}
+                                className={getStyles(styles.option, { [styles.selected]: value.includes(option) }, [])}
+                            >
+                                {String(option)}
+                            </div>
+                        ))
+                    ) : (
+                        <div className={styles.noResults}>
+                            {searchQuery ? `"${searchQuery}" не найдено среди стран или регионов` : "Страна или регион не найдены"}
+                        </div>
+                    )}
                 </div>
             )}
         </div>

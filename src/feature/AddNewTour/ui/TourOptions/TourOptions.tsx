@@ -54,6 +54,7 @@ export const TourOptions = ({ watch, setValue, errors, optionsRegions }: TourOpt
                             options={optionsRegions ?? []}
                             onChange={(option) => setValue("regions", option)}
                             isError={!!errors.regions}
+                            withSearch
                         />
                         {errors.regions && (
                             <Text color='red'>{errors.regions.message}</Text>
