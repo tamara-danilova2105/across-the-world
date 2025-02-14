@@ -86,7 +86,7 @@ export function TourCard({ tourData }: TourCardProps) {
 
                 <AppLink
                     className={styles.link}
-                    to={getRouteToursDetails(regions[0], _id)}
+                    to={regions[0] ? getRouteToursDetails(regions[0], _id) : "#"}
                     role="button"
                     aria-describedby={`tour-title-${_id}`}
                 >

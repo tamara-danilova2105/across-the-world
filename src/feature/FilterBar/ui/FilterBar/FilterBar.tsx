@@ -46,9 +46,18 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
                         type_tour: {
                             ...(prevFilters.type_tour || {}),
                             ...value,
+                        }
+                    }
+                } else if (key === 'discount') {
+                    return {
+                        ...prevFilters,
+                        discount: {
+                            ...(prevFilters.discount || {}),
+                            ...value,
                         },
-                    };
-                } else {
+                    }
+                }
+                else {
                     return {
                         ...prevFilters,
                         [key]: value,
