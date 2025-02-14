@@ -35,7 +35,9 @@ export const Signin = () => {
                     <LogoFont />
                 </Stack>
             <Stack
+                className={styles.signin_container}
                 direction='column'
+                align='center'
                 gap='16'
             >
                 <SigninForm/>

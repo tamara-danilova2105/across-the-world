@@ -24,15 +24,21 @@ export const RefreshPassword = () => {
                     <LogoMain />
                     <LogoFont />
                 </Stack>
-                <Text
-                    type="h2"
-                    font='geometria500'
-                    color='blue'
-                    size="24"
+                <Stack className={styles.refresh_container}
+                    direction='column'
+                    align='center'
+                    gap='16'
                 >
-                    Обновление пароля
-                </Text>
-                <RefreshPasswordForm/>
+                    <Text
+                        type="h2"
+                        font='geometria500'
+                        color='blue'
+                        size="24"
+                    >
+                        Обновление пароля
+                    </Text>
+                    <RefreshPasswordForm/>
+                </Stack>
             </main>
         </FormProvider>
     )
