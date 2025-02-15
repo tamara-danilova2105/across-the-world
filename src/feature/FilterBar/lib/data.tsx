@@ -30,7 +30,7 @@ export const dataFilter: FilterData = {
     discount: {
         title: "Тур со скидкой",
         items: [
-            { _id: 1, value: 'discount', label: 'Скидка' },
+            { _id: 1, value: 'discount', label: 'Раннее бронирование' },
         ],
     }
 }

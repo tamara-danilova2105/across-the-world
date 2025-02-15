@@ -20,15 +20,19 @@ export const ImageWithDetails = ({ name, saveCover, handleImagesChange }: Detail
     const fieldNames = Object.keys(PLACEHOLDER_TEXT)
 
     const handleSave = async () => {
-        const isValid = await trigger([name, ...fieldNames])
-        if (isValid) {
-            saveCover()
+        const isFirstValid = await trigger(name);
+        
+        if (!isFirstValid) return; 
+        const isOthersValid = await trigger(fieldNames);
+    
+        if (isOthersValid) {
+            saveCover();
         }
     };
 
 
     return (
-        <Stack gap="24" max>
+        <Stack gap="24" max> 
             <Controller
                 name={name}
                 control={control}

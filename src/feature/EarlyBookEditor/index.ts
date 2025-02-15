@@ -1,3 +1,3 @@
-import { AddNewTimerMain } from "./ui/AddNewTimerMain/AddNewTimerMain";
+import { EarlyBookEditor } from "./ui/EarlyBookEditor/EarlyBookEditor";
 
-export { AddNewTimerMain }
+export { EarlyBookEditor }

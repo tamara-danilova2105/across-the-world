@@ -3,6 +3,7 @@ import { motion as m } from "framer-motion";
 import { Portal } from '@/shared/ui/Portal';
 import { CloseIcon } from '@/shared/assets/svg/closeIcon';
 import styles from './Modal.module.scss';
+import { getStyles } from '@/shared/lib/getStyles';
 
 const portalElement = document.getElementById('app') ?? document.body;
 
@@ -10,19 +11,25 @@ interface ModalProps {
     children: ReactNode;
     setIsOpen: (value: boolean) => void;
     withAnimation: boolean;
+    isMobile?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
 
-    const { children, setIsOpen, withAnimation } = props;
+    const { children, setIsOpen, withAnimation, isMobile } = props;
 
     const overlayRef = useRef<HTMLDivElement>(null);
 
     const closeModal = () => setIsOpen(false);
 
+    // const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    //     if (e.target === overlayRef.current) closeModal();
+    // };
+
     const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-        if (e.target === overlayRef.current) closeModal();
+        if (e.currentTarget === e.target) closeModal();
     };
+    
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
@@ -41,7 +48,7 @@ export const Modal = (props: ModalProps) => {
                 aria-modal="true"
             >
                 <div
-                    className={styles.overlay}
+                    className={getStyles(styles.overlay, {[styles.mobile_shedule]: isMobile}, [])}
                     ref={overlayRef}
                     onClick={handleClick}
                 >

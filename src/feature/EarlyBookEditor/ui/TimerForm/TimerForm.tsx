@@ -8,8 +8,7 @@ import styles from './TimerForm.module.scss';
 import { ImagesWithDetails, TimerData } from "../../model/types/types";
 import { Button } from "@/shared/ui/Button";
 import { Select } from "@/shared/ui/Select";
-import { Eye, EyeOff, Trash2, Upload } from "lucide-react";
-import { useDeleteTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
+import { Eye, EyeOff, Upload } from "lucide-react";
 
 interface TimerFormProps {
     register: any;
@@ -41,8 +40,6 @@ export const TimerForm = ({
     handleSubmit
 }: TimerFormProps) => {
 
-    const [deleteTimer, {isLoading: deleteLoad}] = useDeleteTimerMutation()
-
     const hide_timer = (
         <Button 
             type="submit" 
@@ -51,7 +48,7 @@ export const TimerForm = ({
             className={styles.button}
             onClick={handleSubmit(() => onHideChange(true))}
         >
-            <EyeOff /> Скрыть таймер
+            <EyeOff /> Снять с публикации
         </Button>
     );
     
@@ -63,7 +60,7 @@ export const TimerForm = ({
             className={styles.button}
             onClick={handleSubmit(() => onHideChange(false))}
         >
-            <Eye /> Показать таймер
+            <Eye /> Опубликовать
         </Button>
     );
     
@@ -88,14 +85,6 @@ export const TimerForm = ({
                             onClick={handleSubmit(onSubmit)}
                         >
                             <Upload /> Сохранить таймер
-                        </Button>
-                        <Button type="button" 
-                            color="secondary"
-                            loading={deleteLoad}
-                            className={styles.button}
-                            onClick={handleSubmit(deleteTimer)}
-                        >
-                            <Trash2 /> Удалить таймер
                         </Button>
                     </Stack>
                 </Stack>

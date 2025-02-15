@@ -5,7 +5,7 @@ import { Text } from "@/shared/ui/Text/Text";
 import { Images } from "../Images/Images";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
 import { useGetTimerQuery } from "../../api/timerApi";
-import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
+import { ImagesWithDetails } from "@/feature/EarlyBookEditor/model/types/types";
 import { AppLink } from "@/shared/ui/AppLink";
 import { getRouteToursByRegion } from "@/app/router/lib/helper";
 import { Skeleton } from "@/shared/ui/Skeleton";

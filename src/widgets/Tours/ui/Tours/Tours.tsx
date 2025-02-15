@@ -15,6 +15,9 @@ import { Tour, TourCard, useGetAllToursQuery } from "@/entities/Tours"
 import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
 import { getCountryName } from "@/shared/lib/getCountryName"
+import { NoResults } from "../NoResults/NoResults"
+import { Skeleton } from "@/shared/ui/Skeleton"
+import { useResize } from "@/shared/hooks/useResize"
 import styles from './Tours.module.scss'
 
 export const Tours = () => {
@@ -37,16 +40,19 @@ export const Tours = () => {
         sort: readySort
     })
 
-    console.log(error, isLoading) //todo
+    console.log(error) //todo
 
     const tours = data?.tours || [];
     const currentPage = data?.currentPage || 1;
     const totalPages = data?.totalPages || 1;
 
-    const [changeModal, drawModal] = useModal();
-    const { isOpen, toggleMenu, menuRef } = useToggleOpen();
+    const width = useResize()
+    const isMobile = width <= 590
 
-    const [currentIndex, setCurrentIndex] = useState(currentPage);
+    const [changeModal, drawModal] = useModal(isMobile)
+    const { isOpen, toggleMenu, menuRef } = useToggleOpen()
+
+    const [currentIndex, setCurrentIndex] = useState(currentPage)
 
     const handlePageChange = useCallback((pageIndex: number) => {
         setCurrentIndex(pageIndex);
@@ -84,18 +90,22 @@ export const Tours = () => {
                     </Button>
                 </Stack>
             </Stack>
-            <Stack
-                gap="32"
-                align='center'
-                wrap
-                className={styles.our_tours}
+            <Stack gap="32" align="center" 
+                wrap className={styles.our_tours}
             >
-                {tours.map((tour: Tour) => (
-                    <TourCard
-                        key={tour._id}
+                {isLoading ? (
+                    Array.from({ length: 3 }).map((_, index) => (
+                        <Skeleton key={index} width="100%" height="500px" />
+                    ))
+                ) :  tours.length === 0 ? (
+                    <NoResults />
+                ) : (
+                tours.map((tour: Tour) => (
+                    <TourCard 
+                        key={tour._id} 
                         tourData={tour}
                     />
-                ))}
+                )))}
             </Stack>
             {totalPages > 1 && (
                 <Pagination
