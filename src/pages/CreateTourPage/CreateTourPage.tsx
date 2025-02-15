@@ -1,4 +1,4 @@
-import { TourForm } from "@/feature/AddNewTour";
+import { TourForm } from "@/feature/TourEditor";
 
 const CreateTourPage = () => {
     return <TourForm />;

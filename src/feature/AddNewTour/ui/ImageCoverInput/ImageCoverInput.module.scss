@@ -1,8 +1,0 @@
-@use '@/app/styles/media-queries.scss' as *;
-
-.main {
-    @include mobile-xl {
-        flex-direction: column;
-        gap: var(--gap-m);
-    }
-}
