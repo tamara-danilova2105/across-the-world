@@ -59,11 +59,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, _
                     {...otherProps}
                 />
                 <Stack justify='between' max align='center'>
-                    {error && (
+                    {error ? (
                         <p className={styles.errorMessage}>
                             {error.message}
                         </p>
-                    )}
+                    ): <div />}
                     {maxLength && (
                         <p className={styles.charCount}>
                             {charCount}/{maxLength}
