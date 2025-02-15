@@ -32,7 +32,7 @@ export const ImageWithDetails = ({ name, saveCover, handleImagesChange }: Detail
 
 
     return (
-        <Stack gap="24" max>
+        <Stack gap="24" max> 
             <Controller
                 name={name}
                 control={control}
