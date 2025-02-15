@@ -13,9 +13,10 @@ export const useScrollSlider = (width?: number): UseScrollSliderReturn => {
 
     useEffect(() => {
         const container = containerRef.current;
+        console.log(container)
 
         if (container && width && width > 590) {
-            container.scrollLeft = 0
+            container.scrollLeft = 0;
         }
 
         const handleWheel = (e: WheelEvent) => {

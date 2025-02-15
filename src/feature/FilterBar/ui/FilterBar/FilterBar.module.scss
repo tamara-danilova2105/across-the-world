@@ -19,11 +19,9 @@
         top: 70px;
         z-index: 3;
         width: 100%;
-        padding: 20px 0;
-
 
         @include tablet-l {
-            top: 40px;
+            top: 0;
             flex-direction: column;
             flex: 0;
         }
@@ -33,6 +31,22 @@
             align-items: center;
             justify-content: center;
             padding: 12px 30px;
+        }
+
+        .activeFilter {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--pink-opacity40);
+
+            @include tablet-l {
+                margin-top: 0;
+            }
+
+            .button_clear {
+                padding: 0;
+                width: fit-content;
+                height: fit-content;
+            }
         }
     }
 

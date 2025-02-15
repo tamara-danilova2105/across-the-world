@@ -36,13 +36,13 @@ import { BlogsPage } from "@/pages/BlogsPage/index";
 import { BlogDetailsPage } from "@/pages/BlogDetailsPage";
 import { AboutUsPage } from "@/pages/AboutUsPage";
 import { ReviewsPage } from "@/pages/ReviewsPage";
-import { CreateTimerPage } from "@/pages/CreateTimerPage";
 import { ModerationReviewsPage } from "@/pages/ModerationReviewsPage";
 import { AdminToursPage } from "@/pages/AdminToursPage";
 import { AdminNewsPage } from "@/pages/AdminNewsPage";
 import { EditNewsPage } from "@/pages/EditNewsPage";
 import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
 import { EditTourPage } from "@/pages/EditTourPage";
+import { EditTimerPage } from "@/pages/EditTimerPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -140,7 +140,7 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.admin_discount]: {
         path: getRouteAdminDiscount(),
         // onlyAdmin: true,
-        page: <CreateTimerPage />
+        page: <EditTimerPage />
     },
     [AppRouters.admin_moderation_reviews]: {
         path: getRouteAdminModerationReviews(),

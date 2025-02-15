@@ -1,12 +1,19 @@
 @use '@/app/styles/media-queries' as *;
 
 .badSearch_container {
+    background-color: var(--blue-opacity10);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    width: 100%;
+    grid-column: 1 / -1;
+
     svg {
         width: 100px;
         height: 100px;
 
         path, circle {
-            color: var(--blue-color);
+            color: var(--pink-color);
         }
     }
 

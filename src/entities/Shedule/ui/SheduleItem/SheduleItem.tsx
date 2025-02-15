@@ -25,8 +25,7 @@ export const SheduleItem = ({ date, tour, spots, _id, regions } : SheduleItemPro
 
     return(
         <Stack 
-            direction='column'
-            gap='16'
+            direction='column' gap='16'
             className={styles.sheduleItem_container}
             onClick={() => router(regions[0], _id)}
         >

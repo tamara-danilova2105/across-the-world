@@ -15,7 +15,11 @@ import {
 import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
-import { useCallback, useEffect, useState } from "react"
+import { useCallback } from "react"
+import { useResize } from "@/shared/hooks/useResize"
+import { X } from 'lucide-react'
+import { Text } from "@/shared/ui/Text"
+import { useActiveFilters } from "@/shared/hooks/useActiveFilters"
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
@@ -23,53 +27,35 @@ type DataFilterRange = typeof dataFilterRange;
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
 
-interface funcProps {
+interface FilterBarProps {
     toggleMenu?: () => void;
 }
 
-export const FilterBar = ({toggleMenu} : funcProps) => {
-
+export const FilterBar = ({ toggleMenu }: FilterBarProps) => {
     const filterState = useSelector(getFiltersState)
-    const [filtersStatus, setFiltersStatus] = useState(filterState)
     const dispatch = useDispatch()
+    const width = useResize()
 
-    useEffect(() => {
-        setFiltersStatus(filterState);
-    }, [filterState])
+    const { activeFiltersCount } = useActiveFilters(filterState)
 
     const handleChange = useCallback(
         (key: FilterKeys | FilterRangeKeys, value: any) => {
-            setFiltersStatus((prevFilters) => {
-                if (key === 'type_tour') {
-                    return {
-                        ...prevFilters,
-                        type_tour: {
-                            ...(prevFilters.type_tour || {}),
-                            ...value,
-                        }
+            const newFilters = {
+                ...filterState,
+                [key]: key === 'type_tour' || key === 'discount'
+                    ? {
+                        ...(filterState[key] || {}),
+                        ...value,
                     }
-                } else if (key === 'discount') {
-                    return {
-                        ...prevFilters,
-                        discount: {
-                            ...(prevFilters.discount || {}),
-                            ...value,
-                        },
-                    }
-                }
-                else {
-                    return {
-                        ...prevFilters,
-                        [key]: value,
-                    };
-                }
-            });
+                    : value,
+            };
+            
+            dispatch(setFilter(newFilters))
         },
-        []
-    )
+        [dispatch, filterState]
+    );
 
-
-    const renderFilterElement = (key: FilterKeys) => {
+    const renderFilterElement = useCallback((key: FilterKeys) => {
         const { title, items }: FilterCategory = dataFilter[key];
 
         return (
@@ -77,14 +63,18 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
                 key={key}
                 title={title}
                 filters={items}
-                selectedFilters={filtersStatus[key]}
+                selectedFilters={filterState[key]}
                 onChange={(value: Record<string, boolean>) => handleChange(key, value)}
             />
-        )
-    }
+        );
+    }, [filterState, handleChange]);
 
-    const renderFilterRangeElement = (key: FilterRangeKeys) => {
-        const { title, defaultValues, minLimit, maxLimit, step }: FilterRangeCategory = dataFilterRange[key];
+    const renderFilterRangeElement = useCallback((key: FilterRangeKeys) => {
+        const { title, 
+            defaultValues, 
+            minLimit,
+            maxLimit, 
+            step }: FilterRangeCategory = dataFilterRange[key];
 
         return (
             <FilterRange
@@ -94,11 +84,11 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
                 minLimit={minLimit}
                 maxLimit={maxLimit}
                 step={step}
-                selectedFilters={filtersStatus[key]}
-                onChange={(values: [number, number]) => handleChange(key, values)}
+                selectedFilters={filterState[key]}
+                onChange={(values: [number | null, number | null]) => handleChange(key, values)}
             />
-        )
-    }
+        );
+    }, [filterState, handleChange]);
 
     return (
         <Stack
@@ -112,18 +102,29 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
                 className={styles.btnContainer}
                 max
             >
-                <Button onClick={() => { 
-                    dispatch(setFilter(filtersStatus))
-                    if (toggleMenu) toggleMenu()
-                }}>
-                    Применить
-                </Button>
-                <Button
-                    color='outline'
-                    onClick={() => dispatch(clearAllFilters())}
-                >
-                    Очистить
-                </Button>
+                {width <= 1024 && (
+                    <Button 
+                        onClick={toggleMenu}
+                    >
+                        Применить
+                    </Button>
+                )}
+                {activeFiltersCount > 0 && (
+                    <Stack max className={styles.activeFilter}
+                        align="center" justify="between"
+                    >
+                        <Text size="18" color="blue"
+                            font="geometria500"
+                        >
+                            Выбрано фильтров: {activeFiltersCount}
+                        </Text>
+                        <Button color="transparent"
+                            className={styles.button_clear}
+                            onClick={() => dispatch(clearAllFilters())}>
+                            <X color="var(--blue-color)" />
+                        </Button>
+                    </Stack>
+                )}
             </Stack>
             <Stack
                 direction='column'
@@ -133,11 +134,12 @@ export const FilterBar = ({toggleMenu} : funcProps) => {
                 {Object.keys(dataFilterRange).map((key) =>
                     renderFilterRangeElement(key as FilterRangeKeys)
                 )}
-
                 {Object.keys(dataFilter).map((key) =>
                     renderFilterElement(key as FilterKeys)
                 )}
             </Stack>
         </Stack>
-    )
+    );
 }
+
+export default FilterBar;

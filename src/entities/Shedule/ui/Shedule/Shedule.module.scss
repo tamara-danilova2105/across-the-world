@@ -4,15 +4,12 @@
     background-color: var(--white-color);
     padding: 20px;
     border-radius: 16px;
-    width: 550px;
+    width: 650px;
     height: 80vh;
 
-    @include mobile-l {
+    @include mobile-xl {
         width: 100%;
-    }
-
-    @include mobile-l {
-        height: 65vh;
+        height: 85vh;
     }
 
     .contact_container {

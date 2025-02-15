@@ -36,8 +36,7 @@ export const TimerImage = (props: TimerImageProps) => {
     }
 
     const saveCover = async () => {
-        const isValid = await trigger(['header', 'category', 'describe', 'image']);
-        if (!isValid || !currentImage) return;
+        if (!currentImage) return;
 
         const newCover: ImagesWithDetails = {
             _id: currentImage._id,

@@ -16,7 +16,7 @@ const INITIAL_TIMER_STATE: TimerData = {
     imagesWithDetails: [],
 };
 
-export const AddNewTimerMain = () => {
+export const EarlyBookEditor = () => {
     const { id } = useParams()
     const [deletedImages, setDeletedImages] = useState<string[]>([]); //TODO
     const [timerData, setTimerData] = useState(INITIAL_TIMER_STATE);

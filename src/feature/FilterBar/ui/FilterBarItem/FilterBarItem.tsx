@@ -36,7 +36,7 @@ export const FilterBarItem = ({
             max
         >
             <Text
-                size='16'
+                size='18'
                 font='geometria500'
                 color='blue'
             >

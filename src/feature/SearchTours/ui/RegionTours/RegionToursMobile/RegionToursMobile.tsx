@@ -9,6 +9,7 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { useRegionHandler } from '@/shared/hooks/useRegionHandler';
 import { DropdownList } from '../DropDownList/DropDownList';
 import styles from "./RegionToursMobile.module.scss";
+import { useEffect } from 'react';
 
 interface RegionToursProps {
     changeOpen: () => void;
@@ -21,7 +22,7 @@ export const RegionToursMobile = ({
     changeOpen, regions = [], 
     error, isLoading }: RegionToursProps) => {
 
-    const { register, watch, formState: { errors } } = useFormContext()
+    const { register, watch, setFocus, formState: { errors } } = useFormContext()
     const { handleRegionSelect, handleClearRegion } = useRegionHandler()
 
     const regionValue = watch('region')
@@ -32,6 +33,12 @@ export const RegionToursMobile = ({
     const filteredRegions = regions.filter(region =>
         region.region.toLowerCase().includes(regionValue.toLowerCase())
     )
+
+    useEffect(() => {
+        setTimeout(() => {
+            setFocus('region')
+        }, 100)
+    }, [setFocus])
 
     return (
         <Stack direction='column' max className={styles.search}>
@@ -59,3 +66,4 @@ export const RegionToursMobile = ({
         </Stack>
     );
 };
+

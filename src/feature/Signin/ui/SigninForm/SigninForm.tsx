@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { useFormContext } from 'react-hook-form';
-import { data, textRegex, validatePassword } from "@/shared/lib/validateInput";
+import { data } from "@/shared/lib/validateInput";
 import { Input } from "@/shared/ui/Input";
 import { Button } from "@/shared/ui/Button/Button";
 import { EyeOff, Eye } from 'lucide-react';
@@ -57,10 +57,6 @@ export const SigninForm = () => {
                 name="login"
                 register={register('login', {
                     required: data.required,
-                    pattern: {
-                        value: textRegex,
-                        message: data.errors.validName
-                    }
                 })}
                 error={errors.login}
             />
@@ -71,8 +67,7 @@ export const SigninForm = () => {
                     placeholder="Введите пароль"
                     name="password"
                     register={register("password", {
-                        required: data.required,
-                        validate: validatePassword,
+                        required: data.required
                     })}
                     error={errors.password}
                 />

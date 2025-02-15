@@ -7,7 +7,7 @@ type UseModalReturn = [
     boolean
 ];
 
-export const useModal = (): UseModalReturn => {
+export const useModal = (isMobile?: boolean): UseModalReturn => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentModal, setCurrentModal] = useState<string | null>(null);
 
@@ -36,7 +36,7 @@ export const useModal = (): UseModalReturn => {
             isOpen && (!modalType || currentModal === modalType);
 
         return shouldRender ? (
-            <Modal setIsOpen={setIsOpen} withAnimation={withAnimation}>
+            <Modal setIsOpen={setIsOpen} withAnimation={withAnimation} isMobile={isMobile}>
                 {children}
             </Modal>
         ) : null;

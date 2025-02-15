@@ -1,7 +1,8 @@
-import { AddNewTimerMain } from "@/feature/AddNewTimer"
+import { EarlyBookEditor } from "@/feature/EarlyBookEditor";
+
 
 const EditTimerPage = () => {
-    return <AddNewTimerMain/>
+    return <EarlyBookEditor/>
 }
 
 export default EditTimerPage;

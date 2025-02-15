@@ -7,10 +7,14 @@ import { useModal } from "@/shared/hooks/useModal"
 import { PhotoAnimation } from "../PhotoAnimation/PhotoAnimation"
 import styles from './StoryAboutUs.module.scss'
 import { Country } from "../Country/Country"
+import { useResize } from "@/shared/hooks/useResize"
 
 export const StoryAboutUs = () => {
 
-    const [changeModal, drawModal] = useModal();
+    const width = useResize()
+    const isMobile = width <= 590
+    
+    const [changeModal, drawModal] = useModal(isMobile)
 
     return(
         <Stack 

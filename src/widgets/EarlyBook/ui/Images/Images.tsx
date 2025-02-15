@@ -1,7 +1,7 @@
 import { Stack } from "@/shared/ui/Stack/Stack";
 import styles from './Images.module.scss';
 import { Text } from "@/shared/ui/Text/Text";
-import { ImagesWithDetails } from "@/feature/AddNewTimer/types/types";
+import { ImagesWithDetails } from "@/feature/AddNewTimer/model/types";
 import { apiUrl } from "@/shared/api/endpoints";
 
 interface ImagesProps {

@@ -37,17 +37,17 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
     const { data: regions, error, isLoading } = useGetRegionsQuery({ search: debouncedSearch })
 
     const onSubmit = (formData: { region: string; date: string }) => {
-        const regionString = Array.isArray(formData.region) ? formData.region.join('') : formData.region;
+        const regionString = Array.isArray(formData.region) ? 
+        formData.region.join('') : formData.region;
 
         if (!regionString && !formData.date) {
-            console.log("Форма не может быть полностью пустой. Пожалуйста, заполните хотя бы одно поле.")
             return;
         }
         dispatch(setFilter({ 
             region: regionString,
             dates: filterState.dates
         }))
-    };
+    }
 
     return (
         <FormProvider {...methods}>
@@ -58,11 +58,19 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
                     <Stack className={styles.searchContainer}>
                         {width > 768 ? (
                             <Stack gap="4">
-                                <RegionTours regions={regions} error={error} isLoading={isLoading} />
+                                <RegionTours 
+                                    regions={regions} 
+                                    error={error} 
+                                    isLoading={isLoading} 
+                                />
                                 <DateTours />
                             </Stack>
                         ) : (
-                            <MobileSearchTours regions={regions} error={error} isLoading={isLoading} />
+                            <MobileSearchTours 
+                                regions={regions} 
+                                error={error} 
+                                isLoading={isLoading} 
+                            />
                         )}
                         <Button type="submit" className={styles.button}>
                             Найти
@@ -71,5 +79,5 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
                 )}
             </form>
         </FormProvider>
-    );
-};
+    )
+}

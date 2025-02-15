@@ -1,15 +1,16 @@
-import { FormProvider } from "react-hook-form";
+import { FormProvider, get, useForm } from "react-hook-form";
 import ReactSlider from "react-slider";
 import { Input } from "@/shared/ui/Input/Input";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { Text } from "@/shared/ui/Text/Text";
 import { FilterRangeCategory } from "../../lib/data";
-import { useRange } from "../../lib/useRange";
+import { RangeFormValues, useRange } from "../../lib/useRange";
 import styles from './FilterRange.module.scss';
+import { data, numberRegex } from "@/shared/lib/validateInput";
 
 interface FilterRangeProps extends FilterRangeCategory {
-    onChange: (values: [number, number]) => void;
-    selectedFilters: [number, number];
+    onChange: (values: [number | null, number | null]) => void;
+    selectedFilters: [number | null, number | null];
 }
 export const FilterRange = ({
     title,
@@ -20,37 +21,57 @@ export const FilterRange = ({
     onChange,
     selectedFilters }: FilterRangeProps) => {
 
-    const {
-        methods,
-        minValue,
-        maxValue,
-        handleMinInputChange,
-        handleMaxInputChange,
-        handleSliderChange,
-    } = useRange({ defaultValues, onChange, minLimit, maxLimit, selectedFilters });
-
-    const { register } = methods;
+        const methods = useForm<RangeFormValues>({
+            mode: 'onChange'
+        })
+        
+        const { register, setValue, watch, formState: { errors } } = methods;
+        
+        const {
+            minValue,
+            maxValue,
+            handleMinInputChange,
+            handleMaxInputChange,
+            handleSliderChange,
+        } = useRange({
+            onChange,
+            minLimit,
+            maxLimit,
+            selectedFilters,
+            setValue,
+            watch
+        })
 
     return (
         <Stack direction="column" 
                 gap="16" max>
-            <Text size="16" font="geometria500" color="blue">
+            <Text size="18" font="geometria500" color="blue">
                 {title}
             </Text>
             <FormProvider {...methods}>
                 <form>
                     <Stack gap="16" className={styles.inputContainer}>
                         <Input
-                            {...register("min")}
+                            register={register("min", {
+                                pattern: {
+                                    value: numberRegex,
+                                    message: data.errors.validNumbers
+                                }
+                            })}
                             onChange={handleMinInputChange}
-                            value={minValue}
-                            placeholder={`${minValue.toLocaleString("ru-RU")}`}
+                            placeholder={minValue}
+                            error={get(errors, "min")}
                         />
                         <Input
-                            {...register("max")}
+                            register={register("max", {
+                                pattern: {
+                                    value: numberRegex,
+                                    message: data.errors.validNumbers
+                                }
+                            })}
                             onChange={handleMaxInputChange}
-                            value={maxValue}
-                            placeholder={`${maxValue.toLocaleString("ru-RU")}`}
+                            placeholder={maxValue}
+                            error={get(errors, "max")}
                         />
                     </Stack>
                     <ReactSlider
@@ -85,5 +106,5 @@ export const FilterRange = ({
                 </form>
             </FormProvider>
         </Stack>
-    );
-};
+    )
+}

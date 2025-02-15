@@ -17,13 +17,13 @@
         }
 
         :nth-child(1) {
-            flex-basis: 25%;
+            flex-basis: 27%;
             @include mobile-l {
                 flex-basis: 10%;
             }
         }
         :nth-child(2) {
-            flex-basis: 45%;
+            flex-basis: 43%;
             @include mobile-l {
                 flex-basis: 55%;
             }

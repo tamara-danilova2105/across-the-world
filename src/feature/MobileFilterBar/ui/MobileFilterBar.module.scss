@@ -60,16 +60,30 @@
     }
 
 
+    .menu_btn_container {
+        position: relative;
+        .toggleButton {
+            position: relative;
+            display: flex;
+            width: auto;
+            padding: 0;
+            background-color: transparent;
+            cursor: pointer;
 
-    .toggleButton {
-        display: flex;
-        width: auto;
-        padding: 0;
-        background-color: transparent;
-        cursor: pointer;
+            > div {
+                display: none;
+            }
+        }
 
-        > div {
-            display: none;
+        .activeFiltersBadge {
+            position: absolute;
+            width: fit-content;
+            height: fit-content;
+            padding: 5px;
+            border-radius: 50%;
+            background-color: var(--pink-color);
+            top: 0;
+            right: -10px;
         }
     }
 }
