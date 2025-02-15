@@ -76,6 +76,7 @@ export const AddNewReview = () => {
                     rows={8}
                     register={register("feedback", { required: data.required })}
                     error={errors?.feedback}
+                    maxLength={5}
                 />
 
                 <Button loading={isLoading} disabled={isLoading}>

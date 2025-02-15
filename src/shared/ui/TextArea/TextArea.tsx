@@ -1,4 +1,4 @@
-import { forwardRef, TextareaHTMLAttributes } from 'react';
+import { forwardRef, TextareaHTMLAttributes, useState } from 'react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { getStyles } from '@/shared/lib/getStyles';
 import { Stack } from '../Stack';
@@ -11,23 +11,28 @@ type HTMLTextAreaProps = Omit<
 
 interface TextAreaProps extends HTMLTextAreaProps {
     className?: string;
-    value?: string;
     placeholder?: string;
     label?: string;
     error?: FieldError;
     register?: UseFormRegisterReturn;
-    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    maxLength?: number;
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, _) => {
     const {
-        value,
         className,
         label,
         error,
         register,
+        maxLength,
         ...otherProps
     } = props;
+
+    const [charCount, setCharCount] = useState(0);
+
+    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setCharCount(e.target.value.length);
+    };
 
     const mode = {
         [styles.error]: !!error,
@@ -48,12 +53,23 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, _
             >
                 <textarea
                     className={inputClasses}
+                    maxLength={maxLength}
+                    onInput={handleInput}
                     {...register}
                     {...otherProps}
                 />
-                {error && <p className={styles.errorMessage}>
-                    {error.message}
-                </p>}
+                <Stack justify='between' max align='center'>
+                    {error && (
+                        <p className={styles.errorMessage}>
+                            {error.message}
+                        </p>
+                    )}
+                    {maxLength && (
+                        <p className={styles.charCount}>
+                            {charCount}/{maxLength}
+                        </p>
+                    )}
+                </Stack>
             </Stack>
         </Stack>
     );
