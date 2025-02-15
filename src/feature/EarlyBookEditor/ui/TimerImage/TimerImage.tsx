@@ -26,7 +26,7 @@ export const TimerImage = (props: TimerImageProps) => {
         setDeletedImages
     } = props;
 
-    const { watch, trigger, setValue, reset } = useFormContext()
+    const { watch, setValue, reset } = useFormContext()
     const [currentImage, setCurrentImage] = useState<Image | null>(null)
 
     const handleImagesChange = (newImages: Image[]) => {
