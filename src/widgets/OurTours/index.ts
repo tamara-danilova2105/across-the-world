@@ -1,3 +1,3 @@
-import { OurTours } from './ui/OurToursMain/OurTours';
+import { OurTours } from './ui/OurTours';
 
 export { OurTours };
