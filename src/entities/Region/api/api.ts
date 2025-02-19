@@ -20,12 +20,23 @@ const regionsApi = api.injectEndpoints({
         saveRegion: build.mutation({
             query: (newRegion) => createApiConfig('POST', `${endpoints.path.regions}`, true, newRegion),
             invalidatesTags: REGIONS_TAG,
-        })
+        }),
+        deleteRegion: build.mutation({
+            query: (regionId) => createApiConfig('DELETE', `${endpoints.path.regions}/${regionId}`),
+            invalidatesTags: () => REGIONS_TAG,
+        }),
+        updateRegion: build.mutation({
+            query: ({ regionId, direction, region }) =>
+                createApiConfig('PUT', `${endpoints.path.regions}/${regionId}`, true, { direction, region }),
+            invalidatesTags: () => REGIONS_TAG,
+        }),
     }),
 });
 
 export const {
     useGetRegionsQuery,
     useSaveRegionMutation,
+    useDeleteRegionMutation,
+    useUpdateRegionMutation,
 } = regionsApi;
 

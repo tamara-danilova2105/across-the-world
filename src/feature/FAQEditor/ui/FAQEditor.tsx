@@ -48,7 +48,7 @@ export const FAQEditor = () => {
 
             {isGetError && (
                 <Text color="red" size="18">
-                    Произошла ошибка при загрузке
+                    Произошла ошибка при загрузке данных
                 </Text>
             )}
 

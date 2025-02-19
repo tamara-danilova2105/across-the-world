@@ -3,7 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { ImagesWithDetails, TimerData } from "../../model/types/types";
 import { useAddTimerMutation, useEditTimerMutation, useGetTimerQuery } from "@/widgets/EarlyBook/api/timerApi";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
-import { Regions } from "@/entities/Tours";
+import { Region } from "@/entities/Tours";
 import { TimerForm } from "../TimerForm/TimerForm";
 import { useParams } from "react-router";
 
@@ -36,7 +36,7 @@ export const EarlyBookEditor = () => {
 
     console.log(getTimer, errorTimer, getLoading)
 
-    const optionsRegions = useMemo(() => regions?.map(({ region }: Regions) => region) || [], [regions]);
+    const optionsRegions = useMemo(() => regions?.map(({ region }: Region) => region) || [], [regions]);
 
     useEffect(() => {
         if (getTimer && getTimer.length > 0) {

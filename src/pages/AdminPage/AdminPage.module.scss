@@ -3,4 +3,8 @@
 
 .main {
     @include section-admin-style;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xxl);
 }

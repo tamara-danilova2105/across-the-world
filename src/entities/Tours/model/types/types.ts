@@ -41,7 +41,8 @@ export interface MapMarker {
     coordinates: number[];
 };
 
-export interface Regions {
+export interface Region {
+    _id?: string;
     direction: DirectionTour;
     region: string;
 }

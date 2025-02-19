@@ -8,7 +8,7 @@ import { Button } from "@/shared/ui/Button";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
 import {
     DayProgram,
-    Regions,
+    Region,
     Tour,
     useAddTourMutation,
     useUploadFilesMutation
@@ -61,7 +61,7 @@ export const TourForm = () => {
     const [editTour] = useEditTourMutation();
     const [uploadFiles, { isLoading: isUploading }] = useUploadFilesMutation();
 
-    const optionsRegions = useMemo(() => regions?.map((region: Regions) => region.region), [regions]);
+    const optionsRegions = useMemo(() => regions?.map((region: Region) => region.region), [regions]);
 
     const [isPublishing, setIsPublishing] = useState(false);
     const [isSavingDraft, setIsSavingDraft] = useState(false);
