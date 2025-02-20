@@ -15,7 +15,7 @@ import { Input } from "@/shared/ui/Input";
 import { data, validateTextLength } from "@/shared/lib/validateInput";
 import { Select } from "@/shared/ui/Select";
 import { TimerImage } from "../TimerImage/TimerImage";
-import styles from './EarlyBookEditor.module.scss'
+import styles from './EarlyBookEditor.module.scss' 
 
 const INITIAL_TIMER_STATE: TimerData = {
     title: '',
