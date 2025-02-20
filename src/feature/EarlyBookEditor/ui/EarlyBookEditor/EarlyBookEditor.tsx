@@ -81,11 +81,8 @@ export const EarlyBookEditor = () => {
     
     const onSubmit = async () => {
         const {title, region, discount, timer, imagesWithDetails} = getValues()
-
-        console.log(getValues())
-
+        
         if (imagesWithDetails.length !== 2) {
-            console.error("Ошибка: должно быть 2 изображения, получено:", imagesWithDetails);
             return;
         }
     
@@ -104,8 +101,6 @@ export const EarlyBookEditor = () => {
         imagesWithDetails.forEach(({ file }) => {
             if (file) data.append("photos", file);
         })
-
-        console.log(data)
 
         try {
             if (getTimer && getTimer.length > 0) {

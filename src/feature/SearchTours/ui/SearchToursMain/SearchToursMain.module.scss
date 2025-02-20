@@ -16,7 +16,6 @@
 
         @include mobile-xl {
             flex-direction: column;
-            padding: 15px;
             gap: var(--gap-m);
         }
 

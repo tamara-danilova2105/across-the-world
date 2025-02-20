@@ -61,7 +61,7 @@ export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchPro
         <Stack
             direction='column'
             align="center"
-            gap='16'
+            gap='8'
             max
             className={styles.mobileSearch}
         >
