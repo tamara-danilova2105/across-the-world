@@ -50,7 +50,9 @@ export const ReviewsTour = (props: ReviewsTourProps) => {
                     </Button>
                 )}
 
-                {reviewsCount === 0 && <AddNewReview />}
+                {reviewsCount === 0 && (
+                    <AddNewReview tourId={tourId} />
+                )}
             </Stack>
         </>
     );
