@@ -1,5 +1,14 @@
-.button {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-m);
+@use '@/app/styles/media-queries' as *;
+
+.button_container {
+    @include tablet-m {
+        flex-direction: column;
+        gap: var(--gap-m);
+    }
+
+    .button {
+        display: flex;
+        align-items: center;
+        gap: var(--gap-m);
+    }
 }

@@ -10,5 +10,13 @@
 }
 
 .manage_container {
-    z-index: 2;
+    z-index: 4;
+
+    form {
+        position: static !important;
+    }
+
+    @include tablet-m {
+        flex-direction: column;
+    }
 }

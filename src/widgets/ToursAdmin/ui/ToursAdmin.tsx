@@ -38,7 +38,8 @@ export const ToursAdmin = () => {
             </Text>
 
             <Stack align="center" max
-                gap="32" className={styles.manage_container}>
+                gap="32" className={styles.manage_container}
+            >
                 <SearchToursMain admin/>
                 <DownloadShedule/>
             </Stack>

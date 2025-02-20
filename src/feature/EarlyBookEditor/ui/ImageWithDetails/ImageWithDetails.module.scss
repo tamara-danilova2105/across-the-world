@@ -1,54 +1,43 @@
-// .describe_container {
-//     align-items: stretch;
-//     label {
-//         font-size: var(--font-size-18);
-//         color: var(--black-color);
-//         font-family: var(--font-family-geometria500);
-//     }
+@use '@/app/styles/media-queries' as *;
 
-//     input, textarea {
-//         width: 100%;
-//         padding: 8px;
-//         border: 1px solid #d1d5db;
-//         border-radius: 6px;
-//         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-//         transition: border-color 0.2s, box-shadow 0.2s;
-
-//         &:focus {
-//             border-color: var(--pink-color);
-//             box-shadow: 0 0 0 1px var(--pink-color);
-//             outline: none;
-//         }
-//     }
-// }
-
-.describe_container {
-    align-items: stretch;
-    height: 100%;
-
-    label {
-        font-size: var(--font-size-18);
-        color: var(--black-color);
-        font-family: var(--font-family-geometria500);
+.imagesWithDetails {
+    @include mobile-l {
+        flex-direction: column;
     }
-
-    input, textarea {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #d1d5db;
-        border-radius: 6px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        transition: border-color 0.2s, box-shadow 0.2s;
-
-        &:focus {
-            border-color: var(--pink-color);
-            box-shadow: 0 0 0 1px var(--pink-color);
-            outline: none;
+    .describe_container {
+        align-items: stretch;
+        height: 100%;
+    
+        label {
+            font-size: var(--font-size-18);
+            color: var(--black-color);
+            font-family: var(--font-family-geometria500);
+        }
+    
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.2s, box-shadow 0.2s;
+    
+            &:focus {
+                border-color: var(--pink-color);
+                box-shadow: 0 0 0 1px var(--pink-color);
+                outline: none;
+            }
+        }
+    
+        .textarea {
+            height: 100%;
+            resize: none; 
+            
+            @include tablet-m {
+                height: 120px;
+                resize: none; 
+            }
         }
     }
-
-    .textarea {
-        height: 100%;
-        resize: none; // Отключаем изменение размера
-    }
 }
+

@@ -11,16 +11,18 @@ import { getRouteToursByRegion } from "@/app/router/lib/helper";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { apiUrl } from "@/shared/api/endpoints";
 import styles from './EarlyBook.module.scss';
+import { formatToRussianDate } from "@/shared/lib/formatDate";
 
 export const EarlyBook = () => {
 
     const { data: timerDataArray, error, isLoading } = useGetTimerQuery({});
     const timerData = timerDataArray?.[0];
 
-    if(error || timerData === undefined) {
+    console.log(timerData?.hide)
+
+    if(error || timerData === undefined || timerData.hide === false) {
         return null
     }
-
 
     return(
         <Stack
@@ -72,8 +74,8 @@ export const EarlyBook = () => {
                                 font='geometria400'
                                 color="blue" size="18"
                             >
-                            При бронировании до {timerData?.date} действует <br/>
-                            скидка {timerData?.discount} по акции раннего бронирования.
+                                При бронировании до <strong>{formatToRussianDate(timerData?.timer)}</strong> действует <br/>
+                                скидка  <strong>{timerData?.discount}%</strong> по акции раннего бронирования.
                             </Text>
                         </Stack>
                         <Timer 
