@@ -64,7 +64,7 @@ export const FAQForm = (props: FAQFormProps) => {
     return (
         <Stack direction='column' max gap='32'>
             <Stack direction='column' gap='24' max>
-                <Text size='18' font='geometria500'>
+                <Text type='h3' size='18'>
                     {editIndex !== null ? 'Редактировать вопрос' : 'Добавить новый вопрос'}:
                 </Text>
 
@@ -126,7 +126,7 @@ export const FAQForm = (props: FAQFormProps) => {
             <Stack direction='column' gap='16' max>
                 {errorMessage && <Text color='red'>{errorMessage}</Text>}
 
-                <Text size='18' font='geometria500'>
+                <Text type='h3' size='18'>
                     Список вопросов:
                 </Text>
                 {isLoading ? (

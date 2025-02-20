@@ -14,7 +14,7 @@ export const sidebarItems = [
     {
         path: getRouteAdmin(),
         icon: <LayoutDashboard className="w-5 h-5" />,
-        label: 'Главная страница'
+        label: 'Редактирование контента'
     },
     {
         path: getRouteAdminTours(),

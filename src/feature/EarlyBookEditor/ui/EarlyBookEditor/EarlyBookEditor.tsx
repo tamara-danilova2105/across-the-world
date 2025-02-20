@@ -1,19 +1,21 @@
 import { useMemo, useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { TimerData } from "../../model/types/types";
-import { useAddTimerMutation, useEditTimerMutation, useGetTimerQuery, useHideTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
+import { Regions, TimerData } from "../../model/types/types";
+import { useAddTimerMutation,
+    useEditTimerMutation, 
+    useGetTimerQuery, 
+    useHideTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
-import { Regions } from "@/entities/Tours";
 import { Loading } from "@/shared/ui/Loading";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 import { Button } from "@/shared/ui/Button";
-import styles from './EarlyBookEditor.module.scss'
 import { Eye, EyeOff, Upload } from "lucide-react";
 import { Input } from "@/shared/ui/Input";
 import { data, validateTextLength } from "@/shared/lib/validateInput";
 import { Select } from "@/shared/ui/Select";
 import { TimerImage } from "../TimerImage/TimerImage";
+import styles from './EarlyBookEditor.module.scss'
 
 const INITIAL_TIMER_STATE: TimerData = {
     title: '',
@@ -119,10 +121,14 @@ export const EarlyBookEditor = () => {
     if (getLoading) return <Loading width="100" height="100" />;
 
     return (
-            <Stack direction="column" align="center" max gap="24" className={styles.timerContainer}>
+            <Stack direction="column" align="center" max gap="24" 
+                className={styles.timerContainer}
+            >
                 <Stack className={styles.header_admin}>
                     <Stack max direction="column" gap="32">
-                        <Text type="h2" color="blue" font="geometria500" size="32">
+                        <Text type="h2" color="blue" 
+                            font="geometria500" size="32"
+                        >
                             Управление ранним бронированием
                         </Text>
                         <Stack max gap="32">

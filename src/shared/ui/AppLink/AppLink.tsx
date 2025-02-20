@@ -4,10 +4,11 @@ import { Link, LinkProps } from "react-router-dom";
 import { ArrowLink } from "@/shared/assets/svg/arrowLink";
 import styles from './AppLink.module.scss';
 
-interface AppLinkProps extends LinkProps  {
+interface AppLinkProps extends LinkProps {
     className?: string;
     children: ReactNode;
-    variant?: 'link' | 'button' | 'just_button';
+    variant?: 'link' | 'button';
+    hasArrow?: boolean;
     size?: '14' | '16' | '18';
     circle?: boolean;
     cta?: boolean;
@@ -15,9 +16,10 @@ interface AppLinkProps extends LinkProps  {
 
 export const AppLink = (props: AppLinkProps) => {
     const {
-        className, 
-        children, 
+        className,
+        children,
         variant = 'link',
+        hasArrow = true,
         size = '18',
         circle,
         cta,
@@ -36,12 +38,12 @@ export const AppLink = (props: AppLinkProps) => {
     ];
 
     return (
-        <Link 
+        <Link
             className={getStyles(styles.applink, mode, additional)}
             {...otherProps}
         >
             {children}
-            {(variant === 'button' && !circle) && <ArrowLink />}
+            {(hasArrow && !circle) && <ArrowLink />}
         </Link>
     );
 };

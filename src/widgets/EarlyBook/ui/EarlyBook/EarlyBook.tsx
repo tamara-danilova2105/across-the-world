@@ -82,7 +82,7 @@ export const EarlyBook = () => {
                         />
                         <div className={styles.appLink}>
                             <AppLink
-                                variant="just_button" cta
+                                variant="button" hasArrow={false} cta
                                 to={timerData?.region ? getRouteToursByRegion(timerData.region) : "#"}
                             >
                                 Посмотреть предложения

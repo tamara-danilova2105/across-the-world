@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Stack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
@@ -13,7 +13,12 @@ import styles from './AddNewReview.module.scss';
 
 type TypeReviewRequest = Omit<Review, '_id' | 'createdAt'>;
 
-export const AddNewReview = () => {
+interface AddNewReviewProps {
+    tourId?: string;
+}
+
+export const AddNewReview = (props: AddNewReviewProps) => {
+    const { tourId } = props;
 
     const [addReview, { isLoading, error }] = useAddReviewMutation();
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -34,6 +39,10 @@ export const AddNewReview = () => {
         setValue,
         formState: { errors },
     } = useForm<Review>();
+
+    useEffect(() => {
+        if (tourId) setValue('tourId', tourId)
+    }, [tourId, setValue]);
 
     return (
         <Stack
@@ -63,12 +72,14 @@ export const AddNewReview = () => {
                     register={register("city")}
                 />
 
-                <TourSelect<Review>
-                    register={register}
-                    error={errors.tourId}
-                    name="tourId"
-                    setValue={setValue}
-                />
+                {!tourId && (
+                    <TourSelect<Review>
+                        register={register}
+                        error={errors.tourId}
+                        name="tourId"
+                        setValue={setValue}
+                    />
+                )}
 
                 <TextArea
                     label="Ваш отзыв"
@@ -76,7 +87,6 @@ export const AddNewReview = () => {
                     rows={8}
                     register={register("feedback", { required: data.required })}
                     error={errors?.feedback}
-                    maxLength={5}
                 />
 
                 <Button loading={isLoading} disabled={isLoading}>

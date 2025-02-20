@@ -16,7 +16,7 @@ import type {
     DirectionTour,
     TypeTour,
     Price,
-    Regions,
+    Region,
     DayProgram,
     MapMarker,
 } from './model/types/types'
@@ -39,7 +39,7 @@ export {
     DirectionTour,
     TypeTour,
     Price,
-    Regions,
+    Region,
     DayProgram,
     MapMarker,
 };

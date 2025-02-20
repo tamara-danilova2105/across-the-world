@@ -67,7 +67,8 @@ export const ForgotPasswordForm = ({ showExplain }: StateProps) => {
                 max
             >
                 <AppLink
-                    variant='just_button'
+                    variant='button'
+                    hasArrow={false}
                     to={getRouteSignin()}
                 >
                     Отмена

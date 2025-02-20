@@ -46,18 +46,18 @@ export const FAQEditor = () => {
                 </Button>
             </Stack>
 
-            {isGetError && (
-                <Text color="red" size="18">
-                    Произошла ошибка при загрузке
-                </Text>
-            )}
-
             <FAQForm
                 faqs={faqs}
                 onChange={setFaqs}
                 allowDeleteFirst
                 isLoading={isLoadingGet}
             />
+
+            {isGetError && (
+                <Text color="red" size="18">
+                    Произошла ошибка при загрузке данных
+                </Text>
+            )}
         </Stack>
 
     );
