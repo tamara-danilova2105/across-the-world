@@ -14,9 +14,11 @@ interface SearchMainProps {
     regions?: Region[] | [];
     error?: FetchBaseQueryError | SerializedError | undefined;
     isLoading?: boolean;
+    admin?: boolean;
+    main?: boolean;
 }
 
-export const SearchMainPage = ({ regions = [], error, isLoading } : SearchMainProps) => {
+export const SearchMainPage = ({ regions = [], error, isLoading, admin, main } : SearchMainProps) => {
 
     const width = useResize()
     const [changeOpen, drawModal, isOpen] = useModal()
@@ -30,6 +32,9 @@ export const SearchMainPage = ({ regions = [], error, isLoading } : SearchMainPr
         }
     }, [isOpen])
 
+    const placeholder = main ? 
+    "Найди свое приключение здесь..." : "Поиск по региону";
+
     return (
         <Stack 
             align="center" 
@@ -41,7 +46,9 @@ export const SearchMainPage = ({ regions = [], error, isLoading } : SearchMainPr
                 error={error}
                 isLoading={isLoading}
                 changeOpen={width < 768 ? changeOpen : undefined}
-                placeholder="Найди свое приключение здесь..."
+                placeholder={placeholder}
+                main={main}
+                admin={admin}
             /> 
 
             {drawModal(

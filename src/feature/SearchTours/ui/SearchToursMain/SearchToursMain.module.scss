@@ -12,6 +12,7 @@
         width: 100%;
         background-color: var(--white-color);
         flex: 1;
+        border-radius: var(--border-radius); 
 
         @include mobile-xl {
             flex-direction: column;
@@ -21,18 +22,6 @@
 
         & div {
             flex: 1;
-        }
-
-        .button {
-            width: 250px;
-
-            @include tablet-m {
-                width: 200px;
-            }
-
-            @include mobile-xl {
-                width: 100%;
-            }
         }
     }
 }

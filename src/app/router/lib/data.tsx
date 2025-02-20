@@ -22,6 +22,7 @@ import {
     getRouteAdminModerationReviews,
     getRouteToursByRegion,
     getRouteForgotPassword,
+    getRouteAdminSubscription,
 } from "./helper";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ToursPage } from "@/pages/ToursPage";
@@ -43,6 +44,7 @@ import { EditNewsPage } from "@/pages/EditNewsPage";
 import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
 import { EditTourPage } from "@/pages/EditTourPage";
 import { EditTimerPage } from "@/pages/EditTimerPage";
+import { EditSubscriptionPage } from "@/pages/EditSubscriptionPage";
 
 export const routeConfig: Record<AppRouters, AppRoutesProps> = {
     [AppRouters.main]: {
@@ -146,5 +148,10 @@ export const routeConfig: Record<AppRouters, AppRoutesProps> = {
         path: getRouteAdminModerationReviews(),
         // onlyAdmin: true,
         page: <ModerationReviewsPage />
+    },
+    [AppRouters.admin_subscribe]: {
+        path: getRouteAdminSubscription(),
+        // onlyAdmin: true,
+        page: <EditSubscriptionPage />
     },
 };

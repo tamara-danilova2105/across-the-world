@@ -5,7 +5,7 @@ import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from "@/shared/ui/Text/Text"
 import { SheduleItem } from "../SheduleItem/SheduleItem"
 import { useGetAllToursQuery } from "@/entities/Tours"
-import { groupToursByMonth, monthNames } from "../../lib/dateUtils"
+import { groupToursByMonth, monthNames } from "@/shared/lib/dateUtils"
 import { Loading } from "@/shared/ui/Loading"
 import styles from './Shedule.module.scss'
 

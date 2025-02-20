@@ -18,24 +18,20 @@ export interface Regions {
 export interface TimerData {
     title: string;
     region: string;
-    description: string;
+    discount: string;
     timer: string;
-    hide: boolean;
+    hide?: boolean;
     imagesWithDetails: ImagesWithDetails[]
 }
 
 export const PLACEHOLDER_TEXT: Record<string, string> = {
     header: "Сахара",
     category: "Пустыня",
-    describe: "Таинственная ночь в Сахаре: барханы, звезды и тишина пустыни"
 }
 
 const LABEL: Record<string, { label: string; min: number; max: number }> = {
     header: { label: "Название", min: 2, max: 20 },
     category: { label: "Категория", min: 3, max: 15 },
-    describe: {
-        label: "Краткое описание", min: 10, max: 80
-    }
 }
 
 export const getLabel = (field: string) => {

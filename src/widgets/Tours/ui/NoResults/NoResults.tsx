@@ -1,15 +1,10 @@
 import { SearchX } from 'lucide-react';
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { Text } from '@/shared/ui/Text/Text';
-import { Button } from '@/shared/ui/Button/Button';
 import { motion } from "framer-motion";
-import { clearAllFilters } from '@/feature/FilterBar/model/filterSlice';
-import { useDispatch } from 'react-redux';
 import styles from "./NoResults.module.scss"
 
 export const NoResults = () => {
-
-    const dispatch = useDispatch()
 
     return (
         <Stack
@@ -53,13 +48,10 @@ export const NoResults = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     <Text size='24'>
-                        Попробуйте смягчить условия поиска
+                        Попробуйте изменить условия поиска
                     </Text>
                 </motion.div>
             </Stack>
-            <Button onClick={() => dispatch(clearAllFilters())}>
-                Сбросить фильтры
-            </Button>
         </Stack>
     )
 }

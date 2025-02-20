@@ -10,8 +10,9 @@ import { DecorationIcon } from "@/shared/assets/svg/heroIcons";
 import { RunningLine } from "@/entities/RunningLine/index";
 import { dataPromo } from "@/entities/RunningLine/lib/data";
 import styles from './Subscription.module.scss'
-import { useSubscribeMutation } from "../api/subscribeApi";
+import { useGetSubscribersQuery, useSubscribeMutation } from "../api/subscribeApi";
 import { toast } from "react-toastify";
+import { Loading } from "@/shared/ui/Loading";
 
 interface FormInputs {
     email: string;
@@ -21,7 +22,9 @@ export const Subscription = () => {
     const methods = useForm<FormInputs>();
     const { handleSubmit, register, reset, formState: { errors } } = methods;
 
-    const [ sendMail, {isLoading}] = useSubscribeMutation({})
+    const [ sendMail, {isLoading}] = useSubscribeMutation({})//todo error
+    const { data: subscribers, isLoading: loadSubscription } = useGetSubscribersQuery({});
+    const availability = subscribers?.availability ?? true;
 
     const onSubmit = async (formData: FormInputs) => {
         const {email} = formData
@@ -33,6 +36,8 @@ export const Subscription = () => {
             toast.error("Ошибка при отправке почты. Попробуйте снова.")
         }
     }
+
+    if(availability === false) return null;
 
     return (
         <Stack
@@ -50,7 +55,9 @@ export const Subscription = () => {
             >
                 <DecorationIcon />
                 <DecorationIcon />
-                <Stack className={styles.subscription}
+                {loadSubscription ? <Loading width="100" height="100"/>
+                :
+                (<Stack className={styles.subscription}
                     direction="column"
                     align="center"
                     justify="center"
@@ -92,7 +99,7 @@ export const Subscription = () => {
                             </Button>
                         </form>
                     </FormProvider>
-                </Stack>
+                </Stack>)}
             </Stack>
         </Stack>
 

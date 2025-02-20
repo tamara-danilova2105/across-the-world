@@ -72,7 +72,8 @@ export const EarlyBook = () => {
                                 font='geometria400'
                                 color="blue" size="18"
                             >
-                                {timerData?.description}
+                            При бронировании до {timerData?.date} действует <br/>
+                            скидка {timerData?.discount} по акции раннего бронирования.
                             </Text>
                         </Stack>
                         <Timer 

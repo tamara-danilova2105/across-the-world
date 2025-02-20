@@ -1,78 +1,81 @@
-import { useCallback, useEffect } from 'react';
-
-interface UseRangeParams {
-    onChange: (values: [number | null, number | null]) => void;
-    minLimit: number;
-    maxLimit: number;
-    selectedFilters?: [number | null, number | null];
-}
+import { formatNumber } from "@/shared/lib/formatDate";
+import { useCallback, useEffect, useState } from "react";
+import { UseFormSetValue } from "react-hook-form";
 
 export interface RangeFormValues {
     min: string | number;
     max: string | number;
 }
 
-export const useRange = ({
-    onChange,
-    minLimit,
-    maxLimit,
-    selectedFilters,
-    setValue,
-    watch
-}: UseRangeParams & { setValue: any; watch: any }) => {
+interface UseRangeParams {
+    onChange: (values: [number | null, number | null]) => void;
+    minLimit: number;
+    maxLimit: number;
+    selectedFilters?: [number | null, number | null];
+    setValue: UseFormSetValue<RangeFormValues>;
+    watch: (field: string) => any;
+}
 
-    const minValue = watch('min')
-    const maxValue = watch('max')
+export const useRange = ({ onChange, minLimit, maxLimit, selectedFilters, setValue, watch }: UseRangeParams) => {
+    const [sliderValues, setSliderValues] = useState<[number, number]>([
+        selectedFilters?.[0] ?? minLimit,
+        selectedFilters?.[1] ?? maxLimit,
+    ]);
 
     useEffect(() => {
         if (selectedFilters) {
-            setValue('min', selectedFilters[0] ?? '')
-            setValue('max', selectedFilters[1] ?? '')
-        }
-    }, [selectedFilters, setValue]);
+            const [newMin, newMax] = [
+                selectedFilters[0] ?? minLimit,
+                selectedFilters[1] ?? maxLimit,
+            ];
 
-    const cleanInput = (value: string) => value.replace(/\D/g, '');
+            setSliderValues([newMin, newMax]);
+            setValue("min", formatNumber(newMin));
+            setValue("max", formatNumber(newMax));
+        }
+    }, [selectedFilters, minLimit, maxLimit, setValue]);
 
     const handleInputChange = useCallback(
-        (field: 'min' | 'max', value: string) => {
-            const cleanedValue = cleanInput(value.trim());
-            if (!cleanedValue) {
-                setValue(field, '');
-                onChange([
-                    field === 'min' ? null : minValue || null,
-                    field === 'max' ? null : maxValue || null,
-                ]);
+        (field: "min" | "max", value: string) => {
+            const numericValue = Number(value.replace(/\D/g, ""));
+            if (value === "") {
+                setValue(field, "");
                 return;
             }
 
-            const numericValue = Number(cleanedValue);
-            const newValue =
-                field === 'min'
-                    ? Math.min(maxValue || maxLimit, Math.max(minLimit, numericValue))
-                    : Math.min(maxLimit, Math.max(minValue || minLimit, numericValue));
+            const boundedValue = Math.min(
+                field === "min" ? Number(watch("max")) || maxLimit : maxLimit,
+                Math.max(minLimit, numericValue)
+            );
 
-            setValue(field, newValue);
-            onChange([field === 'min' ? newValue : minValue || null, field === 'max' ? newValue : maxValue || null]);
+            setValue(field, boundedValue);
+            setSliderValues((prev) =>
+                field === "min" ? [boundedValue, prev[1]] : [prev[0], boundedValue]
+            );
+            onChange([
+                field === "min" ? boundedValue : watch("min"),
+                field === "max" ? boundedValue : watch("max"),
+            ]);
         },
-        [minValue, maxValue, minLimit, maxLimit, setValue, onChange]
+        [minLimit, maxLimit, setValue, onChange, watch]
     );
 
     const handleSliderChange = useCallback(
         ([newMin, newMax]: [number, number]) => {
-            const safeMin = newMin ?? minLimit;
-            const safeMax = newMax ?? maxLimit;
-            setValue('min', safeMin);
-            setValue('max', safeMax);
-            onChange([safeMin, safeMax]);
+            setSliderValues([newMin, newMax]);
+            setValue("min", newMin);
+            setValue("max", newMax);
+            onChange([newMin, newMax]);
         },
-        [setValue, onChange, minLimit, maxLimit]
+        [setValue, onChange]
     );
 
     return {
-        minValue,
-        maxValue,
-        handleMinInputChange: (e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('min', e.target.value),
-        handleMaxInputChange: (e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('max', e.target.value),
+        handleMinInputChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+            handleInputChange("min", e.target.value),
+        handleMaxInputChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+            handleInputChange("max", e.target.value),
         handleSliderChange,
-    }
-}
+        sliderValues,
+    };
+};

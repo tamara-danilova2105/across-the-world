@@ -1,4 +1,3 @@
-import { Button } from "@/shared/ui/Button/Button"
 import { Stack } from "@/shared/ui/Stack/Stack"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -8,7 +7,6 @@ import {
     FilterRangeCategory
 } from "../../lib/data"
 import {
-    clearAllFilters,
     getFiltersState,
     setFilter
 } from "../../model/filterSlice"
@@ -16,10 +14,8 @@ import { FilterBarItem } from "../FilterBarItem/FilterBarItem"
 import { FilterRange } from "../FilterRange/FilterRange"
 import styles from './FilterBar.module.scss'
 import { useCallback } from "react"
-import { useResize } from "@/shared/hooks/useResize"
-import { X } from 'lucide-react'
-import { Text } from "@/shared/ui/Text"
-import { useActiveFilters } from "@/shared/hooks/useActiveFilters"
+import { ActiveFilters } from "../ActiveFilters/ActiveFilters"
+
 
 type DataFilter = typeof dataFilter;
 type DataFilterRange = typeof dataFilterRange;
@@ -27,16 +23,10 @@ type DataFilterRange = typeof dataFilterRange;
 type FilterKeys = keyof DataFilter;
 type FilterRangeKeys = keyof DataFilterRange;
 
-interface FilterBarProps {
-    toggleMenu?: () => void;
-}
 
-export const FilterBar = ({ toggleMenu }: FilterBarProps) => {
+export const FilterBar = () => {
     const filterState = useSelector(getFiltersState)
     const dispatch = useDispatch()
-    const width = useResize()
-
-    const { activeFiltersCount } = useActiveFilters(filterState)
 
     const handleChange = useCallback(
         (key: FilterKeys | FilterRangeKeys, value: any) => {
@@ -71,7 +61,6 @@ export const FilterBar = ({ toggleMenu }: FilterBarProps) => {
 
     const renderFilterRangeElement = useCallback((key: FilterRangeKeys) => {
         const { title, 
-            defaultValues, 
             minLimit,
             maxLimit, 
             step }: FilterRangeCategory = dataFilterRange[key];
@@ -80,7 +69,6 @@ export const FilterBar = ({ toggleMenu }: FilterBarProps) => {
             <FilterRange
                 key={key}
                 title={title}
-                defaultValues={defaultValues}
                 minLimit={minLimit}
                 maxLimit={maxLimit}
                 step={step}
@@ -93,38 +81,11 @@ export const FilterBar = ({ toggleMenu }: FilterBarProps) => {
     return (
         <Stack
             direction='column'
-            gap='16'
+            gap='24'
             className={styles.filterBarContainer}
         >
-            <Stack
-                justify='between'
-                gap='8'
-                className={styles.btnContainer}
-                max
-            >
-                {width <= 1024 && (
-                    <Button 
-                        onClick={toggleMenu}
-                    >
-                        Применить
-                    </Button>
-                )}
-                {activeFiltersCount > 0 && (
-                    <Stack max className={styles.activeFilter}
-                        align="center" justify="between"
-                    >
-                        <Text size="18" color="blue"
-                            font="geometria500"
-                        >
-                            Выбрано фильтров: {activeFiltersCount}
-                        </Text>
-                        <Button color="transparent"
-                            className={styles.button_clear}
-                            onClick={() => dispatch(clearAllFilters())}>
-                            <X color="var(--blue-color)" />
-                        </Button>
-                    </Stack>
-                )}
+            <Stack max className={styles.activeFilter_container}>
+                <ActiveFilters/>
             </Stack>
             <Stack
                 direction='column'

@@ -1,7 +1,7 @@
 import { Pagination } from "@/entities/Pagination/index"
 import { getFiltersState, setFilter } from "@/feature/FilterBar/model/filterSlice"
 import { getSortState } from '@/feature/SortTour/model/sortSlice'
-import { MobileFilterBar } from "@/feature/MobileFilterBar/ui/MobileFilterBar"
+import { MobileFilterBar } from "@/widgets/Tours/ui/MobileFilterBar/ui/MobileFilterBar"
 import { SortTour } from "@/feature/SortTour/index"
 import { useModal } from "@/shared/hooks/useModal"
 import { useToggleOpen } from "@/shared/hooks/useToggleOpen"
@@ -19,6 +19,7 @@ import { NoResults } from "../NoResults/NoResults"
 import { Skeleton } from "@/shared/ui/Skeleton"
 import { useResize } from "@/shared/hooks/useResize"
 import styles from './Tours.module.scss'
+import { useDebounce } from "@/shared/hooks/useDebounce"
 
 export const Tours = () => {
 
@@ -34,11 +35,13 @@ export const Tours = () => {
     const sorts = useSelector(getSortState)
     const readyFilter = JSON.stringify(filters);
     const readySort = JSON.stringify(sorts);
-    
-    const { data, error, isLoading } = useGetAllToursQuery({
+
+    const debouncedTours = useDebounce({ value: {
         filter: readyFilter,
         sort: readySort
-    })
+    },  delay: 800})
+    
+    const { data, error, isLoading } = useGetAllToursQuery(debouncedTours)
 
     console.log(error) //todo
 
@@ -77,6 +80,7 @@ export const Tours = () => {
                     isOpen={isOpen}
                     menuRef={menuRef}
                 />
+
                 <Stack
                     gap='16'
                     className={styles.filter_panel_btn}
