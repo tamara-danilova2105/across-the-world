@@ -6,7 +6,7 @@
     input {
         background-color: var(--white-color);
         padding: 14px 24px 14px 50px;
-        border-radius: 50px;
+        border-radius: var(--border-radius);
         border: none;
         font-family: var(--font-family-geometria400);
         width: 100%;

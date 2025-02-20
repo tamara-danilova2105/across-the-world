@@ -37,13 +37,13 @@ export const SearchToursMain = ({ main, admin }: SearchTypes) => {
     const { data: regions, error, isLoading } = useGetRegionsQuery({ search: debouncedSearch })
 
     const onSubmit = (formData: { region: string; date: string }) => {
-        const regionString = Array.isArray(formData.region) ? 
-        formData.region.join('') : formData.region;
+        const regionString = Array.isArray(formData.region) ?
+            formData.region.join('') : formData.region;
 
         if (!regionString && !formData.date) {
             return;
         }
-        dispatch(setFilter({ 
+        dispatch(setFilter({
             region: regionString,
             dates: filterState.dates
         }))
@@ -53,27 +53,29 @@ export const SearchToursMain = ({ main, admin }: SearchTypes) => {
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 {main || admin ? (
-                    <SearchMainPage regions={regions}
-                    error={error} 
-                    isLoading={isLoading} 
-                    main={main}
-                    admin={admin}/>
+                    <SearchMainPage
+                        regions={regions}
+                        error={error}
+                        isLoading={isLoading}
+                        main={main}
+                        admin={admin}
+                    />
                 ) : (
                     <Stack className={styles.searchContainer}>
                         {width > 768 ? (
                             <Stack gap="8">
-                                <RegionTours 
-                                    regions={regions} 
-                                    error={error} 
-                                    isLoading={isLoading} 
+                                <RegionTours
+                                    regions={regions}
+                                    error={error}
+                                    isLoading={isLoading}
                                 />
                                 <DateTours />
                             </Stack>
                         ) : (
-                            <MobileSearchTours 
-                                regions={regions} 
-                                error={error} 
-                                isLoading={isLoading} 
+                            <MobileSearchTours
+                                regions={regions}
+                                error={error}
+                                isLoading={isLoading}
                             />
                         )}
                     </Stack>

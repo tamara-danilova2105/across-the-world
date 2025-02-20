@@ -3,8 +3,9 @@
 
     .openModal {
         width: 100%;
-        padding: 8px;
+        padding: 0.5rem 1rem;
         border: 2px solid var(--blue-color);
+        border-radius: var(--border-radius);
 
         svg {
             color: var(--blue-color);

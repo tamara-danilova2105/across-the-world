@@ -22,14 +22,14 @@ export const Subscription = () => {
     const methods = useForm<FormInputs>();
     const { handleSubmit, register, reset, formState: { errors } } = methods;
 
-    const [ sendMail, {isLoading}] = useSubscribeMutation({})//todo error
+    const [sendMail, { isLoading }] = useSubscribeMutation({})//todo error
     const { data: subscribers, isLoading: loadSubscription } = useGetSubscribersQuery({});
     const availability = subscribers?.availability ?? true;
 
     const onSubmit = async (formData: FormInputs) => {
-        const {email} = formData
-        try{
-            await sendMail({email}).unwrap()
+        const { email } = formData
+        try {
+            await sendMail({ email }).unwrap()
             toast.success("Вы подписались на нащи новости.")
             reset()
         } catch (e) {
@@ -37,7 +37,7 @@ export const Subscription = () => {
         }
     }
 
-    if(availability === false) return null;
+    if (availability === false) return null;
 
     return (
         <Stack
@@ -55,51 +55,51 @@ export const Subscription = () => {
             >
                 <DecorationIcon />
                 <DecorationIcon />
-                {loadSubscription ? <Loading width="100" height="100"/>
-                :
-                (<Stack className={styles.subscription}
-                    direction="column"
-                    align="center"
-                    justify="center"
-                    gap='48'
-                >
-                    <Stack
+                {loadSubscription ? <Loading width="100" height="100" />
+                    :
+                    (<Stack className={styles.subscription}
                         direction="column"
                         align="center"
                         justify="center"
-                        gap='24'
+                        gap='48'
                     >
-                        <TitleSection title="Будь всегда в теме" subtitle="НОВОСТИ" />
-                        <Text font='geometria400'
-                            color="blue" size="24"
-                        >Получите скидку <strong>3%</strong> на первый заказ,
-                            <br /> просто подписавшись на наши новости</Text>
-                    </Stack>
-                    <FormProvider {...methods}>
-                        <form onSubmit={handleSubmit(onSubmit)}
+                        <Stack
+                            direction="column"
+                            align="center"
+                            justify="center"
+                            gap='24'
+                        >
+                            <TitleSection title="Будь всегда в теме" subtitle="НОВОСТИ" />
+                            <Text font='geometria400'
+                                color="blue" size="24"
+                            >Получите скидку <strong>3%</strong> на первый заказ,
+                                <br /> просто подписавшись на наши новости</Text>
+                        </Stack>
+                        <FormProvider {...methods}>
+                            <form onSubmit={handleSubmit(onSubmit)}
                                 className={styles.form}>
-                            <EnvelopeIcon/>
-                            <Input 
-                                name="email"
-                                register={register("email", {
-                                    required: data.required,
-                                    pattern: {
-                                        value: emailRegex,
-                                        message: data.errors.validEmail,
-                                    }
-                                })}
-                                className={styles.input}
-                                placeholder="Введите свою почту"
-                                error={errors?.email}
-                            />
-                            <Button cta type="submit"
-                                className={styles.button}
-                                loading={isLoading}>
-                                Подписаться
-                            </Button>
-                        </form>
-                    </FormProvider>
-                </Stack>)}
+                                <EnvelopeIcon />
+                                <Input
+                                    name="email"
+                                    register={register("email", {
+                                        required: data.required,
+                                        pattern: {
+                                            value: emailRegex,
+                                            message: data.errors.validEmail,
+                                        }
+                                    })}
+                                    className={styles.input}
+                                    placeholder="Введите свою почту"
+                                    error={errors?.email}
+                                />
+                                <Button cta type="submit"
+                                    className={styles.button}
+                                    loading={isLoading}>
+                                    Подписаться
+                                </Button>
+                            </form>
+                        </FormProvider>
+                    </Stack>)}
             </Stack>
         </Stack>
 

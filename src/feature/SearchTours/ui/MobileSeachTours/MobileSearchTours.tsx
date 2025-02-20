@@ -42,16 +42,16 @@ export const MobileSearchTours = ({ regions, error, isLoading }: MobileSearchPro
     const { clearDate } = useDateRange({})
 
 
-    const dateIcon = dateValue ? 
-        <X         
+    const dateIcon = dateValue ?
+        <X
             onClick={(e: React.MouseEvent<SVGElement>) => {
-            e.stopPropagation()
-            clearDate()
-        }}  style={{ cursor: 'pointer' }} type="button" />
+                e.stopPropagation()
+                clearDate()
+            }} style={{ cursor: 'pointer' }} type="button" />
         : <CalendarRange />
 
-    const searchIcon = regionValue || filters.region ? 
-        <X  onClick={(e: React.MouseEvent<SVGElement>) => {
+    const searchIcon = regionValue || filters.region ?
+        <X onClick={(e: React.MouseEvent<SVGElement>) => {
             e.stopPropagation()
             handleClearRegion()
         }} style={{ cursor: "pointer" }} type="button" />

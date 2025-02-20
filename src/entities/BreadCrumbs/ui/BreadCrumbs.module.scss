@@ -22,6 +22,10 @@
     padding-bottom: 2.5rem;
     @include mixin.section-style;
 
+    @include mobile-xl {
+        padding-bottom: 3rem;
+    }
+
     nav {
         ul {
             display: flex;

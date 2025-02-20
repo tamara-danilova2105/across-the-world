@@ -34,7 +34,7 @@ export const NoResults = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <Text 
-                        type='h2' size='24' 
+                        type='h2' size='18' 
                         font='geometria500' 
                         color='blue'
                     >
@@ -47,7 +47,7 @@ export const NoResults = () => {
                     animate={{ opacity: 1, y: 0 }} 
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <Text size='24'>
+                    <Text size='18'>
                         Попробуйте изменить условия поиска
                     </Text>
                 </motion.div>

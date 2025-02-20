@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 import { Button } from "@/shared/ui/Button"
 import { Stack } from "@/shared/ui/Stack"
 import { Text } from "@/shared/ui/Text"
-import { ArrowDownFromLine } from "lucide-react"
+import { Download } from "lucide-react"
 import { useGetSubscribersQuery, useManageSubscriptionMutation } from "@/widgets/Subscription/api/subscribeApi"
 import styles from './EditSubscription.module.scss'
 import { useState } from 'react';
@@ -14,16 +14,16 @@ interface SubscriberType {
 
 export const EditSubscription = () => {
     const { data, isLoading } = useGetSubscribersQuery({});
-    
+
     const all_subscribers = data?.all_subscribers || [];
     const availability = data?.availability ?? true;
 
     const downloadExcel = () => {
         const subscribers_list = all_subscribers
-        .map((subscriber: SubscriberType, index: number) => ({
-            "№": index + 1,
-            "Email": subscriber.email
-        }));
+            .map((subscriber: SubscriberType, index: number) => ({
+                "№": index + 1,
+                "Email": subscriber.email
+            }));
 
         const ws = XLSX.utils.json_to_sheet(subscribers_list);
         const wb = XLSX.utils.book_new();
@@ -35,39 +35,43 @@ export const EditSubscription = () => {
         saveAs(blob, "subscribers.xlsx");
     }
 
-    const [subscription, {isLoading: manage_load}] = useManageSubscriptionMutation();
+    const [subscription, { isLoading: manage_load }] = useManageSubscriptionMutation();
     const [isAvailability, setIsAvailability] = useState<boolean>(availability)
 
     const changeAvailability = async () => {
         try {
             const new_availability = !isAvailability;
-            await subscription({availability: new_availability})
+            await subscription({ availability: new_availability })
             setIsAvailability(new_availability)
         } catch (e) {
             console.log(e)
         }
     }
 
-    return(
-        <Stack direction="column" gap="24"
-            className={styles.editSubscription}>
-            <Stack>
-                <Text type="h2" color="blue" 
-                    font="geometria500" size="32"
+    return (
+        <Stack direction="column" gap="24">
+            <Text type='h2' color='blue' size='24' font='geometria500'>
+                Управление подпиской на новости
+            </Text>
+
+            <Stack align="center" max gap="32">
+                <Button
+                    color="secondary"
+                    loading={manage_load}
+                    disabled={manage_load}
+                    onClick={changeAvailability}
                 >
-                    Управление подпиской
-                </Text>
-            </Stack>
-            <Stack align="center" max gap="32"> 
-                <Button color="secondary" loading={manage_load}
-                    onClick={changeAvailability}>
-                    {availability ? 
-                    'Остановить подписку ':
-                    'Возобновить подписку' }
+                    {availability ?
+                        'Скрыть секцию на главной странице' :
+                        'Показать секцию на главной странице'}
                 </Button>
-                <Button className={styles.button} loading={isLoading}
-                    onClick={downloadExcel}>
-                    <ArrowDownFromLine/> Список подписчиков
+                <Button
+                    className={styles.button}
+                    loading={isLoading}
+                    disabled={isLoading}
+                    onClick={downloadExcel}
+                >
+                    <Download /> Скачать список подписчиков Excel
                 </Button>
             </Stack>
         </Stack>

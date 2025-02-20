@@ -20,5 +20,4 @@ export const getRouteAdminNews = () => '/admin/news';
 export const getRouteAdminNewsCreate = () => '/admin/news/create';
 export const getRouteAdminNewsEdit = (id: string) => `/admin/news/edit/${id}`;
 export const getRouteAdminDiscount = () => '/admin/discount';
-export const getRouteAdminModerationReviews = () => '/admin/moderation'
-export const getRouteAdminSubscription = () => '/admin/subscribe';
+export const getRouteAdminModerationReviews = () => '/admin/moderation';

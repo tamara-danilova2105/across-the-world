@@ -4,7 +4,7 @@ import { Text } from "@/shared/ui/Text";
 import { FireWorks } from "@/shared/assets/svg/heroIcons";
 import { heroData } from "../../lib/data";
 import styles from './Description.module.scss';
-import { SearchToursMain } from "@/feature/SearchTours/index";
+import { SearchToursMain } from "@/feature/SearchTours";
 
 export const Description = () => {
     const { description } = heroData;
