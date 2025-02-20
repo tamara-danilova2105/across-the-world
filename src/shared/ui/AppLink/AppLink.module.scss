@@ -54,6 +54,7 @@ $sizes: (
     justify-content: space-between;
     align-items: center;
     height: 50px;
+    border-radius: var(--border-radius);
 
     svg {
         transition: transform 0.3s ease-in-out;
@@ -63,17 +64,6 @@ $sizes: (
     &:hover svg {
         transform: translateX(2px);
     }
-}
-
-.just_button {
-    background-color: var(--blue-color);
-    color: var(--white-color);
-    padding: 0 1rem;
-    display: flex;
-    gap: var(--gap-xl);
-    justify-content: center;
-    align-items: center;
-    height: 50px;
 }
 
 .circle {
