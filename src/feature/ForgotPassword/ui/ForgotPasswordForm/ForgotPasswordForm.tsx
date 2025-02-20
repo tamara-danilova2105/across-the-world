@@ -67,7 +67,8 @@ export const ForgotPasswordForm = ({ showExplain }: StateProps) => {
                 max
             >
                 <AppLink
-                    variant='button'
+                    className={styles.app_cancel}
+                    variant="button"
                     hasArrow={false}
                     to={getRouteSignin()}
                 >

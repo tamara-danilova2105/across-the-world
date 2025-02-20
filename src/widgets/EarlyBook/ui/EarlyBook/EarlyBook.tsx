@@ -82,6 +82,7 @@ export const EarlyBook = () => {
                         />
                         <div className={styles.appLink}>
                             <AppLink
+                                className={styles.app_cancel}
                                 variant="button" hasArrow={false} cta
                                 to={timerData?.region ? getRouteToursByRegion(timerData.region) : "#"}
                             >
