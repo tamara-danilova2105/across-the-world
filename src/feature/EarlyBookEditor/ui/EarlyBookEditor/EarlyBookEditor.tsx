@@ -28,8 +28,6 @@ const INITIAL_TIMER_STATE: TimerData = {
 
 export const EarlyBookEditor = () => {
     const [deletedImages, setDeletedImages] = useState<string[]>([]);
-    const [timerData, setTimerData] = useState<TimerData>(INITIAL_TIMER_STATE);
-    const [isHide, setIsHide] = useState<boolean>(timerData.hide ?? true);
     const methods = useForm({ mode: 'onSubmit', defaultValues: INITIAL_TIMER_STATE });
     const { register, handleSubmit, setValue, watch, getValues, reset, formState: { errors } } = methods;
 
@@ -41,16 +39,19 @@ export const EarlyBookEditor = () => {
 
     const optionsRegions = useMemo(() => regions?.map(({ region }: Regions) => region) || [], [regions]);
 
+
+    const hide = getTimer?.hide ?? true
+    const [isHide, setIsHide] = useState<boolean>(hide);
     const getHideTimer = async () => {
         try {
             const changedHide = !isHide;
-            await hideTimer({ hide: changedHide }).unwrap();
+            console.log("Отправка запроса hideTimer:", changedHide);
+            await hideTimer({hide: changedHide}).unwrap();
             setIsHide(changedHide);
         } catch (e) {
-            console.log(e);
+            console.error("Ошибка в getHideTimer:", e);
         }
     }
-
 
     useEffect(() => {
         if (getTimer && getTimer.length > 0) {
@@ -61,11 +62,6 @@ export const EarlyBookEditor = () => {
             setValue('discount', currentTimer.discount);
             setValue('region', currentTimer.region);
             setValue('timer', formattedDate);
-
-            setTimerData(prev => ({
-                ...prev,
-                imagesWithDetails: currentTimer.imagesWithDetails || []
-            }))
 
             const images = currentTimer.imagesWithDetails || [];
             const cover_1 = images[0] || null;
@@ -81,7 +77,9 @@ export const EarlyBookEditor = () => {
     
     const onSubmit = async () => {
         const {title, region, discount, timer, imagesWithDetails} = getValues()
-        
+
+        console.log(imagesWithDetails)
+
         if (imagesWithDetails.length !== 2) {
             return;
         }
@@ -97,7 +95,6 @@ export const EarlyBookEditor = () => {
             data.append("deletedImages", JSON.stringify(deletedImages));
         }
 
-    
         imagesWithDetails.forEach(({ file }) => {
             if (file) data.append("photos", file);
         })
@@ -113,34 +110,40 @@ export const EarlyBookEditor = () => {
         }
     }
 
+    
+
     if (getLoading) return <Loading width="100" height="100" />;
 
     return (
             <Stack direction="column" align="center" max gap="24" 
                 className={styles.timerContainer}
             >
-                <Stack className={styles.header_admin}>
-                    <Stack max direction="column" gap="32">
-                        <Text type="h2" color="blue" 
-                            font="geometria500" size="32"
+                <Stack max direction="column" gap="32"
+                    className={styles.header_admin}
+                >
+                    <Text type="h2" color="blue" 
+                        font="geometria500" size="32"
+                    >
+                        Управление ранним бронированием
+                    </Text>
+                    <Stack max gap="32" 
+                        className={styles.button_container}
+                    >
+                        <Button type="button" color="outline" 
+                            loading={hideTimerLoading} 
+                            className={styles.button}
+                            onClick={getHideTimer}
                         >
-                            Управление ранним бронированием
-                        </Text>
-                        <Stack max gap="32">
-                            <Button type="button" color="outline" 
-                                loading={hideTimerLoading} 
-                                className={styles.button}
-                                onClick={getHideTimer}
-                            >
-                                {isHide ? <Eye /> : <EyeOff />}
-                                {isHide ? 'Опубликовать' : 'Снять с публикации'}
-                            </Button>
-                            <Button type="submit" loading={addTimerLoading} 
-                                className={styles.button} onClick={handleSubmit(onSubmit)}
-                            >
-                                <Upload /> Сохранить таймер
-                            </Button>
-                        </Stack>
+                            {isHide ? <EyeOff /> : <Eye />}
+                            {isHide ? 'Снять с публикации' : 'Опубликовать'}
+                        </Button>
+                        <Button type="submit" 
+                            loading={addTimerLoading} 
+                            className={styles.button} 
+                            onClick={handleSubmit(onSubmit)}
+                        >
+                            <Upload /> Сохранить таймер
+                        </Button>
                     </Stack>
                 </Stack>
                 <FormProvider {...methods}>
@@ -159,12 +162,12 @@ export const EarlyBookEditor = () => {
                     <Stack direction='column' gap="8" max>
                         <label className={styles.label}>Регион</label>
                         <Select 
-                            value={watch("region")} 
+                            value={watch("region") || 'Выбери регион'} 
                             options={optionsRegions} 
                             onChange={(option) => setValue('region', option)} 
                         />
                     </Stack>
-                    <Stack max>
+                    <Stack max className={styles.date_container}>
                         <Input
                             label="Дата окончания скидки"
                             name="timer"
@@ -184,7 +187,6 @@ export const EarlyBookEditor = () => {
                         />
                     </Stack>
                     <TimerImage 
-                        setTimerData={setTimerData}
                         setDeletedImages={setDeletedImages}
                     />
                 </form>

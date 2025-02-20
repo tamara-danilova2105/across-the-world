@@ -25,6 +25,8 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
     const filterState = useSelector(getFiltersState)
     const { activeFiltersCount } = useActiveFilters(filterState)
 
+    const clearFilters = useClearFilters();
+
     if (width > 1024) return null;
 
     return (
@@ -41,7 +43,7 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
 
                 {activeFiltersCount > 0 && (
                     <Button color="transparent"
-                        onClick={useClearFilters()}
+                        onClick={clearFilters}
                         className={styles.activeFiltersBadge}>
                         <X size={12} color="var(--blue-color)"/>
                     </Button>

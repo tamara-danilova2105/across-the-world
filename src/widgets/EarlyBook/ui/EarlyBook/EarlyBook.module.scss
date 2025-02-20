@@ -30,7 +30,7 @@
             @include mixin.section-style;
 
             @include mq.desktop-m {
-                width: 45vw;
+                width: 60vw;
             }
             @include mq.tablet-l {
                 width: 65%;
@@ -58,8 +58,14 @@
                 }
 
                 :nth-child(3) {
+                    line-height: 30px;
+
+                    strong {
+                        font-family: var(--font-family-geometria600);
+                    }
                     @include mq.tablet-m {
                         font-family: var(--font-family-geometria500);
+                        
                     }
 
                     @include mq.mobile-xl {
@@ -83,6 +89,7 @@
                 .app_cancel {
                     display: flex;
                     justify-content: center;
+                    text-align: center;
                 }
 
                 @include mq.mobile-xl {

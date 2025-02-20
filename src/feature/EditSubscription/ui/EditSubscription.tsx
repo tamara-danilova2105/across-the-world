@@ -5,8 +5,8 @@ import { Stack } from "@/shared/ui/Stack"
 import { Text } from "@/shared/ui/Text"
 import { Download } from "lucide-react"
 import { useGetSubscribersQuery, useManageSubscriptionMutation } from "@/widgets/Subscription/api/subscribeApi"
-import styles from './EditSubscription.module.scss'
 import { useState } from 'react';
+import styles from './EditSubscription.module.scss'
 
 interface SubscriberType {
     email: string;
@@ -54,7 +54,8 @@ export const EditSubscription = () => {
                 Управление подпиской на новости
             </Text>
 
-            <Stack align="center" max gap="32">
+            <Stack align="center" max gap="32"
+                className={styles.button_container}>
                 <Button
                     color="secondary"
                     loading={manage_load}

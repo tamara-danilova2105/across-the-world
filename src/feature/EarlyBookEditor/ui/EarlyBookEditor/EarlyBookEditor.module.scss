@@ -5,50 +5,36 @@
     @include mixin.section-admin-style;
 
     .header_admin {
-        position: fixed;
-        top: 0;
+        position: sticky;
+        top: 50px;
         left: 0;
-        width: calc(100% - 300px);
-        margin-left: 300px;
         z-index: 10;
         background-color: var(--white-color);
-        padding: 1rem 0;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2.5rem;
+        width: calc(100% + 5rem);
 
-        @include tablet-l {
-            margin-left: 0;
-            width: 100%;
-            padding-top: 0.5rem;
-            margin-top: 50px;
-        }
-
-        .button {
-            display: flex;
+        @include mobile-xl {
             align-items: center;
-            gap: var(--gap-m);
-            padding: 0 1rem;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding: 1rem;
+            width: calc(100% + 2rem);
 
-            svg {
-                width: 30px;
+            h2 {
+                font-size: var(--font-size-20);
             }
         }
 
-        >div {
-            width: 80%;
-            margin: auto;
-
-            @include desktop-1600 {
-                width: 92%;
-            }
-
+        .button_container {
             @include tablet-l {
-                width: 100%;
                 flex-direction: column;
-                gap: var(--gap-s);
+                gap: var(--gap-m);
             }
-
-            @include mobile-xl {
-                flex-direction: row;
+            .button {
+                display: flex;
+                align-items: center;
+                gap: var(--gap-m);
                 padding: 0 1rem;
             }
         }
@@ -60,7 +46,6 @@
         flex-direction: column;
         gap: var(--gap-xl);
         width: 100%;
-        margin-top: 150px;
     
         > div {
             gap: var(--gap-m);
@@ -85,6 +70,12 @@
                 border-color: var(--pink-color);
                 box-shadow: 0 0 0 1px var(--pink-color);
                 outline: none;
+            }
+        }
+
+        .date_container {
+            @include mobile-l {
+                flex-direction: column;
             }
         }
     }

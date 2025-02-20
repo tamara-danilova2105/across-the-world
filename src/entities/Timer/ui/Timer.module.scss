@@ -9,10 +9,6 @@
 
         @include mq.desktop-m {
             width: 100%;
-            gap: var(--gap-s);
-        }
-
-        @include mq.tablet-l {
             gap: var(--gap-l);
         }
 

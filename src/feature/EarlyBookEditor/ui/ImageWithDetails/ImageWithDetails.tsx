@@ -16,10 +16,11 @@ interface DetailsProps {
 }
 
 export const ImageWithDetails = ({ name, handleDelete, handleImagesChange }: DetailsProps) => {
-    const { register, control, formState: { errors } } = useFormContext();
+    const { register, control, watch, formState: { errors } } = useFormContext();
 
     return (
-        <Stack gap="24" max>
+        <Stack gap="24" max
+            className={styles.imagesWithDetails}>
             <Controller
                 key={name}
                 name={name}
@@ -43,7 +44,9 @@ export const ImageWithDetails = ({ name, handleDelete, handleImagesChange }: Det
                 }
             />
 
-            <Stack direction="column" max gap="32" justify="between" className={styles.describe_container}>
+            <Stack direction="column" justify="between" 
+                className={styles.describe_container} max gap="32"
+            >
                 {Object.entries(PLACEHOLDER_TEXT).map(([field, placeholder]) => {
                     const { min, max } = getFieldLimits(field);
                     return (
@@ -55,6 +58,7 @@ export const ImageWithDetails = ({ name, handleDelete, handleImagesChange }: Det
                                 required: data.required,
                                 validate: (value: string) => validateTextLength(value, min, max)
                             })}
+                            value={watch(`${name}.${field}`)}
                             placeholder={`Например: ${placeholder}`}
                             error={get(errors, `${name}.${field}`)}
                         />
@@ -69,6 +73,7 @@ export const ImageWithDetails = ({ name, handleDelete, handleImagesChange }: Det
                         required: data.required,
                         validate: (value: string) => validateTextLength(value, 10, 80)
                     })}
+                    defaultValue={watch(`${name}.describe`) || ""}
                     placeholder={`Например: "Таинственная ночь в Сахаре: барханы, звезды и тишина пустыни"`}
                     error={get(errors, `${name}.describe`)}
                     className={styles.textarea}

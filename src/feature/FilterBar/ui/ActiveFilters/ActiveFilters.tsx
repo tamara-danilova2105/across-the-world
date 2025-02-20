@@ -13,7 +13,9 @@ export const ActiveFilters = () => {
 
     const filterState = useSelector(getFiltersState)
     const { activeFiltersCount } = useActiveFilters(filterState)
+    const clearFilters = useClearFilters();
     const hasActiveFilters = activeFiltersCount > 0 
+
 
     return(
         <Stack max align="center" justify="between"
@@ -26,7 +28,7 @@ export const ActiveFilters = () => {
             </Text>
             <Button color="transparent"
                 className={styles.button_clear}
-                onClick={useClearFilters()}>
+                onClick={clearFilters}>
                 <X color="var(--blue-color)" />
             </Button>
         </Stack>
