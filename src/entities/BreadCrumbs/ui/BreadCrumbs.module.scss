@@ -18,12 +18,9 @@
 .breadCrumbsContainer {
     height: auto;
     width: 100%;
+    z-index: 3;
     padding-bottom: 2.5rem;
     @include mixin.section-style;
-
-    @include desktop-xl {
-        z-index: 3;
-    }
 
     nav {
         ul {

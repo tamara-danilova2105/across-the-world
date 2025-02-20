@@ -17,12 +17,20 @@
         gap: var(--gap-s);
         padding: 0 1rem;
 
+        @include mobile-xl {
+            width: 250px;
+        }
+
         @include mobile-m {
             p {
                 font-size: var(--font-size-16);
             }
             padding: 12px 10px;
             width: 250px;
+        }
+
+        @include mobile-s {
+            width: 200px;
         }
     }
 

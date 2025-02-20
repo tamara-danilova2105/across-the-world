@@ -1,5 +1,4 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { Button } from "@/shared/ui/Button/Button";
 import { Stack } from "@/shared/ui/Stack/Stack";
 import { RegionTours } from '../RegionTours/RegionTours/RegionTours';
 import { DateTours } from '../DateTours/DateTours/DateTours';
@@ -14,10 +13,11 @@ import { parsedDate } from '@/shared/lib/parsedDate';
 import styles from "./SearchToursMain.module.scss";
 
 interface SearchTypes {
-    main?: boolean
+    main?: boolean;
+    admin?: boolean;
 }
 
-export const SearchToursMain = ({ main }: SearchTypes) => {
+export const SearchToursMain = ({ main, admin }: SearchTypes) => {
     const width = useResize();
     const filterState = useSelector(getFiltersState);
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
     const { handleSubmit, watch } = methods;
     const regionValue = watch('region')
 
-    const debouncedSearch = useDebounce({ value: regionValue, delay: 300 })
+    const debouncedSearch = useDebounce({ value: regionValue, delay: 500 })
     const { data: regions, error, isLoading } = useGetRegionsQuery({ search: debouncedSearch })
 
     const onSubmit = (formData: { region: string; date: string }) => {
@@ -52,8 +52,12 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
     return (
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-                {main ? (
-                    <SearchMainPage regions={regions} error={error} isLoading={isLoading} />
+                {main || admin ? (
+                    <SearchMainPage regions={regions}
+                    error={error} 
+                    isLoading={isLoading} 
+                    main={main}
+                    admin={admin}/>
                 ) : (
                     <Stack className={styles.searchContainer}>
                         {width > 768 ? (
@@ -72,9 +76,6 @@ export const SearchToursMain = ({ main }: SearchTypes) => {
                                 isLoading={isLoading} 
                             />
                         )}
-                        <Button type="submit" className={styles.button}>
-                            Найти
-                        </Button>
                     </Stack>
                 )}
             </form>

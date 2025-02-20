@@ -6,8 +6,6 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import styles from "./DropDownList.module.scss";
 import { Additional, getStyles } from "@/shared/lib/getStyles";
-import { useNavigate } from "react-router";
-import { getRouteTours } from "@/app/router/lib/helper";
 
 interface DropdownListProps {
     regions: Region[];
@@ -26,12 +24,6 @@ export const DropdownList = ({
 }: DropdownListProps) => {
 
     const additional: Additional = [styles[styleMode]]
-    const nav = useNavigate()
-
-    const redirect = (region: string) => {
-        onSelect(region)
-        nav(getRouteTours())
-    }
     
     return (
         <Stack direction='column' gap='16' max
@@ -49,7 +41,7 @@ export const DropdownList = ({
                     {regions.map((region) => (
                         <li
                             key={region._id}
-                            onClick={() => redirect(region.region)}
+                            onClick={() => onSelect(region.region)}
                             className={styles.listItem}
                         >
                             <Text font='geometria500'>{region.region}</Text>

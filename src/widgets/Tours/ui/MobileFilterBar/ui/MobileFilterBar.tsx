@@ -8,9 +8,9 @@ import { useOverflowHidden } from "@/shared/hooks/useOverflowHidden";
 import { getStyles } from "@/shared/lib/getStyles";
 import { useActiveFilters } from "@/shared/hooks/useActiveFilters";
 import { useSelector } from "react-redux";
-import { clearAllFilters, getFiltersState } from "@/feature/FilterBar/model/filterSlice";
+import { getFiltersState } from "@/feature/FilterBar/model/filterSlice";
 import { X } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useClearFilters } from "@/shared/hooks/useClearFilters";
 
 interface MobileFilterBarProps {
     toggleMenu: () => void;
@@ -24,7 +24,6 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
     useOverflowHidden(isOpen);
     const filterState = useSelector(getFiltersState)
     const { activeFiltersCount } = useActiveFilters(filterState)
-    const dispatch = useDispatch()
 
     if (width > 1024) return null;
 
@@ -42,7 +41,7 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
 
                 {activeFiltersCount > 0 && (
                     <Button color="transparent"
-                        onClick={() => dispatch(clearAllFilters())}
+                        onClick={useClearFilters()}
                         className={styles.activeFiltersBadge}>
                         <X size={12} color="var(--blue-color)"/>
                     </Button>
@@ -51,14 +50,26 @@ export const MobileFilterBar = ({ toggleMenu, isOpen, menuRef } : MobileFilterBa
             <Stack 
                 max
                 className={getStyles(styles.mobileFilter, 
-                    {[styles.open]: isOpen, [styles.closed]: !isOpen}, [])}
+                {[styles.open]: isOpen, [styles.closed]: !isOpen}, [])}
             >
                 <Stack
                     ref={menuRef}
                     direction='column'
                     className={styles.mobileFilterBar}
+                    gap="16"
                 >
-                    <FilterBar toggleMenu={toggleMenu}/>
+                    <Button color="transparent"
+                        onClick={toggleMenu}
+                        className={styles.btnClose}>
+                        <X size={32} color="var(--blue-color)"/>
+                    </Button>
+                    <FilterBar/>
+                    <Button 
+                        onClick={toggleMenu}
+                        className={styles.btn_submit}
+                    >
+                        Применить
+                    </Button>
                 </Stack>
             </Stack>
         </Stack>

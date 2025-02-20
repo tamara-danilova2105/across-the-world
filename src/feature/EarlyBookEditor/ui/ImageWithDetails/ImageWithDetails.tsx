@@ -1,79 +1,78 @@
-import { ImageUploader } from "@/entities/ImageUploader"
-import { data, validateTextLength } from "@/shared/lib/validateInput"
-import { Input } from "@/shared/ui/Input"
-import { Stack } from "@/shared/ui/Stack"
-import { Controller, get, useFormContext, } from "react-hook-form"
-import { getFieldLimits, getLabel, PLACEHOLDER_TEXT } from "../../model/types/types"
-import { Button } from "@/shared/ui/Button"
-import { Text } from "@/shared/ui/Text"
-import { Image } from "@/shared/types/types"
+import { ImageUploader } from "@/entities/ImageUploader";
+import { data, validateTextLength } from "@/shared/lib/validateInput";
+import { Input } from "@/shared/ui/Input";
+import { Stack } from "@/shared/ui/Stack";
+import { Controller, get, useFormContext } from "react-hook-form";
+import { getFieldLimits, getLabel, PLACEHOLDER_TEXT } from "../../model/types/types";
+import { Text } from "@/shared/ui/Text";
+import { Image } from "@/shared/types/types";
+import { TextArea } from "@/shared/ui/TextArea";
+import styles from './ImageWithDetails.module.scss';
 
 interface DetailsProps {
     name: string;
-    saveCover: () => void;
+    handleDelete: (id: string) => void;
     handleImagesChange: (newImages: Image[]) => void;
 }
 
-export const ImageWithDetails = ({ name, saveCover, handleImagesChange }: DetailsProps) => {
-    const { register, control, trigger, formState: { errors } } = useFormContext()
-
-    const fieldNames = Object.keys(PLACEHOLDER_TEXT)
-
-    const handleSave = async () => {
-        const isFirstValid = await trigger(name);
-        
-        if (!isFirstValid) return; 
-        const isOthersValid = await trigger(fieldNames);
-    
-        if (isOthersValid) {
-            saveCover();
-        }
-    };
-
+export const ImageWithDetails = ({ name, handleDelete, handleImagesChange }: DetailsProps) => {
+    const { register, control, formState: { errors } } = useFormContext();
 
     return (
-        <Stack gap="24" max> 
+        <Stack gap="24" max>
             <Controller
+                key={name}
                 name={name}
                 control={control}
                 rules={{ required: "Изображение обязательно для загрузки" }}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <Stack direction="column">
                         <ImageUploader
-                            images={value ? [value] : []}
+                            images={value?._id ? [value] : []}
                             onChange={(newImages) => {
                                 handleImagesChange(newImages);
-                                onChange(newImages[0]);
+                                onChange(newImages.length > 0 ? newImages[0] : {}); 
                             }}
                             maxImages={1}
                             isCover
+                            onDelete={handleDelete}
                         />
                         {error && <Text color="red">{error.message}</Text>}
                     </Stack>
-                )}
+                    )
+                }
             />
 
-            <Stack direction="column" justify="between" max gap="32">
+            <Stack direction="column" max gap="32" justify="between" className={styles.describe_container}>
                 {Object.entries(PLACEHOLDER_TEXT).map(([field, placeholder]) => {
                     const { min, max } = getFieldLimits(field);
                     return (
                         <Input
                             key={field}
                             label={getLabel(field)}
-                            name={field}
-                            register={register(field, {
+                            name={`${name}.${field}`}
+                            register={register(`${name}.${field}`, {
                                 required: data.required,
                                 validate: (value: string) => validateTextLength(value, min, max)
                             })}
                             placeholder={`Например: ${placeholder}`}
-                            error={get(errors, field)}
+                            error={get(errors, `${name}.${field}`)}
                         />
                     );
                 })}
 
-                <Button onClick={handleSave} type="button">
-                    Добавить обложку
-                </Button>
+                <TextArea
+                    label="Краткое описание"
+                    name={`${name}.describe`}
+                    maxLength={80}
+                    register={register(`${name}.describe`, {
+                        required: data.required,
+                        validate: (value: string) => validateTextLength(value, 10, 80)
+                    })}
+                    placeholder={`Например: "Таинственная ночь в Сахаре: барханы, звезды и тишина пустыни"`}
+                    error={get(errors, `${name}.describe`)}
+                    className={styles.textarea}
+                />
             </Stack>
         </Stack>
     );

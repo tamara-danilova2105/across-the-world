@@ -31,19 +31,20 @@ const timerApi = api.injectEndpoints({
             invalidatesTags: TIMER_TAG,
         }),
         editTimer: build.mutation({
-            query: ({id, updateTimer}) => createApiConfig(
+            query: (body) => createApiConfig(
                 'PUT',
-                `${urlTimer}/${id}`,
+                `${urlTimer}`,
                 true,
-                updateTimer
+                body
             ),
             invalidatesTags: TIMER_TAG,
         }),
-        deleteTimer: build.mutation({
-            query: () => createApiConfig(
-                'DELETE',
+        hideTimer: build.mutation({
+            query: (body) => createApiConfig(
+                'PUT',
                 `${urlTimer}`,
-                true
+                true,
+                body
             ),
             invalidatesTags: TIMER_TAG,
         })
@@ -54,5 +55,5 @@ export const {
     useGetTimerQuery,
     useAddTimerMutation,
     useEditTimerMutation,
-    useDeleteTimerMutation
+    useHideTimerMutation
 } = timerApi;

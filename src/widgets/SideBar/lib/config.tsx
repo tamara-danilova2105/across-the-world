@@ -4,10 +4,11 @@ import {
     getRouteAdminModerationReviews,
     getRouteAdminNews,
     getRouteAdminNewsCreate,
+    getRouteAdminSubscription,
     getRouteAdminTours,
     getRouteAdminToursCreate
 } from "@/app/router/lib/helper";
-import { FilePlus, LayoutDashboard, List, Map, Newspaper, Percent, ShieldCheck } from "lucide-react";
+import { FilePlus, LayoutDashboard, List, Map, Newspaper, Percent, ShieldCheck, UsersRound } from "lucide-react";
 
 export const sidebarItems = [
     {
@@ -44,5 +45,10 @@ export const sidebarItems = [
         path: getRouteAdminModerationReviews(),
         icon: <ShieldCheck className="w-5 h-5" />,
         label: 'Управление отзывами'
+    },
+    {
+        path: getRouteAdminSubscription(),
+        icon: <UsersRound className="w-5 h-5" />,
+        label: 'Управление подпиской'
     },
 ];

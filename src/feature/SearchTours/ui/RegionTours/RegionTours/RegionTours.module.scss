@@ -18,4 +18,24 @@
         z-index: 3;
     }
 
+    &.input_main {
+        position: relative;
+        input {
+            padding: 14px 14px;
+        }
+        .svg {
+            right: 14px;
+        }
+    }
+
+    &.input_admin {
+        position: relative;
+        input {
+            border-radius: 0;
+            padding: 14px 14px;
+        }
+        .svg {
+            right: 14px;
+        }
+    }
 }

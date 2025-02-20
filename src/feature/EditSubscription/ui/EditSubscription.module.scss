@@ -1,0 +1,11 @@
+@use '@/app/styles/mixin' as *;
+
+.editSubscription {
+    @include section-admin-style;
+
+    .button {
+        display: flex;
+        align-items: center;
+        gap: var(--gap-m);
+    }
+}

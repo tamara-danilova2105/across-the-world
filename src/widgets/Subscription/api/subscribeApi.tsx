@@ -10,15 +10,31 @@ interface MailTag {
 
 const MAIL_TAG: MailTag[] = [{ type: 'Mail', id: 'Mails'}];
 
-const urlTimer = endpoints.path.mail;
+const urlMail = endpoints.path.mail;
 
 const subscribeApi = api.injectEndpoints({
     endpoints:(build) => ({
+        getSubscribers: build.query({
+            query: () => createApiConfig(
+                'GET',
+                `${urlMail}`,
+            ),
+            providesTags: () => MAIL_TAG,
+        }),
         subscribe: build.mutation({
             query: (body) => createApiConfig(
                 'POST',
-                `${urlTimer}`,
+                `${urlMail}`,
                 false,
+                body
+            ),
+            invalidatesTags: MAIL_TAG,
+        }),
+        manageSubscription: build.mutation({
+            query: (body) => createApiConfig(
+                'PUT',
+                `${urlMail}`,
+                true,
                 body
             ),
             invalidatesTags: MAIL_TAG,
@@ -26,5 +42,8 @@ const subscribeApi = api.injectEndpoints({
     })
 })
 
-export const { useSubscribeMutation } = subscribeApi;
+export const { 
+    useGetSubscribersQuery,
+    useSubscribeMutation,
+    useManageSubscriptionMutation} = subscribeApi;
 

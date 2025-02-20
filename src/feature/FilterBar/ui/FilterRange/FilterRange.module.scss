@@ -2,6 +2,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: var(--gap-m);
+    width: 100%;
 
     .inputContainer {
         width: 100%;

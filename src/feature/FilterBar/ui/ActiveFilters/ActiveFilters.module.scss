@@ -1,0 +1,30 @@
+@use '@/app/styles/media-queries' as *;
+
+.activeFilter {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    background-color: var(--pink-opacity40);
+
+    &.not_activeFilter {
+        background-color: var(--pink-opacity20);
+
+        p {
+            opacity: 0.1;
+        }
+
+        .button_clear {
+            pointer-events: none;
+            opacity: 0.2;
+        }
+    }
+
+    @include tablet-l {
+        margin-top: 0;
+    }
+
+    .button_clear {
+        padding: 0;
+        width: fit-content;
+        height: fit-content;
+    }
+}

@@ -1,120 +1,61 @@
-import { useFormContext } from "react-hook-form"
-import { Stack } from "@/shared/ui/Stack"
-import { Text } from "@/shared/ui/Text"
-import { Button } from "@/shared/ui/Button"
-import { Image } from "@/shared/types/types"
-import { ImagesWithDetails, TimerData } from "../../model/types/types"
-import { useState } from "react"
-import { X } from "lucide-react"
-import { apiUrl } from "@/shared/api/endpoints"
-import { ImageWithDetails } from "../ImageWithDetails/ImageWithDetails"
-import styles from './TimerImage.module.scss'
+import { Stack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
+import { Image } from "@/shared/types/types";
+import { ImagesWithDetails, TimerData } from "../../model/types/types";
+import { useEffect, useState } from "react";
+import { ImageWithDetails } from "../ImageWithDetails/ImageWithDetails";
+import { useFormContext } from "react-hook-form";
 
 interface TimerImageProps {
-    imagesWithDetails: ImagesWithDetails[];
-    handleSaveCover: (data: ImagesWithDetails) => void;
     setTimerData: React.Dispatch<React.SetStateAction<TimerData>>;
     setDeletedImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const TimerImage = (props: TimerImageProps) => {
+export const TimerImage = ({setDeletedImages }: TimerImageProps) => {
+    const [currentImages, setCurrentImages] = useState<ImagesWithDetails[]>([]);
 
-    const {
-        imagesWithDetails,
-        handleSaveCover,
-        setTimerData,
-        setDeletedImages
-    } = props;
+    const { watch, setValue, getValues } = useFormContext();
+    
+    useEffect(() => {
+        const cover1 = getValues("cover_1");
+        const cover2 = getValues("cover_2");
 
-    const { watch, setValue, reset } = useFormContext()
-    const [currentImage, setCurrentImage] = useState<Image | null>(null)
-
-    const handleImagesChange = (newImages: Image[]) => {
-        const image = newImages[0] || null;
-        setCurrentImage(image);
-        setValue("image", image);
+        if (cover1 && cover2) {
+            const updatedImages: ImagesWithDetails[] = [cover1, cover2];
+            setValue("imagesWithDetails", updatedImages);
+            setCurrentImages(updatedImages)
+        }
+    }, [watch("cover_1"), watch("cover_2")]);
+    
+    const handleImagesChange = (newImages: Image[], index: number) => {
+        const [newImagesData] = newImages.map(img => ({
+            _id: img._id,
+            src: img.src,
+            file: img.file
+        }))
+        setValue(`cover_${index + 1}`, newImagesData);
     }
-
-    const saveCover = async () => {
-        if (!currentImage) return;
-
-        const newCover: ImagesWithDetails = {
-            _id: currentImage._id,
-            src: currentImage.src,
-            file: currentImage.file,
-            header: watch('header'),
-            category: watch('category'),
-            describe: watch('describe'),
-        };
-
-        handleSaveCover(newCover);
-
-        reset({ header: '', describe: '', category: '' });
-        setCurrentImage(null);
-    }
-
-    const deleteImage = (id: string) => {
+    
+    const handleDelete = (id: string) => {
+        setCurrentImages(prevImages => prevImages.filter(image => image?._id !== id));
         setDeletedImages(prev => [...prev, id]);
-        setTimerData(prev => ({
-            ...prev,
-            imagesWithDetails: prev.imagesWithDetails.filter(img => img._id !== id)
-        }));
-    };
+    }
 
     return (
         <Stack direction="column" gap="24">
-            <Stack gap="24" max className={styles.uploaded}>
-                {imagesWithDetails.map((img, index) => (
-                    <Stack key={img._id} direction="column" gap="16"
-                        className={styles.uploaded_container}
-                    >
-                        <Button onClick={() => deleteImage(img._id)}
-                            className={styles.deleteImage}
-                        >
-                            <X />
-                        </Button>
-                        <Text size="18" font="geometria500">Обложка {index + 1}</Text>
-                        <img src={img.src.startsWith('blob:') || img.src.startsWith('data:') ?
-                            img.src : `${apiUrl}${img.src}`}
-                            alt={img.header} className={styles.image} />
-                        <Text size="16" font="geometria500">Название: {img.header}</Text>
-                        <Text size="16">Категория: {img.category}</Text>
-                        <Text size="16">Описание: {img.describe}</Text>
-                    </Stack>
+            <Stack direction="column" gap="24" max>
+                <Text size="18" font="geometria500">
+                    {currentImages.length === 0 ? "Добавьте 2 обложки для таймера" : "Добавьте ещё одну обложку"}
+                </Text>
+                {[0, 1].map(index => (
+                    <ImageWithDetails
+                        key={index}
+                        name={`cover_${index + 1}`}
+                        handleImagesChange={(newImages) => handleImagesChange(newImages, index)}
+                        handleDelete={handleDelete}
+                    />
                 ))}
             </Stack>
-
-            {imagesWithDetails.length < 2 && (
-                <Stack direction="column" gap="24" max>
-                    <Text size="18" font="geometria500">
-                        {imagesWithDetails.length === 0 ? "Добавьте 2 обложки для таймера" :
-                            "Добавьте ещё одну обложку"}
-                    </Text>
-
-                    {imagesWithDetails.length === 0 && (
-                        <>
-                            <ImageWithDetails
-                                name="cover_one"
-                                saveCover={saveCover}
-                                handleImagesChange={handleImagesChange}
-                            />
-                            <ImageWithDetails
-                                name="cover_two"
-                                saveCover={saveCover}
-                                handleImagesChange={handleImagesChange}
-                            />
-                        </>
-                    )}
-
-                    {imagesWithDetails.length === 1 && (
-                        <ImageWithDetails
-                            name="cover_two"
-                            saveCover={saveCover}
-                            handleImagesChange={handleImagesChange}
-                        />
-                    )}
-                </Stack>
-            )}
         </Stack>
-    )
-}
+    );
+};

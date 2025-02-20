@@ -2,12 +2,13 @@
 
 .mobileFilterContainer {
     margin-right: auto;
+
     .mobileFilter {
         position: fixed; 
         top: 0;
         left: 0;
-        z-index: 7;
-        height: 100%;
+        z-index: 105;
+        height: auto;
         width: 100%;
         background-color: var(--blue-opacity20);
         transform: translateY(-100%); 
@@ -28,8 +29,7 @@
         .mobileFilterBar {
             position: relative;
             width: 500px;
-            padding: 0 20px 20px 20px;
-            border-top: 20px solid var(--white-color);
+            padding: 20px;
             height: 100vh;
             background-color: white;
             box-shadow: var(--box-shadow);
@@ -46,22 +46,31 @@
                 background-color: var(--white-color);
                 justify-content: flex-end;
                 z-index: 10;
-                svg {
-                    width: 40px;
-                    height: 100%;
-        
-                    path {
-                        color: var(--blue-color);
-                    }
+            }
+            
+            .btn_submit {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                max-width: 500px;
+                height: 70px;
+                padding: 10px;
+                z-index: 10;
+
+                @include mobile-xl {
+                    height: 50px;
+                    max-width: 100%;
                 }
             }
+            
         }
-
     }
 
 
     .menu_btn_container {
         position: relative;
+
         .toggleButton {
             position: relative;
             display: flex;
