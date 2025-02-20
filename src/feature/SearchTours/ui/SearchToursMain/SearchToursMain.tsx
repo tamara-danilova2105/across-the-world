@@ -61,7 +61,7 @@ export const SearchToursMain = ({ main, admin }: SearchTypes) => {
                 ) : (
                     <Stack className={styles.searchContainer}>
                         {width > 768 ? (
-                            <Stack gap="4">
+                            <Stack gap="8">
                                 <RegionTours 
                                     regions={regions} 
                                     error={error} 

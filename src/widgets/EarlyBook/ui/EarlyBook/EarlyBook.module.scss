@@ -80,6 +80,11 @@
             .appLink {
                 width: 65%;
 
+                .app_cancel {
+                    display: flex;
+                    justify-content: center;
+                }
+
                 @include mq.mobile-xl {
                     width: 100%;
                 }
