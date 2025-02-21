@@ -12,16 +12,21 @@
 .manage_container {
     z-index: 4;
 
+    @include tablet-m {
+        flex-direction: column;
+        gap: var(--gap-m);
+    }
+
     form {
         position: static !important;
     }
 
     button {
         width: 350px;
+
+        @include tablet-m {
+            width: 100%;
+        }
     }
 
-    @include tablet-m {
-        flex-direction: column;
-        gap: var(--gap-m);
-    }
 }

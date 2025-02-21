@@ -64,6 +64,13 @@ export const ReviewsList = (props: ReviewsListProps) => {
                     Отзывов пока нет — станьте первым, кто поделится впечатлениями!
                 </Text>
             )}
+
+            {(reviews?.total === 0 && !isModeration) && (
+                <Text size="18" color='pink' font='geometria500'>
+                    Новых отзывов, не прошедших модерации нет
+                </Text>
+            )}
+
             {reviews?.reviews.map((review: Review) => (
                 <ReviewCard
                     key={review._id}
