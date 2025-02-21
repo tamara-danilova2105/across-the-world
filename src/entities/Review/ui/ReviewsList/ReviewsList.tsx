@@ -67,7 +67,7 @@ export const ReviewsList = (props: ReviewsListProps) => {
 
             {(reviews?.total === 0 && !isModeration) && (
                 <Text size="18" color='pink' font='geometria500'>
-                    Новых отзывов, не прошедших модерации нет
+                    Нет новых отзывов, ожидающих модерации.
                 </Text>
             )}
 
