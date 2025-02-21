@@ -1,10 +1,12 @@
 import { useMemo, useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Regions, TimerData } from "../../model/types/types";
-import { useAddTimerMutation,
-    useEditTimerMutation, 
-    useGetTimerQuery, 
-    useHideTimerMutation } from "@/widgets/EarlyBook/api/timerApi";
+import {
+    useAddTimerMutation,
+    useEditTimerMutation,
+    useGetTimerQuery,
+    useHideTimerMutation
+} from "@/widgets/EarlyBook/api/timerApi";
 import { useGetRegionsQuery } from "@/entities/Region/api/api";
 import { Loading } from "@/shared/ui/Loading";
 import { Stack } from "@/shared/ui/Stack";
@@ -15,7 +17,7 @@ import { Input } from "@/shared/ui/Input";
 import { data, validateTextLength } from "@/shared/lib/validateInput";
 import { Select } from "@/shared/ui/Select";
 import { TimerImage } from "../TimerImage/TimerImage";
-import styles from './EarlyBookEditor.module.scss' 
+import styles from './EarlyBookEditor.module.scss'
 
 const INITIAL_TIMER_STATE: TimerData = {
     title: '',
@@ -35,7 +37,7 @@ export const EarlyBookEditor = () => {
     const { data: getTimer, isLoading: getLoading } = useGetTimerQuery({});
     const [addNewTimer, { isLoading: addTimerLoading }] = useAddTimerMutation();
     const [editTimer] = useEditTimerMutation();// error, load
-    const [hideTimer, {isLoading: hideTimerLoading}] = useHideTimerMutation()
+    const [hideTimer, { isLoading: hideTimerLoading }] = useHideTimerMutation()
 
     const optionsRegions = useMemo(() => regions?.map(({ region }: Regions) => region) || [], [regions]);
 
@@ -46,7 +48,7 @@ export const EarlyBookEditor = () => {
         try {
             const changedHide = !isHide;
             console.log("Отправка запроса hideTimer:", changedHide);
-            await hideTimer({hide: changedHide}).unwrap();
+            await hideTimer({ hide: changedHide }).unwrap();
             setIsHide(changedHide);
         } catch (e) {
             console.error("Ошибка в getHideTimer:", e);
@@ -66,7 +68,7 @@ export const EarlyBookEditor = () => {
             const images = currentTimer.imagesWithDetails || [];
             const cover_1 = images[0] || null;
             const cover_2 = images[1] || null;
-    
+
             reset((prevValues) => ({
                 ...prevValues,
                 cover_1,
@@ -74,23 +76,23 @@ export const EarlyBookEditor = () => {
             }));
         }
     }, [getTimer, setValue, reset]);
-    
+
     const onSubmit = async () => {
-        const {title, region, discount, timer, imagesWithDetails} = getValues()
+        const { title, region, discount, timer, imagesWithDetails } = getValues()
 
         console.log(imagesWithDetails)
 
         if (imagesWithDetails.length !== 2) {
             return;
         }
-    
+
         const data = new FormData();
         data.append("title", title);
         data.append("region", region);
         data.append("discount", discount || '');
         data.append("timer", timer || '');
         data.append("imagesWithDetails", JSON.stringify(imagesWithDetails));
-    
+
         if (deletedImages.length > 0) {
             data.append("deletedImages", JSON.stringify(deletedImages));
         }
@@ -110,43 +112,55 @@ export const EarlyBookEditor = () => {
         }
     }
 
-    
+
 
     if (getLoading) return <Loading width="100" height="100" />;
 
     return (
-            <Stack direction="column" align="center" max gap="24" 
-                className={styles.timerContainer}
+        <Stack
+            direction="column"
+            align="center"
+            max gap="24"
+            className={styles.timerContainer}
+        >
+            <Stack
+                max direction="column" gap="32"
+                className={styles.header_admin}
             >
-                <Stack max direction="column" gap="32"
-                    className={styles.header_admin}
-                >
-                    <Text type="h2" color="blue" 
+                <Stack max justify='between' align='center'>
+                    <Text type="h2" color="blue"
                         font="geometria500" size="32"
                     >
                         Управление ранним бронированием
                     </Text>
-                    <Stack max gap="32" 
-                        className={styles.button_container}
-                    >
-                        <Button type="button" color="outline" 
-                            loading={hideTimerLoading} 
+                    <Stack gap="8">
+                        <Button
+                            type="button"
+                            color="outline"
+                            loading={hideTimerLoading}
+                            disabled={hideTimerLoading}
                             className={styles.button}
                             onClick={getHideTimer}
                         >
                             {isHide ? <EyeOff /> : <Eye />}
-                            {isHide ? 'Снять с публикации' : 'Опубликовать'}
+                            <span>
+                                {isHide ? 'cнять с публикации' : 'oпубликовать'}
+                            </span>
                         </Button>
-                        <Button type="submit" 
-                            loading={addTimerLoading} 
-                            className={styles.button} 
+                        <Button type="submit"
+                            loading={addTimerLoading}
+                            disabled={addTimerLoading}
+                            className={styles.button}
                             onClick={handleSubmit(onSubmit)}
                         >
-                            <Upload /> Сохранить таймер
+                            <Upload />
+                            <span>cохранить таймер</span>
                         </Button>
                     </Stack>
                 </Stack>
-                <FormProvider {...methods}>
+            </Stack>
+
+            <FormProvider {...methods}>
                 <form className={styles.form}>
                     <Input
                         label="Название объявления"
@@ -161,10 +175,10 @@ export const EarlyBookEditor = () => {
                     />
                     <Stack direction='column' gap="8" max>
                         <label className={styles.label}>Регион</label>
-                        <Select 
-                            value={watch("region") || 'Выбери регион'} 
-                            options={optionsRegions} 
-                            onChange={(option) => setValue('region', option)} 
+                        <Select
+                            value={watch("region") || 'Выбери регион'}
+                            options={optionsRegions}
+                            onChange={(option) => setValue('region', option)}
                         />
                     </Stack>
                     <Stack max className={styles.date_container}>
@@ -186,11 +200,11 @@ export const EarlyBookEditor = () => {
                             className={styles.input}
                         />
                     </Stack>
-                    <TimerImage 
+                    <TimerImage
                         setDeletedImages={setDeletedImages}
                     />
                 </form>
-                </FormProvider>
-            </Stack>
+            </FormProvider>
+        </Stack>
     );
 };

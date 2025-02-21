@@ -22,6 +22,21 @@
             margin-top: 50px;
         }
 
+        h2 {
+            @include mobile-xl {
+                font-size: var(--font-size-20);
+            }
+        }
+
+        button {
+            width: max-content;
+            padding: 0 1rem;
+
+            svg {
+                margin-right: 0.75rem;
+            }
+        }
+
         >div {
             width: 80%;
             margin: auto;
@@ -79,23 +94,6 @@
                 box-shadow: 0 0 0 1px var(--pink-color);
                 outline: none;
             }
-        }
-    }
-}
-
-.header_container {
-    h2 {
-        @include mobile-xl {
-            font-size: var(--font-size-20);
-        }
-    }
-    
-    button {
-        width: max-content;
-        padding: 0 1rem;
-
-        svg {
-            margin-right: 0.75rem;
         }
     }
 }

@@ -13,7 +13,7 @@ import styles from './ToursAdmin.module.scss';
 const LIMIT_PER_PAGE = 12;
 
 export const ToursAdmin = () => {
-    const [currentPage, setCurrentPage] = useState(1); 
+    const [currentPage, setCurrentPage] = useState(1);
     const filters = useSelector(getFiltersState)
 
     const { data: toursData = [], isLoading, error } = useGetAllToursQuery({
@@ -40,8 +40,8 @@ export const ToursAdmin = () => {
             <Stack align="center" max
                 gap="32" className={styles.manage_container}
             >
-                <SearchToursMain admin/>
-                <DownloadShedule/>
+                <SearchToursMain admin />
+                <DownloadShedule />
             </Stack>
 
             {error && (

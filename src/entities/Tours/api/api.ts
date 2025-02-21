@@ -50,6 +50,7 @@ const toursApi = api.injectEndpoints({
 
 export const {
     useGetAllToursQuery,
+    useLazyGetAllToursQuery,
     useGetTourListQuery,
     useGetTourByIdQuery,
     useLazyGetTourByIdQuery,

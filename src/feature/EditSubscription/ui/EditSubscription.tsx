@@ -63,7 +63,7 @@ export const EditSubscription = () => {
                     onClick={changeAvailability}
                 >
                     {availability ?
-                        'Скрыть секцию на главной странице' :
+                        'cкрыть секцию на главной странице' :
                         'Показать секцию на главной странице'}
                 </Button>
                 <Button
@@ -72,7 +72,7 @@ export const EditSubscription = () => {
                     disabled={isLoading}
                     onClick={downloadExcel}
                 >
-                    <Download /> Скачать список подписчиков Excel
+                    <Download /> cкачать список подписчиков Excel
                 </Button>
             </Stack>
         </Stack>
