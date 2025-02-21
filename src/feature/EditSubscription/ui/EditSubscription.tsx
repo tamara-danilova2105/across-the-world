@@ -1,52 +1,61 @@
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import { Button } from "@/shared/ui/Button"
-import { Stack } from "@/shared/ui/Stack"
-import { Text } from "@/shared/ui/Text"
-import { Download } from "lucide-react"
-import { useGetSubscribersQuery, useManageSubscriptionMutation } from "@/widgets/Subscription/api/subscribeApi"
+import { Button } from "@/shared/ui/Button";
+import { Stack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
+import { Download } from "lucide-react";
+import { useLazyGetSubscribersQuery, useManageSubscriptionMutation } from "@/widgets/Subscription/api/subscribeApi";
 import { useState } from 'react';
-import styles from './EditSubscription.module.scss'
+import styles from './EditSubscription.module.scss';
+import { toast } from 'react-toastify';
 
 interface SubscriberType {
     email: string;
 }
 
 export const EditSubscription = () => {
-    const { data, isLoading } = useGetSubscribersQuery({});
+    const [triggerGetSubscribers, { isFetching }] = useLazyGetSubscribersQuery();
+    const [subscription, { isLoading: manageLoad }] = useManageSubscriptionMutation();
+    const [isAvailability, setIsAvailability] = useState<boolean>(true);
 
-    const all_subscribers = data?.all_subscribers || [];
-    const availability = data?.availability ?? true;
+    const downloadExcel = async () => {
+        try {
+            const result = await triggerGetSubscribers({}).unwrap();
+            const allSubscribers = result?.all_subscribers || [];
 
-    const downloadExcel = () => {
-        const subscribers_list = all_subscribers
-            .map((subscriber: SubscriberType, index: number) => ({
+            if (!allSubscribers.length) {
+                toast.error("Список подписчиков пуст.");
+                return;
+            }
+
+            const subscribersList = allSubscribers.map((subscriber: SubscriberType, index: number) => ({
                 "№": index + 1,
                 "Email": subscriber.email
             }));
 
-        const ws = XLSX.utils.json_to_sheet(subscribers_list);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Подписчики");
+            const ws = XLSX.utils.json_to_sheet(subscribersList);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Подписчики");
 
-        const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-        const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+            const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
 
-        saveAs(blob, "subscribers.xlsx");
-    }
-
-    const [subscription, { isLoading: manage_load }] = useManageSubscriptionMutation();
-    const [isAvailability, setIsAvailability] = useState<boolean>(availability)
+            saveAs(blob, "subscribers.xlsx");
+        } catch (error) {
+            console.error("Ошибка при загрузке подписчиков:", error);
+            toast.error("Не удалось загрузить список подписчиков.")
+        }
+    };
 
     const changeAvailability = async () => {
         try {
-            const new_availability = !isAvailability;
-            await subscription({ availability: new_availability })
-            setIsAvailability(new_availability)
+            const newAvailability = !isAvailability;
+            await subscription({ availability: newAvailability });
+            setIsAvailability(newAvailability);
         } catch (e) {
-            console.log(e)
+            console.error(e);
         }
-    }
+    };
 
     return (
         <Stack direction="column" gap="24">
@@ -54,27 +63,24 @@ export const EditSubscription = () => {
                 Управление подпиской на новости
             </Text>
 
-            <Stack align="center" max gap="32"
-                className={styles.button_container}>
+            <Stack align="center" max gap="32" className={styles.button_container}>
                 <Button
                     color="secondary"
-                    loading={manage_load}
-                    disabled={manage_load}
+                    loading={manageLoad}
+                    disabled={manageLoad}
                     onClick={changeAvailability}
                 >
-                    {availability ?
-                        'cкрыть секцию на главной странице' :
-                        'Показать секцию на главной странице'}
+                    {isAvailability ? 'скрыть секцию на главной странице' : 'показать секцию на главной странице'}
                 </Button>
                 <Button
                     className={styles.button}
-                    loading={isLoading}
-                    disabled={isLoading}
+                    loading={isFetching}
+                    disabled={isFetching}
                     onClick={downloadExcel}
                 >
-                    <Download /> cкачать список подписчиков Excel
+                    <Download /> скачать список подписчиков Excel
                 </Button>
             </Stack>
         </Stack>
-    )
-}
+    );
+};

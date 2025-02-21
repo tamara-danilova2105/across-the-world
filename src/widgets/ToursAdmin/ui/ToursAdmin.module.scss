@@ -16,7 +16,12 @@
         position: static !important;
     }
 
+    button {
+        width: 350px;
+    }
+
     @include tablet-m {
         flex-direction: column;
+        gap: var(--gap-m);
     }
 }

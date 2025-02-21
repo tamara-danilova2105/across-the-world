@@ -37,8 +37,9 @@ export const ToursAdmin = () => {
                 Управление турами
             </Text>
 
-            <Stack align="center" max
-                gap="32" className={styles.manage_container}
+            <Stack
+                align="center" max gap="32" 
+                className={styles.manage_container}
             >
                 <SearchToursMain admin />
                 <DownloadShedule />

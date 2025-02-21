@@ -43,7 +43,6 @@ export const DownloadShedule = () => {
         }
     };
 
-
     return (
         <Button
             className={styles.button}
@@ -51,7 +50,7 @@ export const DownloadShedule = () => {
             disabled={isFetching}
             onClick={downloadSchedule}
         >
-            <Download />  Скачать расписание
+            <Download />  скачать расписание
         </Button>
     )
 }

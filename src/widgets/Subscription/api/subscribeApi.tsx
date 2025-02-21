@@ -44,6 +44,7 @@ const subscribeApi = api.injectEndpoints({
 
 export const { 
     useGetSubscribersQuery,
+    useLazyGetSubscribersQuery,
     useSubscribeMutation,
     useManageSubscriptionMutation} = subscribeApi;
 
